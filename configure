@@ -1,0 +1,83 @@
+#!/bin/bash
+shopt -s extglob
+
+source $PWD/.configure/base
+
+case $1 in
+
+	*mm | *maint* )
+
+	shift
+
+	case $1 in
+
+		*prefix* )
+			PREFIX=$(echo $1 | gawk -F \= '{ print $2 }')
+		;;
+
+		* )
+			PREFIX=/usr
+		;;
+	esac
+
+	maintainer_message
+
+	# load modules
+	source $PWD/.configure/check_deps
+	source $PWD/.configure/substitute
+
+	# perform actions
+	copy_in_files
+	substitute_values
+
+	# reset $PATH
+	export PATH="$OLDPATH"
+	end_message
+
+	;;
+
+	*help )
+
+	source $PWD/.configure/help
+	display_help
+
+	;;
+
+	* )
+
+	case $1 in
+
+		*prefix* )
+			PREFIX=$(echo $1 | gawk -F \= '{ print $2 }')
+		;;
+
+		* )
+			PREFIX=/usr
+		;;
+	esac
+
+	# load modules
+	source $PWD/.configure/check_deps
+	source $PWD/.configure/substitute
+
+	# perform actions
+	start_message
+	check_apps APP Required Applications
+	check_apps OPT_APP Optional Applications
+	check_apps OPT_SBINAPP Optional Superuser-Applications
+	check_libs LIB Required Libraries
+	check_pymods PYMOD Required Python-Modules
+
+	# adjust code
+	copy_in_files
+	substitute_values
+
+	# reset $PATH
+	export PATH="$OLDPATH"
+	end_message
+
+	;;
+
+esac
+
+tput sgr0

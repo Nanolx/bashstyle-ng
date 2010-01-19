@@ -1,0 +1,562 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>BashStyle-NG 7.10 Doc / Chapter 8</title>
+</head>
+<body>
+<h2 align="center"><font color="#00A8FF">Chapter 8: BS-NG Functions</font></h2>
+<hr><br>
+
+<i><b><font color="#E173E4">Note:</font></b> inlcude functions with \$(function) into your prompt!</i><br>
+<i><b><font color="#E173E4">Note:</font></b> each function has a help message `function --help'.</i>
+
+
+<h3><font color="#33c0f4">Until BashStyle-NG 7.7:</font></h3>
+
+<h3><font color="#88D058">BS-NG-Echo</font></h3>
+&nbsp;This function will "parse" the Colorcodes, to make them usable with `echo'.<br><br>
+<table border="1">
+	<tr>
+		<td>echo -e $usercolor hello</td>
+		<td>See - doesn't work correctly.</td>
+	</tr>
+	<tr>
+		<td>echo -e $(bs-ng-echo $usercolor) hello</td>
+		<td>See - this does work now.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">BS-NG-Profiler</font></h3>
+&nbsp;This script will import or export your current configuration.<br><br>
+<table border="1">
+	<tr>
+		<td>bs-ng-profiler</td>
+		<td>export</td>
+		<td></td>
+		<td>Export your profile into a plain-text file.</td>
+	</tr>
+	<tr>
+		<td width="20%"></td>
+		<td width="10%">import</td>
+		<td width="20%">a saved profile</td>
+		<td>Import an already saved profile.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Countfiles</font></h3>
+&nbsp;This function will show how many files/folders are in the current directory.<br><br>
+<table border="1">
+	<tr>
+		<td>count_files</td>
+		<td>+h</td>
+		<td>Count files, folders (and hidden ones).</td>
+	</tr>
+	<tr>
+		<td width="20%"></td>
+		<td width="20%">-h</td>
+		<td>Count files, folders (no hidden ones).</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>-d</td>
+		<td>Count folders (no hidden ones).</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>+d</td>
+		<td>Count folders (and hidden ones).</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>-f</td>
+		<td>Count files (no hidden ones).</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>+f</td>
+		<td>Count files (and hidden ones).</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Count Processes</font></h3>
+&nbsp;This function counts all running processes.<br><br>
+<table border="1">
+	<tr>
+		<td width="50%">count_processes</td>
+		<td>no options.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-Battery-Load</font></h3>
+&nbsp;This function will show your lappy's battery load, using APM.<br><br>
+<table border="1">
+	<tr>
+		<td width="35%">show_battery_load</td>
+		<td>acpi</td>
+		<td>use acpi for getting batteryload.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>apm</td>
+		<td>use apm for getting batteryload.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-CPU-Load</font></h3>
+&nbsp;This function will show your CPU load.<br><br>
+<table border="1">
+	<tr>
+		<td width="60%">show_cpu_load</td>
+		<td>no options.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-System-Load</font></h3>
+&nbsp;This function will show your system load.<br><br>
+<table border="1">
+	<tr>
+		<td>show_system_load</td>
+		<td>1</td>
+		<td>Load average for 1 minute.</td>
+	</tr>
+	<tr>
+		<td width="20%"></td>
+		<td width="20">10</td>
+		<td width="60%">Load average for 10 minutes.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>15</td>
+		<td>Load average for 15 minutes.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-Memory</font></h3>
+&nbsp;This function will show your memory load.<br><br>
+<table border="1">
+	<tr>
+		<td>show_mem</td>
+		<td>--used</td>
+		<td>Shows used memory in MB.</td>
+	</tr>
+	<tr>
+		<td width="20%"></td>
+		<td width="30%">--used-percent</td>
+		<td width="50%">Shows used memory in Percent.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--free</td>
+		<td>Shows free memory in MB.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--free-percent </td>
+		<td>Shows free memory in Percent.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-Size</font></h3>
+&nbsp;This function will show the size of all files in the current directory.<br><br>
+<table border="1">
+	<tr>
+		<td width="50%">show_size</td>
+		<td>no options.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-Space</font></h3>
+&nbsp;This function will show your disk space.<br><br>
+<table border="1">
+	<tr>
+		<td>show_space</td>
+		<td>--used</td>
+		<td>mountpoint</td>
+		<td>Shows the used space in MB/GB.</td>
+	</tr>
+	<tr>
+		<td width="20%"></td>
+		<td width="25%">--used-percent</td>
+		<td width="15%">mountpoint</td>
+		<td width="40%">Shows the used space in Percent.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--free</td>
+		<td>mountpoint</td>
+		<td>Shows the free space in MB/GB.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--free-percent</td>
+		<td>mountpoint</td>
+		<td>Shows the free space in Percent.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--total</td>
+		<td>mountpoint</td>
+		<td>Shows the total space in MB/GB.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-TTY</font></h3>
+&nbsp;This function shows the current TTY (Terminal Device).<br><br>
+<table border="1">
+	<tr>
+		<td width="50%">show_tty</td>
+		<td>no options.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-Uptime</font></h3>
+&nbsp;This function will show your system's uptime.<br><br>
+<table border="1">
+	<tr>
+		<td>show_uptime</td>
+		<td>no options.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">TruncPWD</font></h3>
+&nbsp;This function will print a modified version of $PWD.<br><br>
+<table border="1">
+	<tr>
+		<td width="50%">trunc_pwd</td>
+		<td>no options.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Show-IP</font></h3>
+&nbsp;This function will show your external ip address.<br><br>
+<table border="1">
+	<tr>
+		<td withd="40%">show_ip</td>
+		<td>&lt;interface&gt;</td>
+		<td>show external ip address of &lt;interface&gt;.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">Man 2 PDF</font></h3>
+&nbsp;This function will convert a manpage to a pdf file.<br><br>
+<table border="1">
+	<tr>
+		<td>man2pdf &lt;manpage&gt;</td>
+		<td>convert &lt;manpage&gt; into a pdf.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">System-Infos</font></h3>
+&nbsp;This function will show serveral system informations.<br><br>
+<table border="1">
+	<tr>
+		<td>system_infos</td>
+		<td>--cpu</td>
+		<td>Display CPU Model and Frequency.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--kernel</td>
+		<td>Display Kernel Release, Version and Machine.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--memory</td>
+		<td>Display Total, Free and Used RAM.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--partitions</td>
+		<td>Display Major, Minor, Blocks and Node for all recognized paritions.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--pci</td>
+		<td>Display Infos about all PCI Devices (and their kernel-module).</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--usb</td>
+		<td>Display Infos about all USB Devices (and their kernel-module).</td>
+	<tr>
+		<td></td>
+		<td>--bios</td>
+		<td>Display SMBIOS/DMI Informations.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--mounts</td>
+		<td>Display all mounted devices.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">RCGenerator</font></h3>
+&nbsp;This script will generate standalone rc-files.<br><br>
+<table border="1">
+	<tr>
+		<td>rcgenerator</td>
+		<td>--bash</td>
+		<td>Generate standalone bashrc.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--readline</td>
+		<td>Generate standalone inputrc.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--vim</td>
+		<td>Generate standalone vimrc.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--nano</td>
+		<td>Generate standalone nanorc.</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>--all</td>
+		<td>Generate standalone rcs for all four.</td>
+	</tr>
+</table>
+
+<h3><font color="#33c0f4">New in BashStyle-NG 7.8:</font></h3>
+
+<h3><font color="#88D058">xchown</font></h3>
+&nbsp;Recursive chown for given user, with root priviledges, via su.<br><br>
+<table border="1">
+	<tr>
+		<td>xchown</td>
+		<td>USER</td>
+		<td>FILES/FOLDERS</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">xmv</font></h3>
+&nbsp;Move files to last arguement, if that directory does not exist, create it before moving.<br><br>
+<table border="1">
+	<tr>
+		<td>xmv</td>
+		<td>FILE FILE FILE FILE DESTINATION</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">xcp</font></h3>
+&nbsp;Same than xmv, but for copying instead of moving.<br><br>
+<table border="1">
+	<tr>
+		<td>xcp</td>
+		<td>FILE FILE FILE FILE DESTINATION</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">xdel</font></h3>
+&nbsp;Delete matching files recursively (also: `rm of doom').<br><br>
+<table border="1">
+	<tr>
+		<td>xdel</td>
+		<td>pattern</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">xconv</font></h3>
+&nbsp;Xconv is a set of functions for converting numbers.<br><br>
+<table border="1">
+	<tr>
+		<td>bin2oct</td>
+		<td>convert binary to octal.</td>
+	</tr>
+	<tr>
+		<td>bin2dec</td>
+		<td>convert binary to decimal.</td>
+	</tr>
+	<tr>
+		<td>bin2hex</td>
+		<td>convert binary to hexadecimal.</td>
+	</tr>
+	<tr>
+		<td>bin2all</td>
+		<td>convert binary to all three.</td>
+	</tr>
+	<tr>
+		<td>oct2bin</td>
+		<td>convert octal to binary.</td>
+	</tr>
+	<tr>
+		<td>oct2dec</td>
+		<td>convert octal to decimal.</td>
+	</tr>
+	<tr>
+		<td>oct2hex</td>
+		<td>convert octal to hexadecimal</td>
+	</tr>
+	<tr>
+		<td>oct2all</td>
+		<td>convert octal to all three.</td>
+	</tr>
+	<tr>
+		<td>dec2bin</td>
+		<td>convert decimal to binary.</td>
+	</tr>
+	<tr>
+		<td>dec2oct</td>
+		<td>convert decimal to octal.</td>
+	</tr>
+	<tr>
+		<td>dec2hex</td>
+		<td>convert decimal to hexadecimal.</td>
+	</tr>
+	<tr>
+		<td>dec2all</td>
+		<td>convert decimal to all three.</td>
+	</tr>
+	<tr>
+		<td>hex2bin</td>
+		<td>convert hexadecimal to binary.</td>
+	</tr>
+	<tr>
+		<td>hex2oct</td>
+		<td>convert hexadecimal to octal.</td>
+	</tr>
+	<tr>
+		<td>hex2dec</td>
+		<td>convert hexadecimal to decimal</td>
+	</tr>
+	<tr>
+		<td>hex2all</td>
+		<td>convert hexadecimal to all three.</td>
+	</tr>
+	<tr>
+		<td>round</td>
+		<td>round a decimal.</td>
+	</tr>
+	<tr>
+		<td>radical</td>
+		<td>get the square-root of a decimal.</td>
+	</tr>
+	<tr>
+		<td>power</td>
+		<td>get the n-th power of a decimal.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">xunalias</font></h3>
+&nbsp;Xunalias is a replacement for unalias, which does not err if an alias<br>
+&nbsp;can't be unaliased (usefull for scripts).<br><br>
+<table border="1">
+	<tr>
+		<td>xunalias</td>
+		<td>alias</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">ls functions</font></h3>
+&nbsp;A set of extra `ls' variants.<br><br>
+<table border="1">
+	<tr>
+		<td>ll</td>
+		<td>show detailed infos.</td>
+	</tr>
+	<tr>
+		<td>la</td>
+		<td>also display hidden files.</td>
+	</tr>
+	<tr>
+		<td>l1</td>
+		<td>display one file per line.</td>
+	</tr>
+	<tr>
+		<td>lo</td>
+		<td>display owner of file.</td>
+	</tr>
+	<tr>
+		<td>lg</td>
+		<td>display group of file.</td>
+	</tr>
+	<tr>
+		<td>lm</td>
+		<td>display mode of file.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">git functions</font></h3>
+&nbsp;A set of extra `git' functions.<br><br>
+<table border="1">
+	<tr>
+		<td>git_export</td>
+		<td>PATH</td>
+		<td>export the git-tree to PATH.</td>
+	</tr>
+	<tr>
+		<td>git_bzip</td>
+		<td></td>
+		<td>create bzip2-compressed tarball from the git-tree.</td>
+	</tr>
+</table>
+
+<h3><font color="#88D058">exchange</font></h3>
+&nbsp;Exchange the value of two variables.<br><br>
+<table border="1">
+	<tr>
+		<td>exchange</td>
+		<td>VARIABLE1</td>
+		<td>VARIABLE2</td>
+	</tr>
+</table>
+
+<h3><font color="#33c0f4">New in BashStyle-NG 7.9:</font></h3>
+
+<h3><font color="#88D058">random</font></h3>
+&nbsp;Print a random number.<br><br>
+<table border="1">
+	<tr>
+		<td>random</td>
+		<td>maximum</td>
+		<td>Print a random number from 0 to maximum.</td>
+	</tr>
+</table><br><br>
+
+<h3><font color="#33c0f4">New in BashStyle-NG 7.10:</font></h3>
+
+<h3><font color="#88D058">ps</font></h3>
+&nbsp;A set of `ps' related functions<br><br>
+<table border="1">
+	<tr>
+		<td>psgrep</td>
+		<td>-u</td>
+		<td>USER</td>
+		<td>Print all processes belonging to USER</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>PROCESSNAME</td>
+		<td>Print all running processes matching PROCESSNAME</td>
+	</tr>
+</table><br><br>
+
+<table border="1">
+	<tr>
+		<td>pskill</td>
+		<td>PROCESSNAME</td>
+		<td></td>
+		<td>psgrep for PROCESSNAME and ask for a process to kill</td>
+	</tr>
+	<tr>
+		<td>pskill</td>
+		<td>PROCESSNAME</td>
+		<td>SIGNAL</td>
+		<td>psgrep for PROCESSNAME and ask for a process to kill via signal SIGNAL</td>
+	</tr>
+</table><br><br>
+
+<table border=0 width=50% align=center>
+	<tr>
+		<td width=33%><a href="chapter07.html">Chapter 7</a></td>
+		<td width=33%><a href="index.html">Index</a></td>
+		<td width=33%><a href="chapter09.html">Chapter 9</a></td>
+	</tr>
+</table>
+
+</body>
+</html>

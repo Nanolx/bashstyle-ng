@@ -1,0 +1,168 @@
+#!/bin/bash
+#########################################################
+#                                                       #
+# This is BashStyle-NG 7.10                              #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright 2007 - 2009 Christopher Bratusek            #
+#                                                       #
+#########################################################
+
+system_infos_help()
+{
+
+	white=$(bs_ng_echo $white)
+	orange=$(bs_ng_echo $orange)
+	iceblue=$(bs_ng_echo $iceblue)
+	green=$(bs_ng_echo $green)
+
+	echo -e "\n${white}Usage:\n"
+	echo -e "${orange}system_infos ${white}|${green} --cpu\t\t${iceblue} [Display CPU Model and Freq]\
+	\n${orange}system_infos ${white}|${green} --kernel\t${iceblue} [Display Kernel Version, Release and Machine]\
+	\n${orange}system_infos ${white}|${green} --memory\t${iceblue} [Display Total, Free and Used RAM]\
+	\n${orange}system_infos ${white}|${green} --partitions\t${iceblue} [Display Major, Minor, Blocks and Node for all Paritions]\
+	\n${orange}system_infos ${white}|${green} --pci\t\t${iceblue} [Display Infos about all PCI Devices (and their kernel-module)]\
+	\n${orange}system_infos ${white}|${green} --usb\t\t${iceblue} [Display Infos about all USB Devices (and their kernel-module)]\
+	\n${orange}system_infos ${white}|${green} --bios\t${iceblue} [Display SMBIOS DMI Infos]\
+	\n${orange}system_infos ${white}|${green} --mounts\t${iceblue} [Display all mounted devices]\n"
+	tput sgr0
+}
+
+system_infos ()
+{
+
+	case $1 in
+		*cpu)
+			system_infos_cpu
+		;;
+
+		*kernel)
+			system_infos_kernel
+		;;
+
+		*mem)
+			system_infos_memory
+		;;
+
+		*partitions)
+			system_infos_partitions
+		;;
+
+		*pci)
+			check_opt lspci systeminfos::pci
+			system_infos_pci
+		;;
+
+		*usb)
+			check_opt lsusb systeminfos::usb
+			system_infos_usb
+		;;
+
+		*mounts)
+			system_infos_mounts
+		;;
+
+		*bios)
+			check_opt dmidecode systeminfos::bios
+			system_infos_bios
+		;;
+
+		*all)
+			system_infos_cpu
+			system_infos_kernel
+			system_infos_memory
+			system_infos_partitions
+			#system_infos_pci
+			#system_infos_usb
+			system_infos_mounts
+			#system_infos_bios
+		;;
+
+		*)
+			system_infos_help
+		;;
+	esac
+
+}
+
+system_infos_cpu()
+{
+	echo -e "${white}CPU:\n"
+	echo -e "${orange}Model:${iceblue} $(grep "model name" /proc/cpuinfo | sed -e 's/.*: //g')"
+	echo -e "${orange}MHz  :${iceblue} $(grep "cpu MHz" /proc/cpuinfo | sed -e 's/.*: //g')\n"
+}
+
+system_infos_kernel()
+{
+	echo -e "${white}Kernel:\n"
+	echo -e "${orange}Release:${iceblue} $(uname -r)"
+	echo -e "${orange}Version:${iceblue} $(uname -v)"
+	echo -e "${orange}Machine:${iceblue} $(uname -m)\n"
+
+}
+
+system_infos_memory()
+{
+	echo -e "${white}RAM:\n"
+	echo -e "${orange}Total:${iceblue} $(((`showmem --free`) + (`showmem --used`))) MB"
+	echo -e "${orange}Free :${iceblue} $(showmem --free) MB"
+	echo -e "${orange}Used :${iceblue} $(showmem --used) MB\n"
+
+}
+
+system_infos_partitions()
+{
+	echo -e "${white}Partitions:${orange}\n"
+	echo -e "major minor blocks device-node ${iceblue}\
+	\n$(cat /proc/partitions | sed -e '1,2d')" | column -t
+	echo ""
+
+}
+
+system_infos_pci()
+{
+	echo -e "${white}PCI Devices:\n${iceblue}"
+	lspci -vkmm
+	echo ""
+
+}
+
+system_infos_usb()
+{
+	echo -e "${white}USB Devices:\n${iceblue}"
+	lsusb -v
+	echo ""
+
+}
+
+system_infos_mounts()
+{
+	echo -e "${white}Mounts:\n${orange}\
+	\ndevice-node on mount-point type filesystem options\n" ${iceblue} "\n\n$(mount)" | column -t
+	echo ""
+
+}
+
+system_infos_bios()
+{
+	if [[ $EUID != 0 ]]; then
+		echo -e "How to auth as root? (sudo or su)\n"
+		read auth
+
+		if [[ $auth == sudo ]]; then
+			echo -e "${white}SMBIOS/DMI Infos:${iceblue}\n"
+			sudo dmidecode -q
+
+		elif [[ $auth == su ]]; then
+			echo -e "${white}SMBIOS/DMI Infos:${iceblue}\n"
+			su -c "dmidecode -q"
+
+		else	echo "wrong auth command"
+		fi
+	else	echo -e "${white}SMBIOS/DMI Infos:${iceblue}\n"
+		dmidecode -q
+
+	fi
+}
+

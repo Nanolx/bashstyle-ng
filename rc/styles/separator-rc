@@ -1,0 +1,124 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+enabup=$(get_key separator/uptimes)
+
+enabsize=$(get_key separator/file_size)
+
+enablf=$(get_key separator/files_amount)
+
+enabtty=$(get_key separator/tty)
+
+enabmem=$(get_key separator/mem)
+
+enabload=$(get_key separator/load)
+
+enabproc=$(get_key separator/processes)
+
+enabbatt=$(get_key separator/battery_load)
+
+sepa=$(get_key separator/separator)
+
+export pstyle_supported=true
+
+if [[ $enabcol == true ]]; then \
+
+	PS1="\n$usercolor\u$fontcolor @$hostcolor \h$sepacolor $sepa $datecolor\d$sepacolor $sepa $timecolor\t$sepacolor $sepa $wdircolor\$(trunc_pwd)"
+
+	if [[ $enablf == true ]]; then
+		PS1+=" files: \$(count_files -f)"
+	fi
+
+	if [[ $enablf == true && $enabsize == true ]]; then
+		PS1+="$sepacolor /"
+	fi
+
+	if [[ $enabsize == true ]]; then
+		PS1+="$wdircolor size: \$(show_size)"
+	fi
+
+	if [[ $enabtty == true ]]; then
+		PS1+=" $sepacolor$sepa$hostcolor tty: \$(show_tty)"
+	fi
+
+	if [[ $enabup == true ]]; then
+		PS1+=" $sepacolor$sepa$upcolor uptime: \$(show_uptime)"
+	fi
+
+	if [[ $enabload == true ]]; then
+		PS1+=" $sepacolor$sepa$upcolor system load: \$(show_system_load)"
+	fi
+
+	if [[ $enabproc == true ]]; then
+		PS1+=" $sepacolor$sepa$pscolor processes: \$(count_processes)"
+	fi
+
+	if [[ $enabbatt == true ]]; then
+		PS1+=" $sepacolor$sepa$pscolor battery: \$(show_battery_load)"
+	fi
+
+	if [[ $enabmem == free ]]; then
+		PS1+=" $sepacolor$sepa$usercolor free mem: $pscolor\$(show_mem --free)$usercolor mb"
+	elif [[ $enabmem == used ]]; then
+		PS1+=" $sepacolor$sepa$usercolor used mem: $pscolor\$(show_mem --used)$usercolor mb"
+	elif [[ $enabmem == both ]]; then
+		PS1+=" $sepacolor$sepa$usercolor free$sepacolor/${usercolor}used mem: $pscolor\$(show_mem --free)$sepacolor/$pscolor\$(show_mem --used)$usercolor mb"
+	fi
+
+	PS1+="$sepacolor $sepa\n$usercolor$ $fontcolor-> "
+
+else
+
+	PS1="\n\u @ \h $sepa \d $sepa \t $sepa \$(trunc_pwd)"
+
+	if [[ $enablf == true ]]; then
+		PS1+=" files: \$(count_files -f)"
+	fi
+
+	if [[ $enablf == true && $enabsize == true ]]; then
+		PS1+=" /"
+	fi
+
+	if [[ $enabsize == true ]]; then
+		PS1+=" size: \$(show_size)"
+	fi
+
+	if [[ $enabtty == true ]]; then
+		PS1+=" $sepa tty: \$(show_tty)"
+	fi
+
+	if [[ $enabup == true ]]; then
+		PS1+=" $sepa uptime: \$(show_uptime)"
+	fi
+
+	if [[ $enabload == true ]]; then
+		PS1+=" $sepa system load: \$(show_system_load)"
+	fi
+
+	if [[ $enabproc == true ]]; then
+		PS1+=" $sepa processes: \$(count_processes)"
+	fi
+
+	if [[ $enabbatt == true ]]; then
+		PS1+=" $sepa battery: \$(show_battery_load)"
+	fi
+
+	if [[ $enabmem == free ]]; then
+		PS1+=" $sepa free mem: \$(show_mem --free) mb"
+	elif [[ $enabmem == used ]]; then
+		PS1+=" $sepa used mem: \$(show_mem --used) mb"
+	elif [[ $enabmem == both ]]; then
+		PS1+=" $sepa free/used mem: \$(show_mem --free)/\$(show_mem --used) mb"
+	fi
+
+	PS1+=" $sepa\n$ -> "
+
+fi

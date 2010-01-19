@@ -1,0 +1,28 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ $enabcol == true ]]; then
+
+PS1="\n\
+$pscolor┌─$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\h$sepacolor ]$pscolor─\
+$sepacolor[$pscolor job #\# $sepacolor]$pscolor─$sepacolor[$fontcolor \$(show_tty)$sepacolor ]\
+$pscolor─$sepacolor[ $timecolor\$(date +%H:%M:%S)\
+$fontcolor : $datecolor\$(date +%m/%d/%y)$fontcolor :$upcolor \$(show_uptime)$sepacolor ]\n\
+$pscolor└─$sepacolor[ $usercolor\$$pscolor : $wdircolor\$(trunc_pwd)$sepacolor ]\
+$pscolor·>$fontcolor "
+
+else
+
+PS1="\n\
+┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S)\
+ : \$(date +%m/%d/%y) : \$(show_uptime) ]\n└─[ $ : \$(trunc_pwd) ]·> "
+
+fi

@@ -1,0 +1,79 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+rm -f $HOME/.nanorc
+
+if [[ $(get_key nano/auto_indent) == true ]]; then
+	dbg_msg NanoCFG Setting: Auto-Indention On
+	echo "set autoindent" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: Auto-Indention Off
+	echo "unset autoindent" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/backup) == true ]]; then
+	dbg_msg NanoCFG Setting: Autosave On
+	echo "set backup" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: Autosave Off
+	echo "unset backup" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/bold_text) == true ]]; then
+	dbg_msg NanoCFG Setting: Bold-Text On
+	echo "set boldtext" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: Bold-Text Off
+	echo "unset boldtext" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/case_sensitive) == true ]]; then
+	dbg_msg NanoCFG Setting: Case-Sensitive On
+	echo "set casesensitive" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: Case-Sensitive Off
+	echo "unset casesensitive" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/const) == true ]]; then
+	dbg_msg NanoCFG Setting: Show-Position On
+	echo "set const" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: Show-Position Off
+	echo "unset const" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/more_space) == true ]]; then
+	dbg_msg NanoCFG Setting: More-Space On
+	echo "set morespace" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: More-Space Off
+	echo "unset morespace" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/nohelp) == true ]]; then
+	dbg_msg NanoCFG Setting: No-Help On
+	echo "set nohelp" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: No-Help Off
+	echo "unset nohelp" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/use_colors) == true ]]; then
+	dbg_msg NanoCFG Setting: Colors On
+	COLOR_FILES="$(ls /usr/share/nano/*.nanorc)"
+	for file in $COLOR_FILES; \
+		do echo "include \"$file\"" >> $HOME/.nanorc; \
+	done
+else	dbg_msg NanoCFG Setting: Colors Off
+fi
+
+dbg_msg NanoCFG Loading: BashStyle-NG

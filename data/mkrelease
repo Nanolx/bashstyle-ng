@@ -1,0 +1,51 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+case $1 in
+
+	*)
+
+		echo "Bumping Version from $1 to $2"
+		for file in documentation/index.html documentation/chapter00.html documentation/chapter01.html \
+			documentation/chapter02.html documentation/chapter03.html documentation/chapter04.html \
+			documentation/chapter05.html documentation/chapter06.html documentation/chapter07.html \
+			documentation/chapter08.html documentation/chapter09.html documentation/chapter10.html \
+			documentation/chapter10.html configure rc/functions/random rc/functions/bs-ng-echo \
+			scripts/bs-ng-profiler rc/functions/countfiles rc/functions/countprocesses \
+			rc/functions/showsystemload rc/functions/showmem rc/functions/showsize \
+			rc/functions/showtty rc/functions/showuptime rc/functions/truncpwd rc/nx-rc.in \
+			rc/styles/bracket-rc rc/styles/dash-rc rc/styles/fallback-rc \
+			rc/styles/poweruser-rc rc/styles/clock-ad-rc rc/styles/dirks-rc \
+			rc/styles/sepa_ng-rc rc/styles/clock-rc rc/functions/ls \
+			rc/styles/dot_prompt-rc rc/styles/job-rc rc/styles/separator-rc \
+			rc/styles/custom-rc rc/styles/elite-rc rc/styles/minimal-rc rc/functions/xchown \
+			rc/styles/vector-rc rc/settings/alias-rc rc/settings/options-rc rc/functions/xcp \
+			rc/settings/shopt-rc rc/settings/color-rc rc/settings/man-rc rc/functions/xunalias \
+			rc/settings/random-rc data/mkrelease data/terminfo/mostlike.terminfo rc/functions/git \
+			data/terminfo/bold.terminfo code/bsng.py.in rc/styles/quirk-rc rc/functions/xconv\
+			rc/functions/showbatteryload rc/functions/showcpuload rc/functions/showspace \
+			rc/settings/readline-rc rc/styles/sputnik-rc rc/settings/vim-rc rc/settings/nano-rc \
+			rc/functions/showip rc/functions/man2pdf rc/functions/systeminfos rc/functions/exchange \
+			scripts/rcgenerator data/terminfo/nebula.terminfo rc/functions/debug rc/functions/xdel \
+			rc/functions/check_opt rc/functions/gconf rc/settings/ls-rc rc/functions/xmv\
+			rc/functions/ps documentation/chapter11.html; do
+				sed -e "s/NG $1/NG $2/g" -i $file;
+		done
+		sed -e "s/$1/$2/g" -i data/bashstyle7.ui
+		sed -e "s/$1/$2/g" -i debian/changelog
+		sed -e "s/VERSION=$1/VERSION=$2/g" -i .configure/base
+		_svnver=$(svn info | grep Revision | gawk '{print $2}')
+		svnver=$(($_svnver+1))
+		sed -e "s/rev.*)/rev$svnver)/g" -i .configure/base
+
+	;;
+
+esac

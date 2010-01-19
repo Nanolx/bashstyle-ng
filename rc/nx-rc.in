@@ -1,0 +1,145 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+export BSNG_GCONF_READ=1
+
+export BSNG_PREFIX=@PREFIX@
+export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/functions/
+export BSNG_LOCKFILE=$HOME/.bashstyle.lock
+export BSNG_VERSION=@VERSION@
+
+bsource () {
+
+	for file in $@; do 
+		source $BSNG_RC_DIR/$file
+	done
+
+}
+
+bsource gconf debug check_opt xunalias ls git exchange xmv xcp xchown xconv random
+bsource bs-ng-echo showuptime showmem showsystemload showcpuload man2pdf countfiles
+bsource countprocesses showbatteryload showip showsize showspace showtty systeminfos
+bsource truncpwd ps
+
+if [[ $BASH_VERSINFO == 4 ]]; then
+	bsource xdel
+fi
+
+if [[ $(get_key debug) == true ]]; then \
+	eval logfile=$(get_key debug_log)
+	rm -f $logfile
+	touch $logfile
+	export BSNG_LOGFILE=$logfile
+fi
+if [[ $0 == *gdm* ]]; then
+	dbg_msg BashStyle-NG: Started during GDM-Session-Init -- exiting
+else
+
+dbg_msg BashStyle-NG: Starting
+dbg_msg BashStyle-NG Bash Version: $(echo $BASH_VERSION | sed -e 's/(.*//g')
+dbg_msg BashStyle-NG Version: $BSNG_VERSION
+dbg_msg BashStyle-NG Prefix: $BSNG_PREFIX
+dbg_msg BashStyle-NG Debugging: Enabled
+dbg_msg BashStyle-NG Logfile: $logfile
+
+if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
+	dbg_msg BashStyle-NG Loading: ReadlineCFG
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/readline-rc
+fi
+
+if [[ $(get_key vim/use_vimcfg) == true ]]; then \
+	dbg_msg BashStyle-NG Loading: VimCFG
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/vim-rc
+fi
+
+if [[ $(get_key nano/use_nanocfg) == true ]]; then \
+	dbg_msg BashStyle-NG Loading: NanoCFG
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/nano-rc
+fi
+
+if [[ $(get_key dircolors/enable) == true ]]; then \
+	dbg_msg BashStyle-NG Loading: LSCOLORS
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/ls-rc
+fi
+
+if [[ $(get_key use_bashstyle) == false ]]; then \
+	dbg_msg BashStyle-NG: Exiting
+else
+	dbg_msg BashStyle-NG Loading: BashStyle-NG
+fi
+
+if [[ $(get_key color/enable) == true ]]; then \
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/color-rc
+fi
+
+source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/alias-rc
+
+dbg_msg BashStyle-NG Setting: ps2 ps3 ps4 char $(get_key ps234)
+ps234char=$(get_key ps234)
+
+if [[ $(get_key colored_man) == true ]]; then \
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/man-rc
+fi
+
+source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/options-rc
+
+source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/shopt-rc
+
+shopt -s checkwinsize
+
+if [[ $(get_key random_style) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: Style Random
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/random-rc
+else
+	pstyle=$(get_key prompt_style)
+fi
+
+use_custom_prompt=$(get_key use_custom_prompt)
+
+if [[ $use_custom_prompt == true ]]; then \
+	dbg_msg BashStyle-NG Setting: Style Custom
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/custom-rc
+elif [[ -e $BSNG_PREFIX/share/bashstyle-ng/rc/styles/${pstyle}-rc ]]; then
+	dbg_msg BashStyle-NG Setting: Style $pstyle
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/${pstyle}-rc
+else
+	dbg_msg BashStyle-NG Setting: Style Fallback
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/fallback-rc
+fi
+
+dbg_msg BashStyle-NG Setting: PS2 PS3 PS4
+PS2="$pscolor $ps234char$fontcolor "
+PS3="$pscolor $ps234char$ps234char$fontcolor "
+PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
+
+if [[ $(get_key tabrotate) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: Tab-Rotation On
+	bind 'TAB:menu-complete'
+	complete -d -X '.[a-zA-Z0-9]*' cd
+else	dbg_msg BashStyle-NG Setting: Tab-Rotation Off
+fi
+
+if [[ -e $HOME/.custom-rc ]]; then \
+	dbg_msg BashStyle-NG Loading: Custom Settings
+	source $HOME/.custom-rc
+fi
+
+WelcomeMessage=$(get_key welcome_message)
+
+if [[ $WelcomeMessage != "" && $pstyle != clock-ad && $pstyle != clock ]]; then \
+	dbg_msg BashStyle-NG Setting: Welcome Message
+	clear
+	$WelcomeMessage
+fi
+
+fi
+
+unset BSNG_GCONF_READ

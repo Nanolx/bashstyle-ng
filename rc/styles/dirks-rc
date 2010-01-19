@@ -1,0 +1,26 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+export pstyle_supported=true
+
+if [[ $enabcol == true ]]; then
+
+PS1="\n\
+$pscolor┌─$sepacolor[ $wdircolor\$(trunc_pwd) $sepacolor]\n\
+$pscolor└─$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\H $fontcolor/ $pscolor\$(show_tty) $sepacolor( $timecolor\t $sepacolor) $pscolor$SHLVL $sepacolor]$pscolor·>$fontcolor "
+
+else
+
+PS1="\n\
+┌─[ \$(trunc_pwd) ]\n\
+└─[ \u @ \H / \$(show_tty) ( \t ) $SHLVL ]·> "
+
+fi

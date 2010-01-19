@@ -1,0 +1,72 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ $TERM != *xterm* ]]; then
+	enabcol=false
+else	enabcol=$(get_key color/enable)
+fi
+
+if [[ $enabcol == true ]]; then
+
+dbg_msg BashStyle-NG Setting: Colors On
+
+dbg_msg BashStyle-NG Setting: Color-Style $(get_key color/style)
+
+colstyle=$(get_key color/style)
+
+if [[ $colstyle == bright ]]; then \
+	style="01"
+elif [[ $colstyle == normal ]]; then \
+	style="0"
+elif [[ $colstyle == inverted ]]; then \
+	style="7"
+elif [[ $colstyle == dimmed ]]; then \
+	style="02"
+elif [[ $colstyle == underlined ]]; then \
+	style="04"
+fi
+
+black="\[\033[${style};38;5;0m\]"
+red="\[\033[${style};38;5;1m\]"
+green="\[\033[${style};38;5;2m\]"
+yellow="\[\033[${style};38;5;3m\]"
+blue="\[\033[${style};38;5;4m\]"
+magenta="\[\033[${style};38;5;129m\]"
+cyan="\[\033[${style};38;5;6m\]"
+white="\[\033[${style};38;5;7m\]"
+coldblue="\[\033[${style};38;5;33m\]"
+smoothblue="\[\033[${style};38;5;111m\]"
+iceblue="\[\033[${style};38;5;45m\]"
+turqoise="\[\033[${style};38;5;50m\]"
+smoothgreen="\[\033[${style};38;5;42m\]"
+winered="\[\033[${style};38;5;637m\]"
+brown="\[\033[${style};38;5;684m\]"
+silver="\[\033[${style};38;5;761m\]"
+ocher="\[\033[${style};38;5;690m\]"
+orange="\[\033[${style};38;5;714m\]"
+purple="\[\033[${style};38;5;604m\]"
+pink="\[\033[${style};38;5;213m\]"
+cream="\[\033[${style};38;5;5344m\]"
+
+eval usercolor=$(get_key color/user)
+eval hostcolor=$(get_key color/host)
+eval datecolor=$(get_key color/date)
+eval timecolor=$(get_key color/time)
+eval wdircolor=$(get_key color/wdir)
+eval fontcolor=$(get_key color/font)
+eval sepacolor=$(get_key color/separatorc)
+eval upcolor=$(get_key color/uptime)
+eval pscolor=$(get_key color/ps234c)
+
+export enabcol black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream
+
+else	dbg_msg Bashstyle-NG Setting: Colors Off
+fi

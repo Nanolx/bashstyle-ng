@@ -1,0 +1,433 @@
+<gconfschemafile>
+  <schemalist>
+    <schema>
+    <key>/schemas/apps/bashstyle/show_files_amount</key>
+      <applyto>/apps/bashstyle/show_files_amount</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show amount of files?</short>
+        <long>Show amount of files, in the current workdir, in the prompt?</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/show_uptime</key>
+      <applyto>/apps/bashstyle/show_uptime</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show Uptime?</short>
+        <long>Show the System's Uptime in the Prompt?</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/show_size_of_files</key>
+      <applyto>/apps/bashstyle/show_size_of_files</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show size of files?</short>
+        <long>Show size of all files in the current workdir, in the Prompt?</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/show_tty</key>
+      <applyto>/apps/bashstyle/show_tty</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show number of TTY?</short>
+        <long>Show the number of the current TTY in the Prompt?</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/show_mem</key>
+      <applyto>/apps/bashstyle/show_mem</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>none</default>
+      <locale name="C">
+        <short>Show Free/Used Memory</short>
+        <long>Show Free and/or Used Memory in your Prompt. One of free, used, both or none</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/show_load</key>
+      <applyto>/apps/bashstyle/show_load</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show system load?</short>
+        <long>Show the Average System load. (1 min)</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/show_battery_load</key>
+      <applyto>/apps/bashstyle/show_battery_load</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show Battery load?</short>
+        <long>Show the Battery load. (Notebook/APM)</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/show_proc</key>
+      <applyto>/apps/bashstyle/show_proc</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show Processes?</short>
+        <long>Show Number of Running Processes</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/char_separator</key>
+      <applyto>/apps/bashstyle/char_separator</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>|</default>
+      <locale name="C">
+        <short>Char for Separator</short>
+        <long>Char for the Separator, in the Separator-Style</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/char_ps234</key>
+      <applyto>/apps/bashstyle/char_ps234</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>»</default>
+      <locale name="C">
+        <short>Char for PS2 PS3 and PS4</short>
+        <long>Char for PS2 PS3 and PS4</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/use_grep_color</key>
+      <applyto>/apps/bashstyle/use_grep_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Use colored grep?</short>
+        <long>Color matching words in grep's output?</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/tmout</key>
+      <applyto>/apps/bashstyle/tmout</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>0</default>
+      <locale name="C">
+        <short>TMOUT</short>
+        <long>Max. time of inactivity 'till bash loggs out automatically, set to 0 to disable</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/random</key>
+      <applyto>/apps/bashstyle/random</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Random Theme</short>
+        <long>Randomly choose a theme on bash-startup</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/pwdmaxlen</key>
+      <applyto>/apps/bashstyle/pwdmaxlen</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>25</default>
+      <locale name="C">
+        <short>Max PWD lenght</short>
+        <long>Maximal length of the current workdir. if longer it will be cut off</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/hist_size</key>
+      <applyto>/apps/bashstyle/hist_size</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>1000</default>
+      <locale name="C">
+        <short>History Size</short>
+        <long>Number of Commands/Lines to store in the History</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/readline/use_rlconfig</key>
+      <applyto>/apps/bashstyle/readline/use_rlconfig</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Use Readlineconfig</short>
+        <long>Use Bashstyle to modify Readline or not</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/readline/query_items</key>
+      <applyto>/apps/bashstyle/readline/query_items</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>100</default>
+      <locale name="C">
+        <short>Completion Query Items</short>
+        <long>This determines when the user is queried about viewing the number of possible completions generated by the possible-comple‐tions command. Negative Value means never.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/readline/enable_completion</key>
+      <applyto>/apps/bashstyle/readline/enable_completion</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Completion</short>
+        <long>Enable or Disable TAB-Completion</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/readline/scroll_h</key>
+      <applyto>/apps/bashstyle/readline/scroll_h</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Scroll Horizontally</short>
+        <long>Scroll Horizontally rather than starting in a new line</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/alias1</key>
+      <applyto>/apps/bashstyle/alias1</applyto>
+      <owner>bashtyle-ng</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Alias</short>
+        <long>1. Userdefined Alias</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/alias2</key>
+      <applyto>/apps/bashstyle/alias2</applyto>
+      <owner>bashtyle-ng</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Alias</short>
+        <long>2. Userdefined Alias</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/alias3</key>
+      <applyto>/apps/bashstyle/alias3</applyto>
+      <owner>bashtyle-ng</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Alias</short>
+        <long>3rd Userdefined Alias</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/alias4</key>
+      <applyto>/apps/bashstyle/alias4</applyto>
+      <owner>bashtyle-ng</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Alias</short>
+        <long>4. Userdefined Alias</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/alias5</key>
+      <applyto>/apps/bashstyle/alias5</applyto>
+      <owner>bashtyle-ng</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Alias</short>
+        <long>5. Userdefined Alias</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/alias6</key>
+      <applyto>/apps/bashstyle/alias6</applyto>
+      <owner>bashtyle-ng</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Alias</short>
+        <long>6. Userdefined Alias</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/alias7</key>
+      <applyto>/apps/bashstyle/alias7</applyto>
+      <owner>bashtyle-ng</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Alias</short>
+        <long>7. Userdefined Alias</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/use_colors</key>
+      <applyto>/apps/bashstyle/use_colors</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Use Colors?</short>
+        <long>Colored or Monochrome Prompts?</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/color_style</key>
+      <applyto>/apps/bashstyle/color_style</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>normal</default>
+      <locale name="C">
+        <short>Color Style</short>
+        <long>The way colors are drawn, one of: normal, bright, dimmed, inverted or underlined</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/ps234_color</key>
+      <applyto>/apps/bashstyle/ps234_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$smoothgreen</default>
+      <locale name="C">
+        <short>Color for PS2 PS3 and PS4</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/user_color</key>
+      <applyto>/apps/bashstyle/user_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$coldblue</default>
+      <locale name="C">
+        <short>Color for Username</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/host_color</key>
+      <applyto>/apps/bashstyle/host_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$red</default>
+      <locale name="C">
+        <short>Color for Hostname</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/date_color</key>
+      <applyto>/apps/bashstyle/date_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$green</default>
+      <locale name="C">
+        <short>Color for Date</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/time_color</key>
+      <applyto>/apps/bashstyle/time_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$yellow</default>
+      <locale name="C">
+        <short>Color for Time</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/wdir_color</key>
+      <applyto>/apps/bashstyle/wdir_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$magenta</default>
+      <locale name="C">
+        <short>Color for Workdir</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/font_color</key>
+      <applyto>/apps/bashstyle/font_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$white</default>
+      <locale name="C">
+        <short>Color for Font</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/sepa_color</key>
+      <applyto>/apps/bashstyle/sepa_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$iceblue</default>
+      <locale name="C">
+        <short>Color for Separator</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+    <key>/schemas/apps/bashstyle/uptime_color</key>
+      <applyto>/apps/bashstyle/uptime_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$turqoise</default>
+      <locale name="C">
+        <short>Color for Uptime</short>
+        <long>Can be one of: black, red, green, yellow, blue, magenta, cyan, white, coldblue, smoothblue, iceblue, turquoise, smoothgreen, cream, winered, brown, silver, ocher, orange, purple, pink</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/grep_color</key>
+      <applyto>/apps/bashstyle/grep_color</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>01;38;5;111</default>
+      <locale name="C">
+        <short>Color of Grep</short>
+        <long>Change the Color of matching words in grep</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/separator</key>
+      <applyto>/apps/bashstyle/separator</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>string</type>
+      <default>$locher</default>
+      <locale name="C">
+        <short>Logs</short>
+        <long>LS Color for log files</long>
+      </locale>
+    </schema> 
+  </schemalist>
+</gconfschemafile>

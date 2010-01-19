@@ -1,0 +1,24 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+function jobcount {
+   jobs | wc -l | tr -d " "
+}
+
+if [[ $enabcol == true ]]; then
+
+PS1="\n$usercolor\u $fontcolor@ $hostcolor\h $wdircolor\$(trunc_pwd) $sepacolor[$pscolor `jobcount` $sepacolor]$fontcolor $ "
+
+else
+
+PS1="\n\u @ \h \$(trunc_pwd) [ `jobcount` ] \$ "
+
+fi

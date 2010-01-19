@@ -1,0 +1,42 @@
+#!/bin/bash
+#########################################################
+#                                                       #
+# This is BashStyle-NG 7.10                              #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright 2007 - 2009 Christopher Bratusek            #
+#                                                       #
+#########################################################
+
+man2pdf_help ()
+{
+
+	white=$(bs_ng_echo $white)
+	orange=$(bs_ng_echo $orange)
+	iceblue=$(bs_ng_echo $iceblue)
+	green=$(bs_ng_echo $green)
+
+	echo -e "\n${white}Usage:"
+	echo -e	"\n${orange}man2pdf${white} |${green} <manualpage>${iceblue} [generate a pdf from <manualpage>]\n"
+	tput sgr0
+
+}
+
+man2pdf ()
+{
+
+	case $1 in
+		*help | "" )
+			man2pdf_help
+		;;
+
+		* )
+			check_opt ps2pdf man2pdf
+			if [[ $1 != "" ]]; then
+				man -t $1 | ps2pdf - >$1.pdf
+			fi
+		;;
+	esac
+
+}

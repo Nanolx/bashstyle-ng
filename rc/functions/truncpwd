@@ -1,0 +1,67 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+trunc_pwd_help ()
+{
+
+	white=$(bs_ng_echo $white)
+	orange=$(bs_ng_echo $orange)
+	green=$(bs_ng_echo $green)
+
+	echo -e "\n${white}Usage:\n"
+	echo -e "${orange}trunc_pwd ${white}|${green} ! no options !\n"
+	tput sgr0
+
+}
+
+trunc_pwd ()
+{
+
+	case $1 in
+		*help )
+			trunc_pwd_help
+		;;
+
+		* )
+			export BSNG_GCONF_READ=1
+
+			pwdmaxlen=$(get_key pwdmaxlength)
+			trunc_symbol=$(get_key pwdchar)
+			dirchar=$(get_key dirchar)
+
+			newsepacolor=$(bs_ng_echo $sepacolor)
+			newwdircolor=$(bs_ng_echo $wdircolor)
+			newpscoloror=$(bs_ng_echo $pscolor)
+
+			if [ ${#PWD} -gt $pwdmaxlen ]; then
+				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
+				if [[ $pstyle_supported == true ]]; then
+					xPWD="$newpscoloror${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
+				else	xPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
+				fi
+				if [[ $enabcol == true && $pstyle_supported == true ]]; then
+					newPWD="${xPWD//\//$newsepacolor$dirchar$newwdircolor}"
+				else	newPWD="${xPWD//\//$dirchar}"
+				fi
+			else
+				if [[ $enabcol == true && $pstyle_supported == true ]]; then
+				newPWD="${PWD//\//$newsepacolor$dirchar$newwdircolor}"
+			else	newPWD="${PWD//\//$dirchar}"
+			fi
+			fi
+
+			echo -e $newPWD
+			unset BSNG_GCONF_READ
+		;;
+	esac
+
+}
+

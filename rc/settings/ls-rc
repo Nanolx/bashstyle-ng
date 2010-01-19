@@ -1,0 +1,75 @@
+#!/bin/bash
+#########################################################
+#                                                       #
+# This is BashStyle-NG 7.10                              #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright 2007 - 2009 Christopher Bratusek            #
+#                                                       #
+#########################################################
+
+colstyle=$(get_key color/style)
+
+if [[ $colstyle == bright ]]; then \
+	style="01"
+elif [[ $colstyle == normal ]]; then \
+	style="0"
+elif [[ $colstyle == inverted ]]; then \
+	style="7"
+elif [[ $colstyle == dimmed ]]; then \
+	style="02"
+elif [[ $colstyle == underlined ]]; then \
+	style="04"
+fi
+
+lblack="${style};38;5;0"
+lred="${style};38;5;1"
+lgreen="${style};38;5;2"
+lyellow="${style};38;5;3"
+lblue="${style};38;5;4"
+lmagenta="${style};38;5;129"
+lcyan="${style};38;5;6"
+lwhite="${style};38;5;7"
+lcoldblue="${style};38;5;33"
+lsmoothblue="${style};38;5;111"
+liceblue="${style};38;5;45"
+lturqoise="${style};38;5;50"
+lsmoothgreen="${style};38;5;42"
+lwinered="${style};38;5;637"
+lbrown="${style};38;5;684"
+lsilver="${style};38;5;761"
+locher="${style};38;5;690"
+lorange="${style};38;5;714"
+lpurple="${style};38;5;604"
+lpink="${style};38;5;213"
+lcream="${style};38;5;5344"
+
+export lblack lred lgreen lyellow lblue lmagenta lcyan lwhite lcoldblue lsmoothblue liceblue lturqoise
+export lsmoothgreen lwinered lbrown lsilver locher lorange lpurple lpink lcream
+
+eval _exec=$(get_key dircolors/exec)
+eval _gen=$(get_key dircolors/generic)
+eval _log=$(get_key dircolors/logs)
+eval _deb=$(get_key dircolors/deb)
+eval _rpm=$(get_key dircolors/rpm)
+eval _dirs=$(get_key dircolors/dirs)
+eval _jpg=$(get_key dircolors/jpeg)
+eval _png=$(get_key dircolors/png)
+eval _gif=$(get_key dircolors/gif)
+eval _mp3=$(get_key dircolors/mp3)
+eval _ogg=$(get_key dircolors/ogg)
+eval _flac=$(get_key dircolors/flac)
+eval _tar=$(get_key dircolors/tar)
+eval _targz=$(get_key dircolors/targz)
+eval _tarbz2=$(get_key dircolors/tarbz2)
+eval _zip=$(get_key dircolors/zip)
+eval _rar=$(get_key dircolors/rar)
+
+_custom="$(get_key dircolors/custom)"
+
+export LS_COLORS="ex=$_exec:*=$_gen:*.log=$_log:*.deb=$_deb:*.rpm=$_rpm:di=$_dirs:*.jpg=$_jpg:*.png=$_png:*.gif=$_gif:\
+*.mp3=$_mp3:*.ogg=$_ogg:*.flac=$_flac:*.tar=$_tar:*.tar.gz=$_targz:*.tar.bz2=$_tarbz2:*.zip=$_zip:*.rar=$_rar:$_custom"
+
+dbg_msg LS_COLORS Setting: LS_COLORS "$LS_COLORS"
+dbg_msg LS_COLORS Loading: BashStyle-NG

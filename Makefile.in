@@ -1,0 +1,212 @@
+GREEN="\\033[1\;32m"
+RED="\\033[1\;31m"
+WHITE="\\033[01\;37m"
+YELLOW="\\033[01\;33m"
+CYAN="\\033[01\;36m"
+BLUE="\\033[01\;34m"
+MAGENTA="\\033[01\;35m"
+
+ifneq "$(TERM)" "xterm"
+	SMOOTHBLUE=$(BLUE)
+else
+	SMOOTHBLUE="\\033[01\;38\;5\;111m"
+endif
+
+EARGS=""
+
+all: mo
+	@echo$(EARGS) "$(MAGENTA)compiling: 	$(SMOOTHBLUE)terminfo files:	$(CYAN)mostlike bold nebula"
+	@tic $(PWD)/data/terminfo/mostlike.terminfo -o $(PWD)/data/terminfo/
+	@tic $(PWD)/data/terminfo/bold.terminfo -o $(PWD)/data/terminfo/
+	@tic $(PWD)/data/terminfo/nebula.terminfo -o $(PWD)/data/terminfo/
+	@tput sgr0
+
+pot:
+	@echo$(EARGS) "$(MAGENTA)recreating:	$(SMOOTHBLUE)pot file"
+	@intltool-extract --type=gettext/glade data/bashstyle7.ui
+	@xgettext --language=Python --keyword=_ --keyword=N_ --output=translations/pot/bs-ng.pot \
+		$(PWD)/code/bsng.py.in $(PWD)/data/bashstyle7.ui.h
+	@tput sgr0
+
+po:
+	@echo$(EARGS) "$(MAGENTA)updating: 	$(SMOOTHBLUE)po files:	$(CYAN)de it ru"
+	@msgmerge -o translations/po/bs-ng-de.po translations/po/bs-ng-de.po translations/pot/bs-ng.pot
+	@msgmerge -o translations/po/bs-ng-it.po translations/po/bs-ng-it.po translations/pot/bs-ng.pot
+	@msgmerge -o translations/po/bs-ng-ru.po translations/po/bs-ng-ru.po translations/pot/bs-ng.pot
+	@tput sgr0
+
+mo:
+	@echo$(EARGS) "$(MAGENTA)creating:	$(SMOOTHBLUE)translations:	$(CYAN)de it ru"
+	@msgfmt --output-file=translations/mo/bs-ng-de.mo translations/po/bs-ng-de.po
+	@msgfmt --output-file=translations/mo/bs-ng-it.mo translations/po/bs-ng-it.po
+	@msgfmt --output-file=translations/mo/bs-ng-ru.mo translations/po/bs-ng-ru.po
+	@tput sgr0
+
+distclean: clean
+
+clean:
+	@echo$(EARGS) "$(SMOOTHBLUE)cleaning up:	$(CYAN)everything"
+	@rm -f data/bashstyle
+	@rm -f code/bs-ng
+	@rm -f rc/nx-rc
+	@rm -f Makefile
+	@rm -f data/bashstyle-ng.pc
+	@rm -f data/bashstyle7.ui.h
+	@rm -f translations/pot/bs-ng.pot
+	@rm -f translations/mo/bs-ng-de.mo
+	@rm -f translations/mo/bs-ng-it.mo
+	@rm -f translations/mo/bs-ng-ru.mo
+	@rm -f data/terminfo/m/mostlike
+	@rm -f data/terminfo/n/nebula
+	@rm -f data/terminfo/b/bold
+	@tput sgr0
+
+install:
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	directories"
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/data/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/settings/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/styles/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/functions/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/system/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/b/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/m/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/n/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/code/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/colors/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/plugin/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/applications/
+	@mkdir -p $(DESTDIR)@PREFIX@/bin/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/locale/de/LC_MESSAGES/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/locale/it/LC_MESSAGES/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/locale/ru/LC_MESSAGES/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/doc/bashstyle-ng/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/gconf/schemas
+	@mkdir -p $(DESTDIR)/usr/share/icons/hicolor/32x32/apps/
+	@mkdir -p $(DESTDIR)/usr/lib/pkgconfig/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	bashstyle-ng"
+	@install -m644 code/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/code/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	terminfos"
+	@install -m644 data/terminfo/b/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/b/
+	@install -m644 data/terminfo/m/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/m/
+	@install -m644 data/terminfo/n/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/n/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	gtkbuilder file"
+	@install -m644 data/bashstyle7.ui $(DESTDIR)@PREFIX@/share/bashstyle-ng/data/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	vim color schemes"
+	@install -m755 data/vim/colors/*.vim $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/colors/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	vim plugins"
+	@install -m755 data/vim/plugin/*.vim $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/plugin/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	icons"
+	@install -m644 data/icons/*.png $(DESTDIR)/usr/share/icons/hicolor/32x32/apps/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	nx-rc"
+	@install -m755 rc/nx-rc $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	start-script"
+	@install -m755 data/bashstyle $(DESTDIR)@PREFIX@/bin/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	scriptchain"
+	@install -m755 scripts/*[!.in] $(DESTDIR)@PREFIX@/bin/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	desktop file"
+	@install -m644 data/bs-ng.desktop $(DESTDIR)@PREFIX@/share/applications/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	documentation"
+	@cp -r documentation/* $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
+	@chmod -R 755 $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	settings rc"
+	@install -m755 rc/settings/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/settings/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	styles"
+	@install -m755 rc/styles/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/styles/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	functions"
+	@install -m755 rc/functions/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/functions/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	pc file"
+	@install -m644 data/bashstyle-ng.pc $(DESTDIR)/usr/lib/pkgconfig/
+	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	gconf schemas"
+	@install -m644 data/deprecated.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/bashstyle-deprecated.schemas
+	@install -m644 data/bashstyle.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/
+	@if test ! $(RC_DISABLE) ; then \
+		echo$(EARGS) "$(GREEN)re-adjusting:$(YELLOW)	bashrc entries" ; \
+		for file in $$(ls /home/*/.bashrc); do \
+			if [ "x$$(grep nx-rc $$file)" != "x" ] ; then \
+				sed -e '/nx-rc/d' -i $$file; \
+				echo "source @PREFIX@/share/bashstyle-ng/rc/nx-rc" >> $$file; \
+			fi; \
+		done; \
+	fi
+	@echo$(EARGS) "$(GREEN)installing:$(CYAN)	translations:$(BLUE) de it ru"
+	@install -m644 translations/mo/bs-ng-de.mo $(DESTDIR)/usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
+	@install -m644 translations/mo/bs-ng-it.mo $(DESTDIR)/usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
+	@install -m644 translations/mo/bs-ng-ru.mo $(DESTDIR)/usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
+	@if test ! $(GCONF_DISABLE) ; then \
+		echo$(EARGS) "$(MAGENTA)deregistering:	$(SMOOTHBLUE)deprecated gconf schemas" ; \
+		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
+			gconftool-2 --makefile-uninstall-rule data/deprecated.schemas >/dev/null ; \
+	fi
+	@if test ! $(GCONF_DISABLE) ; then \
+		echo$(EARGS) "$(MAGENTA)registering:	$(SMOOTHBLUE)gconf schemas" ; \
+		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
+			gconftool-2 --makefile-install-rule data/bashstyle.schemas >/dev/null ; \
+	fi
+	@if test ! $(CACHE_DISABLE) ; then \
+		echo$(EARGS) "$(MAGENTA)updating:	$(SMOOTHBLUE)icon cache" ; \
+		gtk-update-icon-cache -f /usr/share/icons/hicolor >/dev/null ; \
+	fi
+	@if test ! $(KILL_DISABLE) ; then \
+		echo$(EARGS) "$(RED)killing:	$(SMOOTHBLUE)gconf daemon" ; \
+		killall -qw gconfd-2 >/dev/null || exit 0; \
+	fi
+	@tput sgr0
+
+uninstall:
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	bashstyle-ng"
+	@rm -rf @PREFIX@/share/bashstyle-ng
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	support scripts"
+	@rm -f  @PREFIX@/bin/countfiles
+	@rm -f  @PREFIX@/bin/showsize
+	@rm -f  @PREFIX@/bin/showuptime
+	@rm -f  @PREFIX@/bin/showtty
+	@rm -f  @PREFIX@/bin/truncpwd
+	@rm -f  @PREFIX@/bin/bs-ng-profiler
+	@rm -f  @PREFIX@/bin/showload
+	@rm -f  @PREFIX@/bin/countprocesses
+	@rm -f  @PREFIX@/bin/showcpuload
+	@rm -f  @PREFIX@/bin/showbatteryload
+	@rm -f  @PREFIX@/bin/showspace
+	@rm -f  @PREFIX@/bin/showip
+	@rm -f  @PREFIX@/bin/rcgenerator
+	@rm -f  @PREFIX@/bin/bs-ng-echo
+	@rm -f  @PREFIX@/bin/man2pdf
+	@rm -f  @PREFIX@/bin/showmem
+	@rm -f  @PREFIX@/bin/sysinfo
+	@rm -f  @PREFIX@/bin/systeminfos
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	startup script"
+	@rm -f  @PREFIX@/bin/bashstyle
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	desktop file"
+	@rm -f  @PREFIX@/share/applications/bs-ng.desktop
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	translations:$(BLUE) de it"
+	@rm -f  /usr/share/locale/de_DE/LC_MESSAGES/bashstyle-ng.mo
+	@rm -f  /usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
+	@rm -f  /usr/share/locale/it_IT/LC_MESSAGES/bashstyle-ng.mo
+	@rm -f  /usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	gconf schemas"
+	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle-deprecated.schemas
+	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle.schemas
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	icons"
+	@rm -f  /usr/share/icons/hicolor/32x32/apps/bs-ng-*.png
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	documentation"
+	@rm -rf @PREFIX@/share/doc/bashstyle-ng/
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	bashrc entries"
+	@sed -e '/nx-rc/d' -i /home/*/.bashrc
+	@echo$(EARGS) "$(RED)removing:$(CYAN)	pc file"
+	@rm -f /usr/lib/pkgconfig/bashstyle-ng.pc
+	@if test ! $(GCONF_DISABLE) ; then \
+		echo$(EARGS) "$(MAGENTA)unregistering:	$(SMOOTHBLUE)gconf schemas" ; \
+		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
+		gconftool-2 --makefile-uninstall-rule data/bashstyle.schemas >/dev/null ; \
+	fi
+	@if test ! $(CACHE_DISABLE) ; then \
+		echo$(EARGS) "$(MAGENTA)updating:    	$(SMOOTHBLUE)icon cache" ; \
+		gtk-update-icon-cache -f /usr/share/icons/hicolor >/dev/null ; \
+	fi
+	@if test ! $(KILL_DISABLE) ; then \
+		echo$(EARGS) "$(RED)killing:	$(SMOOTHBLUE)gconf daemon" ; \
+		killall -qw gconfd-2 >/dev/null || exit 0 ; \
+	fi
+	@tput sgr0

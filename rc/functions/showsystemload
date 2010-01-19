@@ -1,0 +1,70 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+show_system_load_help ()
+{
+	white=$(bs_ng_echo $white)
+	orange=$(bs_ng_echo $orange)
+	iceblue=$(bs_ng_echo $iceblue)
+	green=$(bs_ng_echo $green)
+
+	echo -e "\n${white}Usage:\n"
+	echo -e "${orange}show_system_load${white} | ${green}1 ${iceblue}[load average for 1 minute]\
+	\n${orange}show_system_load${white} | ${green}10 ${iceblue}[load average for 10 minutes]\
+	\n${orange}show_system_load${white} | ${green}15 ${iceblue}[load average for 15 minutes]\n" | column -t
+	echo ""
+	tput sgr0
+
+}
+
+show_system_load () {
+	case $1 in
+		1 )
+			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\1/" -e "s/ //g")
+		;;
+
+		10 )
+			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\2/" -e "s/ //g")
+		;;
+
+		15 )
+			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\3/" -e "s/ //g")
+		;;
+
+		*help | "")
+			show_system_load_help
+		;;
+
+	esac
+
+	if [[ $load != "" ]]; then
+
+	tmp=$(echo $load*100 | bc)
+	load100=${tmp%.*}
+
+	if [[ $enabcol == true ]]; then
+		if [[ ${load100} -lt 35 ]]; then
+			loadcolor=$(bs_ng_echo $blue)
+		elif [[ ${load100} -ge 35 ]] && [[ ${load100} -lt 120 ]]; then
+			loadcolor=$(bs_ng_echo $iceblue)
+		elif [[ ${load100} -ge 120 ]] && [[ ${load100} -lt 200 ]]; then
+			loadcolor=$(bs_ng_echo $green)
+		elif [[ ${load100} -ge 200 ]] && [[ ${load100} -lt 300 ]]; then
+			loadcolor=$(bs_ng_echo $yellow)
+		else	loadcolor=$(bs_ng_echo $red)
+		fi
+	fi
+
+	echo -e $loadcolor$load
+
+	fi
+
+}

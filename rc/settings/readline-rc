@@ -1,0 +1,115 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+rm -f $HOME/.inputrc
+
+dbg_msg ReadlineCFG Setting: Bellstyle $(get_key readline/bellstyle)
+
+if [[ $(get_key readline/bellstyle) == audible ]]; then
+	echo "set bell-style audible" >> $HOME/.inputrc
+elif [[ $(get_key readline/bellstyle) == visible ]]; then
+	echo "set bell-style visible" >> $HOME/.inputrc
+elif [[ $(get_key readline/bellstyle) == none ]]; then
+	echo "set bell-style none" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/completion) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Disable-Completion Off
+	echo "set disable-completion Off" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Disable-Completion On
+	echo "set disable-completion On" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/scrollhz) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Horizontal-Scroll-Mode On
+	echo "set horizontal-scroll-mode On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Horizontal-Scroll-Mode Off
+	echo "set horizontal-scroll-mode Off" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/ambiguous) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Show-All-If-Ambiguous On
+	echo "set show-all-if-ambiguous On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Show-All-If-Ambiguous Off
+	echo "set show-all-if-ambiguous Off" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/hidden) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Match-Hidden-Files On
+	echo "set match-hidden-files On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Match-Hidden-Files Off
+	echo "set match-hidden-files Off" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/ignorecase) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Completion-Ignore-Case On
+	echo "set completition-ignore-case On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Completion-Ignore-Case Off
+	echo "set completition-ignore-case Off" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/editing_mode) == emacs ]]; then
+	dbg_msg ReadlineCFG Setting: Editing-Mode Emacs
+	echo "set editing-mode emacs" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Editing-Mode Vi
+	echo "set editing-mode vi" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/vstats) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Visible-Stats On
+	echo "set visible-stats On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Visible-Stats Off
+	echo "set visible-stats Off" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/completionhz) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Print-Completions-Horizontally On
+	echo "set print-completions-horizontally On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Print-Completions-Horizontally Off
+	echo "set print-completions-horizontally Off" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/mark_dirs) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Mark-Directories On
+	echo "set mark-directories On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Mark-Directories Off
+	echo "set mark-directories Off" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/mark_sym_dirs) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Mark-Symlinked-Directories On
+	echo "set mark-symlinked-directories On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Mark-Symlinked-Directories Off
+	echo "set mark-symlinked-directories Off" >> $HOME/.inputrc
+fi
+
+if [[ $(get_key readline/mark_modlines) == true ]]; then
+	dbg_msg ReadlineCFG Setting: Mark-Modified-Lines On
+	echo "set mark-modified-lines On" >> $HOME/.inputrc
+else
+	dbg_msg ReadlineCFG Setting: Mark-Modified-Lines Off
+	echo "set mark-modified-lines Off" >> $HOME/.inputrc
+fi
+
+dbg_msg ReadlineCFG Setting: Completion-Query-Items $(get_key readline/query_item)
+echo "set completion-query-items $(get_key readline/query_item)" >> $HOME/.inputrc
+
+dbg_msg ReadlineCFG Loading: BashStyle-NG

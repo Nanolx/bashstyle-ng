@@ -1,0 +1,31 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+xcp() {
+
+	if [[ $# -lt 2 ]]; then
+		echo "not enough arguements"
+		exit 0
+	fi
+
+	destination=${!#}
+
+	set -- "$destination" "$@"
+
+	if [[ ! -e $destination ]]; then
+		mkdir -p $destination
+	fi
+
+	for file in $@; do
+		cp -v $file $destination
+	done
+
+}

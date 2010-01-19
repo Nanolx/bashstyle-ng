@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd @PREFIX@/share/bashstyle-ng/
+
+export PYTHONPATH="$PYTHONPATH:@PREFIX@/share/bashstyle-ng/code/"
+
+python $PWD/code/bsng.py $@

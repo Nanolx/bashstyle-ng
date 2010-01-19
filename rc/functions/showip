@@ -1,0 +1,39 @@
+#!/bin/bash
+#########################################################
+#                                                       #
+# This is BashStyle-NG 7.10                              #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright 2007 - 2009 Christopher Bratusek            #
+#                                                       #
+#########################################################
+
+show_ip_help ()
+{
+
+	white=$(bs_ng_echo $white)
+	orange=$(bs_ng_echo $orange)
+	iceblue=$(bs_ng_echo $iceblue)
+	green=$(bs_ng_echo $green)
+
+	echo -e "\n${white}Usage:\n"
+	echo -e "${orange}show_ip${white} |${green} <interface> ${iceblue}[show ip-address for <interface>]\n"
+	tput sgr0
+
+}
+
+show_ip ()
+{
+
+	case $1 in
+		*help | "" )
+			show_ip_help
+		;;
+
+		* )
+			LANG=C /sbin/ifconfig $1 | grep 'inet addr:' | cut -d: -f2 | gawk '{ print $1}'
+		;;
+	esac
+
+}

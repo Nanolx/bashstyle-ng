@@ -1,0 +1,188 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+##### BINARY -> X #####
+
+bin2oct () {
+
+	if [[ $1 ]]; then
+		echo "obase=8 ; ibase=2 ; $1" | bc
+	fi
+
+}
+
+bin2dec () {
+
+	if [[ $1 ]]; then
+		echo $((2#$1))
+	fi
+
+}
+
+bin2hex () {
+
+	if [[ $1 ]]; then
+		echo "obase=16 ; ibase=2 ; $1" | bc
+	fi
+
+}
+
+bin2all () {
+
+	if [[ $1 ]]; then
+		echo "binary $1 = octal $(bin2oct $1)"
+		echo "binary $1 = decimal $(bin2dec $1)"
+		echo "binary $1 = hexadecimal $(bin2hex $1)"
+	fi
+
+}
+
+##### OCTAL -> X #####
+
+oct2bin () {
+
+	if [[ $1 ]]; then
+		echo "obase=2 ; ibase=8 ; $1" | bc
+	fi
+
+}
+
+oct2dec () {
+
+	if [[ $1 ]]; then
+		echo $((8#$1))
+	fi
+
+}
+
+oct2hex () {
+
+	if [[ $1 ]]; then
+		echo "obase=16 ; ibase=8 ; $1" | bc
+	fi
+
+}
+
+oct2all () {
+
+	if [[ $1 ]]; then
+		echo "octal $1 = binary $(oct2bin $1)"
+		echo "octal $1 = decimal $(oct2dec $1)"
+		echo "octal $1 = hexadecimal $(oct2hex $1)"
+	fi
+
+}
+
+##### DECIMAL -> X #####
+
+dec2bin () {
+
+	if [[ $1 ]]; then
+		echo "obase=2 ; $1" | bc
+	fi
+
+}
+
+dec2oct () {
+
+	if [[ $1 ]]; then
+		echo "obase=8 ; $1" | bc
+	fi
+
+}
+
+dec2hex () {
+
+	if [[ $1 ]]; then
+		echo "obase=16 ; $1" | bc
+
+	fi
+
+}
+
+dec2all () {
+
+	if [[ $1 ]]; then
+		echo "decimal $1 = binary $(dec2bin $1)"
+		echo "decimal $1 = octal $(dec2oct $1)"
+		echo "decimal $1 = hexadecimal $(dec2hex $1)"
+	fi
+
+}
+
+##### HEXADECIMAL -> X #####
+
+hex2bin () {
+
+	if [[ $1 ]]; then
+		echo "obase=2 ; ibase=16 ; $1" | bc
+	fi
+
+}
+
+hex2oct () {
+
+	if [[ $1 ]]; then
+		echo "obase=8 ; ibase=16 ; $1" | bc
+	fi
+
+}
+
+
+hex2dec () {
+
+	if [[ $1 ]]; then
+		 echo $((16#$1))
+	fi
+
+}
+
+hex2all () {
+
+	if [[ $1 ]]; then
+		echo "hexadecimal $1 = binary $(hex2bin $1)"
+		echo "hexadecimal $1 = octal $(hex2oct $1)"
+		echo "hexadecimal $1 = decimal $(hex2dec $1)"
+	fi
+
+}
+
+##### DECIMAL (INTEGER | FLOATINGPOINT) #####
+
+round () {
+
+	if [[ $1 ]]; then
+		if [[ $2 ]]; then
+			echo "$(printf %.${2}f $1)"
+		else	echo "$(printf %.0f $1)"
+		fi
+	fi
+
+}
+
+radical () {
+
+	if [[ $1 ]]; then
+		echo "sqrt($1)" | bc -l
+	fi
+
+}
+
+power () {
+
+	if [[ $1 ]]; then
+		if [[ $2 ]]; then
+			echo "$1 ^ $2" | bc
+		else	echo "$1 ^ 2" | bc
+		fi
+	fi
+
+}

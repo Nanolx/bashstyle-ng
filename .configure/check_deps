@@ -1,0 +1,83 @@
+#!/bin/bash
+
+check_apps () {
+
+SECTION=$1
+CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
+DONE_COUNTER=1
+
+section_message $2 $3
+
+while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
+	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
+	which $DEPENDENCY &>/dev/null
+	DEP_RETURN=$?
+	if [[ $DEP_RETURN == 0 ]]; then
+		ok_message $DEPENDENCY
+	elif [[ $DEP_RETURN != 0 && $SECTION == OPT* ]]; then
+		warn_message $DEPENDENCY
+		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | \
+		gawk -F _ '{ for (x=3; x <= NF; x++) { print $x; } }')
+	else 	fail_message m $DEPENDENCY
+		exit 1
+	fi
+	DONE_COUNTER=$(($DONE_COUNTER+1)); done
+
+}
+
+check_libs () {
+	
+SECTION=$1
+CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
+DONE_COUNTER=1
+
+section_message $2 $3
+
+while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
+	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
+	VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
+	PC_FILE=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
+	pkg-config --exists $PC_FILE &>/dev/null
+	EXIST_RETURN=$?
+	pkg-config --atleast-version=$VERSION $PC_FILE &>/dev/null
+	DEP_RETURN=$?
+	if [[ $EXIST_RETURN != 0 && ! $SECTION == OPT* ]]; then
+		fail_message m $DEPENDENCY
+		exit 1
+	elif [[ $DEP_RETURN == 0 ]]; then
+		ok_message $DEPENDENCY ${VERSION}+
+	elif [[ $EXIST_RETURN != 0 && $SECTION == OPT* ]]; then
+		warn_message $DEPENDENCY
+		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | \
+		gawk -F _ '{ for (x=3; x <= NF; x++) { print $x; } }')
+	else	fail_message o $DEPENDENCY $VERSION
+		exit 1
+	fi
+	DONE_COUNTER=$(($DONE_COUNTER+1)); done
+
+}
+
+check_pymods () {
+
+SECTION=$1
+CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
+DONE_COUNTER=1
+
+section_message $2 $3
+
+while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
+	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
+	python -c "import $DEPENDENCY" &>/dev/null
+	DEP_RETURN=$?
+	if [[ $DEP_RETURN == 0 ]]; then
+		ok_message $DEPENDENCY
+	elif [[ $DEP_RETURN != 0 && $SECTION == OPT* ]]; then
+		warn_message $DEPENDENCY
+		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | \
+			gawk -F _ '{ for (x=3; x <= NF; x++) { print $x; } }')
+	else 	fail_message m $DEPENDENCY
+		exit 1
+	fi
+	DONE_COUNTER=$(($DONE_COUNTER+1)); done
+
+}

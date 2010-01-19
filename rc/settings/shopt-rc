@@ -1,0 +1,99 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ $(get_key shopt/cdspell) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: cdspell On
+	shopt -s cdspell
+else	dbg_msg BashStyle-NG Setting: cdspell Off
+	shopt -u cdspell
+fi
+
+if [[ $(get_key shopt/cdable_vars) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: cdable_vars On
+	shopt -s cdable_vars
+else	dbg_msg BashStyle-NG Setting: cdable_vars Off
+	shopt -u cdable_vars
+fi
+
+if [[ $(get_key shopt/checkhash) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: checkhash On
+	shopt -s checkhash
+else	dbg_msg BashStyle-NG Setting: checkhash Off
+	shopt -u checkhash
+fi
+
+if [[ $(get_key shopt/cmdhist) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: cmdhist On
+	shopt -s cmdhist
+else	dbg_msg BashStyle-NG Setting: cmdhist Off
+	shopt -u cmdhist
+fi
+
+if [[ $(get_key shopt/force_fignore) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: force_fignore On
+	shopt -s force_fignore
+else	dbg_msg BashStyle-NG Setting: force_fignore Off
+	shopt -u force_fignore
+fi
+
+if [[ $(get_key shopt/histreedit) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: histreedit On
+	shopt -s histreedit
+else	dbg_msg BashStyle-NG Setting: histreedit Off
+	shopt -u histreedit
+fi
+
+if [[ $(get_key shopt/no_empty_cmd_completion) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: no_empty_cmd_completion On
+	shopt -s no_empty_cmd_completion
+else	dbg_msg BashStyle-NG Setting: no_empty_cmd_completion Off
+	shopt -u no_empty_cmd_completion
+fi
+
+if [[ $HISTCONTROL != erasedups && $(get_key shopt/histappend) == true ]]; then
+	dbg_msg BashStyle-NG Setting: histappend On
+	shopt -s histappend
+else	dbg_msg BashStyle-NG Setting: histappend Off
+	shopt -u histappend
+fi
+
+if [[ $BASH_VERSINFO != 4 ]]; then
+	dbg_msg BashStyle-NG Message: Bash is not 4.x -- disabling new shopts
+else
+
+	if [[ $(get_key shopt/autocd) == true ]]; then
+		dbg_msg BashStyle-NG Setting: autocd On
+		shopt -s autocd
+	else	dbg_msg BashStyle-NG Setting: autocd Off
+		shopt -u autocd
+	fi
+	
+	if [[ $(get_key shopt/checkjobs) == true ]]; then
+		dbg_msg BashStyle-NG Setting: checkjobs On
+		shopt -s checkjobs
+	else	dbg_msg BashStyle-NG Setting: checkjobs Off
+		shopt -u checkjobs
+	fi
+
+	if [[ $(get_key shopt/globstar) == true ]]; then
+		dbg_msg BashStyle-NG Setting: globstar On
+		shopt -s globstar
+	else	dbg_msg BashStyle-NG Setting: globstar Off
+		shopt -u globstar
+	fi
+
+	if [[ $(get_key shopt/dirspell) == true ]]; then
+		dbg_msg BashStyle-NG Setting: dirspell On
+		shopt -s dirspell
+	else	dbg_msg BashStyle-NG Setting: dirspell Off
+		shopt -u dirspell
+	fi
+fi

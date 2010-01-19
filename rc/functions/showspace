@@ -1,0 +1,59 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+show_space_help ()
+{
+
+	white=$(bs_ng_echo $white)
+	orange=$(bs_ng_echo $orange)
+	iceblue=$(bs_ng_echo $iceblue)
+	green=$(bs_ng_echo $green)
+
+	echo -e "\n${white}Usage:\n"
+	echo -e "${orange}show_space ${white}|${green} --used ${iceblue}[display used space in mb/gb]\
+	\n${orange}show_space ${white}|${green} --free ${iceblue}[display free space in mb/gb]\
+	\n${orange}show_space ${white}|${green} --percent-used ${iceblue}[display used space in %]\
+	\n${orange}show_space ${white}|${green} --percent-free ${iceblue}[display free space in %]" | column -t
+	echo ""
+	tput sgr0
+
+}
+
+show_space ()
+{
+
+	case $1 in
+		*used-percent )
+			echo $(df | grep -w $2 | gawk '{print $4}')
+		;;
+
+		*free-percent )
+			echo $((100-$(df | grep -w $2 | gawk '{print $4}' | sed -e 's/\%//g')))%
+		;;
+
+		*used )
+			echo $(df -h | grep -w $2 | gawk '{print $2}')B
+		;;
+
+		*free )
+			echo $(df -h | grep -w $2 | gawk '{print $3}')B
+		;;
+
+		*total )
+			echo $(df -h | grep -w $2 | gawk '{print $1}')B
+		;;
+
+		* )
+			show_space_help
+		;;
+	esac
+
+}

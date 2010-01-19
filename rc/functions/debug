@@ -1,0 +1,28 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+logfile=$(get_key debug_log)
+
+debug=$(get_key debug)
+
+verbose=$(get_key debug_verbose)
+
+dbg_msg ()
+{
+
+	if [[ $debug == true ]] ; then
+		if [[ $verbose == true ]]; then
+			echo -e "$@" | tee -a $logfile
+		else	echo -e "$@" >> $logfile
+		fi
+	fi
+
+}

@@ -1,0 +1,50 @@
+Source: bashstyle-ng
+Section: Speedwave
+Priority: extra
+Maintainer: Christopher Bratusek <zanghar@freenet.de>
+Build-Depends: 	debhelper (>= 5),
+ 		autotools-dev,
+ 		sed,
+ 		grep,
+ 		make,
+ 		ncurses-bin,
+                bash (>= 3.2),
+                gawk,
+                debianutils,
+                libgtk2.0-dev (>= 2.16),
+                libgconf2-dev (>= 2.14)
+Standards-Version: 3.7.2
+
+Package: bashstyle-ng
+Architecture: all
+Depends: 	bash (>= 3.2),
+ 		bc,
+ 		procps,
+ 		gawk,
+ 		grep,
+ 		gconf2,
+ 		gconf2-common,
+ 		python (>= 2.4),
+ 		python-gconf | python-gnome2,
+ 		python-gtk2 (>= 2.4),
+                python-vte,
+                sed,
+ 		less,
+ 		libgtk2.0-bin (>= 2.16)
+Suggests:  	nano,
+ 		vim,
+ 		apmd,
+ 		acpi,
+ 		dmidecode
+Description: BashStyle-NG
+ BashStyle-NG is a graphical tool for changing the behaviour and look'n'feel of Bash, Readline, Vim and Nano
+ .
+ Furthermore you can:
+ 	- create your own prompt
+ 	- define up to 7 aliases
+ 	- get colored manpages [without using most(!)]
+ 	- choose between 15 pre-defined prompts
+ 	- trip out when seeing your new prompt
+        - change the colors of ls and grep output
+        - store your own customizations in $HOME/.custom-rc
+ 	- and much more!

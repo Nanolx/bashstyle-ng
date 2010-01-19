@@ -1,0 +1,27 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+custom_prompt=$(get_key custom_prompt)
+
+custom_command=$(get_key custom_command)
+
+if [[ $use_custom_prompt == true && $custom_prompt != "" && $custom_prompt != "Not Supported" ]]; then
+	if [[ $custom_command != "" && $custom_command != "Not Supported" ]]; then
+		echo -E "function pre_prompt { " > $HOME/.custom_prompt 
+		echo -E "$custom_command" >> $HOME/.custom_prompt 
+       		echo -E "}" >> $HOME/.custom_prompt
+		echo -e "PROMPT_COMMAND=pre_prompt \n" >> $HOME/.custom_prompt
+		echo -E PS1=\"$custom_prompt\" >> $HOME/.custom_prompt
+	else
+		echo -E PS1=\"$custom_prompt\" > $HOME/.custom_prompt
+	fi
+	source $HOME/.custom_prompt
+fi

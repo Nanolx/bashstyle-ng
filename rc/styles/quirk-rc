@@ -1,0 +1,20 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ $enabcol == true ]]; then
+
+PS1="\n$sepacolor -$pscolor( $usercolor\u$sepacolor /$hostcolor \h$pscolor )$sepacolor-$pscolor( \$(show_tty) )$sepacolor-$pscolor($upcolor uptime: \$(show_uptime)$pscolor )$sepacolor-$pscolor($timecolor \$(date +%H:%M)$datecolor \$(date +%d-%b-%y)$pscolor )$sepacolor-$pscolor($wdircolor files: \$(count_files +f)$sepacolor /$wdircolor folders: \$(count_files -d)$pscolor )$sepacolor-\n -$pscolor<$wdircolor \$(trunc_pwd) $pscolor>$sepacolor-$fontcolor "
+
+else
+
+PS1="\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \$(date +%d-%b-%y ) )-( files: \$(count_files +f) / folders: \$(count_files -d) )-\n -< \$(trunc_pwd) >- "
+
+fi

@@ -1,0 +1,24 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+git_export() {
+
+	if [[ $1 != "" ]]; then
+		git checkout-index --prefix=$1/ -a
+	fi
+
+}
+
+git_bzip() {
+
+	git archive master | bzip2 >$PWD.tar.bz2
+
+}

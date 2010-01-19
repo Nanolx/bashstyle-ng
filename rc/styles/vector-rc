@@ -1,0 +1,25 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ $enabcol == true ]]; then
+
+PS1="\n$pscolor┌$sepacolor($usercolor \u$sepacolor @ $hostcolor\h \
+$sepacolor)$pscolor─$sepacolor( $timecolor\$(date +%I:%M%P)\
+$fontcolor -:- $datecolor\$(date +%m)/\$(date +%d)$sepacolor )\n\
+$pscolor└$sepacolor( $wdircolor\$(trunc_pwd) $sepacolor)$pscolor·>$fontcolor "
+
+else
+
+PS1="\n┌( \u @ \h )─( \$(date +%I:%M%P)\
+ -:- \$(date +%m)/\$(date +%d) )\n\
+└( \$(trunc_pwd) )·> "
+
+fi

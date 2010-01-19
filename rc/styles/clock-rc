@@ -1,0 +1,47 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ $enabcol == true ]]; then
+
+function pre_prompt {
+
+let prompt_x=$(tput cols)-29
+tput sc
+tput cup 0 ${prompt_x}
+echo -en "$(bs_ng_echo $sepacolor)\
+[$(bs_ng_echo $datecolor) \
+$(date '+%a, %d %b %y')\
+$(bs_ng_echo $sepacolor) ::\
+$(bs_ng_echo $timecolor) $(date +%T)\
+$(bs_ng_echo $sepacolor) ]"
+tput rc
+}
+
+PROMPT_COMMAND=pre_prompt
+
+PS1="$sepacolor[$usercolor \u $fontcolor@ $hostcolor\h $pscolor: $wdircolor\$(trunc_pwd)$sepacolor ]$fontcolor "
+
+else
+
+function pre_prompt {
+
+let prompt_x=$(tput cols)-29
+tput sc
+tput cup 0 ${prompt_x}
+echo -n "[ $(date '+%a, %d %b %y') :: $(date +%T) ]"
+tput rc
+}
+
+PROMPT_COMMAND=pre_prompt
+
+PS1="[ \u @ \h : \$(trunc_pwd) ] "
+
+fi

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>BashStyle-NG 7.10 Doc / Chapter 0</title>
+</head>
+<body>
+<h2 align="center"><font color="#00A8FF">Chapter 0: Installation</font></h2>
+<hr><br>
+<font color="#FBA330">&nbsp;<b>Installation:</font><br></b><br>
+
+<table border="1">
+	<tr>
+		<td width="50%">Check Requirements:</td>
+		<td>./configure</td>
+	</tr>
+	<tr>
+		<td>Compile the terminfofiles and<br>
+		    create the binary translations:</td>
+		<td>make</td>
+	</tr>
+	<tr>
+		<td>Install BashStyle-NG:</td>
+		<td>sudo make install <b>[ or ]</b> su -c "make install"</td>
+	</tr>
+</table><br>
+
+<font color="#FBA330">&nbsp;<b>Configure Options</font></b><br><br>
+
+The configure-script BS-NG comes with, is not a common autotools-based one, instead it's<br>
+a very modular bash	script I've written. You can pass a small set of options to it:<br><br>
+
+<table border="1">
+  <tr>
+    <td>--prefix=</td>
+    <td>The prefix to install BS-NG in</td>
+    <td>Default: /usr</td>
+  </tr>
+  <tr>
+    <td>--maint</td>
+    <td>Enter `Maintainer Mode' (disable checks)</td>
+    <td>Default: not entered</td>
+  </tr>
+</table>
+
+<br><br>
+<i><font color="#E173E4"><b>Note:</b></font> --maint must be set before --prefix, if you wish to use it.</i><br><br>
+
+<table border=0 width=50% align=center>
+	<tr>
+		<td width=33%>------- -</td>
+		<td width=33%><a href="index.html">Index</a></td>
+		<td width=33%><a href="chapter01.html">Chapter 1</a></td>
+	</tr>
+</table>
+
+</body>
+</html>

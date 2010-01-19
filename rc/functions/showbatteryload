@@ -1,0 +1,76 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+show_battery_load_help ()
+{
+
+	white=$(bs_ng_echo $white)
+	orange=$(bs_ng_echo $orange)
+	iceblue=$(bs_ng_echo $iceblue)
+	green=$(bs_ng_echo $green)
+
+	echo -e "\n${white}Usage:\n"
+	echo -e "${orange}show_battery_load${white} |${green} --acpi${iceblue} [show batteryload using acpi]\
+	\n${orange}show_battery_load${white} |${green} --apm${iceblue} [show batteryload using apm]" | column -t
+	echo ""
+	tput sgr0
+
+}
+
+show_battery_load ()
+{
+
+	case $1 in
+		*acpi )
+			check_opt acpi show_battery_load::acpi
+			load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
+			out="$(acpi -b)"
+			state="$(echo "${out}" | awk '{print $3}')"
+			case ${state} in
+				charging,)
+					statesign="^"
+				;;
+
+				discharging,)
+					statesign="v"
+				;;
+
+				charged,)
+					statesign="°"
+				;;
+			esac
+			battery="${statesign}${load}"
+			echo $battery
+		;;
+
+		*apm )
+			check_opt apm show_battery_load::apm
+			result="$(apm)"
+			case ${result} in
+				*'AC on'*)
+					state="^"
+				;;
+
+				*'AC off'*)
+					state="v"
+				;;
+			esac
+			load="${temp##* }"
+			battery="${state}${load}"
+			echo $battery
+		;;
+
+		* )
+			show_battery_load_help
+		;;
+	esac
+
+}

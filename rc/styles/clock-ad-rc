@@ -1,0 +1,174 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ $enabcol == true ]]; then
+
+user="whoami"
+host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
+
+esepacolor=$(bs_ng_echo $sepacolor)
+edatecolor=$(bs_ng_echo $datecolor)
+etimecolor=$(bs_ng_echo $timecolor)
+efontcolor=$(bs_ng_echo $fontcolor)
+epscolor=$(bs_ng_echo $pscolor)
+ewdircolor=$(bs_ng_echo $wdircolor)
+dirchar=$(get_key dirchar)
+trunc_symbol=$(get_key pwdchar)
+trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
+
+j=4
+k=6
+l=8
+m=10
+
+function pre_prompt {
+
+newPWD="${PWD}"
+
+let promptsize=$(echo -n "--($user @ $host)---(${PWD})-------" | wc -c | tr -d " ")
+
+let fillsize=${COLUMNS}-${promptsize}
+fill=""
+while [ "$fillsize" -gt "0" ]
+do
+    fill="${fill}─"
+	let fillsize=${fillsize}-1
+done
+if [ "$fillsize" -lt "0" ]
+then
+    let cutt=${trunc_length}-${fillsize}
+    xPWD="${trunc_symbol}$(echo -n $PWD | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+    newPWD="${xPWD//\//$esepacolor$dirchar$ewdircolor}"
+else
+    newPWD="${PWD//\//$esepacolor$dirchar$ewdircolor}"
+fi
+
+_newPWD () {
+	echo -e $newPWD
+}
+
+echo -en "\033[2;$((${COLUMNS}-29))H"
+echo -en "$esepacolor($etimecolor $(date +%H:%M)$esepacolor :$edatecolor $(date '+%a, %d %b %y')$esepacolor )────┐"
+echo -en "\033[2;${COLUMNS}H"
+
+i=${LINES}
+
+while [ $i -ge 4 ]
+do
+   if [[ $i == $j ]]; then
+   	echo -en "\033[$j;$((${COLUMNS}-29))H"
+   	echo -en "$esepacolor($efontcolor system-load: $(show_system_load 1)$esepacolor )────────"
+   fi
+   if [[ $i == $k ]]; then
+        echo -en "\033[$k;$((${COLUMNS}-29))H"
+       	echo -en "$esepacolor($efontcolor cpu-load: $(show_cpu_load)$esepacolor )────────────"
+   fi
+   if [[ $i == $l ]]; then
+   	echo -en "\033[$l;$((${COLUMNS}-29))H"
+   	echo -en "$esepacolor($efontcolor ram: $esepacolor$(show_mem --used)mb$efontcolor / $esepacolor$(show_mem --free)mb )─────"
+   fi
+   if [[ $i == $m ]]; then
+       echo -en "\033[$m;$((${COLUMNS}-29))H"
+       echo -en "$esepacolor($efontcolor processes:$epscolor $(count_processes) $esepacolor)──────────"
+   fi
+   echo -en "\033[$(($i-1));${COLUMNS}H$espacolor│"
+   let i=$i-1
+done
+
+let prompt_line=${LINES}-1
+}
+
+PROMPT_COMMAND=pre_prompt
+
+PS1="\[\033[\${prompt_line};0H\]\n\
+$sepacoloror┌─( $usercolor\u $fontcolor@ $hostcolor\h \
+$sepacolor)─\${fill}─( $wdircolor\$(_newPWD)\
+$sepacolor )────┘\n\
+$sepacolor└─($upcolor uptime: \$(show_uptime)\
+$fontcolor : \$$sepacolor )·>$fontcolor "
+
+else
+
+user="whoami"
+host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
+dirchar=$(get_key dirchar)
+trunc_symbol=$(get_key pwdchar)
+trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
+
+j=4
+k=6
+l=8
+m=10
+
+function pre_prompt {
+
+newPWD="${PWD}"
+
+let promptsize=$(echo -n "--($user @ $host)---(${PWD})-------" | wc -c | tr -d " ")
+
+let fillsize=${COLUMNS}-${promptsize}
+fill=""
+while [ "$fillsize" -gt "0" ]
+do
+    fill="${fill}─"
+	let fillsize=${fillsize}-1
+done
+if [ "$fillsize" -lt "0" ]
+then
+    let cutt=${trunc_length}-${fillsize}
+    xPWD="${trunc_symbol}$(echo -n $PWD | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+    newPWD="${xPWD//\//$dirchar}"
+else
+    newPWD="${PWD//\//$dirchar}"
+fi
+
+_newPWD () {
+        echo -e $newPWD
+}
+
+echo -en "\033[2;$((${COLUMNS}-29))H"
+echo -en "( $(date +%H:%M) : $(date '+%a, %d %b %y') )────┐"
+echo -en "\033[2;${COLUMNS}H"
+
+i=${LINES}
+
+while [ $i -ge 4 ]
+do
+   if [[ $i == $j ]]; then
+   	echo -en "\033[$j;$((${COLUMNS}-29))H"
+   	echo -en "( system-load: $(show_system_load 1) )────────"
+   fi
+   if [[ $i == $k ]]; then
+	echo -en "\033[$k;$((${COLUMNS}-29))H"
+	echo -en "( cpu-load: $(show_cpu_load) )────────────"
+   fi
+   if [[ $i == $l ]]; then
+   	echo -en "\033[$l;$((${COLUMNS}-29))H"
+   	echo -en "( ram: $(show_mem --used)mb / $(show_mem --free)mb )─────"
+   fi
+   if [[ $i == $m ]]; then
+	   echo -en "\033[$m;$((${COLUMNS}-29))H"
+	   echo -en "( processes: $(count_processes) )──────────"
+   fi
+   echo -en "\033[$(($i-1));${COLUMNS}H│"
+   let i=$i-1
+done
+
+let prompt_line=${LINES}-1
+}
+
+PROMPT_COMMAND=pre_prompt
+
+PS1="\[\033[\${prompt_line};0H\]\n\
+┌─( \u @ \h )─\${fill}─( \$(_newPWD)\
+ )────┘\n└─( uptime: \$(show_uptime) : $ )·> "
+
+fi

@@ -1,0 +1,52 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG 7.10				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2009 Christopher Bratusek		#
+#							#
+#########################################################
+
+HISTCONTROL=$(get_key hist_control)
+dbg_msg BashStyle-NG Setting: HISTCONTROL "$HISTCONROL"
+
+HISTIGNORE=$(get_key hist_ignore)
+dbg_msg BashStyle-NG Setting: HISTIGNORE "$HISTIGNORE"
+
+FIGNORE=$(get_key fignore)
+dbg_msg BashStyle-NG Setting: FIGNORE "$FIGNORE"
+
+CDPATH=$(get_key cdpath)
+dbg_msg BashStyle-NG Setting: CDPATH "$CDPATH"
+
+FCEDIT=$(get_key fcedit)
+dbg_msg BashStyle-NG Setting: FCEDIT "$FCEDIT"
+
+if [[ -e /etc/profile.d/msec.sh && $(grep -w TMOUT /etc/profile.d/msec.sh) != "" ]]; then
+	dbg_msg BashStyle-NG Warning: /etc/profile.d/msec.sh prevents setting TMOUT, remove
+	dbg_msg BashStyle-NG Warning: the line regarding TMOUT to get rid of this message
+else	TMOUT=$(get_key timeout)
+	dbg_msg BashStyle-NG Setting: TMOUT "$TMOUT"
+fi
+
+HISTSIZE=$(get_key history_size)
+dbg_msg BashStyle-NG Setting: HISTSIZE "$HISTSIZE"
+
+HISTFILESIZE=$(get_key history_size)
+dbg_msg BashStyle-NG Setting: HISTFILESIZE "$HISTFILESIZE"
+
+if [[ $(get_key path) != "" ]]; then
+	PATH=$(get_key path)
+	dbg_msg BashStyle-NG Setting: PATH "$PATH"
+fi
+
+if [[ $(get_key colored_grep) == true ]]; then \
+	dbg_msg BashStyle-NG Setting: Colored grep On
+	GREP_OPTIONS="--color=auto";
+	GREP_COLOR=$(get_key color/grep);
+else	dbg_msg BashStyle-NG Setting: Colored grep Off
+fi
+
+export HISTCONTROL HISTIGNORE FIGNORE CDPATH FCEDIT TMOUT HISTSIZE HISTFILESIZE PATH GREP_OPTIONS GREP_COLOR
