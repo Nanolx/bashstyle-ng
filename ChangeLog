@@ -2,10 +2,15 @@
 
 "The Nature Of Our Mind"
 
-code/bs.ng.py:
-- (partially) workaround a bug in pygtk, which
-  broke the Style and LS_COLORS options, the former
-  works now, the later is still broken
+scripts/bs-ng-profiler
+scripts/rcgenerator:
+- fixed bug #89: didn't load bs-ng-echo
+
+code/bs-ng.py.in:
+- fixed bug #90: workaround a bug in pygtk (all parts of the UI work again)
+
+code/bs-ng-py.in:
+- don't make lockfile functions a class each
 
 rc/functions/ps:
 - process related functions:
