@@ -57,7 +57,7 @@ _generate_bashrc()
 	echo "bsource gconf debug check_opt xunalias ls git exchange xmv xcp xchown xconv random" >> $HOME/bashstyle/bashrc.bs-ng-$DATE
 	echo "bsource bs_ng_echo showuptime showmem showsystemload showcpuload man2pdf countfiles" >> $HOME/bashstyle/bashrc.bs-ng-$DATE
 	echo "bsource countprocesses showbatteryload showip showsize showspace showtty systeminfos" >> $HOME/bashstyle/bashrc.bs-ng-$DATE
-	echo "bsource truncpwd ps" >> $HOME/bashstyle/bashrc.bs-ng-$DATE
+	echo "bsource truncpwd ps misc" >> $HOME/bashstyle/bashrc.bs-ng-$DATE
 
 	if [[ $BASH_VERSINFO == 4 ]]; then
 		echo "bsource xdel" >> $HOME/bashstyle/bashrc.bs-ng-$DATE
