@@ -1,0 +1,18 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+top10 () {
+
+	history | awk '{print $2}' |\
+	awk 'BEGIN {FS="|"}{print $1}' |\
+	sort | uniq -c | sort -n | tail | sort -nr
+
+}
