@@ -11,9 +11,19 @@
 
 random () {
 
-	if [[ $1 ]]; then
-		echo $((RANDOM%${1}))
+	if [[ $1 == -l ]]; then
+		echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
+	elif [[ $1 == -r ]]; then
+		echo $((RANDOM%${2}))
+	else	echo $((RANDOM%${1}))
 	fi
 
 }
 
+randompw () {
+
+	if [[ $2 == "" ]]; then
+		echo $(cat /dev/urandom | tr -cd '[:alnum:]' | head -c ${1:-32})
+	else	echo $(cat /dev/urandom | tr -cd '[:graph:]' | head -c ${1:-32})
+	fi
+}
