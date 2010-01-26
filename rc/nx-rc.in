@@ -49,6 +49,9 @@ dbg_msg BashStyle-NG Version: $BSNG_VERSION
 dbg_msg BashStyle-NG Prefix: $BSNG_PREFIX
 dbg_msg BashStyle-NG Debugging: Enabled
 dbg_msg BashStyle-NG Logfile: $logfile
+dbg_msg BashStyle-NG Setting: Alias reload=source ~/.bashrc
+
+alias reload="source ~/.bashrc"
 
 if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
 	dbg_msg BashStyle-NG Loading: ReadlineCFG
