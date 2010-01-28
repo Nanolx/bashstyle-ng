@@ -26,3 +26,21 @@ dbg_msg ()
 	fi
 
 }
+
+dbg_view ()
+{
+
+	vim $logfile || nano $logfile
+
+}
+
+dbg_verbosity ()
+{
+
+	if [[ $1 == "1" ]]; then
+		set_key bool /apps/bashstyle/debug_verbose true
+	elif [[ $1 == "0" ]]; then
+		set_key bool /apps/bashstyle/debug_verbose false
+	fi
+
+}
