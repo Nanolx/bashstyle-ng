@@ -56,9 +56,6 @@ alias reload="source ~/.bashrc"
 dbg_msg BashStyle-NG Setting: Alias rd=pwd -P
 alias rd="pwd -P"
 
-dbg_msg BashStyle-NG Setting: Alias mcd=cd !!:*
-alias mcd="cd !!:*"
-
 if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
 	dbg_msg BashStyle-NG Loading: ReadlineCFG
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/readline-rc
