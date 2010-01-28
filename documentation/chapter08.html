@@ -511,8 +511,13 @@
 <table border="1">
 	<tr>
 		<td>random</td>
-		<td>maximum</td>
-		<td>Print a random number from 0 to maximum.</td>
+		<td>-l LENGTH</td>
+		<td>Print a random number with length LENGTH</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>-r RANGE</td>
+		<td>Print a random number between 0 and RANGE</td>
 	</tr>
 </table><br><br>
 
@@ -547,6 +552,28 @@
 		<td>PROCESSNAME</td>
 		<td>SIGNAL</td>
 		<td>psgrep for PROCESSNAME and ask for a process to kill via signal SIGNAL</td>
+	</tr>
+</table><br><br>
+
+<h3><font color="#33c0f4">New in BashStyle-NG 7.10:</font></h3>
+
+<h3><font color="#88D058">top10</font></h3>
+&nbsp;Display the 10 most-used commands<br><br>
+<table border="1">
+	<tr>
+		<td>top10</td>
+	</tr>
+</table><br><br>
+
+<h3><font color="#88D058">randompw</font></h3>
+&nbsp;Create a random password<br><br>
+<table border="1">
+	<tr>
+		<td>randompw</td>
+		<td>LENGTH</td>
+		<td>!</td>
+		<td>generate alphanumeric password with length LENGTH<br>
+		    if ! is passed, too, then include special chars</td>
 	</tr>
 </table><br><br>
 
