@@ -19,6 +19,12 @@ git_export() {
 
 git_bzip() {
 
-	git archive master | bzip2 >$PWD.tar.bz2
+	git archive master | bzip2 -9 >$PWD.tar.bz2
+
+}
+
+git_xz() {
+
+	git archive master | xz -9 > $PWD.tar.xz
 
 }
