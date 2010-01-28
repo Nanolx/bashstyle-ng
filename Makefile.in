@@ -16,8 +16,6 @@ EARGS=""
 
 all: mo
 	@echo$(EARGS) "$(MAGENTA)compiling: 	$(SMOOTHBLUE)terminfo files:	$(CYAN)mostlike bold nebula"
-	@mkdir $(PWD)/translations/pot
-	@mkdir $(PWD)/translations/mo
 	@tic $(PWD)/data/terminfo/mostlike.terminfo -o $(PWD)/data/terminfo/
 	@tic $(PWD)/data/terminfo/bold.terminfo -o $(PWD)/data/terminfo/
 	@tic $(PWD)/data/terminfo/nebula.terminfo -o $(PWD)/data/terminfo/
