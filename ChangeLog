@@ -7,6 +7,7 @@
 rc/nx-rc.in:
 - added reload alias for `source ~/.bashrc`
 - added rd alias for `pwd -P`
+- also log the patch-level of bash
 
 rc/functions/random:
 - added randompw for generating random passwords
@@ -28,9 +29,12 @@ rc/functions/git:
 - added get_gnome (grab GIT-Repos from GNOME)
 - added get_xfce (grab GIT-Repos from XFCE)
 
-documentation/chapter08.html ::
 documentation/chapter02.html:
+- documented internal aliases
+
+documentation/chapter08.html:
 - updated
+- documented internal functions/variables
 
 7.9.1:
 
