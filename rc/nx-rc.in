@@ -34,10 +34,9 @@ if [[ $BASH_VERSINFO == 4 ]]; then
 fi
 
 if [[ $(get_key debug) == true ]]; then \
-	eval logfile=$(get_key debug_log)
-	rm -f $logfile
-	touch $logfile
-	export BSNG_LOGFILE=$logfile
+	eval BSNG_LOGFILE=$(get_key debug_log)
+	rm -f $BSNG_LOGFILE
+	touch $BSNG_LOGFILE
 fi
 if [[ $0 == *gdm* ]]; then
 	dbg_msg BashStyle-NG: Started during GDM-Session-Init -- exiting
@@ -45,10 +44,11 @@ else
 
 dbg_msg BashStyle-NG: Starting
 dbg_msg BashStyle-NG Bash Version: $(echo $BASH_VERSION | sed -e 's/(.*//g')
+dbg_msg BashStyle-NG Bash Patchlevel: $(echo $BASH_VERSION | sed -e 's/.*(//g' -e 's/).*//g')
 dbg_msg BashStyle-NG Version: $BSNG_VERSION
 dbg_msg BashStyle-NG Prefix: $BSNG_PREFIX
 dbg_msg BashStyle-NG Debugging: Enabled
-dbg_msg BashStyle-NG Logfile: $logfile
+dbg_msg BashStyle-NG Logfile: $BSNG_LOGFILE
 
 dbg_msg BashStyle-NG Setting: Alias reload=source ~/.bashrc
 alias reload="source ~/.bashrc"

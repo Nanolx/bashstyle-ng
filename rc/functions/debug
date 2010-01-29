@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-logfile=$(get_key debug_log)
+BSNG_LOGFILE=$(get_key debug_log)
 
 debug=$(get_key debug)
 
@@ -20,8 +20,8 @@ dbg_msg ()
 
 	if [[ $debug == true ]] ; then
 		if [[ $verbose == true ]]; then
-			echo -e "$@" | tee -a $logfile
-		else	echo -e "$@" >> $logfile
+			echo -e "$@" | tee -a $BSNG_LOGFILE
+		else	echo -e "$@" >> $BSNG_LOGFILE
 		fi
 	fi
 
@@ -30,7 +30,7 @@ dbg_msg ()
 dbg_view ()
 {
 
-	vim $logfile || nano $logfile
+	vim $BSNG_LOGFILE || nano $BSNG_LOGFILE
 
 }
 
