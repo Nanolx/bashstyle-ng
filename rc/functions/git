@@ -28,3 +28,11 @@ git_xz() {
 	git archive master | xz -9 > $PWD.tar.xz
 
 }
+
+get_gnome () {
+
+	if [[ $1 == "-m" ]]; then
+		git clone git+ssh://$2@git.gnome.org/git/$3
+	else 	git clone git://git.gnome.org/$1
+	fi
+}
