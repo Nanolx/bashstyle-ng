@@ -33,6 +33,17 @@ get_gnome () {
 
 	if [[ $1 == "-m" ]]; then
 		git clone git+ssh://$2@git.gnome.org/git/$3
+	elif [[ $1 == "-b" ]]; then
+		git clone -b $2 git://git.gnome.org/$3
 	else 	git clone git://git.gnome.org/$1
 	fi
+}
+
+get_xfce () {
+
+	if [[ $1 == "-b" ]]; then
+		git clone -b $2 git://git.xfce.org/category/$3
+	else	git clone git://git.xfce.org/category/$1
+	fi
+
 }
