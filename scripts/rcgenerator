@@ -352,7 +352,7 @@ _bash_finalize()
 	fi
 
 	if [[ -e $HOME/.custom-rc ]]; then
-		cat $HOME/.custom-rc >> $HOME/bashstyle/bashrc.bs-ng-$DATE
+		cat $HOME/.custom-rc | sed -e '/#\!/d' >> $HOME/bashstyle/bashrc.bs-ng-$DATE
 	fi
 
 	#_rc_echo "unset BSNG_GCONF_READ"
