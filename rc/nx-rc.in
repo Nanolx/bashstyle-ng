@@ -18,7 +18,7 @@ export BSNG_VERSION=@VERSION@
 
 bsource () {
 
-	for file in $@; do 
+	for file in $@; do
 		source $BSNG_RC_DIR/$file
 	done
 
@@ -38,6 +38,7 @@ if [[ $(get_key debug) == true ]]; then \
 	rm -f $BSNG_LOGFILE
 	touch $BSNG_LOGFILE
 fi
+
 if [[ $0 == *gdm* ]]; then
 	dbg_msg BashStyle-NG: Started during GDM-Session-Init -- exiting
 else
@@ -71,20 +72,21 @@ if [[ $(get_key nano/use_nanocfg) == true ]]; then \
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/nano-rc
 fi
 
-if [[ $(get_key dircolors/enable) == true ]]; then \
-	dbg_msg BashStyle-NG Loading: LSCOLORS
-	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/ls-rc
-fi
-
 if [[ $(get_key use_bashstyle) == false ]]; then \
 	dbg_msg BashStyle-NG: Exiting
 else
 	dbg_msg BashStyle-NG Loading: BashStyle-NG
 fi
 
+fi
+
 if [[ $(get_key color/enable) == true ]]; then \
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/color-rc
 fi
+
+if [[ $(get_key dircolors/enable) == true ]]; then \
+	dbg_msg BashStyle-NG Loading: LSCOLORS
+	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/ls-rc
 
 source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/alias-rc
 
