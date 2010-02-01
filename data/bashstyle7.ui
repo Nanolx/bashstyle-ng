@@ -61,9 +61,6 @@ ru_RU: Alexander Lushpai</property>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Choose a colorscheme:</col>
-      </row>
-      <row>
         <col id="0" translatable="yes">Default</col>
       </row>
       <row>
@@ -293,9 +290,6 @@ ru_RU: Alexander Lushpai</property>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Display Memory:</col>
-      </row>
-      <row>
         <col id="0" translatable="yes">Free Memory</col>
       </row>
       <row>
@@ -316,9 +310,6 @@ ru_RU: Alexander Lushpai</property>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Choose Editing Mode:</col>
-      </row>
-      <row>
         <col id="0" translatable="yes">Emacs</col>
       </row>
       <row>
@@ -332,9 +323,6 @@ ru_RU: Alexander Lushpai</property>
       <column type="gchararray"/>
     </columns>
     <data>
-      <row>
-        <col id="0" translatable="yes">Change Bellstyle:</col>
-      </row>
       <row>
         <col id="0" translatable="yes">Audible</col>
       </row>
@@ -352,9 +340,6 @@ ru_RU: Alexander Lushpai</property>
       <column type="gchararray"/>
     </columns>
     <data>
-      <row>
-        <col id="0" translatable="yes">History Control Type:</col>
-      </row>
       <row>
         <col id="0" translatable="yes">Erasedups</col>
       </row>
@@ -375,9 +360,6 @@ ru_RU: Alexander Lushpai</property>
       <column type="gchararray"/>
     </columns>
     <data>
-      <row>
-        <col id="0" translatable="yes">Choose Grep Color:</col>
-      </row>
       <row>
         <col id="0" translatable="yes">Black</col>
       </row>
@@ -450,9 +432,6 @@ ru_RU: Alexander Lushpai</property>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Terminfo for Manpages:</col>
-      </row>
-      <row>
         <col id="0" translatable="yes">Mostlike</col>
       </row>
       <row>
@@ -469,9 +448,6 @@ ru_RU: Alexander Lushpai</property>
       <column type="gchararray"/>
     </columns>
     <data>
-      <row>
-        <col id="0" translatable="yes">Change Color Style:</col>
-      </row>
       <row>
         <col id="0" translatable="yes">Normal</col>
       </row>
@@ -495,9 +471,6 @@ ru_RU: Alexander Lushpai</property>
       <column type="gchararray"/>
     </columns>
     <data>
-      <row>
-        <col id="0" translatable="yes">Choose Style:</col>
-      </row>
       <row>
         <col id="0" translatable="yes">Separator</col>
       </row>
@@ -657,6 +630,77 @@ ru_RU: Alexander Lushpai</property>
       </row>
     </data>
   </object>
+  <object class="GtkListStore" id="liststore19">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkWindow" id="bashstyle">
     <property name="visible">True</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -696,7 +740,7 @@ ru_RU: Alexander Lushpai</property>
               </object>
             </child>
             <child>
-              <object class="GtkLabel" id="label44">
+              <object class="GtkLabel" id="label42">
                 <property name="visible">True</property>
               </object>
               <packing>
@@ -803,18 +847,38 @@ ru_RU: Alexander Lushpai</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkComboBox" id="prompt_style">
+                                  <object class="GtkVBox" id="vbox46">
                                     <property name="width_request">220</property>
-                                    <property name="height_request">28</property>
+                                    <property name="height_request">44</property>
                                     <property name="visible">True</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="model">liststore16</property>
-                                    <property name="tearoff_title">Choose Style</property>
+                                    <property name="orientation">vertical</property>
                                     <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext16"/>
-                                      <attributes>
-                                        <attribute name="text">0</attribute>
-                                      </attributes>
+                                      <object class="GtkComboBox" id="prompt_style">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">28</property>
+                                        <property name="visible">True</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="model">liststore16</property>
+                                        <property name="tearoff_title">Choose Style</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cellrenderertext16"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="label93">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Choose Promptstyle</property>
+                                      </object>
+                                      <packing>
+                                        <property name="position">1</property>
+                                      </packing>
                                     </child>
                                   </object>
                                   <packing>
@@ -822,7 +886,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="right_attach">2</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
-                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="x_options"></property>
                                     <property name="y_options"></property>
                                   </packing>
                                 </child>
@@ -883,16 +947,15 @@ ru_RU: Alexander Lushpai</property>
                                         <property name="height_request">205</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="audible_bell">False</property>
-                                        <property name="background_opacity">0</property>
                                         <property name="background_tint_color">#000000000000</property>
                                         <property name="background_transparent">True</property>
-                                        <property name="cursor_shape">ibeam</property>
                                         <property name="encoding">UTF-8</property>
                                         <property name="scroll_on_keystroke">True</property>
                                         <property name="scroll_on_output">False</property>
                                       </object>
                                       <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
@@ -1002,29 +1065,6 @@ ru_RU: Alexander Lushpai</property>
                             <property name="column_spacing">5</property>
                             <property name="homogeneous">True</property>
                             <child>
-                              <object class="GtkComboBox" id="color_style">
-                                <property name="width_request">220</property>
-                                <property name="height_request">28</property>
-                                <property name="visible">True</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">liststore15</property>
-                                <property name="tearoff_title">Change Color Style</property>
-                                <property name="has_frame">False</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext15"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="x_options"></property>
-                                <property name="y_options"></property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkCheckButton" id="ls_color">
                                 <property name="label" translatable="yes">Colored ls output</property>
                                 <property name="width_request">220</property>
@@ -1038,30 +1078,6 @@ ru_RU: Alexander Lushpai</property>
                               <packing>
                                 <property name="x_options"></property>
                                 <property name="y_options"></property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="terminfo">
-                                <property name="width_request">220</property>
-                                <property name="height_request">28</property>
-                                <property name="visible">True</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">liststore14</property>
-                                <property name="tearoff_title">Terminfo for Manpages</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext14"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_EXPAND</property>
-                                <property name="y_options">GTK_EXPAND</property>
                               </packing>
                             </child>
                             <child>
@@ -1083,30 +1099,6 @@ ru_RU: Alexander Lushpai</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBox" id="grep_colour">
-                                <property name="width_request">220</property>
-                                <property name="height_request">28</property>
-                                <property name="visible">True</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">liststore13</property>
-                                <property name="tearoff_title">Choose Grep Color</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext13"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="top_attach">2</property>
-                                <property name="bottom_attach">3</property>
-                                <property name="x_options">GTK_EXPAND</property>
-                                <property name="y_options">GTK_EXPAND</property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkCheckButton" id="grep_color">
                                 <property name="label" translatable="yes">Colored grep output</property>
                                 <property name="width_request">220</property>
@@ -1122,6 +1114,137 @@ ru_RU: Alexander Lushpai</property>
                                 <property name="bottom_attach">3</property>
                                 <property name="x_options">GTK_EXPAND</property>
                                 <property name="y_options">GTK_EXPAND</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkVBox" id="vbox43">
+                                <property name="width_request">220</property>
+                                <property name="height_request">44</property>
+                                <property name="visible">True</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkComboBox" id="color_style">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">28</property>
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="model">liststore15</property>
+                                    <property name="tearoff_title">Change Color Style</property>
+                                    <property name="has_frame">False</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext15"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label90">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Choose Color Style</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkVBox" id="vbox42">
+                                <property name="width_request">220</property>
+                                <property name="height_request">44</property>
+                                <property name="visible">True</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkComboBox" id="terminfo">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">28</property>
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="model">liststore14</property>
+                                    <property name="tearoff_title">Terminfo for Manpages</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext14"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label91">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Choose Terminfo for manpages</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkVBox" id="vbox45">
+                                <property name="width_request">220</property>
+                                <property name="height_request">44</property>
+                                <property name="visible">True</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkComboBox" id="grep_colour">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">28</property>
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="model">liststore13</property>
+                                    <property name="tearoff_title">Choose Grep Color</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext13"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label92">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Choose grep color</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">2</property>
+                                <property name="bottom_attach">3</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
                               </packing>
                             </child>
                           </object>
@@ -1395,7 +1518,7 @@ ru_RU: Alexander Lushpai</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkFrame" id="frame42">
+                  <object class="GtkFrame" id="frame44">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
                     <property name="shadow_type">in</property>
@@ -1527,28 +1650,6 @@ ru_RU: Alexander Lushpai</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBox" id="history_control">
-                                <property name="width_request">220</property>
-                                <property name="height_request">28</property>
-                                <property name="visible">True</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">liststore12</property>
-                                <property name="tearoff_title">History Control Type</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext12"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="x_options">GTK_EXPAND</property>
-                                <property name="y_options">GTK_EXPAND</property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkButton" id="reset_history">
                                 <property name="label" translatable="yes">Reset Bash's History</property>
                                 <property name="width_request">220</property>
@@ -1559,6 +1660,48 @@ ru_RU: Alexander Lushpai</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                               </object>
                               <packing>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkVBox" id="vbox49">
+                                <property name="width_request">220</property>
+                                <property name="height_request">44</property>
+                                <property name="visible">True</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkComboBox" id="history_control">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">28</property>
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="model">liststore12</property>
+                                    <property name="tearoff_title">History Control Type</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext12"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label96">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Choose historycontrol type</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
                                 <property name="x_options"></property>
                                 <property name="y_options"></property>
                               </packing>
@@ -2202,7 +2345,7 @@ ru_RU: Alexander Lushpai</property>
                             <child>
                               <object class="GtkVBox" id="vbox13">
                                 <property name="width_request">220</property>
-                                <property name="height_request">42</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
                                 <property name="orientation">vertical</property>
                                 <child>
@@ -2323,18 +2466,38 @@ ru_RU: Alexander Lushpai</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBox" id="bellstyle">
+                              <object class="GtkVBox" id="vbox47">
                                 <property name="width_request">220</property>
-                                <property name="height_request">28</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">liststore11</property>
-                                <property name="tearoff_title">Change Bellstyle:</property>
+                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext11"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
+                                  <object class="GtkComboBox" id="bellstyle">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">28</property>
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="model">liststore11</property>
+                                    <property name="tearoff_title">Change Bellstyle:</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext11"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label94">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Choose bellstyle</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
                                 </child>
                               </object>
                               <packing>
@@ -2345,18 +2508,38 @@ ru_RU: Alexander Lushpai</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBox" id="editmode">
+                              <object class="GtkVBox" id="vbox48">
                                 <property name="width_request">220</property>
-                                <property name="height_request">28</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">liststore10</property>
-                                <property name="tearoff_title">Choose Editing Mode</property>
+                                <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext10"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
+                                  <object class="GtkComboBox" id="editmode">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">28</property>
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="model">liststore10</property>
+                                    <property name="tearoff_title">Choose Editing Mode</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext10"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label95">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Choose editing mode</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
                                 </child>
                               </object>
                               <packing>
@@ -2729,29 +2912,6 @@ ru_RU: Alexander Lushpai</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBox" id="show_mem">
-                                <property name="width_request">220</property>
-                                <property name="height_request">28</property>
-                                <property name="visible">True</property>
-                                <property name="model">liststore9</property>
-                                <property name="tearoff_title">Select Memory Option:</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext9"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="top_attach">3</property>
-                                <property name="bottom_attach">4</property>
-                                <property name="x_options"></property>
-                                <property name="y_options"></property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkCheckButton" id="show_tty">
                                 <property name="label" translatable="yes">Display number of the tty</property>
                                 <property name="width_request">220</property>
@@ -2855,6 +3015,49 @@ ru_RU: Alexander Lushpai</property>
                               <packing>
                                 <property name="top_attach">2</property>
                                 <property name="bottom_attach">3</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkVBox" id="vbox50">
+                                <property name="width_request">220</property>
+                                <property name="height_request">44</property>
+                                <property name="visible">True</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkComboBox" id="show_mem">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">28</property>
+                                    <property name="visible">True</property>
+                                    <property name="model">liststore9</property>
+                                    <property name="tearoff_title">Select Memory Option:</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext9"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label97">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Display memory</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">3</property>
+                                <property name="bottom_attach">4</property>
                                 <property name="x_options"></property>
                                 <property name="y_options"></property>
                               </packing>
@@ -3093,7 +3296,7 @@ ru_RU: Alexander Lushpai</property>
                             <property name="visible">True</property>
                             <property name="n_rows">2</property>
                             <child>
-                              <object class="GtkLabel" id="label42">
+                              <object class="GtkLabel" id="label44">
                                 <property name="visible">True</property>
                                 <property name="label" translatable="yes">Restore an previously exported profile</property>
                               </object>
@@ -3599,7 +3802,7 @@ ru_RU: Alexander Lushpai</property>
                             <child>
                               <object class="GtkVBox" id="vbox19">
                                 <property name="width_request">220</property>
-                                <property name="height_request">42</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
                                 <property name="orientation">vertical</property>
                                 <child>
@@ -3710,7 +3913,7 @@ ru_RU: Alexander Lushpai</property>
                             <child>
                               <object class="GtkVBox" id="vbox12">
                                 <property name="width_request">220</property>
-                                <property name="height_request">42</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
                                 <property name="orientation">vertical</property>
                                 <child>
@@ -3722,19 +3925,41 @@ ru_RU: Alexander Lushpai</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkComboBox" id="vim_colorscheme">
+                                  <object class="GtkVBox" id="vbox51">
                                     <property name="width_request">220</property>
-                                    <property name="height_request">28</property>
+                                    <property name="height_request">44</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore1</property>
+                                    <property name="orientation">vertical</property>
                                     <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                                      <attributes>
-                                        <attribute name="text">0</attribute>
-                                      </attributes>
+                                      <object class="GtkComboBox" id="vim_colorscheme">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">28</property>
+                                        <property name="visible">True</property>
+                                        <property name="model">liststore1</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="label98">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">Choose colorscheme</property>
+                                      </object>
+                                      <packing>
+                                        <property name="position">1</property>
+                                      </packing>
                                     </child>
                                   </object>
                                   <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
@@ -4122,7 +4347,7 @@ ru_RU: Alexander Lushpai</property>
                             <child>
                               <object class="GtkVBox" id="vbox23">
                                 <property name="width_request">220</property>
-                                <property name="height_request">42</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
                                 <property name="orientation">vertical</property>
                                 <child>
@@ -4139,7 +4364,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext19"/>
                                       <attributes>
@@ -4175,7 +4400,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext20"/>
                                       <attributes>
@@ -4213,7 +4438,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext21"/>
                                       <attributes>
@@ -4251,7 +4476,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext22"/>
                                       <attributes>
@@ -4289,7 +4514,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext23"/>
                                       <attributes>
@@ -4329,7 +4554,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext24"/>
                                       <attributes>
@@ -4385,7 +4610,7 @@ ru_RU: Alexander Lushpai</property>
                             <child>
                               <object class="GtkVBox" id="vbox29">
                                 <property name="width_request">220</property>
-                                <property name="height_request">42</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
                                 <property name="orientation">vertical</property>
                                 <child>
@@ -4402,7 +4627,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext25"/>
                                       <attributes>
@@ -4438,7 +4663,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext26"/>
                                       <attributes>
@@ -4476,7 +4701,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext27"/>
                                       <attributes>
@@ -4514,7 +4739,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext28"/>
                                       <attributes>
@@ -4552,7 +4777,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext29"/>
                                       <attributes>
@@ -4592,7 +4817,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext30"/>
                                       <attributes>
@@ -4648,7 +4873,7 @@ ru_RU: Alexander Lushpai</property>
                             <child>
                               <object class="GtkVBox" id="vbox22">
                                 <property name="width_request">220</property>
-                                <property name="height_request">42</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
                                 <property name="orientation">vertical</property>
                                 <child>
@@ -4683,7 +4908,7 @@ ru_RU: Alexander Lushpai</property>
                             <child>
                               <object class="GtkVBox" id="vbox35">
                                 <property name="width_request">220</property>
-                                <property name="height_request">42</property>
+                                <property name="height_request">44</property>
                                 <property name="visible">True</property>
                                 <property name="orientation">vertical</property>
                                 <child>
@@ -4700,7 +4925,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext31"/>
                                       <attributes>
@@ -4736,7 +4961,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext32"/>
                                       <attributes>
@@ -4774,7 +4999,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext33"/>
                                       <attributes>
@@ -4812,7 +5037,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext34"/>
                                       <attributes>
@@ -4850,7 +5075,7 @@ ru_RU: Alexander Lushpai</property>
                                     <property name="width_request">220</property>
                                     <property name="height_request">28</property>
                                     <property name="visible">True</property>
-                                    <property name="model">liststore18</property>
+                                    <property name="model">liststore19</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext35"/>
                                       <attributes>
@@ -5172,7 +5397,7 @@ ru_RU: Alexander Lushpai</property>
                                         <property name="visible">True</property>
                                         <property name="left_padding">12</property>
                                         <child>
-                                          <object class="GtkVBox" id="vbox42">
+                                          <object class="GtkVBox" id="vbox44">
                                             <property name="visible">True</property>
                                             <property name="orientation">vertical</property>
                                             <child>

@@ -119,6 +119,10 @@ def remove_lockfile():
 	if os.access(lockfile, os.F_OK):
 		os.remove(lockfile)
 
+def swap_dic(original_dict):
+	####################### Swap Keys and Values of a dictionary ######################
+	return dict([(v, k) for (k, v) in original_dict.iteritems()])
+
 class BashStyleNG3r9(object):
 
 	def __init__(self):
@@ -386,74 +390,74 @@ class BashStyle7r9(BashStyleNG3r9):
 		####################### Load the Color Style Combobox #############################
 
 		self.color_style = gtkbuilder.get_object("color_style")
-		self.color_style.set_active(0)
 
 		color_styles = {
-				 1 : "normal",
-				 2 : "bright",
-				 3 : "dimmed",
-				 4 : "inverted",
-				 5 : "underlined",
+				 0 : "normal",
+				 1 : "bright",
+				 2 : "dimmed",
+				 3 : "inverted",
+				 4 : "underlined",
 			        }
+
+		self.color_style.set_active(swap_dic(color_styles)[gdb.get_string(gbase + "color/style")])
 
 		def set_color_style(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "color/style", color_styles[selection])
+			gdb.set_string(gbase + "color/style", color_styles[selection])
 
 		self.color_style.connect("changed", set_color_style)
 
 		####################### Load the Terminfo Combobox ################################
 
 		self.terminfo = gtkbuilder.get_object("terminfo")
-		self.terminfo.set_active(0)
 
 		man_styles = {
-			      1 : "mostlike",
-			      2 : "bold",
-			      3 : "nebula",
+			      0 : "mostlike",
+			      1 : "bold",
+			      2 : "nebula",
 			     }
+
+		self.terminfo.set_active(swap_dic(man_styles)[gdb.get_string(gbase + "man_style")])
 
 		def set_man_style(widget, data=None):
 			selection = widget_get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "man_style", man_styles[selection])
+			gdb.set_string(gbase + "man_style", man_styles[selection])
 
 		self.terminfo.connect("changed", set_man_style)
 
 		####################### Load the Grep Color Combobox ##############################
 
 		self.grep_colour = gtkbuilder.get_object("grep_colour")
-		self.grep_colour.set_active(0)
 
 		grep_colors = {
-			        1 : "01;38;5;0",
-			        2 : "01;38;5;1",
-			        3 : "01;38;5;2",
-			        4 : "01;38;5;3",
-			        5 : "01;38;5;4",
-			        6 : "01;38;5;5",
-			        7 : "01;38;5;6",
-			        8 : "01;38;5;7",
-			        9 : "01;38;5;33",
-			       10 : "01;38;5;111",
-			       11 : "01;38;5;45",
-			       12 : "01;38;5;60",
-			       13 : "01;38;5;42",
-			       14 : "01;38;5;637",
-			       15 : "01;38;5;684",
-			       16 : "01;38;5;761",
-			       17 : "01;38;5;690",
-			       18 : "01;38;5;714",
-			       19 : "01;38;5;604",
-			       20 : "01;38;5;213",
-			       21 : "01;38;5;5344",
+			        0 : "01;38;5;0",
+			        1 : "01;38;5;1",
+			        2 : "01;38;5;2",
+			        3 : "01;38;5;3",
+			        4 : "01;38;5;4",
+			        5 : "01;38;5;5",
+			        6 : "01;38;5;6",
+			        7 : "01;38;5;7",
+			        8 : "01;38;5;33",
+			        9 : "01;38;5;111",
+			       10 : "01;38;5;45",
+			       11 : "01;38;5;60",
+			       12 : "01;38;5;42",
+			       13 : "01;38;5;637",
+			       14 : "01;38;5;684",
+			       15 : "01;38;5;761",
+			       16 : "01;38;5;690",
+			       17 : "01;38;5;714",
+			       18 : "01;38;5;604",
+			       19 : "01;38;5;213",
+			       20 : "01;38;5;5344",
 			      }
+
+		self.grep_colour.set_active(swap_dic(grep_colors)[gdb.get_string(gbase + "color/grep")])
 
 		def set_grep_color(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "color/grep", grep_colors[selection])
+			gdb.set_string(gbase + "color/grep", grep_colors[selection])
 
 		self.grep_colour.connect("changed", set_grep_color)
 
@@ -515,31 +519,31 @@ class BashStyle7r9(BashStyleNG3r9):
 		####################### Load the Prompt Style Button ##############################
 
 		self.prompt_style = gtkbuilder.get_object("prompt_style")
-		self.prompt_style.set_active(0)
 
 		prompt_styles = {
-				  1 : "separator",
-				  2 : "vector",
-				  3 : "clock",
-				  4 : "clock-ad",
-				  5 : "dash",
-				  6 : "job",
-				  7 : "elite",
-				  8 : "poweruser",
-				  9 : "dirks",
-				 10 : "minimal",
-				 11 : "dot_prompt",
-				 12 : "bracket",
-				 13 : "sepa_ng",
-				 14 : "quirk",
-				 15 : "sputnik",
+				  0 : "separator",
+				  1 : "vector",
+				  2 : "clock",
+				  3 : "clock-ad",
+				  4 : "dash",
+				  5 : "job",
+				  6 : "elite",
+				  7 : "poweruser",
+				  8 : "dirks",
+				  9 : "minimal",
+				 10 : "dot_prompt",
+				 11 : "bracket",
+				 12 : "sepa_ng",
+				 13 : "quirk",
+				 14 : "sputnik",
 				}
+
+		self.prompt_style.set_active(swap_dic(prompt_styles)[gdb.get_string(gbase + "prompt_style")])
 
 		def set_prompt_style(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "prompt_style", prompt_styles[selection])
-				reload_preview(self)
+			gdb.set_string(gbase + "prompt_style", prompt_styles[selection])
+			reload_preview(self)
 
 		self.prompt_style.connect("changed", set_prompt_style)
 
@@ -670,19 +674,19 @@ class Advanced4r9(BashStyleNG3r9):
 		####################### Load the History Control Combobox #########################
 
 		self.history_control = gtkbuilder.get_object("history_control")
-		self.history_control.set_active(0)
 
 		history_types = {
-				 1 : "erasedups",
-				 2 : "ignoredups",
-				 3 : "ignorespace",
-				 4 : "ignoreboth",
+				 0 : "erasedups",
+				 1 : "ignoredups",
+				 2 : "ignorespace",
+				 3 : "ignoreboth",
 				}
+
+		self.history_control.set_active(swap_dic(history_types)[gdb.get_string(gbase + "hist_control")])
 
 		def set_history_control(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "hist_control", history_types[selection])
+			gdb.set_string(gbase + "hist_control", history_types[selection])
 
 		self.history_control.connect("changed", set_history_control)
 
@@ -842,35 +846,35 @@ class ReadlineCFG4r9(BashStyleNG3r9):
 		####################### Connect the Bellstyle Combobox ############################
 
 		self.bellstyle = gtkbuilder.get_object("bellstyle")
-		self.bellstyle.set_active(0)
 
 		bell_styles = {
-				1 : "audible",
-				2 : "visible",
-				3 : "none",
+				0 : "audible",
+				1 : "visible",
+				2 : "none",
 			      }
+
+		self.bellstyle.set_active(swap_dic(bell_styles)[gdb.get_string(gbase + "readline/bellstyle")])
 
 		def set_bellstyle(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "readline/bellstyle", bell_styles[selection])
+			gdb.set_string(gbase + "readline/bellstyle", bell_styles[selection])
 
 		self.bellstyle.connect("changed", set_bellstyle)
 
 		####################### Connect the Editing Mode Combobox #########################
 
 		self.editmode = gtkbuilder.get_object("editmode")
-		self.editmode.set_active(0)
 
 		edit_modes = {
-			      1 : "emacs",
-			      2 : "vi",
+			      0 : "emacs",
+			      1 : "vi",
 			     }
+
+		self.editmode.set_active(swap_dic(edit_modes)[gdb.get_string(gbase + "readline/editing_mode")])
 
 		def set_editmode(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "readline/editing_mode", edit_modes[selection])
+			gdb.set_string(gbase + "readline/editing_mode", edit_modes[selection])
 
 		self.editmode.connect("changed", set_editmode)
 
@@ -1051,19 +1055,19 @@ class Separator7r9 (BashStyleNG3r9):
 		####################### Connect the Show Memory Combobox ##########################
 
 		self.show_mem = gtkbuilder.get_object("show_mem")
-		self.show_mem.set_active(0)
 
 		memory_types = {
-				1 : "free",
-				2 : "used",
-				3 : "both",
-				4 : "none",
+				0 : "free",
+				1 : "used",
+				2 : "both",
+				3 : "none",
 			       }
+
+		self.show_mem.set_active(swap_dic(memory_types)[gdb.get_string(gbase + "separator/mem")])
 
 		def set_show_mem(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "separator/mem", memory_types[selection])
+			gdb.set_string(gbase + "separator/mem", memory_types[selection])
 
 		self.show_mem.connect("changed", set_show_mem)
 
@@ -1458,24 +1462,24 @@ class VimCFG4r9 (BashStyleNG3r9):
 		####################### Connect the Vim/Colorscheme Combobox ######################
 
 		self.vim_colorscheme = gtkbuilder.get_object("vim_colorscheme")
-		self.vim_colorscheme.set_active(0)
 
 		vim_colors = {
-			      1 : "default",
-			      2 : "adaryn",
-			      3 : "advantage",
-			      4 : "desert",
-			      5 : "gobo",
-			      6 : "impact",
-			      7 : "nightshade",
-			      8 : "nightwish",
-			      9 : "wombat",
+			      0 : "default",
+			      1 : "adaryn",
+			      2 : "advantage",
+			      3 : "desert",
+			      4 : "gobo",
+			      5 : "impact",
+			      6 : "nightshade",
+			      7 : "nightwish",
+			      8 : "wombat",
 			     }
+
+		self.vim_colorscheme.set_active(swap_dic(vim_colors)[gdb.get_string(gbase + "vim/vim_colorscheme")])
 
 		def set_vim_colorscheme(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				gdb.set_string(gbase + "vim/vim_colorscheme", vim_colors[selection])
+			gdb.set_string(gbase + "vim/vim_colorscheme", vim_colors[selection])
 
 		self.vim_colorscheme.connect("changed", set_vim_colorscheme)
 
@@ -1595,28 +1599,30 @@ class LSCFG1r9 (BashStyleNG3r9):
 		####################### Set the ls color for given filetype #######################
 
 		ls_colors = {
-			      1 : "$lblack",
-			      2 : "$lred",
-			      3 : "$lgreen",
-			      4 : "$lyellow",
-			      5 : "$lblue",
-			      6 : "$lmagenta",
-			      7 : "$lcyan",
-			      8 : "$lwhite",
-			      9 : "$lcoldblue",
-			     10 : "$lsmoothblue",
-			     11 : "$liceblue",
-			     12 : "$lturqoise",
-			     13 : "$lsmoothgreen",
-			     14 : "$lwinered",
-			     15 : "$lbrown",
-			     16 : "$lsilver",
-			     17 : "$locher",
-			     18 : "$lorange",
-			     19 : "$lpurple",
-			     20 : "$lpink",
-			     21 : "$lcream",
+			      0 : "$lblack",
+			      1 : "$lred",
+			      2 : "$lgreen",
+			      3 : "$lyellow",
+			      4 : "$lblue",
+			      5 : "$lmagenta",
+			      6 : "$lcyan",
+			      7 : "$lwhite",
+			      8 : "$lcoldblue",
+			      9 : "$lsmoothblue",
+			     10 : "$liceblue",
+			     11 : "$lturqoise",
+			     12 : "$lsmoothgreen",
+			     13 : "$lwinered",
+			     14 : "$lbrown",
+			     15 : "$lsilver",
+			     16 : "$locher",
+			     17 : "$lorange",
+			     18 : "$lpurple",
+			     19 : "$lpink",
+			     20 : "$lcream",
 			    }
+
+		ls_colors_inv = swap_dic(ls_colors)
 
 		def set_ls_color(self, type, selection):
 			gdb.set_string(gbase + "dircolors/%s" % type, ls_colors[selection])
@@ -1634,204 +1640,187 @@ class LSCFG1r9 (BashStyleNG3r9):
 		####################### Connect the Executable Files Combobox #####################
 
 		self.ls_exec = gtkbuilder.get_object("ls_exec")
-		self.ls_exec.set_active(0)
+		self.ls_exec.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/exec")])
 
 		def set_ls_exec(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "exec", selection)
+			set_ls_color(self, "exec", selection)
 
 		self.ls_exec.connect("changed", set_ls_exec)
 
 		####################### Connect the Generic Files Combobox ########################
 
 		self.ls_gen = gtkbuilder.get_object("ls_gen")
-		self.ls_gen.set_active(0)
+		self.ls_gen.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/generic")])
 
 		def set_ls_gen(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "generic", selection)
+			set_ls_color(self, "generic", selection)
 
 		self.ls_gen.connect("changed", set_ls_gen)
 
 		####################### Connect the Log Files Combobox ############################
 
 		self.ls_log = gtkbuilder.get_object("ls_log")
-		self.ls_log.set_active(0)
+		self.ls_log.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/logs")])
 
 		def set_ls_log(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "log", selection)
+			set_ls_color(self, "logs", selection)
 
 		self.ls_log.connect("changed", set_ls_log)
 
 		####################### Connect the Deb Files Combobox ############################
 
 		self.ls_deb = gtkbuilder.get_object("ls_deb")
-		self.ls_deb.set_active(0)
+		self.ls_deb.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/deb")])
 
 		def set_ls_deb(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "deb", selection)
+			set_ls_color(self, "deb", selection)
 
 		self.ls_deb.connect("changed", set_ls_deb)
 
 		####################### Connect the RPM Files Combobox ############################
 
 		self.ls_rpm = gtkbuilder.get_object("ls_rpm")
-		self.ls_rpm.set_active(0)
+		self.ls_rpm.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/rpm")])
 
 		def set_ls_rpm(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "rpm", selection)
+			set_ls_color(self, "rpm", selection)
 
 		self.ls_rpm.connect("changed", set_ls_rpm)
 
 		####################### Connect the Desktop Files Combobox ########################
 
 		self.ls_dirs = gtkbuilder.get_object("ls_dirs")
-		self.ls_dirs.set_active(0)
+		self.ls_dirs.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/dirs")])
 
 		def set_ls_dirs(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "dirs", selection)
+			set_ls_color(self, "dirs", selection)
 
 		self.ls_dirs.connect("changed", set_ls_dirs)
 
 		####################### Connect the JPEG Files Combobox ###########################
 
 		self.ls_jpeg = gtkbuilder.get_object("ls_jpeg")
-		self.ls_jpeg.set_active(0)
+		self.ls_jpeg.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/jpeg")])
 
 		def set_ls_jpeg(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "jpeg", selection)
+			set_ls_color(self, "jpeg", selection)
 
 		self.ls_jpeg.connect("changed", set_ls_jpeg)
 
 		####################### Connect the PNG Files Combobox ############################
 
 		self.ls_png = gtkbuilder.get_object("ls_png")
-		self.ls_png.set_active(0)
+		self.ls_png.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/png")])
 
 		def set_ls_png(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "png", selection)
+			set_ls_color(self, "png", selection)
 
 		self.ls_png.connect("changed", set_ls_png)
 
 		####################### Connect the GIF Files Combobox ############################
 
 		self.ls_gif = gtkbuilder.get_object("ls_gif")
-		self.ls_gif.set_active(0)
+		self.ls_gif.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/gif")])
 
 		def set_ls_gif(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "gif", selection)
+			set_ls_color(self, "gif", selection)
 
 		self.ls_gif.connect("changed", set_ls_gif)
 
 		####################### Connect the MP3 Files Combobox ############################
 
 		self.ls_mp3 = gtkbuilder.get_object("ls_mp3")
-		self.ls_mp3.set_active(0)
+		self.ls_mp3.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/mp3")])
 
 		def set_ls_mp3(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "mp3", selection)
+			set_ls_color(self, "mp3", selection)
 
 		self.ls_mp3.connect("changed", set_ls_mp3)
 
 		####################### Connect the OGG Files Combobox ############################
 
 		self.ls_ogg = gtkbuilder.get_object("ls_ogg")
-		self.ls_ogg.set_active(0)
+		self.ls_ogg.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/ogg")])
 
 		def set_ls_ogg(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "ogg", selection)
+			set_ls_color(self, "ogg", selection)
 
 		self.ls_ogg.connect("changed", set_ls_ogg)
 
 		####################### Connect the FLAC Files Combobox ###########################
 
 		self.ls_flac = gtkbuilder.get_object("ls_flac")
-		self.ls_flac.set_active(0)
+		self.ls_flac.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/flac")])
 
 		def set_ls_flac(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "flac", selection)
+			set_ls_color(self, "flac", selection)
 
 		self.ls_flac.connect("changed", set_ls_flac)
 
 		####################### Connect the TAR Files Combobox ############################
 
 		self.ls_tar = gtkbuilder.get_object("ls_tar")
-		self.ls_tar.set_active(0)
+		self.ls_tar.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/tar")])
 
 		def set_ls_tar(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "tar", selection)
+			set_ls_color(self, "tar", selection)
 
 		self.ls_tar.connect("changed", set_ls_tar)
 
 		####################### Connect the TARGZ Files Combobox ##########################
 
 		self.ls_targz = gtkbuilder.get_object("ls_targz")
-		self.ls_targz.set_active(0)
+		self.ls_targz.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/targz")])
 
 		def set_ls_targz(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "targz", selection)
+			set_ls_color(self, "targz", selection)
 
 		self.ls_targz.connect("changed", set_ls_targz)
 
 		####################### Connect the TARBZ2 Files Combobox #########################
 
 		self.ls_tarbz2 = gtkbuilder.get_object("ls_tarbz2")
-		self.ls_tarbz2.set_active(0)
+		self.ls_tarbz2.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/tarbz2")])
 
 		def set_ls_tarbz2(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "tarbz2", selection)
+			set_ls_color(self, "tarbz2", selection)
 
 		self.ls_tarbz2.connect("changed", set_ls_tarbz2)
 
 		####################### Connect the ZIP Files Combobox ############################
 
 		self.ls_zip = gtkbuilder.get_object("ls_zip")
-		self.ls_zip.set_active(0)
+		self.ls_zip.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/zip")])
 
 		def set_ls_zip(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "zip", selection)
+			set_ls_color(self, "zip", selection)
 
 		self.ls_zip.connect("changed", set_ls_zip)
 
 		####################### Connect the RAR Files Combobox ############################
 
 		self.ls_rar = gtkbuilder.get_object("ls_rar")
-		self.ls_rar.set_active(0)
+		self.ls_rar.set_active(ls_colors_inv[gdb.get_string(gbase + "dircolors/rar")])
 
 		def set_ls_rar(widget, data=None):
 			selection = widget.get_active()
-			if selection != 0:
-				set_ls_color(self, "rar", selection)
+			set_ls_color(self, "rar", selection)
 
 		self.ls_rar.connect("changed", set_ls_rar)
 
