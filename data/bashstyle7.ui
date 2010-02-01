@@ -17,8 +17,8 @@
 (c) 2007 - 2010 Christopher Bratusek</property>
     <property name="comments" translatable="yes">
 BashStyle-NG lets you make more out of your terminal!</property>
-    <property name="website">http://www.nanolx.org/newsnanolx/10-bashstyle-ng</property>
-    <property name="website_label" translatable="yes">http://www.nanolx.org/newsnanolx/item/48-bashstyle-ng</property>
+    <property name="website">http://www.nanolx.org/newsnanolx/item/48-bashstyle-ng</property>
+    <property name="website_label" translatable="yes">BashStyle-NG @ Nanolx.org</property>
     <property name="license" translatable="yes">BashStyle-NG is licensed under the: 
 	GNU GENERAL PUBLIC LICENSE V3
 
@@ -901,70 +901,83 @@ ru_RU: Alexander Lushpai</property>
                                 <property name="label_xalign">0</property>
                                 <property name="shadow_type">in</property>
                                 <child>
-                                  <object class="GtkHBox" id="hbox7">
+                                  <object class="GtkExpander" id="expander3">
                                     <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="use_markup">True</property>
                                     <child>
-                                      <object class="GtkButton" id="vte_reload">
-                                        <property name="width_request">26</property>
-                                        <property name="height_request">220</property>
+                                      <object class="GtkHBox" id="hbox7">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">True</property>
-                                        <property name="image_position">top</property>
                                         <child>
-                                          <object class="GtkVBox" id="vbox20">
+                                          <object class="GtkButton" id="vte_reload">
+                                            <property name="width_request">26</property>
+                                            <property name="height_request">220</property>
                                             <property name="visible">True</property>
-                                            <property name="orientation">vertical</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="image_position">top</property>
                                             <child>
-                                              <object class="GtkLabel" id="label48">
+                                              <object class="GtkVBox" id="vbox20">
                                                 <property name="visible">True</property>
-                                                <property name="label" translatable="yes">Reload Terminal</property>
-                                                <property name="angle">90</property>
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                  <object class="GtkLabel" id="label99">
+                                                    <property name="visible">True</property>
+                                                    <property name="label" translatable="yes">Reload Terminal</property>
+                                                    <property name="angle">90</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkImage" id="image1">
+                                                    <property name="visible">True</property>
+                                                    <property name="stock">gtk-refresh</property>
+                                                    <property name="icon-size">2</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="position">1</property>
+                                                  </packing>
+                                                </child>
                                               </object>
-                                              <packing>
-                                                <property name="position">0</property>
-                                              </packing>
-                                            </child>
-                                            <child>
-                                              <object class="GtkImage" id="image1">
-                                                <property name="visible">True</property>
-                                                <property name="stock">gtk-refresh</property>
-                                                <property name="icon-size">2</property>
-                                              </object>
-                                              <packing>
-                                                <property name="position">1</property>
-                                              </packing>
                                             </child>
                                           </object>
+                                          <packing>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="VteTerminal" id="vte">
+                                            <property name="height_request">205</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="background_tint_color">#000000000000</property>
+                                            <property name="background_transparent">True</property>
+                                            <property name="encoding">UTF-8</property>
+                                            <property name="scroll_on_keystroke">True</property>
+                                            <property name="scroll_on_output">False</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                            <property name="position">1</property>
+                                          </packing>
                                         </child>
                                       </object>
-                                      <packing>
-                                        <property name="position">0</property>
-                                      </packing>
                                     </child>
-                                    <child>
-                                      <object class="VteTerminal" id="vte">
-                                        <property name="height_request">205</property>
+                                    <child type="label">
+                                      <object class="GtkLabel" id="label48">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="background_tint_color">#000000000000</property>
-                                        <property name="background_transparent">True</property>
-                                        <property name="encoding">UTF-8</property>
-                                        <property name="scroll_on_keystroke">True</property>
-                                        <property name="scroll_on_output">False</property>
+                                        <property name="label" translatable="yes">&lt;b&gt;Preview&lt;/b&gt;</property>
+                                        <property name="use_markup">True</property>
                                       </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">1</property>
-                                      </packing>
                                     </child>
                                   </object>
                                 </child>
                                 <child type="label">
                                   <object class="GtkLabel" id="preview_label">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">&lt;b&gt;Preview&lt;/b&gt;</property>
                                     <property name="use_markup">True</property>
                                   </object>
                                 </child>
@@ -1274,7 +1287,6 @@ ru_RU: Alexander Lushpai</property>
                 <property name="visible">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="n_rows">9</property>
-                <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkFrame" id="frame6">
                     <property name="visible">True</property>
@@ -3213,7 +3225,6 @@ ru_RU: Alexander Lushpai</property>
               <object class="GtkTable" id="table15">
                 <property name="visible">True</property>
                 <property name="n_rows">3</property>
-                <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkFrame" id="frame19">
                     <property name="visible">True</property>
@@ -4000,7 +4011,6 @@ ru_RU: Alexander Lushpai</property>
               <object class="GtkTable" id="table29">
                 <property name="visible">True</property>
                 <property name="n_rows">3</property>
-                <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkFrame" id="frame32">
                     <property name="visible">True</property>
