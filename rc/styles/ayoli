@@ -1,0 +1,49 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek    	#
+# Copyright 2008        Ayo                             #
+#							#
+#########################################################
+
+function pre_prompt {
+
+newPWD="${PWD}"
+user="whoami"
+host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
+datenow=$(date "+%a, %d %b %y")
+let promptsize=$(echo -n "┌( $user @ $host ddd., DD mmm YY)(${PWD})┐" \
+                 | wc -c | tr -d " ")
+
+let fillsize=${COLUMNS}-${promptsize}
+
+fill=""
+while [ "$fillsize" -gt "0" ]
+do
+    fill="${fill}─"
+	let fillsize=${fillsize}-1
+done
+if [ "$fillsize" -lt "0" ]
+then
+    let cutt=3-${fillsize}
+    newPWD="...$(echo -n $PWD | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+fi
+
+}
+
+PROMPT_COMMAND=pre_prompt
+
+if [[ $enabcol == true ]]; then
+
+        PS1="$sepacolor┌─($usercolor \u $fontcolor @ $hostcolor \h\
+$datecolor \$(date \"+%a, %d %b %y\")$sepacolor )─\${fill}─($wdircolor\$newPWD\
+$sepacolor)─<\n$sepacolor└─($timecolor \$(date \"+%H:%M\")$usercolor \$$sepacolor )─>$fontcolor "
+
+else    PS1="┌─(\u@\h \$(date \"+%a, %d %b %y\"))─\${fill}─(\$newPWD\
+)─┐\n└─(\$(date \"+%H:%M\") \$)─> "
+
+fi
