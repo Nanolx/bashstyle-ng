@@ -2383,6 +2383,25 @@ class CustomPromptBuilder2r9 (BashStyleNG3r9):
 			     13 : "",
 			     14 : "",
 			     15 : "",
+			     16 : "newPWD=\"${PWD}\"\
+\nuser=\"whoami\"\
+\nhost=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
+\ndatenow=$(date \"+%a, %d %b %y\")\
+\nlet promptsize=$(echo -n \"┌( $user @ $host ddd., DD mmm YY)( ${PWD} )┐\" | wc -c | tr -d \" \")\
+\n\
+\nlet fillsize=${COLUMNS}-${promptsize}\
+\n\
+\nfill=\"\"\
+\nwhile [ \"$fillsize\" -gt \"0\" ]\
+\ndo\
+\n    fill=\"${fill}─\"\
+\n	let fillsize=${fillsize}-1\
+\ndone\
+\nif [ \"$fillsize\" -lt \"0\" ]\
+\nthen\
+\n    let cutt=3-${fillsize}\
+\n    newPWD=\"...$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")\"\
+\nfi",
 			    }
 
 		styles_ps1 = {
@@ -2405,6 +2424,8 @@ class CustomPromptBuilder2r9 (BashStyleNG3r9):
 			      14 : "\\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \
 \$(date +%d-%b-%y ) )-( files: \$(count_files +f) / folders: \$(count_files -d) )-\\n -< \$(trunc_pwd) >- ",
 			      15 : "\\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(trunc_pwd) )♦♦\\n♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(show_uptime) \$ )♦♦ ",
+			      16 : "┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD \
+)─<\n└─( \$(date \"+%H:%M\") \$ )─> ",
 			     }
 
 		def do_insert_prompt(widget, data=None):

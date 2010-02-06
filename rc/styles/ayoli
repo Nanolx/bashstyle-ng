@@ -16,7 +16,7 @@ newPWD="${PWD}"
 user="whoami"
 host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
 datenow=$(date "+%a, %d %b %y")
-let promptsize=$(echo -n "┌( $user @ $host ddd., DD mmm YY)(${PWD})┐" \
+let promptsize=$(echo -n "┌( $user @ $host ddd., DD mmm YY)( ${PWD} )┐" \
                  | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
@@ -40,10 +40,10 @@ PROMPT_COMMAND=pre_prompt
 if [[ $enabcol == true ]]; then
 
         PS1="$sepacolor┌─($usercolor \u $fontcolor @ $hostcolor \h\
-$datecolor \$(date \"+%a, %d %b %y\")$sepacolor )─\${fill}─($wdircolor\$newPWD\
+$datecolor \$(date \"+%a, %d %b %y\")$sepacolor )─\${fill}─($wdircolor \$newPWD \
 $sepacolor)─<\n$sepacolor└─($timecolor \$(date \"+%H:%M\")$usercolor \$$sepacolor )─>$fontcolor "
 
-else    PS1="┌─(\u@\h \$(date \"+%a, %d %b %y\"))─\${fill}─(\$newPWD\
-)─┐\n└─(\$(date \"+%H:%M\") \$)─> "
+else    PS1="┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD \
+)─<\n└─( \$(date \"+%H:%M\") \$ )─> "
 
 fi
