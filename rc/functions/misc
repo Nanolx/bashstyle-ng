@@ -16,3 +16,29 @@ top10 () {
 	sort | uniq -c | sort -n | tail | sort -nr
 
 }
+
+crypt () {
+
+	if [[ -e $1 ]]; then
+		tr A-Za-z N-Z0-9n-z0-9 < $1 > $1.crypt
+		rm -f $1
+		mv $1.crypt $1
+	fi
+
+}
+
+d2u () {
+
+	if [[ -e $1 ]]; then
+		sed -r 's/\r$//' -i $1
+	fi
+
+}
+
+u2d () {
+
+	if [[ -e $1 ]]; then
+		sed -r 's/$/\r/' -i $1
+	fi
+
+}
