@@ -10,6 +10,9 @@ code/bsng.py.in:
 code/bsng.py.in:
 - fixed bug #92: check_lockfile requires commands and string modules to be loaded
 
+code/bsng.py.in:
+- fixed bug #93: bashstyle -g didn't work correctly (-g readline unknown, all others -1)
+
 scripts/rcgenerator:
 - major rework
 
@@ -19,7 +22,11 @@ rc/styles/ayoli:
 code/bsng.py.in:
 - added swap_dic function
 - make the comboboxes show the current set value
-- pack the preview into an expander
+- remove all expanders (the window is too huge,
+  but expanders are not the way to go)
+- on startup select the current group in the treeview
+- removed the grid-lines from the treeview
+- removed 4 unused widgets
 
 rc/nx-rc.in:
 - added reload alias for `source ~/.bashrc`

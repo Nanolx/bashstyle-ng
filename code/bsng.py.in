@@ -61,12 +61,13 @@ groups = {
 	  "style" : "0",
 	  "alias" : "1",
 	  "advanced" : "2",
-	  "extra" : "3",
-	  "profile" : "4",
-	  "vim" : "5",
-	  "nano" : "6",
-	  "ls" : "7",
-	  "custom" : "8",
+	  "readline" : "3",
+	  "extra" : "4",
+	  "profile" : "5",
+	  "vim" : "6",
+	  "nano" : "7",
+	  "ls" : "8",
+	  "custom" : "9",
 	 }
 
 initial_page = groups[options.group]
@@ -284,9 +285,11 @@ class AboutBookTree(BashStyleNG3r9):
 		image_info=icon_theme.load_icon( "bs-ng-info", 32, 0 )
 		liststore.append([image_info, _("<b>Info</b>")])
 
+		tree_selection = treeview.get_selection()
+		treeview.set_cursor(int(initial_page))
+
 		def treeview_action(widget, extra, data=None):
 			selection = treeview.get_selection()
-			(Model, Iter) = selection.get_selected()
 			position = int(selection.get_selected_rows()[1][0][0])
 			if position <= 9:
 				notebook.set_current_page(position)
