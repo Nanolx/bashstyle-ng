@@ -20,7 +20,7 @@ top10 () {
 crypt () {
 
 	if [[ -e $1 ]]; then
-		tr A-Za-z N-Z0-9n-z0-9 < $1 > $1.crypt
+		tr a-zA-Z n-za-mN-ZA-M < $1 > $1.crypt
 		rm -f $1
 		mv $1.crypt $1
 	fi
