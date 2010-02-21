@@ -1593,6 +1593,36 @@ class NanoCFG4r9 (BashStyleNG3r9):
 
 		self.nano_morespace.connect("clicked", set_nano_morespace)
 
+		####################### Connect the Nano/History Button ############################
+
+		self.nano_history = gtkbuilder.get_object("nano_history")
+		self.nano_history.set_active(gdb.get_bool(gbase + "nano/history"))
+
+		def set_nano_history(widget, data=None):
+			gdb.set_bool(gbase + "nano/history", widget.get_active())
+
+		self.nano_history.connect("clicked", set_nano_history)
+
+		####################### Connect the Nano/Rebind delete Button ######################
+
+		self.nano_rbdel = gtkbuilder.get_object("nano_rbdel")
+		self.nano_rbdel.set_active(gdb.get_bool(gbase + "nano/rebind_del"))
+
+		def set_nano_rbdel(widget, data=None):
+			gdb.set_bool(gbase + "nano/rebind_del", widget.get_active())
+
+		self.nano_rbdel.connect("clicked", set_nano_rbdel)
+
+		####################### Connect the Nano/Rebind Keypad Button ######################
+
+		self.nano_rbkp = gtkbuilder.get_object("nano_rbkp")
+		self.nano_rbkp.set_active(gdb.get_bool(gbase + "nano/rebind_kp"))
+
+		def set_nano_rbkp(widget, data=None):
+			gdb.set_bool(gbase + "nano/rebind_kp", widget.get_active())
+
+		self.nano_rbkp.connect("clicked", set_nano_rbkp)
+
 class LSCFG1r9 (BashStyleNG3r9):
 
 	def __init__(self):

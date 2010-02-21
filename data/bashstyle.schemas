@@ -1222,6 +1222,39 @@
       </locale>
     </schema>
     <schema>
+      <key>/schemas/apps/bashstyle/nano/history</key>
+      <applyto>/apps/bashstyle/nano/history</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Use History</short>
+        <long>Enable ~/.nano_history for saving and reading search/replace strings</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/nano/rebind_del</key>
+      <applyto>/apps/bashstyle/nano/rebind_del</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Rebind delete</short>
+        <long>Fix backspace/delete confusion problem</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/nano/rebind_kp</key>
+      <applyto>/apps/bashstyle/nano/rebind_kp</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Rebind keypad</short>
+        <long>Fix numeric keypad keys confusion problem</long>
+      </locale>
+    </schema>
+    <schema>
       <key>/schemas/apps/bashstyle/dircolors/enable</key>
       <applyto>/apps/bashstyle/dircolors/enable</applyto>
       <owner>bashstyle-ng</owner>

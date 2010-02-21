@@ -67,6 +67,30 @@ else
 	echo "unset nohelp" >> $HOME/.nanorc
 fi
 
+if [[ $(get_key nano/history) == true ]]; then
+	dbg_msg NanoCFG Setting: History Log: On
+	echo "set historylog" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: History Log: Off
+	echo "unset historylog" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/rebind_del) == true ]]; then
+	dbg_msg NanoCFG Setting: Rebind Delete: On
+	echo "set rebinddelete" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: Rebind Delete: Off
+	echo "unset rebinddelete" >> $HOME/.nanorc
+fi
+
+if [[ $(get_key nano/rebind_kp) == true ]]; then
+	dbg_msg NanoCFG Setting: Rebind Keypad: On
+	echo "set rebindkeypad" >> $HOME/.nanorc
+else
+	dbg_msg NanoCFG Setting: Rebind Keypad: Off
+	echo "unset rebindkeypad" >> $HOME/.nanorc
+fi
+
 if [[ $(get_key nano/use_colors) == true ]]; then
 	dbg_msg NanoCFG Setting: Colors On
 	COLOR_FILES="$(ls /usr/share/nano/*.nanorc)"
