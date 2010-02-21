@@ -1602,7 +1602,8 @@ ru_RU: Alexander Lushpai</property>
                                 <property name="right_attach">2</property>
                                 <property name="top_attach">1</property>
                                 <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_EXPAND</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
                               </packing>
                             </child>
                             <child>
@@ -1639,7 +1640,8 @@ ru_RU: Alexander Lushpai</property>
                               <packing>
                                 <property name="top_attach">1</property>
                                 <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_EXPAND</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
                               </packing>
                             </child>
                             <child>
@@ -1653,8 +1655,8 @@ ru_RU: Alexander Lushpai</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                               </object>
                               <packing>
-                                <property name="x_options"></property>
-                                <property name="y_options"></property>
+                                <property name="x_options">GTK_EXPAND</property>
+                                <property name="y_options">GTK_EXPAND</property>
                               </packing>
                             </child>
                             <child>
@@ -1760,6 +1762,7 @@ ru_RU: Alexander Lushpai</property>
                               </object>
                               <packing>
                                 <property name="x_options">GTK_EXPAND</property>
+                                <property name="y_options">GTK_EXPAND</property>
                               </packing>
                             </child>
                             <child>
@@ -1796,7 +1799,8 @@ ru_RU: Alexander Lushpai</property>
                               <packing>
                                 <property name="left_attach">1</property>
                                 <property name="right_attach">2</property>
-                                <property name="x_options">GTK_EXPAND</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
                               </packing>
                             </child>
                             <child>
@@ -1830,7 +1834,8 @@ ru_RU: Alexander Lushpai</property>
                               <packing>
                                 <property name="top_attach">1</property>
                                 <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_EXPAND</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
                               </packing>
                             </child>
                             <child>
@@ -1866,7 +1871,8 @@ ru_RU: Alexander Lushpai</property>
                                 <property name="right_attach">2</property>
                                 <property name="top_attach">1</property>
                                 <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_EXPAND</property>
+                                <property name="x_options"></property>
+                                <property name="y_options"></property>
                               </packing>
                             </child>
                           </object>
@@ -3072,6 +3078,7 @@ ru_RU: Alexander Lushpai</property>
                 <child>
                   <object class="GtkHBox" id="hbox6">
                     <property name="visible">True</property>
+                    <property name="spacing">10</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkFrame" id="frame24">
@@ -4247,12 +4254,6 @@ ru_RU: Alexander Lushpai</property>
                               </packing>
                             </child>
                             <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
                               <object class="GtkCheckButton" id="nano_rbdel">
                                 <property name="label" translatable="yes">Rebind delete keys</property>
                                 <property name="width_request">220</property>
@@ -4287,6 +4288,12 @@ ru_RU: Alexander Lushpai</property>
                                 <property name="x_options"></property>
                                 <property name="y_options"></property>
                               </packing>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
                             </child>
                           </object>
                         </child>
