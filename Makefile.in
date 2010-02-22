@@ -75,7 +75,6 @@ install:
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/n/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/code/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/colors/
-	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/plugin/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/applications/
 	@mkdir -p $(DESTDIR)@PREFIX@/bin/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/locale/de/LC_MESSAGES/
@@ -95,8 +94,6 @@ install:
 	@install -m644 data/bashstyle7.ui $(DESTDIR)@PREFIX@/share/bashstyle-ng/data/
 	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	vim color schemes"
 	@install -m755 data/vim/colors/*.vim $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/colors/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	vim plugins"
-	@install -m755 data/vim/plugin/*.vim $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/plugin/
 	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	icons"
 	@install -m644 data/icons/*.png $(DESTDIR)/usr/share/icons/hicolor/32x32/apps/
 	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	nx-rc"
