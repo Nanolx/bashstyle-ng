@@ -125,7 +125,7 @@ def swap_dic(original_dict):
 	####################### Swap Keys and Values of a dictionary ######################
 	return dict([(v, k) for (k, v) in original_dict.iteritems()])
 
-class BashStyleNG3r9(object):
+class BashStyleNG(object):
 
 	def __init__(self):
 
@@ -155,43 +155,40 @@ class BashStyleNG3r9(object):
 		gtkbuilder.add_from_file("@PREFIX@/share/bashstyle-ng/data/bashstyle7.ui")
 
 		####################### load BashStyle Alias 3.9 ###################################
-		Alias3r9()
+		Alias()
 
 		####################### load BashStyle Advanced 4.9 ################################
-		Advanced4r9()
+		Advanced()
 
 		####################### load ReadlineCFG 4.9 #######################################
-		ReadlineCFG4r9()
+		ReadlineCFG()
 
 		####################### load Separator 7.9 #########################################
-		Separator7r9()
+		Separator()
 
 		####################### load Extras 2.9 ############################################
-		Extras2r9()
+		Extras()
 
 		####################### load Shopts 2.9 ############################################
-		Shopts2r9()
+		Shopts()
 
 		####################### load Profiler 2.9 ##########################################
-		Profiler2r9()
+		Profiler()
 
 		####################### load VimCFG 4.9 ############################################
-		VimCFG4r9()
+		VimCFG()
 
-		####################### load NanoCFG 4.9 ###########################################
-		NanoCFG4r9()
-
-		####################### Because of a bug in pygtk, the following needs #############
-		############### to be loaded at the very end to function properly ##################
+		####################### load NanoCFG 4.10 ##########################################
+		NanoCFG()
 
 		####################### load Custom Prompt Builder 2.9 #############################
-		CustomPromptBuilder2r9()
+		CustomPromptBuilder()
 
 		####################### load BashStyle 7.9 #########################################
-		BashStyle7r9()
+		BashStyle()
 
 		####################### load LSCFG 1.9 #############################################
-		LSCFG1r9()
+		LSCFG()
 
 		####################### Load the Main-Window ######################################
 		self.bashstyle = gtkbuilder.get_object("bashstyle")
@@ -203,7 +200,6 @@ class BashStyleNG3r9(object):
 		self.bashstyle.connect("destroy", destroy, None)
 
 		####################### load the AboutDialog/NoteBook/TreeView #####################
-		####################### Load the Aboutdialog #######################################
 		aboutdialog = gtkbuilder.get_object("aboutdialog")
 
 		def about_destroy(widget, extra, data=None):
@@ -286,7 +282,7 @@ class BashStyleNG3r9(object):
 
 		self.bashstyle.show
 
-class BashStyle7r9(BashStyleNG3r9):
+class BashStyle(BashStyleNG):
 
 	def __init__(self):
 
@@ -537,7 +533,7 @@ class BashStyle7r9(BashStyleNG3r9):
 
 		self.prompt_style.connect("changed", set_prompt_style)
 
-class Alias3r9(BashStyleNG3r9):
+class Alias(BashStyleNG):
 
 	def __init__(self):
 
@@ -644,7 +640,7 @@ class Alias3r9(BashStyleNG3r9):
 		self.alias9.connect("insert-text", emit_text)
 		self.alias9.connect("changed", set_alias9)
 
-class Advanced4r9(BashStyleNG3r9):
+class Advanced(BashStyleNG):
 
 	def __init__(self):
 
@@ -809,7 +805,7 @@ class Advanced4r9(BashStyleNG3r9):
 		self.path.connect("insert-text", emit_text)
 		self.path.connect("changed", set_path)
 
-class ReadlineCFG4r9(BashStyleNG3r9):
+class ReadlineCFG(BashStyleNG):
 
 	def __init__(self):
 
@@ -968,7 +964,7 @@ class ReadlineCFG4r9(BashStyleNG3r9):
 
 		self.modlines.connect("clicked", set_modlines)
 
-class Separator7r9 (BashStyleNG3r9):
+class Separator (BashStyleNG):
 
 	def __init__(self):
 
@@ -1061,7 +1057,7 @@ class Separator7r9 (BashStyleNG3r9):
 
 		self.show_mem.connect("changed", set_show_mem)
 
-class Extras2r9 (BashStyleNG3r9):
+class Extras (BashStyleNG):
 
 	def __init__(self):
 
@@ -1090,7 +1086,7 @@ class Extras2r9 (BashStyleNG3r9):
 
 		self.tabrotate.connect("clicked", set_tabrotate)
 
-class Shopts2r9 (BashStyleNG3r9):
+class Shopts (BashStyleNG):
 
 	def __init__(self):
 
@@ -1214,7 +1210,7 @@ class Shopts2r9 (BashStyleNG3r9):
 
 		self.dirspell.connect("clicked", set_dirspell)
 
-class Profiler2r9 (BashStyleNG3r9):
+class Profiler (BashStyleNG):
 
 	def __init__(self):
 
@@ -1281,7 +1277,7 @@ class Profiler2r9 (BashStyleNG3r9):
 
 		self.make_allrc.connect("clicked", do_make_allrc)
 
-class VimCFG4r9 (BashStyleNG3r9):
+class VimCFG (BashStyleNG):
 
 	def __init__(self):
 
@@ -1484,7 +1480,7 @@ class VimCFG4r9 (BashStyleNG3r9):
 		self.vim_rulerformat.connect("insert-text", emit_text)
 		self.vim_rulerformat.connect("changed", set_vim_rulerformat)
 
-class NanoCFG4r9 (BashStyleNG3r9):
+class NanoCFG (BashStyleNG):
 
 	def __init__(self):
 
@@ -1608,7 +1604,7 @@ class NanoCFG4r9 (BashStyleNG3r9):
 
 		self.nano_rbkp.connect("clicked", set_nano_rbkp)
 
-class LSCFG1r9 (BashStyleNG3r9):
+class LSCFG (BashStyleNG):
 
 	def __init__(self):
 
@@ -1855,7 +1851,7 @@ class LSCFG1r9 (BashStyleNG3r9):
 		self.ls_custom.connect("insert-text", emit_text)
 		self.ls_custom.connect("changed", set_ls_custom)
 
-class CustomPromptBuilder2r9 (BashStyleNG3r9):
+class CustomPromptBuilder(BashStyleNG):
 
 	def __init__(self):
 
@@ -2457,5 +2453,5 @@ class CustomPromptBuilder2r9 (BashStyleNG3r9):
 
 if __name__ == "__main__":
 	check_lockfile()
-	hwg = BashStyleNG3r9()
+	hwg = BashStyleNG()
 	gtk.main()
