@@ -142,7 +142,7 @@ fi
 
 WelcomeMessage=$(get_key welcome_message)
 
-if [[ $WelcomeMessage != "" && $pstyle != clock-ad && $pstyle != clock ]]; then \
+if [[ $WelcomeMessage != "" ]]; then \
 	dbg_msg BashStyle-NG Setting: Welcome Message
 	clear
 	$WelcomeMessage
