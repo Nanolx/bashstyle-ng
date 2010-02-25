@@ -154,9 +154,6 @@ class BashStyleNG3r9(object):
 		gtkbuilder.set_translation_domain(APP_NAME)
 		gtkbuilder.add_from_file("@PREFIX@/share/bashstyle-ng/data/bashstyle7.ui")
 
-		####################### load main window ###########################################
-		MainWindow()
-
 		####################### load BashStyle Alias 3.9 ###################################
 		Alias3r9()
 
@@ -184,9 +181,6 @@ class BashStyleNG3r9(object):
 		####################### load NanoCFG 4.9 ###########################################
 		NanoCFG4r9()
 
-		####################### Display MainWindow #########################################
-		MainWindow().bashstyle.show()
-
 		####################### Because of a bug in pygtk, the following needs #############
 		############### to be loaded at the very end to function properly ##################
 
@@ -199,14 +193,6 @@ class BashStyleNG3r9(object):
 		####################### load LSCFG 1.9 #############################################
 		LSCFG1r9()
 
-		####################### load the AboutDialog/NoteBook/TreeView #####################
-		AboutBookTree()
-
-
-class MainWindow(BashStyleNG3r9):
-
-	def __init__(self):
-
 		####################### Load the Main-Window ######################################
 		self.bashstyle = gtkbuilder.get_object("bashstyle")
 
@@ -216,10 +202,7 @@ class MainWindow(BashStyleNG3r9):
 
 		self.bashstyle.connect("destroy", destroy, None)
 
-class AboutBookTree(BashStyleNG3r9):
-
-	def __init__(self):
-
+		####################### load the AboutDialog/NoteBook/TreeView #####################
 		####################### Load the Aboutdialog #######################################
 		aboutdialog = gtkbuilder.get_object("aboutdialog")
 
@@ -300,6 +283,8 @@ class AboutBookTree(BashStyleNG3r9):
 				aboutdialog.connect("response", about_destroy, None)
 
 		treeview.connect("cursor-changed", treeview_action, None)
+
+		self.bashstyle.show
 
 class BashStyle7r9(BashStyleNG3r9):
 
