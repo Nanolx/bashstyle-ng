@@ -405,7 +405,7 @@ class BashStyle(BashStyleNG):
 		self.terminfo.set_active(swap_dic(man_styles)[gdb.get_string(gbase + "man_style")])
 
 		def set_man_style(widget, data=None):
-			selection = widget_get_active()
+			selection = widget.get_active()
 			gdb.set_string(gbase + "man_style", man_styles[selection])
 
 		self.terminfo.connect("changed", set_man_style)
