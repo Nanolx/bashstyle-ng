@@ -169,9 +169,6 @@ class BashStyleNG(object):
 		####################### load Extras 2.9 ############################################
 		Extras()
 
-		####################### load Shopts 2.9 ############################################
-		Shopts()
-
 		####################### load Profiler 2.9 ##########################################
 		Profiler()
 
@@ -184,13 +181,13 @@ class BashStyleNG(object):
 		####################### load Custom Prompt Builder 2.9 #############################
 		CustomPromptBuilder()
 
-		####################### load BashStyle 7.9 #########################################
+		####################### load BashStyle 7.10 ########################################
 		BashStyle()
 
 		####################### load LSCFG 1.9 #############################################
 		LSCFG()
 
-		####################### Load the Main-Window ######################################
+		####################### Load the Main-Window #######################################
 		self.bashstyle = gtkbuilder.get_object("bashstyle")
 
 		def destroy(self, widget):
@@ -368,7 +365,7 @@ class BashStyle(BashStyleNG):
 		self.random_style.set_active(gdb.get_bool(gbase + "random_style"))
 
 		def set_random_style(widget, data=None):
-			gdb.set_bool(gbase + "random_style", set_random_style.get_active())
+			gdb.set_bool(gbase + "random_style", widget.get_active())
 
 		self.random_style.connect("toggled", set_random_style)
 
@@ -1086,10 +1083,6 @@ class Extras (BashStyleNG):
 
 		self.tabrotate.connect("clicked", set_tabrotate)
 
-class Shopts (BashStyleNG):
-
-	def __init__(self):
-
 		####################### Connect the histappend Button ###########################
 
 		self.histappend = gtkbuilder.get_object("histappend")
@@ -1300,7 +1293,7 @@ class VimCFG (BashStyleNG):
 		self.vim_backup = gtkbuilder.get_object("vim_backup")
 		self.vim_backup.set_active(gdb.get_bool(gbase + "vim/backup"))
 
-		def set_vim_backup(backup, data=None):
+		def set_vim_backup(widget, data=None):
 			gdb.set_bool(gbase + "vim/backup", widget.get_active())
 
 		self.vim_backup.connect("clicked", set_vim_backup)
