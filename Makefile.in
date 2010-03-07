@@ -23,6 +23,7 @@ all: mo
 
 pot:
 	@echo$(EARGS) "$(MAGENTA)recreating:	$(SMOOTHBLUE)pot file"
+	@mkdir -p translations/pot/
 	@intltool-extract --type=gettext/glade data/bashstyle7.ui
 	@xgettext --language=Python --keyword=_ --keyword=N_ --output=translations/pot/bs-ng.pot \
 		$(PWD)/code/bsng.py.in $(PWD)/data/bashstyle7.ui.h
@@ -30,6 +31,7 @@ pot:
 
 po:
 	@echo$(EARGS) "$(MAGENTA)updating: 	$(SMOOTHBLUE)po files:	$(CYAN)de it ru"
+	@mkdir -p translations/po/
 	@msgmerge -o translations/po/bs-ng-de.po translations/po/bs-ng-de.po translations/pot/bs-ng.pot
 	@msgmerge -o translations/po/bs-ng-it.po translations/po/bs-ng-it.po translations/pot/bs-ng.pot
 	@msgmerge -o translations/po/bs-ng-ru.po translations/po/bs-ng-ru.po translations/pot/bs-ng.pot
@@ -37,6 +39,7 @@ po:
 
 mo:
 	@echo$(EARGS) "$(MAGENTA)creating:	$(SMOOTHBLUE)translations:	$(CYAN)de it ru"
+	@mkdir -p translations/mo/
 	@msgfmt --output-file=translations/mo/bs-ng-de.mo translations/po/bs-ng-de.po
 	@msgfmt --output-file=translations/mo/bs-ng-it.mo translations/po/bs-ng-it.po
 	@msgfmt --output-file=translations/mo/bs-ng-ru.mo translations/po/bs-ng-ru.po
