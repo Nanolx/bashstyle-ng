@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 GREEN="\\033[1\;32m"
 RED="\\033[1\;31m"
 WHITE="\\033[01\;37m"
@@ -15,40 +17,49 @@ endif
 EARGS=""
 
 all: mo
-	@echo$(EARGS) "$(MAGENTA)compiling: 	$(SMOOTHBLUE)terminfo files:	$(CYAN)mostlike bold nebula"
+	@echo -e "$(MAGENTA)compiling: 	$(SMOOTHBLUE).terminfo files:"
+	@echo -e "\t$(GREEN) [01/03] mostlike"
 	@tic $(PWD)/data/terminfo/mostlike.terminfo -o $(PWD)/data/terminfo/
+	@echo -e "\t$(GREEN) [02/03] bold"
 	@tic $(PWD)/data/terminfo/bold.terminfo -o $(PWD)/data/terminfo/
+	@echo -e "\t$(GREEN) [03/03] nebula"
 	@tic $(PWD)/data/terminfo/nebula.terminfo -o $(PWD)/data/terminfo/
 	@tput sgr0
 
 pot:
-	@echo$(EARGS) "$(MAGENTA)recreating:	$(SMOOTHBLUE)pot file"
+	@echo -e "$(MAGENTA)creating:	$(SMOOTHBLUE).pot file"
 	@mkdir -p translations/pot/
-	@intltool-extract --type=gettext/glade data/bashstyle7.ui
+	@intltool-extract --type=gettext/glade data/bashstyle7.ui >/dev/null
 	@xgettext --language=Python --keyword=_ --keyword=N_ --output=translations/pot/bs-ng.pot \
-		$(PWD)/code/bsng.py.in $(PWD)/data/bashstyle7.ui.h
+		$(PWD)/code/bsng.py.in $(PWD)/data/bashstyle7.ui.h >/dev/null
 	@tput sgr0
 
-po:
-	@echo$(EARGS) "$(MAGENTA)updating: 	$(SMOOTHBLUE)po files:	$(CYAN)de it ru"
+po: pot
+	@echo -e "$(MAGENTA)updating: 	$(SMOOTHBLUE).po files:"
 	@mkdir -p translations/po/
-	@msgmerge -o translations/po/bs-ng-de.po translations/po/bs-ng-de.po translations/pot/bs-ng.pot
-	@msgmerge -o translations/po/bs-ng-it.po translations/po/bs-ng-it.po translations/pot/bs-ng.pot
-	@msgmerge -o translations/po/bs-ng-ru.po translations/po/bs-ng-ru.po translations/pot/bs-ng.pot
+	@echo -e "\t$(GREEN) [01/03] german (de)"
+	@msgmerge -q -o translations/po/bs-ng-de.po translations/po/bs-ng-de.po translations/pot/bs-ng.pot >/dev/null
+	@echo -e "\t$(GREEN) [02/03] italian (it)"
+	@msgmerge -q -o translations/po/bs-ng-it.po translations/po/bs-ng-it.po translations/pot/bs-ng.pot >/dev/null
+	@echo -e "\t$(GREEN) [03/03] russian (ru)"
+	@msgmerge -q -o translations/po/bs-ng-ru.po translations/po/bs-ng-ru.po translations/pot/bs-ng.pot >/dev/null
 	@tput sgr0
 
 mo:
-	@echo$(EARGS) "$(MAGENTA)creating:	$(SMOOTHBLUE)translations:	$(CYAN)de it ru"
+	@echo -e "$(MAGENTA)creating:	$(SMOOTHBLUE).mo files:"
 	@mkdir -p translations/mo/
+	@echo -e "\t$(GREEN) [01/03] german (de)"
 	@msgfmt --output-file=translations/mo/bs-ng-de.mo translations/po/bs-ng-de.po
+	@echo -e "\t$(GREEN) [02/03] italian (it)"
 	@msgfmt --output-file=translations/mo/bs-ng-it.mo translations/po/bs-ng-it.po
+	@echo -e "\t$(GREEN) [03/03] russian (ru)"
 	@msgfmt --output-file=translations/mo/bs-ng-ru.mo translations/po/bs-ng-ru.po
 	@tput sgr0
 
 distclean: clean
 
 clean:
-	@echo$(EARGS) "$(SMOOTHBLUE)cleaning up:	$(CYAN)everything"
+	@echo -e "$(SMOOTHBLUE)cleaning up"
 	@rm -f data/bashstyle
 	@rm -f code/bs-ng
 	@rm -f rc/nx-rc
@@ -66,7 +77,7 @@ clean:
 	@tput sgr0
 
 install:
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	directories"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[01/14] directories"
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/data/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/
@@ -88,42 +99,43 @@ install:
 	@mkdir -p $(DESTDIR)@PREFIX@/share/gconf/schemas
 	@mkdir -p $(DESTDIR)/usr/share/icons/hicolor/32x32/apps/
 	@mkdir -p $(DESTDIR)/usr/lib/pkgconfig/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	bashstyle-ng"
+	@echo -e "$(GREEN)installing:$(YELLOW) 	[02/14] bashstyle-ng"
 	@install -m644 code/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/code/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	terminfos"
+	@install -m755 data/bashstyle $(DESTDIR)@PREFIX@/bin/
+	@echo -e "$(GREEN)installing:$(YELLOW) 	[03/14] terminfo files:$(CYAN) bold mostlike nebula"
 	@install -m644 data/terminfo/b/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/b/
 	@install -m644 data/terminfo/m/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/m/
 	@install -m644 data/terminfo/n/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/n/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	gtkbuilder file"
+	@echo -e "$(GREEN)installing:$(YELLOW) 	[04/14] gtkbuilder file"
 	@install -m644 data/bashstyle7.ui $(DESTDIR)@PREFIX@/share/bashstyle-ng/data/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	vim color schemes"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[05/14] vim color schemes"
 	@install -m755 data/vim/colors/*.vim $(DESTDIR)@PREFIX@/share/bashstyle-ng/vim/colors/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	icons"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[06/14] icons into hicolor"
 	@install -m644 data/icons/*.png $(DESTDIR)/usr/share/icons/hicolor/32x32/apps/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	nx-rc"
+	@echo -e "$(GREEN)installing:$(YELLOW) 	[07/14] nx-rc rcgenerator bs-ng-profiler"
 	@install -m755 rc/nx-rc $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	start-script"
-	@install -m755 data/bashstyle $(DESTDIR)@PREFIX@/bin/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW) 	scriptchain"
 	@install -m755 scripts/*[!.in] $(DESTDIR)@PREFIX@/bin/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	desktop file"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[08/14] .desktop file"
 	@install -m644 data/bs-ng.desktop $(DESTDIR)@PREFIX@/share/applications/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	documentation"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[09/14] documentation"
 	@cp -r documentation/* $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
 	@chmod -R 755 $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	settings rc"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[10/14] settings rc"
 	@install -m755 rc/settings/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/settings/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	styles"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[11/14] styles rc"
 	@install -m755 rc/styles/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/styles/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	functions"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[12/14] functionchain"
 	@install -m755 rc/functions/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/functions/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	pc file"
+	@echo -e "$(GREEN)installing:$(YELLOW)	[13/14] .pc gconf-schemas"
 	@install -m644 data/bashstyle-ng.pc $(DESTDIR)/usr/lib/pkgconfig/
-	@echo$(EARGS) "$(GREEN)installing:$(YELLOW)	gconf schemas"
 	@install -m644 data/deprecated.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/bashstyle-deprecated.schemas
 	@install -m644 data/bashstyle.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/
+	@echo -e "$(GREEN)installing:$(YELLOW)	[14/14] translations:$(CYAN) de it ru"
+	@install -m644 translations/mo/bs-ng-de.mo $(DESTDIR)/usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
+	@install -m644 translations/mo/bs-ng-it.mo $(DESTDIR)/usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
+	@install -m644 translations/mo/bs-ng-ru.mo $(DESTDIR)/usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@if test ! $(RC_DISABLE) ; then \
-		echo$(EARGS) "$(GREEN)re-adjusting:$(YELLOW)	bashrc entries" ; \
+		echo -e "$(MAGENTA)post-install:$(SMOOTHBLUE)	[01/05] re-adjust .bashrc entries" ; \
 		for file in $$(ls /home/*/.bashrc); do \
 			if [ "x$$(grep nx-rc $$file)" != "x" ] ; then \
 				sed -e '/nx-rc/d' -i $$file; \
@@ -131,83 +143,64 @@ install:
 			fi; \
 		done; \
 	fi
-	@echo$(EARGS) "$(GREEN)installing:$(CYAN)	translations:$(BLUE) de it ru"
-	@install -m644 translations/mo/bs-ng-de.mo $(DESTDIR)/usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
-	@install -m644 translations/mo/bs-ng-it.mo $(DESTDIR)/usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
-	@install -m644 translations/mo/bs-ng-ru.mo $(DESTDIR)/usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@if test ! $(GCONF_DISABLE) ; then \
-		echo$(EARGS) "$(MAGENTA)deregistering:	$(SMOOTHBLUE)deprecated gconf schemas" ; \
+		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[02/05] deregister deprecated gconf-schemas" ; \
 		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
 			gconftool-2 --makefile-uninstall-rule data/deprecated.schemas >/dev/null ; \
 	fi
 	@if test ! $(GCONF_DISABLE) ; then \
-		echo$(EARGS) "$(MAGENTA)registering:	$(SMOOTHBLUE)gconf schemas" ; \
+		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[03/05] register gconf-schemas" ; \
 		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
 			gconftool-2 --makefile-install-rule data/bashstyle.schemas >/dev/null ; \
 	fi
 	@if test ! $(CACHE_DISABLE) ; then \
-		echo$(EARGS) "$(MAGENTA)updating:	$(SMOOTHBLUE)icon cache" ; \
-		gtk-update-icon-cache -f /usr/share/icons/hicolor >/dev/null ; \
+		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[04/05] update icon cache" ; \
+		gtk-update-icon-cache -f /usr/share/icons/hicolor 2>/dev/null ; \
 	fi
 	@if test ! $(KILL_DISABLE) ; then \
-		echo$(EARGS) "$(RED)killing:	$(SMOOTHBLUE)gconf daemon" ; \
+		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[05/05] restart gconf-daemon" ; \
 		killall -qw gconfd-2 >/dev/null || exit 0; \
 	fi
 	@tput sgr0
 
 uninstall:
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	bashstyle-ng"
+	@echo -e "$(RED)removing:$(CYAN)	[01/08] bashstyle-ng"
 	@rm -rf @PREFIX@/share/bashstyle-ng
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	support scripts"
-	@rm -f  @PREFIX@/bin/countfiles
-	@rm -f  @PREFIX@/bin/showsize
-	@rm -f  @PREFIX@/bin/showuptime
-	@rm -f  @PREFIX@/bin/showtty
-	@rm -f  @PREFIX@/bin/truncpwd
-	@rm -f  @PREFIX@/bin/bs-ng-profiler
-	@rm -f  @PREFIX@/bin/showload
-	@rm -f  @PREFIX@/bin/countprocesses
-	@rm -f  @PREFIX@/bin/showcpuload
-	@rm -f  @PREFIX@/bin/showbatteryload
-	@rm -f  @PREFIX@/bin/showspace
-	@rm -f  @PREFIX@/bin/showip
-	@rm -f  @PREFIX@/bin/rcgenerator
-	@rm -f  @PREFIX@/bin/bs-ng-echo
-	@rm -f  @PREFIX@/bin/man2pdf
-	@rm -f  @PREFIX@/bin/showmem
-	@rm -f  @PREFIX@/bin/sysinfo
-	@rm -f  @PREFIX@/bin/systeminfos
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	startup script"
 	@rm -f  @PREFIX@/bin/bashstyle
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	desktop file"
+	@echo -e "$(RED)removing:$(CYAN)	[02/08] rcgenerator bs-ng-profiler"
+	@rm -f  @PREFIX@/usr/bin/rcgenerator
+	@rm -f  @PREFIX@/usr/bin/bs-ng-profiler
+	@echo -e "$(RED)removing:$(CYAN)	[03/08] .desktop file"
 	@rm -f  @PREFIX@/share/applications/bs-ng.desktop
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	translations:$(BLUE) de it"
+	@echo -e "$(RED)removing:$(CYAN)	[04/08] translations:$(BLUE) de it ru"
 	@rm -f  /usr/share/locale/de_DE/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/it_IT/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	gconf schemas"
+	@rm -f  /usr/share/locale/ru_RU/LC_MESSAGES/bashstyle-ng.mo
+	@rm -f  /usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
+	@echo -e "$(RED)removing:$(CYAN)	[05/08] gconf schemas"
 	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle-deprecated.schemas
 	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle.schemas
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	icons"
+	@echo -e "$(RED)removing:$(CYAN)	[06/08] icons from hicolor"
 	@rm -f  /usr/share/icons/hicolor/32x32/apps/bs-ng-*.png
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	documentation"
+	@echo -e "$(RED)removing:$(CYAN)	[07/08] documentation"
 	@rm -rf @PREFIX@/share/doc/bashstyle-ng/
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	bashrc entries"
+	@echo -e "$(RED)removing:$(CYAN)	[08/08] .pc file"
+	@rm -f  /usr/lib/pkgconfig/bashstyle-ng.pc
+	@echo -e "$(MAGENTA)post-remove:$(YELLOW)	[01/04] re-adjust .bashrc entries"
 	@sed -e '/nx-rc/d' -i /home/*/.bashrc
-	@echo$(EARGS) "$(RED)removing:$(CYAN)	pc file"
-	@rm -f /usr/lib/pkgconfig/bashstyle-ng.pc
 	@if test ! $(GCONF_DISABLE) ; then \
-		echo$(EARGS) "$(MAGENTA)unregistering:	$(SMOOTHBLUE)gconf schemas" ; \
+		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[02/04] deregister gconf-schemas" ; \
 		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
 		gconftool-2 --makefile-uninstall-rule data/bashstyle.schemas >/dev/null ; \
 	fi
 	@if test ! $(CACHE_DISABLE) ; then \
-		echo$(EARGS) "$(MAGENTA)updating:    	$(SMOOTHBLUE)icon cache" ; \
-		gtk-update-icon-cache -f /usr/share/icons/hicolor >/dev/null ; \
+		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[03/04] update icon cache" ; \
+		gtk-update-icon-cache -f /usr/share/icons/hicolor 2>/dev/null ; \
 	fi
 	@if test ! $(KILL_DISABLE) ; then \
-		echo$(EARGS) "$(RED)killing:	$(SMOOTHBLUE)gconf daemon" ; \
+		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[04/04] restart gconf-daemon" ; \
 		killall -qw gconfd-2 >/dev/null || exit 0 ; \
 	fi
 	@tput sgr0

@@ -5,6 +5,17 @@
 data/bashstyle7.ui:
 - remove version from windowtitle
 
+configure ::
+.configure/* ::
+Makefile.in:
+- make output even more fancy
+- remove EARGS
+- remove old fragments from uninstall rule
+- make po rule depend on pot rule
+- let clean rule remove ~ files
+- hardcode bash as shell for make
+- don't forget to remove russian translation
+
 7.10:
 
 "Destination Infinity"

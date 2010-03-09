@@ -4,7 +4,6 @@ export xVERSION=7.11
 CODENAME="Valleé De Larmes"
 
 ERR_MSG=""
-EARGS=""
 
 export OLDPATH=$PATH
 export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
@@ -16,11 +15,11 @@ section_message () {
 	case $1 in
 
 		Required )
-			echo -e "\n${BLUE}Checking ${ORANGE}Required ${BLUE}$2:\n"
+			echo -e "\n${RED}Required ${WHITE}$2:\n"
 		;;
 
 		Optional )
-			echo -e "\n${BLUE}Checking ${CREAM}Optional ${BLUE}$2:\n"
+			echo -e "\n${MAGENTA}Optional ${WHITE}$2:\n"
 		;;
 	esac
 	tput sgr0
@@ -37,8 +36,8 @@ start_message () {
 ok_message () {
 
 	if [[ $2 != "" ]]; then
-		echo -e "${WHITE}Checking for ${CYAN}$1${MAGENTA} >${GREEN} O.K.${SILVER} ( $2 )"
-	else 	echo -e "${WHITE}Checking for ${CYAN}$1${MAGENTA} >${GREEN} O.K."
+		echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K.${SILVER} ( $2 )"
+	else 	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K."
 	fi
 	tput sgr0
 }
@@ -46,9 +45,9 @@ ok_message () {
 fail_message () {
 
 	if [[ $1 == "m" ]]; then
-		echo -e "${WHITE}Checking for ${CYAN}$2${MAGENTA} >${RED} !MISSING!"
+		echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !MISSING!"
 	elif [[ $1 == "o" ]]; then
-		echo -e "${WHITE}Checking for ${CYAN}$2${MAGENTA} >${RED} !OLDER THAN $3!"
+		echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !OLDER THAN $3!"
 	fi
 	tput sgr0
 
@@ -56,7 +55,7 @@ fail_message () {
 
 warn_message () {
 
-	echo -e "${WHITE}Checking for ${CYAN}$1${MAGENTA} >${YELLOW} Not Available"
+	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${YELLOW} Not Available"
 	tput sgr0
 
 }
@@ -70,7 +69,7 @@ maintainer_message () {
 
 end_message () {
 
-	echo -e "\n${YELLOW}Installation Prefix:${WHITE} $PREFIX\n"
+	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\n"
 	if [[ $ERR_MSG != "" ]]; then
 		echo -e "${YELLOW}Notes:\
 			\n${WHITE}${ERR_MSG}\n"
