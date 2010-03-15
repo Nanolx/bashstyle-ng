@@ -26,7 +26,7 @@ while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 }
 
 check_libs () {
-	
+
 SECTION=$1
 CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
 DONE_COUNTER=1
@@ -37,9 +37,9 @@ while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
 	VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
 	PC_FILE=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
-	pkg-config --exists $PC_FILE &>/dev/null
+	pkg-config --exists $PC_FILE
 	EXIST_RETURN=$?
-	pkg-config --atleast-version=$VERSION $PC_FILE &>/dev/null
+	pkg-config --atleast-version=$VERSION $PC_FILE
 	DEP_RETURN=$?
 	if [[ $EXIST_RETURN != 0 && ! $SECTION == OPT* ]]; then
 		fail_message m $DEPENDENCY
@@ -67,7 +67,7 @@ section_message $2 $3
 
 while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-	python -c "import $DEPENDENCY" &>/dev/null
+	python -c "import $DEPENDENCY"
 	DEP_RETURN=$?
 	if [[ $DEP_RETURN == 0 ]]; then
 		ok_message $DEPENDENCY

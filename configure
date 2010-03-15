@@ -2,6 +2,11 @@
 shopt -s extglob
 
 source $PWD/.configure/base
+source $PWD/.configure/color
+source $PWD/.configure/messages
+source $PWD/.configure/help
+source $PWD/.configure/checks
+source $PWD/.configure/substitute
 
 case $1 in
 
@@ -22,23 +27,17 @@ case $1 in
 
 	maintainer_message
 
-	# load modules
-	source $PWD/.configure/check_deps
-	source $PWD/.configure/substitute
-
-	# perform actions
 	copy_in_files
 	substitute_values
 
-	# reset $PATH
 	export PATH="$OLDPATH"
+
 	end_message
 
 	;;
 
 	*help )
 
-	source $PWD/.configure/help
 	display_help
 
 	;;
@@ -56,24 +55,19 @@ case $1 in
 		;;
 	esac
 
-	# load modules
-	source $PWD/.configure/check_deps
-	source $PWD/.configure/substitute
-
-	# perform actions
 	start_message
-	check_apps APP Required Applications
-	check_apps OPT_APP Optional Applications
-	check_apps OPT_SBINAPP Optional Superuser-Applications
-	check_libs LIB Required Libraries
-	check_pymods PYMOD Required Python-Modules
 
-	# adjust code
+	check_apps 	APP 		Required 	Applications
+	check_apps 	OPT_APP 	Optional 	Applications
+	check_apps 	OPT_SBINAPP 	Optional 	Superuser-Applications
+	check_libs 	LIB 		Required 	Libraries
+	check_pymods 	PYMOD 		Required 	Python-Modules
+
 	copy_in_files
 	substitute_values
 
-	# reset $PATH
 	export PATH="$OLDPATH"
+
 	end_message
 
 	;;
