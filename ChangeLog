@@ -5,6 +5,17 @@
 data/bashstyle7.ui:
 - remove version from windowtitle
 
+rc/nx-rc.in:
+- load $HOME/.custom-rc earlier
+
+rc/functions/git:
+- added git_branch (current GIT branch or "--")
+- added git_revision (6 digit GIT revision or "--")
+- added git_action (current GIT action or "--")
+
+rc/styles/clock-ad-rc:
+- added USER1 custom position
+
 configure ::
 .configure/* ::
 Makefile.in:

@@ -93,7 +93,7 @@ $sepacoloror┌─( $usercolor\u $fontcolor@ $hostcolor\h \
 $sepacolor)─\${fill}─( $wdircolor\$(_newPWD)\
 $sepacolor )────┘\n\
 $sepacolor└─($upcolor uptime: \$(show_uptime)\
-$fontcolor : \$$sepacolor )·>$fontcolor "
+$fontcolor :$USER1COLOR\$(USER1) \$$sepacolor )·>$fontcolor "
 
 else
 
@@ -169,6 +169,6 @@ PROMPT_COMMAND=pre_prompt
 
 PS1="\[\033[\${prompt_line};0H\]\n\
 ┌─( \u @ \h )─\${fill}─( \$(_newPWD)\
- )────┘\n└─( uptime: \$(show_uptime) : $ )·> "
+)────┘\n└─( uptime: \$(show_uptime) :\$(USER1) \$ )·> "
 
 fi
