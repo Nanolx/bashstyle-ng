@@ -16,6 +16,8 @@ export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/functions/
 export BSNG_LOCKFILE=$HOME/.bashstyle.lock
 export BSNG_VERSION=@VERSION@
 
+USER1 () { return 0; }
+
 bsource () {
 
 	for file in $@; do
@@ -103,6 +105,11 @@ source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/shopt-rc
 
 shopt -s checkwinsize
 
+if [[ -e $HOME/.custom-rc ]]; then \
+	dbg_msg BashStyle-NG Loading: Custom Settings
+	source $HOME/.custom-rc
+fi
+
 if [[ $(get_key random_style) == true ]]; then \
 	dbg_msg BashStyle-NG Setting: Style Random
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/random-rc
@@ -133,11 +140,6 @@ if [[ $(get_key tabrotate) == true ]]; then \
 	bind 'TAB:menu-complete'
 	complete -d -X '.[a-zA-Z0-9]*' cd
 else	dbg_msg BashStyle-NG Setting: Tab-Rotation Off
-fi
-
-if [[ -e $HOME/.custom-rc ]]; then \
-	dbg_msg BashStyle-NG Loading: Custom Settings
-	source $HOME/.custom-rc
 fi
 
 WelcomeMessage=$(get_key welcome_message)
