@@ -2207,6 +2207,15 @@ class CustomPromptBuilder(BashStyleNG):
 
 		self.showspace.connect("changed", set_showspace)
 
+		####################### Connect the bash seconds Button ###########################
+
+		self.showseconds = gtkbuilder.get_object("showseconds")
+
+		def set_showseconds(widget, data=None):
+			prompt_add("${SECONDS}")
+
+		self.showseconds.connect("clicked", set_showseconds)
+
 		####################### Connect the empty PROMPT_COMMAND Button ###################
 
 		self.empty_pc = gtkbuilder.get_object("empty_pc")
@@ -2252,7 +2261,7 @@ class CustomPromptBuilder(BashStyleNG):
 
 		self.undo_ps1.connect("clicked", do_undo_ps1)
 
-		####################### Connect the undo PS1 Button ####################
+		####################### Connect the redo PS1 Button ####################
 
 		self.redo_ps1 = gtkbuilder.get_object("redo_ps1")
 
