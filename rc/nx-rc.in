@@ -16,6 +16,8 @@ export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/functions/
 export BSNG_LOCKFILE=$HOME/.bashstyle.lock
 export BSNG_VERSION=@VERSION@
 
+ERR_MSG=""
+
 USER1 () { return 0; }
 
 bsource () {
@@ -150,6 +152,11 @@ if [[ $WelcomeMessage != "" ]]; then \
 	$WelcomeMessage
 fi
 
+fi
+
+if [[ ERR_MSG != "" ]]; then
+	echo -e "$(bs_ng_echo $yellow)\n\nImportant informations:"
+	echo -e "$(bs_ng_echo $orange)${ERR_MSG}\n"
 fi
 
 unset BSNG_GCONF_READ

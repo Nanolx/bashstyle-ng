@@ -25,8 +25,7 @@ FCEDIT=$(get_key fcedit)
 dbg_msg BashStyle-NG Setting: FCEDIT "$FCEDIT"
 
 if [[ -e /etc/profile.d/msec.sh && $(grep -w TMOUT /etc/profile.d/msec.sh) != "" ]]; then
-	dbg_msg BashStyle-NG Warning: /etc/profile.d/msec.sh prevents setting TMOUT, remove
-	dbg_msg BashStyle-NG Warning: the line regarding TMOUT to get rid of this message
+	ERR_MSG+="\n * /etc/profile.d/msec.sh prevents setting TMOUT!"
 else	TMOUT=$(get_key timeout)
 	dbg_msg BashStyle-NG Setting: TMOUT "$TMOUT"
 fi

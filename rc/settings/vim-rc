@@ -37,11 +37,17 @@ else
 fi
 
 if [[ $(get_key vim/jump_back) == "true" ]]; then
-	dbg_msg VimCFG Setting: Jump-Back On
-	echo "if has(\"autocmd\")" >> $HOME/.vimrc
-	echo "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")" >> $HOME/.vimrc
-	echo "    \| exe \"normal! g'\\\"\" | endif" >> $HOME/.vimrc
-	echo "endif" >> $HOME/.vimrc
+
+	if [[ ! -w $HOME/.viminfo || ! -r $HOm/.viminfo ]]; then
+		ERR_MSG+="\n * $HOME/.viminfo is not fully accessible! -- adjust permissions."
+	else
+		dbg_msg VimCFG Setting: Jump-Back On
+		echo "if has(\"autocmd\")" >> $HOME/.vimrc
+		echo "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")" >>	$HOME/.vimrc
+		echo "    \| exe \"normal! g'\\\"\" | endif" >> $HOME/.vimrc
+		echo "endif" >> $HOME/.vimrc
+	fi
+
 else	dbg_msg VimCFG Setting Jump-Back Off
 fi
 
