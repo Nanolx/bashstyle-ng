@@ -16,13 +16,13 @@ $pscolor┌─$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\h$sepacolor ]$psco
 $sepacolor[$pscolor job #\# $sepacolor]$pscolor─$sepacolor[$fontcolor \$(show_tty)$sepacolor ]\
 $pscolor─$sepacolor[ $timecolor\$(date +%H:%M:%S)\
 $fontcolor : $datecolor\$(date +%m/%d/%y)$fontcolor :$upcolor \$(show_uptime)$sepacolor ]\n\
-$pscolor└─$sepacolor[ $usercolor\$$pscolor : $wdircolor\$(trunc_pwd)$sepacolor ]\
+$pscolor└─$sepacolor[ $usercolor\$$pscolor : $wdircolor\$(trunc_pwd)$ELITE_1_COLOR\$(ELITE_1)$sepacolor ]\
 $pscolor·>$fontcolor "
 
 else
 
 PS1="\n\
 ┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S)\
- : \$(date +%m/%d/%y) : \$(show_uptime) ]\n└─[ $ : \$(trunc_pwd) ]·> "
+: \$(date +%m/%d/%y) : \$(show_uptime) ]\n└─[ $ : \$(trunc_pwd)\$(ELITE_1) ]·> "
 
 fi

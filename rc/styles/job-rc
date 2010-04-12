@@ -15,7 +15,7 @@ function jobcount {
 
 if [[ $enabcol == true ]]; then
 
-PS1="\n$usercolor\u $fontcolor@ $hostcolor\h $wdircolor\$(trunc_pwd) $sepacolor[$pscolor `jobcount` $sepacolor]$fontcolor $ "
+PS1="\n$usercolor\u $fontcolor@ $hostcolor\h $wdircolor\$(trunc_pwd) $sepacolor[$pscolor `jobcount` $sepacolor]$fontcolor \$ "
 
 else
 
