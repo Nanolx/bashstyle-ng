@@ -1443,15 +1443,21 @@ class VimCFG (BashStyleNG):
 		self.vim_colorscheme = gtkbuilder.get_object("vim_colorscheme")
 
 		vim_colors = {
-			      0 : "default",
-			      1 : "adaryn",
-			      2 : "advantage",
-			      3 : "desert",
-			      4 : "gobo",
-			      5 : "impact",
-			      6 : "nightshade",
-			      7 : "nightwish",
-			      8 : "wombat",
+			       0 : "default",
+			       1 : "adaryn",
+			       2 : "advantage",
+			       3 : "desert",
+			       4 : "gobo",
+			       5 : "impact",
+			       6 : "nightshade",
+			       7 : "nightwish",
+			       8 : "wombat",
+			       9 : "asu1dark",
+			      10 : "candycode",
+			      11 : "dw_orange",
+			      12 : "fruit",
+			      13 : "relaxedgreen",
+			      14 : "tango",
 			     }
 
 		self.vim_colorscheme.set_active(swap_dic(vim_colors)[gdb.get_string(gbase + "vim/vim_colorscheme")])
