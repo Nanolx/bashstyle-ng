@@ -12,10 +12,10 @@
 if [[ $enabcol == true ]]; then
 
 PS1="\n$sepacolor⊏⁅ $usercolor\u$pscolor ⁑ $hostcolor\h $sepacolor⁆⁅ $datecolor\d $pscolor⁑ $timecolor\t$pscolor ⁑ $upcolor\$(show_uptime)$sepacolor ⁆⊐
-⊏⁅$wdircolor \$(trunc_pwd) $sepacolor⁆⊐≻$fontcolor "
+⊏⁅$wdircolor \$(trunc_pwd)$SEPA_NG_1_COLOR\$(SEPA_NG_1) $sepacolor⁆⊐≻$fontcolor "
 
 else
 
-PS1="\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \t ⁑ \$(show_uptime) ⁆⊐\n⊏⁅ \$(trunc_pwd) ⁆⊐≻ "
+PS1="\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \t ⁑ \$(show_uptime) ⁆⊐\n⊏⁅ \$(trunc_pwd)\$(SEPA_NG_1) ⁆⊐≻ "
 
 fi
