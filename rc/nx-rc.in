@@ -154,7 +154,7 @@ fi
 
 fi
 
-if [[ ERR_MSG != "" ]]; then
+if [[ $ERR_MSG != "" ]]; then
 	echo -e "$(bs_ng_echo $yellow)\n\nImportant informations:"
 	echo -e "$(bs_ng_echo $orange)${ERR_MSG}\n"
 fi
