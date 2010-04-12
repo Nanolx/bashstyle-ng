@@ -73,7 +73,7 @@ if [[ $enabcol == true ]]; then \
 		PS1+=" $sepacolor$sepa$usercolor free$sepacolor/${usercolor}used mem: $pscolor\$(show_mem --free)$sepacolor/$pscolor\$(show_mem --used)$usercolor mb"
 	fi
 
-	PS1+="$sepacolor $sepa\n$usercolor$ $fontcolor-> "
+	PS1+="$sepacolor $sepa\n$usercolor$SEPA_1_COLOR\$(SEPA_1)\$ $SEPA_2_COLOR\$(SEPA_2)$fontcolor-> "
 
 else
 
