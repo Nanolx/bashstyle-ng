@@ -52,7 +52,7 @@ $sepacolor[ $wdircolor\${files}.\${hiddenfiles}-\${executables}x \$(show_size) \
 \${directories}.\${hiddendirectories}d\${links}\${devices}\
 $sepacolor ][ $upcolor\${loaddiff}$sepacolor ][ \
 $pscolor\$(ps ax | wc -l | sed -e \"s: ::g\")proc $sepacolor]\
-\n$sepacolor[ $wdircolor\$(trunc_pwd)$POW_1_COLOR\$(POW_1) $sepacolor]$fontcolor $ "
+\n$sepacolor[ $wdircolor\$(trunc_pwd)$POW_1_COLOR\$(POW_1) $sepacolor]$fontcolor \$ "
 
 else
 
@@ -63,6 +63,6 @@ PS1="\n\
 \${directories}.\${hiddendirectories}d\${links}\${devices}\
 ][ \${loaddiff} ][ \
 \$(ps ax | wc -l | sed -e \"s: ::g\")proc ]\
-\n[ \$(trunc_pwd)\$(POW_1) ] $ "
+\n[ \$(trunc_pwd)\$(POW_1) ] \$ "
 
 fi
