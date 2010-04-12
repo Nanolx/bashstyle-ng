@@ -27,7 +27,7 @@ tput rc
 
 PROMPT_COMMAND=pre_prompt
 
-PS1="\n$sepacolor[$usercolor \u $fontcolor@ $hostcolor\h $pscolor: $wdircolor\$(trunc_pwd)$sepacolor ]$fontcolor "
+PS1="\n$sepacolor[$usercolor \u $fontcolor@ $hostcolor\h $pscolor: $wdircolor\$(trunc_pwd)$sepacolor \$(USER1) ]$fontcolor "
 
 else
 
@@ -42,6 +42,6 @@ tput rc
 
 PROMPT_COMMAND=pre_prompt
 
-PS1="\n[ \u @ \h : \$(trunc_pwd) ] "
+PS1="\n[ \u @ \h : \$(trunc_pwd) \$(USER1) ] "
 
 fi
