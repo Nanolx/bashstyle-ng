@@ -12,18 +12,16 @@
 export BSNG_GCONF_READ=1
 
 export BSNG_PREFIX=@PREFIX@
-export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/functions/
+export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/
 export BSNG_LOCKFILE=$HOME/.bashstyle.lock
 export BSNG_VERSION=@VERSION@
 
 ERR_MSG=""
 
-USER1 () { return 0; }
-
 bsource () {
 
 	for file in $@; do
-		source $BSNG_RC_DIR/$file
+		source $BSNG_RC_DIR/functions/$file
 	done
 
 }
@@ -32,6 +30,8 @@ bsource gconf debug check_opt xunalias ls git exchange xmv xcp xchown xconv rand
 bsource bs-ng-echo showuptime showmem showsystemload showcpuload man2pdf countfiles
 bsource countprocesses showbatteryload showip showsize showspace showtty systeminfos
 bsource truncpwd ps misc
+
+source $BSNG_RC_DIR/styles/null-rc
 
 if [[ $BASH_VERSINFO == 4 ]]; then
 	bsource xdel
