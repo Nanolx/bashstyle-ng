@@ -11,7 +11,7 @@
 
 youtube2ogg () {
 
-	ffmpeg -i "$1" "$1".ogg
+	ffmpeg -i "$1" -vn "$1".ogg
 
 }
 
