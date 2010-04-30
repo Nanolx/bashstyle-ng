@@ -45,7 +45,7 @@ parser.add_option("-p", "--prefix", dest="prefix",
 
 parser.add_option("-g", "--group", dest="group", default="style",
                   help="display a given group of options at startup, one of:\
-                  \nstyle, alias, advanced, readline, extra, profile, vim, nano, ls, custom")
+                  \nstyle, alias, advanced, readline, extra, profile, vim, nano, ls, custom or preview")
 
 (options, args) = parser.parse_args()
 
@@ -68,6 +68,7 @@ groups = {
 	  "nano" : "7",
 	  "ls" : "8",
 	  "custom" : "9",
+	  "preview" : "10"
 	 }
 
 initial_page = groups[options.group]
@@ -255,6 +256,9 @@ class BashStyleNG(object):
 		image_custom=icon_theme.load_icon( "bs-ng-custom", 32, 0 )
 		liststore.append([image_custom, _("<b>Custom</b>")])
 
+		image_preview=icon_theme.load_icon( "bs-ng-preview", 32, 0 )
+		liststore.append([image_preview, _("<b>Preview</b>")])
+
 		image_help=icon_theme.load_icon( "bs-ng-help", 32, 0 )
 		liststore.append([image_help, _("<b>Help</b>")])
 
@@ -267,11 +271,11 @@ class BashStyleNG(object):
 		def treeview_action(widget, extra, data=None):
 			selection = treeview.get_selection()
 			position = int(selection.get_selected_rows()[1][0][0])
-			if position <= 9:
+			if position <= 10:
 				notebook.set_current_page(position)
-			elif position == 10:
-				subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/index.html", shell=True)
 			elif position == 11:
+				subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/index.html", shell=True)
+			elif position == 12:
 				aboutdialog.show_all()
 				aboutdialog.connect("response", about_destroy, None)
 
@@ -1933,6 +1937,16 @@ class CustomPromptBuilder(BashStyleNG):
 			gdb.set_bool(gbase + "use_custom_prompt", widget.get_active())
 
 		self.use_custom_prompt.connect("clicked", set_use_custom_prompt)
+
+		####################### Connect the Show Toolbox Button ###########################
+
+		self.toolbox = gtkbuilder.get_object("Toolbox")
+		self.show_toolbox = gtkbuilder.get_object("show_toolbox")
+
+		def do_show_toolbox(widget, data=None):
+			self.toolbox.show_all()
+
+		self.show_toolbox.connect("clicked", do_show_toolbox)
 
 		####################### Connect the Username Button ###############################
 
