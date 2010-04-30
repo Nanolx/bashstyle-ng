@@ -1948,6 +1948,15 @@ class CustomPromptBuilder(BashStyleNG):
 
 		self.show_toolbox.connect("clicked", do_show_toolbox)
 
+		####################### Connect the Show Help Button ##############################
+
+		self.show_cpb_help = gtkbuilder.get_object("show_cpb_help")
+
+		def do_show_cpb_help(widget, data=None):
+			subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/chapter07.html", shell=True)
+			
+		self.show_cpb_help.connect("clicked", do_show_cpb_help)
+
 		####################### Connect the Username Button ###############################
 
 		self.username = gtkbuilder.get_object("username")
