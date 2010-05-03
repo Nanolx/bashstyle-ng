@@ -38,7 +38,7 @@ fi
 
 if [[ $(get_key vim/jump_back) == "true" ]]; then
 
-	if [[ ! -w $HOME/.viminfo || ! -r $HOME/.viminfo ]]; then
+	if [[ -e $HOME/.viminfo && ( ! -w $HOME/.viminfo || ! -r $HOME/.viminfo ) ]]; then
 		ERR_MSG+="\n * $HOME/.viminfo is not fully accessible! -- adjust permissions."
 	else
 		dbg_msg VimCFG Setting: Jump-Back On
