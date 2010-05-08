@@ -76,3 +76,17 @@ repoadd () {
 	gpg -abs -o Release.gpg Release
 
 }
+
+get_kernel () {
+
+	if [[ $1 == "-s" ]]; then
+		wget http://www.kernel.org/pub/linux/kernel/v2.6/linux-${2}.tar.bz2
+	elif [[ $1 == "-t" ]]; then
+		wget http://www.kernel.org/pub/linux/kernel/v2.6/testing/linux-${2}.tar.bz2
+	elif [[ $1 == "-sg" ]]; then
+		git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-${2}.y.git
+	elif [[ $1 == "-tg" ]]; then
+		git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+	fi
+
+}
