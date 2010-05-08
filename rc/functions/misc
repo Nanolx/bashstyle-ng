@@ -87,6 +87,8 @@ get_kernel () {
 		git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-${2}.y.git
 	elif [[ $1 == "-tg" ]]; then
 		git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+	elif [[ $1 == "-z" ]]; then
+		wget http://downloads.zen-kernel.org/${2}/${2}-zen${3}.patch.lzma
 	fi
 
 }
