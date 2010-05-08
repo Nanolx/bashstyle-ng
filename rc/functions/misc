@@ -68,3 +68,11 @@ torswitch () {
 	esac
 
 }
+
+repoadd () {
+
+	reprepro -Vb $1 include $2 *.changes
+	cd $1/dists/$2
+	gpg -abs -o Release.gpg Release
+
+}
