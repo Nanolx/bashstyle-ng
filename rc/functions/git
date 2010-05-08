@@ -35,6 +35,8 @@ get_gnome () {
 		git clone git+ssh://$2@git.gnome.org/git/$3
 	elif [[ $1 == "-b" ]]; then
 		git clone -b $2 git://git.gnome.org/$3
+	elif [[ $1 == "-mb" ]]; then
+		git clone -b $3 git+ssh://$2@git.gnome.org/git/$4
 	else 	git clone git://git.gnome.org/$1
 	fi
 }
@@ -45,6 +47,8 @@ get_xfce () {
 		git clone ssh://$2@git.xfce.org/git/$3
 	elif [[ $1 == "-b" ]]; then
 		git clone -b $2 git://git.xfce.org/category/$3
+	elif [[ $1 == "-mb" ]]; then
+		git clone -b $3 ssh://$2@git.xfce.org/git/$4
 	else	git clone git://git.xfce.org/category/$1
 	fi
 
