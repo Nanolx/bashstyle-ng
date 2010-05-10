@@ -149,7 +149,7 @@ lscd () {
 
 	cd ${1}
 	echo -e "$(bs_ng_echo $yellow) $PWD\n"
-	ls
+	ls $LSCD_OPTS
 	echo
 
 }
