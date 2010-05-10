@@ -92,3 +92,64 @@ get_kernel () {
 	fi
 
 }
+
+up () {
+
+[ "${1/[^0-9]/}" == "$1" ] && {
+        local ups=""
+        for i in $(seq 1 $1)
+        do
+                ups=$ups"../"
+        done
+        cd $ups
+        }
+
+}
+
+empty () {
+
+	find -type f -empty
+
+}
+
+stop_watch () {
+
+BEGIN=$(date +%s)
+
+while true; do
+    NOW=$(date +%s)
+    DIFF=$(($NOW - $BEGIN))
+    MINS=$(($DIFF / 60))
+    SECS=$(($DIFF % 60))
+    echo -ne "Time elapsed: $MINS:`printf %02d $SECS`\r"
+    sleep .1
+done
+
+}
+
+wipe () {
+
+	cryptsetup -d /dev/urandom -c aes-xts-plain create delete $1
+	shred -vzn 0 /dev/mapper/delete
+	sync && sleep 4
+	cryptsetup remove delete
+
+	}
+
+remount () {
+
+	DEV=$1
+	shift
+
+	mount -oremount,$@ $1
+
+}
+
+lscd () {
+
+	cd ${1}
+	echo -e "$(bs_ng_echo $yellow) $PWD\n"
+	ls
+	echo
+
+}

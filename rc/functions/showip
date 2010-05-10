@@ -18,7 +18,8 @@ show_ip_help ()
 	green=$(bs_ng_echo $green)
 
 	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}show_ip${white} |${green} <interface> ${iceblue}[show ip-address for <interface>]\n"
+	echo -e "${orange}show_ip${white} |${green} <interface> ${iceblue}[show ip-address for <interface>]\
+	\n${orange}show_ip${white] |${green} external${iceblue} [show external ip address]\n"
 	tput sgr0
 
 }
@@ -29,6 +30,10 @@ show_ip ()
 	case $1 in
 		*help | "" )
 			show_ip_help
+		;;
+
+		*external )
+			wget -q -O - http://showip.spamt.net/
 		;;
 
 		* )
