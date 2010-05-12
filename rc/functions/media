@@ -34,3 +34,21 @@ mkv2avi () {
 	fi
 
 }
+
+eniso () {
+
+	if [[ $CD_WRITER ]]; then
+		dd $DD_OPTS if=$CD_WRITER of=$1
+	else	dd $DD_OPTS if=/dev/dvdrw of=$1
+	fi
+
+}
+
+writeiso () {
+
+	if [[ $CD_WRITER ]]; then
+		cdrecord dev=$CD_WRITER $1
+	else	cdrecord deV=/dev/dvdrw $1
+	fi
+
+}

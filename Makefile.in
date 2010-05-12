@@ -167,9 +167,10 @@ uninstall:
 	@echo -e "$(RED)removing:$(CYAN)	[01/08] bashstyle-ng"
 	@rm -rf @PREFIX@/share/bashstyle-ng
 	@rm -f  @PREFIX@/bin/bashstyle
-	@echo -e "$(RED)removing:$(CYAN)	[02/08] rcgenerator bs-ng-profiler"
+	@echo -e "$(RED)removing:$(CYAN)	[02/08] rcgenerator bs-ng-profiler bsng_firstrun"
 	@rm -f  @PREFIX@/usr/bin/rcgenerator
 	@rm -f  @PREFIX@/usr/bin/bs-ng-profiler
+	@rm -f  @PREFIX@/usr/bin/bsng_firstrun
 	@echo -e "$(RED)removing:$(CYAN)	[03/08] .desktop file"
 	@rm -f  @PREFIX@/share/applications/bs-ng.desktop
 	@echo -e "$(RED)removing:$(CYAN)	[04/08] translations:$(BLUE) de it ru"

@@ -107,6 +107,11 @@ source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/shopt-rc
 
 shopt -s checkwinsize
 
+if [[ -e $HOME/.settings-rc ]]; then \
+	dbg_msg BashStyle-NG Loading: Fist-Run-Wizard Settings
+	source $HOME/.settings-rc
+fi
+
 if [[ -e $HOME/.custom-rc ]]; then \
 	dbg_msg BashStyle-NG Loading: Custom Settings
 	source $HOME/.custom-rc
@@ -160,3 +165,8 @@ if [[ $ERR_MSG != "" ]]; then
 fi
 
 unset BSNG_GCONF_READ
+
+if [[ ! -e $HOME/.settings-rc ]]; then
+	bsng_firstrun
+	reload
+fi

@@ -134,12 +134,9 @@ wipe () {
 	sync && sleep 4
 	cryptsetup remove delete
 
-	}
+}
 
 remount () {
-
-	DEV=$1
-	shift
 
 	mount -oremount,$@ $1
 

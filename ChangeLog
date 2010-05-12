@@ -94,12 +94,17 @@ rc/functions/showip:
 rc/functions/media:
 - added youtube2ogg
 - added mkv2avi
+- added geniso
+- added writeiso
 
 code/bsng.py.in:
 - new C-P-B option: $SECONDS
 - move the Preview-VTE into it's own page
 - better treeview-placement
 - add a toolbox window for the C-P-B-Stuff-Buttons
+
+scripts/bsng_firstrun:
+- added a first-run-wizard
 
 data/icons/bs-ng-preview.png ::
 data/icons/bs-ng-toolbox.png:
@@ -115,6 +120,7 @@ Makefile.in:
 - let clean rule remove ~ files
 - hardcode bash as shell for make
 - don't forget to remove russian translation
+- check for whiptail
 
 7.10:
 

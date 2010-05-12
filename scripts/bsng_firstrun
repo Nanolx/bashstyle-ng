@@ -1,0 +1,72 @@
+#!/bin/bash
+
+lscdopts () {
+	
+	whiptail --title "lscd as default" --yesno "\`lscd' is a replacement for \`cd', which immediately displays
+the content of the directory gone into.
+
+Do you want to use \`lscd' rather than \`cd' by default?" 12 85
+
+	if [[ $? == "0" ]]; then
+		echo alias cd=lscd >> $HOME/.settings-rc
+	fi
+
+	whiptail --title "lscd options" --yesno "Regardless of your previous choise \`lscd' does not pass any options to
+it's ls call. You may define some for better results, eg: \`--color=auto'.
+
+Do you want to give \`lscd' any ls-options?" 12 85
+
+	if [[ $? == "0" ]]; then
+		xlscdopts=$(whiptail --title "Set LSCD_OPTS" --inputbox "Enter desired lscd options:" 12 85 3>&1 1>&2 2>&3)
+		echo LSCD_OPTS=\"$xlscdopts\" >> $HOME/.settings-rc
+	fi
+
+}
+
+cdwriter () {
+
+	whiptail --title "writeiso/geniso device" --yesno "The \`writeiso' and \`geniso' functions need to know what device to access.
+
+By default /dev/dvdrw is beeing used, do you want to choose a different device?" 12 85
+
+	if [[ $? == "0" ]]; then
+		xcdwriter=$(whiptail --title "set CD_WRITER" --inputbox "Enter the devicenode of your CD/DVD-Writer:" 12 85 3>&1 1>&2 2>&3)
+		echo CD_WRITER=\"$xcdwriter\" >> $HOME/.settings-rc
+	fi
+
+	whiptail --title "geniso error tolerance" --yesno "By default \`geniso' stops at the first read error.
+
+Do you want \`geniso' to continue anyways? [recommended]" 12 85
+
+	if [[ $? == "0" ]]; then
+		echo DD_OPTS=\"conv=noerror\" >> $HOME/.settings-rc
+	fi
+
+}
+
+dvcs_user () { return 0; }
+
+repo_info () { return 0; }
+
+run_wizard () {
+
+	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "This wizard will guide you through fully setting up your copy
+of BashStyle-NG to be able to make use of all shipped functions." 12 85
+
+	lscdopts
+	cdwriter
+	dvcs_user
+	repo_info
+
+	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "You just finished generating your configuration.
+You can find your configuration in $HOME/.settings-rc.
+
+You may re-run this wizard via \`bsng_fistrun --force'" 12 85
+
+}
+
+if [[ ! -e $HOME/.settings-rc || $1 == "--force" ]]; then
+	rm -f $HOME/.settings-rc
+	run_wizard
+else	exit 0
+fi
