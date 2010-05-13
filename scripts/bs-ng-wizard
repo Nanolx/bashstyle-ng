@@ -128,6 +128,38 @@ git who [git shortlog -s --]" 12 85
 
 }
 
+svn_setup () {
+
+	whiptail --title "svn setup" --yesno "Do you want to setup SVN?
+
+You can set the default username for KDE/Enlightenment accounts." 12 85
+
+	if [[ $? == "0" ]]; then
+
+		whiptail --title "svn.kde.org" --yesno "Do you have a KDE SVN account?
+
+You will be asked to tell it in the next step.
+With this info get_kde can checkout SVN repos with write access." 12 85
+
+		if [[ $? == "0" ]]; then
+			get_kde_user=$(whiptail --title "svn.kde.org account" --inputbox "What's your KDE SVN Account?:" 12 85 "$SVN_USER_KDE" 3>&1 1>&2 2>&3)
+			echo SVN_USER_KDE=\"$get_kde_user\" >> $HOME/.settings-rc
+		fi
+
+		whiptail --title "svn.enlightenment.org" --yesno "Do you have an Enlightenment SVN account?
+
+You will be asked to tell it in the next step.
+With this info get_e can checkout SVN repos with write access." 12 85
+
+		if [[ $? == "0" ]]; then
+			get_e_user=$(whiptail --title "svn.enlightenment.org account" --inputbox "What's your Enlightenment SVN Account?:" 12 85 "$SVN_USER_ENLIGHTENMENT" 3>&1 1>&2 2>&3)
+			echo SVN_USER_ENLIGHTENMENT=\"$get_e_user\" >> $HOME/.settings-rc
+		fi
+
+	fi
+
+}
+
 repo_info () { return 0; }
 
 run_wizard () {
@@ -138,6 +170,7 @@ of BashStyle-NG to be able to make use of all shipped functions." 12 85
 	lscdopts
 	cdwriter
 	git_setup
+	svn_setup
 	repo_info
 
 	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "You just finished generating your configuration.

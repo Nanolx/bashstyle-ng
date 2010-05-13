@@ -14,22 +14,25 @@
 
 get_kde () {
 
-	if [[ $1 == "-m" ]]; then
-		svn co --user-name=$2 svn+ssh://svn.kde.org/home/kde/trunk/KDE/$3
-	elif [[ $1 == "-b" ]]; then
+	if [[ $SVN_USER_KDE ]]; then
+		if [[ $1 == "-m" ]]; then
+			svn co --user-name=$SVN_USER_KDE svn+ssh://svn.kde.org/home/kde/trunk/KDE/$2
+		elif [[ $1 == "-mb" ]]; then
+			svn co --user-name=$SVN_USER_KDE svn+ssh://svn.kde.org/home/kde/branches/KDE/$2
+		fi
+	fi
+
+	if [[ $1 == "-b" ]]; then
 		svn co svn://svn.kde.org/home/kde/branches/KDE/$2
-	elif [[ $1 == "-mb" ]]; then
-		svn co --user-name=$2 svn+ssh://svn.kde.org/home/kde/branches/KDE/$3
-	else
-		svn co svn://svn.kde.org/home/kde/trunk/KDE/$2
+	else	svn co svn://svn.kde.org/home/kde/trunk/KDE/$2
 	fi
 
 }
 
 get_e () {
 
-	if [[ $1 == "-m" ]]; then
-		svn co svn+ssh://$2@svn.enlightenment.org/var/svn/$3
+	if [[ $SVN_USER_ENLIGHTENMENT && $1 == "-m" ]]; then
+		svn co svn+ssh://$SVN_USER_ENLIGHTENMENT@svn.enlightenment.org/var/svn/$2
 	else
 		svn co http://svn.enlightenment.org/svn/$2
 	fi
