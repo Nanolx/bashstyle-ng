@@ -167,6 +167,12 @@ run_wizard () {
 	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "This wizard will guide you through fully setting up your copy
 of BashStyle-NG to be able to make use of all shipped functions." 12 85
 
+	whiptail --title "verbosity" --yesno "Do you want to disable the text flying by, when starting bash?" 12 85
+
+	if [[ $? == "0" ]]; then
+		gconftool-2 -t bool -s /apps/bashstyle/debug_verbose false
+	fi
+
 	lscdopts
 	cdwriter
 	git_setup
@@ -176,7 +182,9 @@ of BashStyle-NG to be able to make use of all shipped functions." 12 85
 	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "You just finished generating your configuration.
 You can find your configuration in $HOME/.settings-rc.
 
-You may re-run this wizard via \`bs-ng-wizard --force'" 12 85
+You may re-run this wizard via \`bs-ng-wizard --force'
+
+Have Fun!" 12 85
 
 }
 
