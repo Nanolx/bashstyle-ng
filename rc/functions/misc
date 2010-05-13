@@ -145,8 +145,9 @@ remount () {
 lscd () {
 
 	cd ${1}
-	echo -e "$(bs_ng_echo $yellow) $PWD\n"
+	if [[ ! $1 == "-" ]]; then
+		echo -e "$(bs_ng_echo $yellow) $PWD\n"
+	fi
 	ls $LSCD_OPTS
-	echo
 
 }

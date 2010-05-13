@@ -31,25 +31,35 @@ git_xz() {
 
 get_gnome () {
 
-	if [[ $1 == "-m" ]]; then
-		git clone git+ssh://$2@git.gnome.org/git/$3
-	elif [[ $1 == "-b" ]]; then
-		git clone -b $2 git://git.gnome.org/$3
-	elif [[ $1 == "-mb" ]]; then
-		git clone -b $3 git+ssh://$2@git.gnome.org/git/$4
+	if [[ $GIT_USER_GNOME ]]; then
+		if [[ $1 == "-m" ]]; then
+			git clone git+ssh://$GIT_USER_GNOME@git.gnome.org/git/$2
+		elif [[ $1 == "-mb" ]]; then
+			git clone -b $3 git+ssh://$GIT_USER_GNOME@git.gnome.org/git/$2
+		fi
+	fi
+
+
+	if [[ $1 == "-b" ]]; then
+		git clone -b $3 git://git.gnome.org/$2
 	else 	git clone git://git.gnome.org/$1
 	fi
+
 }
 
 get_xfce () {
 
-	if [[ $1 == "-m" ]]; then
-		git clone ssh://$2@git.xfce.org/git/$3
-	elif [[ $1 == "-b" ]]; then
-		git clone -b $2 git://git.xfce.org/category/$3
-	elif [[ $1 == "-mb" ]]; then
-		git clone -b $3 ssh://$2@git.xfce.org/git/$4
-	else	git clone git://git.xfce.org/category/$1
+	if [[ $GIT_USER_XFCE ]]; then
+		if [[ $1 == "-m" ]]; then
+			git clone ssh://$GIT_USER_XFCE@git.xfce.org/git/$2
+		elif [[ $1 == "-mb" ]]; then
+			git clone -b $3 ssh://$GIT_USER_XFCE@git.xfce.org/git/$2
+		fi
+	fi
+
+	if [[ $1 == "-b" ]]; then
+		git clone -b $3 git://git.xfce.org/$2
+	else	git clone git://git.xfce.org/$1
 	fi
 
 }
@@ -78,7 +88,7 @@ git_revision () {
 git_action () {
 
 	if [[ -d .git ]]; then
-		
+
 		if [[ -f .git/dotest/rebasing ]]; then
 			ACTION="rebase"
 		elif [[ -f .git/dotest/applying ]]; then
@@ -95,7 +105,6 @@ git_action () {
 			ACTION="bisect"
 		else	ACTION="nothing"
 		fi
-		
 		echo $ACTION
 	else	echo --
 	fi
