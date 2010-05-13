@@ -35,7 +35,7 @@ mkv2avi () {
 
 }
 
-eniso () {
+geniso () {
 
 	if [[ $CD_WRITER ]]; then
 		dd $DD_OPTS if=$CD_WRITER of=$1
