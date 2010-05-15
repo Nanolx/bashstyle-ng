@@ -170,3 +170,8 @@ unset BSNG_GCONF_READ
 #	bs-ng-wizard
 #	reload
 #fi
+
+if [[ -e $HOME/.bookmarks ]]; then
+	. $HOME/.bookmarks
+else	touch $HOME/.bookmarks
+fi

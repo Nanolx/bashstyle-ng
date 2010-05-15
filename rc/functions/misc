@@ -152,7 +152,8 @@ lscd () {
 
 }
 
-function bashtips {
+bashtips () {
+
 cat <<EOF
 DIRECTORIES
 -----------
@@ -203,4 +204,24 @@ M-\$    complete variable name
 M-!     complete command name
 M-^     complete history
 EOF
+
+}
+
+bookmark () {
+
+	if [[ $(grep go-$1= $HOME/.bookmarks) == "" ]]; then
+		echo "alias go-$1='cd $PWD'" >> $HOME/.bookmarks
+		. $HOME/.bookmarks
+	else	echo "bookmark go-$1 already exists."
+	fi
+
+}
+
+unmark () {
+
+	if [[ $(grep $1= $HOME/.bookmarks) != "" ]]; then
+		sed -e "/$1/d" -i $HOME/.bookmarks
+		xunalias $1
+	fi
+
 }
