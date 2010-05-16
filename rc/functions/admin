@@ -1,0 +1,59 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+torswitch () {
+
+	if ! [[ $EUID == 0 ]]; then
+		exit 1
+	fi
+
+	case $1 in
+		*on )
+			if [[ $(grep forward-socks4a /etc/privoxy/config) == "" ]]; then
+				echo "forward-socks4a / 127.0.0.1:9050 ." >> /etc/privoxy/config
+			else
+				sed -e 's/\# forward-socks4a/forward-socks4a/g' -i /etc/privoxy/config
+				/etc/init.d/tor restart
+				/etc/init.d/privoxy restart
+			fi
+		;;
+
+		*off )
+			sed -e 's/forward-socks4a/\# forward-socks4a/g' -i /etc/privoxy/config
+			/etc/init.d/tor restart
+			/etc/init.d/privoxy restart
+		;;
+	esac
+
+}
+
+repoadd () {
+
+	reprepro -Vb $1 include $2 *.changes
+	cd $1/dists/$2
+	gpg -abs -o Release.gpg Release
+
+}
+
+wipe () {
+
+	cryptsetup -d /dev/urandom -c aes-xts-plain create delete $1
+	shred -vzn 0 /dev/mapper/delete
+	sync && sleep 4
+	cryptsetup remove delete
+
+}
+
+remount () {
+
+	mount -oremount,$@ $1
+
+}
