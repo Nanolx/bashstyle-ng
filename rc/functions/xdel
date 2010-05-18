@@ -13,9 +13,9 @@ shopt -s globstar
 
 xdel() {
 
-	[[ $@ != "" ]] &&
-		{ for argv in $@; do
-			rm -fv ./**/*$argv
+	[[ "$@" != "" ]] &&
+		{ for argv in "$@"; do
+			rm -fv ./**/*"$argv"
 		done }
 
 }

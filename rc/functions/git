@@ -11,21 +11,21 @@
 
 git_export() {
 
-	if [[ $1 != "" ]]; then
-		git checkout-index --prefix=$1/ -a
+	if [[ "$1" != "" ]]; then
+		git checkout-index --prefix="$1"/ -a
 	fi
 
 }
 
 git_bzip() {
 
-	git archive master | bzip2 -9 >$PWD.tar.bz2
+	git archive master | bzip2 -9 >"$PWD".tar.bz2
 
 }
 
 git_xz() {
 
-	git archive master | xz -9 > $PWD.tar.xz
+	git archive master | xz -9 > "$PWD".tar.xz
 
 }
 

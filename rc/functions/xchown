@@ -11,11 +11,11 @@
 
 xchown () {
 
-	user=$1
+	user="$1"
 	shift
 
-	for df in $@;
-		do su -c "chown -R $user:$user $df";
+	for df in "$@";
+		do su -c "chown -R $user:$user \"$df\"";
 	done
 
 }

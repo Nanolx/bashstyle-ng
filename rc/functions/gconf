@@ -13,8 +13,8 @@ get_key ()
 {
 
 	if [[ ! $BSNG_GCONF_READ ]]; then
-		gconftool-2 --get $1
-	else	gconftool-2 --get /apps/bashstyle/$1
+		gconftool-2 --get "$1"
+	else	gconftool-2 --get /apps/bashstyle/"$1"
 	fi
 
 }
@@ -23,8 +23,8 @@ set_key ()
 {
 
 	if [[ ! $BSNG_GCONF_READ ]]; then
-		gconftool-2 --set --type $1 $2 $3
-	else	gconftool-2 --set --type $1 /apps/bashstyle/$2 $3
+		gconftool-2 --set --type "$1" "$2" "$3"
+	else	gconftool-2 --set --type "$1" /apps/bashstyle/"$2" "$3"
 	fi
 
 }
@@ -33,8 +33,8 @@ reset_key ()
 {
 
 	if [[ ! $BSNG_GCONF_READ ]]; then
-		gconftool-2 --unset $1
-	else	gconftool-2 --unset /apps/bashstyle/$1
+		gconftool-2 --unset "$1"
+	else	gconftool-2 --unset /apps/bashstyle/"$1"
 	fi
 
 }
@@ -48,6 +48,6 @@ reset_config ()
 
 search_key () {
 
-	gconftool-2 --search-key $1
+	gconftool-2 --search-key "$1"
 
 }

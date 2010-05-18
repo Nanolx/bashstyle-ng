@@ -13,42 +13,42 @@ xunalias ll la l1 lo lg lm
 
 ll() {
 
-	ls -l --group-directories-first $@
+	ls -l --group-directories-first "$@"
 
 }
 
 la() {
 
-	ls -A --group-directories-first $@
+	ls -A --group-directories-first "$@"
 
 }
 
 l1() {
 
-	ls -1 --group-directories-first $@
+	ls -1 --group-directories-first "$@"
 
 }
 
 lo() {
 
-	if [[ ! $@ == "" ]]; then
-		ls -l --group-directories-first $@ | gawk '{print $9, "belongs to User ->", $3}'
+	if [[ ! "$@" == "" ]]; then
+		ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to User ->", $3}'
 
 	fi
 }
 
 lg() {
 
-	if [[ ! $@ == "" ]]; then
-		ls -l --group-directories-first $@ | gawk '{print $9, "belongs to Group ->", $4}'
+	if [[ ! "$@" == "" ]]; then
+		ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to Group ->", $4}'
 
 	fi
 }
 
 lm() {
 
-	if [[ ! $@ == "" ]]; then
-		stat -c "%A %a %n" $@ | gawk '{print "Permissions of:", $3, "->", $1, "("$2")"}'
+	if [[ ! "$@" == "" ]]; then
+		stat -c "%A %a %n" "$@" | gawk '{print "Permissions of:", $3, "->", $1, "("$2")"}'
 
 	fi
 }

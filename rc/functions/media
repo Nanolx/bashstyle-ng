@@ -38,8 +38,8 @@ mkv2avi () {
 geniso () {
 
 	if [[ $CD_WRITER ]]; then
-		dd $DD_OPTS if=$CD_WRITER of=$1
-	else	dd $DD_OPTS if=/dev/dvdrw of=$1
+		dd $DD_OPTS if=$CD_WRITER of="$1"
+	else	dd $DD_OPTS if=/dev/dvdrw of="$1"
 	fi
 
 }
@@ -47,8 +47,8 @@ geniso () {
 writeiso () {
 
 	if [[ $CD_WRITER ]]; then
-		cdrecord dev=$CD_WRITER $1
-	else	cdrecord deV=/dev/dvdrw $1
+		cdrecord dev=$CD_WRITER "$1"
+	else	cdrecord deV=/dev/dvdrw "$1"
 	fi
 
 }

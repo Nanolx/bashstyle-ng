@@ -16,16 +16,18 @@ xcp() {
 		exit 0
 	fi
 
-	destination=${!#}
+	destination="${!#}"
 
 	set -- "$destination" "$@"
 
-	if [[ ! -e $destination ]]; then
-		mkdir -p $destination
+	if [[ ! -e "$destination" ]]; then
+		mkdir -p "$destination"
 	fi
 
-	for file in $@; do
-		cp -v $file $destination
+	for file in "$@"; do
+		if [[ ! "$file" == "$destination" ]]; then
+			cp -v "$file" "$destination"
+		fi
 	done
 
 }

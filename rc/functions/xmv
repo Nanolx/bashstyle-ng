@@ -16,15 +16,15 @@ xmv() {
 		exit 0
 	fi
 
-	destination=${!#}
+	destination="${!#}"
 
-	if [[ ! -e $destination ]]; then
-		mkdir -p $destination
+	if [[ ! -e "$destination" ]]; then
+		mkdir -p "$destination"
 	fi
 
-	for file in $*; do
-		if [[ ! $file == $destination ]]; then
-			mv -v $file $destination
+	for file in "$@"; do
+		if [[ ! "$file" == "$destination" ]]; then
+			mv -v "$file" "$destination"
 		fi
 	done
 

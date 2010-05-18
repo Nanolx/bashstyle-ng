@@ -11,7 +11,7 @@
 
 check_opt() {
 
-	which $1 &>/dev/null
+	which "$1" &>/dev/null
 	if (( $? != 0 )); then
 		echo -e "$1 not found!\n$2 won't work without it."
 		exit 1

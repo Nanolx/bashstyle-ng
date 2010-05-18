@@ -2,6 +2,18 @@
 
 "Valleé De Larmes"
 
+rc/functions/dos2unix ::
+rc/functions/gconf ::
+rc/functions/git (git_export) (git_bzip) (git_xz) ::
+rc/functions/ls ::
+rc/functions/media (writeiso) (geniso) ::
+rc/functions/misc (crypt) ::
+rc/functions/xchown ::
+rc/functions/xdel ::
+rc/functions/xcp ::
+rc/functions/xmv:
+- fixed bug #98: support spaces in arguements
+
 data/bashstyle7.ui:
 - remove version from windowtitle
 - make window resizable
@@ -78,21 +90,32 @@ rc/functions/svn:
 - added get_kde
 - added get_e
 
-rc/functions/misc:
+rc/functions/admin:
 - added torswitch
 - added repoadd
-- added get_kernel
 - added remount
+- added wipe (from ubuntuusers.de wiki)
+	* DONT USE wipe IF YOU DONT KNOW WHAT IT DOES!
+
+rc/functions/dos2unix:
+- moved d2u and u2d here
+
+rc/functions/misc:
+- added get_kernel
 - added lscd
 - added bashtips (unknown original author)
 - added bookmark and unmark
 - added up (from ubuntuusers.de wiki)
 - added stop_watch (from ubuntuusers.de wiki)
-- added wipe (from ubuntuusers.de wiki)
-	* DONT USE wipe IF YOU DONT KNOW WHAT IT DOES!
+- added deadlink
+- added empty
+- added spinner and endspinner
 
 rc/functions/showip:
 - -external switch for show_ip
+
+rc/functions/random:
+- added randomfile (original version from Greg Wooledge)
 
 rc/functions/media:
 - added youtube2ogg

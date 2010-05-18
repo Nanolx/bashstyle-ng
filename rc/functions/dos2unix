@@ -11,16 +11,16 @@
 
 d2u () {
 
-	if [[ -e $1 ]]; then
-		sed -r 's/\r$//' -i $1
+	if [[ -e "$1" ]]; then
+		sed -r 's/\r$//' -i "$1"
 	fi
 
 }
 
 u2d () {
 
-	if [[ -e $1 ]]; then
-		sed -r 's/$/\r/' -i $1
+	if [[ -e "$1" ]]; then
+		sed -r 's/$/\r/' -i "$1"
 	fi
 
 }
