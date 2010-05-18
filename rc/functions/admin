@@ -37,8 +37,8 @@ torswitch () {
 
 repoadd () {
 
-	reprepro -Vb $1 include $2 *.changes
-	cd $1/dists/$2
+	reprepro -Vb $REPO_HOME include $REPO_DIST *.changes
+	cd $REPO_HOME/dists/$REPO_DIST
 	gpg -abs -o Release.gpg Release
 
 }
@@ -54,6 +54,9 @@ wipe () {
 
 remount () {
 
-	mount -oremount,$@ $1
+	DEVICE=$1
+	shift
+
+	mount -oremount,$@ $DEVICE
 
 }
