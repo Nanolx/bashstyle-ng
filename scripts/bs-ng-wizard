@@ -167,10 +167,10 @@ repo_info () {
 If you have an apt repo managed by reprepro, you can setup the repoadd helper script now." 12 85
 
 	if [[ $? == "0" ]]; then
-		repo_home=$(whiptail --title "reprepro repo-home" --inputbox "Enter the full path to the repo base directory:" "$REPO_HOME" 12 85 3>&1 1>&2 2>&3)
+		repo_home=$(whiptail --title "reprepro repo-home" --inputbox "Enter the full path to the repo base directory:" 12 85 "$REPO_HOME" 3>&1 1>&2 2>&3)
 		echo REPO_HOME=\"$repo_home\" >> $HOME/.settings-rc
 
-		repo_dist=$(whiptail --title "reprepro repo-dist" --inputbox "Enter the name of the default dist:" "$REPO_DIST" 12 85 3>&1 1>&2 2>&3)
+		repo_dist=$(whiptail --title "reprepro repo-dist" --inputbox "Enter the name of the default dist:" 12 85 "$REPO_DIST" 3>&1 1>&2 2>&3)
 		echo REPO_DIST=\"$repo_dist\" >> $HOME/.settings-rc
 
 	fi
@@ -195,7 +195,8 @@ of BashStyle-NG to be able to make use of all shipped functions." 12 85
 	repo_info
 
 	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "You just finished generating your configuration.
-You can find your configuration in $HOME/.settings-rc.
+You can find it in $HOME/.settings-rc.
+
 You may re-run this wizard via \`bs-ng-wizard --force'.
 
 To see a list of usefull tips for the bash, run \`bashtips'.
