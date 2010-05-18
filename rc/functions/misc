@@ -19,10 +19,10 @@ top10 () {
 
 crypt () {
 
-	if [[ -e $1 ]]; then
-		tr a-zA-Z n-za-mN-ZA-M < $1 > $1.crypt
-		rm -f $1
-		mv $1.crypt $1
+	if [[ -e "$1" ]]; then
+		tr a-zA-Z n-za-mN-ZA-M < "$1" > "$1".crypt
+		rm -f "$1"
+		mv "$1".crypt "$1"
 	fi
 }
 
@@ -58,6 +58,14 @@ up () {
 empty () {
 
 	find -type f -empty
+
+}
+
+deadlink () {
+
+	if [[ -L "$1" && ! -e "$1" ]]; then
+		echo "$1 is broken"
+	fi
 
 }
 
@@ -138,5 +146,20 @@ M-\$    complete variable name
 M-!     complete command name
 M-^     complete history
 EOF
+
+}
+
+spinner () {
+
+	sp="/-\|"
+	sc=0
+	printf "\b${sp:sc++:1}"
+	((sc==${#sp})) && sc=0
+
+}
+
+endspinner () {
+
+     printf "\r%s\n" "$@"
 
 }
