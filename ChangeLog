@@ -20,6 +20,8 @@ data/bashstyle7.ui:
 
 rc/nx-rc.in:
 - load $HOME/.custom-rc earlier
+- load $HOME/.settings-rc
+- start bs-ng-wizard if required
 
 rc/functions/git:
 - added git_branch (current GIT branch or "--")
@@ -100,11 +102,13 @@ rc/functions/admin:
 rc/functions/dos2unix:
 - moved d2u and u2d here
 
+rc/functions/bookmark:
+- added bookmark and unmark
+
 rc/functions/misc:
 - added get_kernel
 - added lscd
 - added bashtips (unknown original author)
-- added bookmark and unmark
 - added up (from ubuntuusers.de wiki)
 - added stop_watch (from ubuntuusers.de wiki)
 - added deadlink
@@ -115,7 +119,7 @@ rc/functions/showip:
 - -external switch for show_ip
 
 rc/functions/random:
-- added randomfile (original version from Greg Wooledge)
+- added randomfile (original version was from Greg Wooledge)
 
 rc/functions/media:
 - added youtube2ogg
