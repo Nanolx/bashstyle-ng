@@ -160,7 +160,22 @@ With this info get_e can checkout SVN repos with write access." 12 85
 
 }
 
-repo_info () { return 0; }
+repo_info () {
+
+	whiptail --title "reprepro setup" --yesno "Do you want to setup reprepro?
+
+If you have an apt repo managed by reprepro, you can setup the repoadd helper script now." 12 85
+
+	if [[ $? == "0" ]]; then
+		repo_home=$(whiptail --title "reprepro repo-home" --inputbox "Enter the full path to the repo base directory:" "$REPO_HOME" 12 85 3>&1 1>&2 2>&3)
+		echo REPO_HOME=\"$repo_home\" >> $HOME/.settings-rc
+
+		repo_dist=$(whiptail --title "reprepro repo-dist" --inputbox "Enter the name of the default dist:" "$REPO_DIST" 12 85 3>&1 1>&2 2>&3)
+		echo REPO_DIST=\"$repo_dist\" >> $HOME/.settings-rc
+
+	fi
+
+}
 
 run_wizard () {
 
