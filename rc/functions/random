@@ -27,3 +27,19 @@ randompw () {
 	else	echo $(cat /dev/urandom | tr -cd '[:alnum:]' | head -c ${1:-32})
 	fi
 }
+
+randomfile () {
+
+	if [[ ! "$FILES" ]]; then
+		files=(*)
+	else	files=("$FILES")
+	fi
+
+	n=${#files[@]}
+
+	if [[ ! "$1" ]]; then
+		echo "${files[RANDOM % n]}"
+	else	"$1" "${files[RANDOM % n]}"
+	fi
+
+}
