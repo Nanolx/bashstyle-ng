@@ -153,7 +153,7 @@ WelcomeMessage=$(get_key welcome_message)
 
 if [[ $(get_key restorepwd) == true ]]; then \
 	trap 'printf %s "$PWD" > $HOME/.lastpwd' EXIT
-	if [[ -e $HOME/.lastpwd ]]; then \
+	if [[ -e $HOME/.lastpwd && -d "$(cat $HOME/.lastpwd)" ]]; then \
 		cd "$(cat $HOME/.lastpwd)"
 	fi
 fi
