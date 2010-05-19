@@ -188,6 +188,12 @@ of BashStyle-NG to be able to make use of all shipped functions." 12 85
 		gconftool-2 -t bool -s /apps/bashstyle/debug_verbose false
 	fi
 
+	whiptail --title "restore" --yesno "Do you want to restore the last working directory when starting bash?" 12 85
+
+	if [[ $? == "0" ]]; then
+		gconftool-2 -t bool -s /apps/bashstyle/restorepwd true
+	fi
+
 	lscdopts
 	cdwriter
 	git_setup

@@ -151,6 +151,13 @@ fi
 
 WelcomeMessage=$(get_key welcome_message)
 
+if [[ $(get_key restorepwd) == true ]]; then \
+	trap 'printf %s "$PWD" > $HOME/.lastpwd' EXIT
+	if [[ -e $HOME/.lastpwd ]]; then \
+		cd "$(cat $HOME/.lastpwd)"
+	fi
+fi
+
 if [[ $WelcomeMessage != "" ]]; then \
 	dbg_msg BashStyle-NG Setting: Welcome Message
 	clear
