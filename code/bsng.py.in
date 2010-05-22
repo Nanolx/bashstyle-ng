@@ -144,7 +144,7 @@ class BashStyleNG(object):
 		language = os.environ.get('LANGUAGE', None)
 		if (language):
 			langs += language.split(":")
-		langs += ["C", "de", "it", "ru"]
+		langs += ["C", "de", "it", "ru", "es"]
 
 		gettext.bindtextdomain(APP_NAME)
 		gettext.textdomain(APP_NAME)

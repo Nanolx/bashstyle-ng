@@ -37,23 +37,27 @@ pot:
 po: pot
 	@echo -e "$(MAGENTA)updating: 	$(SMOOTHBLUE).po files:"
 	@mkdir -p translations/po/
-	@echo -e "\t$(GREEN) [01/03] german (de)"
+	@echo -e "\t$(GREEN) [01/04] german (de)"
 	@msgmerge -q -o translations/po/bs-ng-de.po translations/po/bs-ng-de.po translations/pot/bs-ng.pot >/dev/null
-	@echo -e "\t$(GREEN) [02/03] italian (it)"
+	@echo -e "\t$(GREEN) [02/04] italian (it)"
 	@msgmerge -q -o translations/po/bs-ng-it.po translations/po/bs-ng-it.po translations/pot/bs-ng.pot >/dev/null
-	@echo -e "\t$(GREEN) [03/03] russian (ru)"
+	@echo -e "\t$(GREEN) [03/04] russian (ru)"
 	@msgmerge -q -o translations/po/bs-ng-ru.po translations/po/bs-ng-ru.po translations/pot/bs-ng.pot >/dev/null
+	@echo -e "\t$(GREEN) [04/04] spanish (es)"
+	@msgmerge -q -o translations/po/bs-ng-es.po translations/po/bs-ng-es.po translations/pot/bs-ng.pot >/dev/null
 	@tput sgr0
 
 mo:
 	@echo -e "$(MAGENTA)creating:	$(SMOOTHBLUE).mo files:"
 	@mkdir -p translations/mo/
-	@echo -e "\t$(GREEN) [01/03] german (de)"
+	@echo -e "\t$(GREEN) [01/04] german (de)"
 	@msgfmt --output-file=translations/mo/bs-ng-de.mo translations/po/bs-ng-de.po
-	@echo -e "\t$(GREEN) [02/03] italian (it)"
+	@echo -e "\t$(GREEN) [02/04] italian (it)"
 	@msgfmt --output-file=translations/mo/bs-ng-it.mo translations/po/bs-ng-it.po
-	@echo -e "\t$(GREEN) [03/03] russian (ru)"
+	@echo -e "\t$(GREEN) [03/04] russian (ru)"
 	@msgfmt --output-file=translations/mo/bs-ng-ru.mo translations/po/bs-ng-ru.po
+	@echo -e "\t$(GREEN) [04/04] spanish (es)"
+	@msgfmt --output-file=translations/mo/bs-ng-es.mo translations/po/bs-ng-es.po
 	@tput sgr0
 
 distclean: clean
@@ -95,6 +99,7 @@ install:
 	@mkdir -p $(DESTDIR)@PREFIX@/share/locale/de/LC_MESSAGES/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/locale/it/LC_MESSAGES/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/locale/ru/LC_MESSAGES/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/locale/es/LC_MESSAGES/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/doc/bashstyle-ng/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/gconf/schemas
 	@mkdir -p $(DESTDIR)/usr/share/icons/hicolor/32x32/apps/
@@ -134,6 +139,7 @@ install:
 	@install -m644 translations/mo/bs-ng-de.mo $(DESTDIR)/usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-it.mo $(DESTDIR)/usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-ru.mo $(DESTDIR)/usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
+	@install -m644 translations/mo/bs-ng-es.mo $(DESTDIR)/usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
 	@if test ! $(RC_DISABLE) ; then \
 		echo -e "$(MAGENTA)post-install:$(SMOOTHBLUE)	[01/05] re-adjust .bashrc entries" ; \
 		for file in $$(ls /home/*/.bashrc); do \
@@ -174,12 +180,10 @@ uninstall:
 	@echo -e "$(RED)removing:$(CYAN)	[03/08] .desktop file"
 	@rm -f  @PREFIX@/share/applications/bs-ng.desktop
 	@echo -e "$(RED)removing:$(CYAN)	[04/08] translations:$(BLUE) de it ru"
-	@rm -f  /usr/share/locale/de_DE/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
-	@rm -f  /usr/share/locale/it_IT/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
-	@rm -f  /usr/share/locale/ru_RU/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
+	@rm -f  /usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
 	@echo -e "$(RED)removing:$(CYAN)	[05/08] gconf schemas"
 	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle-deprecated.schemas
 	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle.schemas
