@@ -124,6 +124,7 @@ install:
 	@install -m644 data/bs-ng.desktop $(DESTDIR)@PREFIX@/share/applications/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[09/14] documentation"
 	@cp -r documentation/* $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
+	@cp ChangeLog TODO README AUTHORS COPYING.CODE COPYING.ICONS $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
 	@chmod -R 755 $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[10/14] settings rc"
 	@install -m755 rc/settings/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/settings/
