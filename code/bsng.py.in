@@ -514,13 +514,12 @@ class BashStyle(BashStyleNG):
 				  4 : "elite",
 				  5 : "poweruser",
 				  6 : "dirks",
-				  7 : "minimal",
-				  8 : "dot_prompt",
-				  9 : "bracket",
-				 10 : "sepa_ng",
-				 11 : "quirk",
-				 12 : "sputnik",
-				 13 : "ayoli",
+				  7 : "dot_prompt",
+				  8 : "bracket",
+				  9 : "sepa_ng",
+				 10 : "quirk",
+				 11 : "sputnik",
+				 12 : "ayoli",
 				}
 
 		self.prompt_style.set_active(swap_dic(prompt_styles)[gdb.get_string(gbase + "prompt_style")])
@@ -2424,8 +2423,7 @@ class CustomPromptBuilder(BashStyleNG):
 			     10 : "",
 			     11 : "",
 			     12 : "",
-			     13 : "",
-			     14 : "newPWD=\"${PWD}\"\
+			     13 : "newPWD=\"${PWD}\"\
 \nuser=\"whoami\"\
 \nhost=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
 \ndatenow=$(date \"+%a, %d %b %y\")\
@@ -2456,15 +2454,14 @@ class CustomPromptBuilder(BashStyleNG):
 [ \u @ \h ]\ [ \${files}.\${hiddenfiles}-\${executables}x \$(show_size) \
 \${directories}.\${hiddendirectories}d\${links}\${devices} ][ \${loaddiff} ][ \
 \$(ps ax | wc -l | sed -e \\\"s: ::g\\\")proc ]\\n[ \$(trunc_pwd) ] $ ",
-			       7 : "┌─[ \$(trunc_pwd) ]\\n└─[ \u @ \H / \$(show_tty) ( \\t ) $SHLVL ]·> ",
-			       8 : "\\n[ \\t ] \u \$(trunc_pwd) $ ",
-			       9 : "\\n.:[ \u @ \h ]:. .:[ \$(trunc_pwd) ]:.\n.:[·> ",
-			      10 : "\\n≺ ⁐ ⊐ \u  \h ⊏ ⁐ ≻\n \$(trunc_pwd)  ",
-			      11 : "\\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(show_uptime) ⁆⊐\\n⊏⁅ \$(trunc_pwd) ⁆⊐≻ ",
-			      12 : "\\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \
+			       7 : "\\n[ \\t ] \u \$(trunc_pwd) $ ",
+			       8 : "\\n.:[ \u @ \h ]:. .:[ \$(trunc_pwd) ]:.\n.:[·> ",
+			       9 : "\\n≺ ⁐ ⊐ \u  \h ⊏ ⁐ ≻\n \$(trunc_pwd)  ",
+			      10 : "\\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(show_uptime) ⁆⊐\\n⊏⁅ \$(trunc_pwd) ⁆⊐≻ ",
+			      11 : "\\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \
 \$(date +%d-%b-%y ) )-( files: \$(count_files +f) / folders: \$(count_files -d) )-\\n -< \$(trunc_pwd) >- ",
-			      13 : "\\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(trunc_pwd) )♦♦\\n♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(show_uptime) \$ )♦♦ ",
-			      14 : "┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD \
+			      12 : "\\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(trunc_pwd) )♦♦\\n♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(show_uptime) \$ )♦♦ ",
+			      13 : "┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD \
 )─<\n└─( \$(date \"+%H:%M\") \$ )─> ",
 			     }
 
