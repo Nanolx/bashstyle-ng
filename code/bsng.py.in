@@ -515,11 +515,10 @@ class BashStyle(BashStyleNG):
 				  5 : "poweruser",
 				  6 : "dirks",
 				  7 : "dot_prompt",
-				  8 : "bracket",
-				  9 : "sepa_ng",
-				 10 : "quirk",
-				 11 : "sputnik",
-				 12 : "ayoli",
+				  8 : "sepa_ng",
+				  9 : "quirk",
+				 10 : "sputnik",
+				 11 : "ayoli",
 				}
 
 		self.prompt_style.set_active(swap_dic(prompt_styles)[gdb.get_string(gbase + "prompt_style")])
@@ -2422,8 +2421,7 @@ class CustomPromptBuilder(BashStyleNG):
 			      9 : "",
 			     10 : "",
 			     11 : "",
-			     12 : "",
-			     13 : "newPWD=\"${PWD}\"\
+			     12 : "newPWD=\"${PWD}\"\
 \nuser=\"whoami\"\
 \nhost=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
 \ndatenow=$(date \"+%a, %d %b %y\")\
@@ -2456,7 +2454,6 @@ class CustomPromptBuilder(BashStyleNG):
 \$(ps ax | wc -l | sed -e \\\"s: ::g\\\")proc ]\\n[ \$(trunc_pwd) ] $ ",
 			       7 : "\\n[ \\t ] \u \$(trunc_pwd) $ ",
 			       8 : "\\n.:[ \u @ \h ]:. .:[ \$(trunc_pwd) ]:.\n.:[·> ",
-			       9 : "\\n≺ ⁐ ⊐ \u  \h ⊏ ⁐ ≻\n \$(trunc_pwd)  ",
 			      10 : "\\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(show_uptime) ⁆⊐\\n⊏⁅ \$(trunc_pwd) ⁆⊐≻ ",
 			      11 : "\\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \
 \$(date +%d-%b-%y ) )-( files: \$(count_files +f) / folders: \$(count_files -d) )-\\n -< \$(trunc_pwd) >- ",
