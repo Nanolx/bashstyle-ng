@@ -32,23 +32,23 @@ show_space ()
 
 	case $1 in
 		*used-percent )
-			echo $(df | grep -w $2 | gawk '{print $4}')
+			echo $(df | grep -w $2 | gawk '{print $5}')
 		;;
 
 		*free-percent )
-			echo $((100-$(df | grep -w $2 | gawk '{print $4}' | sed -e 's/\%//g')))%
+			echo $((100-$(df | grep -w $2 | gawk '{print $5}' | sed -e 's/\%//g')))%
 		;;
 
 		*used )
-			echo $(df -h | grep -w $2 | gawk '{print $2}')B
-		;;
-
-		*free )
 			echo $(df -h | grep -w $2 | gawk '{print $3}')B
 		;;
 
+		*free )
+			echo $(df -h | grep -w $2 | gawk '{print $4}')B
+		;;
+
 		*total )
-			echo $(df -h | grep -w $2 | gawk '{print $1}')B
+			echo $(df -h | grep -w $2 | gawk '{print $2}')B
 		;;
 
 		* )
