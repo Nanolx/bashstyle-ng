@@ -511,18 +511,17 @@ class BashStyle(BashStyleNG):
 				  1 : "vector",
 				  2 : "clock",
 				  3 : "clock-ad",
-				  4 : "dash",
-				  5 : "job",
-				  6 : "elite",
-				  7 : "poweruser",
-				  8 : "dirks",
-				  9 : "minimal",
-				 10 : "dot_prompt",
-				 11 : "bracket",
-				 12 : "sepa_ng",
-				 13 : "quirk",
-				 14 : "sputnik",
-				 15 : "ayoli",
+				  4 : "job",
+				  5 : "elite",
+				  6 : "poweruser",
+				  7 : "dirks",
+				  8 : "minimal",
+				  9 : "dot_prompt",
+				 10 : "bracket",
+				 11 : "sepa_ng",
+				 12 : "quirk",
+				 13 : "sputnik",
+				 14 : "ayoli",
 				}
 
 		self.prompt_style.set_active(swap_dic(prompt_styles)[gdb.get_string(gbase + "prompt_style")])
@@ -1954,7 +1953,7 @@ class CustomPromptBuilder(BashStyleNG):
 
 		def do_show_cpb_help(widget, data=None):
 			subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/chapter07.html", shell=True)
-			
+
 		self.show_cpb_help.connect("clicked", do_show_cpb_help)
 
 		####################### Connect the Username Button ###############################
