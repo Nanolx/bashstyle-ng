@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>BashStyle-NG 7.11 Doc / Chapter 0</title>
+<title>BashStyle-NG 7.11 Doc / Installation</title>
 <body>
 <h2 align="center"><font color="#00A8FF">Chapter 0: Installation</font></h2>
 <table border=0 align=center>
@@ -13,44 +13,26 @@
 </table>
 </head>
 <hr><br>
-<font color="#FBA330">&nbsp;<b>Installation:</font><br></b><br>
+<h3><font color="#FBA330">1.1 Installation:</font></h3>
 
-<table border="1">
-	<tr>
-		<td width="50%">Check Requirements:</td>
-		<td>./configure</td>
-	</tr>
-	<tr>
-		<td>Compile the terminfofiles and<br>
-		    create the binary translations:</td>
-		<td>make</td>
-	</tr>
-	<tr>
-		<td>Install BashStyle-NG:</td>
-		<td>sudo make install <b>[ or ]</b> su -c "make install"</td>
-	</tr>
-</table><br>
+Installing BashStyle-NG is quite easy. First check the dependencies<br>
+with: <font color="35a90c">`./configure'</font>, then build all necessary files via: <font color="35a90c">`make'</font>.<br>
+<br>
+The last step is to install it, use either <font color="FB4330">`sudo make install'</font> or<br>
+<font color="FB4330">`su -c "make install"'</font>.<br>
 
-<font color="#FBA330">&nbsp;<b>Configure Options</font></b><br><br>
+<h3><font color="#FBA330">1.2 Configure Options</font></h3>
 
-The configure-script BS-NG comes with, is not a common autotools-based one, instead it's<br>
-a very modular bash	script I've written. You can pass a small set of options to it:<br><br>
+The configure-script BashStyle-NG comes with, is not a common autotools-based one;<br>
+instead it's a very modular bash	script I've written.<br><br>
 
-<table border="1">
-  <tr>
-    <td>--prefix=</td>
-    <td>The prefix to install BS-NG in</td>
-    <td>Default: /usr</td>
-  </tr>
-  <tr>
-    <td>--maint</td>
-    <td>Enter `Maintainer Mode' (disable checks)</td>
-    <td>Default: not entered</td>
-  </tr>
-</table>
+You can pass a small set of options to it:<br><br>
 
-<br><br>
-<i><font color="#E173E4"><b>Note:</b></font> --maint must be set before --prefix, if you wish to use it.</i>
+<font color="35a90c">`--prefix'</font>	-- The prefix to install BashStyle-NG in -- default is /usr<br>
+<font color="35a90c">`--maint'</font> -- Enter maintainermode (no checks) -- default is no<br><br>
+
+<i><font color="#E173E4"><b>Note:</b></font> that <font color="35a90c">`--maint'</font> <b>must</b>
+be set before <font color="35a90c">`--prefix'</font>, if you wish to use it.</i>
 
 </body>
 </html>
