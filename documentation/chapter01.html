@@ -1,10 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>BashStyle-NG 7.11 Doc / Chapter 1</title>
+<title>BashStyle-NG 7.11 Doc / Style Settings</title>
 </head>
 <body>
-<h2 align="center"><font color="#00A8FF">Chapter 1: Style</font></h2>
+<h2 align="center"><font color="#00A8FF">Chapter 1: Style Settings</font></h2>
 <table border=0 align=center>
 	<tr>
 		<td><a href="chapter00.html">Chapter 0 &lt;&lt;</a></td>
@@ -13,22 +13,23 @@
 	</tr>
 </table>
 <hr><br>
-<img src="img/bs-ng-style.png" border="0"><br><br>
+<img src="img/bs-ng-style.png"><p>
 
-<h3><font color="#88D058">Use BashStyle-NG:</font></h3>
-&nbsp;When enabled, BS-NG is used to manage your bashs configuration.<br><br>
+<h3><font color="#FBA330">1.0 Use BashStyle-NG:</font></h3>
+This enables BashStyle-NG and let's it manage your bash.
 
-<h3><font color="#88D058">Colored Prompts:</font></h3>
-&nbsp;When enabled, BS-NG creates colorfull prompts, else, or if on the<br>
-&nbsp;linux-console, monochrome prompts are used.<br><br>
+<h3><font color="#FBA330">1.1 Colored Prompts:</font></h3>
+This enables colorful bashprompts. Else they'll become monochrome.<br>
+* When you're on the linux-console, they'll always be monochrome.
 
-<h3><font color="#88D058">Colored ls output:</font></h3>
-&nbsp;When enabled, ls colors it's output according to $LS_COLORS.<br><br>
+<h3><font color="#FBA330">1.2 Colored ls output:</font></h3>
+This will color the output of <font color="35a90c">`ls'</font> according to
+<a href="./chapter11.html">$LS_COLORS</a>.<p>
 
-<img src="img-style/bs-ng-ls.png" border="0" alt=""><br><br>
+<img src="img-style/bs-ng-ls.png">
 
-<h3><font color="#88D058">Change Color Style:</font></h3>
-&nbsp;Choose the way colors are drawn:<br><br>
+<h3><font color="#FBA330">1.3 Change Color Style:</font></h3>
+Choose the way colors are drawn:<p>
 <table border="1">
 	<tr>
 		<td>Normal</td>
@@ -52,106 +53,86 @@
 	</tr>
 </table>
 
-<h3><font color="#88D058">Colored Manpages:</font></h3>
-&nbsp;When enabled, BS-NG uses a special terminfofile, to give you colored manpages<br>
+<h3><font color="#FBA330">Colored Manpages:</font></h3>
+Enables the use of a special terminfo file, which will color manpages.<br>
 
-<h3><font color="#88D058">Terminfo for Manpages:</font></h3>
-&nbsp;Choose which terminfofile to use for coloring manpages:<br><br>
+<h3><font color="#FBA330">Terminfo for Manpages:</font></h3>
+Choose which terminfofile to use for coloring manpages:<p>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Terminfo: Mostlike</b></font><br><br>
+<h4><font color="#GAA330">Terminfo: Mostlike</font></h4>
 
-<img src="img-style/bs-ng-mostlike.png" border="0" alt=""><br><br>
+<img src="img-style/bs-ng-mostlike.png"><p>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Terminfo: Bold</b></font><br><br>
+<h4><font color="#GAA330">Terminfo: Bold</font></h4>
 
-<img src="img-style/bs-ng-bold.png" border="0" alt=""><br><br>
+<img src="img-style/bs-ng-bold.png"><p>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Terminfo: Nebula</b></font><br><br>
+<h4><font color="#GAA330">Terminfo: Nebula</font></h4>
 
-<img src="img-style/bs-ng-nebula.png" border="0" alt=""><br><br>
+<img src="img-style/bs-ng-nebula.png"><p>
 
-<h3><font color="#88D058">Colored grep output:</font></h3>
-&nbsp;When enabled, grep colors it's output.<br><br>
+<h3><font color="#FBA330">Colored grep output:</font></h3>
+When enabled, grep colors it's output.<p>
 
-<img src="img-style/bs-ng-grep.png" border="0" alt=""><br><br>
+<img src="img-style/bs-ng-grep.png"><p>
 
-<h3><font color="#88D058">Choose Grep Color:</font></h3>
-&nbsp;Choose the color for matching words in greps output.<br><br>
+<h3><font color="#FBA330">Choose Grep Color:</font></h3>
+Choose the color for matching words in greps output.<p>
 
-<h3><font color="#88D058">Choose Color to Change/Change Color to:</font></h3>
-&nbsp;Choose a part of the prompt and change it's color.<br>
-&nbsp;This works with all shipped styles, and with all custom-defined ones,<br>
-&nbsp;that use symbolic-colors, e.g. $usercolor instead of $blue<br><br>
+<h3><font color="#FBA330">Choose Color to Change/Change Color to:</font></h3>
+Choose a part of the prompt and change it's color.<br>
 
-<h3><font color="#88D058">Use random style:</font></h3>
-&nbsp;When enabled, BS-NG chooses a random style on each startup.<br><br>
+<h3><font color="#FBA330">Use random style:</font></h3>
+Choose a random style at startup.<p>
 
-<h3><font color="#88D058">Reload Terminal:</font></h3>
-&nbsp;Press this to restart the terminal to immediately test changes.<br><br>
+<h3><font color="#FBA330">Choose Style:</font></h3>
+Choose what style to use for your Bashprompt<br>
+Available Styles:<p>
 
-<h3><font color="#88D058">Choose Style:</font></h3>
-&nbsp;Choose what style to use for your Bashprompt<br>
-&nbsp;Available Styles:<br><br>
+<h4><font color="#GAA330">Style: Separator</font></h4>
+<tt>[This Style has Options on the <a href="./chapter05.html">`Extras'-Page</a>]</tt><p>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Separator</b></font> <tt>[This Style has Options on the `Extras' Page]</tt><br><br>
+<img src="img-style/bs-ng-separator.png"><p>
 
-<img src="img-style/bs-ng-separator.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: Vector</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Vector</b></font><br><br>
+<img src="img-style/bs-ng-vector.png"><p>
 
-<img src="img-style/bs-ng-vector.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: Floating Clock</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Floating Clock</b></font><br><br>
+<img src="img-style/bs-ng-floating-clock.png"><p>
 
-<img src="img-style/bs-ng-floating-clock.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: Clock-Advanced</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Clock-Advanced</b></font><br><br>
+<img src="img-style/bs-ng-clock-advanced.png"><p>
 
-<img src="img-style/bs-ng-clock-advanced.png" width="656" height="70" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: Elite</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Dash</b></font><br><br>
+<img src="img-style/bs-ng-elite.png"><p>
 
-<img src="img-style/bs-ng-dash.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: PowerUser</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Job</b></font><br><br>
+<img src="img-style/bs-ng-poweruser.png"><p>
 
-<img src="img-style/bs-ng-job.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: Dirks</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Elite</b></font><br><br>
+<img src="img-style/bs-ng-dirks.png"><p>
 
-<img src="img-style/bs-ng-elite.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: .Prompt</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Poweruser</b></font><br><br>
+<img src="img-style/bs-ng-dot-prompt.png"><p>
 
-<img src="img-style/bs-ng-poweruser.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: Sepa-NG</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Dirks</font><b><br><br>
+<img src="img-style/bs-ng-sepa-ng.png"><p>
 
-<img src="img-style/bs-ng-dirks.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: Quirk</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Minimal</b><br><br>
+<img src="img-style/bs-ng-quirk.png"><p>
 
-<img src="img-style/bs-ng-minimal.png" border="0" alt=""><br><br>
+<h4><font color="#GAA330">Style: Sputnik</font></h4>
 
-&nbsp;&nbsp;<font color="#FBA330"><b>Dot.Prompt</b></font><br><br>
-
-<img src="img-style/bs-ng-dot-prompt.png" border="0" alt=""><br><br>
-
-&nbsp;&nbsp;<font color="#FBA330"><b>Bracket</b></font><br><br>
-
-<img src="img-style/bs-ng-bracket.png" border="0" alt=""><br><br>
-
-&nbsp;&nbsp;<font color="#FBA330"><b>Sepa-NG<b></font><br><br>
-
-<img src="img-style/bs-ng-sepa-ng.png" border="0" alt=""><br><br>
-
-&nbsp;&nbsp;<font color="#FBA330"><b>Quirk</b></font><br><br>
-
-<img src="img-style/bs-ng-quirk.png" border="0" alt=""><br><br>
-
-&nbsp;&nbsp;<font color="#FBA330"><b>Sputnik</b></font><br><br>
-
-<img src="img-style/bs-ng-sputnik.png" border="0" alt="0">
+<img src="img-style/bs-ng-sputnik.png">
 
 </body>
 </html>
