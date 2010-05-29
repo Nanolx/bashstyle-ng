@@ -511,17 +511,16 @@ class BashStyle(BashStyleNG):
 				  1 : "vector",
 				  2 : "clock",
 				  3 : "clock-ad",
-				  4 : "job",
-				  5 : "elite",
-				  6 : "poweruser",
-				  7 : "dirks",
-				  8 : "minimal",
-				  9 : "dot_prompt",
-				 10 : "bracket",
-				 11 : "sepa_ng",
-				 12 : "quirk",
-				 13 : "sputnik",
-				 14 : "ayoli",
+				  4 : "elite",
+				  5 : "poweruser",
+				  6 : "dirks",
+				  7 : "minimal",
+				  8 : "dot_prompt",
+				  9 : "bracket",
+				 10 : "sepa_ng",
+				 11 : "quirk",
+				 12 : "sputnik",
+				 13 : "ayoli",
 				}
 
 		self.prompt_style.set_active(swap_dic(prompt_styles)[gdb.get_string(gbase + "prompt_style")])
@@ -2390,9 +2389,7 @@ class CustomPromptBuilder(BashStyleNG):
 \nlet prompt_line=${LINES}-1\
 \nunset BSNG_GCONF_READ",
 			      5 : "",
-			      6 : "export JOBCOUNT=$(jobs | wc -l | tr -d \" \")",
-			      7 : "",
-			      8 : "\
+			      6 : "\
 \nlocal one=$(uptime | sed -e \"s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\\1/\" -e \"s/ //g\")\
 \nlocal five=$(uptime | sed -e \"s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\).*/\\2/\" -e \"s/ //g\")\
 \nlocal diff1_5=$(echo -e \"scale = scale ($one) \\nx=$one - $five\\n if (x>0) {print \\\"up\\\"} else {print \\\"down\\\"}\\n print x \\nquit \\n\" | bc)\
@@ -2421,14 +2418,14 @@ class CustomPromptBuilder(BashStyleNG):
 \ndevices=\" ${devicetemp}bc\"\
 \nfi\
 \nunset devicetemp",
+			      7 : "",
+			      8 : "",
 			      9 : "",
 			     10 : "",
 			     11 : "",
 			     12 : "",
 			     13 : "",
-			     14 : "",
-			     15 : "",
-			     16 : "newPWD=\"${PWD}\"\
+			     14 : "newPWD=\"${PWD}\"\
 \nuser=\"whoami\"\
 \nhost=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
 \ndatenow=$(date \"+%a, %d %b %y\")\
@@ -2454,22 +2451,20 @@ class CustomPromptBuilder(BashStyleNG):
 			       2 : "\\n┌( \u @ \h )─( \$(date +%I:%M%P) -:- \$(date +%m)/\$(date +%d) )\\n└( \$(trunc_pwd) )·> ",
 			       3 : "[ \u @ \h : \$(trunc_pwd) ] ",
 			       4 : "\[\\033[\${prompt_line};0H\]\\n┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\\n└─( uptime: \$(show_uptime) : $ )·> ",
-			       5 : "\\n\u @ \h \d \$(date +%I:%M:%S%P)\n\$(trunc_pwd) $ ",
-			       6 : "\n\u @ \h \$(trunc_pwd) [ $JOBCOUNT ] \$ ",
-			       7 : "\\n┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(show_uptime) ]\\n└─[ $ : \$(trunc_pwd) ]·> ",
-			       8 : "\\n[ \$(date +%T) - \$(date +%D) ]\
+			       5 : "\\n┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(show_uptime) ]\\n└─[ $ : \$(trunc_pwd) ]·> ",
+			       6 : "\\n[ \$(date +%T) - \$(date +%D) ]\
 [ \u @ \h ]\ [ \${files}.\${hiddenfiles}-\${executables}x \$(show_size) \
 \${directories}.\${hiddendirectories}d\${links}\${devices} ][ \${loaddiff} ][ \
 \$(ps ax | wc -l | sed -e \\\"s: ::g\\\")proc ]\\n[ \$(trunc_pwd) ] $ ",
-			       9 : "┌─[ \$(trunc_pwd) ]\\n└─[ \u @ \H / \$(show_tty) ( \\t ) $SHLVL ]·> ",
-			      10 : "\\n[ \\t ] \u \$(trunc_pwd) $ ",
-			      11 : "\\n.:[ \u @ \h ]:. .:[ \$(trunc_pwd) ]:.\n.:[·> ",
-			      12 : "\\n≺ ⁐ ⊐ \u  \h ⊏ ⁐ ≻\n \$(trunc_pwd)  ",
-			      13 : "\\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(show_uptime) ⁆⊐\\n⊏⁅ \$(trunc_pwd) ⁆⊐≻ ",
-			      14 : "\\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \
+			       7 : "┌─[ \$(trunc_pwd) ]\\n└─[ \u @ \H / \$(show_tty) ( \\t ) $SHLVL ]·> ",
+			       8 : "\\n[ \\t ] \u \$(trunc_pwd) $ ",
+			       9 : "\\n.:[ \u @ \h ]:. .:[ \$(trunc_pwd) ]:.\n.:[·> ",
+			      10 : "\\n≺ ⁐ ⊐ \u  \h ⊏ ⁐ ≻\n \$(trunc_pwd)  ",
+			      11 : "\\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(show_uptime) ⁆⊐\\n⊏⁅ \$(trunc_pwd) ⁆⊐≻ ",
+			      12 : "\\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \
 \$(date +%d-%b-%y ) )-( files: \$(count_files +f) / folders: \$(count_files -d) )-\\n -< \$(trunc_pwd) >- ",
-			      15 : "\\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(trunc_pwd) )♦♦\\n♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(show_uptime) \$ )♦♦ ",
-			      16 : "┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD \
+			      13 : "\\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(trunc_pwd) )♦♦\\n♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(show_uptime) \$ )♦♦ ",
+			      14 : "┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD \
 )─<\n└─( \$(date \"+%H:%M\") \$ )─> ",
 			     }
 
