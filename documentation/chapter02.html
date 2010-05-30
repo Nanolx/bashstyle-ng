@@ -14,38 +14,26 @@
 </table>
 <hr><br>
 
-<img src="img/bs-ng-aliases.png" border="0" alt=""><br><br>
+<img src="img/bs-ng-aliases.png" border="0" alt=""><p />
 
 <h3><font color="#FBA330">2.0 Aliases</font></h3>
 
-&nbsp;Aliases allow a string to be a used as a simple command,<br>
-&nbsp;any arguement passed to the alias is passed to the real command, too; eg:<br><br>
-&nbsp;<b><font color="#E173E4">..=cd ../</b></font><br><br>
-&nbsp;<b>..</b> will then execute <b>cd ../</b><br><br>
-&nbsp;<b><font color="#E173E4">ll=ls -l</b></font><br><br>
-&nbsp;<b>ll $HOME/Desktop</b> will then execute <b>ls -l $HOME/Desktop</b><br><br>
+Aliases allow a string to be substituted for a word when it is used as the first word of a simple command.<p />
 
-&nbsp;<i>(<font color="#E173E4"><b>Note:</b></font> Define Aliases in BashStyle-NG without ' or " characters.)</i><br><br>
+<b>Example:</b> ..=cd ../<p />
 
-<h3><font color="#88D058">Default Aliases</font></h3>
-&nbsp;A set of aliases, bs-ng sets by default, regardless of user settings.<br><br>
-<table border="1">
-	<tr>
-		<td>reload</td>
-		<td>source ~/.bashrc</td>
-		<td>Reloads the BASHs configuration</td>
-	</tr>
-	<tr>
-		<td>rd</td>
-		<td>pw -P</td>
-		<td>If the current directory is a symlink, cd into the real one</td>
-	</tr>
-	<tr>
-		<td>ls</td>
-		<td>ls -CF --color=USERSETTING --group-directories-first</td>
-		<td>Use colors (if set by user), display directories before files</td>
-	</tr>
-</table>
+Now then issueing <font color="35a90c">`..'</font>, <font color="35a90c">`cd ../'</font> will be executed instead.<p />
+
+<i>(<font color="#E173E4"><b>Note:</b></font> Define Aliases in BashStyle-NG without <b>'</b> or <b>"</b> characters!)</i><p />
+
+<h3><font color="#FBA330">2.1 Default Aliases</font></h3>
+A set of aliases, set by default, regardless of usersettings:<p />
+
+<font color="35a90c">`reload'</font> -- <font color="35a90c">`source ~/.bashrc'</font> -- reloads bash-configuration<br>
+<font color="35a90c">`rd'</font> -- <font color="35a90c">`pwd -P'</font> -- if the current directory is a symlink, <font color="35a90c">`cd'</font> into the real directory<br>
+<font color="35a90c">`ls'</font> -- <font color="35a90c">`ls -CF --color=USERSETTING --group-directories-first'</font> -- <font color="35a90c">`ls'</font> with color (if user-set), display directories before files*<p />
+
+* for more <font color="35a90c">`ls'</font> variants, check <a href="./chapter08.html">Chapter 08</a>.
 
 </body>
 </html>
