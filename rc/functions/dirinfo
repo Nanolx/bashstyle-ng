@@ -1,0 +1,82 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+dirinfo_get_creation_date () {
+
+	if [[ ! "$1" ]]; then
+		DIR="$PWD"
+	else	DIR="$1"
+	fi
+
+	if [[ -d "$DIR" ]]; then
+		ls -la --time-style=long-iso "$DIR" | grep " ./" | gawk '{print $6}'
+	fi
+
+}
+
+dirinfo_set_creation_date () {
+
+	if [[ ! "$1" ]]; then
+		DIR="$PWD"
+	else	DIR="$1"
+	fi
+
+	if [[ -e "$DIR"/.dirinfo ]]; then
+		sed -e '/Created/d' -i "$DIR"/.dirinfo
+		echo "Created=$(dirinfo_get_creation_date "$DIR")" >> "$DIR"/.dirinfo
+	fi
+
+}
+
+dirinfo_display_dirinfo () {
+
+	if [[ ! "$1" ]]; then
+		DIR="$PWD"
+	else	DIR="$1"
+	fi
+
+	if [[ -e "$DIR"/.dirinfo ]]; then
+		. "$DIR"/.dirinfo
+	fi
+
+	echo -e "\n${eyellow} -- $PWD --${ewhite}"
+
+	if [[ ! ${Type} ]]; then
+
+		if [[ ${Owner} ]]; then
+			echo -e "${eiceblue}\t - owner:\t ${Owner}"
+		fi
+		if [[ ${Created} ]]; then
+			echo -e "${emagenta}\t - created:\t ${Created}"
+		fi
+		if [[ ${Tags} ]]; then
+			echo -e "${ered}\t - tags:\t ${Tags}"
+		fi
+		if [[ ${Notes} ]]; then
+			echo -e "\n${egreen}\t - notes:\t ${Notes}"
+		fi
+
+	else	dirinfo_display_ascii
+	fi
+
+	unset Owner Created Allow Delete Tags Notes Type
+	echo ""
+
+}
+
+dirinfo_display_ascii () {
+
+	echo -e "$(cat $BSNG_RC_DIR/ascii/folder-${Type})" | sed -e "s/@OWNER@/${Owner}/g" \
+		-e "s/@CREATED@/${Created}/g" \
+		-e "s/@TAGS@/${Tags}/g" \
+		-e "s/@NOTES@/${Notes}/g"
+
+}
