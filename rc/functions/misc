@@ -86,10 +86,10 @@ done
 
 lscd () {
 
-	builtin cd "${@}"
-	if [[ ! $1 == "-" ]]; then
-		echo -e "$(bs_ng_echo $yellow) $PWD\n"
-	fi
+	builtin cd "${@}" &>/dev/null
+	dirinfo_display_dirinfo "${@}"
+	
+	echo -e "${epink}content:"
 	ls $LSCD_OPTS
 
 }
