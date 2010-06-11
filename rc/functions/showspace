@@ -12,16 +12,12 @@
 show_space_help ()
 {
 
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	iceblue=$(bs_ng_echo $iceblue)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}show_space ${white}|${green} --used ${iceblue}[display used space in mb/gb]\
-	\n${orange}show_space ${white}|${green} --free ${iceblue}[display free space in mb/gb]\
-	\n${orange}show_space ${white}|${green} --percent-used ${iceblue}[display used space in %]\
-	\n${orange}show_space ${white}|${green} --percent-free ${iceblue}[display free space in %]" | column -t
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}show_space ${ewhite}|${egreen} --used ${eiceblue}[display used space in mb/gb]\
+	\n${eorange}show_space ${ewhite}|${egreen} --free ${eiceblue}[display free space in mb/gb]\
+	\n${eorange}show_space ${ewhite}|${egreen} --percent-used ${eiceblue}[display used space in %]\
+	\n${eorange}show_space ${ewhite}|${egreen} --percent-free ${eiceblue}[display free space in %]" | column -t
 	echo ""
 	tput sgr0
 

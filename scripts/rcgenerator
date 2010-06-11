@@ -9,14 +9,6 @@
 #                                                       #
 #########################################################
 
-source $BSNG_PREFIX/share/bashstyle-ng/rc/functions/bs-ng-echo
-
-white=$(bs_ng_echo $white)
-green=$(bs_ng_echo $green)
-orange=$(bs_ng_echo $orange)
-iceblue=$(bs_ng_echo $iceblue)
-green=$(bs_ng_echo $green)
-
 source $BSNG_PREFIX/share/bashstyle-ng/rc/functions/gconf
 
 dbg_msg()
@@ -66,7 +58,7 @@ _bash_nxrc()
 	_rc_echo "}\n"
 
 	_rc_echo bsource gconf debug check_opt xunalias ls git exchange xmv xcp xchown xconv random
-	_rc_echo bsource bs_ng_echo showuptime showmem showsystemload showcpuload man2pdf countfiles
+	_rc_echo bsource showuptime showmem showsystemload showcpuload man2pdf countfiles
 	_rc_echo bsource countprocesses showbatteryload showip showsize showspace showtty systeminfos
 	_rc_echo bsource truncpwd ps misc
 
@@ -379,8 +371,8 @@ _generate_bashrc()
 	_bash_prompt
 	_bash_finalize
 
-	echo -e "${white}Bash configuration saved as: ${iceblue}$HOME/bashstyle/bashrc.bs-ng-$DATE\
-	\n${white}copy it to ${green}$HOME/.bashrc${white} to use it. (disable BashStyle in Bashstyle-NG,\
+	echo -e "${ewhite}Bash configuration saved as: ${eiceblue}$HOME/bashstyle/bashrc.bs-ng-$DATE\
+	\n${ewhite}copy it to ${egreen}$HOME/.bashrc${ewhite} to use it. (disable BashStyle in Bashstyle-NG,\
 	\nbefore using this config-file - settings will be overwritten else)\n"
 
 	tput sgr0
@@ -415,8 +407,8 @@ _generate_inputrc()
 		mv $HOME/.inputrc.old $HOME/.inputrc
 	fi
 
-	echo -e "${white}Readline configuration saved as ${iceblue}$HOME/bashstyle/readline-rc.bs-ng-$DATE\
-	\n${white}copy it to ${green}$HOME/.inputrc${white} to use it (disable ReadlineCFG in Bashstyle-NG,\
+	echo -e "${ewhite}Readline configuration saved as ${eiceblue}$HOME/bashstyle/readline-rc.bs-ng-$DATE\
+	\n${ewhite}copy it to ${egreen}$HOME/.inputrc${ewhite} to use it (disable ReadlineCFG in Bashstyle-NG,\
 	\nbefore using this config-file - file will be overwritten else)\n"
 
 	tput sgr0
@@ -450,8 +442,8 @@ _generate_vimrc()
 		mv $HOME/.vimrc.old $HOME/.vimrc
 	fi
 
-	echo -e "${white}Vim configuration saved as: ${iceblue}$HOME/bashstyle/vim-rc.bs-ng-$DATE\
-	\n${white}copy it to ${green}$HOME/.vimrc${white} to use it (disable VimCFG in BashStyle-NG,\
+	echo -e "${ewhite}Vim configuration saved as: ${eiceblue}$HOME/bashstyle/vim-rc.bs-ng-$DATE\
+	\n${ewhite}copy it to ${egreen}$HOME/.vimrc${ewhite} to use it (disable VimCFG in BashStyle-NG,\
 	\nbefore using this config-file - file will be overwritten else)\n"
 
 	tput sgr0
@@ -485,8 +477,8 @@ _generate_nanorc()
 		mv $HOME/.nanorc.old $HOME/.nanorc
 	fi
 
-	echo -e "${white}Nano configuration saved as: ${iceblue}$HOME/bashstyle/nano-rc.bs-ng-$DATE\
-	\n${white}copy it to ${green}$HOME/.nanorc${white} to use it (disable NanoCFG in BashStyle-NG,\
+	echo -e "${ewhite}Nano configuration saved as: ${eiceblue}$HOME/bashstyle/nano-rc.bs-ng-$DATE\
+	\n${ewhite}copy it to ${green}$HOME/.nanorc${ewhite} to use it (disable NanoCFG in BashStyle-NG,\
 	\nbefore using this config-file - file will be overwritten else)\n"
 
 	tput sgr0
@@ -520,12 +512,12 @@ case $1 in
 
 	*)
 
-		echo -e "\n${white}Usage:\n"
-		echo -e "${orange}rcgenerator${white} |${green} --bash ${iceblue}[generate standalone BASH config]\
-		\n${orange}rcgenerator${white} |${green} --readline ${iceblue}[generate standalone Readline config]\
-		\n${orange}rcgenerator${white} |${green} --vim ${iceblue}[generate standalone VIm config]\
-		\n${orange}rcgenerator${white} |${green} --nano ${iceblue}[generate standalone Nano config]\
-		\n${orange}rcgenerator${white} |${green} --all ${iceblue}[all above at once]\n" | column -t
+		echo -e "\n${ewhite}Usage:\n"
+		echo -e "${eorange}rcgenerator${ewhite} |${egreen} --bash ${eiceblue}[generate standalone BASH config]\
+		\n${eorange}rcgenerator${ewhite} |${egreen} --readline ${eiceblue}[generate standalone Readline config]\
+		\n${eorange}rcgenerator${ewhite} |${egreen} --vim ${eiceblue}[generate standalone VIm config]\
+		\n${eorange}rcgenerator${ewhite} |${egreen} --nano ${eiceblue}[generate standalone Nano config]\
+		\n${eorange}rcgenerator${ewhite} |${egreen} --all ${eiceblue}[all above at once]\n" | column -t
 		echo ""
 
 	;;

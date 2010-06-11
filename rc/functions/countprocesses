@@ -12,12 +12,9 @@
 count_processes_help ()
 {
 
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:"
-	echo -e "\n${orange}count_processes${white} | ${green}! no options !\n"
+	echo -e "\n${ewhite}Usage:"
+	echo -e "\n${eorange}count_processes${ewhite} | ${egreen}! no options !\n"
 	tput sgr0
 
 }

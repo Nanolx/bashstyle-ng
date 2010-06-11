@@ -16,12 +16,12 @@ function pre_prompt {
 let prompt_x=$(tput cols)-29
 tput sc
 tput cup 0 ${prompt_x}
-echo -en "$(bs_ng_echo $sepacolor)\
-[$(bs_ng_echo $datecolor) \
+echo -en "$(echo $sepacolor)\
+[$(echo $datecolor | sed -e 's/\\\[//g' -e 's/\\\]//g') \
 $(date '+%a, %d %b %y')\
-$(bs_ng_echo $sepacolor) ::\
-$(bs_ng_echo $timecolor) $(date +%T)\
-$(bs_ng_echo $sepacolor) ]"
+$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g') ::\
+$(echo $timecolor | sed -e 's/\\\[//g' -e 's/\\\]//g') $(date +%T)\
+$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g') ]"
 tput rc
 }
 

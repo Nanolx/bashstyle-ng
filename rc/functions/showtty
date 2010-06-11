@@ -12,12 +12,8 @@
 show_tty_help ()
 {
 
-	white=$(bs-ng-echo $white)
-	orange=$(bs-ng-echo $orange)
-	green=$(bs-ng-echo $green)
-
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}show_tty${white}|${green} ! no options !\n"
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}show_tty${ewhite}|${egreen} ! no options !\n"
 	tput sgr0
 
 }

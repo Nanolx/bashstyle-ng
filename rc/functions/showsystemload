@@ -11,15 +11,11 @@
 
 show_system_load_help ()
 {
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	iceblue=$(bs_ng_echo $iceblue)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}show_system_load${white} | ${green}1 ${iceblue}[load average for 1 minute]\
-	\n${orange}show_system_load${white} | ${green}10 ${iceblue}[load average for 10 minutes]\
-	\n${orange}show_system_load${white} | ${green}15 ${iceblue}[load average for 15 minutes]\n" | column -t
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}show_system_load${ewhite} | ${egreen}1 ${eiceblue}[load average for 1 minute]\
+	\n${eorange}show_system_load${ewhite} | ${egreen}10 ${eiceblue}[load average for 10 minutes]\
+	\n${eorange}show_system_load${ewhite} | ${egreen}15 ${eiceblue}[load average for 15 minutes]\n" | column -t
 	echo ""
 	tput sgr0
 
@@ -52,14 +48,14 @@ show_system_load () {
 
 	if [[ $enabcol == true ]]; then
 		if [[ ${load100} -lt 35 ]]; then
-			loadcolor=$(bs_ng_echo $blue)
+			loadcolor=${eblue}
 		elif [[ ${load100} -ge 35 ]] && [[ ${load100} -lt 120 ]]; then
-			loadcolor=$(bs_ng_echo $iceblue)
+			loadcolor=${eiceblue}
 		elif [[ ${load100} -ge 120 ]] && [[ ${load100} -lt 200 ]]; then
-			loadcolor=$(bs_ng_echo $green)
+			loadcolor=${egreen}
 		elif [[ ${load100} -ge 200 ]] && [[ ${load100} -lt 300 ]]; then
-			loadcolor=$(bs_ng_echo $yellow)
-		else	loadcolor=$(bs_ng_echo $red)
+			loadcolor=${eyellow}
+		else	loadcolor=${ered}
 		fi
 	fi
 

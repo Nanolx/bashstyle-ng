@@ -6075,55 +6075,6 @@ ru_RU: Alexander Lushpai</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="bsngecho">
-                        <property name="label" translatable="yes">BS-NG-Echo</property>
-                        <property name="height_request">28</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                      </object>
-                      <packing>
-                        <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkComboBox" id="showspace">
-                        <property name="height_request">28</property>
-                        <property name="visible">True</property>
-                        <property name="model">liststore6</property>
-                        <property name="tearoff_title">Display Diskspace</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext6"/>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="showcpuload">
-                        <property name="label" translatable="yes">CPU Load</property>
-                        <property name="height_request">28</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                      </object>
-                      <packing>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkComboBox" id="showmem">
                         <property name="height_request">28</property>
                         <property name="visible">True</property>
@@ -6145,6 +6096,20 @@ ru_RU: Alexander Lushpai</property>
                       </packing>
                     </child>
                     <child>
+                      <object class="GtkButton" id="showcpuload">
+                        <property name="label" translatable="yes">CPU Load</property>
+                        <property name="height_request">28</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkComboBox" id="showbatteryload">
                         <property name="height_request">28</property>
                         <property name="visible">True</property>
@@ -6152,6 +6117,28 @@ ru_RU: Alexander Lushpai</property>
                         <property name="tearoff_title">Display Batteryload:</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext4"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="showspace">
+                        <property name="height_request">28</property>
+                        <property name="visible">True</property>
+                        <property name="model">liststore6</property>
+                        <property name="tearoff_title">Display Diskspace</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext6"/>
                           <attributes>
                             <attribute name="text">0</attribute>
                           </attributes>

@@ -12,13 +12,9 @@
 man2pdf_help ()
 {
 
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	iceblue=$(bs_ng_echo $iceblue)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:"
-	echo -e	"\n${orange}man2pdf${white} |${green} <manualpage>${iceblue} [generate a pdf from <manualpage>]\n"
+	echo -e "\n${ewhite}Usage:"
+	echo -e	"\n${eorange}man2pdf${ewhite} |${egreen} <manualpage>${eiceblue} [generate a pdf from <manualpage>]\n"
 	tput sgr0
 
 }

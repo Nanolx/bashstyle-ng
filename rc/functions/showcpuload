@@ -12,12 +12,9 @@
 show_cpu_load_help ()
 {
 
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}show_cpu_load${white} |${green} ! no options !\n"
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}show_cpu_load${ewhite} |${egreen} ! no options !\n"
 	tput sgr0
 
 }
@@ -56,16 +53,16 @@ show_cpu_load ()
 			fi
 
 			if [[ $cpu -lt 16 ]]; then
-				color=$(bs_ng_echo $iceblue)
+				color=${eiceblue}
 			elif [[ $cpu -lt 26 ]]; then
-				color=$(bs_ng_echo $turqoise)
+				color=${eturqoise}
 			elif [[ $cpu -lt 41 ]]; then
-				color=$(bs_ng_echo $smoothgreen)
+				color=${esmoothgreen}
 			elif [[ $cpu -lt 61 ]]; then
-				color=$(bs_ng_echo $green)
+				color=${egreen}
 			elif [[ $cpu -lt 81 ]]; then
-				color=$(bs_ng_echo $yellow)
-			else	color=$(bs_ng_echo $red)
+				color=${yellow}
+			else	color=${ered}
 			fi
 
 			if [[ $cpu -lt 10 ]]; then

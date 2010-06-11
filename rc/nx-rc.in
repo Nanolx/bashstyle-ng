@@ -27,7 +27,7 @@ bsource () {
 }
 
 bsource gconf debug check_opt xunalias ls git exchange xmv xcp xchown xconv random
-bsource bs-ng-echo showuptime showmem showsystemload showcpuload man2pdf countfiles
+bsource dirinfo showuptime showmem showsystemload showcpuload man2pdf countfiles
 bsource countprocesses showbatteryload showip showsize showspace showtty systeminfos
 bsource truncpwd ps misc svn media bookmark dos2unix admin
 
@@ -167,8 +167,8 @@ fi
 fi
 
 if [[ $ERR_MSG != "" ]]; then
-	echo -e "$(bs_ng_echo $yellow)\n\nImportant informations:"
-	echo -e "$(bs_ng_echo $orange)${ERR_MSG}\n"
+	echo -e "${eyellow}\n\nImportant informations:"
+	echo -e "${eorange}${ERR_MSG}\n"
 fi
 
 unset BSNG_GCONF_READ

@@ -11,16 +11,12 @@
 
 show_mem_help ()
 {
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	iceblue=$(bs_ng_echo $iceblue)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:\n"
-	echo -e "\n${orange}show_mem ${white}|${green} --used ${iceblue}[display used memory in mb]\
-	\n${orange}show_mem ${white}|${green} --free ${iceblue}[display free memory in mb]\
-	\n${orange}show_mem ${white}|${green} --percent-used ${iceblue}[display used memory in %]\
-	\n${orange}show_mem ${white}|${green} --percent-free ${iceblue}[display free memory in %]" | column -t
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "\n${eorange}show_mem ${ewhite}|${egreen} --used ${eiceblue}[display used memory in mb]\
+	\n${eorange}show_mem ${ewhite}|${egreen} --free ${eiceblue}[display free memory in mb]\
+	\n${eorange}show_mem ${ewhite}|${egreen} --percent-used ${eiceblue}[display used memory in %]\
+	\n${eorange}show_mem ${ewhite}|${egreen} --percent-free ${eiceblue}[display free memory in %]" | column -t
 	echo ""
 	tput sgr0
 

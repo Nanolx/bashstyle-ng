@@ -2150,15 +2150,6 @@ class CustomPromptBuilder(BashStyleNG):
 
 		self.showload.connect("changed", set_showload)
 
-		####################### Connect the BS-NG-Echo Button #############################
-
-		self.bsngecho = gtkbuilder.get_object("bsngecho")
-
-		def set_bsngecho(widget, data=None):
-			prompt_add("$(bs_ng_echo <color>)")
-
-		self.bsngecho.connect("clicked", set_bsngecho)
-
 		####################### Connect the ShowTTY Button ################################
 
 		self.showtty = gtkbuilder.get_object("showtty")

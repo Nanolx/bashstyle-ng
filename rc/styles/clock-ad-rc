@@ -14,12 +14,12 @@ if [[ $enabcol == true ]]; then
 user="whoami"
 host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
 
-esepacolor=$(bs_ng_echo $sepacolor)
-edatecolor=$(bs_ng_echo $datecolor)
-etimecolor=$(bs_ng_echo $timecolor)
-efontcolor=$(bs_ng_echo $fontcolor)
-epscolor=$(bs_ng_echo $pscolor)
-ewdircolor=$(bs_ng_echo $wdircolor)
+esepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+edatecolor=$(echo $datecolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+etimecolor=$(echo $timecolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+efontcolor=$(echo $fontcolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+epscolor=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+ewdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 dirchar=$(get_key dirchar)
 trunc_symbol=$(get_key pwdchar)
 trunc_length=$(($(echo $trunc_symbol | wc -m)-1))

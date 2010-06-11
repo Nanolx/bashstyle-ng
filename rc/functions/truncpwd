@@ -12,12 +12,8 @@
 trunc_pwd_help ()
 {
 
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	green=$(bs_ng_echo $green)
-
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}trunc_pwd ${white}|${green} ! no options !\n"
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}trunc_pwd ${ewhite}|${egreen} ! no options !\n"
 	tput sgr0
 
 }
@@ -37,9 +33,9 @@ trunc_pwd ()
 			trunc_symbol=$(get_key pwdchar)
 			dirchar=$(get_key dirchar)
 
-			newsepacolor=$(bs_ng_echo $sepacolor)
-			newwdircolor=$(bs_ng_echo $wdircolor)
-			newpscoloror=$(bs_ng_echo $pscolor)
+			newsepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+			newwdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+			newpscoloror=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 
 			if [ ${#PWD} -gt $pwdmaxlen ]; then
 				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))

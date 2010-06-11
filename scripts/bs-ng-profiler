@@ -9,13 +9,6 @@
 #							#
 #########################################################
 
-source $BSNG_PREFIX/share/bashstyle-ng/rc/functions/bs-ng-echo
-
-white=$(bs_ng_echo $white)
-orange=$(bs_ng_echo $orange)
-iceblue=$(bs_ng_echo $iceblue)
-green=$(bs_ng_echo $green)
-
 source $BSNG_PREFIX/share/bashstyle-ng/rc/functions/gconf
 
 BASH_KEYS="cdpath colored_grep colored_ls colored_man custom_command custom_prompt \
@@ -50,9 +43,9 @@ DATE="$(date +%Y-%m-%d-%I-%M)"
 _help ()
 {
 
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}bs-ng-profiler${white} |${green} --export <profile>${iceblue} [export a profile]\
-	\n${orange}bs-ng-profiler${white} |${green} --import <profile>${iceblue} [import a profile]" | column -t
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}bs-ng-profiler${ewhite} |${egreen} --export <profile>${eiceblue} [export a profile]\
+	\n${eorange}bs-ng-profiler${ewhite} |${egreen} --import <profile>${eiceblue} [import a profile]" | column -t
 	echo ""
 	tput sgr0
 

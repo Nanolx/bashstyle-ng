@@ -11,18 +11,14 @@
 
 count_files_help()
 {
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	iceblue=$(bs_ng_echo $iceblue)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:"
-	echo -e "\n${orange}count_files${white} | ${green}+h ${iceblue}[count files and folders - include hidden ones] \
-	\n${orange}count_files${white} | ${green}-h ${iceblue}[count files and folders - exclude hidden ones] \
-	\n${orange}count_files${white} | ${green}+d ${iceblue}[count folders - include hidden ones] \
-	\n${orange}count_files${white} | ${green}-d ${iceblue}[count folders - exclude hidden ones] \
-	\n${orange}count_files${white} | ${green}+f ${iceblue}[count files - include hidden ones] \
-	\n${orange}count_files${white} | ${green}-f ${iceblue}[count files - exclude hidden ones]\n"
+	echo -e "\n${ewhite}Usage:"
+	echo -e "\n${eorange}count_files${ewhite} | ${egreen}+h ${eiceblue}[count files and folders - include hidden ones] \
+	\n${eorange}count_files${ewhite} | ${egreen}-h ${eiceblue}[count files and folders - exclude hidden ones] \
+	\n${eorange}count_files${ewhite} | ${egreen}+d ${eiceblue}[count folders - include hidden ones] \
+	\n${eorange}count_files${ewhite} | ${egreen}-d ${eiceblue}[count folders - exclude hidden ones] \
+	\n${eorange}count_files${ewhite} | ${egreen}+f ${eiceblue}[count files - include hidden ones] \
+	\n${eorange}count_files${ewhite} | ${egreen}-f ${eiceblue}[count files - exclude hidden ones]\n"
 	tput sgr0
 }
 

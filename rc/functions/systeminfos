@@ -12,20 +12,16 @@
 system_infos_help()
 {
 
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	iceblue=$(bs_ng_echo $iceblue)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}system_infos ${white}|${green} --cpu\t\t${iceblue} [Display CPU Model and Freq]\
-	\n${orange}system_infos ${white}|${green} --kernel\t${iceblue} [Display Kernel Version, Release and Machine]\
-	\n${orange}system_infos ${white}|${green} --memory\t${iceblue} [Display Total, Free and Used RAM]\
-	\n${orange}system_infos ${white}|${green} --partitions\t${iceblue} [Display Major, Minor, Blocks and Node for all Paritions]\
-	\n${orange}system_infos ${white}|${green} --pci\t\t${iceblue} [Display Infos about all PCI Devices (and their kernel-module)]\
-	\n${orange}system_infos ${white}|${green} --usb\t\t${iceblue} [Display Infos about all USB Devices (and their kernel-module)]\
-	\n${orange}system_infos ${white}|${green} --bios\t${iceblue} [Display SMBIOS DMI Infos]\
-	\n${orange}system_infos ${white}|${green} --mounts\t${iceblue} [Display all mounted devices]\n"
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}system_infos ${ewhite}|${egreen} --cpu\t\t${eiceblue} [Display CPU Model and Freq]\
+	\n${eorange}system_infos ${ewhite}|${egreen} --kernel\t${eiceblue} [Display Kernel Version, Release and Machine]\
+	\n${eorange}system_infos ${ewhite}|${egreen} --memory\t${eiceblue} [Display Total, Free and Used RAM]\
+	\n${eorange}system_infos ${ewhite}|${egreen} --partitions\t${eiceblue} [Display Major, Minor, Blocks and Node for all Paritions]\
+	\n${eorange}system_infos ${ewhite}|${egreen} --pci\t\t${eiceblue} [Display Infos about all PCI Devices (and their kernel-module)]\
+	\n${eorange}system_infos ${ewhite}|${egreen} --usb\t\t${eiceblue} [Display Infos about all USB Devices (and their kernel-module)]\
+	\n${eorange}system_infos ${ewhite}|${egreen} --bios\t${eiceblue} [Display SMBIOS DMI Infos]\
+	\n${eorange}system_infos ${ewhite}|${egreen} --mounts\t${eiceblue} [Display all mounted devices]\n"
 	tput sgr0
 }
 
@@ -88,33 +84,33 @@ system_infos ()
 
 system_infos_cpu()
 {
-	echo -e "${white}CPU:\n"
-	echo -e "${orange}Model:${iceblue} $(grep "model name" /proc/cpuinfo | sed -e 's/.*: //g')"
-	echo -e "${orange}MHz  :${iceblue} $(grep "cpu MHz" /proc/cpuinfo | sed -e 's/.*: //g')\n"
+	echo -e "${ewhite}CPU:\n"
+	echo -e "${eorange}Model:${eiceblue} $(grep "model name" /proc/cpuinfo | sed -e 's/.*: //g')"
+	echo -e "${eorange}MHz  :${eiceblue} $(grep "cpu MHz" /proc/cpuinfo | sed -e 's/.*: //g')\n"
 }
 
 system_infos_kernel()
 {
-	echo -e "${white}Kernel:\n"
-	echo -e "${orange}Release:${iceblue} $(uname -r)"
-	echo -e "${orange}Version:${iceblue} $(uname -v)"
-	echo -e "${orange}Machine:${iceblue} $(uname -m)\n"
+	echo -e "${ewhite}Kernel:\n"
+	echo -e "${eorange}Release:${eiceblue} $(uname -r)"
+	echo -e "${eorange}Version:${eiceblue} $(uname -v)"
+	echo -e "${eorange}Machine:${eiceblue} $(uname -m)\n"
 
 }
 
 system_infos_memory()
 {
-	echo -e "${white}RAM:\n"
-	echo -e "${orange}Total:${iceblue} $(((`showmem --free`) + (`showmem --used`))) MB"
-	echo -e "${orange}Free :${iceblue} $(showmem --free) MB"
-	echo -e "${orange}Used :${iceblue} $(showmem --used) MB\n"
+	echo -e "${ewhite}RAM:\n"
+	echo -e "${eorange}Total:${eiceblue} $(((`showmem --free`) + (`showmem --used`))) MB"
+	echo -e "${eorange}Free :${eiceblue} $(showmem --free) MB"
+	echo -e "${eorange}Used :${eiceblue} $(showmem --used) MB\n"
 
 }
 
 system_infos_partitions()
 {
-	echo -e "${white}Partitions:${orange}\n"
-	echo -e "major minor blocks device-node ${iceblue}\
+	echo -e "${ewhite}Partitions:${eorange}\n"
+	echo -e "major minor blocks device-node ${eiceblue}\
 	\n$(cat /proc/partitions | sed -e '1,2d')" | column -t
 	echo ""
 
@@ -122,7 +118,7 @@ system_infos_partitions()
 
 system_infos_pci()
 {
-	echo -e "${white}PCI Devices:\n${iceblue}"
+	echo -e "${ewhite}PCI Devices:\n${eiceblue}"
 	lspci -vkmm
 	echo ""
 
@@ -130,7 +126,7 @@ system_infos_pci()
 
 system_infos_usb()
 {
-	echo -e "${white}USB Devices:\n${iceblue}"
+	echo -e "${ewhite}USB Devices:\n${eiceblue}"
 	lsusb -v
 	echo ""
 
@@ -138,8 +134,8 @@ system_infos_usb()
 
 system_infos_mounts()
 {
-	echo -e "${white}Mounts:\n${orange}\
-	\ndevice-node on mount-point type filesystem options\n" ${iceblue} "\n\n$(mount)" | column -t
+	echo -e "${ewhite}Mounts:\n${eorange}\
+	\ndevice-node on mount-point type filesystem options\n" ${eiceblue} "\n\n$(mount)" | column -t
 	echo ""
 
 }
@@ -151,16 +147,16 @@ system_infos_bios()
 		read auth
 
 		if [[ $auth == sudo ]]; then
-			echo -e "${white}SMBIOS/DMI Infos:${iceblue}\n"
+			echo -e "${ewhite}SMBIOS/DMI Infos:${eiceblue}\n"
 			sudo dmidecode -q
 
 		elif [[ $auth == su ]]; then
-			echo -e "${white}SMBIOS/DMI Infos:${iceblue}\n"
+			echo -e "${ewhite}SMBIOS/DMI Infos:${eiceblue}\n"
 			su -c "dmidecode -q"
 
 		else	echo "wrong auth command"
 		fi
-	else	echo -e "${white}SMBIOS/DMI Infos:${iceblue}\n"
+	else	echo -e "${ewhite}SMBIOS/DMI Infos:${eiceblue}\n"
 		dmidecode -q
 
 	fi

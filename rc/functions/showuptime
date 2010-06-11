@@ -12,12 +12,9 @@
 show_uptime_help ()
 {
 
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}show_uptime${white} |${green} ! no options !\n"
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}show_uptime${ewhite} |${egreen} ! no options !\n"
 	tput sgr0
 
 }

@@ -12,14 +12,10 @@
 show_battery_load_help ()
 {
 
-	white=$(bs_ng_echo $white)
-	orange=$(bs_ng_echo $orange)
-	iceblue=$(bs_ng_echo $iceblue)
-	green=$(bs_ng_echo $green)
 
-	echo -e "\n${white}Usage:\n"
-	echo -e "${orange}show_battery_load${white} |${green} --acpi${iceblue} [show batteryload using acpi]\
-	\n${orange}show_battery_load${white} |${green} --apm${iceblue} [show batteryload using apm]" | column -t
+	echo -e "\n${ewhite}Usage:\n"
+	echo -e "${eorange}show_battery_load${ewhite} |${egreen} --acpi${eiceblue} [show batteryload using acpi]\
+	\n${eorange}show_battery_load${ewhite} |${egreen} --apm${eiceblue} [show batteryload using apm]" | column -t
 	echo ""
 	tput sgr0
 

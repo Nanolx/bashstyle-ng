@@ -56,6 +56,28 @@ purple="\[\033[${style};38;5;604m\]"
 pink="\[\033[${style};38;5;213m\]"
 cream="\[\033[${style};38;5;5344m\]"
 
+eblack="\033[${style};38;5;0m"
+ered="\033[${style};38;5;1m"
+egreen="\033[${style};38;5;2m"
+eyellow="\033[${style};38;5;3m"
+eblue="\033[${style};38;5;4m"
+emagenta="\033[${style};38;5;129m"
+ecyan="\033[${style};38;5;6m"
+ewhite="\033[${style};38;5;7m"
+ecoldblue="\033[${style};38;5;33m"
+esmoothblue="\033[${style};38;5;111m"
+eiceblue="\033[${style};38;5;45m"
+eturqoise="\033[${style};38;5;50m"
+esmoothgreen="\033[${style};38;5;42m"
+ewinered="\033[${style};38;5;637m"
+ebrown="\033[${style};38;5;684m"
+esilver="\033[${style};38;5;761m"
+eocher="\033[${style};38;5;690m"
+eorange="\033[${style};38;5;714m"
+epurple="\033[${style};38;5;604m"
+epink="\033[${style};38;5;213m"
+ecream="\033[${style};38;5;5344m"
+
 eval usercolor=$(get_key color/user)
 eval hostcolor=$(get_key color/host)
 eval datecolor=$(get_key color/date)
@@ -66,7 +88,7 @@ eval sepacolor=$(get_key color/separatorc)
 eval upcolor=$(get_key color/uptime)
 eval pscolor=$(get_key color/ps234c)
 
-export enabcol black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream
+export enabcol black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream eblack ered egreen eyellow eblue emagenta ecyan ewhite ecoldblue esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher eorange epurple epink ecream
 
 else	dbg_msg Bashstyle-NG Setting: Colors Off
 fi
