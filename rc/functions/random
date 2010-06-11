@@ -30,16 +30,37 @@ randompw () {
 
 randomfile () {
 
-	if [[ ! "$FILES" ]]; then
-		files=(*)
-	else	files=("$FILES")
-	fi
+	case $1 in
 
-	n=${#files[@]}
+			-first)
+				sed -n '1p' ~/.randomhistory
+			;;
 
-	if [[ ! "$1" ]]; then
-		echo "${files[RANDOM % n]}"
-	else	"$1" "${files[RANDOM % n]}"
-	fi
+			-last)
+				sed -n '$p' ~/.randomhistory
+			;;
+
+			-n)
+				sed -n "${2}p" ~/.randomhistory
+			;;
+
+			*)
+				if [[ ! "$FILES" ]]; then
+					files=(*)
+				else	files=("$FILES")
+				fi
+
+				n=${#files[@]}
+
+				RANDOMFILE="${files[RANDOM % n]}"
+
+				echo "$RANDOMFILE" >> ~/.randomhistory
+
+				if [[ ! "$1" ]]; then
+					echo "$RANDOMFILE"
+				else	"$1" "$RANDOMFILE"
+				fi
+			;;
+	esac
 
 }
