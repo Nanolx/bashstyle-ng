@@ -62,7 +62,7 @@ end_message () {
 	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\n"
 	if [[ $ERR_MSG != "" ]]; then
 		echo -e "${YELLOW}Notes:\
-			\n${WHITE}${ERR_MSG}\n"
+			\n${WHITE}${ERR_MSG}"
 	fi
 	tput sgr0
 
