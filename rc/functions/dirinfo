@@ -62,19 +62,19 @@ dirinfo_get_dirinfo () {
 dirinfo_display_info () {
 
 	if [[ ${Owner} ]]; then
-		echo -e "\n${eiceblue}\t - owner:\t ${Owner}"
+		echo -e "\n${eiceblue}\tOwner:   ${Owner}"
 	fi
 
 	if [[ ${Created} ]]; then
-		echo -e "${emagenta}\t - created:\t ${Created}"
+		echo -e "${emagenta}\tCreated: ${Created}"
 	fi
 
 	if [[ ${Tags} ]]; then
-		echo -e "${ered}\t - tags:\t ${Tags}"
+		echo -e "${ered}\tTags:    ${Tags}"
 	fi
 
 	if [[ ${Notes} ]]; then
-		echo -e "\n${egreen}\t - notes:\t ${Notes}"
+		echo -e "\n${egreen} ${Notes}"
 	fi
 
 }
