@@ -87,8 +87,8 @@ done
 lscd () {
 
 	builtin cd "${@}" &>/dev/null
-	dirinfo_display_dirinfo "${@}"
-	
+	dirinfo_get_dirinfo "${@}"
+
 	echo -e "${epink}content:"
 	ls $LSCD_OPTS
 

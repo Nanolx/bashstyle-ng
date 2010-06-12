@@ -36,7 +36,7 @@ dirinfo_set_creation_date () {
 
 }
 
-dirinfo_display_dirinfo () {
+dirinfo_get_dirinfo () {
 
 	if [[ ! "$1" ]]; then
 		DIR="$PWD"
@@ -50,33 +50,50 @@ dirinfo_display_dirinfo () {
 	echo -e "\n${eyellow} -- $PWD --${ewhite}"
 
 	if [[ ! ${Type} ]]; then
-
-		if [[ ${Owner} ]]; then
-			echo -e "${eiceblue}\t - owner:\t ${Owner}"
-		fi
-		if [[ ${Created} ]]; then
-			echo -e "${emagenta}\t - created:\t ${Created}"
-		fi
-		if [[ ${Tags} ]]; then
-			echo -e "${ered}\t - tags:\t ${Tags}"
-		fi
-		if [[ ${Notes} ]]; then
-			echo -e "\n${egreen}\t - notes:\t ${Notes}"
-		fi
-
+		dirinfo_display_info
 	else	dirinfo_display_ascii
 	fi
 
-	unset Owner Created Allow Delete Tags Notes Type
+	unset Owner Created Allow Delete Tags Notes Type ASCII
 	echo ""
+
+}
+
+dirinfo_display_info () {
+
+	if [[ ${Owner} ]]; then
+		echo -e "\n${eiceblue}\t - owner:\t ${Owner}"
+	fi
+
+	if [[ ${Created} ]]; then
+		echo -e "${emagenta}\t - created:\t ${Created}"
+	fi
+
+	if [[ ${Tags} ]]; then
+		echo -e "${ered}\t - tags:\t ${Tags}"
+	fi
+
+	if [[ ${Notes} ]]; then
+		echo -e "\n${egreen}\t - notes:\t ${Notes}"
+	fi
 
 }
 
 dirinfo_display_ascii () {
 
-	echo -e "$(cat $BSNG_RC_DIR/ascii/folder-${Type})" | sed -e "s/@OWNER@/${Owner}/g" \
-		-e "s/@CREATED@/${Created}/g" \
-		-e "s/@TAGS@/${Tags}/g" \
-		-e "s/@NOTES@/${Notes}/g"
+	if [[ -e $BSNG_RC_DIR/ascii/folder-${Type} ]]; then
+		ASCII="$BSNG_RC_DIR/ascii/folder-${Type}"
+	elif [[ -e $DIR/.dirascii ]]; then
+		ASCII="$DIR/.dirascii"
+	fi
+
+	if [[ $ASCII ]]; then
+		echo -e "$(cat $ASCII)" | sed -e "s/@OWNER@/${Owner}/g" \
+			-e "s/@CREATED@/${Created}/g" \
+			-e "s/@TAGS@/${Tags}/g" \
+			-e "s/@NOTES@/${Notes}/g"
+	else 	unset Type
+		dirinfo_display_info
+	fi
 
 }
