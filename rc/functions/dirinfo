@@ -70,7 +70,7 @@ dirinfo_display_info () {
 	fi
 
 	if [[ ${Tags} ]]; then
-		echo -e "${ered}\tTags:    ${Tags}"
+		echo -e "${ered}\tTags:    ${Tags[@]}"
 	fi
 
 	if [[ ${Notes} ]]; then
@@ -90,7 +90,7 @@ dirinfo_display_ascii () {
 	if [[ $ASCII ]]; then
 		echo -e "$(cat $ASCII)" | sed -e "s/@OWNER@/${Owner}/g" \
 			-e "s/@CREATED@/${Created}/g" \
-			-e "s/@TAGS@/${Tags}/g" \
+			-e "s/@TAGS@/${Tags[@]}/g" \
 			-e "s/@NOTES@/${Notes}/g"
 	else 	unset Type
 		dirinfo_display_info
