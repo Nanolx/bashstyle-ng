@@ -48,8 +48,9 @@ if [[ $0 == *gdm* ]]; then
 else
 
 dbg_msg BashStyle-NG: Starting
-dbg_msg BashStyle-NG Bash Version: $(echo $BASH_VERSION | sed -e 's/(.*//g')
-dbg_msg BashStyle-NG Bash Patchlevel: $(echo $BASH_VERSION | sed -e 's/.*(//g' -e 's/).*//g')
+dbg_msg BashStyle-NG Bash Major: $(echo $BASH_VERSION | gawk -F \. '{print $1}')
+dbg_msg BashStyle-NG Bash Minor: $(echo $BASH_VERSION | gawk -F \. '{print $2}')
+dbg_msg BashStyle-NG Bash Patch: $(echo $BASH_VERSION | gawk -F \. '{print $1}' | sed -e 's/(.*//g')
 dbg_msg BashStyle-NG Version: $BSNG_VERSION
 dbg_msg BashStyle-NG Prefix: $BSNG_PREFIX
 dbg_msg BashStyle-NG Debugging: Enabled
