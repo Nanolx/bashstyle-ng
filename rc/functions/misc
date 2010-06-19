@@ -92,6 +92,8 @@ lscd () {
 	echo -e "${epink}content:"
 	ls $LSCD_OPTS
 
+	echo "$PWD" > $HOME/.lastpwd
+
 }
 
 bashtips () {
