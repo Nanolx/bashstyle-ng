@@ -92,6 +92,7 @@ fi
 if [[ $(get_key dircolors/enable) == true ]]; then \
 	dbg_msg BashStyle-NG Loading: LSCOLORS
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/ls-rc
+fi
 
 source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/alias-rc
 
@@ -163,8 +164,6 @@ if [[ $WelcomeMessage != "" ]]; then \
 	dbg_msg BashStyle-NG Setting: Welcome Message
 	clear
 	$WelcomeMessage
-fi
-
 fi
 
 if [[ $ERR_MSG != "" ]]; then
