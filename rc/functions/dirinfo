@@ -12,12 +12,12 @@
 dirinfo_get_creation_date () {
 
 	if [[ ! "$1" ]]; then
-		DIR="$PWD"
+		DIR="."
 	else	DIR="$1"
 	fi
 
 	if [[ -d "$DIR" ]]; then
-		ls -la --time-style=long-iso "$DIR" | grep " ./" | gawk '{print $6}'
+		stat "$DIR" | grep "Modify" | gawk '{print $2}'
 	fi
 
 }
@@ -25,13 +25,13 @@ dirinfo_get_creation_date () {
 dirinfo_set_creation_date () {
 
 	if [[ ! "$1" ]]; then
-		DIR="$PWD"
+		DIR="."
 	else	DIR="$1"
 	fi
 
 	if [[ -e "$DIR"/.dirinfo ]]; then
 		sed -e '/Created/d' -i "$DIR"/.dirinfo
-		echo "Created=$(dirinfo_get_creation_date "$DIR")" >> "$DIR"/.dirinfo
+		echo "Created=$(dirinfo_get_creation_date $DIR)" >> "$DIR"/.dirinfo
 	fi
 
 }
@@ -39,7 +39,7 @@ dirinfo_set_creation_date () {
 dirinfo_get_dirinfo () {
 
 	if [[ ! "$1" ]]; then
-		DIR="$PWD"
+		DIR="."
 	else	DIR="$1"
 	fi
 
@@ -95,5 +95,32 @@ dirinfo_display_ascii () {
 	else 	unset Type
 		dirinfo_display_info
 	fi
+
+}
+
+dirinfo_index_db () {
+
+	find $HOME -name .dirinfo | grep -w .dirinfo > $HOME/.dirinfo_index
+
+}
+
+dirinfo_index_tags () {
+
+	if [[ -e $HOME/.dirinfo_index ]]; then
+		for dirinfo in $(cat $HOME/.dirinfo_index); do
+			echo "${dirinfo%.dirinfo}" :: $(grep Tags "$dirinfo") > $HOME/.dirinfo_tags
+		done
+		sed -e 's/Tags=(//' -e 's/)//g' -i $HOME/.dirinfo_tags
+	fi
+
+}
+
+dirinfo_search () {
+
+	case $1 in
+		*tags)
+			grep -w "$2" $HOME/.dirinfo_tags | gawk '{print $1}'
+		;;
+	esac
 
 }
