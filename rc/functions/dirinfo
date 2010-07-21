@@ -171,3 +171,32 @@ dirinfo_index () {
 	esac
 
 }
+
+dirinfo_create () {
+
+	if [[ ! -e $PWD/.dirinfo ]]; then
+		echo "Whoowns the folder?"
+		read OWNER
+
+		echo -e "\nWhen has the folder been created? (YYYY-MM-DD format)"
+		read CREATION
+
+		echo -e "\nWhat type of content?"
+		echo "(home download mediaplayer audio video game home picture share document book)"
+		read TYPE
+
+		echo -e "\nEnter some tags for the folder. (separate using  space)"
+		read TAGS
+
+		echo -e "\nDo you want to add some notes?"
+		read NOTES
+
+		echo Owner=\"$OWNER\" >> $PWD/.dirinfo
+		echo Created=$CREATION >> $PWD/.dirinfo
+		echo Type=$TYPE >> $PWD/.dirinfo
+		echo Tags=\($TAGS\) >> $PWD/.dirinfo
+		echo NOTES=\"$NOTES\" >> $PWD/.dirinfo
+
+	fi
+
+}
