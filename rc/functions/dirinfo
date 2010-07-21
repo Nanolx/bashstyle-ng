@@ -156,15 +156,15 @@ dirinfo_index () {
 		*search)
 			case $2 in
 				*tag)
-					grep " $3 " $HOME/.dirinfo_tags | gawk '{print $1}'
+					grep " $3" $HOME/.dirinfo_tags | gawk '{print $1}'
 				;;
 
 				*type)
-					grep " $3 " $HOME/.dirinfo_types | gawk '{print $1}'
+					grep " $3" $HOME/.dirinfo_types | gawk '{print $1}'
 				;;
 
 				*date)
-					grep " $3 " $HOME/.dirinfo_dates | gawk '{print $1}'
+					grep " $3" $HOME/.dirinfo_dates | gawk '{print $1}'
 				;;
 			esac
 		;;
