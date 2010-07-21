@@ -153,6 +153,16 @@ dirinfo_index () {
 			echo "[04/04] type index"
 			dirinfo_index_types
 		;;
+
+		*rebuild)
+			echo "[01/03] creation-date index"
+			dirinfo_index_dates
+			echo "[02/03] tag index"
+			dirinfo_index_tags
+			echo "[03/03] type index"
+			dirinfo_index_types
+		;;
+
 		*search)
 			case $2 in
 				*tag)
