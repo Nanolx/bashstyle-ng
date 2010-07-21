@@ -107,19 +107,66 @@ dirinfo_index_db () {
 dirinfo_index_tags () {
 
 	if [[ -e $HOME/.dirinfo_index ]]; then
+		rm -f $HOME/.dirinfo_tags
 		for dirinfo in $(cat $HOME/.dirinfo_index); do
-			echo "${dirinfo%.dirinfo}" :: $(grep Tags "$dirinfo") > $HOME/.dirinfo_tags
+			echo "${dirinfo%.dirinfo}" :: $(grep Tags "$dirinfo") >> $HOME/.dirinfo_tags
 		done
-		sed -e 's/Tags=(//' -e 's/)//g' -i $HOME/.dirinfo_tags
+		sed -e 's/Tags=(//g' -e 's/)//g' -i $HOME/.dirinfo_tags
 	fi
 
 }
 
-dirinfo_search () {
+dirinfo_index_types () {
+
+	if [[ -e $HOME/.dirinfo_index ]]; then
+		rm -f $HOME/.dirinfo_types
+		for dirinfo in $(cat $HOME/.dirinfo_index); do
+			echo "${dirinfo%.dirinfo}" :: $(grep Type "$dirinfo") >> $HOME/.dirinfo_types
+		done
+		sed -e 's/Type=//g' -i $HOME/.dirinfo_types
+	fi
+
+}
+
+dirinfo_index_dates () {
+
+	if [[ -e $HOME/.dirinfo_index ]]; then
+		rm -f $HOME/.dirinfo_dates
+		for dirinfo in $(cat $HOME/.dirinfo_index); do
+			echo "${dirinfo%.dirinfo}" :: $(grep Created "$dirinfo") >> $HOME/.dirinfo_dates
+		done
+		sed -e 's/Created=//g' -i $HOME/.dirinfo_dates
+	fi
+
+}
+
+dirinfo_index () {
 
 	case $1 in
-		*tags)
-			grep -w "$2" $HOME/.dirinfo_tags | gawk '{print $1}'
+		*update)
+			echo "[01/04] .dirinfo index"
+			dirinfo_index_db
+			echo "[02/04] creation-date index"
+			dirinfo_index_dates
+			echo "[03/04] tag index"
+			dirinfo_index_tags
+			echo "[04/04] type index"
+			dirinfo_index_types
+		;;
+		*search)
+			case $2 in
+				*tag)
+					grep -w "$3" $HOME/.dirinfo_tags | gawk '{print $1}'
+				;;
+
+				*type)
+					grep -w "$3" $HOME/.dirinfo_types | gawk '{print $1}'
+				;;
+
+				*date)
+					grep -w "$3" $HOME/.dirinfo_dates | gawk '{print $1}'
+				;;
+			esac
 		;;
 	esac
 
