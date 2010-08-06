@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <interface>
   <requires lib="gtk+" version="2.16"/>
-  <!-- interface-requires vte 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -5555,7 +5554,6 @@ ru_RU: Alexander Lushpai</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -5569,7 +5567,6 @@ ru_RU: Alexander Lushpai</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -5586,74 +5583,6 @@ ru_RU: Alexander Lushpai</property>
               </object>
               <packing>
                 <property name="position">9</property>
-              </packing>
-            </child>
-            <child type="tab">
-              <placeholder/>
-            </child>
-            <child>
-              <object class="GtkHBox" id="hbox7">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkButton" id="vte_reload">
-                    <property name="width_request">26</property>
-                    <property name="height_request">220</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="image_position">top</property>
-                    <child>
-                      <object class="GtkVBox" id="vbox20">
-                        <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkLabel" id="label99">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">Reload Terminal</property>
-                            <property name="angle">90</property>
-                          </object>
-                          <packing>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkImage" id="image1">
-                            <property name="visible">True</property>
-                            <property name="stock">gtk-refresh</property>
-                            <property name="icon-size">2</property>
-                          </object>
-                          <packing>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="fill">False</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="VteTerminal" id="vte">
-                    <property name="height_request">205</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="background_tint_color">#00000fa0ffff</property>
-                    <property name="background_transparent">True</property>
-                    <property name="encoding">UTF-8</property>
-                    <property name="scroll_on_keystroke">True</property>
-                    <property name="scroll_on_output">False</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="position">10</property>
               </packing>
             </child>
             <child type="tab">
@@ -5921,7 +5850,6 @@ ru_RU: Alexander Lushpai</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -6129,9 +6057,6 @@ ru_RU: Alexander Lushpai</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
                       <object class="GtkComboBox" id="showspace">
                         <property name="height_request">28</property>
                         <property name="visible">True</property>
@@ -6151,6 +6076,9 @@ ru_RU: Alexander Lushpai</property>
                         <property name="bottom_attach">4</property>
                         <property name="y_options"></property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                 </child>

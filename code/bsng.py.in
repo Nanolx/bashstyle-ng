@@ -45,7 +45,7 @@ parser.add_option("-p", "--prefix", dest="prefix",
 
 parser.add_option("-g", "--group", dest="group", default="style",
                   help="display a given group of options at startup, one of:\
-                  \nstyle, alias, advanced, readline, extra, profile, vim, nano, ls, custom or preview")
+                  \nstyle, alias, advanced, readline, extra, profile, vim, nano, ls or custom")
 
 (options, args) = parser.parse_args()
 
@@ -68,7 +68,6 @@ groups = {
 	  "nano" : "7",
 	  "ls" : "8",
 	  "custom" : "9",
-	  "preview" : "10"
 	 }
 
 initial_page = groups[options.group]
@@ -256,9 +255,6 @@ class BashStyleNG(object):
 		image_custom=icon_theme.load_icon( "bs-ng-custom", 32, 0 )
 		liststore.append([image_custom, _("<b>Custom</b>")])
 
-		image_preview=icon_theme.load_icon( "bs-ng-preview", 32, 0 )
-		liststore.append([image_preview, _("<b>Preview</b>")])
-
 		image_help=icon_theme.load_icon( "bs-ng-help", 32, 0 )
 		liststore.append([image_help, _("<b>Help</b>")])
 
@@ -271,11 +267,11 @@ class BashStyleNG(object):
 		def treeview_action(widget, extra, data=None):
 			selection = treeview.get_selection()
 			position = int(selection.get_selected_rows()[1][0][0])
-			if position <= 10:
+			if position <= 9:
 				notebook.set_current_page(position)
-			elif position == 11:
+			elif position == 10:
 				subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/index.html", shell=True)
-			elif position == 12:
+			elif position == 11:
 				aboutdialog.show_all()
 				aboutdialog.connect("response", about_destroy, None)
 
@@ -305,23 +301,6 @@ class BashStyle(BashStyleNG):
 			shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))
 
 		self.use_bashstyle.connect("toggled", set_use_bashstyle)
-
-		####################### Connect the VTE ###########################################
-
-		self.vte = gtkbuilder.get_object("vte")
-
-		self.vte.fork_command('bash')
-
-		####################### Connect the Reload VTE Button #############################
-
-		self.vte_reload = gtkbuilder.get_object("vte_reload")
-
-		def reload_preview(widget, data=None):
-			vte = gtkbuilder.get_object("vte")
-			vte.feed_child('unset PROMPT_COMMAND \n')
-			vte.feed_child('source $HOME/.bashrc \n')
-
-		self.vte_reload.connect("clicked", reload_preview)
 
 		####################### Load the Colored Prompts Button ###########################
 
