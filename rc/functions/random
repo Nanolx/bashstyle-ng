@@ -44,8 +44,8 @@ randomfile () {
 				sed -n "${2}p" $HOME/.randomhistory
 			;;
 
-			-#)
-				wc -l $HOME/.randomhistory
+			-l)
+				wc -l $HOME/.randomhistory | gawk '{print $1}'
 			;;
 
 			*)
