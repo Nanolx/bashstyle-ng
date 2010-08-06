@@ -48,6 +48,10 @@ randomfile () {
 				wc -l $HOME/.randomhistory | gawk '{print $1}'
 			;;
 
+			-c)
+				rm $HOME/.randomhistory
+			;;
+
 			*)
 				if [[ ! "$FILES" ]]; then
 					files=(*)
