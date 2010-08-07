@@ -15,11 +15,11 @@
 <hr><br>
 <img src="img/bs-ng-adv.png" border="0" alt=""><br><br>
 
-<h3><font color="#88D058">Reset Bash's History:</font></h3>
-&nbsp;Reset the bashs history.<br><br>
+<h3><font color="#FBA330">3.0 Reset Bash's History:</font></h3>
+&nbsp;Reset the bash history.<br><br>
 
-<h3><font color="#88D058">History Control Type:</font></h3>
-&nbsp;Choose the type of history controlling:<br>
+<h3><font color="#FBA330">3.1 History Control Type:</font></h3>
+&nbsp;Choose the type of histo	ry controlling:<br>
 
 <table border="1">
 	<tr>
@@ -40,54 +40,56 @@
 	</tr>
 </table>
 
-<h3><font color="#88D058">History Blacklist:</font></h3>
+<h3><font color="#FBA330">3.2 History Blacklist:</font></h3>
 &nbsp;List commands, which shouldn't be logged by the Bash, here<br>
 &nbsp;Separate entries with a <b>`:'</b>, eg:<br>
 &nbsp;&nbsp;su:sudo:exit<br>
 &nbsp;in this case su, sudo and exit wouldn't be logged by the bash.<br><br>
 
-<h3><font color="#88D058">History Size:</font></h3>
-&nbsp;The Maximum number of commands and lines in the History<br>
-&nbsp;in bash the number of commands and lines is separated,<br>
+<h3><font color="#FBA330">3.3 History Size:</font></h3>
+&nbsp;The Maximum number of commands and lines in the History.<br>
+&nbsp;In bash the number of commands and lines is separated,<br>
 &nbsp;but BS-NG unifies both options.<br><br>
 
-<h3><font color="#88D058">Separator:</font></h3>
-&nbsp;When using the Separator style, this character will be used as the separator.<br><br>
+<h3><font color="#FBA330">3.4 Separator:</font></h3>
+&nbsp;When using the Separator style, this character(s) will be used as the separator.<br><br>
 
-<h3><font color="#88D058">PS2 PS3 and PS4:</font></h3>
-&nbsp;This will be used for PS2 PS3 and PS4, affects all styles.<br><br>
+<h3><font color="#FBA330">3.5 PS2 PS3 and PS4:</font></h3>
+&nbsp;This will be used for PS2 PS3 and PS4, affects all styles.<br>
+&nbsp;PS2/3/4 are additional prompts. PS2 is used when braking long commands<br>
+&nbsp;over several lines, PS3 is used by builtin set and PS4 for example by rpmbuild<br><br>
 
-<h3><font color="#88D058">PWD cut char:</font></h3>
-&nbsp;The char that signalizes, that the current working directory is truncated, eg:<br>
-&nbsp;if set to = truncated PWDs look like this:<br>
+<h3><font color="#FBA330">3.6 PWD cut char:</font></h3>
+&nbsp;The char that signalizes that the current working directory is truncated, eg<br>
+&nbsp;if set to `=' truncated PWDs look like this:<br>
 &nbsp;&nbsp;not truncated: /home/chris/Desktop/Projekte/bashstyle-ng<br>
 &nbsp;&nbsp;truncated: <b>=</b>sktop/Projekte/bashstyle-ng<br><br>
 
-<h3><font color="#88D058">Maximum PWD length</font></h3>
+<h3><font color="#FBA330">3.7 Maximum PWD length</font></h3>
 &nbsp;Choose the maximum length of a non-truncated working directory.<br><br>
 
-<h3><font color="#88D058">Change CDPATH:</font></h3>
+<h3><font color="#FBA330">3.8 Change CDPATH:</font></h3>
 &nbsp;Set redirections for cd. eg:<br>
 &nbsp;&nbsp;.:/usr/share:/usr
 &nbsp;now `cd icons' will do `cd /usr/share/icons' and `cd bin' would do `cd /usr/bin'.<br>
 &nbsp;Don't forget to add . to CDPATH, else you may get unwanted results!<br><br>
 
-<h3><font color="#88D058">Change Completion Blacklist:</font></h3>
+<h3><font color="#FBA330">3.9 Change Completion Blacklist:</font></h3>
 &nbsp;Choose which files to be ignored by the filename-completion, eg:<br>
 &nbsp;&nbsp;.back:.bak:~:.old<br>
 &nbsp;now pressing [TAB] for filename-completion will ignore all files with those suffixes.<br><br>
 
-<h3><font color="#88D058">Set Timeout (in seconds):</font></h3>
+<h3><font color="#FBA330">3.10 Set Timeout (in seconds):</font></h3>
 &nbsp;Choose how many seconds of inactivity Bash shall wait, before logging out automatically. 0 to disable.<br><br
 
-<h3><font color="#88D058">Change editor for fc:</font></h3>
+<h3><font color="#FBA330">3.11 Change editor for fc:</font></h3>
 &nbsp;Choose which editor to run, when issueing the "fc" command.<br><br>
 
-<h3><font color="#88D058">Welcome Message:</font></h3>
+<h3><font color="#FBA330">3.12 Welcome Message:</font></h3>
 &nbsp;Choose a welcome message (only if style is not Clock-Advanced or Clock), eg:<br>
 &nbsp;<b>fortune prolinux</b> or <b>echo Welcome Back</b><br>
 
-<h3><font color="#88D058">Path:</font></h3>
+<h3><font color="#FBA330">3.13 PATH:</font></h3>
 &nbsp;An Application which is inside PATH can be run without passing the absolute path, eg:<br>
 &nbsp;&nbsp;/bin:/usr/bin:/usr/local/bin<br>
 &nbsp;say, `foo' is in /usr/bin, you could now call `foo' rather than `/usr/bin/foo'.
