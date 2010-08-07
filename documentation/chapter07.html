@@ -15,31 +15,49 @@
 <hr><br>
 <img src="img/bs-ng-custom.png" border="0" alt=""><br><br>
 
-<h3><font color="#FBA330">Use a custom prompt</font></h3>
-&nbsp;When enabled, use the custom prompt setup here.<br><br>
+<h3><font color="#FBA330">7.1 Use a custom prompt</font></h3>
+&nbsp;Use the custom prompt set up here.<br><br>
 
-<h3><font color="#FBA330">Choose Style to modify</font></h3>
+<h3><font color="#FBA330">7.2 Choose Style to modify</font></h3>
 &nbsp;Insert an internal style, to modify it.<br><br>
 
-<h3><font color="#FBA330">Insert Symbolic Color</font></h3>
-&nbsp;BashStyle-NG uses "symbolic colors", which you can adjust. eg $username.<br>
+<h3><font color="#FBA330">7.3 Insert Symbolic Color</font></h3>
+&nbsp;BashStyle-NG uses "symbolic colors", which you can adjust, eg $username.<br>
 &nbsp;Use this to put some in your prompt. Unless like adding color-codes<br>
 &nbsp;directly, this gives you the opportunity to change the colors via BS-NG.<br><br>
 
-<h3><font color="#FBA330">PS1</font></h3>
+<h3><font color="#FBA330">7.4 PS1</font></h3>
 &nbsp;Put your prompt here.<br><br>
 
-<h3><font color="#FBA330">PROMPT_COMMAND</font></h3>
-&nbsp;Put your PROMPT_COMMAND [anything to be done before PS1] here.<br><br>
+<h3><font color="#FBA330">7.5 PROMPT_COMMAND</font></h3>
+&nbsp;Put your PROMPT_COMMAND (anything to be done before PS1) here.<br><br>
 &nbsp;<b><i><font color="#E173E4">Note:</b></font> You can't use symbolic colors directly with echo!<br>
-&nbsp;You have to use bs-ng-echo and the symbolic color: `echo -e $(bs-ng-echo $usercolor) "xyz"'</i></br><br>
+&nbsp;You have to prepend `e' to them, eg: $ewhite instead of $white.</i></br><br>
 
-<h3><font color="#FBA330">Standard Stuff</font></h3>
-&nbsp;Put Bash builtin Stuff into your prompt<br><br>
+<h3><font color="#FBA330">7.6 Show Toolbox</font></h3>
+&nbsp;Open the toolbox for adding usefull stuff to your prompt.<br><br>
+
+<h3><font color="#FBA330">7.6.1 Standard Stuff</font></h3>
+&nbsp;Built-in stuff for your prompt<br>
+&nbsp;Username: your username<br>
+&nbsp;Hostname: your machines hostname (cut at the `.')<br>
+&nbsp;Full Hostname: your machines hostname<br>
+&nbsp;Time: current time<br>
+&nbsp;Date: current date<br>
+&nbsp;$: displays `$' if you're an ordinary user, `#' if you're root<br>
+&nbsp;Full Workdir: complete working directory (eg: /home/chris/Desktop/test/)<br>
+&nbsp;Base Workdir: current directory (eg: test)<br>
+&nbsp;Effective User ID: your user id<br>
+&nbsp;Background Processes: number of processes running in the background<br>
+&nbsp;Command Number [History]: number of the current command (in history)<br>
+&nbsp;Command Number [Session]: number of the current command (in current session)<br>
+&nbsp;Bash's Process ID: process id of bash<br>
+&nbsp;Shell Level: the shell level (each sub-shell increases it by 1)<br>
+&nbsp;Time since Bash started: self-explaining<br>
 
 <h3><font color="#FBA330">BashStyle-NG Stuff</font></h3>
 &nbsp;Put Stuff provided by BashStyle-NG into your prompt<br>
-&nbsp;See <a href="chapter08.html">Chapter 8</a> for more infos on that
+&nbsp;See <a href="chapter08.html">Chapter 8</a> for more infos on that.
 
 </body>
 </html>
