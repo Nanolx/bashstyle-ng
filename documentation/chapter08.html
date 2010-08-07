@@ -14,21 +14,6 @@
 </table>
 <hr><br>
 
-<h3><font color="#33c0f4">Until BashStyle-NG 7.7:</font></h3>
-
-<h3><font color="#FBA330">BS-NG-Echo</font></h3>
-&nbsp;This function will "parse" the Colorcodes, to make them usable with `echo'.<br><br>
-<table border="1">
-	<tr>
-		<td>echo -e $usercolor hello</td>
-		<td>See - doesn't work correctly.</td>
-	</tr>
-	<tr>
-		<td>echo -e $(bs-ng-echo $usercolor) hello</td>
-		<td>See - this does work now.</td>
-	</tr>
-</table>
-
 <h3><font color="#FBA330">BS-NG-Profiler</font></h3>
 &nbsp;This script will import or export your current configuration.<br><br>
 <table border="1">
@@ -323,8 +308,6 @@
 	</tr>
 </table>
 
-<h3><font color="#33c0f4">New in BashStyle-NG 7.8:</font></h3>
-
 <h3><font color="#FBA330">xchown</font></h3>
 &nbsp;Recursive chown for given user, with root priviledges, via su.<br><br>
 <table border="1">
@@ -482,26 +465,6 @@
 	</tr>
 </table>
 
-<h3><font color="#FBA330">git functions</font></h3>
-&nbsp;A set of extra `git' functions.<br><br>
-<table border="1">
-	<tr>
-		<td>git_export</td>
-		<td>PATH</td>
-		<td>export the git-tree to PATH.</td>
-	</tr>
-	<tr>
-		<td>git_bzip</td>
-		<td></td>
-		<td>create bzip2-compressed tarball from the git-tree.</td>
-	</tr>
-	<tr>
-		<td>git_xz</td>
-		<td></td>
-		<td>create xz-compressed tarball from the git-tree.</td>
-	</tr>
-</table>
-
 <h3><font color="#FBA330">exchange</font></h3>
 &nbsp;Exchange the value of two variables.<br><br>
 <table border="1">
@@ -511,8 +474,6 @@
 		<td>VARIABLE2</td>
 	</tr>
 </table>
-
-<h3><font color="#33c0f4">New in BashStyle-NG 7.9:</font></h3>
 
 <h3><font color="#FBA330">random</font></h3>
 &nbsp;Print a random number.<br><br>
@@ -528,8 +489,6 @@
 		<td>Print a random number between 0 and RANGE</td>
 	</tr>
 </table>
-
-<h3><font color="#33c0f4">New in BashStyle-NG 7.9.1:</font></h3>
 
 <h3><font color="#FBA330">ps</font></h3>
 &nbsp;A set of `ps' related functions<br><br>
@@ -562,8 +521,6 @@
 		<td>psgrep for PROCESSNAME and ask for a process to kill via signal SIGNAL</td>
 	</tr>
 </table>
-
-<h3><font color="#33c0f4">New in BashStyle-NG 7.10:</font></h3>
 
 <h3><font color="#FBA330">top10</font></h3>
 &nbsp;Display the 10 most-used commands<br><br>
@@ -680,16 +637,24 @@
 
 <table border="1">
 	<tr>
+		<td>git_export</td>
+		<td>PATH</td>	
+		<td>export the git-tree to PATH.</td>
+	</tr>
+	<tr>
+		<td>git_bzip</td>
+		<td></td>
+		<td>create bzip2-compressed tarball from the git-tree.</td>
+	</tr>
 		<td>git_xz</td>
+		<td></td>
 		<td>create xz-compressed tarball from the git-tree.</td>
 	</tr>
 </table>
 
-<h3><font color="#33c0f4">New in BashStyle-NG 7.11:</font></h3>
-
 <h3><font color="#FBA330">youtube2ogg</font></h3>
 &nbsp;Extract audio from youtube (or most other video files)<br>
-&nbps;to an OGG/Vorbis file.<br>
+&nbsp;to an OGG/Vorbis file.<br><br>
 <table border="1">
 	<tr>
 		<td>youtube2ogg</td>
@@ -699,7 +664,7 @@
 
 <h3><font color="#FBA330">mkv2avi</font></h3>
 &nbsp;Convert MatroskaVideo to AVI.<br>
-&nbps;uses mencoder-mt if found, else mencoder.<br>
+&nbsp;uses mencoder-mt if found, else mencoder.<br><br>
 <table border="1">
 	<tr>
 		<td>mkv2avi</td>
