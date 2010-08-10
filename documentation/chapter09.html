@@ -14,71 +14,73 @@
 </table>
 <hr><br>
 <img src="img/bs-ng-vim.png" border="0" alt=""><br><br>
-<h3><font color="#FBA330">Use VimCFG</font></h3>
-&nbsp;When enabled, BS-NG takes care of VIms configuration.<br><br>
+<h3><font color="#FBA330">9.1 Use VimCFG</font></h3>
+&nbsp;Let BS-NG take care of VIms configuration.<br><br>
 
-<h3><font color="#FBA330">Backup files:</font></h3>
-&nbsp;When enabled, backup files to &lt;filename&gt;~.<br><br>
+<h3><font color="#FBA330">9.2 Backup files:</font></h3>
+&nbsp;Create backup files (&lt;filename&gt;~) when saving.<br><br>
 
-<h3><font color="#FBA330">Jump back to last position</font></h3>
-&nbsp;When enabled and exiting a file, remember the cursor position<br>
+<h3><font color="#FBA330">9.3 Jump back to last position</font></h3>
+&nbsp;When exiting a file, remember the cursor position<br>
 &nbsp;and go there when the same file is opened again.<br><br>
 
-<h3><font color="#FBA330">Enable Filetype Indention</font></h3>
-&nbsp;When enabled, load indention rules according to the detected filetype.<br><br>
+<h3><font color="#FBA330">9.4 Enable Filetype Indention</font></h3>
+&nbsp;Load indention rules according to the detected filetype.<br><br>
 
-<h3><font color="#FBA330">Display (partial) command</font></h3>
-&nbsp;When enabled, display (parts) of VIm Commands which you currently<br>
+<h3><font color="#FBA330">9.5 Display (partial) command</font></h3>
+&nbsp;Display (parts) of VIm Commands which you currently<br>
 &nbsp;are typing in the command line.<br><br>
 
-<h3><font color="#FBA330">Hilight matching brackets</font></h3>
-&nbsp;When enabled, hilight brackets when they are closed. eg.: VIm will<br>
+<h3><font color="#FBA330">9.6 Hilight matching brackets</font></h3>
+&nbsp;Hilight brackets when they are closed. eg.: VIm will<br>
 &nbsp;hilight the ( if the ) has been typed in.<br><br>
 
-<h3><font color="#FBA330">Enable syntax hilighting</font></h3>
-&nbsp;When enabled, hilight special words or syntaxes in different colors,<br>
+<h3><font color="#FBA330">9.7 Enable syntax hilighting</font></h3>
+&nbsp;Hilight special words or syntaxes in different colors,<br>
 &nbsp;rule depends on the detected filetype.<br><br>
 
-<h3><font color="#FBA330">Bash has dark background</font></h3>
-&nbsp;When enabled, VIm will then change the colors accordingly, for better readability.<br><br>
+<h3><font color="#FBA330">9.8 Bash has dark background</font></h3>
+&nbsp;VIm will change the colors accordingly, for better readability.<br><br>
 
-<h3><font color="#FBA330">Match caseinsensitively</font></h3>
-&nbsp;When enabled, don't care about upper and lower case while searching.<br><br>
+<h3><font color="#FBA330">9.9 Match caseinsensitively</font></h3>
+&nbsp;Don't care about upper and lower case while searching.<br><br>
 
-<h3><font color="#FBA330">Match case smartly</font></h3>
-&nbsp;When enabled, do smart case matching while searching.<br><br>
+<h3><font color="#FBA330">9.10 Match case smartly</font></h3>
+&nbsp;Do smart case matching while searching.<br><br>
 
-<h3><font color="#FBA330">Enable incremental search</font></h3>
-&nbsp;When enabled, Do incremental searches.</br><br>
+<h3><font color="#FBA330">9.11 Enable incremental search</font></h3>
+&nbsp;Do incremental searches.</br><br>
 
-<h3><font color="#FBA330">Highlight matches</font></h3>
-&nbsp;When enabled, highlight search results.<br><br>
+<h3><font color="#FBA330">9.12 Highlight matches</font></h3>
+&nbsp;Highlight search results.<br><br>
 
-<h3><font color="#FBA330">Display line numbers</font></h3>
-&nbsp;When enabled, display line numbers at the left.<br><br>
+<h3><font color="#FBA330">9.13 Display line numbers</font></h3>
+&nbsp;Display line numbers at the left.<br><br>
 
-<h3><font color="#FBA330">Autosave files</font></h3>
-&nbsp;When enabled, autosave before executing commands like :next or :exit.<br><br>
+<h3><font color="#FBA330">9.14 Autosave files</font></h3>
+&nbsp;Autosave file before executing commands like :next or :exit.<br><br>
 
-<h3><font color="#FBA330">Highlight current line</font></h3>
-&nbsp;When enabled, highlight the current line by underlining it.<br><br>
+<h3><font color="#FBA330">9.15 Highlight current line</font></h3>
+&nbsp;Highlight the current line by underlining it.<br><br>
 
-<h3><font color="#FBA330">Display the ruler</font></h3>
-&nbsp;When enabled, display a ruler a the bottom, which displays various informations.<br></br>
+<h3><font color="#FBA330">9.16 Display the ruler</font></h3>
+&nbsp;Display a ruler a the bottom, which displays various informations.<br></br>
 
-<h3><font color="#FBA330">Choose a colorscheme</font></h3>
-&nbsp;Choose a colorscheme. Set to "default" for using the system-wide default.<br>
-&nbsp;<b><i><font color="#E173E4">Note:</b> not all themes work with Vim, but with GVim.</font></i><br><br>
+<h3><font color="#FBA330">9.17 Choose a colorscheme</font></h3>
+&nbsp;Set to "default" for using the system-wide default.<br><br>
+&nbsp;<i>(<b><font color="#E173E4">Note:</b></font> not all themes work with Vim, some are for GVim.)</i><br><br>
 
-<h3><font color="#FBA330">Rulerformat</font></h3>
+<h3><font color="#FBA330">9.18 	Rulerformat</font></h3>
 &nbsp;Here you can change the content of the ruler.<br>
 &nbsp;BS-NGs default is: %45(%t\ %y\ %c\ %l\/%L\ %p%%%)<br>
-&nbsp;&nbsp;%t - is the filename without path<br>
-&nbsp;&nbsp;%y - is the filetype<br>
-&nbsp;&nbsp;%c - is the number of current column<br>
-&nbsp;&nbsp;%l - is the number of current line<br>
-&nbsp;&nbsp;%L - is the total number of lines<br>
-&nbsp;&nbsp;%p - is the percentage of file<br>
+<ul>
+<li>%t - is the filename without path</li>
+<li>%y - is the filetype</li>
+<li>%c - is the number of current column</li>
+<li>%l - is the number of current line</li>
+<li>%L - is the total number of lines</li>
+<li>%p - is the percentage of current position compared to whole file</li>
+</ul>
 &nbsp;Where are much more - see <a href="http://vimdoc.sourceforge.net">VIM-Doc</a>.
 
 </body>
