@@ -9,6 +9,10 @@
 #							#
 #########################################################
 
+if [[ $0 == *gdm* ]]; then
+	dbg_msg BashStyle-NG: Started during GDM-Session-Init -- exiting
+else
+
 export BSNG_GCONF_READ=1
 
 export BSNG_PREFIX=@PREFIX@
@@ -19,24 +23,11 @@ export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
 
 ERR_MSG=""
 
-bsource () {
+BSNG_FUNCS=(internal admin conversion dirinfo infos media misc random utils versioning)
 
-	for file in $@; do
-		source $BSNG_RC_DIR/functions/$file
-	done
-
-}
-
-bsource gconf debug check_opt xunalias ls git exchange xmv xcp xchown xconv random
-bsource dirinfo showuptime showmem showsystemload showcpuload man2pdf countfiles
-bsource countprocesses showbatteryload showip showsize showspace showtty systeminfos
-bsource truncpwd ps misc svn media bookmark dos2unix admin
-
-source $BSNG_RC_DIR/styles/null-rc
-
-if [[ $BASH_VERSINFO == 4 ]]; then
-	bsource xdel
-fi
+for RC in ${BSNG_FUNCS[@]}; do
+	source $BSNG_RC_DIR/functions/$RC
+done
 
 if [[ $(get_key debug) == true ]]; then \
 	eval BSNG_LOGFILE=$(get_key debug_log)
@@ -44,11 +35,9 @@ if [[ $(get_key debug) == true ]]; then \
 	touch $BSNG_LOGFILE
 fi
 
-if [[ $0 == *gdm* ]]; then
-	dbg_msg BashStyle-NG: Started during GDM-Session-Init -- exiting
-else
+source $BSNG_RC_DIR/styles/null-rc
 
-dbg_msg BashStyle-NG: Starting
+dbg_msg BashStyle-NG Starting
 dbg_msg BashStyle-NG Bash Major: $(echo ${BASH_VERSINFO[0]})
 dbg_msg BashStyle-NG Bash Minor: $(echo ${BASH_VERSINFO[1]})
 dbg_msg BashStyle-NG Bash Patch: $(echo ${BASH_VERSINFO[2]})

@@ -42,33 +42,6 @@ get_kernel () {
 
 }
 
-up () {
-
-[ "${1/[^0-9]/}" == "$1" ] && {
-        local ups=""
-        for i in $(seq 1 $1)
-        do
-                ups=$ups"../"
-        done
-        cd $ups
-        }
-
-}
-
-empty () {
-
-	find -type f -empty
-
-}
-
-deadlink () {
-
-	if [[ -L "$1" && ! -e "$1" ]]; then
-		echo "$1 is broken"
-	fi
-
-}
-
 stop_watch () {
 
 BEGIN=$(date +%s)
@@ -81,18 +54,6 @@ while true; do
     echo -ne "Time elapsed: $MINS:`printf %02d $SECS`\r"
     sleep .1
 done
-
-}
-
-lscd () {
-
-	builtin cd "${@}" &>/dev/null
-	dirinfo_get_dirinfo
-
-	echo -e "${epink}content:"
-	ls $LSCD_OPTS
-
-	echo "$PWD" > $HOME/.lastpwd
 
 }
 
@@ -165,3 +126,45 @@ endspinner () {
      printf "\r%s\n" "$@"
 
 }
+ll() {
+
+	ls -l --group-directories-first "$@"
+
+}
+
+la() {
+
+	ls -A --group-directories-first "$@"
+
+}
+
+l1() {
+
+	ls -1 --group-directories-first "$@"
+
+}
+
+lo() {
+
+	if [[ ! "$@" == "" ]]; then
+		ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to User ->", $3}'
+
+	fi
+}
+
+lg() {
+
+	if [[ ! "$@" == "" ]]; then
+		ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to Group ->", $4}'
+
+	fi
+}
+
+lm() {
+
+	if [[ ! "$@" == "" ]]; then
+		stat -c "%A %a %n" "$@" | gawk '{print "Permissions of:", $3, "->", $1, "("$2")"}'
+
+	fi
+}
+

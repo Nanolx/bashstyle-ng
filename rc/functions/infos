@@ -1,0 +1,578 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+show_uptime () {
+
+	case $1 in
+
+		*help )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}show_uptime${ewhite} |${egreen} ! no options !\n"
+			tput sgr0
+		;;
+
+		* )
+			uptime=$(</proc/uptime)
+			timeused=${uptime%%.*}
+
+			if (( timeused > 86400 )); then
+			((
+				daysused=timeused/86400,
+				hoursused=timeused/3600-daysused*24,
+				minutesused=timeused/60-hoursused*60-daysused*60*24,
+				secondsused=timeused-minutesused*60-hoursused*3600-daysused*3600*24
+			))
+				if (( hoursused < 10 )); then
+					hoursused=0${hoursused}
+				fi
+				if (( minutesused < 10 )); then
+					minutesused=0${minutesused}
+				fi
+				if (( secondsused < 10 )); then
+					secondsused=0${secondsused}
+				fi
+				output="${daysused}d ${hoursused}h:${minutesused}m:${secondsused}s"
+			elif (( timeused < 10 )); then
+				output="0d 00h:00m:0$(timeused)s"
+			elif (( timeused < 60 )); then
+				output="0d 00h:00m:${timeused}s"
+			elif (( timeused < 3600 )); then
+			((
+				minutesused=timeused/60,
+				secondsused=timeused-minutesused*60
+			))
+				if (( minutesused < 10 )); then
+					minutesused=0${minutesused}
+				fi
+				if (( secondsused < 10 )); then
+					secondsused=0${secondsused}
+				fi
+				output="0d 00h:${minutesused}m:${secondsused}s"
+			elif (( timeused < 86400 )); then
+			((
+				hoursused=timeused/3600,
+				minutesused=timeused/60-hoursused*60,
+				secondsused=timeused-minutesused*60-hoursused*3600
+			))
+				if (( hoursused < 10 )); then
+					hoursused=0${hoursused}
+				fi
+				if (( minutesused < 10 )); then
+					minutesused=0${minutesused}
+				fi
+				if (( secondsused < 10 )); then
+					secondsused=0${secondsused}
+				fi
+				output="0d ${hoursused}h:${minutesused}m:${secondsused}s"
+			fi
+
+			echo "$output"
+		;;
+
+	esac
+
+}
+
+show_tty ()
+{
+
+	case $1 in
+		*help )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}show_tty${ewhite}|${egreen} ! no options !\n"
+			tput sgr0
+		;;
+
+		* )
+			TTY=$(tty)
+			echo ${TTY:5} | sed -e 's/\//\:/g'
+		;;
+	esac
+
+}
+
+show_system_load () {
+	case $1 in
+		1 )
+			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\1/" -e "s/ //g")
+		;;
+
+		10 )
+			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\2/" -e "s/ //g")
+		;;
+
+		15 )
+			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\3/" -e "s/ //g")
+		;;
+
+		*help | "")
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}show_system_load${ewhite} | ${egreen}1 ${eiceblue}[load average for 1 minute]\
+			\n${eorange}show_system_load${ewhite} | ${egreen}10 ${eiceblue}[load average for 10 minutes]\
+			\n${eorange}show_system_load${ewhite} | ${egreen}15 ${eiceblue}[load average for 15 minutes]\n" | column -t
+			echo ""
+			tput sgr0
+		;;
+
+	esac
+
+	if [[ $load != "" ]]; then
+
+	tmp=$(echo $load*100 | bc)
+	load100=${tmp%.*}
+
+	if [[ $enabcol == true ]]; then
+		if [[ ${load100} -lt 35 ]]; then
+			loadcolor=${eblue}
+		elif [[ ${load100} -ge 35 ]] && [[ ${load100} -lt 120 ]]; then
+			loadcolor=${eiceblue}
+		elif [[ ${load100} -ge 120 ]] && [[ ${load100} -lt 200 ]]; then
+			loadcolor=${egreen}
+		elif [[ ${load100} -ge 200 ]] && [[ ${load100} -lt 300 ]]; then
+			loadcolor=${eyellow}
+		else	loadcolor=${ered}
+		fi
+	fi
+
+	echo -e $loadcolor$load
+
+	fi
+
+}
+
+show_space ()
+{
+
+	case $1 in
+		*used-percent )
+			echo $(df | grep -w $2 | gawk '{print $5}')
+		;;
+
+		*free-percent )
+			echo $((100-$(df | grep -w $2 | gawk '{print $5}' | sed -e 's/\%//g')))%
+		;;
+
+		*used )
+			echo $(df -h | grep -w $2 | gawk '{print $3}')B
+		;;
+
+		*free )
+			echo $(df -h | grep -w $2 | gawk '{print $4}')B
+		;;
+
+		*total )
+			echo $(df -h | grep -w $2 | gawk '{print $2}')B
+		;;
+
+		* )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}show_space ${ewhite}|${egreen} --used ${eiceblue}[display used space in mb/gb]\
+			\n${eorange}show_space ${ewhite}|${egreen} --free ${eiceblue}[display free space in mb/gb]\
+			\n${eorange}show_space ${ewhite}|${egreen} --percent-used ${eiceblue}[display used space in %]\
+			\n${eorange}show_space ${ewhite}|${egreen} --percent-free ${eiceblue}[display free space in %]" | column -t
+			echo ""
+			tput sgr0
+		;;
+	esac
+
+}
+
+show_size ()
+{
+
+	case $1 in
+		*help )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}show_size ${ewhite}|${egreen} ! no options !\n"
+			tput sgr0
+		;;
+
+		* )
+			let TotalBytes=0
+
+			for Bytes in $(ls -lA -1 | grep "^-" | awk '{ print $5 }'); do
+				let TotalBytes=$TotalBytes+$Bytes
+			done
+
+			if [ $TotalBytes -lt 1024 ]; then
+				TotalSize=$(echo -e "scale=1 \n$TotalBytes \nquit" | bc)
+				suffix="B"
+			elif [ $TotalBytes -lt 1048576 ]; then
+				TotalSize=$(echo -e "scale=1 \n$TotalBytes/1024 \nquit" | bc)
+				suffix="KB"
+			elif [ $TotalBytes -lt 1073741824 ]; then
+				TotalSize=$(echo -e "scale=1 \n$TotalBytes/1048576 \nquit" | bc)
+				suffix="MB"
+			else
+				TotalSize=$(echo -e "scale=1 \n$TotalBytes/1073741824 \nquit" | bc)
+				suffix="GB"
+			fi
+
+			echo "${TotalSize} ${suffix}"
+		;;
+	esac
+
+}
+
+show_mem () {
+
+	case $1 in
+		*used )
+			used=$(free -m | grep 'buffers/cache' | awk '{print $3}')
+			if [[ $used -lt 1000 ]]; then
+				echo 0$used
+			elif [[ $used -lt 100 ]]; then
+				echo 00$used
+			else	echo $used
+			fi
+		;;
+
+		*free )
+			free=$(free -m | grep 'buffers/cache' | awk '{print $4}')
+			if [[ $free -lt 1000 ]]; then
+				echo 0$free
+			elif [[ $free -lt 100 ]]; then
+				echo 00$ree
+			else	echo $free
+			fi
+		;;
+
+		*used-percent )
+			free | {
+				read
+				read m t u f s b c;
+				f=$[$f + $b + $c]
+				f=$[100-100*$f/$t]
+				if [ $f -gt 100 ]; then
+					f=100
+				fi
+				echo ${f}%
+		}
+
+		;;
+
+		*free-percent )
+			free | {
+				read
+				read m t u f s b c;
+				f=$[$f + $b + $c]
+				f=$[100-100*$f/$t]
+				if [ $f -gt 100 ]; then
+					f=100
+				fi
+				echo $((100-${f}))%
+				}
+		;;
+
+		* )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "\n${eorange}show_mem ${ewhite}|${egreen} --used ${eiceblue}[display used memory in mb]\
+			\n${eorange}show_mem ${ewhite}|${egreen} --free ${eiceblue}[display free memory in mb]\
+			\n${eorange}show_mem ${ewhite}|${egreen} --percent-used ${eiceblue}[display used memory in %]\
+			\n${eorange}show_mem ${ewhite}|${egreen} --percent-free ${eiceblue}[display free memory in %]" | column -t
+			echo ""
+			tput sgr0
+		;;
+	esac
+
+}
+
+show_ip ()
+{
+
+	case $1 in
+		*help | "" )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}show_ip${ewhite} |${egreen} <interface> ${eiceblue}[show ip-address for <interface>]\
+			\n${eorange}show_ip${ewhite} |${egreen} external${eiceblue} [show external ip address]\n"
+			tput sgr0
+		;;
+
+		*external )
+			wget -q -O - http://showip.spamt.net/
+		;;
+
+		* )
+			LANG=C /sbin/ifconfig $1 | grep 'inet addr:' | cut -d: -f2 | gawk '{ print $1}'
+		;;
+	esac
+
+}
+
+show_cpu_load ()
+{
+
+	case $1 in
+		*help )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}show_cpu_load${ewhite} |${egreen} ! no options !\n"
+			tput sgr0
+		;;
+
+		* )
+			NICE_IGNORE=20
+			t="0"
+
+			while read cpu ni; do
+				if [[ $ni == *-* || $ni -le $NICE_IGNORE ]]; then
+					t="$t + $cpu"
+				fi
+				if [[ ${cpu%%.*} -eq 0 ]]; then
+					break
+				fi
+			done < <(ps -Ao "%cpu= ni="| sort -r)
+
+			cpu=$(echo "$t" | bc)
+
+			if [[ ! "${cpu#.}x" = "${cpu}x" ]]; then
+				cpu="0${cpu}"
+			fi
+
+			cpu=${cpu%%.*}
+
+			if [[ $cpu -gt 100 ]]; then
+				cpu=100
+			fi
+
+			if [[ $cpu -lt 16 ]]; then
+				color=${eiceblue}
+			elif [[ $cpu -lt 26 ]]; then
+				color=${eturqoise}
+			elif [[ $cpu -lt 41 ]]; then
+				color=${esmoothgreen}
+			elif [[ $cpu -lt 61 ]]; then
+				color=${egreen}
+			elif [[ $cpu -lt 81 ]]; then
+				color=${eyellow}
+			else	color=${ered}
+			fi
+
+			if [[ $cpu -lt 10 ]]; then
+				prepend=00
+			elif [[ $cpu -lt 100 ]]; then
+				prepend=0
+			fi
+
+			if [[ $enabcol == true ]]; then
+				echo -e "$color$prepend$cpu"
+			else	echo $prepend$cpu
+			fi
+		;;
+	esac
+
+}
+
+show_battery_load ()
+{
+
+	case $1 in
+		*acpi )
+			check_opt acpi show_battery_load::acpi
+			load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
+			out="$(acpi -b)"
+			state="$(echo "${out}" | awk '{print $3}')"
+			case ${state} in
+				charging,)
+					statesign="^"
+				;;
+
+				discharging,)
+					statesign="v"
+				;;
+
+				charged,)
+					statesign="°"
+				;;
+			esac
+			battery="${statesign}${load}"
+			echo $battery
+		;;
+
+		*apm )
+			check_opt apm show_battery_load::apm
+			result="$(apm)"
+			case ${result} in
+				*'AC on'*)
+					state="^"
+				;;
+
+				*'AC off'*)
+					state="v"
+				;;
+			esac
+			load="${temp##* }"
+			battery="${state}${load}"
+			echo $battery
+		;;
+
+		* )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}show_battery_load${ewhite} |${egreen} --acpi${eiceblue} [show batteryload using acpi]\
+			\n${eorange}show_battery_load${ewhite} |${egreen} --apm${eiceblue} [show batteryload using apm]" | column -t
+			echo ""
+			tput sgr0
+		;;
+	esac
+
+}
+
+count_files ()
+{
+	case $1 in
+		*+h)
+			echo $(($(ls --color=no -1 -la . | grep -v ^l | wc -l)-1))
+		;;
+
+		*-h)
+			echo $(($(ls --color=no -1 -l . | grep -v ^l | wc -l)-1))
+		;;
+
+		*+d)
+			echo $(($(ls --color=no -1 -la . | grep -v ^- | wc -l)-1))
+		;;
+
+		*-d)
+			echo $(($(ls --color=no -1 -l . | grep -v ^- | wc -l)-1))
+		;;
+
+		*+f)
+			echo $(($(ls --color=no -1 -la . | grep -v ^d | wc -l)-1))
+		;;
+
+		*-f)
+			echo $(($(ls --color=no -1 -l . | grep -v ^d | wc -l)-1))
+		;;
+
+		*)
+			echo -e "\n${ewhite}Usage:"
+			echo -e "\n${eorange}count_files${ewhite} | ${egreen}+h ${eiceblue}[count files and folders - include hidden ones] \
+			\n${eorange}count_files${ewhite} | ${egreen}-h ${eiceblue}[count files and folders - exclude hidden ones] \
+			\n${eorange}count_files${ewhite} | ${egreen}+d ${eiceblue}[count folders - include hidden ones] \
+			\n${eorange}count_files${ewhite} | ${egreen}-d ${eiceblue}[count folders - exclude hidden ones] \
+			\n${eorange}count_files${ewhite} | ${egreen}+f ${eiceblue}[count files - include hidden ones] \
+			\n${eorange}count_files${ewhite} | ${egreen}-f ${eiceblue}[count files - exclude hidden ones]\n"
+			tput sgr0
+		;;
+	esac
+}
+
+count_processes ()
+{
+
+	case $1 in
+		*help )
+			echo -e "\n${ewhite}Usage:"
+			echo -e "\n${eorange}count_processes${ewhite} | ${egreen}! no options !\n"
+			tput sgr0
+		;;
+
+		* )
+			procs=$(ps ax | wc -l | awk '{print $1}')
+
+			if [[ $procs -lt 10 ]]; then
+				echo "000$procs"
+			elif [[ $procs -lt 100 ]]; then
+				echo "00$procs"
+			elif [[ $procs -lt 1000 ]]; then
+				echo "0$procs"
+			fi
+		;;
+	esac
+
+}
+system_infos ()
+{
+
+	case $1 in
+		*cpu)
+			echo -e "${ewhite}CPU:\n"
+			echo -e "${eorange}Model:${eiceblue} $(grep "model name" /proc/cpuinfo | sed -e 's/.*: //g')"
+			echo -e "${eorange}MHz  :${eiceblue} $(grep "cpu MHz" /proc/cpuinfo | sed -e 's/.*: //g')\n"
+		;;
+
+		*kernel)
+			echo -e "${ewhite}Kernel:\n"
+			echo -e "${eorange}Release:${eiceblue} $(uname -r)"
+			echo -e "${eorange}Version:${eiceblue} $(uname -v)"
+			echo -e "${eorange}Machine:${eiceblue} $(uname -m)\n"
+		;;
+
+		*mem | *ram)
+			echo -e "${ewhite}RAM:\n"
+			echo -e "${eorange}Total:${eiceblue} $(((`showmem --free`) + (`showmem --used`))) MB"
+			echo -e "${eorange}Free :${eiceblue} $(showmem --free) MB"
+			echo -e "${eorange}Used :${eiceblue} $(showmem --used) MB\n"
+		;;
+
+		*partitions)
+			echo -e "${ewhite}Partitions:${eorange}\n"
+			echo -e "major minor blocks device-node ${eiceblue}\
+			\n$(cat /proc/partitions | sed -e '1,2d')" | column -t
+			echo ""
+		;;
+
+		*pci)
+			check_opt lspci systeminfos::pci
+			echo -e "${ewhite}PCI Devices:\n${eiceblue}"
+			lspci -vkmm
+			echo ""
+		;;
+
+		*usb)
+			check_opt lsusb systeminfos::usb
+			echo -e "${ewhite}USB Devices:\n${eiceblue}"
+			lsusb -v
+			echo ""
+		;;
+
+		*mounts)
+			echo -e "${ewhite}Mounts:\n${eorange}\
+			\ndevice-node on mount-point type filesystem options\n" ${eiceblue} "\n\n$(mount)" | column -t
+			echo ""
+		;;
+
+		*bios)
+			check_opt dmidecode systeminfos::bios
+			if [[ $EUID != 0 ]]; then
+				echo -e "You are not root, exiting!"
+				exit 1
+			fi
+
+			echo -e "${ewhite}SMBIOS/DMI Infos:${eiceblue}\n"
+			dmidecode -q
+		;;
+
+		*all)
+			system_infos_cpu
+			system_infos_kernel
+			system_infos_memory
+			system_infos_partitions
+			#system_infos_pci
+			#system_infos_usb
+			system_infos_mounts
+			#system_infos_bios
+		;;
+
+		*)
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}system_infos ${ewhite}|${egreen} --cpu\t\t${eiceblue} [Display CPU Model and Freq]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --kernel\t${eiceblue} [Display Kernel Version, Release and Machine]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --memory\t${eiceblue} [Display Total, Free and Used RAM]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --partitions\t${eiceblue} [Display Major, Minor, Blocks and Node for all Paritions]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --pci\t\t${eiceblue} [Display Infos about all PCI Devices (and their kernel-module)]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --usb\t\t${eiceblue} [Display Infos about all USB Devices (and their kernel-module)]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --bios\t${eiceblue} [Display SMBIOS DMI Infos]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --mounts\t${eiceblue} [Display all mounted devices]\n"
+			tput sgr0
+		;;
+	esac
+
+}

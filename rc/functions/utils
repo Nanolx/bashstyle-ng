@@ -1,0 +1,196 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+xunalias() {
+
+	for alias in $@; do
+		[[ $(alias | grep -w $alias=) != "" ]] &&
+			{ unalias $alias ; }
+	done
+
+}
+
+xmv() {
+
+	if [[ $# -lt 2 ]]; then
+		echo "not enough arguements"
+		exit 0
+	fi
+
+	destination="${!#}"
+
+	if [[ ! -e "$destination" ]]; then
+		mkdir -p "$destination"
+	fi
+
+	for file in "$@"; do
+		if [[ ! "$file" == "$destination" ]]; then
+			mv -v "$file" "$destination"
+		fi
+	done
+
+}
+
+xdel() {
+
+	shopt -s globstar
+
+	[[ "$@" != "" ]] &&
+		{ for argv in "$@"; do
+			rm -fv ./**/*"$argv"
+		done }
+
+}
+
+xcp() {
+
+	if [[ $# -lt 2 ]]; then
+		echo "not enough arguements"
+		exit 0
+	fi
+
+	destination="${!#}"
+
+	set -- "$destination" "$@"
+
+	if [[ ! -e "$destination" ]]; then
+		mkdir -p "$destination"
+	fi
+
+	for file in "$@"; do
+		if [[ ! "$file" == "$destination" ]]; then
+			cp -v "$file" "$destination"
+		fi
+	done
+
+}
+
+trunc_pwd ()
+{
+
+	case $1 in
+		*help )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}trunc_pwd ${ewhite}|${egreen} ! no options !\n"
+			tput sgr0
+		;;
+
+		* )
+			export BSNG_GCONF_READ=1
+
+			pwdmaxlen=$(get_key pwdmaxlength)
+			trunc_symbol=$(get_key pwdchar)
+			dirchar=$(get_key dirchar)
+
+			newsepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+			newwdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+			newpscoloror=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+
+			if [ ${#PWD} -gt $pwdmaxlen ]; then
+				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
+				if [[ $pstyle_supported == true ]]; then
+					xPWD="$newpscoloror${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
+				else	xPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
+				fi
+				if [[ $enabcol == true && $pstyle_supported == true ]]; then
+					newPWD="${xPWD//\//$newsepacolor$dirchar$newwdircolor}"
+				else	newPWD="${xPWD//\//$dirchar}"
+				fi
+			else
+				if [[ $enabcol == true && $pstyle_supported == true ]]; then
+				newPWD="${PWD//\//$newsepacolor$dirchar$newwdircolor}"
+			else	newPWD="${PWD//\//$dirchar}"
+			fi
+			fi
+
+			echo -e $newPWD
+			unset BSNG_GCONF_READ
+		;;
+	esac
+
+}
+
+up () {
+
+[ "${1/[^0-9]/}" == "$1" ] && {
+        local ups=""
+        for i in $(i=1; i<=$1; i++)
+        do
+                ups=$ups"../"
+        done
+        cd $ups
+        }
+
+}
+
+empty () {
+
+	find -type f -empty
+
+}
+
+deadlink () {
+
+	if [[ -L "$1" && ! -e "$1" ]]; then
+		echo "$1 is broken"
+	fi
+
+}
+
+bookmark () {
+
+	if [[ $(grep go-$1= $HOME/.bookmarks) == "" ]]; then
+		echo "alias go-$1='cd $PWD'" >> $HOME/.bookmarks
+		. $HOME/.bookmarks
+	else	echo "bookmark go-$1 already exists."
+	fi
+
+}
+
+unmark () {
+
+	if [[ $(grep $1= $HOME/.bookmarks) != "" ]]; then
+		sed -e "/$1/d" -i $HOME/.bookmarks
+		xunalias $1
+	fi
+
+}
+
+man2pdf ()
+{
+
+	case $1 in
+		*help | "" )
+			echo -e "\n${ewhite}Usage:"
+			echo -e	"\n${eorange}man2pdf${ewhite} |${egreen} <manualpage>${eiceblue} [generate a pdf from <manualpage>]\n"
+			tput sgr0
+		;;
+
+		* )
+			check_opt ps2pdf man2pdf
+			if [[ $1 != "" ]]; then
+				man -t $1 | ps2pdf - >$1.pdf
+			fi
+		;;
+	esac
+
+}
+
+exchange()
+{
+	typeset temp
+	SAVE=$IFS
+	IFS=''
+	eval $(echo "temp=\"\$$1\"")
+	eval $(echo "$1=\"\$$2\"")
+	eval $(echo "$2=\"$temp\"")
+	IFS=$SAVE
+}

@@ -1,13 +1,56 @@
 #!/bin/bash
 #########################################################
 # 							#
-# This is BashStyle-NG  				#
+# This is BashStyle-NG					#
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
 #							#
 # Copyright 2007 - 2010 Christopher Bratusek		#
 #							#
 #########################################################
+
+get_key ()
+{
+
+	if [[ ! $BSNG_GCONF_READ ]]; then
+		gconftool-2 --get "$1"
+	else	gconftool-2 --get /apps/bashstyle/"$1"
+	fi
+
+}
+
+set_key ()
+{
+
+	if [[ ! $BSNG_GCONF_READ ]]; then
+		gconftool-2 --set --type "$1" "$2" "$3"
+	else	gconftool-2 --set --type "$1" /apps/bashstyle/"$2" "$3"
+	fi
+
+}
+
+reset_key ()
+{
+
+	if [[ ! $BSNG_GCONF_READ ]]; then
+		gconftool-2 --unset "$1"
+	else	gconftool-2 --unset /apps/bashstyle/"$1"
+	fi
+
+}
+
+reset_config ()
+{
+
+	gconftool-2 --recursive-unset /apps/bashstyle/
+
+}
+
+search_key () {
+
+	gconftool-2 --search-key "$1"
+
+}
 
 BSNG_LOGFILE=$(get_key debug_log)
 
@@ -43,4 +86,13 @@ dbg_verbosity ()
 		set_key bool /apps/bashstyle/debug_verbose false
 	fi
 
+}
+
+check_opt() {
+
+	which "$1" &>/dev/null
+	if (( $? != 0 )); then
+		echo -e "$1 not found!\n$2 won't work without it."
+		exit 1
+	fi
 }
