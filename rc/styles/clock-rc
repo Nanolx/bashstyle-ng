@@ -16,7 +16,7 @@ function pre_prompt {
 let prompt_x=$(tput cols)-29
 tput sc
 tput cup 0 ${prompt_x}
-echo -en "$(echo $sepacolor)\
+echo -en "$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')\
 [$(echo $datecolor | sed -e 's/\\\[//g' -e 's/\\\]//g') \
 $(date '+%a, %d %b %y')\
 $(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g') ::\
@@ -27,7 +27,7 @@ tput rc
 
 PROMPT_COMMAND=pre_prompt
 
-PS1="\n$sepacolor[$usercolor \u $fontcolor@ $hostcolor\h $pscolor: $wdircolor\$(trunc_pwd)$CLOCK_1_COLOR\$(CLOCK_1) $sepacolor]$fontcolor "
+PS1="$sepacolor[$usercolor \u $fontcolor@ $hostcolor\h $pscolor: $wdircolor\$(trunc_pwd)$CLOCK_1_COLOR\$(CLOCK_1) $sepacolor]$fontcolor "
 
 else
 
@@ -42,6 +42,6 @@ tput rc
 
 PROMPT_COMMAND=pre_prompt
 
-PS1="\n[ \u @ \h : \$(trunc_pwd) \$(CLOCK_1) ] "
+PS1="[ \u @ \h : \$(trunc_pwd) \$(CLOCK_1) ] "
 
 fi
