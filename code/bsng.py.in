@@ -154,135 +154,6 @@ class BashStyleNG(object):
 		gtkbuilder.set_translation_domain(APP_NAME)
 		gtkbuilder.add_from_file("@PREFIX@/share/bashstyle-ng/data/bashstyle7.ui")
 
-		####################### load BashStyle Alias 3.9 ###################################
-		Alias()
-
-		####################### load BashStyle Advanced 4.9 ################################
-		Advanced()
-
-		####################### load ReadlineCFG 4.9 #######################################
-		ReadlineCFG()
-
-		####################### load Separator 7.9 #########################################
-		Separator()
-
-		####################### load Extras 2.9 ############################################
-		Extras()
-
-		####################### load Profiler 2.9 ##########################################
-		Profiler()
-
-		####################### load VimCFG 4.9 ############################################
-		VimCFG()
-
-		####################### load NanoCFG 4.10 ##########################################
-		NanoCFG()
-
-		####################### load Custom Prompt Builder 2.9 #############################
-		CustomPromptBuilder()
-
-		####################### load BashStyle 7.10 ########################################
-		BashStyle()
-
-		####################### load LSCFG 1.9 #############################################
-		LSCFG()
-
-		####################### Load the Main-Window #######################################
-		self.bashstyle = gtkbuilder.get_object("bashstyle")
-
-		def destroy(self, widget):
-			remove_lockfile()
-			gtk.main_quit()
-
-		self.bashstyle.connect("destroy", destroy, None)
-
-		####################### load the AboutDialog/NoteBook/TreeView #####################
-		aboutdialog = gtkbuilder.get_object("aboutdialog")
-
-		def about_destroy(widget, extra, data=None):
-			widget.hide()
-
-		####################### Load the Notebook ##########################################
-		notebook = gtkbuilder.get_object("notebook")
-		notebook.set_current_page(int(initial_page))
-		notebook.set_show_tabs(0)
-
-		####################### Load the TreeView ##########################################
-		liststore = gtk.ListStore(gtk.gdk.Pixbuf, str)
-		treeview = gtkbuilder.get_object("treeview")
-		treeview.set_model(liststore)
-
-		imagecell = gtk.CellRendererPixbuf()
-		imagecolumn = gtk.TreeViewColumn("")
-		imagecolumn.pack_start(imagecell, True)
-		imagecolumn.add_attribute(imagecell, "pixbuf", 0)
-		treeview.append_column(imagecolumn)
-
-		textcell = gtk.CellRendererText()
-		textcolumn = gtk.TreeViewColumn("")
-		textcolumn.pack_start(textcell, True)
-		textcolumn.add_attribute(textcell, "text", 1)
-		textcolumn.set_attributes(textcell, markup=1)
-		treeview.append_column(textcolumn)
-
-		image_style=icon_theme.load_icon( "bs-ng-style", 32, 0 )
-		liststore.append([image_style, _("<b>Style</b>")])
-
-		image_alias=icon_theme.load_icon( "bs-ng-alias", 32, 0 )
-		liststore.append([image_alias, _("<b>Aliases</b>")])
-
-		image_advanced=icon_theme.load_icon( "bs-ng-advanced", 32, 0 )
-		liststore.append([image_advanced, _("<b>Advanced</b>")])
-
-		image_readline=icon_theme.load_icon( "bs-ng-readline", 32, 0 )
-		liststore.append([image_readline, _("<b>Readline</b>")])
-
-		image_extra=icon_theme.load_icon( "bs-ng-extra", 32, 0 )
-		liststore.append([image_extra, _("<b>Extras</b>")])
-
-		image_profile=icon_theme.load_icon( "bs-ng-profile", 32, 0 )
-		liststore.append([image_profile, _("<b>Profiles</b>")])
-
-		image_vim=icon_theme.load_icon( "bs-ng-vim", 32, 0 )
-		liststore.append([image_vim, _("<b>VIM</b>")])
-
-		image_nano=icon_theme.load_icon( "bs-ng-nano", 32, 0 )
-		liststore.append([image_nano, _("<b>Nano</b>")])
-
-		image_ls=icon_theme.load_icon( "bs-ng-ls", 32, 0 )
-		liststore.append([image_ls, _("<b>LS Colors</b>")])
-
-		image_custom=icon_theme.load_icon( "bs-ng-custom", 32, 0 )
-		liststore.append([image_custom, _("<b>Custom</b>")])
-
-		image_help=icon_theme.load_icon( "bs-ng-help", 32, 0 )
-		liststore.append([image_help, _("<b>Help</b>")])
-
-		image_info=icon_theme.load_icon( "bs-ng-info", 32, 0 )
-		liststore.append([image_info, _("<b>Info</b>")])
-
-		tree_selection = treeview.get_selection()
-		treeview.set_cursor(int(initial_page))
-
-		def treeview_action(widget, extra, data=None):
-			selection = treeview.get_selection()
-			position = int(selection.get_selected_rows()[1][0][0])
-			if position <= 9:
-				notebook.set_current_page(position)
-			elif position == 10:
-				subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/index.html", shell=True)
-			elif position == 11:
-				aboutdialog.show_all()
-				aboutdialog.connect("response", about_destroy, None)
-
-		treeview.connect("cursor-changed", treeview_action, None)
-
-		self.bashstyle.show
-
-class BashStyle(BashStyleNG):
-
-	def __init__(self):
-
 		self.use_bashstyle = gtkbuilder.get_object("use_bashstyle")
 		self.use_bashstyle.set_active(gdb.get_bool(gbase + "use_bashstyle"))
 
@@ -505,13 +376,8 @@ class BashStyle(BashStyleNG):
 		def set_prompt_style(widget, data=None):
 			selection = widget.get_active()
 			gdb.set_string(gbase + "prompt_style", prompt_styles[selection])
-			reload_preview(self)
 
 		self.prompt_style.connect("changed", set_prompt_style)
-
-class Alias(BashStyleNG):
-
-	def __init__(self):
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -615,10 +481,6 @@ class Alias(BashStyleNG):
 
 		self.alias9.connect("insert-text", emit_text)
 		self.alias9.connect("changed", set_alias9)
-
-class Advanced(BashStyleNG):
-
-	def __init__(self):
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -781,10 +643,6 @@ class Advanced(BashStyleNG):
 		self.path.connect("insert-text", emit_text)
 		self.path.connect("changed", set_path)
 
-class ReadlineCFG(BashStyleNG):
-
-	def __init__(self):
-
 		####################### Connect the Use Readlinecfg Button ########################
 
 		self.readline = gtkbuilder.get_object("readline")
@@ -940,10 +798,6 @@ class ReadlineCFG(BashStyleNG):
 
 		self.modlines.connect("clicked", set_modlines)
 
-class Separator (BashStyleNG):
-
-	def __init__(self):
-
 		####################### Connect the Show Files Amount Button ######################
 
 		self.show_files_amount = gtkbuilder.get_object("show_files_amount")
@@ -1032,10 +886,6 @@ class Separator (BashStyleNG):
 			gdb.set_string(gbase + "separator/mem", memory_types[selection])
 
 		self.show_mem.connect("changed", set_show_mem)
-
-class Extras (BashStyleNG):
-
-	def __init__(self):
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -1182,10 +1032,6 @@ class Extras (BashStyleNG):
 
 		self.dirspell.connect("clicked", set_dirspell)
 
-class Profiler (BashStyleNG):
-
-	def __init__(self):
-
 		####################### Connect the Export Profile Button #########################
 
 		self.export_profile = gtkbuilder.get_object("export_profile")
@@ -1248,10 +1094,6 @@ class Profiler (BashStyleNG):
 			subprocess.Popen("rcgenerator --all", shell=True)
 
 		self.make_allrc.connect("clicked", do_make_allrc)
-
-class VimCFG (BashStyleNG):
-
-	def __init__(self):
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -1458,10 +1300,6 @@ class VimCFG (BashStyleNG):
 		self.vim_rulerformat.connect("insert-text", emit_text)
 		self.vim_rulerformat.connect("changed", set_vim_rulerformat)
 
-class NanoCFG (BashStyleNG):
-
-	def __init__(self):
-
 		####################### Connect the Use Nanocfg Button ############################
 
 		self.use_nanocfg = gtkbuilder.get_object("use_nanocfg")
@@ -1581,10 +1419,6 @@ class NanoCFG (BashStyleNG):
 			gdb.set_bool(gbase + "nano/rebind_kp", widget.get_active())
 
 		self.nano_rbkp.connect("clicked", set_nano_rbkp)
-
-class LSCFG (BashStyleNG):
-
-	def __init__(self):
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -1828,10 +1662,6 @@ class LSCFG (BashStyleNG):
 
 		self.ls_custom.connect("insert-text", emit_text)
 		self.ls_custom.connect("changed", set_ls_custom)
-
-class CustomPromptBuilder(BashStyleNG):
-
-	def __init__(self):
 
 		####################### Connect the PROMPT_COMMAND TextView ########################
 
@@ -2439,6 +2269,99 @@ class CustomPromptBuilder(BashStyleNG):
 				self.custom_prompt_buffer.set_text(styles_ps1[selection])
 
 		self.insert_prompt.connect("changed", do_insert_prompt)
+
+
+		####################### Load the Main-Window #######################################
+		self.bashstyle = gtkbuilder.get_object("bashstyle")
+
+		def destroy(self, widget):
+			remove_lockfile()
+			gtk.main_quit()
+
+		self.bashstyle.connect("destroy", destroy, None)
+
+		####################### load the AboutDialog/NoteBook/TreeView #####################
+		aboutdialog = gtkbuilder.get_object("aboutdialog")
+
+		def about_destroy(widget, extra, data=None):
+			widget.hide()
+
+		####################### Load the Notebook ##########################################
+		notebook = gtkbuilder.get_object("notebook")
+		notebook.set_current_page(int(initial_page))
+		notebook.set_show_tabs(0)
+
+		####################### Load the TreeView ##########################################
+		liststore = gtk.ListStore(gtk.gdk.Pixbuf, str)
+		treeview = gtkbuilder.get_object("treeview")
+		treeview.set_model(liststore)
+
+		imagecell = gtk.CellRendererPixbuf()
+		imagecolumn = gtk.TreeViewColumn("")
+		imagecolumn.pack_start(imagecell, True)
+		imagecolumn.add_attribute(imagecell, "pixbuf", 0)
+		treeview.append_column(imagecolumn)
+
+		textcell = gtk.CellRendererText()
+		textcolumn = gtk.TreeViewColumn("")
+		textcolumn.pack_start(textcell, True)
+		textcolumn.add_attribute(textcell, "text", 1)
+		textcolumn.set_attributes(textcell, markup=1)
+		treeview.append_column(textcolumn)
+
+		image_style=icon_theme.load_icon( "bs-ng-style", 32, 0 )
+		liststore.append([image_style, _("<b>Style</b>")])
+
+		image_alias=icon_theme.load_icon( "bs-ng-alias", 32, 0 )
+		liststore.append([image_alias, _("<b>Aliases</b>")])
+
+		image_advanced=icon_theme.load_icon( "bs-ng-advanced", 32, 0 )
+		liststore.append([image_advanced, _("<b>Advanced</b>")])
+
+		image_readline=icon_theme.load_icon( "bs-ng-readline", 32, 0 )
+		liststore.append([image_readline, _("<b>Readline</b>")])
+
+		image_extra=icon_theme.load_icon( "bs-ng-extra", 32, 0 )
+		liststore.append([image_extra, _("<b>Extras</b>")])
+
+		image_profile=icon_theme.load_icon( "bs-ng-profile", 32, 0 )
+		liststore.append([image_profile, _("<b>Profiles</b>")])
+
+		image_vim=icon_theme.load_icon( "bs-ng-vim", 32, 0 )
+		liststore.append([image_vim, _("<b>VIM</b>")])
+
+		image_nano=icon_theme.load_icon( "bs-ng-nano", 32, 0 )
+		liststore.append([image_nano, _("<b>Nano</b>")])
+
+		image_ls=icon_theme.load_icon( "bs-ng-ls", 32, 0 )
+		liststore.append([image_ls, _("<b>LS Colors</b>")])
+
+		image_custom=icon_theme.load_icon( "bs-ng-custom", 32, 0 )
+		liststore.append([image_custom, _("<b>Custom</b>")])
+
+		image_help=icon_theme.load_icon( "bs-ng-help", 32, 0 )
+		liststore.append([image_help, _("<b>Help</b>")])
+
+		image_info=icon_theme.load_icon( "bs-ng-info", 32, 0 )
+		liststore.append([image_info, _("<b>Info</b>")])
+
+		tree_selection = treeview.get_selection()
+		treeview.set_cursor(int(initial_page))
+
+		def treeview_action(widget, extra, data=None):
+			selection = treeview.get_selection()
+			position = int(selection.get_selected_rows()[1][0][0])
+			if position <= 9:
+				notebook.set_current_page(position)
+			elif position == 10:
+				subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/index.html", shell=True)
+			elif position == 11:
+				aboutdialog.show_all()
+				aboutdialog.connect("response", about_destroy, None)
+
+		treeview.connect("cursor-changed", treeview_action, None)
+
+		self.bashstyle.show
 
 if __name__ == "__main__":
 	check_lockfile()
