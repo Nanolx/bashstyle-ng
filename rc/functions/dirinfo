@@ -178,6 +178,10 @@ dirinfo_index () {
 				;;
 			esac
 		;;
+
+		*list)
+			cat $HOME/.dirinfo_index | sed -e 's/.dirinfo//g'
+		;;
 	esac
 
 }
