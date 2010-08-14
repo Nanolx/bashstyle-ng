@@ -1,2212 +1,761 @@
-7.11:
-
-"Valleé De Larmes"
-
-rc/functions/dos2unix ::
-rc/functions/gconf ::
-rc/functions/git (git_export) (git_bzip) (git_xz) ::
-rc/functions/ls ::
-rc/functions/media (writeiso) (geniso) ::
-rc/functions/misc (crypt) ::
-rc/functions/xchown ::
-rc/functions/xdel ::
-rc/functions/xcp ::
-rc/functions/xmv:
-- fixed bug #98: support spaces in arguements
-
-rc/functions/showspace:
-- fixed bug #99: get values correctly
-
-data/bashstyle7.ui:
-- remove version from windowtitle
-- make window resizable
-
-rc/nx-rc.in:
-- load $HOME/.custom-rc earlier
-- load $HOME/.settings-rc
-- start bs-ng-wizard if required
-- added the possibility to restore the last working directory
-
-rc/functions/git:
-- added git_branch (current GIT branch or "--")
-- added git_revision (6 digit GIT revision or "--")
-- added git_action (current GIT action or "--")
-- updated get_gnome and get_xfce for the first-run-wizards options
-
-rc/styles/separator-rc:
-- added SEPA_1 custom position with SEPA_1_COLOR
-- added SEPA_2 custom position with SEPA_2_COLOR
-
-rc/styles/vector-rc:
-- added VECTOR_1 custom position with VECTOR_1_COLOR
-- added VECTOR_2 custom position with VECTOR_2_COLOR
-
-rc/styles/clock-rc:
-- added CLOCK_1 custom position with CLOCK_1_COLOR
-
-rc/styles/clock-ad-rc:
-- added CLOCK_AD_1 custom position with CLOCK_AD_1_COLOR
-
-rc/styles/elite-rc:
-- added ELITE_1 custom position with ELITE_1_COLOR
-
-rc/styles/poweruser-rc:
-- added POW_1 custom position with POW_1_COLOR
-
-rc/styles/dirks-rc:
-- added DIRKS_1 custom position with DIRKS_1_COLOR
-- added DIRKS_2 custom position with DIRKS_2_COLOR
-
-rc/styles/sepa_ng-rc:
-- added SEPA_NG_1 custom position with SEPA_NG_1_COLOR
-
-rc/styles/quirk-rc:
-- added QUIRK_1 custom position with QUIRK_1_COLOR
-
-rc/styles/null-rc:
-- empty custom positions
-
-rc/styles/*:
-- make sure to use \$ rather than $
-
-rc/styles/dash-rc ::
-rc/styles/job-rc ::
-rc/styles/minimal-rc ::
-rc/styles/bracket-rc ::
-code/bsng.py.in ::
-data/bashstyle7.ui:
-- removed dash style
-- removed job style
-- removed minimal style
-- removed bracket style
-
-data/vim/colors/:
-- new vim color schemes:
-- asu1dark
-- candycode
-- dw_orange
-- fruit
-- relaxedgreen
-- tango
-
-rc/nx-rc.in:
-- display warnings from rc-files if needed
-
-rc/settings/vim-rc:
-- warn if $HOME/.viminfo is not writeable or readable
-
-rc/settings/options-rc:
-- warn if /etc/profile.d/msec.sh prevents TMOUT to be changed
-
-rc/functions/git:
-- added -m switch for get_xfce
-- added -mb switch for get_xfce
-- added -mb switch for get_gnome
-
-rc/functions/svn:
-- added get_kde
-- added get_e
-
-rc/functions/admin:
-- added torswitch
-- added repoadd
-- added remount
-- added wipe (from ubuntuusers.de wiki)
-	* DONT USE wipe IF YOU DONT KNOW WHAT IT DOES!
-
-rc/functions/dos2unix:
-- moved d2u and u2d here
-
-rc/functions/bookmark:
-- added bookmark and unmark
-
-rc/functions/misc:
-- added get_kernel
-- added lscd
-- added bashtips (unknown original author)
-- added up (from ubuntuusers.de wiki)
-- added stop_watch (from ubuntuusers.de wiki)
-- added deadlink
-- added empty
-- added spinner and endspinner
-
-rc/functions/showip:
-- -external switch for show_ip
-
-rc/functions/random:
-- added randomfile (original version was from Greg Wooledge)
-
-rc/functions/media:
-- added youtube2ogg
-- added mkv2avi
-- added geniso
-- added writeiso
-
-code/bsng.py.in:
-- new C-P-B option: $SECONDS
-- move the Preview-VTE into it's own page
-- better treeview-placement
-- add a toolbox window for the C-P-B-Stuff-Buttons
-
-scripts/bs-ng-wizard:
-- added a first-run-wizard
-
-data/icons/bs-ng-preview.png ::
-data/icons/bs-ng-toolbox.png:
-- two new icons
-
-configure ::
-.configure/* ::
-Makefile.in:
-- make output even more fancy
-- remove EARGS
-- remove old fragments from uninstall rule
-- make po rule depend on pot rule
-- let clean rule remove ~ files
-- hardcode bash as shell for make
-- don't forget to remove russian translation
-- check for whiptail
-
-translations/po/bs-ng-es.po:
-- added spanish translation (Kenny Meyer)
-
-rc/ascii/*:
-- added ascii stuff
-
-rc/functions/dirinfo:
-- added dirinfo stuff
-
-rc/styles/* ::
-rc/functions/* ::
-scripts/* ::
-rc/settings/colors ::
-rc/functions/bs-ng-echo:
-- removed bs-ng-echo
-
-7.10:
-
-"Destination Infinity"
-
-* updated copyright year
-
-code/bsng.py.in:
-- fixed bug #91: changing ls colors for log files didn't work
-
-code/bsng.py.in:
-- fixed bug #92: check_lockfile requires commands and string modules to be loaded
-
-code/bsng.py.in:
-- fixed bug #93: bashstyle -g didn't work correctly (-g readline unknown, all others -1)
-
-code/bsng.py.in:
-- fixed bug #94: REALLY fix bug #90 this time
-
-code/bsng.py.in:
-- fixed bug #95: changing terminfo for manpages didn't work
-
-code/bsng.py.in:
-- fixed bug #96: enabling randomly choosen style didn't work
-
-code/bsng.py.in:
-- fixed bug #97: en/disabling backups in VimCFG didn't work
-
-scripts/rcgenerator:
-- major rework
-
-rc/styles/ayoli:
-- a modification of clock-advanced by Ayo
-
-code/bsng.py.in:
-- added swap_dic function
-- make the comboboxes show the current set value
-- remove all expanders (the window is too huge,
-  but expanders are not the way to go)
-- on startup select the current group in the treeview
-- removed the grid-lines from the treeview
-- removed 4 unused widgets
-- new NanoCFG option: en/disable historylog
-- new NanoCFG option: fix backspace/delete confusion
-- new NanoCFG option: fix keypad numeric keys confusion
-
-rc/nx-rc.in:
-- added reload alias for `source ~/.bashrc`
-- added rd alias for `pwd -P`
-- also log the patch-level of bash
+  2010-08-14 Christopher Roy Bratusek <zanghar@freenet.de>
 
-rc/functions/random:
-- added randompw for generating random passwords
-- added -l param to random (length of random number)
-- added -r param to random (range of random number)
-- old syntax for random still valid
+ * ChangeLog, documentation/chapter08.html, rc/functions/admin: began revising
+ chapter08
 
-rc/functions/debug:
-- added dbg_view (open debuglog)
-- added dbg_verbosity (0 = disable, 1 = enable output on startup)
-
-rc/functions/misc:
-- added
-- contains top10 (list 10 most-used commands)
-- contains crypt ("en/decrypt" plaintext)
-- contains d2u/u2d (convert line-endings)
-
-rc/functions/git:
-- git_bzip compresses now at -9
-- added git_xz (generate tar.xz from git tree)
-- added get_gnome (grab GIT-Repos from GNOME)
-- added get_xfce (grab GIT-Repos from XFCE)
-
-documentation/chapter02.html:
-- documented internal aliases
-
-documentation/chapter08.html:
-- updated
-- documented internal functions/variables
-
-documentation/img/*.png ::
-documentation/img-style/*.png:
-- new screenshots (yay!)
-
-7.9.1:
-
-"The Nature Of Our Mind"
-
-scripts/bs-ng-profiler
-scripts/rcgenerator:
-- fixed bug #89: didn't load bs-ng-echo
-
-code/bs-ng.py.in:
-- fixed bug #90: workaround a bug in pygtk (all parts of the UI work again)
-
-code/bs-ng-py.in:
-- don't make lockfile functions a class each
-
-rc/functions/ps:
-- process related functions:
-- psgrep (similar to pgrep, but nicer)
-- pskill (psgrep, then ask for process number to terminate)
-
-documentation/chapter08.html:
-- added doc for rc.functions.ps
-
-7.9:
-
-"Kamikaze"
-
-scripts/rcgenerator:
-- fixed bug #73: quote all settings in rcgenerator --bash
-- fixed bug #74: misschecked wether BASH is v4.x
-- fixed bug #75: export BSNG_PREFIX/BSNG_GCONF_READ for scripts to work
-- fixed bug #76: wrong uptime-color defintion
-
-data/bashstyle.schemas:
-- fixed bug #77: default value for HISTIGNORE is sub-optimal
-
-.configure/base:
-- fixed bug #78: `tput sgr0' after every message (in case of fail)
-
-rc/functions/ls:
-- fixed bug #79: got wrong value for user (in lo) and group (in lg)
-- fixed bug #80: fixed errorneous output (in lo and lg)
-
-rc/functions/showspace:
-- fixed bug #81: show_space got wrong values
-
-rc/functions/*:
-- fixed bug #82: `tput srg0' after every help message
-
-Makefile.in:
-- fixed bug #83: `uninstall' target failed
-
-rc/functions/truncpwd:
-- fixed bug #84: trunc_pwd does now work correctly with all styles
-
-rc/styles/clock-rc:
-- fixed bug #85: positioning glitch of the floating clock
-
-rc/functions/showcpuload:
-- fixed bug #86: don't err of a process hasn't set it's nice value
-
-code/bsng.py.in:
-- fixed bug #87: typo in grep-color setter
-
-rc/functions/showuptime:
-- fixed bug #88: small output-syntax error
-
-.configure/* ::
-configure:
-- major rework of the configure script
-- add possibility to check for a given version via pkg-config
-- modified output appearance
-
-configure.checks ::
-.configure/depends:
-- renamed file
-- trimmed down checks (no need to check for coreutils & co)
-- updated
-
-code/bsng.py.in:
-- rename process to "bashstyle"
-- improved lockfile check-mechanism a bit
-- no longer make use of psyco (even if found)
-- reload preview when a new style was choosen
-- re-add ability to modify internal styles in C-P-B
-- re-add ability to add symbolic colors in C-P-B
-- added buttons for emptying P_C and PS1 in C-P-B
-- added button for generating all RCs at once
-- added scrollbars to the TextViews in C-P-B
-- re-added expanders to `Standard/BashStyle-Ng Stuff' frames
-- added basic Undo/Redo functionality in C-P-B
-	-- (using `undobuffer' module by Florian Heinle)
-- added alias 8 and 9 options
-- removed splash screen stub
-- added radigroup to C-P-B
-	-- (for choosing in which buffer to add text)
-- major refactoring of the code
-- improved mechanism for loading modules
-- better function naming scheme
-- removed unused update_preview() function
-- removed lots of small unnecessary bits of code
-- use subprocess instead of os.system
-- only change processname via ctypes when platform is linux2
-- also emit ' and " in vim rulerformat textentry
-
-scripts/* ::
-rc/functions/*:
-- except bs-ng-profiler and rcgenerator, all scripts
-- are now functions loaded on startup
-
-rc/styles/clock-rc:
-- only do one call of `echo' in PROMPT_COMMAND
-
-data/mkrelease ::
-rc/nx-rc.in ::
-scripts/rcgenerator ::
-rc/themes/* ::
-code/bsng.py.in:
-- updated
-
-terminfo/ ::
-icons/ ::
-vim/ ::
-data/:
-- moved directories into data/
-
-rc/misc/ ::
-rc/settings/:
-- renamed
-
-rc/themes/ ::
-rc/styles/:
-- renamed
-
-rc/misc/man-rc:
-- removed some fallback code
-
-rc/functions/random:
-- added (contains random)
-
-rc/functions/ls:
-- lm does now show mode in human-readable and octal format
-
-rc/functions/showspace:
-- add --total option (shows total space of a drive)
-
-rc/functions/xconv:
-- improved hex2dec function
-- added oct2dec function
-- added dec2oct function
-- added bin2dec function
-- added dec2bin function
-- added hex2oct function
-- added hex2bin function
-- added oct2hex function
-- added oct2bin function
-- added bin2hex function
-- added bin2oct function
-- added bin2all function
-- added oct2all function
-- added dec2all function
-- added hex2all function
-- added power function
-- added radical function
-- added round function
-
-translations/po/bs-ng-ru.po:
-- major update of the russian translation [Alex Lushpai]
-
-translations/po/bs-ng-de.po:
-- improved german translation
-
-rc/functions/exchange:
-- improved version [Dario Deho]
-
-rc/nx-rc.in:
-- bsource function for easier to read code
-
-data/bs-ng.desktop:
-- small improvement [TDY]
-
-scripts/rcgenerator:
-- add headers to generated rc-files
-- bashrc: load all functions on startup
-
-translations/po/bs-ng-de.po:
-- updated german translation
-
-translations/ru/bs-ng-ru.po:
-- updated russian translation
-
-translations/it/bs-ng-it.po:
-- updated italian translation
-
-Makefile.in:
-- indention fixes in output
-
-documentation/*.html:
-- major update of the docs
-
-mkrelease:
-- fixed-up
-
-debian/control:
-- updated
-
-7.8:
-
-"One Stop Love"
-
-scripts/truncpwd ::
-scripts/bs-ng-profiler:
-- fixed bug #58: wrong color definitons
-
-rc/themes/clock-ad-rc:
-- fixed bug #59: truncation of $PWD in clock-ad does not work
-- fixed bug #60: setting directory indicator does not work for clock-ad
-
-rc/themes/sputnik-rc ::
-rc/themes/dot_prompt-rc ::
-rc/themes/separator-rc ::
-rc/themes/dirks-rc ::
-rc/themes/clock-ad-rc:
-- fixed bug #61: different colors for $PWD and directory indicator does not work for
-- sputnik/dot_prompt/dirks/separator/clock-ad
-
-scripts/countfiles:
-- fixed bug #62: if including hidden files number of files is counted wrong
-
-rc/misc/bracket-rc:
-- fixed bug #63: typo in bracket style
-
-rc/misc/vector-rc:
-- fixed bug #64: showip syntax change causes error in vector
-
-code/bashstyle.in:
-- fixed bug #65: two typos in grep-color changer
-
-code/bashstyle.in:
-- fixed bug #66: it's possible to run two (or more) instances
-
-code/bashstyle.in:
-- fixed bug #67: avoid unwanted color-change by resetting Change-Color-To Combobox
-
-rc/nx-rc.in:
-- fixed bug #68: make welcome-message work again
-
-scripts/rcgenerator:
-- fixed bug #69: does not work because of dbg_msg
-
-scripts/rcgenerator:
-- fixed bug #70: colors/indention of ending message incorrect
-
-data/bashstyle.schemas:
-- fixed bug #71: hist_ignore did not catch up all instances (missing wildcards)
-- (after install, start a new terminal and run "reset_key /apps/bashstyle/hist_ignore")
-- (only if you upgraded from a previous version, else no need for this)
-
-configure ::
-Makefile.in:
-- fixed bug #72: avoid using bash-only syntax [install works on dash now, no others tested]
-
-data/bashstyle7.glade ::
-data/bashstyle7.ui:
-- replace glade with gtkbuilder
-
-data/bashstyle.schemas ::
-scripts/rcgenerator.in ::
-scripts/bs-ng-profiler ::
-rc/misc/options-rc ::
-rc/nx-rc.in:
-- changed name of several gconf-keys
-
-rc/misc/options-rc:
-- on mandriva TMOUT is not changeable by default
-- print a warning message with instructions
-
-code/bashstyle.in:
-- switched to gtkbuilder
-- 98% of the code rewritten
-- improve get_value helper function
-- replaced 4 entries with spinbuttons
-- replaced 2 entries with textviews
-- make emiting of ' and " chars work (on all entries)
-- added --version --prefix and --group= options (see bashstyle --help)
-- use VTE for live preview instead of PNGs
-- added option for reloading the VTE
-- added option for VimCFG wether to backup files
-- added a set of options for changing LS_COLORS
-
-scripts/bswitch.in ::
-scripts/truncpwd.in ::
-scripts/rcgenerator.in ::
-scripts/bs-ng-profiler:
-- make use of get_key and set_key
-
-scripts/truncpwd:
-- reworked
-- make it work for all themes
-
-scripts/showuptime:
-- reworked
-- unify output syntax
-- add d h m s to output syntax
-
-scripts/showmem:
-- unify output syntax
-
-scripts/showmem:
-- renamed --percent-used to --used-percent
-- renamed --percent-free to --free-percent
-
-scripts/bs-ng-echo ::
-scripts/bs-ng-profiler ::
-scripts/countfiles ::
-scripts/countprocesses ::
-scripts/man2pdf ::
-scripts/showbatteryload ::
-scripts/showcpuload ::
-scripts/showip ::
-scripts/showmem ::
-scripts/showsize ::
-scripts/showspace ::
-scripts/showtty ::
-scripts/systeminfos:
-- small rework
-
-scripts/systeminfos ::
-scripts/man2pdf ::
-scripts/showbatteryload:
-- dynamically check for optional dependencies
-
-Makefile:
-- improved clean rule
-
-rc/nx-rc.in:
-- also log bash-version
-
-rc/functions/debug:
-- little speed-up
-
-rc/functions/xchown:
-- added (recursive chown for given user or current
-- with root priviledges, via su)
-
-rc/functions/xmv:
-- added (move files to last arguement, if that directory
-- does not exist, create it before moving)
-
-rc/functions/xcp:
-- added (copy files to last arguement, if that directory
-- does not exist, create it before coying)
-
-rc/functions/xdel:
-- added (bash 4.x only)
-- delete matching files recursively (eg xdel .orig)
-
-rc/functions/xconv:
-- added
-- hex2dec (convert hexadecimal to decimal)
-- dec2hex (convert decimal to hexadecimal)
-
-rc/functions/check_opt:
-- added (check for optional dependencies)
-
-rc/functions/xunalias:
-- added (only unalias, if that alias exists)
-
-rc/functions/ls:
-- added (some new ls-commands (ll la l1 lo lg lm))
-
-rc/functions/git:
-- added (contains git_export and git_bzip)
-
-rc/functions/exchange:
-- added (exchanges the value of two variables)
-- thanks to Greg Wooledge for this one
-
-data/bashstyle7.glade ::
-data/bashstyle.schemas ::
-code/bashstyle.in ::
-rc/misc/shopt-rc:
-- added autocd option (Bash 4.0)
-- added checkjobs option (Bash 4.0)
-- added globstar option (Bash 4.0)
-- added dirspell option (Bash 4.0)
-
-Makefile.in:
-- make all rule depend on mo rule
-- updated clean rule
-
-configure.checks:
-- added check for msgfmt
-- added check for shutil pymod
-- added check for vte pymod
-- added check for stat
-
-scripts/rcgenerator.in ::
-scripts/rcgenerator ::
-- make use of $BSNG_PREFIX, no .in file needed anymore
-
-rc/misc/vim-rc.in ::
-rc/misc/vim-rc:
-- make use of $BSNG_PREFIX, no .in file needed anymore
-
-rc/misc/man-rc.in ::
-rc/misc/man-rc:
-- make use of $BSNG_PREFIX, no .in file needed anymore
-
-vim/plugin/nerd_tree.vim:
-- added (Filebrowser for vim)
-
-vim/plugin/taglist:
-- added (Symbolbrowser for vim)
-
-vim/plugin/tabbar:
-- added (Tabbar for vim (like in FF))
-
-data/bashstyle-ng.pc.in:
-- added .pc file
-
-mkrelease:
-- updated
-
-translations/po/bs-ng-ru.po ::
-translations/mo/bs-ng-ru.mo:
-- added russian translation (thanks to Alexander Lushpai)
-
-translations/po/bs-ng-it.po:
-- major update of the italian translation (thanks to Alin Hantig)
-
-terminfo/{b,m,n}/* ::
-translations/mo/*.mo ::
-translations/pot/*.pot:
-- remove generated files from source-tree
-(use make pot/make mo to generate them)
-
-translations/po/bs-ng-de.po ::
-translations/po/bs-ng-it.po:
-- updated my mail address
-- fixed Translation-Team
-
-data/deprecated.schemas:
-- remove deprecated schemas upon install
-
-README:
-- updated
-
-debian/dirs:
-- removed empty file
-
-scripts/bs-ng-profiler:
-- updated
-- now verbose import
-
-scripts/rcgenerator:
-- updated
-- updated help message
-- improved ending texts
-
-documentation/*.html ::
-documentation/img/*.png:
-- updated
-
-TODO:
-- updated
-
-CREDITS:
-- updated
-
-7.7:
-
-"Eternity"
-
-Makefile.in:
-- fixed bug #47: forgot a ;
-
-mkrelease:
-- fixed bug #48: mkrelease did not cover all files
-
-rc/nx-rc.in:
-- fixed bug #49: make it possible to use vim/nanocfg if bashstyle is disabled
-
-Makefile.in:
-- fixed bug #50: typo prevented uninstallation of bs-ng-parse-echo
-
-Makefile.in:
-- fixed bug #51: bswitch, man2pdf, showmem and sysinfo did not get uninstalled
-
-scripts/showbatteryload:
-- fixed bug #52: syntax error in showbatteryload
-
-configure:
-- fixed bug #53: color issues on console
-
-vim/colors/gobo.vim:
-- fixed bug #54: gobo vim-color-scheme is not working
-
-data/bashstyle7.glade:
-- fixed bug #55: minimum gtk+ is 2.12 - so don't use 2.16 options in GtkEntry()
-
-rc/misc/color-rc:
-- fixed bug #56: don't require a temporary file to correctly set colors
-
-rc/misc/shopt-rc:
-- fixed bug #57: explicitly unset shopts if not going to be set
-
-rc/functions/debug ::
-rc/functions/gconf:
-- some helper functions, for better code
-
-scripts/rcgenerator.in:
-- set enabcol to false, if not true
-- set enabcol to false, if TERM not *xterm*
-- updated for file changes
-- major help message rework
-
-scripts/showbatteryload:
-- added help message
-
-scripts/showcpuload:
-- added case switch for $1
-- added help message
-
-scripts/showip:
-- replace if switch by case switch
-- reworked help message
-
-scripts/showload:
-- removed one if switch
-- small help message rework
-
-scripts/showmem:
-- added case switch for $1
-- small help message rework
-
-scripts/showsize:
-- added case switch for $1
-- added help message
-- change all suffixes to upper case
-
-scripts/showtty:
-- added case switch for $1
-- added help message
-
-scripts/showuptime:
-- added case switch for $1
-- added help message
-
-scripts/sysinfo:
-- added case switch for $1
-- reworked help message
-
-scripts/truncpwd:
-- added case switch for $1
-- added help message
-
-scripts/bswitch.in:
-- updated for filechanges
-- added two new options --on and --off
-- reworked help message
-
-scripts/bs-ng-profiler:
-- small help mesage rework
-- make it possible to change the output file
-- upon export (second argument passed)
-- replace 2 if [[ -a by if [[ -e
-
-scripts/man2pdf:
-- replace if switch by case switch
-- small help message rework
-
-scripts/bs-ng-parse-echo ::
-scripts/bs-ng-echo:
-- renamed file
-- small help message rework
-
-scripts/fdnl ::
-scripts/countfiles:
-- renamed file
-- small help mesage rework
-
-scripts/proccount ::
-scripts/countprocesses:
-- renamed file
-- added help message
-
-configure:
-- highlight Required and Optional
-- fixed a typo
-- replace 2 if [[ -a by if [[ -e
-- added help message (./configure --help)
-- added maintainer mode (./configure --mm)
-- added verbose mode (VERBOSE=1 ./configure)
-- added very verbose mode (VERBOSE=2 ./configure)
-
-configure.checks:
-- improve "not found" message for psyco
-- re-ordered checks
-- move bc and less from OPT_APP to APP
-
-data/bashstyle.in:
-- added --help --version --prefix
-
-data/bashstyle.schemas ::
-data/bashstyle7.glade ::
-code/bashstyle.in ::
-rc/misc/input-rc:
-- add new stuff to c-p-b: $BASHPID, $SHLVL and $EUID
-- rename mostlike-bold option to bold
-- add nebula as option
-- added comment to the about dialog
-- added some more comments to the code
-- added new readline option > completion-query-items (default 100)
-- added new readline option > mark-modified-lines (default Off)
-- improved some widget's layout
-- improved some widget's height
-- improved layout of the profile page
-- make all comboboxes menus non-detachable
-- first display rulerformat = then the entry
-
-data/bashstyle.schemas ::
-rc/*{,/*}:
-- added debug mode (/apps/bashstyle/debug{,_log,_verbose})
-- debugging is on by default ( logfile = ~/.bashstyle.log )
-- verbose debugging is off by default
-
-rc/misc/random-rc:
-- reworked
-
-Makefile.in:
-- add dummy distclean rule, that calls clean rule
-- update all rule for terminfo file changes
-- display message for each compiled terminfo file
-- install new terminfo files (bold/nebula)
-- don't create unnessesary directories
-- updated for translation files changes
-- add pot rule
-- add mo rule
-- add po rule
-- auto-readjust .bashrc entries upon install
-- (you can bypass this by running make RC_DISABLE=1 install)
-
-Makefile.in ::
-data/nx-rc.in ::
-configure ::
-mkrelease:
-- updated for file changes
-
-debian/control:
-- add apm, acpi and dmidecode to Suggests:
-- updated my mail address
-- small description rework
-- updated Build-Depends
-
-debian/rules:
-- add mm flag to configure (skip checks upon build)
-- export DH_VERBOSE = 1
-- RC_DISABLE=1
-
-debian/bashstyle-ng.postinst ::
-debian/bashstyle-ng.prerm:
-- updated
-
-debian/copyright:
-- major update
-
-debian/dirs:
-- updated
-
-debian/docs:
-- updated
-
-mostlikebold.terminfo ::
-bold.terminfo:
-- renamed file
-- updated description
-
-mostlikebold.terminfo ::
-nebula.terminfo:
-- copied file
-- updated description
-- make headers/flags/important words iceblue (smoothblue previously)
-- make important words/options turqoise (smoothgreen previously)
-
-rc/misc/man-rc.in:
-- if man_style == mostlikebold, then auto-change it to bold
-
-data/bashstyle.schemas:
-- updated description of terminfo key
-
-translations/po/bs-ng-de.po ::
-translations/mo/bs-ng-de.mo ::
-translations/pot/bs-ng.pot:
-- updated german translation
-
-documentation/img-style/bs-ng-mostlike-bold.png ::
-documentation/img-style/bs-ng-bold.png:
-- renamed preview image for bold terminfo
-
-documentation/img-style/bs-ng-nebula.png:
-- added preview image for nebula terminfo
-
-documentation/chapter01.html:
-- updated for terminfo file changes
-
-documentation/chapter08.html:
-- updated for script file changes
-
-documentation/chapter02.html:
-- updated for new readline options
-
-TODO:
-- updated
-
-terminfo/n/nebula:
-- compiled version of nebula.terminfo
-
-terminfo/b/bold:
-- compiled version of bold.terminfo
-
-translate-prepare ::
-translate-finish ::
-terminfo-example.text ::
-terminfo/m/mostlikebold ::
-mostlikebold.terminfo:
-- removed no longer used files
-
-*/*:
-- improved tree
-
-rc/*/*:
-- don't export everything, only necessary stuff
-
-documentation/img/*:
-- updated documentation images
-
-7.6:
-
-"Up In Smoke"
-
-Makefile.in:
-- fixed bug #40: don't forget to remove it translation
-- upon uninstallation
-
-Makefile.in:
-- fixed bug #41: don't forget to remove bs-ng-parse-echo
-- upon uninstallation
-
-Makefile.in:
-- fixed bug #42: don't install .in and .h files
-
-system/nx-rc.in:
-- fixed bug #43: random theme feature does not work
-
-system/misc/man-rc:
-- fixed bug #44: man-rc has hardcoded prefix
-
-debian/control:
-- fixed bug #45: depends on python-gconf instead of python-gnome2
-
-system/misc/completion-rc:
-- fixed bug #46: quote_readline functions has been missing
-
-configure:
-- also display codename at the beginning
-
-system/misc/man-rc.in:
-- let configure add prefix to man-rc
-
-support/rcgenerator.in:
-- added stand-alone rc-file generator
-- can generate rc-file for all (vim, nano, readline and bash)
-
-python-gtk/bashstyle.in ::
-glade-xml/bashstyle7.glade:
-- use single strings for checkbuttons
-- rewrote many strings
-- don't mix theme and style (use style everywhere)
-- don't mix show and display (use display everywhere)
-
-system/nx-rc.in:
-- source $HOME/.custom-rc before displaying the WelcomeMessage
-- replace if [[ -a by if [[ -e
-
-system/themes/general-rc ::
-system/nx-rc.in:
-- remove general-rc (put code into nx-rc)
-
-system/misc/tweaks-rc ::
-system/nx-rc.in:
-- remove tweaks-rc (put code into nx-rc)
-
-TODO:
-- updated todo list
-
-messages/bs-ng-de.mo
-translations/bs-ng-de.po:
-- major update of the german translation
-
-bs-ng-doc/chapter0?.html:
-- sync headers with new strings
-
-support/showbatteryload:
-- use gile's function for use with apm
-- add support for acpi
-
-bs-ng-doc/chapter08.html:
-- updated showbatteryload description
-
-Makefile.in:
-- install locales in base lang-directory not in specific
-- (eg. de instead of de_DE)
-
-python-gtk/bashstyle.in:
-- likewise
-
-cfg/config:
-- rename to configure.checks
-
-configure.checks:
-- add check for acpi
-- add check for gtk-update-icon-cache
-
-configure:
-- use configure.checks instead of cfg/config
-
-python-gtk/bashstyle.in ::
-glade-xml/bashstyle7.glade:
-- add combobox for showbatteryload in c-p-b
-- since there are now two options (acpi/apm)
-
-system/misc/completion-rc:
-- improve completion for bunzip2
-
-glade-xml/bashstyle7.glade ::
-python-gtk/bashstyle.in ::
-system/misc/color-rc:
-- added new colors:
-- cream
-
-INSTALL:
-- improved
-
-COPYING.CODE:
-- license for the code is now GPL3
-
-LGPL-3 -> COPYING.ICONS:
-- license for icons stays LGPL3
-
-system/nx-rc.in ::
-system/misc/* ::
-system/themes/* ::
-support/* ::
-mkrelease ::
-mostlike.txt ::
-mostlike-bold.txt ::
-translate-prepare ::
-translate-finish:
-- update license info in the header
-
-gconf-schemas/bashstyle.schemas:
-- add :cd:source:.:clear:sudo:su to default history blacklist
-- update descriptions for new colors from 7.6 and 7.3
-
-glade-xml/bashstyle7.glade ::
-python-gtk/bashstyle.in:
-- add new colors from 7.6 and 7.3 as possibilities for grep-color
-
-glade-xml/bashstyle7.gtkbuilder:
-- bashstyle-ng ui in gtkbuilder format (unused for now, we'll
-- switch from glade to gtkbuilder later on)
-
-bs-ng.desktop:
-- don't need a .in file here
-- remove Version field
-
-mkrelease:
-- update for file changes
-
-mostlike.txt ::
-mostlike.terminfo ::
-mostlike-bold.txt ::
-mostlikebold.terminfo:
-- renamed terminfo files
-
-bs-ng-doc/chapter08.html:
-- added doc for the rcgenerator
-
-python-gtk/bashstyle.in ::
-glade-xml/bashstyle7.glade ::
-glade-xml/bashstyle7.gtkbuilder ::
-bs-ng-doc/chapter06.html:
-- added rcgenerator options to Profile page
-
-bs-ng-doc/img/*.png:
-- updated doc images
-
-debian/docs:
-- updated
-
-7.5:
-
-"Cubello"
-
-python-gtk/bashstyle.in:
-- fixed bug #36: 'Use Custom Prompt'-Button did not work
-
-Makefile.in:
-- fixed bug #37: Install Doc with correct permissions
-- to be able to show preview image
-
-python-gtk/bashstyle.in:
-- fixed bug #38: Can't change Readline's editing mode
-
-configure:
-- fixed bug #39: Configure Looks for system/misc/vimrc
-- instead of system/misc/vim-rc
-
-vim/colors/*.vim:
-- added vim-colorschemes:
-	- adaryn
-	- advantage
-	- desert
-	- gobo
-	- impact
-	- nightshade
-	- nightwish
-	- wombat
-
-system/misc/vim-rc.in:
-- expand runtimepath to include the stuff shipped with BS-NG
-
-gconf-schemas/bashstyle.schemas ::
-python/bashstyle.in ::
-glade-xml/bashstyle7.glade:
-- added option for selecting vim colorscheme
-
-bs-ng-doc/chapter09.html:
-- added doc for vim-colorscheme option
-
-configure:
-- removed an useless \n
-
-Makefile.in:
-- removed some unused stuff
-
-bs-ng-doc/chapter04.html:
-- Vi like shortcuts not Vim
-- Seperate Tableheadline and Table with a blank line
-
-bs-ng-doc/chapter07.html:
-- necessary not nessacary
-
-bs-ng-doc/chapter08.html:
-- usable not useable
-- Seperate Tableheadline and Table with a blank line
-
-bs-ng-doc/chapter09.html:
-- add some "the" where necessary
-
-TODO:
-- updated
-
-bs-ng-doc/img/*.png:
-- updated doc images
-
-7.4:
-
-"Klubbheads Großraum Remix"
-
-configure:
-- while running configure, expand $PATH to be able to find dmidecode via which
-
-support/bs-ng-profiler:
-- help message rework
-
-support/bswitch.in:
-- fixed help message
-- colored help message
-
-support/fdnl:
-- added help message
-- changed syntax
-
-support/bs-ng-parse-echo:
-- fixed help
-- print $blue in blue, $red in red and so on
-- only print colored if colores are enabled
-
-support/man2pdf:
-- small help message rework
-
-support/showip:
-- added help message
-
-support/showmem:
-- added help message
-
-support/showload:
-- added help message
-
-support/sysinfo:
-- help messaged reworked
-- added --all option
-
-support/showspace:
-- help message added
-
-python-gtk/bashstyle.in:
-- updated the custom prompt builder for fdnl syntax change
-
-system/themes/separator-rc ::
-system/themes/quirk-rc:
-- updated for new fdnl syntax
-
-bs-ng-doc/chapter01.html ::
-bs-ng-doc/chapter09.html:
-- fixed some typos/mistakes
-
-bs-ng-doc/img/*.png:
-- updated documentation images
-
-system/nx-rc.in:
-- don't switch from xterm to xterm-256color as it's not supported in every terminal
-- you can now store your own customizations in $HOME/.custom-rc -> they will be loaded then
-
-system/misc/completion-rc:
-- added completion for asoundconf
-
-debian/control:
-- updated
-
-7.3:
-
-"Masterplan/Night Power"
-
-system/misc/vim-rc ::
-python/bashstyle.in ::
-gconf-schemas/bashstyle.schemas ::
-glade-xml/bashstyle7.glade:
-- VimCFG: add negated entries (if nessacary) to vimrc to ensure user-setup is forced
-- VimCFG: new option for en/disabling incremental search
-- VimCFG: new option for en/disabling highlighting search results
-- VimCFG: new option for en/disalbing displaying of the linenumber
-- VimCFG: new option for en/disabling autosaving of files
-- VimCFG: new option for en/disabling highlighting the current line
-- VimCFG: new option for en/disabling the ruler at the bottom
-- VimCFG: new option for setting the rulerformat
-- VimCFG: set default value for rulerformat to %45(%t\ %y\ %c\ %l\/%L\ %p%%%)
-
-python/bashstyle.in ::
-system/misc/color-rc:
-- added new colors:
-	- winered
-	- brown
-	- silver
-	- ocher
-	- orange
-	- purple
-	- pink
-
-support/bs-ng-parse-echo:
-- updated help to list the new colors
-
-support/bs-ng-profiler:
-- updated to catch the new vim keys
-
-glade-xml/bashstyle7.glade:
-- re-ordered options in NanoCFG
-
-support/bswitch.in:
-- automatically reload style
-
-Makefile.in:
-- install scripts with 755 mod -> fixes bug #34
-
-bs-ng-doc/*:
-- updated docs
-
-translations/bs-ng-de.po:
-- updated german translation
-
-7.2:
-
-"Wicked!"
-
-README:
-- added
-
-*/*:
-- rename pscol to pscolor
-
-cfg/config:
-- remove check for random and urandom
-
-system/misc/completion-rc:
-- fix completion for gunzip
-
-system/misc/random-rc:
-- use a bash function for getting the random number,
-- rather than random or urandom
-
-system/themes/separator-rc:
-- don't display a separator between username and hostname
-
-support/bswitch.in:
-- output an info message
-
-glade-xml/bashstyle7.glade:
-- changed the height of several widgets
-- add Alin Hantig to the About Dialog
-
-support/proccount:
-- prepend as much 0s as nessacary to have 4 digits
-
-support/showcpuload:
-- support colored output
-- prepend as much 0s as nessacary to have 3 digits
-
-system/themes/clock-ad-rc:
-- also display running processes
-- also display the cpu-load
-- display system-load instead of load
-
-TODO:
-- updated TODO list
-
-FIXME:
-- added
-
-system/themes/misc:
-- return-value of non-true boolean gconf-keys seems
-- to have changed, update themes, to load monochrome again
-
-python-gtk/bashstyle.in:
-- add separator to the custom-prompt-builder
-
-7.1:
-
-"East Sands Anthem"
-
-translations/bs-ng-it.po:
-- Added Italian translation by Alin Hantig
-
-cfg/config:
-- added check for lspci, lsusb, ps2pdf and dmidecode
-
-configure:
-- added SBINAPP and OPT_SBINAPP
-
-glade-xml/bashstyle7.glade:
-- the entry-widget for the directory
-- indicator was to big.
-
-system/nx-rc.in:
-- fixed bug #33: only set TERM to xterm-256
-- if it has been xterm before
-
-support/man2pdf:
-- added
-- generate pdfs from manpages
-
-support/bs-ng-parse-echo:
-- better help message (--help)
-
-support/bs-ng-profiler:
-- added help message
-
-support/sysinfo:
-- added
-- display system informations; currently:
-- --cpu (CPU Model and Frequency)
-- --kernel (Display Kernel Version, Release and Machine)
-- --memory (Display Total, Free and Used RAM)
-- --partitions (Display Major, Minor, Blocks and Node of all partitions)
-- --pci (Display infos about PCI Devices (and their kernel-module))
-- --usb (Display infos about USB Devices (and their kernel-module))
-- --mounts (Display all mounted filesystems and their options)
-- --bios (Display SMBIOS/DMI infos (requires root auth))
-
-bs-ng-doc/chapter08.html:
-- added doc for man2pdf and sysinfo
-
-support/bswitch.in:
-- added
-- change (some) settings of bs-ng without using a gui, currently:
-- --style <style> change the prompt-style to use
-
-7.0:
-
-"Nemesis"
-
-configure:
-- s/SMOOTBLUE/SMOOTHBLUE/g'
-
-Makefile.in:
-- also output info for clean rule
-- don't exit with 1 when gconfd-2 is not killable
-- colorfull output for all rules
-- also update the icon-cache when uninstalling
-
-translations/bs-ng-de.po:
-- updated german translation
-
-system/themes/vector-rc:
-- use timecolor for time
-- use fontcolor for time/date separator
-- display the ip address
-
-system/themes/elite-rc
-- use timecolor for time
-- use fontcolor for time/date separator
-- also display seconds
-- also display uptime
-- use [] instead of ()
-
-system/themes/minimal-rc
-- fixed a small typo
-
-python-gtk/bashstyle.in:
-- updated custom prompt-builder (vector)
-- updated custom prompt-builder (elite)
-- class is BSNG7 now
-
-bs-ng-doc/img/*.png:
-- updated doc images
-
-bs-ng-doc/img-style/*.png:
-- updated all theme preview images
-
-bs-ng.desktop.in:
-- updated description and version
-
-terminfo-example.txt:
-- added an example file for terminfos
-
-bs-ng-doc/*.html:
-- fixed size of the quirk preview (chapter 1)
-- added note on how to include scripts in the prompts (chapter 8)
-
-system/misc/completions-rc:
-- the bash-completion is not available on all
-- systems, so provide completions on our own
-
-system/misc/alias-rc:
-- add ll as alias for "ls -l"
-- add la as alias for "ls -A"
-- add --group-directories-first to all ls aliases
-
-7.0rc1:
-
-"Frozen Flame"
-
-support/showip:
-- added (displays current ip-address)
-- use showip to simply show ip address
-- or use showip <device> to show address for <device>, eg ppp0
-
-bs-ng-doc/chapter08.html:
-- added doc for showip
-
-glade-xml/bashstyle7.glade:
-- make all buttons in the custom tab's frames have the same size
-
-debian/control ::
-debian/bashstyle-ng.postinst:
-- require libgtk2.0-bin for gtk-update-icon-cache
-- run gtk-update-icon-cache after installation of the debian package
-- run 'make KILL_DISABLE=1 CACHE_DISABLE=1 GCONF_DISABLE=1' for
-- cleaner debian package build
-
-Makefile:
-- only output infos, not commands
-- remove install rule and rename install-real rule to install
-
-7.0a2:
-
-"Summer of Love"
-
-configure:
-- don't check for uptime twice
-- add check for urandom
-- some minor output tweaking
-
-makefile.in:
-- make building of the debian package work again
-- hicolor theme is in /usr so don't use PREFIX here
-
-doc/*:
-- completely revised the documentation
-- updated images
-- added image for the vim page
-- added entries for the vim options
-- added image for the nano page
-- added entries for the nano options
-- description for readline -> editing-mode was missing
-- color the headings for better readability
-
-system/misc/random-rc:
-- if /dev/random is not there, try /dev/urandom
-
-mkrelease:
-- include the new files
-
-support/bs-ng-profiler:
-- Don't check if the key's value is NULL, instead check if the
-- key is part of the given profile (belongs to the fix for bug #32)
-
-system/nx-rc.in:
-- only source color-rc if needed
-
-system/nx-rc.in ::
-system/misc/nano-rc ::
-support/bs-ng-profiler ::
-python-gtk/bashtyle.in ::
-glade-xml/bashtyle7.glade ::
-mkrelease ::
-gconf-schemas/bashstyle.schemas:
-- Merged NanoCFG
-
-7.0a1:
-
-"Loops & Tings"
-
-bs-ng.desktop.in:
-- use the system-wide installed bs-ng icon
-
-configure:
-- some minor output syntax tweaking
-
-Makefile.in:
-- update the icon cache upon installation
-
-mkrelease:
-- updated
-
-glade-xml/bs-ng-profile.png:
-- removed the drop-shadow from the profile icon
-
-glade-xml/*.png
-- install icons system-wide (into the hicolor theme)
-- prepend bs-ng- to the icon names
-
-glade-xml/bashstyle7.glade ::
-glade-xml/bashstyle7.glade.h:
-- bump version of the glade file
-- use system-wide bs-ng icon as window-icon
-
-system/misc/readline-rc:
-- remove old configuration before creating a new one
-
-system/misc/vim-rc ::
-python-gtk/bashstyle.in ::
-glade-xml/bashstyle7.glade ::
-glade-xml/bs-ng-vim.png ::
-gconf-schemas/bashstyle.schemas:
-- started to merge the old VimCFG into BashStyle-NG
-
-system/themes/clock-ad-rc:
-- Speed-Up the Clock-Advanced Style by moving some variables
-
-system/themes/minimal-rc:
-- display the time in the minimal prompt
-
-python-gtk/bashstyle.in:
-- fixed bug #30: change wdir-color and font-color separatly
-- fixed bug #31: if prefix != /usr bs-ng didn't work
-- use system-wide installed icons, instead of private ones
-- speed up bashstyle-ng by better use of psyco (if it's available)
-- add two new functions (for simplyfying the code)
-- add some comments to the code
-- major simplyfication of the code for changing colors
-
-support/bs-ng-profiler:
-- fixed bug #32: only import keys if the value is not empty
-	(for backwards compatibility)
-- added the new VimCFG keys to the list
-
-TODO:
-- fill the TODO list for BS-NG 7
-
-6.9:
-
-"Cold As Ice"
-
-cfg/config ::
-configure:
-- Revised configure
-- Added cfg/config [config file for configure]
-- Added some missing checks to configure
-- If an app is installed, display the path
-
-system/nx-rc.in:
-- check if the theme-rc exists, if not load the fallback-rc
-- split off the readline configuration
-
-system/misc/readline-rc:
-- this is the readline configuration part of nx-rc
-
-system/themes/separator-rc:
-- use the correct switch for fdnl in the Separator style
-
-system/themes/quirk-rc:
-- forgot to add this file to svn
-- add \n and spacers to the monochrome version, where missing
-- added a missing ) to the monochrome version
-- display amount of files and folders
-- color the last closing bracket in the correct color
-
-system/themes/clock-ad-rc:
-- Use bs-ng-parse-echo in the Clock-Advanced Style
-- Move the Date from Bottom to Top
-- Display Uptime where Date has been displayed before
-- Use truncpwd instead of an own function
-- Make Clock-Ad work correctly on the Linux Console
-- Add two more "arms"; one showing the load average, one showing used/free ram
-- Only use the sepacolor in the prompt [no mix of pscol and sepacolor]
-- Fix Colors [timecolor for time, datecolor for date]
-
-system/themes/clock-rc:
-- Fixed the placement of the clock in the Monochrome Version of Floating Clock
-- Use bs-ng-parse-echo
-- Fix Colors [timecolor for time]
-- Also display the Date
-
-system/misc/tweaks-rc:
-- added
-- current tweaks:
-	- rotate through possibilities via TAB
-	- rotate through possible directories for cd via TAB
-- make it listen to the tabrotate gconfkey
-
-system/misc/alias-rc:
-- add -CF to ls options
-
-system/misc/random-rc:
-- add quirk and sputnik to the list for randomly choosen themes
-
-support/showuptime:
-- unique output syntax
-
-support/fdnl:
-- new options
-- +h [files + folders + hidden files/folders]
-- -h [files + folders]
-- +d [folders]
-- +hd [folders + hidden folders]
-- +f [files]
-- +hf [files + hidden files]
-- substract . .. and total [count] from result
-
-support/truncpwd:
-- add support for the clock-ad style
-- make shure we don't use a custom prompt
-- before marking style as supported
-
-support/showload:
-- don't use colors if they are disabled
-- use bs-ng-parse-echo in showload
-- change colors:
-	- very low load: blue
-	- low load: iceblue
-	- middle load: green
-	- high load: yellow
-	- very high load: red
-
-glade-xml/bashstyle6.glade ::
-python-gtk/bashstyle.in:
-- add quirk and sputnik to the custom prompt builder
-- add an option for enabling/disabling the TAB-Tweaks
-
-gconf-schemas/bashstyle.schemas ::
-support/bs-ng-profiler:
-- add a new gconfkey for the tab-tweaks
-
-bs-ng-doc/index.html:
-- added a new sub-section for the support scripts
-- some cosmetic fixes
-- add html skeleton
-- updated
-
-translations/*:
-- updated german translation
-
-mkrelease:
-- include the readline-rc and sputnik-rc
-
-6.8:
-
-"Age of the Reverse Bass"
-
-configure:
-- added check for apm [optional]
-
-system/misc/color-rc:
-- new variable -> code -70%
-
-system/themes/separator-rc:
-- more options for the separator style:
--	displaying of free/used [or both] memory
--	displaying of system load [1 min intervall]
--	displaying of running jobs
--	displaying of battery load
-
-system/theme/quirk-rc:
-- added a new style: Quirk
-
-system/theme/sputnik-rc:
-- added a new style: Sputnik
-
-support/bs-ng-profiler:
-- updated to include the new gconf-keys
-
-support/truncpwd:
-- if style is one of separator, dirks, dot_prompt or sputnik
-- differently color the directory name, the indicator and the trunc-symbol
-
-support/showbatteryload:
-- added [will display battery load - requires apm]
-
-support/showcpuload:
-- display cpu time consumed by running processes
-
-support/showmem:
-- add support for displaying percent instead of mb
-- syntax: showmem [ --used --free --used-percent --free-percent ]
-
-support/showspace:
-- display free diskspace
-- syntax: showspace [ --used --free --used-percent --free-percent ] mountpoint
-
-support/fdnl:
-- added two options:
-- fdnl +h = show number of files, include hidden files
-- fdnl -h = show number of files, exclude hidden files
-
-support/showload:
-- fix serveral issues -> make the script work
-- added 3 options:
-- showload 1 [or empty] = show load average for 1 minute
-- showload 2 [or 10] = show load average for 10 minutes
-- showload 3 [or 15] = show load average for 15 minutes
-
-glade-xml/bashstyle6.glade ::
-python-gtk/bashstyle.in:
-- expose the new support scripts in the Prompt Builder
-- expose the new support scripts options in the Prompt Builder
-- add Quirk to the list of themes (+ Add Preview)
-- expose the new Separator-Style Options in the UI
-
-bs-ng-doc/*:
-- updated documentation
-
-translations/*:
-- updated german translation
-
-6.7:
-
-"Sputnik"
-
-- fixed bug #29:
-- file: system/misc/options-rc:
-- issue: Don't update PATH if the gconf-key is empty
-
-- fixed bug #30:
-- file: system/theme/clock-ad-rc:
-- issue: Clock-Advanced Style doesn't work correctly
-
-support/showmem:
-- added
-	[options: --free --used]
-
-configure:
-- add check for gawk
-- add check for free
-
-debian/congrol:
-- added dependency on gawk
-- added dependency on procps (free)
-
-glade-xml/bashstyle6.glade:
-- center the treeview on the left
-- make the widgets on the profile page smaller
-
-glade-xml/bashstyle6.glade ::
-python-gtk/bashstyle.in:
-- expose the new showmem in the custom prompt builder
-
-system/nx-rc:
-- make it possible to use the readline config, even if
-- the bash config is disabled
-- only execute the Welcome Message, if there's one
-
-*/*:
-- Update File-Header (License Information)
-- LGPL v3 not just LGPL (File-Header)
-- add File-Header where missing
-- used tabs instead of spaces
-
-system/nx-rc ::
-system/*/*:
-- Split off the nx-rc into several files
-
-bs-ng-doc/*:
-- updated documentation
-
-translations/*
-- updated german translation
-
-6.6:
-
-"Hardcore Vibes"
-
-configure:
-- add check for less
-
-configure:
-- make the output colorfull
-- different layout for the output
-
-gconf-schemas/bashstyle.schemas:
-- set default timeout value to 0 [disabled]
-- set default cdpath value to "" [disabled]
-
-system/nx-rc:
-- use $HOME/.inputrc instead of $HOME/.readlinerc
-	[so we can use both system-wide and per-user settings]
-
-Makefile.in:
-- use configure's Prefix instead of gconf's/gnome-menu's
-	[.desktop/.schemas file installation-prefix]
-
-Makefile.in:
-- install rule doesn't depend on the clean rule
-
-bs-ng-doc/index.html ::
-gconf-schemas/bashstyle.schemas ::
-support/bs-ng-profiler ::
-glade-xml/bashstyle6.glade ::
-python-gtk/bashstyle.in ::
-system/nx-rc:
-- expose the shopts in the UI
-	- cdspell
-	- cdable_vars
-	- checkhash
-	- cmdhist
-	- force_fignore
-	- histappend
-	- histreedit
-	- no_empty_cmd_completion
-
-system/nx-rc:
-- fixed a typo (regarding histappend shopt)
-
-glade-xml/custom.png:
-- removed drop-shadow
-
-debian/control:
-- updated description
-- added Dependency on less
-
-bs-ng-doc/*
-- updated documentation
-
-gettext-catalogs/* ::
-translations/*
-- updated german translation
-
-6.5:
-
-"Whistling Dave"
-
-- maybe fixed bug #28: Terminfo not working everywhere*
-  * may also be caused by a "corrupted" less/man install
-  * #28 appears not on all systems ...
+  2010-08-11 Christopher Roy Bratusek <zanghar@freenet.de>
 
-configure:
-- add check for tic [may close #28]
-
-Makefile.in:
-- recompile the terminfo files using tic [may close #28]
-
-Makefile.in:
-- install the .desktop in gnome-menus prefix not gconfs
+ * ChangeLog: ChangeLog
 
-debian/control:
-- drop gawk Build-Depend
-- add ncurses-bin Build-Depend
+ * ChangeLog, ChangeLog.PRE-7.11, mkchangelog: better ChangeLog
+ (auto-generated)
 
-python-gtk/bashstyle.in
-- added \j \! and \# to the list of options for the custom prompt
+ * rc/styles/clock-rc: fixed two small bugs in clock style
 
-bs-ng-doc/*
-- updated documentation
+ * code/bsng.py.in: put everything into a single class again... workaround for
+ the pygtk-bug affecting BS-NG... modularizing BS-NG would be prefered, but
+ 7.11 is already overdue
 
-gettext-catalogs/* :: translations/*
-- updated german translation
+  2010-08-10 Christopher Roy Bratusek <zanghar@freenet.de>
 
-6.4:
+ * rc/functions/admin, rc/functions/bookmark, rc/functions/check_opt,
+ rc/functions/conversion, rc/functions/countfiles,
+ rc/functions/countprocesses, rc/functions/debug, rc/functions/dirinfo,
+ rc/functions/dos2unix, rc/functions/exchange, rc/functions/gconf,
+ rc/functions/git, rc/functions/infos, rc/functions/internal, rc/functions/ls,
+ rc/functions/man2pdf, rc/functions/misc, rc/functions/ps,
+ rc/functions/showbatteryload, rc/functions/showcpuload, rc/functions/showip,
+ rc/functions/showmem, rc/functions/showsize, rc/functions/showspace,
+ rc/functions/showsystemload, rc/functions/showtty, rc/functions/showuptime,
+ rc/functions/svn, rc/functions/systeminfos, rc/functions/truncpwd,
+ rc/functions/utils, rc/functions/versioning, rc/functions/xchown,
+ rc/functions/xconv, rc/functions/xcp, rc/functions/xdel, rc/functions/xmv,
+ rc/functions/xunalias, rc/nx-rc.in: some streamlining
 
-"Fish is Jumping"
+ * README, translations/po/bs-ng-es.po: some fixes in spanish translation
 
-- fixed bug #27: Re-Importing of Aliases
+ * documentation/chapter11.html: revised chapter11 (again)
 
-- Add Support for PROMPT_COMMAND*
-- [ in the custom prompt builder ]
+ * documentation/chapter11.html: revised chapter11
 
-- add bs-ng-parse-echo support script
+ * documentation/chapter09.html: revised chapter08
 
-* Read the Documentation for Important notes
-* on how to use the PROMPT_COMMAND correctly
-* (It's a bit different from normal)
+ * documentation/chapter07.html: revised chapter07
 
-6.3:
+  2010-08-09 Christopher Roy Bratusek <zanghar@freenet.de>
 
-"Way Up North"
+ * rc/nx-rc.in: added BSNG_DOCS envvar for easy doc access
 
-- fixed bug #23: *Sigh* adopt use-rlconfig -> use_rlconfig change
-- fixed bug #24: Typo in *.schemas
-- fixed bug #25: also terminate dead keys when installing via the .deb
-- fixed bug #26: *Sigh* alias6 and alias7 not working
+ * .configure/depends, configure: don't depend on gtk/gconf .pc files
 
-- added support for creating custom prompts
+ * documentation/img/bs-ng-adv.png, documentation/img/bs-ng-aliases.png,
+ documentation/img/bs-ng-custom.png, documentation/img/bs-ng-extra.png,
+ documentation/img/bs-ng-ls.png, documentation/img/bs-ng-nano.png,
+ documentation/img/bs-ng-profile.png, documentation/img/bs-ng-readline.png,
+ documentation/img/bs-ng-style.png, documentation/img/bs-ng-vim.png: updated
+ screenshots
 
-- added proccount support script (counts running processes)
+  2010-08-07 Christopher Roy Bratusek <zanghar@freenet.de>
 
-- added showload support script (shows load average for 1 minute)
-- low average is green, middle is blue and high is red
+ * documentation/chapter08.html: revised chapter08 (new stuff not yet added)
 
-- support/*: put the shebang at the beginning of the files
+ * documentation/chapter07.html: revised chapter07
 
-- support/truncpwd: the slashes are now recolored in $sepacolor
-- support/truncpwd: you can now use the dirchar to have something
-- support/truncpwd: else than slashes as directory indicators
+ * documentation/chapter06.html: revised chapter06
 
-- updated documentation
-- updated german translation
+ * documentation/chapter05.html: revised chapter05
 
-6.2:
+ * documentation/chapter00.html, documentation/chapter01.html,
+ documentation/chapter02.html, documentation/chapter03.html: improved wording
+ in chapter00-04
 
-"Liquid is Liquid"
+ * documentation/chapter04.html: revised chapter04
 
-- fixed bug #19: Forgot to rename a button
-	[caused by name changes in v5.5]
-- fixed bug #20: Increased all widget's width from 210px to 220px
-	[no longer truncated strings if running in german]
-- fixed bug #21: Exit with status 0 if gconfd-2 couldn't be killed
-- fixed bug #22: don't truncate strings in the advanced page from bottom
+ * documentation/chapter04.html, documentation/chapter05.html,
+ documentation/chapter06.html, documentation/chapter07.html,
+ documentation/chapter08.html, documentation/chapter09.html,
+ documentation/chapter10.html, documentation/chapter11.html: orange headers
 
-- instead of just exiting, print a message
-- to the console if a required module couldn't be loaded
+ * documentation/chapter03.html: revised chapter03
 
-- you can now define 7 aliases (+2)
+  2010-08-06 Christopher Roy Bratusek <zanghar@freenet.de>
 
-- you can now export and import your current profile
+ * rc/functions/random: -c for randomfile
 
-Note:
-- the use-rlconfig key is now use_rlconfig
-- [you have to re-enable readlinecfg]
+ * rc/functions/random: small fix in randomfile
 
-6.1:
+ * code/bsng.py.in, data/bashstyle7.ui: removed built-in preview
 
-"Miss Kidmann on a Cruise"
+ * translations/po/bs-ng-ru.po: updated russian translation
 
-- fixed bug #14: Don't use the debian-only gconf-schemas in the Makefile
-- fixed bug #15: Don't exit from configure, if the optional stuff couldn't be found
-- fixed bug #16: Don't make the .deb depend on psyco, just suggest it
-- fixed bug #17: Don't limit the Welcome-Message to simple commands
-- fixed bug #18: Don't use accelerators
-
-6.0:
-
-"Coldwater Canyon"
-
-- don't forget to remove $prefix/bin/bashstyle helper-script
-- It's now possible to install BashStyle-NG outside of /usr via --prefix= passed to configure
-- update Makefile clean rule
-- re-write debian package postinst and prerm scripts, to make installation via .deb work
-- use gconf-scheams --register/unregister from now on for schemas-installation
-
-5.9.99:
-
-"Nessaja"
-
-- fixed bug #13: Aliases 3/4/5 don't work
-
-- Added a Style-Preview
-- Some UI Changes
-- Group Options into Sub-Groups
-- Updated German Translation
-- Updated Documentation
-
-5.5:
-
-"Eternity"
-
-- added options for changing histfilesize and path
-- updated german translation
-- updated documentation
-- added deb rule to the Makefile
-- Make Comboboxes detachable
-- Major Code Revision (function/widget renaming; code re-ordering)
-
-5.4:
-
-"Return of the Future"
-
-- fixed bug #12: entry6 doesn't display the timeout value
-
-- Makefile install-rule kills now gconfd-2 to associate keys immediately
-- removed useless code
-- you can now set up a simple welcome message
-- added pwdchar and pwdmaxlen options (see doc for more infos)
-- now the dirks style also uses truncpwd
-- fixed untranslated string in german translation
-- updated german translation
-- removed drop shadow from icons
-- new icons for style and advanced
-- updated documentation
-
-5.3:
-
-"Subway 939"
-
-- fixed Bug #10: Alias #5 does not work
-- fixed Bug #11: Missing label if checkbutton18 is untoggled on startup
-
-5.2:
-
-"Waiting for Spring"
-
-- Modified UI
-- Re-Grouped Options
-- Updated Documentation
-- Updated German Translation
-
-5.1:
-
-"The Hardcore Massive"
-
-- histappend only active if HISTCONTROL != erasedups
-- added option for resetting bash's history (on expert-page)
-- dropped history -a from PROMPT_COMMAND we use histappend instead
-- new style: minimal
-- new style: dot_prompt
-- new style: bracket
-- new style: sepa_ng
-- updated bashstyle.schemas
-- updated bs-ng.desktop
-- fixed default value for prompt (separator not seaprator)
-- added TODO
-- updated german translation
-- updated documentation
-- fixed documentation installation
-- new Strings
-- removed deprecated code
-- removed deprecated strings from gladefile
-
-5.0:
-
-"Circle of Light"
-
-- then displaying amount and size of files,
-- hidden files will now be included
-- updated header in the support files
-- dropped unneeded rules from Makefile
-- added documentation (can be found in /usr/share/doc/bashstyle-ng)
-- removed useless whitespace from separator style
-- use history -a in all prompts, to prevent loosing lines, then multiple terminals are open
-- added shopt -s cdspell to nx-rc ... a cd /vr/lgo will still cd into /var/log
-- also added shopt -s cmdhist, shopt -s dotglob, shopt -s extglob
-- added possibiliy to change HISTIGNORE (default = ls:bg:fg:exit)
-- Merged the old ReadlineCFG from *NixStyle-NG into BashStyle-NG
-- Updated Code adopted from ReadlineCFG
-- Enabling Readline Configuration will automagically also enable BashStyle
-- Pressing Page-Up and Page-Down will cycle through completion's possibilities
-- updated German (de_DE) Translation
-- dropped ShortCuts file, they are (of course) now in the documentation
-- textboxes now disallow unwanted letters/characters
-- removed useless code
-
-5.0rc3:
-
-"TALLA 2XLC Radio Edit"
-
-- added shortcuts to:
-	- all toolbarbuttons
-	- all comboboxes
-	- all checkbuttons
-	- Take a look at the ShortCuts file in the tarball
-	- or at /usr/share/bashstyle-ng/ShortCuts after installation
-- smaller widgets:
-	- all widgets are now smaller
-- updated German (de_DE) translation
-- added check for 'bc' to configure [required by some styles]
-- added an about-dialog
-- smaller window-size
-- toolbar alinged to the left and is now vertical
-- window will now be centered on the desktop
-- added option, to radomly choose a new theme everytime bash starts
-- added check for /dev/random to configure [required for random style option]
-
-5.0rc2:
-
-"The Jacques Renault Club Mix"
-
-- changes in the Dirks style:
-	- now also displays the shell-level
-	- displays time instead of date
-	- displays now full hostname
-- added a new Terminfo file (they re-color the manpages):
-	- mostlikebold
-	- you can now choose between them (mostlike/mostlikebold)
-- added sourcefile of the terminfo files
-- added dirks to styles key description
-- you can now define 5 alias on your own
-- updated German (de_DE) translation
-
-5.0rc1:
-
-"Flip and Fill Remix"
-
-- inverted colors are now applicably
-- changed owner of all gconf-keys from nixstyle-ng to bashstyle-ng
-- added a new style: dirks
-- a bit more compact layout
-- updated German (de_DE) Translation
-- fixed a small issue in the Job Style
-
-5.0b2:
-
-- dropped deprecated checks from configure
-- German (de_DE / UTF-8) Translation added
-- added check for the psyco python module
-- Reduced output messages of the GConf-Schemas-Installation
-
-(Note for Translators: the pot file is shipped with the tarball)
-
-5.0b1:
-
-- Split off from *NixStyle-NG for easier maintainance
-- Switched to GConf-Based Configurations
-- Rewrite from Scratch
-- New UI
+  2010-07-31 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * translations/po/bs-ng-de.po, translations/po/bs-ng-es.po,
+ translations/po/bs-ng-it.po, translations/po/bs-ng-ru.po: removed deprecated
+ strings
+
+ * translations/po/bs-ng-de.po: updated german translation
+
+ * translations/po/bs-ng-de.po, translations/po/bs-ng-es.po,
+ translations/po/bs-ng-it.po, translations/po/bs-ng-ru.po: updated spanish
+ translation
+
+ * translations/po/bs-ng-it.po: update italian translation
+
+ * translations/po/bs-ng-de.po, translations/po/bs-ng-es.po,
+ translations/po/bs-ng-it.po, translations/po/bs-ng-ru.po: rebased .po files
+
+  2010-07-26 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/random: -l switch for randomfile
+
+  2010-07-21 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/dirinfo: dirinfo_index --rebuild
+
+ * rc/functions/dirinfo: small fixup
+
+ * rc/functions/dirinfo: small improvement
+
+ * rc/functions/dirinfo: dirinfo_create
+
+ * rc/functions/dirinfo: improved dirinfo_index_tags; added _types _dates
+ variants; dirinfo_index introduced
+
+  2010-07-19 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * data/dirinfo.example: dirinfo example file
+
+ * rc/functions/dirinfo: small fixes in dirinfo + some new features
+
+  2010-07-16 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/showcpuload: small fix in showcpuload
+
+  2010-07-13 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * COPYING.UNDOBUFFER, rc/nx-rc.in: small bugfix in nx-rc
+
+  2010-07-04 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/settings/options-rc: fixed MSEC + TMOUT failure
+
+  2010-06-21 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/dirinfo: small fix in dirinfo_display_ascii
+
+ * rc/functions/misc: small lscd fix
+
+  2010-06-19 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/misc: always save last dir (for lscd)
+
+  2010-06-13 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/nx-rc.in: more simplification on getting bash version
+
+ * rc/functions/dirinfo: small update for changed .dirinfo syntax
+
+ * rc/nx-rc.in: typo fix
+
+ * rc/nx-rc.in: correctly get bash-patchlevel (nx-rc) -- also log minor
+ version
+
+  2010-06-12 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/dirinfo: same layout for dirinfo_display _info as for _ascii
+
+ * rc/functions/dirinfo, rc/functions/misc: allow for .dirascii (custom
+ dirinfo images)
+
+ * rc/ascii/folder-mediaplayer: added mediplayer ascii
+
+ * rc/ascii/folder-book, rc/ascii/folder-document, rc/ascii/folder-game,
+ rc/ascii/folder-share: added book, document, game and share asciis
+
+  2010-06-11 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, code/bsng.py.in, data/bashstyle7.ui, rc/functions/countfiles,
+ rc/functions/countprocesses, rc/functions/man2pdf,
+ rc/functions/showbatteryload, rc/functions/showcpuload, rc/functions/showip,
+ rc/functions/showmem, rc/functions/showsize, rc/functions/showspace,
+ rc/functions/showsystemload, rc/functions/showtty, rc/functions/showuptime,
+ rc/functions/systeminfos, rc/functions/truncpwd, rc/nx-rc.in,
+ rc/settings/color-rc, rc/styles/clock-ad-rc, rc/styles/clock-rc,
+ scripts/bs-ng-profiler, scripts/rcgenerator: fully remove bs-ng-echo from all
+ functions/styles
+
+ * .configure/messages: minimal configure change
+
+ * Makefile.in: updated Makefile
+
+ * rc/functions/random: added -prev -last -n switches to randomfile (+
+ history)
+
+ * rc/functions/bs-ng-echo: removed bs-ng-echo
+
+ * rc/functions/misc: updated lscd for dirinfo
+
+ * rc/functions/dirinfo: added dirinfo
+
+ * rc/ascii/folder-download, rc/ascii/folder-home, rc/ascii/folder-music,
+ rc/ascii/folder-picture, rc/ascii/folder-video: added ascii art stuff for
+ dirinfo
+
+  2010-05-30 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * documentation/chapter01.html, documentation/chapter02.html,
+ documentation/img/bs-ng-aliases.png: revised chapter02
+
+ * documentation/chapter01.html, documentation/chapter02.html: chapter01
+ refinement
+
+  2010-05-29 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, rc/functions/showspace: fixed bug #99
+
+ * ChangeLog, documentation/chapter01.html,
+ documentation/img-style/bs-ng-ayoli.png,
+ documentation/img-style/bs-ng-bold.png,
+ documentation/img-style/bs-ng-clock-advanced.png,
+ documentation/img-style/bs-ng-dirks.png,
+ documentation/img-style/bs-ng-dot-prompt.png,
+ documentation/img-style/bs-ng-elite.png,
+ documentation/img-style/bs-ng-floating-clock.png,
+ documentation/img-style/bs-ng-grep.png, documentation/img-style/bs-ng-ls.png,
+ documentation/img-style/bs-ng-mostlike.png,
+ documentation/img-style/bs-ng-nebula.png,
+ documentation/img-style/bs-ng-poweruser.png,
+ documentation/img-style/bs-ng-quirk.png,
+ documentation/img-style/bs-ng-sepa-ng.png,
+ documentation/img-style/bs-ng-separator.png,
+ documentation/img-style/bs-ng-sputnik.png,
+ documentation/img-style/bs-ng-vector.png, documentation/img/bs-ng-style.png:
+ majorly revised chapter01
+
+ * code/bsng.py.in, data/bashstyle7.ui,
+ documentation/img-style/bs-ng-bracket.png, rc/styles/bracket-rc: removed
+ bracket style
+
+ * code/bsng.py.in, data/bashstyle7.ui,
+ documentation/img-style/bs-ng-minimal.png, rc/styles/minimal-rc: removed
+ minimal style
+
+ * ChangeLog, code/bsng.py.in, data/bashstyle7.ui,
+ documentation/img-style/bs-ng-job.png, rc/styles/job-rc: removed job style
+
+ * documentation/chapter00.html: tweaked chapter0
+
+ * code/bsng.py.in, data/bashstyle7.ui,
+ documentation/img-style/bs-ng-dash.png, rc/styles/dash-rc: removed dash style
+
+ * documentation/chapter00.html: improved chapter0
+
+  2010-05-25 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * Makefile.in, translations/po/bs-ng-es.po: install more docs/convert
+ bs-ng-es.po to utf-8
+
+ * TODO, documentation/index.html: improved index.html/updated TODO
+
+  2010-05-22 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, Makefile.in, code/bsng.py.in, translations/po/bs-ng-es.po: added
+ spanish translation
+
+  2010-05-19 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, data/bashstyle.schemas, rc/nx-rc.in, scripts/bs-ng-wizard: added
+ possiblity to restore the last directory + bs-ng-wizard option for it
+
+  2010-05-18 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog: ChangeLog
+
+ * ChangeLog, rc/functions/admin, rc/functions/check_opt,
+ rc/functions/dos2unix, rc/functions/gconf, rc/functions/git, rc/functions/ls,
+ rc/functions/media, rc/functions/svn, rc/functions/xchown, rc/functions/xcp,
+ rc/functions/xdel, rc/functions/xmv: fixed bug #98 (support for spaces in
+ filenames/arguements in all custom functions)
+
+ * rc/functions/misc: added spinner and endspinner functions
+
+ * rc/functions/random: added randomfile
+
+ * translations/po/bs-ng-de.po, translations/po/bs-ng-it.po,
+ translations/po/bs-ng-ru.po: updated .po files
+
+ * scripts/bs-ng-wizard: trivial fixups in bs-ng-wizard
+
+ * rc/nx-rc.in, scripts/bs-ng-wizard: added bs-ng-wizard setup for repoadd --
+ actually enable the wizard (as it's done for this version)
+
+ * rc/functions/admin: small updates -- modularize repoadd
+
+  2010-05-16 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/admin, rc/functions/bookmark, rc/functions/dos2unix,
+ rc/functions/misc, rc/nx-rc.in: split up rc.functions.misc
+
+ * rc/functions/misc: small bugfix in lscd
+
+  2010-05-15 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, rc/functions/misc, rc/nx-rc.in: added bookmark and unmark funcs
+
+ * scripts/bs-ng-wizard: bs-ng-wizard (note on bashtip func)
+
+ * ChangeLog, rc/functions/misc: added bashtips
+
+  2010-05-14 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/nx-rc.in: don't make use of the fist-run-wizard [now]
+
+  2010-05-13 Christohper Roy Bratusek <zanghar@freenet.de>
+
+ * scripts/bs-ng-wizard: added option to disable verbosity to bs-ng-wizard
+
+ * ChangeLog, rc/functions/svn, scripts/bs-ng-wizard: added svn account
+ options to bs-ng-wizard. updated get_kde get_e
+
+ * rc/functions/git, rc/functions/misc, scripts/bs-ng-wizard: improved lscd.
+ added git-setup to first-run-wizard. updated get_gnome and get_xfce.
+
+  2010-05-13 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/media, rc/nx-rc.in: typo fix . load media
+
+  2010-05-12 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, Makefile.in, rc/nx-rc.in, scripts/bs-ng-wizard,
+ scripts/bsng_firstrun: fixup
+
+ * .configure/depends, ChangeLog, Makefile.in, debian/control,
+ rc/functions/media, rc/functions/misc, rc/nx-rc.in, scripts/bsng_firstrun:
+ added writeiso, geniso. added a first-run-wizard. update lscd for the wizard.
+ small fix in remount.
+
+  2010-05-10 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/misc, rc/functions/showip: small fix in show_ip; LSCD_OPTS for
+ lscd
+
+ * ChangeLog, rc/functions/misc, rc/functions/showip: added -external switch
+ for show_ip; added remount, lscd, up, stop_watch, wipe [CAUTION\!]
+
+  2010-05-08 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/misc: -z switch for get_kernel
+
+ * ChangeLog, rc/functions/misc: added get_kernel
+
+ * rc/nx-rc.in: updated nx-rc
+
+ * ChangeLog, rc/functions/git: -mb switch for get_gnome get_xfce
+
+ * ChangeLog, rc/functions/svn: added get_kde get_e
+
+ * ChangeLog, rc/functions/git: -m switch for get_xfce
+
+ * ChangeLog, rc/functions/misc: added repoadd
+
+ * ChangeLog, rc/functions/misc: added torswitch
+
+  2010-05-03 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/settings/vim-rc: small fixup in .viminfo warning
+
+  2010-04-30 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * code/bsng.py.in, data/bashstyle7.ui: add show-help button for c-p-b
+
+ * ChangeLog, code/bsng.py.in, data/bashstyle7.ui,
+ data/icons/bs-ng-preview.png, data/icons/bs-ng-toolbox.png: several UI
+ improvements
+
+ * documentation/chapter08.html: update docs
+
+  2010-04-15 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/media: small fix in youtube2ogg
+
+ * ChangeLog, rc/functions/media: added youtube2ogg/mkv2avi
+
+  2010-04-12 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, rc/styles/dash-rc, rc/styles/elite-rc, rc/styles/minimal-rc,
+ rc/styles/poweruser-rc, rc/styles/separator-rc: make sure to use \$ rather
+ than $ in all styles
+
+ * ChangeLog, rc/nx-rc.in, rc/styles/null-rc: added null custom positions
+ (bash errs else)
+
+ * ChangeLog, rc/styles/quirk-rc: added QUIRK_1 custom position with
+ QUIRK_1_COLOR
+
+ * ChangeLog, rc/styles/sepa_ng-rc: added SEPA_NG_1 custom position with
+ SEPA_NG_1_COLOR
+
+ * ChangeLog, rc/styles/dirks-rc: added DIRKS_1 and DIRKS_2 custom positions
+ with _COLOR each
+
+ * ChangeLog, rc/styles/poweruser-rc: added POW_1 custom position with
+ POW_1_COLOR
+
+ * ChangeLog, rc/styles/elite-rc, rc/styles/job-rc: added ELITE_1 custom
+ position with ELITE_1_COLOR
+
+ * ChangeLog, rc/styles/separator-rc: added SEPA_1 and SEPA_2 custom positions
+ with _COLOR each
+
+ * ChangeLog, rc/styles/vector-rc: added VECTOR_1 and VECTOR_2 custom
+ positions with _COLOR each
+
+ * rc/styles/clock-rc: renamed clock USER1 to CLOCK_1, added CLOCK_1_COLOR
+
+ * rc/styles/clock-ad-rc: renamed clock-ad USER1/USER1COLOR to
+ CLOCK_AD_1/CLOCK_AD_1_COLOR
+
+ * ChangeLog, rc/styles/clock-rc: clock style: added USER1 custom position
+
+ * ChangeLog, data/bashstyle7.ui: make window resizable
+
+ * documentation/chapter07.html, documentation/chapter09.html: small doc
+ improvements
+
+ * .configure/depends, ChangeLog, code/bsng.py.in, data/bashstyle7.ui,
+ data/vim/colors/asu1dark.vim, data/vim/colors/candycode.vim,
+ data/vim/colors/dw_orange.vim, data/vim/colors/fruit.vim,
+ data/vim/colors/relaxedgreen.vim, data/vim/colors/tango.vim: new vim color
+ schemes
+
+ * rc/nx-rc.in: small fix
+
+ * rc/settings/vim-rc: typo fix
+
+  2010-04-11 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, rc/nx-rc.in, rc/settings/options-rc, rc/settings/vim-rc: add a
+ simple warning mechanism
+
+  2010-04-02 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, code/bsng.py.in, data/bashstyle7.ui: new C-P-B option: $SECONDS
+
+  2010-03-25 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/styles/clock-ad-rc: small colorchange in clock-ad
+
+ * ChangeLog, rc/styles/clock-ad-rc: clock-ad: added USER1 custom position
+
+ * rc/functions/git: added git_branch, git_revision, git_action functions
+
+ * rc/nx-rc.in: load ~/.custom-rc earlier
+
+  2010-03-22 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * Makefile.in, documentation/img/bs-ng-aliases.png: updated Makefile ;
+ updated a doc-image
+
+ * documentation/img-style/bs-ng-ayoli.png: Makefile update ; added missing
+ doc-image ; updated a doc-image
+
+  2010-03-15 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * .configure/base, .configure/check_deps, .configure/checks,
+ .configure/color, .configure/messages, configure: more configure script work
+
+  2010-03-09 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * .configure/base, ChangeLog, Makefile.in, translations/po/bs-ng-de.po,
+ translations/po/bs-ng-it.po, translations/po/bs-ng-ru.po: even more fancy
+ configure/make output; Makefile refactoring
+
+ * Makefile.in: clean rule
+
+ * .configure/base, ChangeLog, TODO, data/bashstyle7.ui, debian/changelog,
+ documentation/chapter00.html, documentation/chapter01.html,
+ documentation/chapter02.html, documentation/chapter03.html,
+ documentation/chapter04.html, documentation/chapter05.html,
+ documentation/chapter06.html, documentation/chapter07.html,
+ documentation/chapter08.html, documentation/chapter09.html,
+ documentation/chapter10.html, documentation/chapter11.html,
+ documentation/index.html: post-release version bump to v7.11 (Valleé De
+ Larmes) -- remove version from windowtitle
+
+  2010-03-07 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * translations/po/bs-ng-de.po: updated German translation
+
+ * documentation/img/bs-ng-adv.png, documentation/img/bs-ng-custom.png,
+ documentation/img/bs-ng-extra.png, documentation/img/bs-ng-ls.png,
+ documentation/img/bs-ng-nano.png, documentation/img/bs-ng-profile.png,
+ documentation/img/bs-ng-readline.png, documentation/img/bs-ng-style.png,
+ documentation/img/bs-ng-vim.png: updated screenshots
+
+ * ChangeLog, code/bsng.py.in: merged Shopt/Extras classes; fixed bug #96;
+ fixed bug #97
+
+ * documentation/chapter01.html, documentation/chapter02.html,
+ documentation/chapter03.html, documentation/chapter04.html,
+ documentation/chapter05.html, documentation/chapter06.html,
+ documentation/chapter07.html, documentation/chapter09.html,
+ documentation/chapter10.html, documentation/chapter11.html: removed with and
+ height props from img-tags
+
+ * documentation/img-style/bs-ng-bold.png,
+ documentation/img-style/bs-ng-bracket.png,
+ documentation/img-style/bs-ng-clock-advanced.png,
+ documentation/img-style/bs-ng-dash.png,
+ documentation/img-style/bs-ng-dirks.png,
+ documentation/img-style/bs-ng-dot-prompt.png,
+ documentation/img-style/bs-ng-elite.png,
+ documentation/img-style/bs-ng-floating-clock.png,
+ documentation/img-style/bs-ng-job.png, documentation/img-style/bs-ng-ls.png,
+ documentation/img-style/bs-ng-minimal.png,
+ documentation/img-style/bs-ng-mostlike.png,
+ documentation/img-style/bs-ng-nebula.png,
+ documentation/img-style/bs-ng-poweruser.png,
+ documentation/img-style/bs-ng-quirk.png,
+ documentation/img-style/bs-ng-sepa-ng.png,
+ documentation/img-style/bs-ng-separator.png,
+ documentation/img-style/bs-ng-sputnik.png,
+ documentation/img-style/bs-ng-vector.png: updated all prompt screenshots
+
+ * ChangeLog: ChangeLog
+
+ * code/bsng.py.in: fixed bug #95
+
+ * rc/styles/clock-rc: \n before PS1 in clock style
+
+ * Makefile.in: Makefile
+
+ * translations/po/bs-ng-de.po, translations/po/bs-ng-it.po,
+ translations/po/bs-ng-ru.po: updated .po files
+
+  2010-02-25 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/nx-rc.in: also display welcome message when pstyle is clock or clock-ad
+ (the user should make sure the PROMPT_COMMAND output does not overwrite the
+ welcome-message, as it's useless then)
+
+ * rc/styles/ayoli, rc/styles/ayoli-rc: renamed ayoli to ayoli-rc (else fails
+ loading)
+
+ * code/bsng.py.in: small improvements
+
+ * ChangeLog, code/bsng.py.in: fixed bug #94 (really fix bug #90)
+
+  2010-02-22 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * TODO: TODO
+
+ * README: README
+
+ * translations/po/bs-ng-de.po, translations/po/bs-ng-it.po,
+ translations/po/bs-ng-ru.po: rebuild .po files against newest .pot
+
+ * CREDITS, Makefile.in, data/vim/plugin/nerd_tree.vim,
+ data/vim/plugin/tabbar.vim, data/vim/plugin/taglist.vim: remove vim plugins
+
+  2010-02-21 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * data/bashstyle7.ui: several small UI improvements
+
+ * ChangeLog, code/bsng.py.in, data/bashstyle.schemas, data/bashstyle7.ui,
+ rc/settings/nano-rc, scripts/bs-ng-profiler: 3 new options for NanoCFG
+
+ * documentation/chapter00.html, documentation/chapter01.html,
+ documentation/chapter02.html, documentation/chapter03.html,
+ documentation/chapter04.html, documentation/chapter05.html,
+ documentation/chapter06.html, documentation/chapter07.html,
+ documentation/chapter08.html, documentation/chapter09.html,
+ documentation/chapter10.html, documentation/chapter11.html,
+ documentation/index.html: doc refinement
+
+  2010-02-13 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * rc/functions/misc: small fix in crypt
+
+  2010-02-12 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * code/bsng.py.in: changed help message
+
+ * ChangeLog, code/bsng.py.in, data/bashstyle7.ui: fixed bug #93; removed
+ grid-lines from the treeview; auto-select current group in treeview on
+ startup; remove all expanders
+
+  2010-02-11 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * ChangeLog, code/bsng.py.in: fixed bug #92
+
+  2010-02-06 Christopher Roy Bratusek <zanghar@freenet.de>
+
+ * code/bsng.py.in, data/bashstyle7.ui, rc/styles/ayoli: added ayoli to C-P-B
+
+ * ChangeLog, code/bsng.py.in, data/bashstyle.schemas, data/bashstyle7.ui,
+ rc/settings/random-rc, rc/styles/ayoli: added ayoli style (a modification of
+ clock-advanced by Ayo)
+
+  2010-02-06 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * documentation/chapter08.html, documentation/index.html: doc cleanup
+
+ * ChangeLog, documentation/chapter08.html, rc/functions/misc: added d2u u2d
+ crypt functions (+ docs)
+
+ * TODO: TODO
+
+  2010-02-01 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * ChangeLog, data/bashstyle7.ui, documentation/chapter08.html,
+ documentation/index.html: pack the preview into an expander
+
+ * ChangeLog, code/bsng.py.in, data/bashstyle7.ui: fixed bug 91; added
+ swap_dic function; make the comboboxes show the current set value
+
+  2010-01-31 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * scripts/rcgenerator: small improvement in rcgenerator
+
+ * ChangeLog, rc/nx-rc.in, scripts/rcgenerator: major rework of the
+ rcgenerator
+
+  2010-01-30 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * README, TODO: updated README, TODO
+
+  2010-01-29 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * ChangeLog, documentation/chapter08.html: added internal functions/variables
+ to chapter 08 of doc
+
+ * rc/functions/debug, rc/nx-rc.in: /home/chris/.bashstyle.log >>
+ /home/chris/.bashstyle.log; also log bashs patch-level
+
+ * ChangeLog, documentation/chapter02.html: updated chapter 02 of doc
+
+ * ChangeLog, documentation/chapter08.html, rc/functions/git: -b for
+ get_gnome; get_xfce added (without -m); updated chapter 08 of doc
+
+ * documentation/chapter08.html: updated chapter 08 of doc (and improved
+ spacing)
+
+ * ChangeLog, rc/functions/git: added get_gnome
+
+  2010-01-28 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * documentation/chapter08.html: updated chapter 08 of doc
+
+ * ChangeLog, rc/functions/git: added git_xz function
+
+ * ChangeLog, documentation/chapter08.html: updated chapter 08 of doc
+
+ * rc/functions/debug: added dbg_view and dbg_verbosity
+
+ * ChangeLog, documentation/chapter08.html: updated chapter08 of doc
+
+ * rc/functions/random: small syntax change in randompw
+
+ * ChangeLog, rc/nx-rc.in: remove mcd alias
+
+ * Makefile.in: small fix in Makefile.in
+
+  2010-01-26 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * rc/nx-rc.in, scripts/rcgenerator: nx-rc rcgenerator
+
+ * ChangeLog, rc/functions/misc, rc/nx-rc.in: added mcd alias, added top10
+
+ * ChangeLog, rc/functions/random: randompw added; -l and -r params for random
+
+ * ChangeLog, rc/nx-rc.in: added rd alias
+
+ * ChangeLog, rc/nx-rc.in: reload alias
+
+ * code/bsng.py.in, data/terminfo/bold.terminfo,
+ data/terminfo/mostlike.terminfo, data/terminfo/nebula.terminfo,
+ debian/changelog, debian/copyright, rc/functions/bs-ng-echo,
+ rc/functions/check_opt, rc/functions/countfiles, rc/functions/countprocesses,
+ rc/functions/debug, rc/functions/exchange, rc/functions/gconf,
+ rc/functions/git, rc/functions/ls, rc/functions/man2pdf, rc/functions/ps,
+ rc/functions/random, rc/functions/showbatteryload, rc/functions/showcpuload,
+ rc/functions/showip, rc/functions/showmem, rc/functions/showsize,
+ rc/functions/showspace, rc/functions/showsystemload, rc/functions/showtty,
+ rc/functions/showuptime, rc/functions/systeminfos, rc/functions/truncpwd,
+ rc/functions/xchown, rc/functions/xconv, rc/functions/xcp, rc/functions/xdel,
+ rc/functions/xmv, rc/functions/xunalias, rc/nx-rc.in, rc/settings/alias-rc,
+ rc/settings/color-rc, rc/settings/ls-rc, rc/settings/man-rc,
+ rc/settings/nano-rc, rc/settings/options-rc, rc/settings/random-rc,
+ rc/settings/readline-rc, rc/settings/shopt-rc, rc/styles/bracket-rc,
+ rc/styles/clock-ad-rc, rc/styles/clock-rc, rc/styles/custom-rc,
+ rc/styles/dash-rc, rc/styles/dirks-rc, rc/styles/dot_prompt-rc,
+ rc/styles/elite-rc, rc/styles/fallback-rc, rc/styles/job-rc,
+ rc/styles/minimal-rc, rc/styles/poweruser-rc, rc/styles/quirk-rc,
+ rc/styles/sepa_ng-rc, rc/styles/separator-rc, rc/styles/sputnik-rc,
+ rc/styles/vector-rc, scripts/bs-ng-profiler, scripts/rcgenerator,
+ translations/po/bs-ng-de.po, translations/po/bs-ng-it.po,
+ translations/po/bs-ng-ru.po: changed copyright year from 2007 - 2009 to 2007
+ - 2010
+
+ * .configure/base, ChangeLog, data/bashstyle7.ui,
+ documentation/chapter00.html, documentation/chapter01.html,
+ documentation/chapter02.html, documentation/chapter03.html,
+ documentation/chapter04.html, documentation/chapter05.html,
+ documentation/chapter06.html, documentation/chapter07.html,
+ documentation/chapter08.html, documentation/chapter09.html,
+ documentation/chapter10.html, documentation/chapter11.html,
+ documentation/index.html: Version bump to 7.10 (Destination Infinity)
+
+  2010-01-22 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * Makefile.in: small improvement in make clean
+
+  2010-01-21 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * data/bashstyle7.ui, debian/changelog: final preparations
+
+ * ChangeLog, documentation/chapter00.html, documentation/chapter01.html,
+ documentation/chapter02.html, documentation/chapter03.html,
+ documentation/chapter04.html, documentation/chapter05.html,
+ documentation/chapter06.html, documentation/chapter07.html,
+ documentation/chapter08.html, documentation/chapter09.html,
+ documentation/chapter10.html, documentation/chapter11.html,
+ documentation/index.html: decrease version in the docs
+
+ * .configure/base, ChangeLog: revert version to 7.9.1 for hotfix release as
+ bug #90 is closed
+
+ * ChangeLog: ChangeLog
+
+ * code/bsng.py.in: fixed bug #90 (workaround a bug in pygtk (all parts of the
+ UI work again))
+
+ * scripts/bs-ng-profiler, scripts/rcgenerator: fixed bug #89
+ (profiler/rcgenerator didn't load bs-ng-echo)
+
+  2010-01-20 Christopher Roy Bratusek <chris@nanolx.org>
+
+ * data/icons/bs-ng-ls.png, data/icons/bs-ng-xterm.png: fix permissions
+
+ * code/bsng.py.in, data/mkrelease, data/terminfo/bold.terminfo,
+ data/terminfo/mostlike.terminfo, data/terminfo/nebula.terminfo,
+ rc/functions/bs-ng-echo, rc/functions/check_opt, rc/functions/countfiles,
+ rc/functions/countprocesses, rc/functions/debug, rc/functions/exchange,
+ rc/functions/gconf, rc/functions/git, rc/functions/ls, rc/functions/man2pdf,
+ rc/functions/ps, rc/functions/random, rc/functions/showbatteryload,
+ rc/functions/showcpuload, rc/functions/showip, rc/functions/showmem,
+ rc/functions/showsize, rc/functions/showspace, rc/functions/showsystemload,
+ rc/functions/showtty, rc/functions/showuptime, rc/functions/systeminfos,
+ rc/functions/truncpwd, rc/functions/xchown, rc/functions/xconv,
+ rc/functions/xcp, rc/functions/xdel, rc/functions/xmv, rc/functions/xunalias,
+ rc/nx-rc.in, rc/settings/alias-rc, rc/settings/color-rc, rc/settings/ls-rc,
+ rc/settings/man-rc, rc/settings/nano-rc, rc/settings/options-rc,
+ rc/settings/random-rc, rc/settings/readline-rc, rc/settings/shopt-rc,
+ rc/styles/bracket-rc, rc/styles/clock-ad-rc, rc/styles/clock-rc,
+ rc/styles/custom-rc, rc/styles/dash-rc, rc/styles/dirks-rc,
+ rc/styles/dot_prompt-rc, rc/styles/elite-rc, rc/styles/fallback-rc,
+ rc/styles/job-rc, rc/styles/minimal-rc, rc/styles/poweruser-rc,
+ rc/styles/quirk-rc, rc/styles/sepa_ng-rc, rc/styles/separator-rc,
+ rc/styles/sputnik-rc, rc/styles/vector-rc, scripts/bs-ng-profiler,
+ scripts/rcgenerator: no version in license header
