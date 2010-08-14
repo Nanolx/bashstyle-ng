@@ -54,7 +54,7 @@
 &nbsp;Various functions for conversion
 
 <h4><font color="#33C0F4">2.1 dos2unix</font></h4>
-&nbsp;d2u: for converting dos-lineendings to unix-lineendings
+&nbsp;d2u: for converting dos-lineendings to unix-lineendings<br>
 &nbsp;u2d: for converting unix-lineendings to dos-lineendings
 
 <h4><font color="#33C0F4">2.2 binary conversion</font></h4>
@@ -86,6 +86,81 @@
 &nbsp;is the number of decimal places to keep<br>
 &nbsp;radical: calculate the square-root of a number<br>
 &nbsp;power: calculate the nth power (2nd arguement) of a number (1st arguement)
+
+<h3><font color="#FBA330">3 Dirinfo functions</font></h3>
+&nbsp;Dirinfo is some kind of cataloging directories, I've though I must have<br>
+&nbsp;it's currently a working prototype neither technically nor functionally finished
+
+<h4><font color="#33C0F4">3.1 Dirinfo-Spec (Draft 1 Revision 2)</font></h4>
+&nbsp;Example of a .dirinfo file:<br><br>
+
+&nbsp;Owner="Name Surname" # quotes are important!<br>
+&nbsp;Created=YYYY-MM-DD # this format is recommended<br>
+&nbsp;Type=type # supported types: book, document, download, game, home, mediaplayer, music, picture, share, video*<br>
+&nbsp;Tags=(tag1 tag2 tag3) # this format! anything is allowed<br>
+&nbsp;Notes="put your notes here" # quotes are important!<br><br>
+
+&nbsp;file-name is always .dirinfo in the desired directory<br><br>
+&nbsp;* if you want to have a different type, create a .dirascii<br>
+
+&nbsp;file for it. check $BSNG_RC_DIR/ascii/ for examples
+
+<h4><font color="#33C0F4">3.2 LSCD </font></h4>
+&nbsp;lscd is an enhanced version of the built-in cd. It supports<br>
+&nbsp;dirinfo, saving the last directory visited (so that one ends<br>
+&nbsp;up in the same directory again, when starting a new shell),<br>
+&nbsp;aswell as auto-displaying the content of the directory<br><br>
+
+&nbsp;Example output of lscd with a .dirinfo file (Type=home):<br>
+<img src="./img/dirinfo-example.png">
+
+<h4><font color="#33C0F4">3.3 dirinfo_get_creation_date </font></h4>
+&nbsp;... Normally this function would get the creation-date of a file ...<br>
+&nbsp;hah! linux-filesystems don't store it, therefore we fool ourselves<br>
+&nbsp;and get the time of the last modification instead
+
+<h4><font color="#33C0F4">3.4 dirinfo_set_creation_date </font></h4>
+&nbsp;... inserts the date gotten from _get_creation_date into the .dirinfo file
+
+<h4><font color="#33C0F4">3.5 dirinfo_get_dirinfo </font></h4>
+&nbsp;Internal function for getting values off a .dirinfo file (lscd)
+
+<h4><font color="#33C0F4">3.6 dirinfo_display_info </font></h4>
+&nbsp;If the info gotten from _get_dirinfo does not contain a Type field,<br>
+&nbsp;this function is to display the infos (lscd)
+
+<h4><font color="#33C0F4">3.7 dirinfo_display_ascii </font></h4>
+&nbsp;On the other hand, if there's a Type field, display the corresponding<br>
+&nbsp;ascii-art (as shown above) and the infos. If there's no BS-NG shipped<br>
+&nbsp;ascii-art that matches, check for .dirascii file to display, if that<br>
+&nbsp;also fails, call dirinfo_display_info instead (lscd)
+
+<h4><font color="#33C0F4">3.8 dirinfo_index_db </font></h4>
+&nbsp;Search $HOME for all .dirinfo files and create an index<br>
+&nbsp;use dirinfo_index --update instead (described later)
+
+<h4><font color="#33C0F4">3.8.1 dirinfo_index_tags </font></h4>
+&nbsp;Create a tag-index for all  .dirinfo files listed in the index<br>
+&nbsp;user dirinfo_index --rebuild instead (described later)
+
+<h4><font color="#33C0F4">3.8.2 dirinfo_index_types </font></h4>
+&nbsp;Create a type-index for all .dirinfo files listed in the index<br>
+&nbsp;user dirinfo_index --rebuild instead (described later)
+
+<h4><font color="#33C0F4">3.8.3 dirinfo_index_dates </font></h4>
+&nbsp;Create a date-index for all .dirinfo files listed in the index<br>
+&nbsp;user dirinfo_index --rebuild instead (described later)
+
+<h4><font color="#33C0F4">3.9 dirinfo_index </font></h4>
+&nbsp;Function for updating, rebuilding and searching the index<br>
+&nbsp;dirinfo_index --update (call functions 3.8 - 3.8.3)<br>
+&nbsp;dirinfo_index --rebuild (call functions 3.8.1 - 3.8.3)<br>
+&nbsp;dirinfo_index --list (list all indexed directories)<br>
+&nbsp;dirinfo_index --search SEARCH_TYPE (search through the index,<br>
+&nbsp;SEARCH_TYPE is one of --tag, --type or --date)
+
+<h4><font color="#33C0F4">3.10 dirinfo_create </font></h4>
+&nbsp;Ugly query to create a .dirinfo file without the need to remember the syntax
 
 <h3><font color="#FBA330">10 Internal functions/variables</font></h3>
 
