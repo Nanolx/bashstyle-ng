@@ -100,13 +100,15 @@ pskill() {
 
 		psgrep $1
 
+		shift
+
 		if [[ $CMDS != "" ]]; then
 
 			echo -e "\nenter process number to kill:\n"
 			read ID
 
 			if [[ ! $ID == 0 || ! $ID == "" ]]; then
-				kill $2 $ID
+				kill $@ $ID
 			fi
 
 		fi
