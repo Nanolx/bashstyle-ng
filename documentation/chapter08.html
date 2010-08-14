@@ -14,16 +14,16 @@
 </table>
 <hr><br>
 
-<h3><font color="#FBA330">1.0 Admin functions</font></h3>
+<h3><font color="#FBA330">1 Admin functions</font></h3>
 &nbsp;A set of more or less administrative functions
 
-<h4><font color="#GAA330">1.1 torswitch</font></h4>
+<h4><font color="#33C0F4">1.1 torswitch</font></h4>
 &nbsp;Torswitch is a simple function for switching on or off<br>
 &nbsp;the Tor Union-Router globally, when using Privoxy<br>
 &nbsp;&nbsp;torswitch --on #turn on tor<br>
 &nbsp;&nbsp;torswitch --off #turn of tor
 
-<h4><font color="#GAA330">1.2 repoadd</font></h4>
+<h4><font color="#33C0F4">1.2 repoadd</font></h4>
 &nbsp;RepoAdd is a script for adding debian-packages to an already<br>
 &nbsp;set-up apt-repo which uses reprepro to be organized<br>
 &nbsp;The paths it uses are set by environment-variables<br>
@@ -31,69 +31,69 @@
 &nbsp;&nbsp;REPO_DIST the dist you wan to add your packaes to<br>
 &nbsp;signing is done automatically
 
-<h4><font color="#GAA330">1.3 wipe</font></h4>
+<h4><font color="#33C0F4">1.3 wipe</font></h4>
 &nbsp;Wipe overwrites the given device with random numbers<br>
 &nbsp;Use this on an empty partition which you want to crypt-setup later<br>
 &nbsp;DON'T USE THIS ON PARTITIONS WHICH CONTAIN FILES (or are in use)!
 
-<h4><font color="#GAA330">1.4 remount</font></h4>
+<h4><font color="#33C0F4">1.4 remount</font></h4>
 &nbsp;Simply remount a device with given options
 
-<h4><font color="#GAA330">1.5 xchown</font></h4>
+<h4><font color="#33C0F4">1.5 xchown</font></h4>
 &nbsp;XChown changes the owner of files recursively after asking for root-password
 
-<h4><font color="#GAA330">1.6 psgrep</font></h4>
+<h4><font color="#33C0F4">1.6 psgrep</font></h4>
 &nbsp;Small script for grepping `ps' output but with nicer output than pgrep
 
-<h4><font color="#GAA330">1.7 pskill</font></h4>
+<h4><font color="#33C0F4">1.7 pskill</font></h4>
 &nbsp;Takes two arguements, 1st the process to psgrep for, 2nd any<br>
 &nbsp;additional arguements to pass to `kill'. Will display matches<br>
 &nbsp;before doing anything, not passing a process-id will simply leave
 
-<h3><font color="#33c0f4">10 Internal functions/variables:</font></h3>
+<h3><font color="#FBA330">10 Internal functions/variables:</font></h3>
 
-<h4><font color="#GAA330">10.1 BSNG_PREFIX</font></h4>
+<h4><font color="#33C0F4">10.1 BSNG_PREFIX</font></h4>
 &nbsp;Environment-variable containing the installation-prefix of BS-NG
 
-<h4><font color="#GAA330">10.2 BSNG_RC_DIR</font></h4>
+<h4><font color="#33C0F4">10.2 BSNG_RC_DIR</font></h4>
 &nbsp;Environment-variable containing the path to the functions directory
 
-<h4><font color="#GAA330">10.3 BSNG_LOCKFILE</font></h4>
+<h4><font color="#33C0F4">10.3 BSNG_LOCKFILE</font></h4>
 &nbsp;Environment-variable containing the path to the loCKfile
 
-<h4><font color="#GAA330">10.4 BSNG_VERSION</font></h4>
+<h4><font color="#33C0F4">10.4 BSNG_VERSION</font></h4>
 &nbsp;Environment-variable containing the version of BS-NG
 
-<h4><font color="#GAA330">10.5 BSNG_LOGFILE</font></h4>
+<h4><font color="#33C0F4">10.5 BSNG_LOGFILE</font></h4>
 &nbsp;Environment-variable containing the path to the loGfile
 
-<h4><font color="#GAA330">10.6 BSNG_DOCS</font></h4>
+<h4><font color="#33C0F4">10.6 BSNG_DOCS</font></h4>
 &nbsp;Environment-variable containing the path to the documentation
 
-<h4><font color="#GAA330">10.7 dbg_msg</font></h4>
+<h4><font color="#33C0F4">10.7 dbg_msg</font></h4>
 &nbsp;Displays the debug messages on startup and stores them
 
-<h4><font color="#GAA330">10.8 check_opt</font></h4>
+<h4><font color="#33C0F4">10.8 check_opt</font></h4>
 &nbsp;Check optional dependencies for scripts, on run-time
 
-<h4><font color="#GAA330">10.9 BSNG_GCONF_READ</font></h4>
+<h4><font color="#33C0F4">10.9 BSNG_GCONF_READ</font></h4>
 &nbsp;Environment-variable used by get_key/set_key with this<br>
 &nbsp;set you can pass eg: alias/one to them rather than<br>
 &nbsp;/apps/bashstyle/alias/one (used by nx-rc for better readability)
 
-<h4><font color="#GAA330">10.10 get_key</font></h4>
+<h4><font color="#33C0F4">10.10 get_key</font></h4>
 &nbsp;Get the value of a GConf-Key (listens to BSNG_GCONF_READ)
 
-<h4><font color="#GAA330">10.11 set_key</font></h4>
+<h4><font color="#33C0F4">10.11 set_key</font></h4>
 &nbsp;Set the value of a GConf-Key (listens to BSNG_GCONF_READ)
 
-<h4><font color="#GAA330">10.12 reset_key</font></h4>
+<h4><font color="#33C0F4">10.12 reset_key</font></h4>
 &nbsp;Reset the value of a GConf-Key (listens to BSNG_GCONF_READ)
 
-<h4><font color="#GAA330">10.13 reset_config</font></h4>
+<h4><font color="#33C0F4">10.13 reset_config</font></h4>
 &nbsp;Reset the BS-NG settings to defaults
 
-<h4><font color="#GAA330">10.14 search_key</font></h4>
+<h4><font color="#33C0F4">10.14 search_key</font></h4>
 &nbsp;Search for a GConf-Key
 
 </body>
