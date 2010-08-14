@@ -49,6 +49,10 @@ dirinfo_get_dirinfo () {
 
 	echo -e "\n${eyellow} -- $PWD --${ewhite}"
 
+	if [[ $Notes == "" ]]; then
+		Notes="No notes."
+	fi
+
 	if [[ ! ${Type} ]]; then
 		dirinfo_display_info
 	else	dirinfo_display_ascii
