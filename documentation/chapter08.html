@@ -14,706 +14,86 @@
 </table>
 <hr><br>
 
-<h3><font color="#FBA330">BS-NG-Profiler</font></h3>
-&nbsp;This script will import or export your current configuration.<br><br>
-<table border="1">
-	<tr>
-		<td>bs-ng-profiler</td>
-		<td>export</td>
-		<td></td>
-		<td>Export your profile into a plain-text file.</td>
-	</tr>
-	<tr>
-		<td width="20%"></td>
-		<td width="10%">import</td>
-		<td width="20%">a saved profile</td>
-		<td>Import an already saved profile.</td>
-	</tr>
-</table>
+<h3><font color="#FBA330">1.0 Admin functions</font></h3>
+&nbsp;A set of more or less administrative functions
 
-<h3><font color="#FBA330">Countfiles</font></h3>
-&nbsp;This function will show how many files/folders are in the current directory.<br><br>
-<table border="1">
-	<tr>
-		<td>count_files</td>
-		<td>+h</td>
-		<td>Count files, folders (and hidden ones).</td>
-	</tr>
-	<tr>
-		<td width="20%"></td>
-		<td width="20%">-h</td>
-		<td>Count files, folders (no hidden ones).</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>-d</td>
-		<td>Count folders (no hidden ones).</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>+d</td>
-		<td>Count folders (and hidden ones).</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>-f</td>
-		<td>Count files (no hidden ones).</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>+f</td>
-		<td>Count files (and hidden ones).</td>
-	</tr>
-</table>
+<h4><font color="#GAA330">1.1 torswitch</font></h4>
+&nbsp;Torswitch is a simple function for switching on or off<br>
+&nbsp;the Tor Union-Router globally, when using Privoxy<br>
+&nbsp;&nbsp;torswitch --on #turn on tor<br>
+&nbsp;&nbsp;torswitch --off #turn of tor
 
-<h3><font color="#FBA330">Count Processes</font></h3>
-&nbsp;This function counts all running processes.<br><br>
-<table border="1">
-	<tr>
-		<td width="50%">count_processes</td>
-		<td>no options.</td>
-	</tr>
-</table>
+<h4><font color="#GAA330">1.2 repoadd</font></h4>
+&nbsp;RepoAdd is a script for adding debian-packages to an already<br>
+&nbsp;set-up apt-repo which uses reprepro to be organized<br>
+&nbsp;The paths it uses are set by environment-variables<br>
+&nbsp;&nbsp;REPO_HOME the root-directory of the apt-repo<br>
+&nbsp;&nbsp;REPO_DIST the dist you wan to add your packaes to<br>
+&nbsp;signing is done automatically
 
-<h3><font color="#FBA330">Show-Battery-Load</font></h3>
-&nbsp;This function will show your lappy's battery load, using APM.<br><br>
-<table border="1">
-	<tr>
-		<td width="35%">show_battery_load</td>
-		<td>acpi</td>
-		<td>use acpi for getting batteryload.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>apm</td>
-		<td>use apm for getting batteryload.</td>
-	</tr>
-</table>
+<h4><font color="#GAA330">1.3 wipe</font></h4>
+&nbsp;Wipe overwrites the given device with random numbers<br>
+&nbsp;Use this on an empty partition which you want to crypt-setup later<br>
+&nbsp;DON'T USE THIS ON PARTITIONS WHICH CONTAIN FILES (or are in use)!
 
-<h3><font color="#FBA330">Show-CPU-Load</font></h3>
-&nbsp;This function will show your CPU load.<br><br>
-<table border="1">
-	<tr>
-		<td width="60%">show_cpu_load</td>
-		<td>no options.</td>
-	</tr>
-</table>
+<h4><font color="#GAA330">1.4 remount</font></h4>
+&nbsp;Simply remount a device with given options
 
-<h3><font color="#FBA330">Show-System-Load</font></h3>
-&nbsp;This function will show your system load.<br><br>
-<table border="1">
-	<tr>
-		<td>show_system_load</td>
-		<td>1</td>
-		<td>Load average for 1 minute.</td>
-	</tr>
-	<tr>
-		<td width="20%"></td>
-		<td width="20">10</td>
-		<td width="60%">Load average for 10 minutes.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>15</td>
-		<td>Load average for 15 minutes.</td>
-	</tr>
-</table>
+<h4><font color="#GAA330">1.5 xchown</font></h4>
+&nbsp;XChown changes the owner of files recursively after asking for root-password
 
-<h3><font color="#FBA330">Show-Memory</font></h3>
-&nbsp;This function will show your memory load.<br><br>
-<table border="1">
-	<tr>
-		<td>show_mem</td>
-		<td>--used</td>
-		<td>Shows used memory in MB.</td>
-	</tr>
-	<tr>
-		<td width="20%"></td>
-		<td width="30%">--used-percent</td>
-		<td width="50%">Shows used memory in Percent.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--free</td>
-		<td>Shows free memory in MB.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--free-percent </td>
-		<td>Shows free memory in Percent.</td>
-	</tr>
-</table>
+<h4><font color="#GAA330">1.6 psgrep</font></h4>
+&nbsp;Small script for grepping `ps' output but with nicer output than pgrep
 
-<h3><font color="#FBA330">Show-Size</font></h3>
-&nbsp;This function will show the size of all files in the current directory.<br><br>
-<table border="1">
-	<tr>
-		<td width="50%">show_size</td>
-		<td>no options.</td>
-	</tr>
-</table>
+<h4><font color="#GAA330">1.7 pskill</font></h4>
+&nbsp;Takes two arguements, 1st the process to psgrep for, 2nd any<br>
+&nbsp;additional arguements to pass to `kill'. Will display matches<br>
+&nbsp;before doing anything, not passing a process-id will simply leave
 
-<h3><font color="#FBA330">Show-Space</font></h3>
-&nbsp;This function will show your disk space.<br><br>
-<table border="1">
-	<tr>
-		<td>show_space</td>
-		<td>--used</td>
-		<td>mountpoint</td>
-		<td>Shows the used space in MB/GB.</td>
-	</tr>
-	<tr>
-		<td width="20%"></td>
-		<td width="25%">--used-percent</td>
-		<td width="15%">mountpoint</td>
-		<td width="40%">Shows the used space in Percent.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--free</td>
-		<td>mountpoint</td>
-		<td>Shows the free space in MB/GB.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--free-percent</td>
-		<td>mountpoint</td>
-		<td>Shows the free space in Percent.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--total</td>
-		<td>mountpoint</td>
-		<td>Shows the total space in MB/GB.</td>
-	</tr>
-</table>
+<h3><font color="#33c0f4">10 Internal functions/variables:</font></h3>
 
-<h3><font color="#FBA330">Show-TTY</font></h3>
-&nbsp;This function shows the current TTY (Terminal Device).<br><br>
-<table border="1">
-	<tr>
-		<td width="50%">show_tty</td>
-		<td>no options.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">Show-Uptime</font></h3>
-&nbsp;This function will show your system's uptime.<br><br>
-<table border="1">
-	<tr>
-		<td>show_uptime</td>
-		<td>no options.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">TruncPWD</font></h3>
-&nbsp;This function will print a modified version of $PWD.<br><br>
-<table border="1">
-	<tr>
-		<td width="50%">trunc_pwd</td>
-		<td>no options.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">Show-IP</font></h3>
-&nbsp;This function will show your external ip address.<br><br>
-<table border="1">
-	<tr>
-		<td withd="40%">show_ip</td>
-		<td>&lt;interface&gt;</td>
-		<td>show external ip address of &lt;interface&gt;.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">Man 2 PDF</font></h3>
-&nbsp;This function will convert a manpage to a pdf file.<br><br>
-<table border="1">
-	<tr>
-		<td>man2pdf &lt;manpage&gt;</td>
-		<td>convert &lt;manpage&gt; into a pdf.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">System-Infos</font></h3>
-&nbsp;This function will show serveral system informations.<br><br>
-<table border="1">
-	<tr>
-		<td>system_infos</td>
-		<td>--cpu</td>
-		<td>Display CPU Model and Frequency.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--kernel</td>
-		<td>Display Kernel Release, Version and Machine.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--memory</td>
-		<td>Display Total, Free and Used RAM.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--partitions</td>
-		<td>Display Major, Minor, Blocks and Node for all recognized paritions.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--pci</td>
-		<td>Display Infos about all PCI Devices (and their kernel-module).</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--usb</td>
-		<td>Display Infos about all USB Devices (and their kernel-module).</td>
-	<tr>
-		<td></td>
-		<td>--bios</td>
-		<td>Display SMBIOS/DMI Informations.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--mounts</td>
-		<td>Display all mounted devices.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">RCGenerator</font></h3>
-&nbsp;This script will generate standalone rc-files.<br><br>
-<table border="1">
-	<tr>
-		<td>rcgenerator</td>
-		<td>--bash</td>
-		<td>Generate standalone bashrc.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--readline</td>
-		<td>Generate standalone inputrc.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--vim</td>
-		<td>Generate standalone vimrc.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--nano</td>
-		<td>Generate standalone nanorc.</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>--all</td>
-		<td>Generate standalone rcs for all four.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">xchown</font></h3>
-&nbsp;Recursive chown for given user, with root priviledges, via su.<br><br>
-<table border="1">
-	<tr>
-		<td>xchown</td>
-		<td>USER</td>
-		<td>FILES/FOLDERS</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">xmv</font></h3>
-&nbsp;Move files to last arguement, if that directory does not exist, create it before moving.<br><br>
-<table border="1">
-	<tr>
-		<td>xmv</td>
-		<td>FILE FILE FILE FILE DESTINATION</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">xcp</font></h3>
-&nbsp;Same than xmv, but for copying instead of moving.<br><br>
-<table border="1">
-	<tr>
-		<td>xcp</td>
-		<td>FILE FILE FILE FILE DESTINATION</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">xdel</font></h3>
-&nbsp;Delete matching files recursively (also: `rm of doom').<br><br>
-<table border="1">
-	<tr>
-		<td>xdel</td>
-		<td>pattern</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">xconv</font></h3>
-&nbsp;Xconv is a set of functions for converting numbers.<br><br>
-<table border="1">
-	<tr>
-		<td>bin2oct</td>
-		<td>convert binary to octal.</td>
-	</tr>
-	<tr>
-		<td>bin2dec</td>
-		<td>convert binary to decimal.</td>
-	</tr>
-	<tr>
-		<td>bin2hex</td>
-		<td>convert binary to hexadecimal.</td>
-	</tr>
-	<tr>
-		<td>bin2all</td>
-		<td>convert binary to all three.</td>
-	</tr>
-	<tr>
-		<td>oct2bin</td>
-		<td>convert octal to binary.</td>
-	</tr>
-	<tr>
-		<td>oct2dec</td>
-		<td>convert octal to decimal.</td>
-	</tr>
-	<tr>
-		<td>oct2hex</td>
-		<td>convert octal to hexadecimal</td>
-	</tr>
-	<tr>
-		<td>oct2all</td>
-		<td>convert octal to all three.</td>
-	</tr>
-	<tr>
-		<td>dec2bin</td>
-		<td>convert decimal to binary.</td>
-	</tr>
-	<tr>
-		<td>dec2oct</td>
-		<td>convert decimal to octal.</td>
-	</tr>
-	<tr>
-		<td>dec2hex</td>
-		<td>convert decimal to hexadecimal.</td>
-	</tr>
-	<tr>
-		<td>dec2all</td>
-		<td>convert decimal to all three.</td>
-	</tr>
-	<tr>
-		<td>hex2bin</td>
-		<td>convert hexadecimal to binary.</td>
-	</tr>
-	<tr>
-		<td>hex2oct</td>
-		<td>convert hexadecimal to octal.</td>
-	</tr>
-	<tr>
-		<td>hex2dec</td>
-		<td>convert hexadecimal to decimal</td>
-	</tr>
-	<tr>
-		<td>hex2all</td>
-		<td>convert hexadecimal to all three.</td>
-	</tr>
-	<tr>
-		<td>round</td>
-		<td>round a decimal.</td>
-	</tr>
-	<tr>
-		<td>radical</td>
-		<td>get the square-root of a decimal.</td>
-	</tr>
-	<tr>
-		<td>power</td>
-		<td>get the n-th power of a decimal.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">xunalias</font></h3>
-&nbsp;Xunalias is a replacement for unalias, which does not err if an alias<br>
-&nbsp;can't be unaliased (usefull for scripts).<br><br>
-<table border="1">
-	<tr>
-		<td>xunalias</td>
-		<td>alias</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">ls functions</font></h3>
-&nbsp;A set of extra `ls' variants.<br><br>
-<table border="1">
-	<tr>
-		<td>ll</td>
-		<td>show detailed infos.</td>
-	</tr>
-	<tr>
-		<td>la</td>
-		<td>also display hidden files.</td>
-	</tr>
-	<tr>
-		<td>l1</td>
-		<td>display one file per line.</td>
-	</tr>
-	<tr>
-		<td>lo</td>
-		<td>display owner of file.</td>
-	</tr>
-	<tr>
-		<td>lg</td>
-		<td>display group of file.</td>
-	</tr>
-	<tr>
-		<td>lm</td>
-		<td>display mode of file.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">exchange</font></h3>
-&nbsp;Exchange the value of two variables.<br><br>
-<table border="1">
-	<tr>
-		<td>exchange</td>
-		<td>VARIABLE1</td>
-		<td>VARIABLE2</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">random</font></h3>
-&nbsp;Print a random number.<br><br>
-<table border="1">
-	<tr>
-		<td>random</td>
-		<td>-l LENGTH</td>
-		<td>Print a random number with length LENGTH</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>-r RANGE</td>
-		<td>Print a random number between 0 and RANGE</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">ps</font></h3>
-&nbsp;A set of `ps' related functions<br><br>
-<table border="1">
-	<tr>
-		<td>psgrep</td>
-		<td>-u</td>
-		<td>USER</td>
-		<td>Print all processes belonging to USER</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td>PROCESSNAME</td>
-		<td>Print all running processes matching PROCESSNAME</td>
-	</tr>
-</table><br>
-
-<table border="1">
-	<tr>
-		<td>pskill</td>
-		<td>PROCESSNAME</td>
-		<td></td>
-		<td>psgrep for PROCESSNAME and ask for a process to kill</td>
-	</tr>
-	<tr>
-		<td>pskill</td>
-		<td>PROCESSNAME</td>
-		<td>SIGNAL</td>
-		<td>psgrep for PROCESSNAME and ask for a process to kill via signal SIGNAL</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">top10</font></h3>
-&nbsp;Display the 10 most-used commands<br><br>
-<table border="1">
-	<tr>
-		<td>top10</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">randompw</font></h3>
-&nbsp;Create a random password<br><br>
-<table border="1">
-	<tr>
-		<td>randompw</td>
-		<td>LENGTH</td>
-		<td>!</td>
-		<td>generate alphanumeric password with length LENGTH<br>
-		    if ! is passed, too, then include special chars</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">dbg_view</font></h3>
-&nbsp;View the debug log<br><br>
-<table border="1">
-	<tr>
-		<td>dbg_view</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">dbg_verbosity</font></h3>
-&nbsp;Set the debug verbosity<br><br>
-<table border="1">
-	<tr>
-		<td>dbg_verbosity</td>
-		<td>0</td>
-		<td>No output on bash startup</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>1</td>
-		<td>Full output on bash startup</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">crypt</font></h3>
-&nbsp;"encrypt" a plaintext file. Actually the characters<br>
-&nbsp;are simply exchanged, which makes the content unreadable<br>
-&nbsp;run a second time to "decrypt" the file<br><br>
-<table border="1">
-	<tr>
-		<td>crypt</td>
-		<td>FILE</td>
-		<td>"encrypt" or "decrypt" FILE</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">dos2unix</font></h3>
-&nbsp;Change line-endings from dos to unix and vice versa<br><br>
-<table border="1">
-	<tr>
-		<td>d2u</td>
-		<td>FILE</td>
-		<td>Convert FILEs line-endings from dos to unix</td>
-	</tr>
-	<tr>
-		<td>u2d</td>
-		<td>FILE</td>
-		<td>Convert FILEs line-endings from unix to dos</td>
-	</tr>
-</table
-
-<h3><font color="#FBA330">git functions</font></h3>
-&nbsp;A set of extra `git' functions.<br><br>
-<table border="1">
-	<tr>
-		<td>get_gnome</td>
-		<td>-m</td>
-		<td>USERNAME</td>
-		<td>PROJECT</td>
-		<td>checkout head of PROJECT as user USERNAME from git.gnome.org</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>-b</td>
-		<td>BRANCH</td>
-		<td>PROJECT</td>
-		<td>checkout branch BRANCH of PROJECT as anonymous from git.gnome.org</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td>PROJECT</td>
-		<td>checkout head of PROJECT as anonymous from git.gnome.org</td>
-	</tr>
-</table><br>
-
-<table border="1">
-	<tr>
-		<td>get_xfce</td>
-		<td>-b</td>
-		<td>BRANCH</td>
-		<td>PROJECT</td>
-		<td>checkout branch BRANCH of PROJECT as anonymous from git.gnome.org</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td>PROJECT</td>
-		<td>checkout head of PROJECT as anonymous from git.gnome.org</td>
-	</tr>
-</table><br>
-
-<table border="1">
-	<tr>
-		<td>git_export</td>
-		<td>PATH</td>	
-		<td>export the git-tree to PATH.</td>
-	</tr>
-	<tr>
-		<td>git_bzip</td>
-		<td></td>
-		<td>create bzip2-compressed tarball from the git-tree.</td>
-	</tr>
-		<td>git_xz</td>
-		<td></td>
-		<td>create xz-compressed tarball from the git-tree.</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">youtube2ogg</font></h3>
-&nbsp;Extract audio from youtube (or most other video files)<br>
-&nbsp;to an OGG/Vorbis file.<br><br>
-<table border="1">
-	<tr>
-		<td>youtube2ogg</td>
-		<td>VIDEO</td>
-	</tr>
-</table>
-
-<h3><font color="#FBA330">mkv2avi</font></h3>
-&nbsp;Convert MatroskaVideo to AVI.<br>
-&nbsp;uses mencoder-mt if found, else mencoder.<br><br>
-<table border="1">
-	<tr>
-		<td>mkv2avi</td>
-		<td>VIDEO</td>
-	</tr>
-</table>
-
-<h3><font color="#33c0f4">Internal functions/variables (may also be used externally):</font></h3>
-
-<h3><font color="#FBA330">BSNG_PREFIX</font></h3>
+<h4><font color="#GAA330">10.1 BSNG_PREFIX</font></h4>
 &nbsp;Environment-variable containing the installation-prefix of BS-NG
 
-<h3><font color="#FBA330">BSNG_RC_DIR</font></h3>
+<h4><font color="#GAA330">10.2 BSNG_RC_DIR</font></h4>
 &nbsp;Environment-variable containing the path to the functions directory
 
-<h3><font color="#FBA330">BSNG_LOCKFILE</font></h3>
+<h4><font color="#GAA330">10.3 BSNG_LOCKFILE</font></h4>
 &nbsp;Environment-variable containing the path to the loCKfile
 
-<h3><font color="#FBA330">BSNG_VERSION</font></h3>
+<h4><font color="#GAA330">10.4 BSNG_VERSION</font></h4>
 &nbsp;Environment-variable containing the version of BS-NG
 
-<h3><font color="#FBA330">BSNG_LOGFILE</font></h3>
+<h4><font color="#GAA330">10.5 BSNG_LOGFILE</font></h4>
 &nbsp;Environment-variable containing the path to the loGfile
 
-<h3><font color="#FBA330">bsource</font></h3>
-&nbsp;Load BS-NG functions by name of the file instead of absolute path
+<h4><font color="#GAA330">10.6 BSNG_DOCS</font></h4>
+&nbsp;Environment-variable containing the path to the documentation
 
-<h3><font color="#FBA330">dbg_msg</font></h3>
+<h4><font color="#GAA330">10.7 dbg_msg</font></h4>
 &nbsp;Displays the debug messages on startup and stores them
 
-<h3><font color="#FBA330">check_opt</font></h3>
-&nbsp;Check optional dependencies for scripts
+<h4><font color="#GAA330">10.8 check_opt</font></h4>
+&nbsp;Check optional dependencies for scripts, on run-time
 
-<h3><font color="#FBA330">BSNG_GCONF_READ</font></h3>
-&nbsp;Environment-variable used by get_key/set_key
+<h4><font color="#GAA330">10.9 BSNG_GCONF_READ</font></h4>
+&nbsp;Environment-variable used by get_key/set_key with this<br>
+&nbsp;set you can pass eg: alias/one to them rather than<br>
+&nbsp;/apps/bashstyle/alias/one (used by nx-rc for better readability)
 
-<h3><font color="#FBA330">get_key</font></h3>
+<h4><font color="#GAA330">10.10 get_key</font></h4>
 &nbsp;Get the value of a GConf-Key (listens to BSNG_GCONF_READ)
 
-<h3><font color="#FBA330">set_key</font></h3>
+<h4><font color="#GAA330">10.11 set_key</font></h4>
 &nbsp;Set the value of a GConf-Key (listens to BSNG_GCONF_READ)
 
-<h3><font color="#FBA330">reset_key</font></h3>
+<h4><font color="#GAA330">10.12 reset_key</font></h4>
 &nbsp;Reset the value of a GConf-Key (listens to BSNG_GCONF_READ)
 
-<h3><font color="#FBA330">reset_config</font></h3>
-&nbsp;Reset the BS-NG settings
+<h4><font color="#GAA330">10.13 reset_config</font></h4>
+&nbsp;Reset the BS-NG settings to defaults
 
-<h3><font color="#FBA330">search_key</font></h3>
+<h4><font color="#GAA330">10.14 search_key</font></h4>
 &nbsp;Search for a GConf-Key
 
 </body>
