@@ -122,7 +122,7 @@ up () {
 
 [ "${1/[^0-9]/}" == "$1" ] && {
         local ups=""
-        for i in $(i=1; i<=$1; i++)
+        for ((i=1; i<=$1; i++))
         do
                 ups=$ups"../"
         done
