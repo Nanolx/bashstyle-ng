@@ -139,10 +139,7 @@ empty () {
 
 deadlink () {
 
-	if [[ -L "$1" && ! -e "$1" ]]; then
-		echo "$1 is broken"
-	fi
-
+	find -L . -type l
 }
 
 bookmark () {
