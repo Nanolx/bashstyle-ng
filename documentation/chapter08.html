@@ -321,6 +321,45 @@
 <h4><font color="#33C0F4">8.12 xunalias</font></h4>
 &nbsp;Wrapper for unalis, which doesn't err if an alias doesn't exist
 
+<h3><font color="#FBA330">9 Versioning functions</font></h3>
+
+<h4><font color="#33C0F4">9.1 git_export</font></h4>
+&nbsp;GIT version of svn export (export tree ready-to-use for release)
+
+<h4><font color="#33C0F4">9.2 git_bzip</font></h4>
+&nbsp;Create .tar.bz2 archive from the tree, ready-to-use for release
+
+<h4><font color="#33C0F4">9.3 git_xz</font></h4>
+&nbsp;Same as git_bzip but using XZ for compression
+
+<h4><font color="#33C0F4">9.4 get_gnome</font></h4>
+&nbps;Function for grabbing git.gnome.org repos<br>
+&nbps;uses GIT_GNOME_USER variable if you have an account<br>
+&nbsp;examples for maintainers: get_gnome -m nautilus<br>
+&nbsp;get_gnome -mb nautilus 2-30 (checkout branch 2-30)<br>
+&nbsp;examples for users: get_gnome nautilus<br>
+&nbsp;get_gnome -b nautilus 2-30 (checkout branch 2-30)
+
+<h4><font color="#33C0F4">9.5 get_xfce</font></h4>
+&nbsp;Same as get_gnome but for git.xfce.org, uses GIT_XFCE_USER
+
+<h4><font color="#33C0F4">9.6 git_branch</font></h4>
+&nbsp;Display the current branch
+
+<h4><font color="#33C0F4">9.7 git_revision</font></h4>
+&nbsp;Displays the current revision as 6-digit-number
+
+<h4><font color="#33C0F4">9.8 git_action</font></h4>
+&nbsp;Display the currently running action (eg merge)
+
+<h4><font color="#33C0F4">9.9 get_kde</font></h4>
+&nbsp;Same as get_gnome but for svn.kde.org (may not work for all)<br>
+&nbsp;uses SVN_USER_KDE variable
+
+<h4><font color="#33C0F4">9.10 get_e</font></h4>
+&nbsp;Same as get_gnome but for svn.enlightenment.org -b and -mb<br>
+&nbsp;options are missing, though uses SVN_USER_ENLIGHTENMENT
+
 <h3><font color="#FBA330">10 Internal functions/variables</font></h3>
 
 <h4><font color="#33C0F4">10.1 BSNG_PREFIX</font></h4>
