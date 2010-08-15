@@ -15,21 +15,21 @@ youtube2ogg () {
 
 }
 
-mkv2avi () {
+conv2avi () {
 
 	if [[ $(which mencoder-mt) != "" ]]; then
 
 	mencoder-mt "$1" -lavdopts threads=8 \
 	  -ovc xvid -xvidencopts fixed_quant=4 -of avi \
 	  -oac mp3lame -lameopts vbr=3 \
-	  -o $(basename "$1" .mkv).avi
+	  -o "$1".avi
 
 	else
 
-	mencoder "$1" -lavdopts threads=8 \
+	mencoder "$1" -lavdopts \
 	  -ovc xvid -xvidencopts fixed_quant=4 -of avi \
 	  -oac mp3lame -lameopts vbr=3 \
-	  -o $(basename "$1" .mkv).avi
+	  -o "$1".avi
 
 	fi
 
