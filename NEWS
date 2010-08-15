@@ -1,9 +1,15 @@
 Overview of changes in v7.11 "I Shot The Blender"
 
+** !! This release contains an easteregg !! **
+
 === Build/Installation ===
 * configure/Makefile output is now even fancier
+
 * no longer depends on gtk-2.0.pc and gconf-2.0.pc
   (allows installation without -devel pkgs installed)
+
+* mkchangelog function (generates ChangeLog from git log)
+
 
 === Bugfixes ===
 * #98: support spaces in arguements for all functions
@@ -61,7 +67,6 @@ Overview of changes in v7.11 "I Shot The Blender"
 * GUI is now resizable
 
 * BSNG_DOCS environment-variable
-
 
 === Removed Features ===
 * Preview in GUI
