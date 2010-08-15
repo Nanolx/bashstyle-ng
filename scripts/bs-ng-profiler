@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-source $BSNG_PREFIX/share/bashstyle-ng/rc/functions/gconf
+source $BSNG_RC_DIR/functions/gconf
 
 BASH_KEYS="cdpath colored_grep colored_ls colored_man custom_command custom_prompt \
 debug debug_log debug_verbose dirchar fcedit fignore hist_control hist_ignore history_size \
@@ -102,7 +102,7 @@ _bs_ng_export ()
 		echo "$key="\"$(get_key nano/$key)\" >> $PROFILE; \
 	done
 
-	echo "Profile created in: $PROFILE"
+	echo -e "Profile created in:${eiceblue} $PROFILE"
 	unset BSNG_GCONF_READ
 
 }
