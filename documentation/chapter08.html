@@ -277,6 +277,50 @@
 &nbsp;pass an application as arguement the file will be opened<br>
 &nbsp;with it. randomfile stores a history, for more see --help
 
+<h3><font color="#FBA330">8 Utility functions</font></h3>
+
+<h4><font color="#33C0F4">8.1 bookmark</font></h4>
+&nbsp;Create a bookmark for the current directory, eg bookmark example<br>
+&nbsp;will add a go-example command which will then go back to that directory
+
+<h4><font color="#33C0F4">8.2 unmark</font></h4>
+&nbsp;Remove a bookmark, eg unmark example will remove go-example
+
+<h4><font color="#33C0F4">8.3 up</font></h4>
+&nbsp;Easier way of going up several directories, eg instead of<br>
+&nbsp;cd ../../../../../ you do up 5
+
+<h4><font color="#33C0F4">8.4 deadlink</font></h4>
+&nbsp;Search current directory for dead links
+
+<h4><font color="#33C0F4">8.5 empty</font></h4>
+&nbsp;Search current directory for empty files
+
+<h4><font color="#33C0F4">8.6 exchange</font></h4>
+&nbsp;Exchange the value of two variables, eg exchange $X $Y
+&nbsp;before: X=2 Y=4, afterwards X=4 Y=2
+
+<h4><font color="#33C0F4">8.7 man2pdf</font></h4>
+&nbsp;Create a PDF from a manual page
+
+<h4><font color="#33C0F4">8.8 trunc_pwd</font></h4>
+&nbsp;Used by the styles, to provide nicer pwd-output than \w and \W
+
+<h4><font color="#33C0F4">8.9 xcp</font></h4>
+&nbsp;Wrapper for cp that uses the last arguement as the name of<br>
+&nbsp;the destination directory and creates it if missing
+
+<h4><font color="#33C0F4">8.10 xmv</font></h4>
+&nbsp;Same as xcp, but for mv instead of cp
+
+<h4><font color="#33C0F4">8.11 xdel</font></h4>
+&nbsp;Deletes all files recursively matching the pattern without asking!<br>
+&nbsp;This only works on Bash 4.0+, eg xdel \~ .orig .diff<br>
+&nbsp;(special-chars, like ! or ~ need to be escaped)
+
+<h4><font color="#33C0F4">8.12 xunalias</font></h4>
+&nbsp;Wrapper for unalis, which doesn't err if an alias doesn't exist
+
 <h3><font color="#FBA330">10 Internal functions/variables</font></h3>
 
 <h4><font color="#33C0F4">10.1 BSNG_PREFIX</font></h4>
