@@ -32,24 +32,34 @@ randomfile () {
 
 	case $1 in
 
-			-first)
+			*first)
 				sed -n '1p' $HOME/.randomhistory
 			;;
 
-			-last)
+			*last)
 				sed -n '$p' $HOME/.randomhistory
 			;;
 
-			-n)
+			*n)
 				sed -n "${2}p" $HOME/.randomhistory
 			;;
 
-			-l)
+			*l)
 				wc -l $HOME/.randomhistory | gawk '{print $1}'
 			;;
 
-			-c)
+			*c)
 				rm $HOME/.randomhistory
+			;;
+
+			*help )
+				echo -e "\n${ewhite}Usage:\n"
+				echo -e "${eorange}randomfile${ewhite} | ${egreen}--first ${eiceblue}[get the first file in the history]\
+				\n${eorange}randomfile${ewhite} | ${egreen}--last ${eiceblue}[get the last file in the history]\
+				\n${eorange}randomfile${ewhite} | ${egreen}--n ${eiceblue}[get the NUMBERth file in the history]\
+				\n${eorange}randomfile${ewhite} | ${egreen}--l ${eiceblue}[get the number of files in history]\
+				\n${eorange}randomfile${ewhite} | ${egreen}--c ${eiceblue}[clear the history]\n" | column -t
+				tput sgr0
 			;;
 
 			*)
@@ -64,9 +74,9 @@ randomfile () {
 
 				echo "$RANDOMFILE" >> $HOME/.randomhistory
 
-				if [[ ! "$1" ]]; then
+				if [[ ! "$@" ]]; then
 					echo "$RANDOMFILE"
-				else	"$1" "$RANDOMFILE"
+				else	"$@" "$RANDOMFILE"
 				fi
 			;;
 	esac
