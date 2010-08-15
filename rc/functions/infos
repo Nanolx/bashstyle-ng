@@ -563,14 +563,14 @@ system_infos ()
 
 		*)
 			echo -e "\n${ewhite}Usage:\n"
-			echo -e "${eorange}system_infos ${ewhite}|${egreen} --cpu\t\t${eiceblue} [Display CPU Model and Freq]\
-			\n${eorange}system_infos ${ewhite}|${egreen} --kernel\t${eiceblue} [Display Kernel Version, Release and Machine]\
-			\n${eorange}system_infos ${ewhite}|${egreen} --memory\t${eiceblue} [Display Total, Free and Used RAM]\
-			\n${eorange}system_infos ${ewhite}|${egreen} --partitions\t${eiceblue} [Display Major, Minor, Blocks and Node for all Paritions]\
-			\n${eorange}system_infos ${ewhite}|${egreen} --pci\t\t${eiceblue} [Display Infos about all PCI Devices (and their kernel-module)]\
-			\n${eorange}system_infos ${ewhite}|${egreen} --usb\t\t${eiceblue} [Display Infos about all USB Devices (and their kernel-module)]\
-			\n${eorange}system_infos ${ewhite}|${egreen} --bios\t${eiceblue} [Display SMBIOS DMI Infos]\
-			\n${eorange}system_infos ${ewhite}|${egreen} --mounts\t${eiceblue} [Display all mounted devices]\n"
+			echo -e "${eorange}system_infos ${ewhite}|${egreen} --cpu\t\t${eiceblue}[Display CPU Model and Freq]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --kernel\t${eiceblue} 	[Display Kernel Version, Release and Machine]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --memory\t${eiceblue} 	[Display Total, Free and Used RAM]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --partitions\t${eiceblue}[Display Major, Minor, Blocks and Node for all Paritions]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --pci\t\t${eiceblue}[Display Infos about all PCI Devices (and their kernel-module)]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --usb\t\t${eiceblue}[Display Infos about all USB Devices (and their kernel-module)]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --bios\t${eiceblue} 	[Display SMBIOS DMI Infos]\
+			\n${eorange}system_infos ${ewhite}|${egreen} --mounts\t${eiceblue} 	[Display all mounted devices]\n"
 			tput sgr0
 		;;
 	esac
