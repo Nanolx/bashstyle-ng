@@ -1,0 +1,93 @@
+Overview of changes in v7.11 "I Shot The Blender"
+
+=== Build/Installation ===
+* configure/Makefile output is now even fancier
+* no longer depends on gtk-2.0.pc and gconf-2.0.pc
+  (allows installation without -devel pkgs installed)
+
+=== Bugfixes ===
+* #98: support spaces in arguements for all functions
+* #99: errornous output in showspace
+* #100: make sure to use \$ rather than $ in all styles
+* #101: correctly get (and therefore log) the bash patch-level
+* #102: workaround failing to change TMOUT due to MSEC
+* #103: unify all classes to workaround a pygtk-bug (result: uglier code)
+* #104: comment out rcgenerator comments in generated bashrc
+
+=== Added Features ===
+* git_branch function
+* git_revision function
+* git_action function
+* youtube2ogg function
+* conv2avi function
+* torswitch function
+* repoadd function
+* get_kde function
+* get_e function
+* get_kernel function
+* remount function
+* lscd function
+* up function
+* stopwatch function
+* wipe function [CAUTION!]
+* writeiso function
+* geniso function
+* bashtips function
+* bookmark function
+* unmark function
+* randomfile function
+* deadlink function
+* empty function
+
+* -m switch for get_xfce function
+* -mb switch for get_xfce function
+* -mb switch for get_gnome function
+* -external switch for show_ip
+
+* listing all files in lo function
+* listing all files in lg function
+* support for multiple arguements in lm function
+
+* First-run-wizard (sets up several options for functions)
+
+* $SECONDS in custom-prompt-builder
+* show help-button for custom-prompt-builder
+* toolbox for custom-prompt-builder
+
+* dirinfo directory-indexing functions (Draft 1 Revision 2)
+
+* simple warning-mechanism for nx-rc
+
+* GUI is now resizable
+
+* BSNG_DOCS environment-variable
+
+
+=== Removed Features ===
+* Preview in GUI
+
+* dash style
+* job style
+* minimal style
+* bracket style
+
+* bs-ng-echo function (replaced)
+* bsource function (unneded)
+
+=== New Colorschemes ===
+* asu1dark
+* candycode
+* dw_orange
+* fruit
+* relaxedgreen
+* tango
+
+=== Documentation ===
+* Major revision of all chapters
+* Updated all images
+
+=== Translations ===
+* german:  100%
+* italian: 100%
+* russian: 100%
+* spanish: 100% [NEW]
