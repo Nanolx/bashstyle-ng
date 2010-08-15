@@ -112,20 +112,6 @@ EOF
 
 }
 
-spinner () {
-
-	sp="/-\|"
-	sc=0
-	printf "\b${sp:sc++:1}"
-	((sc==${#sp})) && sc=0
-
-}
-
-endspinner () {
-
-     printf "\r%s\n" "$@"
-
-}
 ll() {
 
 	ls -l --group-directories-first "$@"
