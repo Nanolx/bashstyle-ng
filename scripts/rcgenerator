@@ -41,8 +41,8 @@ _bash_nxrc()
 	_rc_echo \# use it as \$HOME/.bashrc or source this file
 
 	_rc_echo ""
-	_rc_echo Base setup
-	_rc_echo == == == == == == == == == == == == ==
+	_rc_echo \#Base setup
+	_rc_echo \#== == == == == == == == == == == == ==
 	_rc_echo ""
 
 	_rc_echo export BSNG_PREFIX=$BSNG_PREFIX
@@ -77,8 +77,8 @@ _bash_colors()
 {
 
 	_rc_echo ""
-	_rc_echo Color configuration
-	_rc_echo == == == == == == == == == == == == ==
+	_rc_echo \#Color configuration
+	_rc_echo \#== == == == == == == == == == == == ==
 	_rc_echo ""
 
 	if [[ $(get_key color/enable) == true ]]; then \
@@ -164,8 +164,8 @@ _bash_aliases()
 {
 
 	_rc_echo ""
-	_rc_echo Aliases
-	_rc_echo == == == == == == == == == == == == ==
+	_rc_echo \#Aliases
+	_rc_echo \#== == == == == == == == == == == == ==
 	_rc_echo ""
 
 	if [[ $(get_key colored_ls) == true ]]; then \
@@ -215,8 +215,8 @@ _bash_options()
 {
 
 	_rc_echo ""
-	_rc_echo Misc options
-	_rc_echo == == == == == == == == == == == == ==
+	_rc_echo \#Misc options
+	_rc_echo \#== == == == == == == == == == == == ==
 	_rc_echo ""
 
 	_rc_echo HISTCONTROL=\"$(get_key hist_control)\"
@@ -238,8 +238,8 @@ _bash_shopts()
 {
 
 	_rc_echo ""
-	_rc_echo Shopts
-	_rc_echo == == == == == == == == == == == == ==
+	_rc_echo \#Shopts
+	_rc_echo \#== == == == == == == == == == == == ==
 	_rc_echo ""
 
 	if [[ $(get_key shopt/cdspell) == true ]]; then \
@@ -302,8 +302,8 @@ _bash_prompt()
 {
 
 	_rc_echo ""
-	_rc_echo Bash prompts
-	_rc_echo == == == == == == == == == == == == ==
+	_rc_echo \#Bash prompts
+	_rc_echo \#== == == == == == == == == == == == ==
 	_rc_echo ""
 
 	if [[ $(get_key random_style) == true ]]; then \
@@ -334,8 +334,8 @@ _bash_finalize()
 {
 
 	_rc_echo ""
-	_rc_echo Final settings
-	_rc_echo == == == == == == == == == == == == ==
+	_rc_echo \#Final settings
+	_rc_echo \#== == == == == == == == == == == == ==
 	_rc_echo ""
 
 	if [[ $(get_key tabrotate) == true ]]; then \
