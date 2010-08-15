@@ -258,6 +258,25 @@
 <h4><font color="#33C0F4">6.6.6 lm</font></h4>
 &nbsp;Display the permissions of given files (human-readable and octal)
 
+<h3><font color="#FBA330">7 Random functions</font></h3>
+
+<h4><font color="#33C0F4">7.1 random</font></h4>
+&nbsp;Function for generating random numbers, use -l LENGTH<br>
+&nbsp;to set the length of the number, -r RANGE to set the<br>
+&nbsp;range of the number (so it will be between 0 and RANGE)
+
+<h4><font color="#33C0F4">7.2 randompw</font></h4>
+&nbsp;Function similar to random, but outputting strings<br>
+&nbsp;which may be used for passwords, eg randompw 16<br>
+&nbsp;generates a 16 chars long password containing letters<br>
+&nbsp;and numbers randompw 16 ! (note the !) additionally<br>
+&nbsp;add special charachters to the output
+
+<h4><font color="#33C0F4">7.3 randomfile</font></h4>
+&nbsp;Randomly select a file and output, alternatively if you<br>
+&nbsp;pass an application as arguement the file will be opened<br>
+&nbsp;with it. randomfile stores a history, for more see --help
+
 <h3><font color="#FBA330">10 Internal functions/variables</font></h3>
 
 <h4><font color="#33C0F4">10.1 BSNG_PREFIX</font></h4>
