@@ -132,25 +132,31 @@ l1() {
 
 lo() {
 
-	if [[ ! "$@" == "" ]]; then
-		ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to User ->", $3}'
-
+	if [[ "$@" == "" ]]; then
+		$@="*"
 	fi
+
+	ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to User ->", $3}' | sed -e '1d'
+
 }
 
 lg() {
 
-	if [[ ! "$@" == "" ]]; then
-		ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to Group ->", $4}'
-
+	if [[ "$@" == "" ]]; then
+		$@="*"
 	fi
+
+	ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to Group ->", $4}'
+
 }
 
 lm() {
 
 	if [[ ! "$@" == "" ]]; then
-		stat -c "%A %a %n" "$@" | gawk '{print "Permissions of:", $3, "->", $1, "("$2")"}'
+
+		stat -c "%A %a %n" "$file" | gawk '{print "Permissions of:", $3, "->", $1, "("$2")"}'
 
 	fi
+
 }
 
