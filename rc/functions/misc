@@ -136,7 +136,7 @@ lo() {
 		$@="*"
 	fi
 
-	ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to User ->", $3}' | sed -e '1d'
+	ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to User ->", $3}' | sed -e '1d' | column -t
 
 }
 
@@ -146,7 +146,7 @@ lg() {
 		$@="*"
 	fi
 
-	ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to Group ->", $4}'
+	ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to Group ->", $4}' | column -t
 
 }
 
