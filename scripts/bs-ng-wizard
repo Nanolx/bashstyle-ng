@@ -177,11 +177,34 @@ If you have an apt repo managed by reprepro, you can setup the repoadd helper sc
 
 }
 
-run_wizard () {
+user_setup () {
 
-	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "This wizard will guide you through fully setting up your copy
-of BashStyle-NG to be able to make use of all shipped functions." 12 85
+	whiptail --title "Next follow some options asking your for personal informations (real name, birthday, mail-address). BS-NG does not connect to anywhere -- either way, if you don't trust it, leave the inputboxes empty. If you answer the questions, scripts provided by BS-NG will offer you extra functionality."
 
+	user_name=$(whiptail --title "username" --inputbox "Enter your real name (name and surname)\nThis info is mainly used by the Owner-field of dirinfo-files.:" 12 85 "$USER_REAL_NAME" 3>&1 1>&2 2>&3)
+
+	echo USER_REAL_NAME=\"$user_name\" >> $HOME/.settings-rc
+
+	user_bday=$(whiptail --title "birthday" --inputbox "Enter your birthday in YYYY-MM-DD (eg 1999-12-24) format.\nYou will see what happens.:" 12 85 "$USER_BIRTHDAY" 3>&1 1>&2 2>&3)
+
+	echo USER_BIRTHDAY=$user_bday >> $HOME/.settings-rc
+
+	user_locaction=$(whiptail --title "location" --inputbox "Enter your location in CITY_COUNTRY (eg Berlin_Deutschland) format." 12 85 "$USER_LOCATION" 3>&1 1>&2 2>&3)
+
+	echo USER_LOCATION=\"$user_location\" >> $HOME/.settings-rc
+
+	user_mail=$(whiptail --title "mail" --inputbox "Enter your mail-address without < > characters. This informations is beeing used when sending bug-reports [not yet implemented]." 12 85 "$USER_MAIL" 3>&1 1>&2 2>&3)
+
+	echo USER_MAIL=\"$user_mail\" >> $HOME/.settings-rc
+
+	user_level=$(whiptail --title "user level" --inputbox "Enter your user-level below.\nEither newbie, average or expert." 12 85 "$USER_LEVEL" 3>&1 1>&2 2>&3)
+
+	echo USER_LEVEL=\"$user_level\" >> $HOME/.settings-rc
+
+}
+
+general () {
+	
 	whiptail --title "verbosity" --yesno "Do you want to disable the text flying by, when starting bash?" 12 85
 
 	if [[ $? == "0" ]]; then
@@ -194,11 +217,34 @@ of BashStyle-NG to be able to make use of all shipped functions." 12 85
 		gconftool-2 -t bool -s /apps/bashstyle/restorepwd true
 	fi
 
-	lscdopts
-	cdwriter
-	git_setup
-	svn_setup
-	repo_info
+}
+
+run_wizard () {
+
+	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "This wizard will guide you through fully setting up your copy
+of BashStyle-NG to be able to make use of all shipped functions." 12 85
+
+	case $1 in
+
+		*force)
+		
+			general
+			lscdopts
+			cdwriter
+			git_setup
+			svn_setup
+			repo_info
+			user_setup
+
+		;;
+
+		*v2)
+
+			user_setup
+
+		;;
+
+	esac
 
 	whiptail --title "BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox "You just finished generating your configuration.
 You can find it in $HOME/.settings-rc.
@@ -208,10 +254,14 @@ You may re-run this wizard via \`bs-ng-wizard --force'.
 To see a list of usefull tips for the bash, run \`bashtips'.
 Have Fun!" 12 85
 
+	. $HOME/.settings-rc
+
 }
 
 if [[ ! -e $HOME/.settings-rc || $1 == "--force" ]]; then
 	rm -f $HOME/.settings-rc
-	run_wizard
+	run_wizard --force
+elif [[ $(grep -w USER_REAL_NAME $HOME/.settings-rc) == "" ]]; then
+	run_wizard --v2
 else	exit 0
 fi
