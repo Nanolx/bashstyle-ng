@@ -192,30 +192,55 @@ dirinfo_index () {
 
 dirinfo_create () {
 
-	if [[ ! -e $PWD/.dirinfo ]]; then
-		echo "Whoowns the folder?"
-		read OWNER
-
-		echo -e "\nWhen has the folder been created? (YYYY-MM-DD format)"
-		read CREATION
-
-		echo -e "\nWhat type of content?"
-		echo "(home download mediaplayer audio video game home picture share document book)"
-		read TYPE
-
-		echo -e "\nEnter some tags for the folder. (separate using  space)"
-		read TAGS
-
-		echo -e "\nDo you want to add some notes?"
-		read NOTES
-
-		echo Owner=\"$OWNER\" >> $PWD/.dirinfo
-		echo Created=$CREATION >> $PWD/.dirinfo
-		echo Type=$TYPE >> $PWD/.dirinfo
-		echo Tags=\($TAGS\) >> $PWD/.dirinfo
-		echo Notes=\"$NOTES\" >> $PWD/.dirinfo
-
+	
+	if [[ -e $PWD/.dirinfo ]]; then
+		. $PWD/.dirinfo
 	fi
+	
+	whiptail --title ".dirinfo creator" --msgbox "This wizard will guide you through the process of creating a .dirinfo file." 12 85
+	
+	if [[ $Owner == "" ]]; then
+		xname=$USER_REAL_NAME
+	else xname=$Owner
+	fi
+	
+	owner=$(whiptail --title "directory owner" --inputbox "Enter the owner of the folder" 12 85 "$xname" 3>&1 1>&2 2>&3)
+	echo Owner=\"$owner\" > $PWD/.dirinfo
+	
+	type=$(whiptail --title "directory type" --menu "Choose the directory-type" 12 85 10 1 book 2 document 3 download 4 game 5 home 6 mediaplayer 7 music 8 picture 9 share 10 video 3>&1 1>&2 2>&3)
+	
+	case $type in
+		1) xtype=book ;;
+		2) xtype=document ;;
+		3) xtype=download ;;
+		4) xtype=game ;;
+		5) xtype=home ;;
+		6) xtype=mediaplayer ;;
+		7) xtype=music ;;
+		8) xtype=picture ;;
+		9) xtype=share ;;
+	   10) xtype=video;;
+	esac
+	
+	echo Type=\"$xtype\" >> $PWD/.dirinfo
+
+	tags=$(whiptail --title "directory tags" --inputbox "Insert tags for the directory. Seperate with space" 12 85 "$(echo ${Tags[*]} | sed -e 's/(//g' -e 's/)//g')" 3>&1 1>&2 2>&3)
+	echo Tags=\"\($tags\)\" >> $PWD/.dirinfo
+
+	if [[ $Created == "" ]]; then
+		xdate=$(dirinfo_get_creation_date)
+	else xdate=$Created
+	fi
+
+	created=$(whiptail --title "directory creation date" --inputbox "Insert the creation date of the directory" 12 85 $xdate 3>&1 1>&2 2>&3)
+	echo Created=\"$created\" >> $PWD/.dirinfo
+	
+	notes=$(whiptail --title "directory notes" --inputbox "Enter additional notes for the directory" 12 85 "$Notes" 3>&1 1>&2 2>&3)
+	echo Notes=\"$notes\" >> $PWD/.dirinfo
+	
+	dirinfo_get_dirinfo
+
+	unset Owner Type Tags Created Notes
 
 }
 
