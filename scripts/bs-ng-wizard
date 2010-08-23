@@ -197,9 +197,17 @@ user_setup () {
 
 	echo USER_MAIL=\"$user_mail\" >> $HOME/.settings-rc
 
-	user_level=$(whiptail --title "user level" --inputbox "Enter your user-level below.\nEither newbie, average or expert." 12 85 "$USER_LEVEL" 3>&1 1>&2 2>&3)
+	user_level=$(whiptail --title "user level" --menu "Choose your user-level" 12 85 3 1 novice 2 user 3 expert 3>&1 1>&2 2>&3)
 
-	echo USER_LEVEL=\"$user_level\" >> $HOME/.settings-rc
+	case $user_level in
+	
+		1) xlevel="novice" ;;
+		2) xlevel="average" ;;
+		3) xlevel="expert" ;;
+	
+	esac
+		
+	echo USER_LEVEL=\"$xlevel\" >> $HOME/.settings-rc
 
 }
 
