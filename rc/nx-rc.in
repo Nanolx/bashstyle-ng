@@ -163,10 +163,7 @@ fi
 
 unset BSNG_GCONF_READ
 
-if [[ ! -e $HOME/.settings-rc ]]; then
-	bs-ng-wizard
-	reload
-fi
+bs-ng-wizard
 
 if [[ -e $HOME/.bookmarks ]]; then
 	. $HOME/.bookmarks
