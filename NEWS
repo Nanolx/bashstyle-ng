@@ -1,9 +1,26 @@
+Overview of changes in v7.12 "Planetary Collapse"
+
+=== Bugfixes ===
+* #105 (unmark): properly unalias the bookmark
+* #106 (bookmark): don't create a bookmark when no name is given
+* #107 (about): fixed link to homepage of BS-NG
+
+=== Added Features ===
+* bs-ng-wizard queries for user-informations (name, mail, birthday)
+  everything optional + not used outside your shell, of course!
+
+=== Improved Features ===
+* dirinfo_create got shiny new whiptail-interface
+* improved check if a bookmark already exists
+
+=== Misc Changes ===
+* list Kenny Meyer in the about-dialog
+
 Overview of changes in v7.11 "I Shot The Blender"
 
 ** !! This release contains an easteregg !! **
 
 === BUG Reporting ===
-
 * You can now report bugs at: http://tickets.nanolx.org/
 * choose "BashStyle-NG" from the combobox and open a new
   ticket (it's possible to do it anonymously, though being
@@ -16,7 +33,6 @@ Overview of changes in v7.11 "I Shot The Blender"
   (allows installation without -devel pkgs installed)
 
 * mkchangelog function (generates ChangeLog from git log)
-
 
 === Bugfixes ===
 * #98: support spaces in arguements for all functions
