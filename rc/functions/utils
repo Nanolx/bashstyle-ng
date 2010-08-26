@@ -144,9 +144,11 @@ deadlink () {
 
 bookmark () {
 
-	if [[ $(grep go-$1= $HOME/.bookmarks) == "" ]]; then
+	if [[ $1 != "" && $(alias | grep -w go-$1) == "" ]]; then
 		echo "alias go-$1='cd $PWD'" >> $HOME/.bookmarks
 		. $HOME/.bookmarks
+	elif [[ $1 == "" ]]; then
+		echo "need name for the bookmark."
 	else	echo "bookmark go-$1 already exists."
 	fi
 
@@ -154,9 +156,9 @@ bookmark () {
 
 unmark () {
 
-	if [[ $(grep $1= $HOME/.bookmarks) != "" ]]; then
-		sed -e "/$1/d" -i $HOME/.bookmarks
-		xunalias $1
+	if [[ $(alias | grep -w go-$1= ) != "" ]]; then
+		sed -e "/go-$1/d" -i $HOME/.bookmarks
+		xunalias go-$1
 	fi
 
 }
