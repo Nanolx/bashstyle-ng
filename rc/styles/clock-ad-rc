@@ -168,7 +168,7 @@ let prompt_line=${LINES}-1
 PROMPT_COMMAND=pre_prompt
 
 PS1="\[\033[\${prompt_line};0H\]\n\
-┌─( \u @ \h )─\${fill}─( \$(_newPWD)\
+┌─( \u @ \h )─\${fill}─( \$(_newPWD) \
 )────┘\n└─( uptime: \$(show_uptime) :\$(CLOCK_AD_1) \$ )·> "
 
 fi
