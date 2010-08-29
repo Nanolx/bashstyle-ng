@@ -33,7 +33,7 @@ pot:
 	@xgettext --language=Python --keyword=_ --keyword=N_ --output=translations/pot/bs-ng.pot \
 		$(PWD)/code/bsng.py.in $(PWD)/data/bashstyle7.ui.h >/dev/null
 	@echo -e "$(MAGENTA)creating:	$(SMOOTHBLUE)nx-rc.pot"
-	@bash --dump-po-strings rc/nx-rc > translations/pot/nx-rc.pot
+	@xgettext -o translations/pot/nx-rc.pot -L shell rc/nx-rc
 	@tput sgr0
 
 po: pot
@@ -41,7 +41,7 @@ po: pot
 	@mkdir -p translations/po/
 	@echo -e "\t$(GREEN) [01/04] german (de)"
 	@msgmerge -q -o translations/po/bs-ng-de.po translations/po/bs-ng-de.po translations/pot/bs-ng.pot >/dev/null
-	@msgmerge -q -o translations/po/nx-rc-de.po translatiosn/po/nx-rc-de.po translations/pot/nx-rc.pot >/dev/null
+	@msgmerge -q -o translations/po/nx-rc-de.po translations/po/nx-rc-de.po translations/pot/nx-rc.pot >/dev/null
 	@echo -e "\t$(GREEN) [02/04] italian (it)"
 	@msgmerge -q -o translations/po/bs-ng-it.po translations/po/bs-ng-it.po translations/pot/bs-ng.pot >/dev/null
 	@echo -e "\t$(GREEN) [03/04] russian (ru)"
