@@ -27,11 +27,13 @@ all: mo
 	@tput sgr0
 
 pot:
-	@echo -e "$(MAGENTA)creating:	$(SMOOTHBLUE).pot file"
+	@echo -e "$(MAGENTA)creating:	$(SMOOTHBLUE)bs-ng.pot"
 	@mkdir -p translations/pot/
 	@intltool-extract --type=gettext/glade data/bashstyle7.ui >/dev/null
 	@xgettext --language=Python --keyword=_ --keyword=N_ --output=translations/pot/bs-ng.pot \
 		$(PWD)/code/bsng.py.in $(PWD)/data/bashstyle7.ui.h >/dev/null
+	@echo -e "$(MAGENTA)creating:	$(SMOOTHBLUE)nx-rc.pot"
+	@bash --dump-po-strings rc/nx-rc > translations/pot/nx-rc.pot
 	@tput sgr0
 
 po: pot
@@ -39,6 +41,7 @@ po: pot
 	@mkdir -p translations/po/
 	@echo -e "\t$(GREEN) [01/04] german (de)"
 	@msgmerge -q -o translations/po/bs-ng-de.po translations/po/bs-ng-de.po translations/pot/bs-ng.pot >/dev/null
+	@msgmerge -q -o translations/po/nx-rc-de.po translatiosn/po/nx-rc-de.po translations/pot/nx-rc.pot >/dev/null
 	@echo -e "\t$(GREEN) [02/04] italian (it)"
 	@msgmerge -q -o translations/po/bs-ng-it.po translations/po/bs-ng-it.po translations/pot/bs-ng.pot >/dev/null
 	@echo -e "\t$(GREEN) [03/04] russian (ru)"
@@ -52,6 +55,7 @@ mo:
 	@mkdir -p translations/mo/
 	@echo -e "\t$(GREEN) [01/04] german (de)"
 	@msgfmt --output-file=translations/mo/bs-ng-de.mo translations/po/bs-ng-de.po
+	@msgfmt --output-file=translations/mo/nx-rc-de.mo translations/po/nx-rc-de.po
 	@echo -e "\t$(GREEN) [02/04] italian (it)"
 	@msgfmt --output-file=translations/mo/bs-ng-it.mo translations/po/bs-ng-it.po
 	@echo -e "\t$(GREEN) [03/04] russian (ru)"
@@ -70,10 +74,8 @@ clean:
 	@rm -f Makefile
 	@rm -f data/bashstyle-ng.pc
 	@rm -f data/bashstyle7.ui.h
-	@rm -f translations/pot/bs-ng.pot
-	@rm -f translations/mo/bs-ng-de.mo
-	@rm -f translations/mo/bs-ng-it.mo
-	@rm -f translations/mo/bs-ng-ru.mo
+	@rm -f translations/pot/*
+	@rm -f translations/mo/*
 	@rm -f data/terminfo/m/mostlike
 	@rm -f data/terminfo/n/nebula
 	@rm -f data/terminfo/b/bold
@@ -140,6 +142,7 @@ install:
 	@install -m644 data/bashstyle.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[14/14] translations:$(CYAN) de it ru es"
 	@install -m644 translations/mo/bs-ng-de.mo $(DESTDIR)/usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
+	@install -m644 translations/mo/nx-rc-de.mo $(DESTDIR)/usr/share/locale/de/LC_MESSAGES/nx-rc.mo
 	@install -m644 translations/mo/bs-ng-it.mo $(DESTDIR)/usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-ru.mo $(DESTDIR)/usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-es.mo $(DESTDIR)/usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
@@ -184,6 +187,7 @@ uninstall:
 	@rm -f  @PREFIX@/share/applications/bs-ng.desktop
 	@echo -e "$(RED)removing:$(CYAN)	[04/08] translations:$(BLUE) de it ru es"
 	@rm -f  /usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
+	@rm -f	/usr/share/locale/de/LC_MESSAGES/nx-rc.mo
 	@rm -f  /usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
