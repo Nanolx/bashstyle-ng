@@ -162,3 +162,55 @@ lm() {
 
 }
 
+define ()
+{
+
+	if [[ $1 ]]; then
+
+	lynx -dump "http://www.google.com/search?hl=en&q=define%3A+${1}&btnG=Google+Search" | grep -m 3 -w "*"  | sed 's/;/ -/g' | cut -d- -f1 > /tmp/templookup.txt
+		if [[ -s  /tmp/templookup.txt ]] ;then
+			until ! read response
+			do
+				echo "${response}"
+			done < /tmp/templookup.txt
+		else
+			echo "Sorry $USER, I can't find the term \"${1} \""
+			fi
+	rm -f /tmp/templookup.txt
+
+	fi
+}
+
+resetleds ()
+{
+
+	setleds -L < /dev/tty1
+
+}
+
+kitt () {
+
+	while :; do
+		setleds -L +num;
+		setleds -L -caps;
+		sleep 0.2;
+
+		setleds -L;
+		setleds -L +caps;
+		setleds -L -num;
+		sleep 0.1;
+
+		setleds -L;
+		setleds -L +scroll;
+		setleds -L -caps;
+		sleep 0.2;
+
+		setleds -L;
+		setleds -L +caps;
+		setleds -L -scroll;
+		sleep 0.1;
+
+		setleds -L;
+	done
+
+}

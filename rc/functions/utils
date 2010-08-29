@@ -243,3 +243,14 @@ spanner(){
 	done
 
 }
+
+clock ()
+{
+	while true; do
+		clear;
+		echo "===========";
+		date +"%r";
+		echo "===========";
+		sleep 1;
+	done
+}
