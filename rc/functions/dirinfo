@@ -63,7 +63,26 @@ dirinfo_get_dirinfo () {
 
 }
 
+dirinfo_exchange_colors () {
+
+	if [[ $1 == s ]]; then
+		exchange $eiceblue $xiceblue
+		exchange $emagenta $xmagenta
+		exchange $ered $xred
+		exchange $egreen $xgreen
+	else	exchange $xiceblue $eiceblue
+		exchange $xmagenta $emagenta
+		exchange $xred $ered
+		exchange $xgreen $egreen
+	fi
+
+}
+
 dirinfo_display_info () {
+
+	if [[ $enabcol == false ]]; then
+		dirinfo_exchange_colors s
+	fi
 
 	if [[ ${Owner} ]]; then
 		echo -e "\n${eiceblue}\tOwner:   ${Owner}"
@@ -81,6 +100,12 @@ dirinfo_display_info () {
 		echo -e "\n${egreen} ${Notes}"
 	fi
 
+	if [[ $enabcol == false ]]; then
+		dirinfo_exchange_colors x
+	fi
+
+	tput sgr0
+
 }
 
 dirinfo_display_ascii () {
@@ -91,14 +116,27 @@ dirinfo_display_ascii () {
 		ASCII="$DIR/.dirascii"
 	fi
 
-	if [[ $ASCII ]]; then
+	if [[ $ASCII && $enabcol == true ]]; then
 		echo -e "$(cat $ASCII)" | sed -e "s/@OWNER@/${Owner}/g" \
 			-e "s/@CREATED@/${Created}/g" \
 			-e "s/@TAGS@/${Tags[*]}/g" \
 			-e "s/@NOTES@/${Notes}/g"
+	elif [[ $ASCII && $enabcol == false ]]; then
+		echo -e "$(cat $ASCII | sed -e 's/\\033\[01\;38\;5\;45m//g' \
+			-e 's/\\033\[01\;38\;5\;7m//g' \
+			-e 's/\\033\[01\;38\;5\;129m//g' \
+			-e 's/\\033\[01\;38\;5\;1m//g' \
+			-e 's/\\033\[01\;38\;5\;2m//g' )" | \
+			sed -e "s/@OWNER@/${Owner}/g" \
+			-e "s/@CREATED@/${Created}/g" \
+			-e "s/@TAGS@/${Tags[*]}/g" \
+			-e "s/@NOTES@/${Notes}/g"
+
 	else 	unset Type
 		dirinfo_display_info
 	fi
+
+	tput sgr0
 
 }
 
@@ -168,6 +206,12 @@ dirinfo_index () {
 		;;
 
 		*search)
+
+			if [[ ! -e $HOME/.dirinfo_index ]]; then
+				echo "Please run dirinfo_index --update first"
+				exit 1
+			fi
+
 			case $2 in
 				*tag)
 					grep " $3" $HOME/.dirinfo_tags | gawk '{print $1}'
@@ -184,7 +228,25 @@ dirinfo_index () {
 		;;
 
 		*list)
+
+			if [[ ! -e $HOME/.dirinfo_index ]]; then
+				echo "Please run dirinfo_index --update first"
+				exit 1
+			fi
+
 			cat $HOME/.dirinfo_index | sed -e 's/.dirinfo//g'
+		;;
+
+		*help| "")
+
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}dirinfo_index${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
+			\n${eorange}dirinfo_indexd${ewhite} | ${egreen}--rebuild ${eiceblue}[update the index, but don't scan for new .dirinfo files]\
+			\n${eorange}dirinfo_index${ewhite} | ${egreen}--search ${eiceblue}[search the index for --tag, --type, --date, --owner]\
+			\n${eorange}dirinfo_index${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]" | column -t
+			echo ""
+			tput sgr0
+
 		;;
 	esac
 
@@ -192,23 +254,23 @@ dirinfo_index () {
 
 dirinfo_create () {
 
-	
+
 	if [[ -e $PWD/.dirinfo ]]; then
 		. $PWD/.dirinfo
 	fi
-	
+
 	whiptail --title ".dirinfo creator" --msgbox "This wizard will guide you through the process of creating a .dirinfo file." 12 85
-	
+
 	if [[ $Owner == "" ]]; then
 		xname=$USER_REAL_NAME
 	else xname=$Owner
 	fi
-	
+
 	owner=$(whiptail --title "directory owner" --inputbox "Enter the owner of the folder" 12 85 "$xname" 3>&1 1>&2 2>&3)
 	echo Owner=\"$owner\" > $PWD/.dirinfo
-	
+
 	type=$(whiptail --title "directory type" --menu "Choose the directory-type" 12 85 10 1 book 2 document 3 download 4 game 5 home 6 mediaplayer 7 music 8 picture 9 share 10 video 3>&1 1>&2 2>&3)
-	
+
 	case $type in
 		1) xtype=book ;;
 		2) xtype=document ;;
@@ -219,9 +281,9 @@ dirinfo_create () {
 		7) xtype=music ;;
 		8) xtype=picture ;;
 		9) xtype=share ;;
-	   10) xtype=video;;
+	       10) xtype=video;;
 	esac
-	
+
 	echo Type=\"$xtype\" >> $PWD/.dirinfo
 
 	tags=$(whiptail --title "directory tags" --inputbox "Insert tags for the directory. Seperate with space" 12 85 "$(echo ${Tags[*]} | sed -e 's/(//g' -e 's/)//g')" 3>&1 1>&2 2>&3)
@@ -234,10 +296,10 @@ dirinfo_create () {
 
 	created=$(whiptail --title "directory creation date" --inputbox "Insert the creation date of the directory" 12 85 $xdate 3>&1 1>&2 2>&3)
 	echo Created=\"$created\" >> $PWD/.dirinfo
-	
+
 	notes=$(whiptail --title "directory notes" --inputbox "Enter additional notes for the directory" 12 85 "$Notes" 3>&1 1>&2 2>&3)
 	echo Notes=\"$notes\" >> $PWD/.dirinfo
-	
+
 	dirinfo_get_dirinfo
 
 	unset Owner Type Tags Created Notes
@@ -249,7 +311,12 @@ lscd () {
 	builtin cd "${@}" &>/dev/null
 	dirinfo_get_dirinfo
 
-	echo -e "${epink}content:"
+	if [[ $enabcol == false ]]; then
+		echo -e "content:"
+		LSCD_OPTS+=" --color=no"
+	else	echo -e "${epink}content:"
+	fi
+
 	ls $LSCD_OPTS
 
 	echo "$PWD" > $HOME/.lastpwd
