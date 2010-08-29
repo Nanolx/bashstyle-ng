@@ -193,3 +193,53 @@ exchange()
 	eval $(echo "$2=\"$temp\"")
 	IFS=$SAVE
 }
+
+progressbar()
+{
+
+	SP_COLOUR="\e[37;44m"
+	SP_WIDTH=5.5
+	SP_DELAY=0.2
+	SP_STRING=${2:-"'|/=\'"}
+
+	while [ -d /proc/$1 ]
+	do
+		printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
+		sleep ${SP_DELAY:-.2}
+		SP_STRING=${SP_STRING#"${SP_STRING%?}"}${SP_STRING%?}
+	done
+
+	tput sgr0
+
+}
+
+spinner()
+{
+
+	PROC=$1
+	while [ -d /proc/$PROC ];do
+		echo -ne '\e[01;32m/\x08' ; sleep 0.05
+		echo -ne '\e[01;32m─\x08' ; sleep 0.05
+		echo -ne '\e[01;32m\\\x08' ; sleep 0.05
+		echo -ne '\e[01;32m|\x08' ; sleep 0.05
+	done
+
+}
+
+
+spanner(){
+
+	PROC=$1;COUNT=0
+	echo -n "Please wait "
+	while [ -d /proc/$PROC ];do
+		while [ "$COUNT" -lt 10 ];do
+			echo -ne '\x08  ' ; sleep 0.1
+			((COUNT++))
+		done
+		until [ "$COUNT" -eq 0 ];do
+			echo -ne '\x08\x08 ' ; sleep 0.1
+			((COUNT -= 1))
+		done
+	done
+
+}
