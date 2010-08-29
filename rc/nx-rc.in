@@ -8,10 +8,11 @@
 # Copyright 2007 - 2010 Christopher Bratusek		#
 #							#
 #########################################################
+. gettext.sh
 TEXTDOMAIN="nx-rc"
 
 if [[ $0 == *gdm* ]]; then
-	dbg_msg BashStyle-NG: Started during GDM-Session-Init -- exiting
+	dbg_msg "`eval_gettext \"BashStyle-NG: Started from GDM -- exiting\"`"
 else
 
 export BSNG_GCONF_READ=1
@@ -38,40 +39,40 @@ fi
 
 source $BSNG_RC_DIR/styles/null-rc
 
-dbg_msg $"BashStyle-NG Starting"
-dbg_msg $"BashStyle-NG Bash Major Version:" $(echo ${BASH_VERSINFO[0]})
-dbg_msg $"BashStyle-NG Bash Minor Version:" $(echo ${BASH_VERSINFO[1]})
-dbg_msg $"BashStyle-NG Bash Patch Level:" $(echo ${BASH_VERSINFO[2]})
-dbg_msg $"BashStyle-NG Version:" $BSNG_VERSION
-dbg_msg $"BashStyle-NG Prefix:" $BSNG_PREFIX
-dbg_msg $"BashStyle-NG Debugging:" Enabled
-dbg_msg $"BashStyle-NG Logfile:" $BSNG_LOGFILE
+dbg_msg "`eval_gettext \"BashStyle-NG Starting\"`"
+dbg_msg "`eval_gettext \"BashStyle-NG Bash Major Version:\"`" $(echo ${BASH_VERSINFO[0]})
+dbg_msg "`eval_gettext \"BashStyle-NG Bash Minor Version:\"`" $(echo ${BASH_VERSINFO[1]})
+dbg_msg "`eval_gettext \"BashStyle-NG Bash Patch Level:\"`" $(echo ${BASH_VERSINFO[2]})
+dbg_msg "`eval_gettext \"BashStyle-NG Version:\"`" $BSNG_VERSION
+dbg_msg "`eval_gettext \"BashStyle-NG Prefix:\"`"
+dbg_msg "`eval_gettext \"BashStyle-NG Debugging: Enabled\"`"
+dbg_msg "`eval_gettext \"BashStyle-NG Logfile:\"`" $BSNG_LOGFILE
 
-dbg_msg $"$"BashStyle-NG Setting:"" Alias reload=source ~/.bashrc
+dbg_msg "`eval_gettext \"BashStyle-NG Setting: Alias\"`" reload=source ~/.bashrc
 alias reload="source ~/.bashrc"
 
-dbg_msg $"BashStyle-NG Setting:" Alias rd=pwd -P
+dbg_msg "`eval_gettext \"BashStyle-NG Setting: Alias\"`" rd=pwd -P
 alias rd="pwd -P"
 
 if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" ReadlineCFG
+	dbg_msg "`eval_gettext \"BashStyle-NG Loading:\"`" ReadlineCFG
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/readline-rc
 fi
 
 if [[ $(get_key vim/use_vimcfg) == true ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" VimCFG
+	dbg_msg "`eval_gettext \"BashStyle-NG Loading:\"`" VimCFG
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/vim-rc
 fi
 
 if [[ $(get_key nano/use_nanocfg) == true ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" NanoCFG
+	dbg_msg "`eval_gettext \"BashStyle-NG Loading:\"`" NanoCFG
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/nano-rc
 fi
 
 if [[ $(get_key use_bashstyle) == false ]]; then \
-	dbg_msg $"BashStyle-NG: Exiting"
+	dbg_msg "`eval_gettext \"BashStyle-NG: Exiting\"`"
 else
-	dbg_msg $"BashStyle-NG Loading:" BashStyle-NG
+	dbg_msg "`eval_gettext \"BashStyle-NG Loading:\"`" BashStyle-NG
 fi
 
 fi
@@ -81,13 +82,13 @@ if [[ $(get_key color/enable) == true ]]; then \
 fi
 
 if [[ $(get_key dircolors/enable) == true ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" LSCOLORS
+	dbg_msg "`eval_gettext \"BashStyle-NG Loading:\"`" LSCOLORS
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/ls-rc
 fi
 
 source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/alias-rc
 
-dbg_msg $"BashStyle-NG Setting:" ps2 ps3 ps4 char $(get_key ps234)
+dbg_msg "`eval_gettext \"BashStyle-NG Setting:\"`" ps2 ps3 ps4 char $(get_key ps234)
 ps234char=$(get_key ps234)
 
 if [[ $(get_key colored_man) == true ]]; then \
@@ -101,17 +102,17 @@ source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/shopt-rc
 shopt -s checkwinsize
 
 if [[ -e $HOME/.settings-rc ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" Fist-Run-Wizard Settings
+	dbg_msg "`eval_gettext \"BashStyle-NG Loading: Fist-Run-Wizard Settings\"`"
 	source $HOME/.settings-rc
 fi
 
 if [[ -e $HOME/.custom-rc ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" Custom Settings
+	dbg_msg "`eval_gettext \"BashStyle-NG Loading: Custom Settings\"`"
 	source $HOME/.custom-rc
 fi
 
 if [[ $(get_key random_style) == true ]]; then \
-	dbg_msg $"BashStyle-NG Setting:" Style Random
+	dbg_msg "`eval_gettext \"BashStyle-NG Setting: Style Random\"`"
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/random-rc
 else
 	pstyle=$(get_key prompt_style)
@@ -120,26 +121,26 @@ fi
 use_custom_prompt=$(get_key use_custom_prompt)
 
 if [[ $use_custom_prompt == true ]]; then \
-	dbg_msg $"BashStyle-NG Setting:" Style Custom
+	dbg_msg "`eval_gettext \"BashStyle-NG Setting: Style Custom\"`"
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/custom-rc
 elif [[ -e $BSNG_PREFIX/share/bashstyle-ng/rc/styles/${pstyle}-rc ]]; then
-	dbg_msg $"BashStyle-NG Setting:" Style $pstyle
+	dbg_msg "`eval_gettext \"BashStyle-NG Setting: Style\"`" $pstyle
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/${pstyle}-rc
 else
-	dbg_msg $"BashStyle-NG Setting:" Style Fallback
+	dbg_msg "`eval_gettext \"BashStyle-NG Setting: Style Fallback\"`"
 	source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/fallback-rc
 fi
 
-dbg_msg $"BashStyle-NG Setting:" PS2 PS3 PS4
+dbg_msg "`eval_gettext \"BashStyle-NG Setting:\"`" PS2 PS3 PS4
 PS2="$pscolor $ps234char$fontcolor "
 PS3="$pscolor $ps234char$ps234char$fontcolor "
 PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
 if [[ $(get_key tabrotate) == true ]]; then \
-	dbg_msg $"BashStyle-NG Setting:" Tab-Rotation On
+	dbg_msg "`eval_gettext \"BashStyle-NG Setting: Tab-Rotation On\"`"
 	bind 'TAB:menu-complete'
 	complete -d -X '.[a-zA-Z0-9]*' cd
-else	dbg_msg $"BashStyle-NG Setting:" Tab-Rotation Off
+else	dbg_msg "`eval_gettext \"BashStyle-NG Setting: Tab-Rotation Off\"`"
 fi
 
 WelcomeMessage=$(get_key welcome_message)
@@ -152,7 +153,7 @@ if [[ $(get_key restorepwd) == true ]]; then \
 fi
 
 if [[ $WelcomeMessage != "" ]]; then \
-	dbg_msg $"BashStyle-NG Setting:" Welcome Message
+	dbg_msg "`eval_gettext \"BashStyle-NG Setting: Welcome Message\"`"
 	clear
 	$WelcomeMessage
 fi
