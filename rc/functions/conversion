@@ -51,12 +51,38 @@ bin2hex () {
 
 }
 
+bin2b32 () {
+
+	if [[ $1 ]]; then
+		echo "obase=32 ; ibase=2 ; $1 " | bc
+	fi
+
+}
+
+bin2b64 () {
+
+	if [[ $1 ]]; then
+		echo "obase=64 ; ibase=2 ; $1" | bc
+	fi
+}
+
+bin2asc () {
+
+	if [[ $1 ]]; then
+		echo -e "\0$(printf %o $((2#$1)))"
+	fi
+
+}
+
 bin2all () {
 
 	if [[ $1 ]]; then
 		echo "binary $1 = octal $(bin2oct $1)"
 		echo "binary $1 = decimal $(bin2dec $1)"
 		echo "binary $1 = hexadecimal $(bin2hex $1)"
+		echo "binary $1 = base32 $(bin2b32 $1)"
+		echo "binary $1 = base64 $(bin2b64 $1)"
+		echo "binary $1 = ascii $(bin2asc $1)"
 	fi
 
 }
@@ -87,12 +113,40 @@ oct2hex () {
 
 }
 
+oct2b32 () {
+
+	if [[ $1 ]]; then
+		echo "obase=32 ; ibase=8 ; $1" | bc
+	fi
+
+}
+
+oct2b64 () {
+
+	if [[ $1 ]]; then
+		echo "obase=64 ; ibase=8 ; $1" | bc
+	fi
+
+}
+
+oct2asc () {
+
+	if [[ $1 ]]; then
+		echo -e "\0$(printf %o $((8#$1)))"
+	fi
+
+}
+
+
 oct2all () {
 
 	if [[ $1 ]]; then
 		echo "octal $1 = binary $(oct2bin $1)"
 		echo "octal $1 = decimal $(oct2dec $1)"
 		echo "octal $1 = hexadecimal $(oct2hex $1)"
+		echo "octal $1 = base32 $(oct2b32 $1)"
+		echo "octal $1 = base64 $(oct2b64 $1)"
+		echo "octal $1 = ascii $(oct2asc $1)"
 	fi
 
 }
@@ -124,12 +178,39 @@ dec2hex () {
 
 }
 
+dec2b32 () {
+
+	if [[ $1 ]]; then
+		echo "obase=32 ; $1" | bc
+	fi
+
+}
+
+dec2b64 () {
+
+	if [[ $1 ]]; then
+		echo "obase=64 ; $1" | bc
+	fi
+
+}
+
+dec2asc () {
+
+	if [[ $1 ]]; then
+		echo -e "\0$(printf %o 97)"
+	fi
+
+}
+
 dec2all () {
 
 	if [[ $1 ]]; then
 		echo "decimal $1 = binary $(dec2bin $1)"
 		echo "decimal $1 = octal $(dec2oct $1)"
 		echo "decimal $1 = hexadecimal $(dec2hex $1)"
+		echo "decimal $1 = base32 $(dec2b32 $1)"
+		echo "decimal $1 = base64 $(dec2b64 $1)"
+		echo "deciaml $1 = ascii $(dec2asc $1)"
 	fi
 
 }
@@ -161,12 +242,102 @@ hex2dec () {
 
 }
 
+hex2b32 () {
+
+	if [[ $1 ]]; then
+		echo "obase=32 ; ibase=16 ; $1" | bc
+	fi
+
+}
+
+hex2b64 () {
+
+	if [[ $1 ]]; then
+		echo "obase=64 ; ibase=16 ; $1" | bc
+	fi
+
+}
+
+hex2asc () {
+
+	if [[ $1 ]]; then
+		echo -e "\0$(printf %o $((16#$1)))"
+	fi
+
+}
+
 hex2all () {
 
 	if [[ $1 ]]; then
 		echo "hexadecimal $1 = binary $(hex2bin $1)"
 		echo "hexadecimal $1 = octal $(hex2oct $1)"
 		echo "hexadecimal $1 = decimal $(hex2dec $1)"
+		echo "hexadecimal $1 = base32 $(hex2b32 $1)"
+		echo "hexadecimal $1 = base64 $(hex2b64 $1)"
+		echo "hexadecimal $1 = ascii $(hex2asc $1)"
+	fi
+
+}
+
+##### ASCII -> X #####
+
+asc2dec () {
+
+	if [[ $1 ]]; then
+		printf '%d\n' "'$1'"
+	fi
+
+}
+
+asc2bin () {
+
+	if [[ $1 ]]; then
+		echo "obase=2 ; $(asc2dec $1)" | bc
+	fi
+
+}
+
+asc2oct () {
+
+	if [[ $1 ]]; then
+		echo "obase=8 ; $(asc2dec $1)" | bc
+	fi
+
+}
+
+asc2hex () {
+
+	if [[ $1 ]]; then
+		echo "obase=16 ; $(asc2dec $1)" | bc
+	fi
+
+}
+
+asc2b32 () {
+
+	if [[ $1 ]]; then
+		echo "obase=32 ; $(asc2dec $1)" | bc
+	fi
+
+}
+
+asc2b64 () {
+
+	if [[ $1 ]]; then
+		echo "obase=64 ; $(asc2dec $1)" | bc
+	fi
+
+}
+
+asc2all () {
+
+	if [[ $1 ]]; then
+		echo "ascii $1 = binary $(asc2bin $1)"
+		echo "ascii $1 = octal $(asc2oct $1)"
+		echo "ascii $1 = decimal $(asc2dec $1)"
+		echo "ascii $1 = hexadecimal $(asc2hex $1)"
+		echo "ascii $1 = base32 $(asc2b32 $1)"
+		echo "ascii $1 = base64 $(asc2b64 $1)"
 	fi
 
 }
