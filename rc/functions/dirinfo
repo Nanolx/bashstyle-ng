@@ -66,14 +66,15 @@ dirinfo_get_dirinfo () {
 dirinfo_exchange_colors () {
 
 	if [[ $1 == s ]]; then
-		exchange $eiceblue $xiceblue
-		exchange $emagenta $xmagenta
-		exchange $ered $xred
-		exchange $egreen $xgreen
-	else	exchange $xiceblue $eiceblue
-		exchange $xmagenta $emagenta
-		exchange $xred $ered
-		exchange $xgreen $egreen
+		exchange eiceblue xiceblue
+		exchange emagenta xmagenta
+		exchange ered xred
+		exchange egreen xgreen
+	else	exchange xiceblue eiceblue
+		exchange xmagenta emagenta
+		exchange xred ered
+		exchange xgreen egreen
+		unset xiceblue xmagenta xred xgreen
 	fi
 
 }
@@ -85,15 +86,15 @@ dirinfo_display_info () {
 	fi
 
 	if [[ ${Owner} ]]; then
-		echo -e "\n${eiceblue}\tOwner:   ${Owner}"
+		echo -e "\n${eiceblue} Owner:   ${Owner}"
 	fi
 
 	if [[ ${Created} ]]; then
-		echo -e "${emagenta}\tCreated: ${Created}"
+		echo -e "${emagenta} Created: ${Created}"
 	fi
 
 	if [[ ${Tags} ]]; then
-		echo -e "${ered}\tTags:    ${Tags[@]}"
+		echo -e "${ered} Tags:    ${Tags[@]}"
 	fi
 
 	if [[ ${Notes} ]]; then
@@ -237,7 +238,7 @@ dirinfo_index () {
 			cat $HOME/.dirinfo_index | sed -e 's/.dirinfo//g'
 		;;
 
-		*help| "")
+		*help | "")
 
 			echo -e "\n${ewhite}Usage:\n"
 			echo -e "${eorange}dirinfo_index${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
@@ -311,10 +312,10 @@ lscd () {
 	builtin cd "${@}" &>/dev/null
 	dirinfo_get_dirinfo
 
+	echo -e "${epink}content:"
+
 	if [[ $enabcol == false ]]; then
-		echo -e "content:"
-		LSCD_OPTS+=" --color=no"
-	else	echo -e "${epink}content:"
+		LSCD_OPTS+=" --color=auto"
 	fi
 
 	ls $LSCD_OPTS
