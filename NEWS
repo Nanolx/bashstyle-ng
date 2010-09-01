@@ -5,14 +5,14 @@ Overview of changes in v7.12 "Planetary Collapse"
 * #106 (bookmark): don't create a bookmark when no name is given
 * #107 (about): fixed link to homepage of BS-NG
 * #108 (profiler) (rcgenerator): load internal functions correctly
-* #109 (dirinfo) (lsrc): make dirinfo and ls-rc console-compatible
+* #109 (ls-rc): make ls-rc linux-console compatible
 
 === Added Features ===
 * bs-ng-wizard queries for user-informations (name, mail, birthday)
   everything optional + not used outside your shell, of course!
 
 * progressbar [fancy animated bar]
-* spinner   [/ ─ \ | type spinner]
+* spinner   [/ - \ | type spinner]
 * spanner    [moves cursor around]
 
 * show_weather
@@ -36,11 +36,6 @@ Overview of changes in v7.12 "Planetary Collapse"
 * hex2b64 (convert hexadecimal to base64)
 * bin2b64 (convert binary to base64)
 
-* bin2all (updated)
-* dec2all (updated)
-* hex2all (updated)
-* oct2all (updated)
-
 * asc2dec (convert ascii to decimal)
 * asc2oct (convert ascii to octal)
 * asc2hex (convert ascii to hexadecimal)
@@ -50,9 +45,23 @@ Overview of changes in v7.12 "Planetary Collapse"
 * asc2all (convert to all at once)
 
 === Improved Features ===
-* dirinfo_create got shiny new whiptail-interface
-* dirinfo_index got a help-message
 * improved check if a bookmark already exists
+
+* bin2all (updated)
+* dec2all (updated)
+* hex2all (updated)
+* oct2all (updated)
+
+* empty (now also shows empty directories)
+
+=== Dirinfo (Revision 1 Draft 3) ===
+* dirinfo_display_dirinfo is now linux-console compatible
+* dirinfo_display_ascii is now linux-console compatible
+* dirinfo_create got a shiny new whiptail-interface
+* dirinfo_index got a help-message
+
+=== Translations ===
+* shell-scripts (nx-rc & Co) are now ready for translation
 
 === Misc Changes ===
 * list Kenny Meyer in the about-dialog
