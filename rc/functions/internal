@@ -77,10 +77,17 @@ dbg_log ()
 
 }
 
+dbg_finalize()
+{
+
+	sed '$!N; /^\(.*\)\n\1$/!P; D' -i $BSNG_LOGFILE
+
+}
+
 dbg_view ()
 {
 
-	vim $BSNG_LOGFILE || nano $BSNG_LOGFILE
+	cat $BSNG_LOGFILE | less
 
 }
 

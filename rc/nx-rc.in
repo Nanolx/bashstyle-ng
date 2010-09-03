@@ -44,35 +44,35 @@ dbg_msg $"BashStyle-NG Bash Major Version:" $(echo ${BASH_VERSINFO[0]})
 dbg_msg $"BashStyle-NG Bash Minor Version:" $(echo ${BASH_VERSINFO[1]})
 dbg_msg $"BashStyle-NG Bash Patch Level:" $(echo ${BASH_VERSINFO[2]})
 dbg_msg $"BashStyle-NG Version:" $BSNG_VERSION
-dbg_msg $"BashStyle-NG Prefix:"
+dbg_msg $"BashStyle-NG Prefix:" $BSNG_PREFIX
 dbg_msg $"BashStyle-NG Debugging: Enabled"
 dbg_msg $"BashStyle-NG Logfile:" $BSNG_LOGFILE
 
 dbg_msg $"BashStyle-NG Setting:" $"Alias" reload=dbg_log source ~/.bashrc
-dbg_log alias reload="source ~/.bashrc"
+dbg_log alias reload="dbg_log source ~/.bashrc"
 
 dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
 dbg_log alias rd="pwd -P"
 
 if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" $"" ReadlineCFG
+	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
 	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/readline-rc
 fi
 
 if [[ $(get_key vim/use_vimcfg) == true ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" $"" VimCFG
+	dbg_msg $"BashStyle-NG Loading:" $"VimCFG"
 	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/vim-rc
 fi
 
 if [[ $(get_key nano/use_nanocfg) == true ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" $"" NanoCFG
+	dbg_msg $"BashStyle-NG Loading:" $"NanoCFG"
 	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/nano-rc
 fi
 
 if [[ $(get_key use_bashstyle) == false ]]; then \
 	dbg_msg $"BashStyle-NG: Exiting"
 else
-	dbg_msg $"BashStyle-NG Loading:" $"" BashStyle-NG
+	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
 fi
 
 fi
@@ -82,7 +82,7 @@ if [[ $(get_key color/enable) == true ]]; then \
 fi
 
 if [[ $(get_key dircolors/enable) == true ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" $"" LSCOLORS
+	dbg_msg $"BashStyle-NG Loading:" $"LSCOLORS"
 	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/ls-rc
 fi
 
@@ -131,7 +131,7 @@ else
 	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/fallback-rc
 fi
 
-dbg_msg $"BashStyle-NG Setting:" $"" PS2 PS3 PS4
+dbg_msg $"BashStyle-NG Setting:" $"PS2 PS3 PS4"
 PS2="$pscolor $ps234char$fontcolor "
 PS3="$pscolor $ps234char$ps234char$fontcolor "
 PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
@@ -171,3 +171,5 @@ if [[ -e $HOME/.bookmarks ]]; then
 	dbg_log . $HOME/.bookmarks
 else	touch $HOME/.bookmarks
 fi
+
+dbg_finalize
