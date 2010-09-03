@@ -48,7 +48,7 @@ if [[ $(get_key vim/jump_back) == "true" ]]; then
 		echo "endif" >> $HOME/.vimrc
 	fi
 
-else	dbg_msg $"VimCFG Setting Jump-Back" $"Off"
+else	dbg_msg $"VimCFG Setting:" $"Jump-Back" $"Off"
 fi
 
 if [[ $(get_key vim/filetype_indent) == "true" ]]; then
