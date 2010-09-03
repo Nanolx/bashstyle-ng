@@ -73,9 +73,9 @@ _custom="$(get_key dircolors/custom)"
 export LS_COLORS="ex=$_exec:*=$_gen:*.log=$_log:*.deb=$_deb:*.rpm=$_rpm:di=$_dirs:*.jpg=$_jpg:*.png=$_png:*.gif=$_gif:\
 *.mp3=$_mp3:*.ogg=$_ogg:*.flac=$_flac:*.tar=$_tar:*.tar.gz=$_targz:*.tar.bz2=$_tarbz2:*.zip=$_zip:*.rar=$_rar:$_custom"
 
-dbg_msg LS_COLORS Setting: LS_COLORS "$LS_COLORS"
-dbg_msg LS_COLORS Loading: BashStyle-NG
-else	dbg_msg LS_COLORS Setting: colors disabled!
-	dbg_msg LS_COLORS Setting: not setting LS_COLORS
-	dbg_msg LS_COLORS Loading: BashStyle-NG
+dbg_msg $"LS_COLORS Setting: LS_COLORS" "$LS_COLORS"
+dbg_msg $"LS_COLORS Loading: BashStyle-NG"
+else	dbg_msg $"LS_COLORS Setting: colors disabled!"
+	dbg_msg $"LS_COLORS Setting: not setting LS_COLORS"
+	dbg_msg $"LS_COLORS Loading: BashStyle-NG"
 fi
