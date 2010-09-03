@@ -33,7 +33,7 @@ pot:
 	@xgettext --language=Python --keyword=_ --keyword=N_ --output=translations/pot/bs-ng.pot \
 		$(PWD)/code/bsng.py.in $(PWD)/data/bashstyle7.ui.h >/dev/null
 	@echo -e "$(MAGENTA)creating:	$(SMOOTHBLUE)nx-rc.pot"
-	@xgettext -o translations/pot/nx-rc.pot -L shell rc/nx-rc 2>/dev/null
+	@xgettext -o translations/pot/nx-rc.pot -L shell rc/nx-rc rc/settings/*-rc 2>/dev/null
 	@tput sgr0
 
 po: pot

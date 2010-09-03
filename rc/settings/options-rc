@@ -10,42 +10,42 @@
 #########################################################
 
 HISTCONTROL=$(get_key hist_control)
-dbg_msg $"BashStyle-NG Setting: HISTCONTROL" "$HISTCONROL"
+dbg_msg $"BashStyle-NG Setting:" $"HISTCONTROL" "$HISTCONROL"
 
 HISTIGNORE=$(get_key hist_ignore)
-dbg_msg $"BashStyle-NG Setting: HISTIGNORE" "$HISTIGNORE"
+dbg_msg $"BashStyle-NG Setting:" $"HISTIGNORE" "$HISTIGNORE"
 
 FIGNORE=$(get_key fignore)
-dbg_msg $"BashStyle-NG Setting: FIGNORE" "$FIGNORE"
+dbg_msg $"BashStyle-NG Setting:" $"FIGNORE" "$FIGNORE"
 
 CDPATH=$(get_key cdpath)
-dbg_msg $"BashStyle-NG Setting: CDPATH" "$CDPATH"
+dbg_msg $"BashStyle-NG Setting:" $"CDPATH" "$CDPATH"
 
 FCEDIT=$(get_key fcedit)
-dbg_msg $"BashStyle-NG Setting: FCEDIT" "$FCEDIT"
+dbg_msg $"BashStyle-NG Setting:" $"FCEDIT" "$FCEDIT"
 
 if [[ $(grep -w TMOUT /etc/profile.d/*msec.sh 2>/dev/null) != "" ]]; then
 	ERR_MSG+="\n * /etc/profile.d/msec.sh prevents setting TMOUT!"
 else	TMOUT=$(get_key timeout)
-	dbg_msg $"BashStyle-NG Setting: TMOUT" "$TMOUT"
+	dbg_msg $"BashStyle-NG Setting:" $"TMOUT" "$TMOUT"
 fi
 
 HISTSIZE=$(get_key history_size)
-dbg_msg $"BashStyle-NG Setting: HISTSIZE" "$HISTSIZE"
+dbg_msg $"BashStyle-NG Setting:" $"HISTSIZE" "$HISTSIZE"
 
 HISTFILESIZE=$(get_key history_size)
-dbg_msg $"BashStyle-NG Setting: HISTFILESIZE" "$HISTFILESIZE"
+dbg_msg $"BashStyle-NG Setting:" $"HISTFILESIZE" "$HISTFILESIZE"
 
 if [[ $(get_key path) != "" ]]; then
 	PATH=$(get_key path)
-	dbg_msg $"BashStyle-NG Setting: PATH" "$PATH"
+	dbg_msg $"BashStyle-NG Setting:" $"PATH" "$PATH"
 fi
 
 if [[ $(get_key colored_grep) == true ]]; then \
-	dbg_msg $"BashStyle-NG Setting: Colored grep" $"On"
+	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"On"
 	GREP_OPTIONS="--color=auto";
 	GREP_COLOR=$(get_key color/grep);
-else	dbg_msg $"BashStyle-NG Setting: Colored grep" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"Off"
 fi
 
 export HISTCONTROL HISTIGNORE FIGNORE CDPATH FCEDIT TMOUT HISTSIZE HISTFILESIZE PATH GREP_OPTIONS GREP_COLOR
