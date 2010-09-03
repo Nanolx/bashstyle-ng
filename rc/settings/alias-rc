@@ -11,43 +11,43 @@
 
 if [[ $(get_key colored_ls) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Colored ls" $"On"
-	alias ls="ls -CF --color=auto --group-directories-first"
+	dbg_log alias ls="ls -CF --color=auto --group-directories-first"
 else
 	dbg_msg $"BashStyle-NG Setting:" $"Colored ls" $"Off"
-	alias ls="ls -CF --color=no --group-directories-first"
+	dbg_log alias ls="ls -CF --color=no --group-directories-first"
 fi
 
 if [[ $(get_key alias/one) != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(get_key alias/one)"
-	alias "$(get_key alias/one)"
+	dbg_log alias "$(get_key alias/one)"
 fi
 
 if [[ $(get_key alias/two) != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(get_key alias/two)"
-	alias "$(get_key alias/two)"
+	dbg_log alias "$(get_key alias/two)"
 fi
 
 if [[ $(get_key alias/three) != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(get_key alias/three)"
-	alias "$(get_key alias/three)"
+	dbg_log alias "$(get_key alias/three)"
 fi
 
 if [[ $(get_key alias/four) != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(get_key alias/four)"
-	alias "$(get_key alias/four)"
+	dbg_log alias "$(get_key alias/four)"
 fi
 
 if [[ $(get_key alias/five) != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(get_key alias/five)"
-	alias "$(get_key alias/five)"
+	dbg_log alias "$(get_key alias/five)"
 fi
 
 if [[ $(get_key alias/six) != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(get_key alias/six)"
-	alias "$(get_key alias/six)"
+	dbg_log alias "$(get_key alias/six)"
 fi
 
 if [[ $(get_key alias/seven) != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(get_key alias/seven)"
-	alias "$(get_key alias/seven)"
+	dbg_log alias "$(get_key alias/seven)"
 fi

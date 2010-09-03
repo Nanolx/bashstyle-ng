@@ -11,58 +11,58 @@
 
 if [[ $(get_key shopt/cdspell) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"cdspell" $"On"
-	shopt -s cdspell
+	dbg_log shopt -s cdspell
 else	dbg_msg $"BashStyle-NG Setting:" $"cdspell" $"Off"
-	shopt -u cdspell
+	dbg_log shopt -u cdspell
 fi
 
 if [[ $(get_key shopt/cdable_vars) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"cdable_vars" $"On"
-	shopt -s cdable_vars
+	dbg_log shopt -s cdable_vars
 else	dbg_msg $"BashStyle-NG Setting:" $"cdable_vars" $"Off"
-	shopt -u cdable_vars
+	dbg_log shopt -u cdable_vars
 fi
 
 if [[ $(get_key shopt/checkhash) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"checkhash" $"On"
-	shopt -s checkhash
+	dbg_log shopt -s checkhash
 else	dbg_msg $"BashStyle-NG Setting:" $"checkhash" $"Off"
-	shopt -u checkhash
+	dbg_log shopt -u checkhash
 fi
 
 if [[ $(get_key shopt/cmdhist) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"cmdhist" $"On"
-	shopt -s cmdhist
+	dbg_log shopt -s cmdhist
 else	dbg_msg $"BashStyle-NG Setting:" $"cmdhist" $"Off"
-	shopt -u cmdhist
+	dbg_log shopt -u cmdhist
 fi
 
 if [[ $(get_key shopt/force_fignore) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"force_fignore" $"On"
-	shopt -s force_fignore
+	dbg_log shopt -s force_fignore
 else	dbg_msg $"BashStyle-NG Setting:" $"force_fignore" $"Off"
-	shopt -u force_fignore
+	dbg_log shopt -u force_fignore
 fi
 
 if [[ $(get_key shopt/histreedit) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"histreedit" $"On"
-	shopt -s histreedit
+	dbg_log shopt -s histreedit
 else	dbg_msg $"BashStyle-NG Setting:" $"histreedit" $"Off"
-	shopt -u histreedit
+	dbg_log shopt -u histreedit
 fi
 
 if [[ $(get_key shopt/no_empty_cmd_completion) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"no_empty_cmd_completion" $"On"
-	shopt -s no_empty_cmd_completion
+	dbg_log shopt -s no_empty_cmd_completion
 else	dbg_msg $"BashStyle-NG Setting:" $"no_empty_cmd_completion" $"Off"
-	shopt -u no_empty_cmd_completion
+	dbg_log shopt -u no_empty_cmd_completion
 fi
 
 if [[ $HISTCONTROL != erasedups && $(get_key shopt/histappend) == true ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"histappend" $"On"
-	shopt -s histappend
+	dbg_log shopt -s histappend
 else	dbg_msg $"BashStyle-NG Setting:" $"histappend" $"Off"
-	shopt -u histappend
+	dbg_log shopt -u histappend
 fi
 
 if [[ $BASH_VERSINFO != 4 ]]; then
@@ -71,29 +71,29 @@ else
 
 	if [[ $(get_key shopt/autocd) == true ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"autocd" $"On"
-		shopt -s autocd
+		dbg_log shopt -s autocd
 	else	dbg_msg $"BashStyle-NG Setting:" $"autocd" $"Off"
-		shopt -u autocd
+		dbg_log shopt -u autocd
 	fi
 
 	if [[ $(get_key shopt/checkjobs) == true ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"checkjobs" $"On"
-		shopt -s checkjobs
+		dbg_log shopt -s checkjobs
 	else	dbg_msg $"BashStyle-NG Setting:" $"checkjobs" $"Off"
-		shopt -u checkjobs
+		dbg_log shopt -u checkjobs
 	fi
 
 	if [[ $(get_key shopt/globstar) == true ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"globstar" $"On"
-		shopt -s globstar
+		dbg_log shopt -s globstar
 	else	dbg_msg $"BashStyle-NG Setting:" $"globstar" $"Off"
-		shopt -u globstar
+		dbg_log shopt -u globstar
 	fi
 
 	if [[ $(get_key shopt/dirspell) == true ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"dirspell" $"On"
-		shopt -s dirspell
+		dbg_log shopt -s dirspell
 	else	dbg_msg $"BashStyle-NG Setting:" $"dirspell" $"Off"
-		shopt -u dirspell
+		dbg_log shopt -u dirspell
 	fi
 fi

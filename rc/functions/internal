@@ -70,6 +70,13 @@ dbg_msg ()
 
 }
 
+dbg_log ()
+{
+
+	"$@" > >(tee -a $BSNG_LOGFILE) 2>&1
+
+}
+
 dbg_view ()
 {
 
