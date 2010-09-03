@@ -9,72 +9,21 @@
 #							#
 #########################################################
 
-number=$(random 16)
+number=$(random 12)
 
 case $number in
 
-	0 )
-		pstyle=separator
-	;;
-
-	1 )
-		pstyle=vector
-	;;
-
-	2 )
-		pstyle=clock
-	;;
-
-	3 )
-		pstyle=clock-ad
-	;;
-
-	4 )
-		pstyle=dash
-	;;
-
-	5 )
-		pstyle=job
-	;;
-
-	6 )
-		pstyle=elite
-	;;
-
-	7 )
-		pstyle=poweruser
-	;;
-
-	8 )
-		pstyle=dirks
-	;;
-
-	9 )
-		pstyle=minimal
-	;;
-
-	10 )
-		pstyle=dot_prompt
-	;;
-
-	11 )
-		pstyle=bracket
-	;;
-
-	12 )
-		pstyle=sepa_ng
-	;;
-
-	13 )
-		pstyle=quirk
-	;;
-
-	14 )
-		pstyle=sputnik
-	;;
-
-	15 )
-		pstyle=ayoli
-	;;
+	0 ) pstyle=separator ;;
+	1 ) pstyle=vector ;;
+	2 ) pstyle=clock ;;
+	3 ) pstyle=clock-ad ;;
+	4 ) pstyle=elite ;;
+	5 ) pstyle=poweruser ;;
+	6 ) pstyle=dirks ;;
+	7 ) pstyle=dot_prompt ;;
+	8 ) pstyle=sepa_ng ;;
+	9 ) pstyle=quirk ;;
+	10 ) pstyle=sputnik ;;
+	11 ) pstyle=ayoli ;;
 
 esac
