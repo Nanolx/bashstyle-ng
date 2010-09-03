@@ -49,7 +49,7 @@ dbg_msg $"BashStyle-NG Debugging: Enabled"
 dbg_msg $"BashStyle-NG Logfile:" $BSNG_LOGFILE
 
 dbg_msg $"BashStyle-NG Setting:" $"Alias" reload=dbg_log source ~/.bashrc
-dbg_log alias reload="dbg_log source ~/.bashrc"
+dbg_log alias reload="source ~/.bashrc"
 
 dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
 dbg_log alias rd="pwd -P"
