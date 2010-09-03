@@ -16,9 +16,9 @@ fi
 
 if [[ $enabcol == true ]]; then
 
-dbg_msg BashStyle-NG Setting: Colors On
+dbg_msg $"BashStyle-NG Setting: Colors" $"On"
 
-dbg_msg BashStyle-NG Setting: Color-Style $(get_key color/style)
+dbg_msg $"BashStyle-NG Setting: Color-Style" $(get_key color/style)
 
 colstyle=$(get_key color/style)
 
@@ -90,5 +90,5 @@ eval pscolor=$(get_key color/ps234c)
 
 export enabcol black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream eblack ered egreen eyellow eblue emagenta ecyan ewhite ecoldblue esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher eorange epurple epink ecream
 
-else	dbg_msg Bashstyle-NG Setting: Colors Off
+else	dbg_msg $"Bashstyle-NG Setting: Colors" $"Off"
 fi
