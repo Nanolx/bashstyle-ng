@@ -173,3 +173,7 @@ else	touch $HOME/.bookmarks
 fi
 
 dbg_finalize
+
+if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
+	cat $BSNG_RC_DIR/ascii/birthday
+fi
