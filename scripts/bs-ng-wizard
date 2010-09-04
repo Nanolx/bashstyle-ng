@@ -191,7 +191,7 @@ user_setup () {
 
 	user_location=$(whiptail --title "location" --inputbox "Enter your location in CITY COUNTRY (eg Berlin Deutschland) format." 12 85 "$USER_LOCATION" 3>&1 1>&2 2>&3)
 
-	echo USER_LOCATION=\"$user_location\" >> $HOME/.settings-rc
+	echo USER_LOCATION=\( $user_location \) >> $HOME/.settings-rc
 
 	user_mail=$(whiptail --title "mail" --inputbox "Enter your mail-address without < > characters. This informations is beeing used when sending bug-reports [not yet implemented]." 12 85 "$USER_MAIL" 3>&1 1>&2 2>&3)
 
