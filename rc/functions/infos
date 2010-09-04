@@ -587,7 +587,7 @@ show_weather ()
 	fi
 	
 	declare -a WEATHERARRAY
-	WEATHERARRAY=( `lynx -dump "http://www.google.com/search?hl=en&lr=&client=firefox-a&rls=org.mozilla%3Aen-US%3Aofficial&q=weather+${LOC}&btnG=Search" | grep -A 5 -m 1 "Weather for" | grep -v "Add to "`)
+	WEATHERARRAY=( `lynx -dump "http://www.google.com/search?q=weather+${LOC}" | grep -A 5 -m 1 "Weather for" | grep -v "Add to "`)
 
 
 	STATE=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Current: //g' -e 's/ Wind.*//g')
@@ -607,9 +607,9 @@ show_weather ()
 
 	esac
 
-	echo -e " >> ${WEATHERARRAY[2]}: ${WEATHERARRAY[3]}\
+	echo -e " >> ${WEATHERARRAY[2]}: ${WEATHERARRAY[4]}\
 		\n >> currently it's $STATE\
-		\n >> Wind from $DIRECTION $WINDINFO"
+		\n >> Wind from $DIRECTION $WINDINFO" | sed -e 's/,//g'
 
 
 }
