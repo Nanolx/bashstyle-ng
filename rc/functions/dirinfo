@@ -288,7 +288,7 @@ dirinfo_create () {
 	echo Type=\"$xtype\" >> $PWD/.dirinfo
 
 	tags=$(whiptail --title "directory tags" --inputbox "Insert tags for the directory. Seperate with space" 12 85 "$(echo ${Tags[*]} | sed -e 's/(//g' -e 's/)//g')" 3>&1 1>&2 2>&3)
-	echo Tags=\"\($tags\)\" >> $PWD/.dirinfo
+	echo Tags=\( $tags \) >> $PWD/.dirinfo
 
 	if [[ $Created == "" ]]; then
 		xdate=$(dirinfo_get_creation_date)
