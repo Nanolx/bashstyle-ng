@@ -194,6 +194,17 @@ exchange()
 	IFS=$SAVE
 }
 
+swap()
+{
+
+	if [[ $1 && $2 ]]; then
+		mv "$1" temp.$$
+		mv "$2" "$1"
+		mv temp.$$ "$2"
+	fi
+
+}
+
 progressbar()
 {
 
