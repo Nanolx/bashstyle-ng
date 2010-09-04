@@ -9,10 +9,8 @@
 #							#
 #########################################################
 
-if [[ $TERM != *xterm* ]]; then
-	enabcol=false
-else	enabcol=$(get_key color/enable)
-fi
+
+enabcol=$(get_key color/enable)
 
 if [[ $enabcol == true ]]; then
 
@@ -34,49 +32,99 @@ elif [[ $colstyle == underlined ]]; then \
 	style="04"
 fi
 
-black="\[\033[${style};38;5;0m\]"
-red="\[\033[${style};38;5;1m\]"
-green="\[\033[${style};38;5;2m\]"
-yellow="\[\033[${style};38;5;3m\]"
-blue="\[\033[${style};38;5;4m\]"
-magenta="\[\033[${style};38;5;129m\]"
-cyan="\[\033[${style};38;5;6m\]"
-white="\[\033[${style};38;5;7m\]"
-coldblue="\[\033[${style};38;5;33m\]"
-smoothblue="\[\033[${style};38;5;111m\]"
-iceblue="\[\033[${style};38;5;45m\]"
-turqoise="\[\033[${style};38;5;50m\]"
-smoothgreen="\[\033[${style};38;5;42m\]"
-winered="\[\033[${style};38;5;637m\]"
-brown="\[\033[${style};38;5;684m\]"
-silver="\[\033[${style};38;5;761m\]"
-ocher="\[\033[${style};38;5;690m\]"
-orange="\[\033[${style};38;5;714m\]"
-purple="\[\033[${style};38;5;604m\]"
-pink="\[\033[${style};38;5;213m\]"
-cream="\[\033[${style};38;5;5344m\]"
+if [[ $TERM != *xterm* ]]; then
 
-eblack="\033[${style};38;5;0m"
-ered="\033[${style};38;5;1m"
-egreen="\033[${style};38;5;2m"
-eyellow="\033[${style};38;5;3m"
-eblue="\033[${style};38;5;4m"
-emagenta="\033[${style};38;5;129m"
-ecyan="\033[${style};38;5;6m"
-ewhite="\033[${style};38;5;7m"
-ecoldblue="\033[${style};38;5;33m"
-esmoothblue="\033[${style};38;5;111m"
-eiceblue="\033[${style};38;5;45m"
-eturqoise="\033[${style};38;5;50m"
-esmoothgreen="\033[${style};38;5;42m"
-ewinered="\033[${style};38;5;637m"
-ebrown="\033[${style};38;5;684m"
-esilver="\033[${style};38;5;761m"
-eocher="\033[${style};38;5;690m"
-eorange="\033[${style};38;5;714m"
-epurple="\033[${style};38;5;604m"
-epink="\033[${style};38;5;213m"
-ecream="\033[${style};38;5;5344m"
+	black="\[\033[${style};30m\]"
+	red="\[\033[${style};31m\]"
+	green="\[\033[${style};32m\]"
+	yellow="\[\033[${style};33m\]"
+	blue="\[\033[${style};34m\]"
+	magenta="\[\033[${style};35m\]"
+	cyan="\[\033[${style};36m\]"
+	white="\[\033[${style};37m\]"
+	coldblue=$blue
+	smoothblue=$blue
+	iceblue=$blue
+	turqoise=$cyan
+	smoothgreen=$green
+	winered=$red
+	brown=$yellow
+	silver=$white
+	ocher=$yellow
+	orange=$yellow
+	purple=$magenta
+	pink=$magenta
+	cream=$magenta
+
+	eblack="\033[${style};30m"
+	ered="\033[${style};31m"
+	egreen="\033[${style};32m"
+	eyellow="\033[${style};33m"
+	eblue="\033[${style};34m"
+	emagenta="\033[${style};35m"
+	ecyan="\033[${style};36m"
+	ewhite="\033[${style};37m"
+	ecoldblue=$eblue
+	esmoothblue=$eblue
+	eiceblue=$eblue
+	eturqoise=$ecyan
+	esmoothgreen=$egreen
+	ewinered=$ered
+	ebrown=$eyellow
+	esilver=$ewhite
+	eocher=$eyellow
+	eorange=$eyellow
+	epurple=$emagenta
+	epink=$emagenta
+	ecream=$emagenta
+
+else
+
+	black="\[\033[${style};38;5;0m\]"
+	red="\[\033[${style};38;5;1m\]"
+	green="\[\033[${style};38;5;2m\]"
+	yellow="\[\033[${style};38;5;3m\]"
+	blue="\[\033[${style};38;5;4m\]"
+	magenta="\[\033[${style};38;5;129m\]"
+	cyan="\[\033[${style};38;5;6m\]"
+	white="\[\033[${style};38;5;7m\]"
+	coldblue="\[\033[${style};38;5;33m\]"
+	smoothblue="\[\033[${style};38;5;111m\]"
+	iceblue="\[\033[${style};38;5;45m\]"
+	turqoise="\[\033[${style};38;5;50m\]"
+	smoothgreen="\[\033[${style};38;5;42m\]"
+	winered="\[\033[${style};38;5;637m\]"
+	brown="\[\033[${style};38;5;684m\]"
+	silver="\[\033[${style};38;5;761m\]"
+	ocher="\[\033[${style};38;5;690m\]"
+	orange="\[\033[${style};38;5;714m\]"
+	purple="\[\033[${style};38;5;604m\]"
+	pink="\[\033[${style};38;5;213m\]"
+	cream="\[\033[${style};38;5;5344m\]"
+
+	eblack="\033[${style};38;5;0m"
+	ered="\033[${style};38;5;1m"
+	egreen="\033[${style};38;5;2m"
+	eyellow="\033[${style};38;5;3m"
+	eblue="\033[${style};38;5;4m"
+	emagenta="\033[${style};38;5;129m"
+	ecyan="\033[${style};38;5;6m"
+	ewhite="\033[${style};38;5;7m"
+	ecoldblue="\033[${style};38;5;33m"
+	esmoothblue="\033[${style};38;5;111m"
+	eiceblue="\033[${style};38;5;45m"
+	eturqoise="\033[${style};38;5;50m"
+	esmoothgreen="\033[${style};38;5;42m"
+	ewinered="\033[${style};38;5;637m"
+	ebrown="\033[${style};38;5;684m"
+	esilver="\033[${style};38;5;761m"
+	eocher="\033[${style};38;5;690m"
+	eorange="\033[${style};38;5;714m"
+	epurple="\033[${style};38;5;604m"
+	epink="\033[${style};38;5;213m"
+	ecream="\033[${style};38;5;5344m"
+
+fi
 
 eval usercolor=$(get_key color/user)
 eval hostcolor=$(get_key color/host)
