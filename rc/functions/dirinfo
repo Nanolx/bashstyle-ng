@@ -63,27 +63,7 @@ dirinfo_get_dirinfo () {
 
 }
 
-dirinfo_exchange_colors () {
-
-	if [[ $1 == s ]]; then
-		exchange eiceblue xiceblue
-		exchange emagenta xmagenta
-		exchange ered xred
-		exchange egreen xgreen
-	else	exchange xiceblue eiceblue
-		exchange xmagenta emagenta
-		exchange xred ered
-		exchange xgreen egreen
-		unset xiceblue xmagenta xred xgreen
-	fi
-
-}
-
 dirinfo_display_info () {
-
-	if [[ $enabcol == false ]]; then
-		dirinfo_exchange_colors s
-	fi
 
 	if [[ ${Owner} ]]; then
 		echo -e "\n${eiceblue} Owner:   ${Owner}"
@@ -99,10 +79,6 @@ dirinfo_display_info () {
 
 	if [[ ${Notes} ]]; then
 		echo -e "\n${egreen} ${Notes}"
-	fi
-
-	if [[ $enabcol == false ]]; then
-		dirinfo_exchange_colors x
 	fi
 
 	tput sgr0
@@ -122,17 +98,16 @@ dirinfo_display_ascii () {
 			-e "s/@CREATED@/${Created}/g" \
 			-e "s/@TAGS@/${Tags[*]}/g" \
 			-e "s/@NOTES@/${Notes}/g"
-	elif [[ $ASCII && $enabcol == false ]]; then
-		echo -e "$(cat $ASCII | sed -e 's/\\033\[01\;38\;5\;45m//g' \
-			-e 's/\\033\[01\;38\;5\;7m//g' \
-			-e 's/\\033\[01\;38\;5\;129m//g' \
-			-e 's/\\033\[01\;38\;5\;1m//g' \
-			-e 's/\\033\[01\;38\;5\;2m//g' )" | \
+	elif [[ $ASCII && $enabcol != true ]]; then
+		echo -e "$(cat $ASCII | sed -e 's/\\033\[01\;36m//g'\
+			-e 's/\\033\[01\;35m//g' \
+			-e 's/\\033\[01\;31m//g' \
+			-e 's/\\033\[01\;32m//g' \
+			-e 's/\\033\[01\;37m//g' )" | \
 			sed -e "s/@OWNER@/${Owner}/g" \
 			-e "s/@CREATED@/${Created}/g" \
 			-e "s/@TAGS@/${Tags[*]}/g" \
 			-e "s/@NOTES@/${Notes}/g"
-
 	else 	unset Type
 		dirinfo_display_info
 	fi
