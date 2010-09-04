@@ -589,7 +589,12 @@ show_weather ()
 	declare -a WEATHERARRAY
 	WEATHERARRAY=( `lynx -dump "http://www.google.com/search?hl=en&lr=&client=firefox-a&rls=org.mozilla%3Aen-US%3Aofficial&q=weather+${LOC}&btnG=Search" | grep -A 5 -m 1 "Weather for" | grep -v "Add to "`)
 
-	case ${WEATHERARRAY[7]} in
+
+	STATE=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Current: //g' -e 's/ Wind.*//g')
+	WIND=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Wind: //g' | gawk '{print $1}')
+	WINDINFO=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Wind: //g' | gawk '{print $2 " " $3 " " $4}')
+
+	case ${WEATHERARRAY[8]} in
 
 		N) DIRECTION="North" ;;
 		NE) DIRECTION="North-East" ;;
@@ -603,7 +608,8 @@ show_weather ()
 	esac
 
 	echo -e " >> ${WEATHERARRAY[2]}: ${WEATHERARRAY[3]}\
-		\n >> Wind from $DIRECTION at ${WEATHERARRAY[9]} ${WEATHERARRAY[10]}"
+		\n >> currently it's $STATE\
+		\n >> Wind from $DIRECTION $WINDINFO"
 
 
 }
