@@ -580,25 +580,30 @@ show_weather ()
 {
 
 	if [[ $1 ]]; then
-		declare -a WEATHERARRAY
-		WEATHERARRAY=( `lynx -dump "http://www.google.com/search?hl=en&lr=&client=firefox-a&rls=org.mozilla%3Aen-US%3Aofficial&q=weather+${1}&btnG=Search" | grep -A 5 -m 1 "Weather for" | grep -v "Add to "`)
-
-		case ${WEATHERARRAY[7]} in
-
-			N) DIRECTION="North" ;;
-			NE) DIRECTION="North-East" ;;
-			NW) DIRECTION="North-West" ;;
-			E) DIRECTION="East" ;;
-			S) DIRECTION="South" ;;
-			SE) DIRECTION="South-East" ;;
-			SW) DIRECTION="South-West" ;;
-			W) DIRECTION="West" ;;
-
-		esac
-
-		echo -e " >> ${WEATHERARRAY[2]}: ${WEATHERARRAY[3]}\
-			\n >> Wind from $DIRECTION at ${WEATHERARRAY[9]} ${WEATHERARRAY[10]}"
-
+		LOC=$1
+	elif [[ ${USER_LOCATION[0]} ]]; then
+		LOC=${USER_LOCATION[0]}
+	else	exit 0
 	fi
+	
+	declare -a WEATHERARRAY
+	WEATHERARRAY=( `lynx -dump "http://www.google.com/search?hl=en&lr=&client=firefox-a&rls=org.mozilla%3Aen-US%3Aofficial&q=weather+${LOC}&btnG=Search" | grep -A 5 -m 1 "Weather for" | grep -v "Add to "`)
+
+	case ${WEATHERARRAY[7]} in
+
+		N) DIRECTION="North" ;;
+		NE) DIRECTION="North-East" ;;
+		NW) DIRECTION="North-West" ;;
+		E) DIRECTION="East" ;;
+		S) DIRECTION="South" ;;
+		SE) DIRECTION="South-East" ;;
+		SW) DIRECTION="South-West" ;;
+		W) DIRECTION="West" ;;
+
+	esac
+
+	echo -e " >> ${WEATHERARRAY[2]}: ${WEATHERARRAY[3]}\
+		\n >> Wind from $DIRECTION at ${WEATHERARRAY[9]} ${WEATHERARRAY[10]}"
+
 
 }
