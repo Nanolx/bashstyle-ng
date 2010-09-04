@@ -185,11 +185,11 @@ user_setup () {
 
 	echo USER_REAL_NAME=\"$user_name\" >> $HOME/.settings-rc
 
-	user_bday=$(whiptail --title "birthday" --inputbox "Enter your birthday in YYYY-MM-DD (eg 1999-12-24) format.\nYou will see what happens.:" 12 85 "$USER_BIRTHDAY" 3>&1 1>&2 2>&3)
+	user_bday=$(whiptail --title "birthday" --inputbox "Enter your birthday in MM-DD (eg 12-24) format.\nYou will see what happens.:" 12 85 "$USER_BIRTHDAY" 3>&1 1>&2 2>&3)
 
 	echo USER_BIRTHDAY=$user_bday >> $HOME/.settings-rc
 
-	user_locaction=$(whiptail --title "location" --inputbox "Enter your location in CITY_COUNTRY (eg Berlin_Deutschland) format." 12 85 "$USER_LOCATION" 3>&1 1>&2 2>&3)
+	user_location=$(whiptail --title "location" --inputbox "Enter your location in CITY COUNTRY (eg Berlin Deutschland) format." 12 85 "$USER_LOCATION" 3>&1 1>&2 2>&3)
 
 	echo USER_LOCATION=\"$user_location\" >> $HOME/.settings-rc
 
@@ -269,7 +269,7 @@ Have Fun!" 12 85
 if [[ ! -e $HOME/.settings-rc || $1 == "--force" ]]; then
 	rm -f $HOME/.settings-rc
 	run_wizard --force
-elif [[ $(grep -w USER_REAL_NAME $HOME/.settings-rc) == "" ]]; then
+elif [[ $(grep -w USER_REAL_NAME $HOME/.settings-rc) == "" || $1 == "--force2" ]]; then
 	run_wizard --v2
 else	exit 0
 fi
