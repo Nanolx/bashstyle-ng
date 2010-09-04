@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ $(get_key colored_ls) == true ]]; then \
+if [[ $(get_key colored_ls) == true && $enabcol == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Colored ls" $"On"
 	dbg_log alias ls="ls -CF --color=auto --group-directories-first"
 else

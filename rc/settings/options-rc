@@ -41,7 +41,7 @@ if [[ $(get_key path) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"PATH" "$PATH"
 fi
 
-if [[ $(get_key colored_grep) == true ]]; then \
+if [[ $(get_key colored_grep) == true && $enabcol == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"On"
 	GREP_OPTIONS="--color=auto";
 	GREP_COLOR=$(get_key color/grep);

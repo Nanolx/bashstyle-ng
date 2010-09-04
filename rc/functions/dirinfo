@@ -289,8 +289,8 @@ lscd () {
 
 	echo -e "${epink}content:"
 
-	if [[ $enabcol == false ]]; then
-		LSCD_OPTS+=" --color=auto"
+	if [[ $enabcol != true ]]; then
+		LSCD_OPTS+=" --color=none"
 	fi
 
 	ls $LSCD_OPTS
