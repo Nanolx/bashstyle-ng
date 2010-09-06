@@ -165,6 +165,8 @@ lm() {
 define ()
 {
 
+	check_opt lynx define
+
 	if [[ $1 ]]; then
 
 	lynx -dump "http://www.google.com/search?hl=en&q=define%3A+${1}&btnG=Google+Search" | grep -m 3 -w "*"  | sed 's/;/ -/g' | cut -d- -f1 > /tmp/templookup.txt

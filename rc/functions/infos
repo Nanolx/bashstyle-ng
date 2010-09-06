@@ -579,6 +579,8 @@ system_infos ()
 show_weather ()
 {
 
+	check_opt lynx show_weather
+
 	if [[ $1 ]]; then
 		LOC=$1
 	elif [[ ${USER_LOCATION[0]} ]]; then
