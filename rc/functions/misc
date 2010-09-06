@@ -192,27 +192,27 @@ resetleds ()
 
 kitt () {
 
+	setleds -L -num;
+	setleds -L -caps;
+	setleds -L -scroll;
+
 	while :; do
 		setleds -L +num;
-		setleds -L -caps;
 		sleep 0.2;
 
-		setleds -L;
-		setleds -L +caps;
 		setleds -L -num;
-		sleep 0.1;
-
-		setleds -L;
-		setleds -L +scroll;
-		setleds -L -caps;
+		setleds -L +caps;
 		sleep 0.2;
 
-		setleds -L;
-		setleds -L +caps;
-		setleds -L -scroll;
-		sleep 0.1;
+		setleds -L -caps;
+		setleds -L +scroll;
+		sleep 0.2;
 
-		setleds -L;
+		setleds -L -scroll;
+		setleds -L +caps;
+		sleep 0.2;
+
+		setleds -L -caps;
 	done
 
 }
