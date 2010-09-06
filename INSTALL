@@ -15,3 +15,11 @@ III. Install BashStyle-NG:
 sudo make install -or- su -c "make install"
 
 Happy Hacking!
+
+How to generate the a .deb package:
+
+sudo apt-get install fakeroot dpkg-dev
+dpkg-buildpackage -rfakeroot
+
+If dpkg-buildpackage fails due to unmet dependencies,
+then install them and start again.
