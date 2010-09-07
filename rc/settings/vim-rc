@@ -54,7 +54,7 @@ fi
 if [[ $(get_key vim/filetype_indent) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"On"
 	echo "if has(\"autocmd\")" >> $HOME/.vimrc
-	echo "    filetype indent on" >> $HOME/.vimrc
+	echo "    filetype plugin indent on" >> $HOME/.vimrc
 	echo "endif" >> $HOME/.vimrc
 else	dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"Off"
 fi
