@@ -14,14 +14,35 @@ Overview of changes in v7.12 "Planetary Collapse"
 * #112 (man-rc) (ls-rc) (alias-rc) (options-rc): properly enable/disable colors according
                                                  to user-setting (ls, lscd, grep, man)
 
-=== Added Features ===
-* dbg_log allows all output to be logged (so errors of called commands
-  during init can now also be found in $BSNG_LOGFILE)
+* #113 (vim-rc): fix setting highlighting
 
-* dbg_finalize (...)
+=== Build & Installation ===
+* removed deprecated schemas
+
+* remvoed .bashrc adjustment from Makefile
+
+* updated debian packaging scripts
+
+=== Added Features ===
+* dbg_log (internal)
+* dbg_finalize (internal)
+* rc_add (internal)
 
 * bs-ng-wizard queries for user-informations (name, mail, birthday)
   everything optional + not used outside your shell, of course!
+
+* new VimCFG options:
+  + highlight current column
+  + set startofline
+  + change linewrap
+  + change autowrap position
+  + change tabstop length
+
+* VimCFG behaviour changes:
+  + when filetype indention is enabled, also enable autoindent
+  + when filetype indention is enabled, also enable smartindent
+  + set linespace to 0
+  + load $HOME/.vimrc.custom if availabe (put your stuff here)
 
 * progressbar [fancy animated bar]
 * spinner   [/ - \ | type spinner]
@@ -58,6 +79,8 @@ Overview of changes in v7.12 "Planetary Collapse"
 * asc2all (convert to all at once)
 
 === Improved Features ===
+* some minor UI tweaks
+
 * improved check if a bookmark already exists
 
 * bin2all (updated)
@@ -74,6 +97,11 @@ Overview of changes in v7.12 "Planetary Collapse"
 * dirinfo_display_ascii is now linux-console compatible
 * dirinfo_create got a shiny new whiptail-interface
 * dirinfo_index got a help-message
+
+=== Documentation ===
+* Updated:
+  + INSTALL
+  + README
 
 === Translations ===
 * shell-scripts (nx-rc & Co) are now ready for translation
