@@ -9,31 +9,33 @@
 #							#
 #########################################################
 
+export RC_FILE=$HOME/.vimrc
+
 rm -f $HOME/.vimrc
 
 dbg_msg $"VimCFG Setting:" $"runtimepath"
-echo "set runtimepath+=$BSNG_PREFIX/share/bashstyle-ng/vim/" >> $HOME/.vimrc
+rc_add "set runtimepath+=$BSNG_PREFIX/share/bashstyle-ng/vim/"
 
 if [[ $(get_key vim/vim_colorscheme) != "default" ]]; then
 	colorscheme=$(get_key vim/vim_colorscheme)
 	dbg_msg $"VimCFG Setting:" $"Colorscheme" $colorscheme
-	echo "colorscheme $colorscheme" >> $HOME/.vimrc
+	rc_add "colorscheme $colorscheme"
 fi
 
 if [[ $(get_key vim/syntax_hilight) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Syntax" $"On"
-	echo "syntax on" >> $HOME/.vimrc
+	rc_add "syntax on"
 else
 	dbg_msg $"VimCFG Setting:" $"Syntax" $"Off"
-	echo "syntax off" >> $HOME/.vimrc
+	rc_add "syntax off"
 fi
 
 if [[ $(get_key vim/dark_background) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Background dark"
-	echo "set background=dark" >> $HOME/.vimrc
+	rc_add "set background=dark"
 else
 	dbg_msg $"VimCFG Setting:" $"Background light"
-	echo "set background=light" >> $HOME/.vimrc
+	rc_add "set background=light"
 fi
 
 if [[ $(get_key vim/jump_back) == "true" ]]; then
@@ -42,10 +44,10 @@ if [[ $(get_key vim/jump_back) == "true" ]]; then
 		ERR_MSG+="\n * $HOME/.viminfo is not fully accessible! -- adjust permissions."
 	else
 		dbg_msg $"VimCFG Setting:" $"Jump-Back" $"On"
-		echo "if has(\"autocmd\")" >> $HOME/.vimrc
-		echo "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")" >>	$HOME/.vimrc
-		echo "    \| exe \"normal! g'\\\"\" | endif" >> $HOME/.vimrc
-		echo "endif" >> $HOME/.vimrc
+		rc_add "if has(\"autocmd\")"
+		rc_add "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")" >>	$HOME/.vimrc
+		rc_add "    \| exe \"normal! g'\\\"\" | endif"
+		rc_add "endif"
 	fi
 
 else	dbg_msg $"VimCFG Setting:" $"Jump-Back" $"Off"
@@ -53,100 +55,106 @@ fi
 
 if [[ $(get_key vim/filetype_indent) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"On"
-	echo "if has(\"autocmd\")" >> $HOME/.vimrc
-	echo "    filetype plugin indent on" >> $HOME/.vimrc
-	echo "endif" >> $HOME/.vimrc
+	rc_add "if has(\"autocmd\")"
+	rc_add "    filetype plugin indent on"
+	rc_add "endif"
 else	dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"Off"
 fi
 
 if [[ $(get_key vim/show_cmd) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Show-Command" $"On"
-	echo "set showcmd" >> $HOME/.vimrc
+	rc_add "set showcmd"
 else
 	dbg_msg $"VimCFG Setting:" $"Show-Command" $"Off"
-	echo "set noshowcmd" >> $HOME/.vimrc
+	rc_add "set noshowcmd"
 fi
 
 if [[ $(get_key vim/show_match) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Show-Matches" $"On"
-	echo "set showmatch" >> $HOME/.vimrc
+	rc_add "set showmatch"
 else
 	dbg_msg $"VimCFG Setting:" $"Show-Matches" $"Off"
-	echo "set noshowmatch" >> $HOME/.vimrc
+	rc_add "set noshowmatch"
 fi
 
 if [[ $(get_key vim/ignore_case) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Ignore-Case" $"On"
-	echo "set ignorecase" >> $HOME/.vimrc
+	rc_add "set ignorecase"
 else
 	dbg_msg $"VimCFG Setting:" $"Ignore-Case" $"Off"
-	echo "set noignorecase" >> $HOME/.vimrc
+	rc_add "set noignorecase"
 fi
 
 if [[ $(get_key vim/smart_case) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Smart-Case" $"On"
-	echo "set smartcase" >> $HOME/.vimrc
+	rc_add "set smartcase"
 else
 	dbg_msg $"VimCFG Setting:" $"Smart-Case" $"Off"
-	echo "set nosmartcase" >> $HOME/.vimrc
+	rc_add "set nosmartcase"
 fi
 
 if [[ $(get_key vim/inc_search) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Incremental-Search" $"On"
-	echo "set incsearch" >> $HOME/.vimrc
+	rc_add "set incsearch"
 else
 	dbg_msg $"VimCFG Setting:" $"Incremental-Search" $"Off"
-	echo "set noincsearch" >> $HOME/.vimrc
+	rc_add "set noincsearch"
 fi
 
 if [[ $(get_key vim/highlight) != "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Highlight" $"On"
-	echo "set nohls" >> $HOME/.vimrc
+	rc_add "set nohls"
 else
 	dbg_msg $"VimCFG Setting:" $"Highlight" $"Off"
-	echo "set hls" >> $HOME/.vimrc
+	rc_add "set hls"
 fi
 
 if [[ $(get_key vim/number) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Show-Number" $"On"
-	echo "set number" >> $HOME/.vimrc
+	rc_add "set number"
 else
 	dbg_msg $"VimCFG Setting:" $"Show-Number" $"Off"
-	echo "set nonumber" >> $HOME/.vimrc
+	rc_add "set nonumber"
 fi
 
 if [[ $(get_key vim/autosave) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Auto-Save" $"On"
-	echo "set autowriteall" >> $HOME/.vimrc
+	rc_add "set autowriteall"
 else
 	dbg_msg $"VimCFG Setting:" $"Auto-Save" $"Off"
-	echo "set noautowriteall" >> $HOME/.vimrc
+	rc_add "set noautowriteall"
 fi
 
 if [[ $(get_key vim/hl_cursor) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Highlight-Current-Line" $"On"
-	echo "set cursorline" >> $HOME/.vimrc
+	rc_add "set cursorline"
 else
 	dbg_msg $"VimCFG Setting:" $"Highlight-Current-Line" $"Off"
-	echo "set nocursorline" >> $HOME/.vimrc
+	rc_add "set nocursorline"
 fi
 
 if [[ $(get_key vim/ruler) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Show-Ruler" $"On"
-	echo "set ruler" >> $HOME/.vimrc
+	rc_add "set ruler"
 	dbg_msg $"VimCFG Setting:" $"Ruler-Format" $(get_key vim/rulerformat)
-	echo "set rulerformat=$(get_key vim/rulerformat)" >> $HOME/.vimrc
+	rc_add "set rulerformat=$(get_key vim/rulerformat)"
 else
 	dbg_msg $"VimCFG Setting:" $"Show-Ruler" $"Off"
-	echo "set noruler" >> $HOME/.vimrc
+	rc_add "set noruler"
 fi
 
 if [[ $(get_key vim/backup) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Backup" $"On"
-	echo "set backup" >> $HOME/.vimrc
+	rc_add "set backup"
 else
 	dbg_msg $"VimCFG Setting:" $"Backup" $"Off"
-	echo "set nobackup" >> $HOME/.vimrc
+	rc_add "set nobackup"
 fi
+
+rc_add "if filereadable(\"~/.vimrc.custom\")"
+rc_add "	source ~/.vimrc.custom"
+rc_add "endif"
+
+unset RC_FILE
 
 dbg_msg $"VimCFG Loading:" $"BashStyle-NG"
