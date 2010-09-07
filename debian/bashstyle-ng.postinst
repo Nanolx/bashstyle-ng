@@ -1,8 +1,6 @@
 #!/bin/sh -e 
 
 if [ "$1" = "configure" ]; then
-	echo "unregistering old schemas"
-	gconf-schemas --unregister bashstyle-deprecated.schemas
 	echo "registering gconf schemas"
 	gconf-schemas --register bashstyle.schemas
 	echo "updating icon cache"

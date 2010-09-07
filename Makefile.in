@@ -138,7 +138,6 @@ install:
 	@install -m755 rc/ascii/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/ascii/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[13/14] .pc gconf-schemas"
 	@install -m644 data/bashstyle-ng.pc $(DESTDIR)/usr/lib/pkgconfig/
-	@install -m644 data/deprecated.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/bashstyle-deprecated.schemas
 	@install -m644 data/bashstyle.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[14/14] translations:$(CYAN) de it ru es"
 	@install -m644 translations/mo/bs-ng-de.mo $(DESTDIR)/usr/share/locale/de/LC_MESSAGES/bashstyle-ng.mo
@@ -154,11 +153,6 @@ install:
 				echo "source @PREFIX@/share/bashstyle-ng/rc/nx-rc" >> $$file; \
 			fi; \
 		done; \
-	fi
-	@if test ! $(GCONF_DISABLE) ; then \
-		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[02/05] deregister deprecated gconf-schemas" ; \
-		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
-			gconftool-2 --makefile-uninstall-rule data/deprecated.schemas >/dev/null ; \
 	fi
 	@if test ! $(GCONF_DISABLE) ; then \
 		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[03/05] register gconf-schemas" ; \
@@ -192,7 +186,6 @@ uninstall:
 	@rm -f  /usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
 	@echo -e "$(RED)removing:$(CYAN)	[05/08] gconf schemas"
-	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle-deprecated.schemas
 	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle.schemas
 	@echo -e "$(RED)removing:$(CYAN)	[06/08] icons from hicolor"
 	@rm -f  /usr/share/icons/hicolor/32x32/apps/bs-ng-*.png
