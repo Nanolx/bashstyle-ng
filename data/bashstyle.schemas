@@ -1002,6 +1002,73 @@
       </locale>
     </schema>
     <schema>
+      <key>/schemas/apps/bashstyle/vim/hl_column</key>
+      <applyto>/apps/bashstyle/vim/hl_column</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Highlight the current column</short>
+        <long>Highlight the current column</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/vim/startofline</key>
+      <applyto>/apps/bashstyle/vim/startofline</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Jump to the beginning of the line</short>
+        <long>Jump to the beginning of the line
+              if the cursor enters a different line</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/vim/wrap</key>
+      <applyto>/apps/bashstyle/vim/wrap</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Whether to wrap long lines</short>
+        <long>Whether to wrap long lines</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/vim/wrap_length</key>
+      <applyto>/apps/bashstyle/vim/wrap_length</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>int</type>
+      <default>80</default>
+      <locale name="C">
+        <short>Column to autowrap lines at</short>
+        <long>Column to autowrap lines at</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/vim/tabstop</key>
+      <applyto>/apps/bashstyle/vim/tabstop</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>int</type>
+      <default>8</default>
+      <locale name="C">
+        <short>Width of tabs</short>
+        <long>Width of tabs</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/bashstyle/vim/chdir</key>
+      <applyto>/apps/bashstyle/vim/chdir</applyto>
+      <owner>bashstyle-ng</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Whether to change into the current files directory</short>
+        <long>Whether to change into the current files directory</long>
+      </locale>
+    </schema>
+    <schema>
       <key>/schemas/apps/bashstyle/vim/ruler</key>
       <applyto>/apps/bashstyle/vim/ruler</applyto>
       <owner>bashstyle-ng</owner>
@@ -1020,7 +1087,15 @@
       <default>%45(%t\ %y\ %c\ %l\/%L\ %p%%%)</default>
       <locale name="C">
         <short>Rulerformat</short>
-        <long>Content of the ruler at the bottom</long>
+        <long>Content of the ruler at the bottom
+		%t file name
+		%F full filepath
+		%y file type/syntax type
+		%l number of current line
+		%L number of lines
+		%p% current % in the file in 00 format
+		%p%%% current % in the file in 00% format
+		%c current column</long>
       </locale>
     </schema>
     <schema>

@@ -58,7 +58,16 @@ if [[ $(get_key vim/filetype_indent) == "true" ]]; then
 	rc_add "if has(\"autocmd\")"
 	rc_add "    filetype plugin indent on"
 	rc_add "endif"
-else	dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"Off"
+	dbg_msg $"VimCFG Setting:" $"Auto-Indent" $"On"
+	rc_add "set autoindent"
+	dbg_msg $"VimCFG Setting:" $"Smart-Indent" $"On"
+	rc_add "set smartindent"
+else
+dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"Off"
+	dbg_msg $"VimCFG Setting:" $"Auto-Indent" $"Off"
+	rc_add "set noautoindent"
+	dbg_msg $"VimCFG Setting:" $"Smart-Indent" $"Off"
+	rc_add "set nosmartindent"
 fi
 
 if [[ $(get_key vim/show_cmd) == "true" ]]; then
@@ -101,12 +110,12 @@ else
 	rc_add "set noincsearch"
 fi
 
-if [[ $(get_key vim/highlight) != "true" ]]; then
+if [[ $(get_key vim/highlight) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Highlight" $"On"
-	rc_add "set nohls"
+	rc_add "set hls"
 else
 	dbg_msg $"VimCFG Setting:" $"Highlight" $"Off"
-	rc_add "set hls"
+	rc_add "set nohls"
 fi
 
 if [[ $(get_key vim/number) == "true" ]]; then
@@ -128,9 +137,19 @@ fi
 if [[ $(get_key vim/hl_cursor) == "true" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Highlight-Current-Line" $"On"
 	rc_add "set cursorline"
+	rc_add "hi CursorLine term=none cterm=underline ctermbg=none"
 else
 	dbg_msg $"VimCFG Setting:" $"Highlight-Current-Line" $"Off"
 	rc_add "set nocursorline"
+fi
+
+if [[ $(get_key vim/hl_column) == "true" ]]; then
+	dbg_msg $"VimCFG Setting:" $"Highlight-Current-Column" $"On"
+	rc_add "set cursorcolumn"
+	rc_add "hi CursorColumn term=none cterm=underline ctermbg=none"
+else
+	dbg_msg $"VimCFG Setting:" $"Highlight-Current-Column" $"Off"
+	rc_add "set nocursorcolumn"
 fi
 
 if [[ $(get_key vim/ruler) == "true" ]]; then
@@ -149,6 +168,40 @@ if [[ $(get_key vim/backup) == "true" ]]; then
 else
 	dbg_msg $"VimCFG Setting:" $"Backup" $"Off"
 	rc_add "set nobackup"
+fi
+
+if [[ $(get_key vim/startofline) == "true" ]]; then
+	dbg_msg $"VimCFG Setting:" $"Start-Of-Line" $"On"
+	rc_add "set startofline"
+else
+	dbg_msg $"VimCFG Setting:" $"Start-Of-Line" $"Off"
+	rc_add "set nostartofline"
+fi
+
+dbg_msg $"VimCFG Setting:" $"Linespace 0"
+rc_add "set linespace=0"
+
+dbg_msg $"VimCFG Setting:" $"Autowrap-length" $(get_key vim/wrap_length)
+rc_add "set tw=$(get_key vim/wrap_length)"
+
+if [[ $(get_key vim/wrap) == true ]]; then
+	dbg_msg $"VimCFG Setting:" $"Linewrapping" $"On"
+	rc_add "set wrap"
+else
+	dbg_msg $"VimCFG Setting:" $"Linewrapping" $"Off"
+	rc_add "set nowrap"
+fi
+
+dbg_msg $"VimCFG Setting:" $"Tab-width" $(get_key vim/tabstop)
+rc_add "set tabstop=$(get_key vim/tabstop)"
+rc_add "set shiftwidth=$(get_key vim/tabstop)"
+
+if [[ $(get_key vim/chdir) == "true" ]]; then
+	dbg_msg $"VimCFG Setting:" $"Auto chdir" $"On"
+	rc_add "set autochdir"
+else
+	dbg_msg $"VimCFG Setting:" $"Auto chdir" $"Off"
+	rc_add "set noautochdir"
 fi
 
 rc_add "if filereadable(\"~/.vimrc.custom\")"
