@@ -22,7 +22,7 @@ install: build
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
-	$(MAKE) KILL_DISABLE=1 CACHE_DISABLE=1 GCONF_DISABLE=1 RC_DISABLE=1 DESTDIR=$(CURDIR)/debian/bashstyle-ng/ install
+	$(MAKE) KILL_DISABLE=1 CACHE_DISABLE=1 GCONF_DISABLE=1 DESTDIR=$(CURDIR)/debian/bashstyle-ng/ install
 
 binary-indep: build install
 binary-arch: build install

@@ -145,15 +145,6 @@ install:
 	@install -m644 translations/mo/bs-ng-it.mo $(DESTDIR)/usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-ru.mo $(DESTDIR)/usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-es.mo $(DESTDIR)/usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
-	@if test ! $(RC_DISABLE) ; then \
-		echo -e "$(MAGENTA)post-install:$(SMOOTHBLUE)	[01/05] re-adjust .bashrc entries" ; \
-		for file in $$(ls /home/*/.bashrc); do \
-			if [ "x$$(grep nx-rc $$file)" != "x" ] ; then \
-				sed -e '/nx-rc/d' -i $$file; \
-				echo "source @PREFIX@/share/bashstyle-ng/rc/nx-rc" >> $$file; \
-			fi; \
-		done; \
-	fi
 	@if test ! $(GCONF_DISABLE) ; then \
 		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[03/05] register gconf-schemas" ; \
 		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
@@ -193,8 +184,6 @@ uninstall:
 	@rm -rf @PREFIX@/share/doc/bashstyle-ng/
 	@echo -e "$(RED)removing:$(CYAN)	[08/08] .pc file"
 	@rm -f  /usr/lib/pkgconfig/bashstyle-ng.pc
-	@echo -e "$(MAGENTA)post-remove:$(YELLOW)	[01/04] re-adjust .bashrc entries"
-	@sed -e '/nx-rc/d' -i /home/*/.bashrc
 	@if test ! $(GCONF_DISABLE) ; then \
 		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[02/04] deregister gconf-schemas" ; \
 		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
