@@ -1129,6 +1129,56 @@ class BashStyleNG(object):
 
 		self.vim_jump.connect("clicked", set_vim_jump)
 
+		###################### Connect the Vim/Jump to start of line Button ##############
+
+		self.vim_sline = gtkbuilder.get_object("vim_sline")
+		self.vim_sline.set_active(gdb.get_bool(gbase + "vim/startofline"))
+
+		def set_vim_sline(widget, data=None):
+			gdb.set_bool(gbase + "vim/startofline", widget.get_active())
+
+		self.vim_sline.connect("clicked", set_vim_sline)
+
+		##################### Connect the Vim/Tabstop Button ##############################
+
+		self.vim_tabstop = gtkbuilder.get_object("vim_tabstop")
+		self.vim_tabstop.set_value(gdb.get_int(gbase + "vim/tabstop"))
+
+		def set_vim_tabstop(widget, data=None):
+			gdb.set_int(gbase + "vim/tabstop", widget.get_value_as_int())
+
+		self.vim_tabstop.connect("value-changed", set_vim_tabstop)
+
+		####################### Connect the Vim/Autowrap Entry ############################
+
+		self.vim_autowrap = gtkbuilder.get_object("vim_autowrap")
+		self.vim_autowrap.set_value(gdb.get_int(gbase + "vim/wrap_length"))
+
+		def set_vim_autowrap(widget, data=None):
+			gdb.set_int(gbase + "vim/wrap_length", widget.get_value_as_int())
+
+		self.vim_autowrap.connect("value-changed", set_vim_autowrap)
+
+		####################### Connect the Vim/Wrap line Button ##########################
+
+		self.vim_wrap = gtkbuilder.get_object("vim_wrap")
+		self.vim_wrap.set_active(gdb.get_bool(gbase + "vim/wrap"))
+
+		def set_vim_wrap(widget, data=None):
+			gdb.set_bool(gbase + "vim/wrap", widget.get_active())
+
+		self.vim_wrap.connect("clicked", set_vim_wrap)
+
+		###################### Connect the Vim/Autochdir Button ##########################
+
+		self.vim_cd = gtkbuilder.get_object("vim_cd")
+		self.vim_cd.set_active(gdb.get_bool(gbase + "vim/chdir"))
+
+		def set_vim_cd(widget, data=None):
+			gdb.set_bool(gbase + "vim/chdir", widget.get_active())
+
+		self.vim_cd.connect("clicked", set_vim_cd)
+
 		####################### Connect the Vim/Indention Button ##########################
 
 		self.vim_indent = gtkbuilder.get_object("vim_indent")
@@ -1248,6 +1298,16 @@ class BashStyleNG(object):
 			gdb.set_bool(gbase + "vim/hl_cursor", widget.get_active())
 
 		self.vim_hiline.connect("clicked", set_vim_hiline)
+
+		####################### Connect the Vim/Highlight Column Button ###################
+
+		self.vim_hicol = gtkbuilder.get_object("vim_hicol")
+		self.vim_hicol.set_active(gdb.get_bool(gbase + "vim/hl_column"))
+
+		def set_vim_hicol(widget, data=None):
+			gdb.set_bool(gbase + "vim/hl_column", widget.get_active())
+
+		self.vim_hicol.connect("clicked", set_vim_hicol)
 
 		####################### Connect the Vim/Show Ruler Button #########################
 
