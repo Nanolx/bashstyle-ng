@@ -102,6 +102,13 @@ dbg_verbosity ()
 
 }
 
+rc_add ()
+{
+
+	echo "$@" >> $RC_FILE
+
+}
+
 check_opt() {
 
 	which "$1" &>/dev/null
