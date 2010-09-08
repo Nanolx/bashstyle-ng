@@ -9,6 +9,10 @@
 #							#
 #########################################################
 
+if [[ ! -w $HOME/.vimrc || ! -r $HOME/.vimrc ]]; then
+	ERR_MSG+="\n * $HOME/.vimrc is not accessible! -- adjust permissions"
+else
+
 export RC_FILE=$HOME/.vimrc
 
 rm -f $HOME/.vimrc
@@ -41,7 +45,7 @@ fi
 if [[ $(get_key vim/jump_back) == "true" ]]; then
 
 	if [[ -e $HOME/.viminfo && ( ! -w $HOME/.viminfo || ! -r $HOME/.viminfo ) ]]; then
-		ERR_MSG+="\n * $HOME/.viminfo is not fully accessible! -- adjust permissions."
+		ERR_MSG+="\n * $HOME/.viminfo is not accessible! -- adjust permissions."
 	else
 		dbg_msg $"VimCFG Setting:" $"Jump-Back" $"On"
 		rc_add "if has(\"autocmd\")"
@@ -211,3 +215,5 @@ rc_add "endif"
 unset RC_FILE
 
 dbg_msg $"VimCFG Loading:" $"BashStyle-NG"
+
+fi

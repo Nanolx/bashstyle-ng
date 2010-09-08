@@ -9,6 +9,10 @@
 #							#
 #########################################################
 
+if [[ ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ]]; then
+	ERR_MSG+="\n * $HOME/.nanorc is not fully acccessible! -- adjust permissions."
+else
+
 export RC_FILE=$HOME/.nanorc
 
 rm -f $HOME/.nanorc
@@ -105,3 +109,5 @@ fi
 unset RC_FILE
 
 dbg_msg $"NanoCFG Loading:" $"BashStyle-NG"
+
+fi

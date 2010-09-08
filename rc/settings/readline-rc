@@ -9,6 +9,10 @@
 #							#
 #########################################################
 
+if [[ ! -w $HOME/.inputrc || ! -r $HOME/.inputrc ]]; then
+	ERR_MSG+="\n * $HOME/.inputrc is not accessible! -- adjust permissions."
+else
+
 export RC_FILE=$HOME/.inputrc
 
 rm -f $HOME/.inputrc
@@ -117,3 +121,5 @@ rc_add "set completion-query-items $(get_key readline/query_item)"
 unset RC_FILE
 
 dbg_msg $"ReadlineCFG Loading:" $"BashStyle-NG"
+
+fi
