@@ -31,6 +31,33 @@ for RC in ${BSNG_FUNCS[@]}; do
 	source $BSNG_RC_DIR/functions/$RC
 done
 
+if [[ $verbose != true ]]; then
+
+	spin(){
+
+		while [ true ]
+		do
+			echo -ne "l      \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "lo     \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "loa    \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "load   \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "loadi  \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "loadin \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "loading\b\b\b\b\b\b\b";sleep .08;
+			echo -ne " oading\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "  ading\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "   ding\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "    ing\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "     ng\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "      g\b\b\b\b\b\b\b";sleep .08;
+		done
+
+	}
+
+	spin &
+	spin_id=$!
+fi
+
 if [[ $(get_key debug) == true ]]; then \
 	eval BSNG_LOGFILE=$(get_key debug_log)
 	dbg_log rm -f $BSNG_LOGFILE
@@ -176,4 +203,9 @@ dbg_finalize
 
 if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
 	cat $BSNG_RC_DIR/ascii/birthday
+fi
+
+if [[ $verbose != true ]]; then
+	kill $spin_id 2>&1>/dev/null
+	tput sgr0
 fi
