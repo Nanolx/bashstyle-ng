@@ -9,107 +9,111 @@
 #							#
 #########################################################
 
+export RC_FILE=$HOME/.inputrc
+
 rm -f $HOME/.inputrc
 
 dbg_msg $"ReadlineCFG Setting:" $"Bellstyle" $(get_key readline/bellstyle)
 
 if [[ $(get_key readline/bellstyle) == audible ]]; then
-	echo "set bell-style audible" >> $HOME/.inputrc
+	rc_add "set bell-style audible"
 elif [[ $(get_key readline/bellstyle) == visible ]]; then
-	echo "set bell-style visible" >> $HOME/.inputrc
+	rc_add "set bell-style visible"
 elif [[ $(get_key readline/bellstyle) == none ]]; then
-	echo "set bell-style none" >> $HOME/.inputrc
+	rc_add "set bell-style none"
 fi
 
 if [[ $(get_key readline/completion) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"Off"
-	echo "set disable-completion off" >> $HOME/.inputrc
+	rc_add "set disable-completion off"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"On"
-	echo "set disable-completion on" >> $HOME/.inputrc
+	rc_add "set disable-completion on"
 fi
 
 if [[ $(get_key readline/scrollhz) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"On"
-	echo "set horizontal-scroll-mode on" >> $HOME/.inputrc
+	rc_add "set horizontal-scroll-mode on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"Off"
-	echo "set horizontal-scroll-mode off" >> $HOME/.inputrc
+	rc_add "set horizontal-scroll-mode off"
 fi
 
 if [[ $(get_key readline/ambiguous) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"On"
-	echo "set show-all-if-ambiguous on" >> $HOME/.inputrc
+	rc_add "set show-all-if-ambiguous on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"Off"
-	echo "set show-all-if-ambiguous off" >> $HOME/.inputrc
+	rc_add "set show-all-if-ambiguous off"
 fi
 
 if [[ $(get_key readline/hidden) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"On"
-	echo "set match-hidden-files on" >> $HOME/.inputrc
+	rc_add "set match-hidden-files on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"Off"
-	echo "set match-hidden-files off" >> $HOME/.inputrc
+	rc_add "set match-hidden-files off"
 fi
 
 if [[ $(get_key readline/ignorecase) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"On"
-	echo "set completition-ignore-case on" >> $HOME/.inputrc
+	rc_add "set completition-ignore-case on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"Off"
-	echo "set completition-ignore-case off" >> $HOME/.inputrc
+	rc_add "set completition-ignore-case off"
 fi
 
 if [[ $(get_key readline/editing_mode) == emacs ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Emacs"
-	echo "set editing-mode emacs" >> $HOME/.inputrc
+	rc_add "set editing-mode emacs"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Vi"
-	echo "set editing-mode vi" >> $HOME/.inputrc
+	rc_add "set editing-mode vi"
 fi
 
 if [[ $(get_key readline/vstats) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"On"
-	echo "set visible-stats on" >> $HOME/.inputrc
+	rc_add "set visible-stats on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"Off"
-	echo "set visible-stats off" >> $HOME/.inputrc
+	rc_add "set visible-stats off"
 fi
 
 if [[ $(get_key readline/completionhz) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"On"
-	echo "set print-completions-horizontally on" >> $HOME/.inputrc
+	rc_add "set print-completions-horizontally on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"Off"
-	echo "set print-completions-horizontally off" >> $HOME/.inputrc
+	rc_add "set print-completions-horizontally off"
 fi
 
 if [[ $(get_key readline/mark_dirs) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"On"
-	echo "set mark-directories on" >> $HOME/.inputrc
+	rc_add "set mark-directories on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"Off"
-	echo "set mark-directories off" >> $HOME/.inputrc
+	rc_add "set mark-directories off"
 fi
 
 if [[ $(get_key readline/mark_sym_dirs) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"On"
-	echo "set mark-symlinked-directories on" >> $HOME/.inputrc
+	rc_add "set mark-symlinked-directories on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"Off"
-	echo "set mark-symlinked-directories off" >> $HOME/.inputrc
+	rc_add "set mark-symlinked-directories off"
 fi
 
 if [[ $(get_key readline/mark_modlines) == true ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"On"
-	echo "set mark-modified-lines on" >> $HOME/.inputrc
+	rc_add "set mark-modified-lines on"
 else
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"Off"
-	echo "set mark-modified-lines off" >> $HOME/.inputrc
+	rc_add "set mark-modified-lines off"
 fi
 
 dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(get_key readline/query_item)
-echo "set completion-query-items $(get_key readline/query_item)" >> $HOME/.inputrc
+rc_add "set completion-query-items $(get_key readline/query_item)"
+
+unset RC_FILE
 
 dbg_msg $"ReadlineCFG Loading:" $"BashStyle-NG"

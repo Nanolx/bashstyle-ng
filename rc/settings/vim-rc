@@ -45,7 +45,7 @@ if [[ $(get_key vim/jump_back) == "true" ]]; then
 	else
 		dbg_msg $"VimCFG Setting:" $"Jump-Back" $"On"
 		rc_add "if has(\"autocmd\")"
-		rc_add "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")" >>	$HOME/.vimrc
+		rc_add "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")"
 		rc_add "    \| exe \"normal! g'\\\"\" | endif"
 		rc_add "endif"
 	fi
