@@ -146,16 +146,16 @@ install:
 	@install -m644 translations/mo/bs-ng-ru.mo $(DESTDIR)/usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-es.mo $(DESTDIR)/usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
 	@if test ! $(GCONF_DISABLE) ; then \
-		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[03/05] register gconf-schemas" ; \
+		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[01/03] register gconf-schemas" ; \
 		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
 			gconftool-2 --makefile-install-rule data/bashstyle.schemas >/dev/null ; \
 	fi
 	@if test ! $(CACHE_DISABLE) ; then \
-		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[04/05] update icon cache" ; \
+		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[02/03] update icon cache" ; \
 		gtk-update-icon-cache -f /usr/share/icons/hicolor 2>/dev/null ; \
 	fi
 	@if test ! $(KILL_DISABLE) ; then \
-		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[05/05] restart gconf-daemon" ; \
+		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[03/03] restart gconf-daemon" ; \
 		killall -qw gconfd-2 >/dev/null || exit 0; \
 	fi
 	@tput sgr0
@@ -185,16 +185,16 @@ uninstall:
 	@echo -e "$(RED)removing:$(CYAN)	[08/08] .pc file"
 	@rm -f  /usr/lib/pkgconfig/bashstyle-ng.pc
 	@if test ! $(GCONF_DISABLE) ; then \
-		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[02/04] deregister gconf-schemas" ; \
+		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[01/03] deregister gconf-schemas" ; \
 		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
 		gconftool-2 --makefile-uninstall-rule data/bashstyle.schemas >/dev/null ; \
 	fi
 	@if test ! $(CACHE_DISABLE) ; then \
-		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[03/04] update icon cache" ; \
+		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[02/03] update icon cache" ; \
 		gtk-update-icon-cache -f /usr/share/icons/hicolor 2>/dev/null ; \
 	fi
 	@if test ! $(KILL_DISABLE) ; then \
-		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[04/04] restart gconf-daemon" ; \
+		echo -e "$(MAGENTA)post-remove:	$(YELLOW)[03/03] restart gconf-daemon" ; \
 		killall -qw gconfd-2 >/dev/null || exit 0 ; \
 	fi
 	@tput sgr0
