@@ -48,6 +48,7 @@ po: pot
 	@msgmerge -q -o translations/po/bs-ng-ru.po translations/po/bs-ng-ru.po translations/pot/bs-ng.pot >/dev/null
 	@echo -e "\t$(GREEN) [04/04] spanish (es)"
 	@msgmerge -q -o translations/po/bs-ng-es.po translations/po/bs-ng-es.po translations/pot/bs-ng.pot >/dev/null
+	@msgmerge -q -o translations/po/nx-rc-es.po translations/po/nx-rc-es.po translations/pot/nx-rc.pot >/dev/null
 	@tput sgr0
 
 mo:
@@ -62,6 +63,7 @@ mo:
 	@msgfmt --output-file=translations/mo/bs-ng-ru.mo translations/po/bs-ng-ru.po
 	@echo -e "\t$(GREEN) [04/04] spanish (es)"
 	@msgfmt --output-file=translations/mo/bs-ng-es.mo translations/po/bs-ng-es.po
+	@msgfmt --output-file=translations/mo/nx-rc-es.mo translations/po/nx-rc-es.po
 	@tput sgr0
 
 distclean: clean
@@ -145,6 +147,7 @@ install:
 	@install -m644 translations/mo/bs-ng-it.mo $(DESTDIR)/usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-ru.mo $(DESTDIR)/usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@install -m644 translations/mo/bs-ng-es.mo $(DESTDIR)/usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
+	@@install -m644 translations/mo/nx-rc-es.mo $(DESTDIR)/usr/share/locale/es/LC_MESSAGES/nx-rc.mo
 	@if test ! $(GCONF_DISABLE) ; then \
 		echo -e "$(MAGENTA)post-install:	$(SMOOTHBLUE)[01/03] register gconf-schemas" ; \
 		GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
@@ -176,6 +179,7 @@ uninstall:
 	@rm -f  /usr/share/locale/it/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/ru/LC_MESSAGES/bashstyle-ng.mo
 	@rm -f  /usr/share/locale/es/LC_MESSAGES/bashstyle-ng.mo
+	@rm -f  /usr/share/locale/es/LC_MESSAGES/nx-rc.mo
 	@echo -e "$(RED)removing:$(CYAN)	[05/08] gconf schemas"
 	@rm -f  @PREFIX@/share/gconf/schemas/bashstyle.schemas
 	@echo -e "$(RED)removing:$(CYAN)	[06/08] icons from hicolor"
