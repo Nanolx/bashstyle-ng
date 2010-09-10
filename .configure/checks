@@ -1,5 +1,21 @@
 #!/bin/bash
 
+check ()
+{
+
+        XFS=$IFS
+        IFS=":"
+
+        for dir in $PATH; do
+                if [[ -f "${i}/$1" ]]; then
+                        echo ${dir}/$1
+                fi
+        done
+
+	IFS=$XFS
+
+}
+
 check_apps () {
 
 SECTION=$1
@@ -10,7 +26,7 @@ section_message $2 $3
 
 while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-	which $DEPENDENCY &>/dev/null
+	check $DEPENDENCY &>/dev/null
 	DEP_RETURN=$?
 	if [[ $DEP_RETURN == 0 ]]; then
 		ok_message $DEPENDENCY
