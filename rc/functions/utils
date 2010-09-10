@@ -271,6 +271,127 @@ spanner(){
 
 }
 
+working ()
+{
+   while [ -d /proc/$1 ]
+   do
+	echo -ne "w      \b\b\b\b\b\b\b";sleep .08;
+	echo -ne "wo     \b\b\b\b\b\b\b";sleep .08;
+	echo -ne "wor    \b\b\b\b\b\b\b";sleep .08;
+	echo -ne "work   \b\b\b\b\b\b\b";sleep .08;
+	echo -ne "worki  \b\b\b\b\b\b\b";sleep .08;
+	echo -ne "workin \b\b\b\b\b\b\b";sleep .08;
+	echo -ne "working\b\b\b\b\b\b\b";sleep .08;
+	echo -ne " orking\b\b\b\b\b\b\b";sleep .08;
+	echo -ne "  rking\b\b\b\b\b\b\b";sleep .08;
+	echo -ne "   king\b\b\b\b\b\b\b";sleep .08;
+	echo -ne "    ing\b\b\b\b\b\b\b";sleep .08;
+	echo -ne "     ng\b\b\b\b\b\b\b";sleep .08;
+	echo -ne "      g\b\b\b\b\b\b\b";sleep .08;
+   done
+
+}
+
+spin () {
+
+        echo -n "|/     |"
+        while [ -d /proc/$1 ]
+        do
+        # moving right
+        echo -ne "\b\b\b\b\b\b\b-     |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b\b\\     |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b\b|     |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b\b /    |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b-    |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b\\    |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b|    |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b /   |"
+        sleep .05
+        echo -ne "\b\b\b\b\b-   |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\\   |"
+        sleep .05
+        echo -ne "\b\b\b\b\b|   |"
+        sleep .05
+        echo -ne "\b\b\b\b\b /  |"
+        sleep .05
+        echo -ne "\b\b\b\b-  |"
+        sleep .05
+        echo -ne "\b\b\b\b\\  |"
+        sleep .05
+        echo -ne "\b\b\b\b|  |"
+        sleep .05
+        echo -ne "\b\b\b\b / |"
+        sleep .05
+        echo -ne "\b\b\b- |"
+        sleep .05
+        echo -ne "\b\b\b\\ |"
+        sleep .05
+        echo -ne "\b\b\b| |"
+        sleep .05
+        echo -ne "\b\b\b /|"
+        sleep .05
+        echo -ne "\b\b-|"
+        sleep .05
+        echo -ne "\b\b\\|"
+        sleep .05
+        echo -ne "\b\b||"
+        sleep .05
+        echo -ne "\b\b/|"
+        sleep .05
+
+        # moving left
+        echo -ne "\b\b||"
+        sleep .05
+        echo -ne "\b\b\\|"
+        sleep .05
+        echo -ne "\b\b-|"
+        sleep .05
+        echo -ne "\b\b\b/ |"
+        sleep .05
+        echo -ne "\b\b\b| |"
+        sleep .05
+        echo -ne "\b\b\b\\ |"
+        sleep .05
+        echo -ne "\b\b\b- |"
+        sleep .05
+        echo -ne "\b\b\b\b/  |"
+        sleep .05
+        echo -ne "\b\b\b\b|  |"
+        sleep .05
+        echo -ne "\b\b\b\b\\  |"
+        sleep .05
+        echo -ne "\b\b\b\b-  |"
+        sleep .05
+        echo -ne "\b\b\b\b\b/   |"
+        sleep .05
+        echo -ne "\b\b\b\b\b|   |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\\   |"
+        sleep .05
+        echo -ne "\b\b\b\b\b-   |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b/    |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b|    |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b\\    |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b-    |"
+        sleep .05
+        echo -ne "\b\b\b\b\b\b\b/     |"
+        sleep .05
+        done
+	echo -e "\b\b\b\b\b\b\b\b\b|=======| done!"
+}
+
 clock ()
 {
 	while true; do
