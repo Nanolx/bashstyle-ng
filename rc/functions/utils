@@ -9,6 +9,21 @@
 #							#
 #########################################################
 
+xalias () {
+
+	alias=$1
+	shift
+
+	if [[ $(grep -w "alias $alias" $HOME/.custom-rc) != "" ]]; then
+		sed -e "/alias $alias/d"
+	fi
+
+	echo "alias $alias=\"$@\"" >> $HOME/.custom-rc
+
+	. $HOME/.custom-rc
+
+}
+
 xunalias() {
 
 	for alias in $@; do
