@@ -23,6 +23,9 @@ Overview of changes in v7.12 "Planetary Collapse"
 
 * updated debian packaging scripts
 
+* use our own check function rather than which
+  (percebtibly faster)
+
 === Added Features ===
 * dbg_log (internal)
 * dbg_finalize (internal)
@@ -45,6 +48,8 @@ Overview of changes in v7.12 "Planetary Collapse"
   + when filetype indention is enabled, also enable smartindent
   + set linespace to 0
   + load $HOME/.vimrc.custom if availabe (put your stuff here)
+
+* xalias (set alias and add to $HOME/.custom-rc)
 
 * progressbar [fancy animated bar]
 * spinner   [/ - \ | type spinner]
@@ -84,6 +89,8 @@ Overview of changes in v7.12 "Planetary Collapse"
 * some minor UI tweaks
 
 * improved check if a bookmark already exists
+
+* xunalias (update for xalias)
 
 * bin2all (updated)
 * dec2all (updated)
