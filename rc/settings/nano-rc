@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ]]; then
+if [[ -e $HOME/.nanorc && ( ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ) ]]; then
 	ERR_MSG+="\n * $HOME/.nanorc is not fully acccessible! -- adjust permissions."
 else
 

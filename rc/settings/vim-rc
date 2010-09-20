@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ ! -w $HOME/.vimrc || ! -r $HOME/.vimrc ]]; then
+if [[ -e $HOME/.vimrc && ( ! -w $HOME/.vimrc || ! -r $HOME/.vimrc ) ]]; then
 	ERR_MSG+="\n * $HOME/.vimrc is not accessible! -- adjust permissions"
 else
 

@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ ! -w $HOME/.inputrc || ! -r $HOME/.inputrc ]]; then
+if [[ -e $HOME/.inputrc && ( ! -w $HOME/.inputrc || ! -r $HOME/.inputrc ) ]]; then
 	ERR_MSG+="\n * $HOME/.inputrc is not accessible! -- adjust permissions."
 else
 
