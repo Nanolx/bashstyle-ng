@@ -181,16 +181,14 @@ fi
 
 if [[ $verbose != true ]]; then
 	kill $spin_id 2>&1>/dev/null
+	echo -ne "\b\b\b\b\b\b\b\b\b\n"
 fi
 
 if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
-	clear
 	cat $BSNG_RC_DIR/ascii/birthday
 elif [[ $WelcomeMessage != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
-	clear
 	dbg_log $WelcomeMessage
-else 	clear
 fi
 
 if [[ -e $HOME/.bookmarks ]]; then
