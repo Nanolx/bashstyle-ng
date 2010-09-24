@@ -9,289 +9,32 @@
 #							#
 #########################################################
 
-dirinfo_get_creation_date () {
-
-	if [[ ! "$1" ]]; then
-		DIR="."
-	else	DIR="$1"
-	fi
-
-	if [[ -d "$DIR" ]]; then
-		stat "$DIR" | grep "Modify" | gawk '{print $2}'
-	fi
-
-}
-
-dirinfo_set_creation_date () {
-
-	if [[ ! "$1" ]]; then
-		DIR="."
-	else	DIR="$1"
-	fi
-
-	if [[ -e "$DIR"/.dirinfo ]]; then
-		sed -e '/Created/d' -i "$DIR"/.dirinfo
-		echo "Created=$(dirinfo_get_creation_date $DIR)" >> "$DIR"/.dirinfo
-	fi
-
-}
-
-dirinfo_get_dirinfo () {
-
-	if [[ ! "$1" ]]; then
-		DIR="."
-	else	DIR="$1"
-	fi
-
-	if [[ -e "$DIR"/.dirinfo ]]; then
-		. "$DIR"/.dirinfo
-	fi
-
-	echo -e "\n${eyellow} -- $PWD --${ewhite}"
-
-	if [[ $Notes == "" ]]; then
-		Notes="No notes."
-	fi
-
-	if [[ ! ${Type} ]]; then
-		dirinfo_display_info
-	else	dirinfo_display_ascii
-	fi
-
-	unset Owner Created Allow Delete Tags Notes Type ASCII
-	echo ""
-
-}
-
-dirinfo_display_info () {
-
-	if [[ ${Owner} ]]; then
-		echo -e "\n${eiceblue} Owner:   ${Owner}"
-	fi
-
-	if [[ ${Created} ]]; then
-		echo -e "${emagenta} Created: ${Created}"
-	fi
-
-	if [[ ${Tags} ]]; then
-		echo -e "${ered} Tags:    ${Tags[@]}"
-	fi
-
-	if [[ ${Notes} ]]; then
-		echo -e "\n${egreen} ${Notes}"
-	fi
-
-	tput sgr0
-
-}
-
-dirinfo_display_ascii () {
-
-	if [[ -e $BSNG_RC_DIR/ascii/folder-${Type} ]]; then
-		ASCII="$BSNG_RC_DIR/ascii/folder-${Type}"
-	elif [[ -e $DIR/.dirascii ]]; then
-		ASCII="$DIR/.dirascii"
-	fi
-
-	if [[ $ASCII && $enabcol == true ]]; then
-		echo -e "$(cat $ASCII)" | sed -e "s/@OWNER@/${Owner}/g" \
-			-e "s/@CREATED@/${Created}/g" \
-			-e "s/@TAGS@/${Tags[*]}/g" \
-			-e "s/@NOTES@/${Notes}/g"
-	elif [[ $ASCII && $enabcol != true ]]; then
-		echo -e "$(cat $ASCII | sed -e 's/\\033\[01\;36m//g'\
-			-e 's/\\033\[01\;35m//g' \
-			-e 's/\\033\[01\;31m//g' \
-			-e 's/\\033\[01\;32m//g' \
-			-e 's/\\033\[01\;37m//g' )" | \
-			sed -e "s/@OWNER@/${Owner}/g" \
-			-e "s/@CREATED@/${Created}/g" \
-			-e "s/@TAGS@/${Tags[*]}/g" \
-			-e "s/@NOTES@/${Notes}/g"
-	else 	unset Type
-		dirinfo_display_info
-	fi
-
-	tput sgr0
-
-}
-
-dirinfo_index_db () {
-
-	find $HOME -name .dirinfo | grep -w .dirinfo > $HOME/.dirinfo_index
-
-}
-
-dirinfo_index_tags () {
-
-	if [[ -e $HOME/.dirinfo_index ]]; then
-		rm -f $HOME/.dirinfo_tags
-		for dirinfo in $(cat $HOME/.dirinfo_index); do
-			echo "${dirinfo%.dirinfo}" :: $(grep Tags "$dirinfo") >> $HOME/.dirinfo_tags
-		done
-		sed -e 's/Tags=(//g' -e 's/)//g' -i $HOME/.dirinfo_tags
-	fi
-
-}
-
-dirinfo_index_types () {
-
-	if [[ -e $HOME/.dirinfo_index ]]; then
-		rm -f $HOME/.dirinfo_types
-		for dirinfo in $(cat $HOME/.dirinfo_index); do
-			echo "${dirinfo%.dirinfo}" :: $(grep Type "$dirinfo") >> $HOME/.dirinfo_types
-		done
-		sed -e 's/Type=//g' -i $HOME/.dirinfo_types
-	fi
-
-}
-
-dirinfo_index_dates () {
-
-	if [[ -e $HOME/.dirinfo_index ]]; then
-		rm -f $HOME/.dirinfo_dates
-		for dirinfo in $(cat $HOME/.dirinfo_index); do
-			echo "${dirinfo%.dirinfo}" :: $(grep Created "$dirinfo") >> $HOME/.dirinfo_dates
-		done
-		sed -e 's/Created=//g' -i $HOME/.dirinfo_dates
-	fi
-
-}
-
-dirinfo_index () {
+dirinfo () {
 
 	case $1 in
-		*update)
-			echo "[01/04] .dirinfo index"
-			dirinfo_index_db
-			echo "[02/04] creation-date index"
-			dirinfo_index_dates
-			echo "[03/04] tag index"
-			dirinfo_index_tags
-			echo "[04/04] type index"
-			dirinfo_index_types
-		;;
-
-		*rebuild)
-			echo "[01/03] creation-date index"
-			dirinfo_index_dates
-			echo "[02/03] tag index"
-			dirinfo_index_tags
-			echo "[03/03] type index"
-			dirinfo_index_types
-		;;
-
-		*search)
-
-			if [[ ! -e $HOME/.dirinfo_index ]]; then
-				echo "Please run dirinfo_index --update first"
-				exit 1
-			fi
-
-			case $2 in
-				*tag)
-					grep " $3" $HOME/.dirinfo_tags | gawk '{print $1}'
-				;;
-
-				*type)
-					grep " $3" $HOME/.dirinfo_types | gawk '{print $1}'
-				;;
-
-				*date)
-					grep " $3" $HOME/.dirinfo_dates | gawk '{print $1}'
-				;;
-			esac
-		;;
-
-		*list)
-
-			if [[ ! -e $HOME/.dirinfo_index ]]; then
-				echo "Please run dirinfo_index --update first"
-				exit 1
-			fi
-
-			cat $HOME/.dirinfo_index | sed -e 's/.dirinfo//g'
-		;;
 
 		*help | "")
-
-			echo -e "\n${ewhite}Usage:\n"
-			echo -e "${eorange}dirinfo_index${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
-			\n${eorange}dirinfo_indexd${ewhite} | ${egreen}--rebuild ${eiceblue}[update the index, but don't scan for new .dirinfo files]\
-			\n${eorange}dirinfo_index${ewhite} | ${egreen}--search ${eiceblue}[search the index for --tag, --type, --date, --owner]\
-			\n${eorange}dirinfo_index${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]" | column -t
-			echo ""
-			tput sgr0
-
+			$BSNG_RC_DIR/dirinfo/index --help
 		;;
+
+		*create)
+			$BSNG_RC_DIR/dirinfo/create
+		;;
+
+		*)
+			$BSNG_RC_DIR/dirinfo/index "$@"
+		;;
+
 	esac
-
-}
-
-dirinfo_create () {
-
-
-	if [[ -e $PWD/.dirinfo ]]; then
-		. $PWD/.dirinfo
-	fi
-
-	whiptail --title ".dirinfo creator" --msgbox "This wizard will guide you through the process of creating a .dirinfo file." 12 85
-
-	if [[ $Owner == "" ]]; then
-		xname=$USER_REAL_NAME
-	else xname=$Owner
-	fi
-
-	owner=$(whiptail --title "directory owner" --inputbox "Enter the owner of the folder" 12 85 "$xname" 3>&1 1>&2 2>&3)
-	echo Owner=\"$owner\" > $PWD/.dirinfo
-
-	type=$(whiptail --title "directory type" --menu "Choose the directory-type" 12 85 10 1 book 2 document 3 download 4 game 5 home 6 mediaplayer 7 music 8 picture 9 share 10 video 3>&1 1>&2 2>&3)
-
-	case $type in
-		1) xtype=book ;;
-		2) xtype=document ;;
-		3) xtype=download ;;
-		4) xtype=game ;;
-		5) xtype=home ;;
-		6) xtype=mediaplayer ;;
-		7) xtype=music ;;
-		8) xtype=picture ;;
-		9) xtype=share ;;
-	       10) xtype=video;;
-	esac
-
-	echo Type=\"$xtype\" >> $PWD/.dirinfo
-
-	tags=$(whiptail --title "directory tags" --inputbox "Insert tags for the directory. Seperate with space" 12 85 "$(echo ${Tags[*]} | sed -e 's/(//g' -e 's/)//g')" 3>&1 1>&2 2>&3)
-	echo Tags=\( $tags \) >> $PWD/.dirinfo
-
-	if [[ $Created == "" ]]; then
-		xdate=$(dirinfo_get_creation_date)
-	else xdate=$Created
-	fi
-
-	created=$(whiptail --title "directory creation date" --inputbox "Insert the creation date of the directory" 12 85 $xdate 3>&1 1>&2 2>&3)
-	echo Created=\"$created\" >> $PWD/.dirinfo
-
-	notes=$(whiptail --title "directory notes" --inputbox "Enter additional notes for the directory" 12 85 "$Notes" 3>&1 1>&2 2>&3)
-	echo Notes=\"$notes\" >> $PWD/.dirinfo
-
-	dirinfo_get_dirinfo
-
-	unset Owner Type Tags Created Notes
 
 }
 
 lscd () {
 
 	builtin cd "${@}" &>/dev/null
-	dirinfo_get_dirinfo
+	$BSNG_RC_DIR/dirinfo/display
 
 	echo -e "${epink}content:"
-
-	if [[ $enabcol != true ]]; then
-		LSCD_OPTS+=" --color=none"
-	fi
 
 	ls $LSCD_OPTS
 

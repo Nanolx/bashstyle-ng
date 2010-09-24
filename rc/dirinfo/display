@@ -1,0 +1,86 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+dirinfo_display_info () {
+
+	if [[ ${Owner} ]]; then
+		echo -e "\n${eiceblue} Owner:   ${Owner}"
+	fi
+
+	if [[ ${Created} ]]; then
+		echo -e "${emagenta} Created: ${Created}"
+	fi
+
+	if [[ ${Tags} ]]; then
+		echo -e "${ered} Tags:    ${Tags[@]}"
+	fi
+
+	if [[ ${Notes} ]]; then
+		echo -e "\n${egreen} ${Notes}"
+	fi
+
+	tput sgr0
+
+}
+
+dirinfo_display_ascii () {
+
+	if [[ -e $BSNG_RC_DIR/ascii/folder-${Type} ]]; then
+		ASCII="$BSNG_RC_DIR/ascii/folder-${Type}"
+	elif [[ -e $DIR/.dirascii ]]; then
+		ASCII="$DIR/.dirascii"
+	fi
+
+	if [[ $ASCII && $enabcol == true ]]; then
+		echo -e "$(cat $ASCII)" | sed -e "s/@OWNER@/${Owner}/g" \
+			-e "s/@CREATED@/${Created}/g" \
+			-e "s/@TAGS@/${Tags[*]}/g" \
+			-e "s/@NOTES@/${Notes}/g"
+	elif [[ $ASCII && $enabcol != true ]]; then
+		echo -e "$(cat $ASCII | sed -e 's/\\033\[01\;36m//g'\
+			-e 's/\\033\[01\;35m//g' \
+			-e 's/\\033\[01\;31m//g' \
+			-e 's/\\033\[01\;32m//g' \
+			-e 's/\\033\[01\;37m//g' )" | \
+			sed -e "s/@OWNER@/${Owner}/g" \
+			-e "s/@CREATED@/${Created}/g" \
+			-e "s/@TAGS@/${Tags[*]}/g" \
+			-e "s/@NOTES@/${Notes}/g"
+	else 	unset Type
+		dirinfo_display_info
+	fi
+
+	tput sgr0
+
+}
+
+if [[ ! "$1" ]]; then
+	DIR="."
+else	DIR="$1"
+fi
+
+if [[ -e "$DIR"/.dirinfo ]]; then
+	. "$DIR"/.dirinfo
+fi
+
+echo -e "\n${eyellow} -- $PWD --${ewhite}"
+
+if [[ $Notes == "" ]]; then
+	Notes="No notes."
+fi
+
+if [[ ! ${Type} ]]; then
+	dirinfo_display_info
+else	dirinfo_display_ascii
+fi
+
+unset Owner Created Allow Delete Tags Notes Type ASCII
+echo ""

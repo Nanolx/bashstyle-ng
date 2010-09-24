@@ -1,0 +1,119 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+dirinfo_index_db () {
+
+	find $HOME -name .dirinfo | grep -w .dirinfo > $HOME/.dirinfo_index
+
+}
+
+dirinfo_index_tags () {
+
+	if [[ -e $HOME/.dirinfo_index ]]; then
+		rm -f $HOME/.dirinfo_tags
+		for dirinfo in $(cat $HOME/.dirinfo_index); do
+			echo "${dirinfo%.dirinfo}" :: $(grep Tags "$dirinfo") >> $HOME/.dirinfo_tags
+		done
+		sed -e 's/Tags=(//g' -e 's/)//g' -i $HOME/.dirinfo_tags
+	fi
+
+}
+
+dirinfo_index_types () {
+
+	if [[ -e $HOME/.dirinfo_index ]]; then
+		rm -f $HOME/.dirinfo_types
+		for dirinfo in $(cat $HOME/.dirinfo_index); do
+			echo "${dirinfo%.dirinfo}" :: $(grep Type "$dirinfo") >> $HOME/.dirinfo_types
+		done
+		sed -e 's/Type=//g' -i $HOME/.dirinfo_types
+	fi
+
+}
+
+dirinfo_index_dates () {
+
+	if [[ -e $HOME/.dirinfo_index ]]; then
+		rm -f $HOME/.dirinfo_dates
+		for dirinfo in $(cat $HOME/.dirinfo_index); do
+			echo "${dirinfo%.dirinfo}" :: $(grep Created "$dirinfo") >> $HOME/.dirinfo_dates
+		done
+		sed -e 's/Created=//g' -i $HOME/.dirinfo_dates
+	fi
+
+}
+
+case $1 in
+	*update)
+		echo "[01/04] .dirinfo index"
+		dirinfo_index_db
+		echo "[02/04] creation-date index"
+		dirinfo_index_dates
+		echo "[03/04] tag index"
+		dirinfo_index_tags
+		echo "[04/04] type index"
+		dirinfo_index_types
+	;;
+
+	*rebuild)
+		echo "[01/03] creation-date index"
+		dirinfo_index_dates
+		echo "[02/03] tag index"
+		dirinfo_index_tags
+		echo "[03/03] type index"
+		dirinfo_index_types
+	;;
+
+	*search)
+
+		if [[ ! -e $HOME/.dirinfo_index ]]; then
+			echo "Please run dirinfo_index --update first"
+			exit 1
+		fi
+
+		case $2 in
+			*tag)
+				grep " $3" $HOME/.dirinfo_tags | gawk '{print $1}'
+			;;
+
+			*type)
+				grep " $3" $HOME/.dirinfo_types | gawk '{print $1}'
+			;;
+
+			*date)
+				grep " $3" $HOME/.dirinfo_dates | gawk '{print $1}'
+			;;
+		esac
+	;;
+
+	*list)
+
+		if [[ ! -e $HOME/.dirinfo_index ]]; then
+			echo "Please run dirinfo_index --update first"
+			exit 1
+		fi
+
+		cat $HOME/.dirinfo_index | sed -e 's/.dirinfo//g'
+	;;
+
+	*help | "")
+
+		echo -e "\n${ewhite}Usage:\n"
+		echo -e "${eorange}dirinfo_index${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
+		\n${eorange}dirinfo_index${ewhite} | ${egreen}--rebuild ${eiceblue}[update the index, but don't scan for new .dirinfo files]\
+		\n${eorange}dirinfo_index${ewhite} | ${egreen}--search ${eiceblue}[search the index for --tag, --type, --date, --owner]\
+		\n${eorange}dirinfo_index${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]" | column -t
+		echo ""
+		tput sgr0
+
+	;;
+esac
+
