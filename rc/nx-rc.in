@@ -131,6 +131,9 @@ shopt -s checkwinsize
 if [[ -e $HOME/.settings-rc ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"Fist-Run-Wizard Settings"
 	dbg_log source $HOME/.settings-rc
+	if [[ $enabcol != true ]]; then
+		LSCD_OPTS+=" --color=no"
+	fi
 fi
 
 if [[ -e $HOME/.custom-rc ]]; then \
