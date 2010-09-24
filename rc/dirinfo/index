@@ -107,10 +107,11 @@ case $1 in
 	*help | "")
 
 		echo -e "\n${ewhite}Usage:\n"
-		echo -e "${eorange}dirinfo_index${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
-		\n${eorange}dirinfo_index${ewhite} | ${egreen}--rebuild ${eiceblue}[update the index, but don't scan for new .dirinfo files]\
-		\n${eorange}dirinfo_index${ewhite} | ${egreen}--search ${eiceblue}[search the index for --tag, --type, --date, --owner]\
-		\n${eorange}dirinfo_index${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]" | column -t
+		echo -e "${eorange}dirinfo${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
+		\n${eorange}dirinfo${ewhite} | ${egreen}--rebuild ${eiceblue}[update the index, but don't scan for new .dirinfo files]\
+		\n${eorange}dirinfo${ewhite} | ${egreen}--search ${eiceblue}[search the index for --tag, --type, --date, --owner]\
+		\n${eorange}dirinfo${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]\
+		\n${eorange}dirinfo${ewhite} | ${egreen}--create ${eiceblue} [create .dirinfo for currend directory" | column -t
 		echo ""
 		tput sgr0
 
