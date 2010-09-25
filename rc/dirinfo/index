@@ -51,25 +51,41 @@ dirinfo_index_dates () {
 
 }
 
+dirinfo_index_owners () {
+
+	if [[ -e $HOME/.dirinfo_index ]]; then
+		rm -f $HOME/.dirinfo_owners
+		for dirinfo in $(cat $HOME/.dirinfo_index); do
+			echo "${dirinfo%.dirinfo}" :: $(grep Owner "$dirinfo") >> $HOME/.dirinfo_owners
+		done
+		sed -e 's/Owner=//g' -e 's/\"//g' -i $HOME/.dirinfo_owners
+	fi
+
+}
+
 case $1 in
 	*update)
-		echo "[01/04] .dirinfo index"
+		echo "[01/05] .dirinfo index"
 		dirinfo_index_db
-		echo "[02/04] creation-date index"
+		echo "[02/05] creation-date index"
 		dirinfo_index_dates
-		echo "[03/04] tag index"
+		echo "[03/05] tag index"
 		dirinfo_index_tags
-		echo "[04/04] type index"
+		echo "[04/05] type index"
 		dirinfo_index_types
+		echo "[05/05] owner index"
+		dirinfo_index_owners
 	;;
 
 	*rebuild)
-		echo "[01/03] creation-date index"
+		echo "[01/04] creation-date index"
 		dirinfo_index_dates
-		echo "[02/03] tag index"
+		echo "[02/04] tag index"
 		dirinfo_index_tags
-		echo "[03/03] type index"
+		echo "[03/04] type index"
 		dirinfo_index_types
+		echo "[04/04] owner index"
+		dirinfo_index_owners
 	;;
 
 	*search)
@@ -90,6 +106,10 @@ case $1 in
 
 			*date)
 				grep " $3" $HOME/.dirinfo_dates | gawk '{print $1}'
+			;;
+
+			*owner)
+				grep " $3" $HOME/.dirinfo_owners | gawk '{print $1}'
 			;;
 		esac
 	;;
