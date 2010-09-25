@@ -64,7 +64,7 @@ dirinfo_index_owners () {
 }
 
 case $1 in
-	*update)
+	*generate)
 		echo "[01/05] .dirinfo index"
 		dirinfo_index_db
 		echo "[02/05] creation-date index"
@@ -91,7 +91,7 @@ case $1 in
 	*search)
 
 		if [[ ! -e $HOME/.dirinfo_index ]]; then
-			echo "Please run dirinfo_index --update first"
+			echo "Please run dirinfo_index --generate first"
 			exit 1
 		fi
 
