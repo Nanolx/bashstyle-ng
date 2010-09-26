@@ -9,119 +9,93 @@
 #							#
 #########################################################
 
-dirinfo_index_db () {
+# .dirindex syntax
+# column1   :: column2 :: column3 :: column4 :: column5
+# directory :: tags    :: type    :: date    :: owner
 
-	find $HOME -name .dirinfo | grep -w .dirinfo > $HOME/.dirinfo_index
+dirinfo_create_index () {
 
-}
-
-dirinfo_index_tags () {
-
-	if [[ -e $HOME/.dirinfo_index ]]; then
-		rm -f $HOME/.dirinfo_tags
-		for dirinfo in $(cat $HOME/.dirinfo_index); do
-			echo "${dirinfo%.dirinfo}" :: $(grep Tags "$dirinfo") >> $HOME/.dirinfo_tags
-		done
-		sed -e 's/Tags=(//g' -e 's/)//g' -i $HOME/.dirinfo_tags
+	if [[ ! -e $HOME/.dirindex || $1 == "--force" ]]; then
+		find $HOME -name .dirinfo | sed -e 's/.dirinfo//g' > $HOME/.dirindex.0
+	else	cp $HOME/.dirindex $HOME/.dirindex.0
 	fi
 
-}
+	for directory in $(cat $HOME/.dirindex.0); do
+		echo :: $(grep Tags "$directory/.dirinfo") >> $HOME/.dirindex.1
+	done
+	sed -e 's/Tags=(//g' -e 's/)//g' -i $HOME/.dirindex.1
 
-dirinfo_index_types () {
+	for directory in $(cat $HOME/.dirindex.0); do
+		echo :: $(grep Type "$directory/.dirinfo") >> $HOME/.dirindex.2
+	done
+	sed -e 's/Type=//g' -i $HOME/.dirindex.2
 
-	if [[ -e $HOME/.dirinfo_index ]]; then
-		rm -f $HOME/.dirinfo_types
-		for dirinfo in $(cat $HOME/.dirinfo_index); do
-			echo "${dirinfo%.dirinfo}" :: $(grep Type "$dirinfo") >> $HOME/.dirinfo_types
-		done
-		sed -e 's/Type=//g' -i $HOME/.dirinfo_types
-	fi
+	for directory in $(cat $HOME/.dirindex.0); do
+		echo :: $(grep Created "$directory/.dirinfo") >> $HOME/.dirindex.3
+	done
+	sed -e 's/Created=//g' -i $HOME/.dirindex.3
 
-}
+	for directory in $(cat $HOME/.dirindex.0); do
+		echo :: $(grep Owner "$directory/.dirinfo") >> $HOME/.dirindex.4
+	done
+	sed -e 's/Owner=//g' -e 's/\"//g' -i $HOME/.dirindex.4
 
-dirinfo_index_dates () {
-
-	if [[ -e $HOME/.dirinfo_index ]]; then
-		rm -f $HOME/.dirinfo_dates
-		for dirinfo in $(cat $HOME/.dirinfo_index); do
-			echo "${dirinfo%.dirinfo}" :: $(grep Created "$dirinfo") >> $HOME/.dirinfo_dates
-		done
-		sed -e 's/Created=//g' -i $HOME/.dirinfo_dates
-	fi
-
-}
-
-dirinfo_index_owners () {
-
-	if [[ -e $HOME/.dirinfo_index ]]; then
-		rm -f $HOME/.dirinfo_owners
-		for dirinfo in $(cat $HOME/.dirinfo_index); do
-			echo "${dirinfo%.dirinfo}" :: $(grep Owner "$dirinfo") >> $HOME/.dirinfo_owners
-		done
-		sed -e 's/Owner=//g' -e 's/\"//g' -i $HOME/.dirinfo_owners
-	fi
+	paste -d' ' $HOME/.dirindex.[0-4] > $HOME/.dirindex
+	sed -e 's/\"//g' -i $HOME/.dirindex
+	rm $HOME/.dirindex.[0-4]
 
 }
 
 case $1 in
 	*generate)
-		echo "[01/05] .dirinfo index"
-		dirinfo_index_db
-		echo "[02/05] creation-date index"
-		dirinfo_index_dates
-		echo "[03/05] tag index"
-		dirinfo_index_tags
-		echo "[04/05] type index"
-		dirinfo_index_types
-		echo "[05/05] owner index"
-		dirinfo_index_owners
+		dirinfo_create_index --force
 	;;
 
 	*rebuild)
-		echo "[01/04] creation-date index"
-		dirinfo_index_dates
-		echo "[02/04] tag index"
-		dirinfo_index_tags
-		echo "[03/04] type index"
-		dirinfo_index_types
-		echo "[04/04] owner index"
-		dirinfo_index_owners
+		dirinfo_create_index
 	;;
 
 	*search)
 
-		if [[ ! -e $HOME/.dirinfo_index ]]; then
-			echo "Please run dirinfo_index --generate first"
+		if [[ ! -e $HOME/.dirindex ]]; then
+			echo "Please run dirinfo --generate first"
 			exit 1
 		fi
 
-		case $2 in
+		shift
+		TYPE=$1
+
+		shift
+		PATTERN="$@"
+
+		case $TYPE in
+
 			*tag)
-				grep " $3" $HOME/.dirinfo_tags | gawk '{print $1}'
+				gawk -F"::" '$2 ~ /'"${PATTERN}"'/{print $1}' ~/.dirindex
 			;;
 
 			*type)
-				grep " $3" $HOME/.dirinfo_types | gawk '{print $1}'
+				gawk -F"::" '$3 ~ /'"${PATTERN}"'/{print $1}' ~/.dirindex
 			;;
 
 			*date)
-				grep " $3" $HOME/.dirinfo_dates | gawk '{print $1}'
+				gawk -F"::" '$4 ~ /'"${PATTERN}"'/{print $1}' ~/.dirindex
 			;;
 
 			*owner)
-				grep " $3" $HOME/.dirinfo_owners | gawk '{print $1}'
+				gawk -F"::" '$5 ~ /'"${PATTERN}"'/{print $1}' ~/.dirindex
 			;;
 		esac
 	;;
 
 	*list)
 
-		if [[ ! -e $HOME/.dirinfo_index ]]; then
-			echo "Please run dirinfo_index --update first"
+		if [[ ! -e $HOME/.dirindex ]]; then
+			echo "Please run dirinfo --generate first"
 			exit 1
 		fi
 
-		cat $HOME/.dirinfo_index | sed -e 's/.dirinfo//g'
+		cat $HOME/.dirindex | sed -e 's/.dirinfo//g'
 	;;
 
 	*help | "")
