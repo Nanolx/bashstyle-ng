@@ -64,26 +64,24 @@ case $1 in
 
 		shift
 		TYPE=$1
-
 		shift
-		PATTERN="$@"
 
 		case $TYPE in
 
 			*tag)
-				gawk -F"::" '$2 ~ /'"${PATTERN}"'/{print $1}' ~/.dirindex
+				gawk -F"::" '$2 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 			;;
 
 			*type)
-				gawk -F"::" '$3 ~ /'"${PATTERN}"'/{print $1}' ~/.dirindex
+				gawk -F"::" '$3 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 			;;
 
 			*date)
-				gawk -F"::" '$4 ~ /'"${PATTERN}"'/{print $1}' ~/.dirindex
+				gawk -F"::" '$4 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 			;;
 
 			*owner)
-				gawk -F"::" '$5 ~ /'"${PATTERN}"'/{print $1}' ~/.dirindex
+				gawk -F"::" '$5 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 			;;
 		esac
 	;;
