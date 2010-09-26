@@ -39,7 +39,7 @@ PROMPT_COMMAND=pre_prompt
 
 if [[ $enabcol == true ]]; then
 
-        PS1="$sepacolor┌─($usercolor \u $fontcolor @ $hostcolor \h\
+        PS1="$sepacolor┌─($usercolor \u$fontcolor @ $hostcolor\h\
 $datecolor \$(date \"+%a, %d %b %y\")$sepacolor )─\${fill}─($wdircolor \$newPWD \
 $sepacolor)─<\n$sepacolor└─($timecolor \$(date \"+%H:%M\")$usercolor \$$sepacolor )─>$fontcolor "
 
