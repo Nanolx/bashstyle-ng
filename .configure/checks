@@ -83,7 +83,8 @@ section_message $2 $3
 
 while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-	python -c "import $DEPENDENCY"
+	python -c "import imp
+imp.find_module('$DEPENDENCY')"
 	DEP_RETURN=$?
 	if [[ $DEP_RETURN == 0 ]]; then
 		ok_message $DEPENDENCY
