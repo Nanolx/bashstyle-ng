@@ -81,6 +81,15 @@ dbg_log alias reload="source ~/.bashrc"
 dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
 dbg_log alias rd="pwd -P"
 
+dbg_msg $"BashStyle-NG Setting:" $"Alias" rm=saferm
+dbg_log alias rm="saferm"
+
+dbg_msg $"BashStyle-NG Setting:" $"Alias" mv=safemv
+dbg_log alias mv="safemv"
+
+dbg_msg $"BashStyle-NG Setting:" $"Alias" cp=safecp
+dbg_log alias cp="safecp"
+
 if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
 	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/readline-rc

@@ -105,7 +105,7 @@ Overview of changes in v7.12 "Planetary Collapse"
 
 * dbg_view (uses common-utils now)
 
-=== Dirinfo (Revision 2 Draft 2) ===
+=== Dirinfo (Revision 2 Draft 3) ===
 * major re-structureing
 * improved indexing mechanism
 * displaying info/ascii is now console-compatible
@@ -113,6 +113,18 @@ Overview of changes in v7.12 "Planetary Collapse"
 * dirinfo got a help-message
 * dirinfo can now index/search owners
 * when searching for owners no quotes are required
+* dirinfo now supports flags for directories, adding
+  them to .dirinfo files will do as described below
+  (directory-structure depth is 1 for all, means only
+   the directory containing the .dirinfo itself and
+   all files on the same level than the .dirinfo file):
+        x "NoDelete" flag: doesn't allow directory and
+                           included files to be removed
+        x "NoMove" flag: doesn't allow directory and
+                         included files to be moved
+                         (or renamed via mv)
+        x "NoCopy" flag: doesn't allow directory and
+                         included files to be copied
 
 === Documentation ===
 * Updated:
@@ -130,6 +142,7 @@ Overview of changes in v7.12 "Planetary Collapse"
 
 === Misc Changes ===
 * list Kenny Meyer in the about-dialog
+* only load xdel on Bash >= 4.x
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

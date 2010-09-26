@@ -9,6 +9,51 @@
 #							#
 #########################################################
 
+saferm () {
+
+        for path in "$@"; do
+            test ${path:0:1} == - && local RMO+="$path " && continue
+            for try in "$path" "${path%/*}"; do
+                test -e "$try"/.dirinfo || continue
+                grep -q NoDelete "$try"/.dirinfo || continue
+                echo "can not delete $try, it's protected"
+                continue 2
+            done
+            $(which rm) $RM_OPTS $RMO "$path"
+        done
+
+}
+
+safemv () {
+
+        for path in "$@"; do
+            test ${path:0:1} == - && local MVO+="$path " && continue
+            for try in "$path" "${path%/*}"; do
+                test -e "$try"/.dirinfo || continue
+                grep -q NoMove "$try"/.dirinfo || continue
+                echo "can not delete $try, it's protected"
+                continue 2
+            done
+            $(which mv) $MV_OPTS $MVO "$path"
+        done
+
+}
+
+safecp () {
+
+        for path in "$@"; do
+            test ${path:0:1} == - && local CPO+="$path " && continue
+            for try in "$path" "${path%/*}"; do
+                test -e "$try"/.dirinfo || continue
+                grep -q NoCopy "$try"/.dirinfo || continue
+                echo "can not delete $try, it's protected"
+                continue 2
+            done
+            $(which cp) $CP_OPTS $CPO "$path"
+        done
+
+}
+
 xalias () {
 
 	alias=$1
@@ -55,16 +100,20 @@ xmv() {
 
 }
 
-xdel() {
+if [[ ${BASH_VERSINFO[0]} >= 4 ]]; then
 
-	shopt -s globstar
+	xdel() {
 
-	[[ "$@" != "" ]] &&
-		{ for argv in "$@"; do
-			rm -fv ./**/*"$argv"
-		done }
+		shopt -s globstar
 
-}
+		[[ "$@" != "" ]] &&
+			{ for argv in "$@"; do
+				rm -fv ./**/*"$argv"
+			done }
+
+	}
+
+fi
 
 xcp() {
 
