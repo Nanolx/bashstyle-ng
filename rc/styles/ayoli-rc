@@ -10,14 +10,14 @@
 #							#
 #########################################################
 
+user="whoami"
+host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
+
 function pre_prompt {
 
 newPWD="${PWD}"
-user="whoami"
-host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
 datenow=$(date "+%a, %d %b %y")
-let promptsize=$(echo -n "┌( $user @ $host ddd., DD mmm YY)( ${PWD} )┐" \
-                 | wc -c | tr -d " ")
+let promptsize=$(echo -n "--( $user @ $host ddd., DD mmm YY )( ${PWD} )--" | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
 
@@ -30,7 +30,7 @@ done
 if [ "$fillsize" -lt "0" ]
 then
     let cutt=3-${fillsize}
-    newPWD="...$(echo -n $PWD | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+    newPWD="...$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")"
 fi
 
 }

@@ -45,7 +45,7 @@ done
 if [ "$fillsize" -lt "0" ]
 then
     let cutt=${trunc_length}-${fillsize}
-    xPWD="${trunc_symbol}$(echo -n $PWD | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+    xPWD="${trunc_symbol}$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")"
     newPWD="${xPWD//\//$esepacolor$dirchar$ewdircolor}"
 else
     newPWD="${PWD//\//$esepacolor$dirchar$ewdircolor}"
@@ -124,7 +124,7 @@ done
 if [ "$fillsize" -lt "0" ]
 then
     let cutt=${trunc_length}-${fillsize}
-    xPWD="${trunc_symbol}$(echo -n $PWD | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+    xPWD="${trunc_symbol}$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")"
     newPWD="${xPWD//\//$dirchar}"
 else
     newPWD="${PWD//\//$dirchar}"
