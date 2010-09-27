@@ -26,11 +26,13 @@ saferm () {
 
 safemv () {
 
-
 	destination="${!#}"
 
-        for path in "$@"; do
-            if [[ "$path" != "$destination" ]]; then
+	args=( "$@" )
+	unset args[$#-1]
+	set -- "${args[@]}"
+
+        for path in "${args[@]}"; do
               test ${path:0:1} == - && local MVO+="$path " && continue
               for try in "$path" "${path%/*}"; do
                   test -e "$try"/.dirinfo || continue
@@ -39,7 +41,6 @@ safemv () {
                   continue 2
               done
               $(which mv) $MV_OPTS $MVO "$path" "$destination"
-            fi
         done
 
 }
@@ -48,8 +49,11 @@ safecp () {
 
 	destination="${!#}"
 
-        for path in "$@"; do
-            if [[ "$path" != "$destination" ]]; then
+	args=( "$@" )
+	unset args[$#-1]
+	set -- "${args[@]}"
+
+        for path in "${args[@]}"; do
               test ${path:0:1} == - && local CPO+="$path " && continue
               for try in "$path" "${path%/*}"; do
                   test -e "$try"/.dirinfo || continue
@@ -58,7 +62,6 @@ safecp () {
                   continue 2
               done
               $(which cp) $CP_OPTS $CPO "$path" "$destination"
-            fi
         done
 
 }
