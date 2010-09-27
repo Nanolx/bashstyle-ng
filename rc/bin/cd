@@ -1,7 +1,7 @@
 #!/bin/bash
 #########################################################
 # 							#
-# This is BashStyle-NG  				#
+# This is BashStyle-NG					#
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
 #							#
@@ -9,22 +9,14 @@
 #							#
 #########################################################
 
-dirinfo () {
+if [[ $USE_LSCD == "true" ]]; then
 
-	case $1 in
+	builtin cd "${@}" &>/dev/null
+	$BSNG_RC_DIR/dirinfo/display
 
-		*help | "")
-			$BSNG_RC_DIR/dirinfo/index --help
-		;;
+	echo -e "${epink}content:"
+	ls $LSCD_OPTS
+	echo "$PWD" > $HOME/.lastpwd
 
-		*create)
-			$BSNG_RC_DIR/dirinfo/create
-		;;
-
-		*)
-			$BSNG_RC_DIR/dirinfo/index "$@"
-		;;
-
-	esac
-
-}
+else	buildin cd "${@}"
+fi

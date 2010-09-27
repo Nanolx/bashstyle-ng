@@ -203,7 +203,11 @@ elif [[ $WelcomeMessage != "" ]]; then \
 	dbg_log $WelcomeMessage
 fi
 
+dbg_msg $"BashStyle-NG Setting:" $"PATH" $BSNG_RC_DIR/bin/:$PATH
+dbg_log export PATH="$BSNG_RC_DIR/bin/:$PATH"
+
 if [[ -e $HOME/.bookmarks ]]; then
+	dbg_msg $"BashStyle-NG Loading:" $"Bookmarks"
 	dbg_log . $HOME/.bookmarks
 else	touch $HOME/.bookmarks
 fi

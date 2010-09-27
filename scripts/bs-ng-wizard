@@ -12,7 +12,7 @@ the content of the directory gone into.
 Do you want to use \`lscd' rather than \`cd' by default?" 12 85
 
 	if [[ $? == "0" ]]; then
-		echo alias cd=lscd >> $HOME/.settings-rc
+		echo USE_LSCD="true" >> $HOME/.settings-rc
 	fi
 
 	whiptail --title "lscd options" --yesno "Regardless of your previous choise \`lscd' does not pass any options to

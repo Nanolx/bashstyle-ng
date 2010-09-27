@@ -1,0 +1,21 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+for path in "$@"; do
+    test ${path:0:1} == - && local RMO+="$path " && continue
+    for try in "$path" "${path%/*}"; do
+	test -e "$try"/.dirinfo || continue
+	grep -q NoDelete "$try"/.dirinfo || continue
+	echo "can not delete $try, it's protected"
+	continue 2
+    done
+    command rm $RM_OPTS $RMO "$path"
+done

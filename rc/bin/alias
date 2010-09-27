@@ -1,7 +1,7 @@
 #!/bin/bash
 #########################################################
 # 							#
-# This is BashStyle-NG  				#
+# This is BashStyle-NG					#
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
 #							#
@@ -9,22 +9,11 @@
 #							#
 #########################################################
 
-dirinfo () {
+alias=$1
+shift
 
-	case $1 in
+[[ $(grep -w "alias $alias" $HOME/.custom-rc) != "" ]] &&
+	{ sed -e "/alias $alias/d" -i $HOME/.custom-rc ; }
 
-		*help | "")
-			$BSNG_RC_DIR/dirinfo/index --help
-		;;
-
-		*create)
-			$BSNG_RC_DIR/dirinfo/create
-		;;
-
-		*)
-			$BSNG_RC_DIR/dirinfo/index "$@"
-		;;
-
-	esac
-
-}
+alias $alias='$@'
+echo "alias $alias=\"$@\"" >> $HOME/.custom-rc
