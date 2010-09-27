@@ -32,6 +32,10 @@ safemv () {
 	unset args[$#-1]
 	set -- "${args[@]}"
 
+	if [[ ! -e "$destination" ]]; then
+		mkdir -p "$destination"
+	fi
+
         for path in "${args[@]}"; do
               test ${path:0:1} == - && local MVO+="$path " && continue
               for try in "$path" "${path%/*}"; do
@@ -52,6 +56,10 @@ safecp () {
 	args=( "$@" )
 	unset args[$#-1]
 	set -- "${args[@]}"
+
+	if [[ ! -e "$destination" ]]; then
+		mkdir -p "$destination"
+	fi
 
         for path in "${args[@]}"; do
               test ${path:0:1} == - && local CPO+="$path " && continue
@@ -91,27 +99,6 @@ xunalias() {
 
 }
 
-xmv() {
-
-	if [[ $# -lt 2 ]]; then
-		echo "not enough arguements"
-		exit 0
-	fi
-
-	destination="${!#}"
-
-	if [[ ! -e "$destination" ]]; then
-		mkdir -p "$destination"
-	fi
-
-	for file in "$@"; do
-		if [[ ! "$file" == "$destination" ]]; then
-			mv -v "$file" "$destination"
-		fi
-	done
-
-}
-
 if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 
 	xdel() {
@@ -126,29 +113,6 @@ if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 	}
 
 fi
-
-xcp() {
-
-	if [[ $# -lt 2 ]]; then
-		echo "not enough arguements"
-		exit 0
-	fi
-
-	destination="${!#}"
-
-	set -- "$destination" "$@"
-
-	if [[ ! -e "$destination" ]]; then
-		mkdir -p "$destination"
-	fi
-
-	for file in "$@"; do
-		if [[ ! "$file" == "$destination" ]]; then
-			cp -v "$file" "$destination"
-		fi
-	done
-
-}
 
 trunc_pwd ()
 {
