@@ -19,7 +19,7 @@ saferm () {
                 echo "can not delete $try, it's protected"
                 continue 2
             done
-            $(which rm) $RM_OPTS $RMO "$path"
+            command rm $RM_OPTS $RMO "$path"
         done
 
 }
@@ -44,7 +44,7 @@ safemv () {
                   echo "can not delete $try, it's protected"
                   continue 2
               done
-              $(which mv) $MV_OPTS $MVO "$path" "$destination"
+              command mv $MV_OPTS $MVO "$path" "$destination"
         done
 
 }
@@ -69,7 +69,7 @@ safecp () {
                   echo "can not delete $try, it's protected"
                   continue 2
               done
-              $(which cp) $CP_OPTS $CPO "$path" "$destination"
+              command cp $CP_OPTS $CPO "$path" "$destination"
         done
 
 }
