@@ -23,19 +23,40 @@ case $1 in
 	;;
 
 	*readline)
-		echo "not yet possible"
+		$BSNG_RC_DIR/generator/readline
+		if [[ $? == 0 ]]; then
+			echo -e "${ewhite}Readline configuration saved as ${eiceblue}$HOME/bashstyle/readline-rc.bs-ng-$CURRENT_DATE\
+				\n${ewhite}copy it to ${egreen}$HOME/.inputrc${ewhite} to use it (disable ReadlineCFG in Bashstyle-NG,\
+				\nbefore using this config-file - file will be overwritten else)\n"
+			tput sgr0
+		fi
 	;;
 
 	*vim)
-		echo "not yet possible"
+		$BSNG_RC_DIR/generator/vim
+		if [[ $? == 0 ]]; then
+			echo -e "${ewhite}Vim configuration saved as: ${eiceblue}$HOME/bashstyle/vim-rc.bs-ng-$CURRENT_DATE\
+				\n${ewhite}copy it to ${egreen}$HOME/.vimrc${ewhite} to use it (disable VimCFG in BashStyle-NG,\
+				\nbefore using this config-file - file will be overwritten else)\n"
+			tput sgr0
+		fi
 	;;
 
 	*nano)
-		echo "not yet possible"
+		$BSNG_RC_DIR/generator/nano
+		if [[ $? == 0 ]]; then
+			echo -e "${ewhite}Nano configuration saved as: ${eiceblue}$HOME/bashstyle/nano-rc.bs-ng-$CURRENT_DATE\
+				\n${ewhite}copy it to ${egreen}$HOME/.nanorc${ewhite} to use it (disable NanoCFG in BashStyle-NG,\
+				\nbefore using this config-file - file will be overwritten else)\n"
+			tput sgr0
+		fi
 	;;
 
 	*all)
-		$BSNG_RC_DIR/generator/bash
+		rcgenerator --bash
+		rcgenerator --readline
+		rcgenerator --vim
+		rcgenerator --nano
 	;;
 
 	*)

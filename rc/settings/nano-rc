@@ -13,7 +13,9 @@ if [[ -e $HOME/.nanorc && ( ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ) ]]; then
 	ERR_MSG+="\n * $HOME/.nanorc is not fully acccessible! -- adjust permissions."
 else
 
-export RC_FILE=$HOME/.nanorc
+if [[ ! $BSNG_RC_GEN ]]; then
+	export RC_FILE=$HOME/.nanorc
+fi
 
 rm -f $HOME/.nanorc
 
@@ -106,7 +108,9 @@ if [[ $(get_key nano/use_colors) == true ]]; then
 else	dbg_msg $"NanoCFG Setting:" $"Colors" $"Off"
 fi
 
-unset RC_FILE
+if [[ ! $BSNG_RC_GEN ]]; then
+	unset RC_FILE
+fi
 
 dbg_msg $"NanoCFG Loading:" $"BashStyle-NG"
 

@@ -13,7 +13,9 @@ if [[ -e $HOME/.inputrc && ( ! -w $HOME/.inputrc || ! -r $HOME/.inputrc ) ]]; th
 	ERR_MSG+="\n * $HOME/.inputrc is not accessible! -- adjust permissions."
 else
 
-export RC_FILE=$HOME/.inputrc
+if [[ ! $BSNG_RC_GEN ]]; then
+	export RC_FILE=$HOME/.inputrc
+fi
 
 rm -f $HOME/.inputrc
 
@@ -118,7 +120,9 @@ fi
 dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(get_key readline/query_item)
 rc_add "set completion-query-items $(get_key readline/query_item)"
 
-unset RC_FILE
+if [[ ! $BSNG_RC_GEN ]]; then
+	unset RC_FILE
+fi
 
 dbg_msg $"ReadlineCFG Loading:" $"BashStyle-NG"
 

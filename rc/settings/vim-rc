@@ -13,7 +13,9 @@ if [[ -e $HOME/.vimrc && ( ! -w $HOME/.vimrc || ! -r $HOME/.vimrc ) ]]; then
 	ERR_MSG+="\n * $HOME/.vimrc is not accessible! -- adjust permissions"
 else
 
-export RC_FILE=$HOME/.vimrc
+if [[ ! $BSNG_RC_GEN ]]; then
+	export RC_FILE=$HOME/.vimrc
+fi
 
 rm -f $HOME/.vimrc
 
@@ -212,7 +214,9 @@ rc_add "if filereadable(\"~/.vimrc.custom\")"
 rc_add "	source ~/.vimrc.custom"
 rc_add "endif"
 
-unset RC_FILE
+if [[ ! $BSNG_RC_GEN ]]; then
+	unset RC_FILE
+fi
 
 dbg_msg $"VimCFG Loading:" $"BashStyle-NG"
 

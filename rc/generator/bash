@@ -9,12 +9,12 @@
 #                                                       #
 #########################################################
 
+export BSNG_RC_GEN=true
+export RC_FILE=$HOME/bashstyle/bashrc.bs-ng-$CURRENT_DATE
+
 source $BSNG_RC_DIR/internal/gconf
 source $BSNG_RC_DIR/internal/misc
 source $BSNG_RC_DIR/internal/logging
-
-BSNG_RC_GEN=1
-RC_FILE=$HOME/bashstyle/bashrc.bs-ng-$CURRENT_DATE
 
 bash_nxrc()
 {
