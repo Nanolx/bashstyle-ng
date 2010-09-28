@@ -1,0 +1,46 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+BASH_PREFIX=""
+BASH_KEYS=( cdpath colored_grep colored_ls colored_man custom_command custom_prompt \
+debug debug_log debug_verbose dirchar fcedit fignore hist_control hist_ignore history_size \
+man_style path prompt_style ps234 pwdchar pwdmaxlength random_style tabrotate timeout \
+use_bashstyle use_custom_prompt welcome_message )
+
+ALIAS_PREFIX="alias/"
+ALIAS_KEYS=( one two three four five six seven eight nine )
+
+COLOR_PREFIX="color/"
+COLOR_KEYS=( style date font grep host ps234c separatorc time uptime enable user wdir )
+
+DIRCOLOR_PREFIX="dircolor/"
+DIRCOLOR_KEYS=( custom deb dirs enable exec flac generic gif jpeg logs mp3 ogg png \
+rar rpm tar tarbz2 targz zip )
+
+SEPARATOR_PREFIX="separator/"
+SEPARATOR_KEYS=( battery_load files_amount file_size load mem processes tty uptimes separator )
+
+READLINE_PREFIX="readline/"
+READLINE_KEYS=( ambiguous bellstyle completion completionhz editing_mode hidden ignore_case \
+mark_dirs mark_modlines mark_sym_dirs query_item scrollhz use_readlinecfg vstats )
+
+SHOPT_PREFIX="shopt/"
+SHOPT_KEYS=( autocd cdable_vars cdspell checkhash checkjobs cmdhist dirspell force_fignore \
+globstar histappend histreedit no_empty_cmd_completion )
+
+VIM_PREFIX="vim/"
+VIM_KEYS=( autosave backup dark_background filetype_indent highlight hl_cursor ignore_case \
+inc_search jump_back number ruler rulerformat show_cmd show_match smart_case syntax_hilight \
+use_vimcfg vim_colorscheme )
+
+NANO_PREFIX="nano/"
+NANO_KEYS=( auto_indent backup bold_text case_sensitive const more_space nohelp use_colors \
+use_nanocfg history rebind_del rebind_kp )

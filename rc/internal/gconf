@@ -1,0 +1,45 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+get_key ()
+{
+
+	gconftool-2 --get /apps/bashstyle/"$1"
+
+}
+
+set_key ()
+{
+
+	gconftool-2 --set --type "$1" /apps/bashstyle/"$2" "$3"
+
+
+}
+
+reset_key ()
+{
+
+	gconftool-2 --unset /apps/bashstyle/"$1"
+
+}
+
+reset_config ()
+{
+
+	gconftool-2 --recursive-unset /apps/bashstyle/
+
+}
+
+search_key () {
+
+	gconftool-2 --search-key "$1"
+
+}
