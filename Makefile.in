@@ -95,6 +95,7 @@ install:
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/dirinfo/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/ascii/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/bin/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/internal/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/system/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/b/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/m/
@@ -142,6 +143,7 @@ install:
 	@install -m755 rc/dirinfo/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/dirinfo/
 	@install -m755 rc/ascii/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/ascii/
 	@install -m755 rc/bin/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/bin/
+	@install -m755 rc/internal/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/internal/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[13/14] .pc gconf-schemas"
 	@install -m644 data/bashstyle-ng.pc $(DESTDIR)/usr/lib/pkgconfig/
 	@install -m644 data/bashstyle.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/
