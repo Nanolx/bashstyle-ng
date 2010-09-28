@@ -197,8 +197,9 @@ elif [[ $WelcomeMessage != "" ]]; then \
 	dbg_log $WelcomeMessage
 fi
 
-dbg_msg $"BashStyle-NG Setting:" $"PATH" $BSNG_RC_DIR/bin/:$PATH
-dbg_log export PATH="$BSNG_RC_DIR/bin/:$PATH"
+if [[ ! $RM_CMD ]]; then
+	. /etc/profile.d/bashstyle.sh
+fi
 
 if [[ -e $HOME/.bookmarks ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"Bookmarks"

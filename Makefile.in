@@ -116,7 +116,7 @@ install:
 	@echo -e "$(GREEN)installing:$(YELLOW) 	[02/14] bashstyle-ng"
 	@install -m644 code/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/code/
 	@install -m755 data/bashstyle $(DESTDIR)@PREFIX@/bin/
-	@install -m644 data/bashstyle-profile $(DESTDIR)/etc/profile.d/bashstyle.sh
+	@install -m755 data/bashstyle-profile $(DESTDIR)/etc/profile.d/bashstyle.sh
 	@echo -e "$(GREEN)installing:$(YELLOW) 	[03/14] terminfo files:$(CYAN) bold mostlike nebula"
 	@install -m644 data/terminfo/b/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/b/
 	@install -m644 data/terminfo/m/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/m/
