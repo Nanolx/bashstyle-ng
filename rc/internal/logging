@@ -17,11 +17,12 @@ verbose=$(get_key debug_verbose)
 
 dbg_msg ()
 {
-
-	if [[ $debug == true ]] ; then
-		if [[ $verbose == true ]]; then
-			echo -e "$@" | tee -a $BSNG_LOGFILE
-		else	echo -e "$@" >> $BSNG_LOGFILE
+	if [[ ! $BSNG_RC_GEN ]]; then
+		if [[ $debug == true ]] ; then
+			if [[ $verbose == true ]]; then
+				echo -e "$@" | tee -a $BSNG_LOGFILE
+			else	echo -e "$@" >> $BSNG_LOGFILE
+			fi
 		fi
 	fi
 

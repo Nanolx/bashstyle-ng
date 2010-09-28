@@ -65,9 +65,7 @@ else	dbg_msg $"BashStyle-NG Setting:" $"histappend" $"Off"
 	dbg_log shopt -u histappend
 fi
 
-if [[ $BASH_VERSINFO != 4 ]]; then
-	dbg_msg $"BashStyle-NG Message: Bash is not 4.x -- disabling new shopts"
-else
+if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 
 	if [[ $(get_key shopt/autocd) == true ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"autocd" $"On"
@@ -96,4 +94,6 @@ else
 	else	dbg_msg $"BashStyle-NG Setting:" $"dirspell" $"Off"
 		dbg_log shopt -u dirspell
 	fi
+else	dbg_msg $"BashStyle-NG Message: Bash is not 4.x -- disabling new shopts"
+
 fi

@@ -1,0 +1,413 @@
+#!/bin/bash
+#########################################################
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright 2007 - 2010 Christopher Bratusek            #
+#                                                       #
+#########################################################
+
+source $BSNG_RC_DIR/internal/gconf
+source $BSNG_RC_DIR/internal/misc
+source $BSNG_RC_DIR/internal/logging
+
+BSNG_RC_GEN=1
+RC_FILE=$HOME/bashstyle/bashrc.bs-ng-$CURRENT_DATE
+
+bash_nxrc()
+{
+
+	if [[ ! -e $HOME/bashstyle ]]; then
+		mkdir -p $HOME/bashstyle
+	fi
+
+	rm -f $RC_FILE
+
+	rc_add \#\!/bin/bash
+
+	rc_add \# This configuration was created by BS-NG v$BSNG_VERSION
+	rc_add \# it was generated at: $CURRENT_DATE, by: $USER
+	rc_add \# use it as \$HOME/.bashrc or source this file
+
+	rc_add \#Base setup
+	rc_add \#== == == == == == == == == == == == ==
+
+	rc_add export BSNG_PREFIX=$BSNG_PREFIX
+	rc_add export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/
+	rc_add export BSNG_LOCKFILE=$HOME/.bashstyle.lock
+	rc_add export BSNG_VERSION=$BSNG_VERSION
+	rc_add export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
+
+	rc_add BSNG_INTERN=\( misc gconf logging \)
+	rc_add BSNG_FUNCS=\( admin conversion dirinfo infos media misc random utils versioning \)
+
+	rc_add for RC in \${BSNG_INTERN[@]}\; do
+	rc_add		source $BSNG_RC_DIR/internal/\$RC
+	rc_add done
+
+	rc_add for RC in \${BSNG_FUNCS[@]}\; do
+	rc_add		source $BSNG_RC_DIR/functions/\$RC
+	rc_add done
+
+	rc_add source $BSNG_RC_DIR/styles/null-rc
+
+	rc_add alias rd=\"pwd -P\"
+	rc_add alias reload=\"source ~/.bashrc\"
+	rc_add ps234char=\"$(get_key ps234)\"
+
+	rc_add if [[ ! \$RM_CMD ]]\; then
+	rc_add	source /etc/profile.d/bashstyle.sh
+	rc_add fi
+
+	rc_add if [[ -e $HOME/.bookmarks ]]\; then
+	rc_add		source $HOME/.bookmarks
+	rc_add else	touch $HOME/.bookmarks
+	rc_add fi
+
+}
+
+bash_colors()
+{
+
+	rc_add \#Color configuration
+	rc_add \#== == == == == == == == == == == == ==
+
+	if [[ $(get_key color/enable) == true ]]; then \
+
+		colstyle=$(get_key color/style)
+
+		if [[ $colstyle == bright ]]; then \
+			style="01"
+		elif [[ $colstyle == normal ]]; then \
+			style="0"
+		elif [[ $colstyle == inverted ]]; then \
+			style="7"
+		elif [[ $colstyle == dimmed ]]; then \
+			style="02"
+		elif [[ $colstyle == underlined ]]; then \
+			style="04"
+		fi
+
+		rc_add enabcol=true
+		rc_add if [[ \$TERM != *xterm* ]]\; then
+
+			rc_add "black=\"\[\033[${style};30m\]\""
+			rc_add "red=\"\[\033[${style};31m\]\""
+			rc_add "green=\"\[\033[${style};32m\]\""
+			rc_add "yellow=\"\[\033[${style};33m\]\""
+			rc_add "blue=\"\[\033[${style};34m\]\""
+			rc_add "magenta=\"\[\033[${style};35m\]\""
+			rc_add "cyan=\"\[\033[${style};36m\]\""
+			rc_add "white=\"\[\033[${style};37m\]\""
+			rc_add "coldblue=\"\$blue\""
+			rc_add "smoothblue=\"\$blue\""
+			rc_add "iceblue=\"\$blue\""
+			rc_add "turqoise=\"\$cyan\""
+			rc_add "smoothgreen=\"\$green\""
+			rc_add "winered=\"\$red\""
+			rc_add "brown=\"\$yellow\""
+			rc_add "silver=\"\$white\""
+			rc_add "ocher=\"\$yellow\""
+			rc_add "orange=\"\$yellow\""
+			rc_add "purple=\"\$magenta\""
+			rc_add "pink=\"\$magenta\""
+			rc_add "cream=\"\$magenta\""
+
+			rc_add "eblack=\"\033[${style};30m\""
+			rc_add "ered=\"\033[${style};31m\""
+			rc_add "egreen=\"\033[${style};32m\""
+			rc_add "eyellow=\"\033[${style};33m\""
+			rc_add "eblue=\"\033[${style};34m\""
+			rc_add "emagenta=\"\033[${style};35m\""
+			rc_add "ecyan=\"\033[${style};36m\""
+			rc_add "ewhite=\"\033[${style};37m\""
+			rc_add "ecoldblue=\"\$eblue\""
+			rc_add "esmoothblue=\"\$eblue\""
+			rc_add "eiceblue=\"\$eblue\""
+			rc_add "eturqoise=\"\$ecyan\""
+			rc_add "esmoothgreen=\"\$egreen\""
+			rc_add "ewinered=\"\$ered\""
+			rc_add "ebrown=\"\$eyellow\""
+			rc_add "esilver=\"\$ewhite\""
+			rc_add "eocher=\"\$eyellow\""
+			rc_add "eorange=\"\$eyellow\""
+			rc_add "epurple=\"\$emagenta\""
+			rc_add "epink=\"\$emagenta\""
+			rc_add "ecream=\"\$emagenta\""
+
+		rc_add else
+
+			rc_add "black=\"\[\033[${style};38;5;0m\]\""
+			rc_add "red=\"\[\033[${style};38;5;1m\]\""
+			rc_add "green=\"\[\033[${style};38;5;2m\]\""
+			rc_add "yellow=\"\[\033[${style};38;5;3m\]\""
+			rc_add "blue=\"\[\033[${style};38;5;4m\]\""
+			rc_add "magenta=\"\[\033[${style};38;5;129m\]\""
+			rc_add "cyan=\"\[\033[${style};38;5;6m\]\""
+			rc_add "white=\"\[\033[${style};38;5;7m\]\""
+			rc_add "coldblue=\"\[\033[${style};38;5;33m\]\""
+			rc_add "smoothblue=\"\[\033[${style};38;5;111m\]\""
+			rc_add "iceblue=\"\[\033[${style};38;5;45m\]\""
+			rc_add "turqoise=\"\[\033[${style};38;5;50m\]\""
+			rc_add "smoothgreen=\"\[\033[${style};38;5;42m\]\""
+			rc_add "winered=\"\[\033[${style};38;5;637m\]\""
+			rc_add "brown=\"\[\033[${style};38;5;684m\]\""
+			rc_add "silver=\"\[\033[${style};38;5;761m\]\""
+			rc_add "ocher=\"\[\033[${style};38;5;690m\]\""
+			rc_add "orange=\"\[\033[${style};38;5;714m\]\""
+			rc_add "purple=\"\[\033[${style};38;5;604m\]\""
+			rc_add "pink=\"\[\033[${style};38;5;213m\]\""
+			rc_add "cream=\"\[\033[${style};38;5;5344m\]\""
+
+			rc_add "eblack=\"\033[${style};38;5;0m\""
+			rc_add "ered=\"\033[${style};38;5;1m\""
+			rc_add "egreen=\"\033[${style};38;5;2m\""
+			rc_add "eyellow=\"\033[${style};38;5;3m\""
+			rc_add "eblue=\"\033[${style};38;5;4m\""
+			rc_add "emagenta=\"\033[${style};38;5;129m\""
+			rc_add "ecyan=\"\033[${style};38;5;6m\""
+			rc_add "ewhite=\"\033[${style};38;5;7m\""
+			rc_add "ecoldblue=\"\033[${style};38;5;33m\""
+			rc_add "esmoothblue=\"\033[${style};38;5;111m\""
+			rc_add "eiceblue=\"\033[${style};38;5;45m\""
+			rc_add "eturqoise=\"\033[${style};38;5;50m\""
+			rc_add "esmoothgreen=\"\033[${style};38;5;42m\""
+			rc_add "ewinered=\"\033[${style};38;5;637m\""
+			rc_add "ebrown=\"\033[${style};38;5;684m\""
+			rc_add "esilver=\"\033[${style};38;5;761m\""
+			rc_add "eocher=\"\033[${style};38;5;690m\""
+			rc_add "eorange=\"\033[${style};38;5;714m\""
+			rc_add "epurple=\"\033[${style};38;5;604m\""
+			rc_add "epink=\"\033[${style};38;5;213m\""
+			rc_add "ecream=\"\033[${style};38;5;5344m\""
+
+		rc_add fi
+
+		rc_add usercolor=\"$(get_key color/user)\"
+		rc_add hostcolor=\"$(get_key color/host)\"
+		rc_add datecolor=\"$(get_key color/date)\"
+		rc_add timecolor=\"$(get_key color/time)\"
+		rc_add wdircolor=\"$(get_key color/wdir)\"
+		rc_add fontcolor=\"$(get_key color/font)\"
+		rc_add sepacolor=\"$(get_key color/separatorc)\"
+		rc_add upcolor=\"$(get_key color/uptime)\"
+		rc_add pscolor=\"$(get_key color/ps234c)\"
+
+	else	rc_add export enabcol=false
+	fi
+
+	rc_add export LS_COLORS=\"$LS_COLORS\"
+
+	if [[ $(get_key colored_man) == true ]]; then \
+		if	[[ $(get_key man_style) == mostlike ]]; then \
+			rc_add alias man=\"TERMINFO=\$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=mostlike LESS=C PAGER=less man\"
+		elif	[[ $(get_key man_style) == bold ]]; then \
+			rc_add alias man=\"TERMINFO=\$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=bold LESS=C PAGER=less man\"
+		elif	[[ $(get_key man_style) == nebula ]]; then
+			rc_add alias man=\"TERMINFO=\$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=nebula LESS=C PAGER=less man\"
+		fi
+	fi
+
+	if [[ $(get_key colored_grep) == true ]]; then \
+		rc_add GREP_OPTIONS=\"--color=auto\;\"
+		rc_add GREP_COLOR=\"$(get_key color/grep)\;\"
+	fi
+
+}
+
+bash_aliases()
+{
+
+	rc_add \#Aliases
+	rc_add \#== == == == == == == == == == == == ==
+
+	if [[ $(get_key colored_ls) == true ]]; then \
+		rc_add alias ls=\"ls -CF --color=auto --group-directories-first\"
+	else    rc_add alias ls=\"ls -CF --color=no --group-directories-first\"
+	fi
+
+	if [[ $(get_key alias/one) != "" ]]; then \
+		rc_add alias $(get_key alias/one)
+	fi
+
+	if [[ $(get_key alias/two) != "" ]]; then \
+		rc_add alias $(get_key alias/two)
+	fi
+
+	if [[ $(get_key alias/three) != "" ]]; then \
+		rc_add alias $(get_key alias/three)
+	fi
+
+	if [[ $(get_key alias/four) != "" ]]; then \
+		rc_add alias $(get_key alias/four)
+	fi
+
+	if [[ $(get_key alias/five) != "" ]]; then \
+		rc_add alias $(get_key alias/five)
+	fi
+
+	if [[ $(get_key alias/six) != "" ]]; then \
+		rc_add alias $(get_key alias/six)
+	fi
+
+	if [[ $(get_key alias/seven) != "" ]]; then \
+		rc_add alias $(get_key alias/seven)
+	fi
+
+	if [[ $(get_key alias/eight) != "" ]]; then \
+		rc_add alias $(get_key alias/eight)
+	fi
+
+	if [[ $(get_key alias/nine) != "" ]]; then \
+		rc_add alias $(get_key alias/nine)
+	fi
+
+}
+
+bash_options()
+{
+
+	rc_add \#Misc options
+	rc_add \#== == == == == == == == == == == == ==
+
+	rc_add HISTCONTROL=\"$(get_key hist_control)\"
+	rc_add HISTIGNORE=\"$(get_key hist_ignore)\"
+	rc_add FIGNORE=\"$(get_key fignore)\"
+	rc_add CDPATH=\"$(get_key cdpath)\"
+	rc_add FCEDIT=\"$(get_key fcedit)\"
+	rc_add TMOUT=\"$(get_key timeout)\"
+	rc_add HISTSIZE=\"$(get_key history_size)\"
+	rc_add HISTFILESIZE=\"$(get_key history_size)\"
+
+	if [[ $(get_key path) != "" ]]; then
+		rc_add PATH=\"$(get_key path)\"
+	fi
+
+}
+
+bash_shopts()
+{
+
+	rc_add \#Shopts
+	rc_add \#== == == == == == == == == == == == ==
+
+	if [[ $(get_key shopt/cdspell) == true ]]; then \
+		rc_add shopt -s cdspell
+	fi
+
+	if [[ $(get_key shopt/cdable_vars) == true ]]; then \
+		rc_add shopt -s cdable_vars
+	fi
+
+	if [[ $(get_key shopt/checkhash) == true ]]; then \
+		rc_add shopt -s checkhash
+	fi
+
+	if [[ $(get_key shopt/cmdhist) == true ]]; then \
+		rc_add shopt -s cmdhist
+	fi
+
+	if [[ $(get_key shopt/force_fignore) == true ]]; then \
+		rc_add shopt -s force_fignore
+	fi
+
+	if [[ $(get_key shopt/histreedit) == true ]]; then \
+		rc_add shopt -s histreedit
+	fi
+
+	if [[ $(get_key shopt/no_empty_cmd_completion) == true ]]; then \
+		rc_add shopt -s no_empty_cmd_completion
+	fi
+
+	if [[ $HISTCONTROL != erasedups && $(get_key shopt/histappend) == true ]]; then
+		rc_add shopt -s histappend
+	fi
+
+	if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
+
+		if [[ $(get_key shopt/autocd) == true ]]; then
+			rc_add shopt -s autocd
+		fi
+
+		if [[ $(get_key shopt/checkjobs) == true ]]; then
+			rc_add shopt -s checkjobs
+		fi
+
+		if [[ $(get_key shopt/dirspell) == true ]]; then
+			rc_add shopt -s dirspell
+		fi
+
+		if [[ $(get_key shopt/globstar) == true ]]; then
+			rc_add shopt -s globstar
+		fi
+
+	fi
+
+	rc_add shopt -s checkwinsize
+
+}
+
+bash_prompt()
+{
+
+	rc_add \#Bash prompts
+	rc_add \#== == == == == == == == == == == == ==
+
+	if [[ $(get_key random_style) == true ]]; then \
+		source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/random-rc
+	else    pstyle=$(get_key prompt_style)
+	fi
+
+	if [[ $use_custom_prompt == true ]]; then \
+		cat $HOME/.custom_prompt | sed -e '/###.*/d' -e '/#\ /d' -e '/#\t/d' -e '/#\!/d' >> $RC_FILE
+	elif [[ -e $BSNG_PREFIX/share/bashstyle-ng/rc/styles/${pstyle}-rc ]]; then \
+		cat $BSNG_PREFIX/share/bashstyle-ng/rc/styles/${pstyle}-rc \
+			| sed -e '/###.*/d' -e '/#\ /d' -e '/#\t/d' -e '/#\!/d' >> $RC_FILE
+	else	cat $BSNG_PREFIX/share/bashstyle-ng/rc/styles/fallback-rc \
+			| sed -e '/###.*/d' -e '/#\ /d' -e '/#\t/d' -e '/#\!/d' >> $RC_FILE
+	fi
+
+	rc_add PS2=\"\$pscolor \$ps234char\$fontcolor \"
+	rc_add PS3=\"\$pscolor \$ps234char\$ps234char\$fontcolor \"
+	rc_add PS4=\"\$pscolor \$ps234char\$ps234char\$ps234char\$fontcolor \"
+
+}
+
+bash_finalize()
+{
+
+	rc_add \#Final settings
+	rc_add \#== == == == == == == == == == == == ==
+
+	if [[ $(get_key tabrotate) == true ]]; then \
+		rc_add bind \'TAB:menu-complete\'
+		rc_add complete -d -X \'.[a-zA-Z0-9]*\' cd
+	fi
+
+	if [[ -e $HOME/.custom-rc ]]; then
+		cat $HOME/.custom-rc | sed -e '/#\!/d' >> $RC_FILE
+	fi
+
+	WelcomeMessage=$(get_key welcome_message)
+
+	rc_add if [[ \$USER_BIRTHDAY == $(date +%m-%d) \&\& \! -e $HOME/.bday ]]\; then
+	rc_add	cat $BSNG_RC_DIR/ascii/birthday
+	rc_add fi
+
+	if [[ $WelcomeMessage != "" ]]; then
+	rc_add	"$WelcomeMessage"
+	fi
+
+}
+
+bash_nxrc
+bash_colors
+bash_aliases
+bash_options
+bash_shopts
+bash_prompt
+bash_finalize
+
+unset RC_FILE BSNG_RC_GEN

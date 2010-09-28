@@ -1,0 +1,54 @@
+#!/bin/bash
+#########################################################
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright 2007 - 2010 Christopher Bratusek            #
+#                                                       #
+#########################################################
+
+export CURRENT_DATE="$(date +%Y-%m-%d_%I-%M)"
+
+case $1 in
+	*bash)
+		$BSNG_RC_DIR/generator/bash
+		if [[ $? == 0 ]]; then
+			echo -e "${ewhite}Bash configuration saved as: ${eiceblue}$HOME/bashstyle/bashrc.bs-ng-$CURRENT_DATE\
+				\n${ewhite}copy it to ${egreen}$HOME/.bashrc${ewhite} to use it. (disable BashStyle in Bashstyle-NG,\
+				\nbefore using this config-file - settings will be overwritten else)\n"
+			tput sgr0
+		fi
+	;;
+
+	*readline)
+		echo "not yet possible"
+	;;
+
+	*vim)
+		echo "not yet possible"
+	;;
+
+	*nano)
+		echo "not yet possible"
+	;;
+
+	*all)
+		$BSNG_RC_DIR/generator/bash
+	;;
+
+	*)
+
+		echo -e "\n${ewhite}Usage:\n"
+		echo -e "${eorange}rcgenerator${ewhite} |${egreen} --bash ${eiceblue}[generate standalone BASH config]\
+		\n${eorange}rcgenerator${ewhite} |${egreen} --readline ${eiceblue}[generate standalone Readline config]\
+		\n${eorange}rcgenerator${ewhite} |${egreen} --vim ${eiceblue}[generate standalone VIm config]\
+		\n${eorange}rcgenerator${ewhite} |${egreen} --nano ${eiceblue}[generate standalone Nano config]\
+		\n${eorange}rcgenerator${ewhite} |${egreen} --all ${eiceblue}[all above at once]\n" | column -t
+		echo ""
+
+	;;
+esac
+
+unset CURRENT_DATE
