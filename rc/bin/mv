@@ -16,12 +16,14 @@ unset args[$#-1]
 set -- "${args[@]}"
 
 for path in "${args[@]}"; do
-      test ${path:0:1} == - && local MVO+="$path " && continue
+      test "${path:0:1}" == - && MVO+="$path " && continue
       for try in "$path" "${path%/*}"; do
 	  test -e "$try"/.dirinfo || continue
 	  grep -q NoMove "$try"/.dirinfo || continue
 	  echo "can not delete $try, it's protected"
 	  continue 2
       done
-      command mv $MV_OPTS $MVO "$path" "$destination"
+      $MV_CMD $MV_OPTS $MVO "$path" "$destination"
 done
+
+unset MVO

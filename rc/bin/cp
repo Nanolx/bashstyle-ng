@@ -16,12 +16,14 @@ unset args[$#-1]
 set -- "${args[@]}"
 
 for path in "${args[@]}"; do
-      test ${path:0:1} == - && local CPO+="$path " && continue
+      test "${path:0:1}" == - && CPO+="$path " && continue
       for try in "$path" "${path%/*}"; do
 	  test -e "$try"/.dirinfo || continue
 	  grep -q NoCopy "$try"/.dirinfo || continue
 	  echo "can not delete $try, it's protected"
 	  continue 2
       done
-      command cp $CP_OPTS $CPO "$path" "$destination"
+      $CP_CMD $CP_OPTS $CPO "$path" "$destination"
 done
+
+unset CPO

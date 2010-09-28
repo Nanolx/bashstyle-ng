@@ -10,12 +10,14 @@
 #########################################################
 
 for path in "$@"; do
-    test ${path:0:1} == - && local RMO+="$path " && continue
+    test "${path:0:1}" == - && RMO+="$path " && continue
     for try in "$path" "${path%/*}"; do
 	test -e "$try"/.dirinfo || continue
 	grep -q NoDelete "$try"/.dirinfo || continue
 	echo "can not delete $try, it's protected"
 	continue 2
     done
-    command rm $RM_OPTS $RMO "$path"
+    $RM_CMD $RM_OPTS $RMO "$path"
 done
+
+unset RMO
