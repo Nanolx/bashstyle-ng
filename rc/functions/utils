@@ -35,7 +35,6 @@ trunc_pwd ()
 		;;
 
 		* )
-			export BSNG_GCONF_READ=1
 
 			pwdmaxlen=$(get_key pwdmaxlength)
 			trunc_symbol=$(get_key pwdchar)
@@ -63,7 +62,6 @@ trunc_pwd ()
 			fi
 
 			echo -e $newPWD
-			unset BSNG_GCONF_READ
 		;;
 	esac
 
