@@ -2192,8 +2192,7 @@ class BashStyleNG(object):
 \ntput cup 0 ${prompt_x}\
 \necho -n \"[ $(date '+%a, %d %b %y') :: $(date +%T) ]\"\
 \ntput rc",
-			      4 : "export BSNG_GCONF_READ=1\
-\nuser=\"whoami\"\
+			      4 : "user=\"whoami\"\
 \nhost=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
 \ndirchar=$(get_key dirchar)\
 \ntrunc_symbol=$(get_key pwdchar)\
@@ -2244,8 +2243,7 @@ class BashStyleNG(object):
 \n   echo -en \"\\033[$(($i-1));${COLUMNS}H│\"\
 \n   let i=$i-1\
 \ndone\
-\nlet prompt_line=${LINES}-1\
-\nunset BSNG_GCONF_READ",
+\nlet prompt_line=${LINES}-1",
 			      5 : "",
 			      6 : "\
 \nlocal one=$(uptime | sed -e \"s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\\1/\" -e \"s/ //g\")\
