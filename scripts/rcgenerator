@@ -49,7 +49,6 @@ _bash_nxrc()
 	_rc_echo export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/functions/
 	_rc_echo export BSNG_LOCKFILE=$HOME/.bashstyle.lock
 	_rc_echo export BSNG_VERSION=$BSNG_VERSION
-	#_rc_echo export BSNG_GCONF_READ=1
 
 	_rc_echo "\nbsource () {"
 	_rc_echo "\n\tfor file in \$@; do"
@@ -347,8 +346,6 @@ _bash_finalize()
 		cat $HOME/.custom-rc | sed -e '/#\!/d' >> $HOME/bashstyle/bashrc.bs-ng-$DATE
 	fi
 
-	#_rc_echo "unset BSNG_GCONF_READ"
-
 	WelcomeMessage=$(get_key welcome_message)
 
 	if [[ $WelcomeMessage != "" && $pstyle != clock-ad && $pstyle != clock ]]; then \
@@ -361,8 +358,6 @@ _bash_finalize()
 _generate_bashrc()
 
 {
-	export BSNG_GCONF_READ=1
-
 	_bash_nxrc
 	_bash_colors
 	_bash_aliases
@@ -377,14 +372,10 @@ _generate_bashrc()
 
 	tput sgr0
 
-	unset BSNG_GCONF_READ
-
 }
 
 _generate_inputrc()
 {
-
-	export BSNG_GCONF_READ=1
 
 	if [[ -e $HOME/.inputrc ]]; then
 		mv $HOME/.inputrc $HOME/.inputrc.old
@@ -413,13 +404,11 @@ _generate_inputrc()
 
 	tput sgr0
 
-	unset BSNG_GCONF_READ
 }
 
 _generate_vimrc()
 {
 
-	export BSNG_GCONF_READ=1
 
 	if [[ -e $HOME/.vimrc ]]; then
 		mv $HOME/.vimrc $HOME/.vimrc.old
@@ -448,13 +437,11 @@ _generate_vimrc()
 
 	tput sgr0
 
-	unset BSNG_GCONF_READ
 }
 
 _generate_nanorc()
 {
 
-	export BSNG_GCONF_READ=1
 
 	if [[ -e $HOME/.nanorc ]]; then
 		mv $HOME/.nanorc $HOME/.nanorc.old
@@ -483,7 +470,6 @@ _generate_nanorc()
 
 	tput sgr0
 
-	unset BSNG_GCONF_READ
 }
 
 case $1 in
