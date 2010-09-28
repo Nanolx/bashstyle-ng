@@ -86,6 +86,7 @@ clean:
 
 install:
 	@echo -e "$(GREEN)installing:$(YELLOW)	[01/14] directories"
+	@mkdir -p $(DESTDIR)/etc/profile.d/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/data/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/
@@ -115,6 +116,7 @@ install:
 	@echo -e "$(GREEN)installing:$(YELLOW) 	[02/14] bashstyle-ng"
 	@install -m644 code/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/code/
 	@install -m755 data/bashstyle $(DESTDIR)@PREFIX@/bin/
+	@install -m644 data/bashstyle-profile $(DESTDIR)/etc/profile.d/bashstyle.sh
 	@echo -e "$(GREEN)installing:$(YELLOW) 	[03/14] terminfo files:$(CYAN) bold mostlike nebula"
 	@install -m644 data/terminfo/b/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/b/
 	@install -m644 data/terminfo/m/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/m/
@@ -171,6 +173,7 @@ install:
 
 uninstall:
 	@echo -e "$(RED)removing:$(CYAN)	[01/08] bashstyle-ng"
+	@rm -f  /etc/profile.d/bashstyle.sh
 	@rm -rf @PREFIX@/share/bashstyle-ng
 	@rm -f  @PREFIX@/bin/bashstyle
 	@echo -e "$(RED)removing:$(CYAN)	[02/08] rcgenerator bs-ng-profiler bs-ng-wizard"

@@ -17,6 +17,6 @@ substitute_values () {
 
 	# substitute PREFIX
 	sed -e "s>@PREFIX@>$PREFIX>g" -i Makefile data/bashstyle-ng.pc code/bsng.py\
-		data/bashstyle rc/nx-rc
+		data/bashstyle data/bashstyle-profile.in rc/nx-rc
 
 }

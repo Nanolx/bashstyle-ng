@@ -197,12 +197,6 @@ elif [[ $WelcomeMessage != "" ]]; then \
 	dbg_log $WelcomeMessage
 fi
 
-RM_CMD=$(which rm)
-MV_CMD=$(which mv)
-CP_CMD=$(which cp)
-
-export RM_CMD MV_CMD CP_CMD
-
 dbg_msg $"BashStyle-NG Setting:" $"PATH" $BSNG_RC_DIR/bin/:$PATH
 dbg_log export PATH="$BSNG_RC_DIR/bin/:$PATH"
 
