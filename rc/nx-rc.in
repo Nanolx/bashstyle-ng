@@ -15,8 +15,6 @@ if [[ $0 == *gdm* ]]; then
 	dbg_msg $"BashStyle-NG: Started from GDM -- exiting"
 else
 
-export BSNG_GCONF_READ=1
-
 export BSNG_PREFIX=@PREFIX@
 export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/
 export BSNG_LOCKFILE=$HOME/.bashstyle.lock
@@ -25,7 +23,12 @@ export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
 
 ERR_MSG=""
 
-BSNG_FUNCS=(internal admin conversion dirinfo infos media misc random utils versioning)
+BSNG_INTERN=( misc gconf logging )
+BSNG_FUNCS=( admin conversion dirinfo infos media misc random utils versioning )
+
+for RC in ${BSNG_INTERN[@]}; do
+	source $BSNG_RC_DIR/internal/$RC
+done
 
 for RC in ${BSNG_FUNCS[@]}; do
 	source $BSNG_RC_DIR/functions/$RC
@@ -80,15 +83,6 @@ dbg_log alias reload="source ~/.bashrc"
 
 dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
 dbg_log alias rd="pwd -P"
-
-dbg_msg $"BashStyle-NG Setting:" $"Alias" rm=saferm
-dbg_log alias rm="saferm"
-
-dbg_msg $"BashStyle-NG Setting:" $"Alias" mv=safemv
-dbg_log alias mv="safemv"
-
-dbg_msg $"BashStyle-NG Setting:" $"Alias" cp=safecp
-dbg_log alias cp="safecp"
 
 if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
@@ -203,6 +197,12 @@ elif [[ $WelcomeMessage != "" ]]; then \
 	dbg_log $WelcomeMessage
 fi
 
+RM_CMD=$(which rm)
+MV_CMD=$(which mv)
+CP_CMD=$(which cp)
+
+export RM_CMD MV_CMD CP_CMD
+
 dbg_msg $"BashStyle-NG Setting:" $"PATH" $BSNG_RC_DIR/bin/:$PATH
 dbg_log export PATH="$BSNG_RC_DIR/bin/:$PATH"
 
@@ -216,8 +216,6 @@ if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eyellow}\n\nImportant informations:"
 	echo -e "${eorange}${ERR_MSG}\n"
 fi
-
-unset BSNG_GCONF_READ
 
 dbg_log bs-ng-wizard
 
