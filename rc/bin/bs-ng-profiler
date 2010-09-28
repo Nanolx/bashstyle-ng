@@ -55,7 +55,7 @@ _import ()
 		${DIRCOLOR_KEYS[@]} ${SEPARATOR_KEYS[@]} ${NANO_KEYS[@]} \
 		${READLINE_KEYS[@]} ${SHOPT_KEYS[@]} ${VIMKEYS[@]}; do
 		set_key $(gconftool-2 -T /apps/bashstyle/$key) $key \
-			$( grep -w $key $PROFILE | gawk -F"=" '{print $2}' | sed 's/\"//g' )
+			"$( grep -w $key $PROFILE | gawk -F= '{print $2}' | sed 's/\"//g' )"
 	done
 
 	echo "$PROFILE imported"
