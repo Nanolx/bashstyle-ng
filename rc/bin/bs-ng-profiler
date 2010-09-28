@@ -28,10 +28,9 @@ _export ()
 
 	echo BashStyle-Profile > $PROFILE
 
-	for array in ${BASH_KEYS[@]} ${ALIAS_KEYS[@]} ${COLOR_KEY[@]} \
+	for key in ${BASH_KEYS[@]} ${ALIAS_KEYS[@]} ${COLOR_KEY[@]} \
 		${DIRCOLOR_KEYS[@]} ${SEPARATOR_KEYS[@]} ${NANO_KEYS[@]} \
 		${READLINE_KEYS[@]} ${SHOPT_KEYS[@]} ${VIMKEYS[@]}; do
-		PREFIX=${array[!#]}
 		echo "$key="\"$(get_key $key)\" >> $PROFILE
 	done
 
@@ -41,90 +40,22 @@ _export ()
 
 _import ()
 {
-	export BSNG_GCONF_READ=1
+
+	PROFILE=$2
 
 	if [[ $PROFILE == "" ]]; then \
 		echo "No Profile given" && exit 1; \
-	fi
-
-	if [[ ! -e $PROFILE ]]; then \
+	elif [[ ! -e $PROFILE ]]; then \
 		echo "Profile does not exist" && exit 1; \
-	      	fi
-
-	if [[ $(grep -w "BashStyle-Profile" $PROFILE) == "" ]]; then \
+	elif [[ $(grep -w "BashStyle-Profile" $PROFILE) == "" ]]; then \
 		echo "This is not a profile" && exit 1; \
 	fi
 
-	for key in $BASH_KEYS; do \
-		echo $key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/$key) \
-				/apps/bashstyle/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' )" ; \
-		fi; \
-	done
-
-	for key in $ALIAS_KEYS; do \
-		echo alias/$key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/alias/$key) \
-				/apps/bashstyle/alias/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' )" ; \
-		fi; \
-	done
-
-	for key in $COLOR_KEYS; do \
-		echo color/$key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/color/$key) \
-				/apps/bashstyle/color/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' )" ; \
-		fi; \
-	done
-
-	for key in $DIRCOLOR_KEYS; do \
-		echo dircolors/$key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/dircolors/$key) \
-				/apps/bashstyle/dircolors/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' )" ; \
-		fi; \
-	done
-
-	for key in $SEPARATOR_KEYS; do \
-		echo separator/$key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/separator/$key) \
-				/apps/bashstyle/separator/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' )" ; \
-			fi; \
-	done
-
-	for key in $READLINE_KEYS; do \
-		echo readline/$key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/readline/$key) \
-				/apps/bashstyle/readline/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' )" ; \
-		fi; \
-	done
-
-	for key in $SHOPT_KEYS; do \
-		echo shopt/$key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/shopt/$key) \
-			/apps/bashstyle/shopt/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' )" ; \
-		fi; \
-	done
-
-	for key in $VIM_KEYS; do \
-		echo vim/$key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/vim/$key) \
-				/apps/bashstyle/vim/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' ) "; \
-		fi; \
-	done
-
-	for key in $NANO_KEYS; do \
-		echo nano/$key
-		if [[ $(grep -w $key $PROFILE) != "" ]]; then \
-			gconftool-2 --set --type $(gconftool-2 -T /apps/bashstyle/nano/$key) \
-			/apps/bashstyle/nano/$key "$(grep -w $key $PROFILE | sed -e "s/$key=//g" -e 's/\"//g' ) "; \
-		fi; \
+	for key in ${BASH_KEYS[@]} ${ALIAS_KEYS[@]} ${COLOR_KEY[@]} \
+		${DIRCOLOR_KEYS[@]} ${SEPARATOR_KEYS[@]} ${NANO_KEYS[@]} \
+		${READLINE_KEYS[@]} ${SHOPT_KEYS[@]} ${VIMKEYS[@]}; do
+		set_key $(gconftool-2 -T /apps/bashstyle/$key) $key \
+			$( grep -w $key $PROFILE | gawk -F"=" '{print $2}' | sed 's/\"//g' )
 	done
 
 	echo "$PROFILE imported"

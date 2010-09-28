@@ -9,38 +9,34 @@
 #							#
 #########################################################
 
-BASH_PREFIX=""
 BASH_KEYS=( cdpath colored_grep colored_ls colored_man custom_command custom_prompt \
 debug debug_log debug_verbose dirchar fcedit fignore hist_control hist_ignore history_size \
 man_style path prompt_style ps234 pwdchar pwdmaxlength random_style tabrotate timeout \
 use_bashstyle use_custom_prompt welcome_message )
 
-ALIAS_PREFIX="alias/"
-ALIAS_KEYS=( one two three four five six seven eight nine )
+ALIAS_KEYS=( alias/one alias/two alias/three alias/four alias/five alias/six alias/seven \
+alias/eight alias/nine)
 
-COLOR_PREFIX="color/"
-COLOR_KEYS=( style date font grep host ps234c separatorc time uptime enable user wdir )
+COLOR_KEYS=( color/style color/date color/font color/grep color/host color/ps234c \
+color/separatorc color/time color/uptime color/enable color/user color/wdir )
 
-DIRCOLOR_PREFIX="dircolor/"
-DIRCOLOR_KEYS=( custom deb dirs enable exec flac generic gif jpeg logs mp3 ogg png \
-rar rpm tar tarbz2 targz zip )
+DIRCOLOR_KEYS=( dircolors/custom dircolors/deb dircolors/dirs dircolors/enable dircolors/exec \
+dircolors/flac dircolors/generic dircolors/gif dircolors/jpeg dircolors/logs dircolors/mp3 dircolors/ogg \
+dircolors/png dircolors/rar dircolors/rpm dircolors/tar dircolors/tarbz2 dircolors/targz dircolors/zip )
 
-SEPARATOR_PREFIX="separator/"
-SEPARATOR_KEYS=( battery_load files_amount file_size load mem processes tty uptimes separator )
+SEPARATOR_KEYS=( separator/battery_load separator/files_amount separator/file_size separator/load \
+separator/mem separator/processes separator/tty separator/uptimes separator/separator )
 
-READLINE_PREFIX="readline/"
-READLINE_KEYS=( ambiguous bellstyle completion completionhz editing_mode hidden ignore_case \
-mark_dirs mark_modlines mark_sym_dirs query_item scrollhz use_readlinecfg vstats )
+READLINE_KEYS=( readline/ambiguous readline/bellstyle readline/completion readline/completionhz \
+readline/editing_mode readline/hidden readline/ignore_case readline/mark_dirs readline/mark_modlines \
+readline/mark_sym_dirs readline/query_item readline/scrollhz readline/use_readlinecfg readline/vstats )
 
-SHOPT_PREFIX="shopt/"
-SHOPT_KEYS=( autocd cdable_vars cdspell checkhash checkjobs cmdhist dirspell force_fignore \
-globstar histappend histreedit no_empty_cmd_completion )
+SHOPT_KEYS=( shopt/autocd shopt/cdable_vars shopt/cdspell shopt/checkhash shopt/checkjobs shopt/cmdhist \
+shopt/dirspell shopt/force_fignore shopt/globstar shopt/histappend shopt/histreedit shopt/no_empty_cmd_completion )
 
-VIM_PREFIX="vim/"
-VIM_KEYS=( autosave backup dark_background filetype_indent highlight hl_cursor ignore_case \
-inc_search jump_back number ruler rulerformat show_cmd show_match smart_case syntax_hilight \
-use_vimcfg vim_colorscheme )
+VIM_KEYS=( vim/autosave vim/backup vim/dark_background vim/filetype_indent vim/highlight vim/hl_cursor \
+vim/ignore_case vim/inc_search vim/jump_back vim/number vim/ruler vim/rulerformat vim/show_cmd vim/show_match \
+ vim/smart_case vim/syntax_hilight vim/use_vimcfg vim/vim_colorscheme )
 
-NANO_PREFIX="nano/"
-NANO_KEYS=( auto_indent backup bold_text case_sensitive const more_space nohelp use_colors \
-use_nanocfg history rebind_del rebind_kp )
+NANO_KEYS=( nano/auto_indent nano/backup nano/bold_text nano/case_sensitive nano/const nano/more_space \
+nano/nohelp nano/use_colors nano/use_nanocfg nano/history nano/rebind_del nano/rebind_kp )
