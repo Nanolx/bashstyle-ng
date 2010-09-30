@@ -135,6 +135,8 @@ if [[ -e $HOME/.settings-rc ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"Fist-Run-Wizard Settings"
 	dbg_log source $HOME/.settings-rc
 	if [[ $(grep -w "cd=lscd" $HOME/.settings-rc) != "" ]]; then
+		unalias cd
+		alias cd="$BSNG_RC_DIR/bin/cd"
 		export USE_LSCD="true"
 		export LSCD_OPTS
 	fi
