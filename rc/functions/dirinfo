@@ -28,3 +28,14 @@ dirinfo () {
 	esac
 
 }
+
+lscd () {
+
+	builtin cd "${@}" &>/dev/null
+	$BSNG_RC_DIR/dirinfo/display
+
+	echo -e "${epink}content:"
+	ls $LSCD_OPTS
+	echo "$PWD" > $HOME/.lastpwd
+
+}
