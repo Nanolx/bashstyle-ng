@@ -18,5 +18,5 @@ if [[ $USE_LSCD == "true" ]]; then
 	ls $LSCD_OPTS
 	echo "$PWD" > $HOME/.lastpwd
 
-else	buildin cd "${@}"
+else	builtin cd "${@}"
 fi
