@@ -9,6 +9,18 @@
 #							#
 #########################################################
 
+if [[ $1 == --help || $1 == -h ]]; then
+	$MV_CMD --help
+	exit 0
+elif [[ ${#} -lt "2" && ${1} != *{,* ]]; then
+	echo "not enough arguements"
+	exit 0
+fi
+
+if [[ "${!#}" == */ && ! -e "${!#}" ]]; then
+	mkdir -p "${!#}"
+fi
+
 destination="${!#}"
 
 args=( "$@" )
@@ -23,7 +35,10 @@ for path in "${args[@]}"; do
 	  echo "can not delete $try, it's protected"
 	  continue 2
       done
-      $MV_CMD $MV_OPTS $MVO "$path" "$destination"
+      if test "${path}" == "*{,*" ; then
+           $MV_CMD $MV_OPTS $MVO "$path"
+      else $MV_CMD $MV_OPTS $MVO "$path" "$destination"
+      fi
 done
 
 unset MVO

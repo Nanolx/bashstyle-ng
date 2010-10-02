@@ -9,6 +9,11 @@
 #							#
 #########################################################
 
+if [[ $1 == --help || $1 == -h ]]; then
+	$RM_CMD --help
+	exit 0
+fi
+
 for path in "$@"; do
     test "${path:0:1}" == - && RMO+="$path " && continue
     for try in "$path" "${path%/*}"; do
