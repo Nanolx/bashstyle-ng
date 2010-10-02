@@ -14,7 +14,7 @@ if [[ $1 == --help || $1 == -h ]]; then
 	exit 0
 elif [[ ${#} -lt "2" && ${1} != *{,* ]]; then
 	echo "not enough arguements"
-	exit 0
+	exit 1
 fi
 
 if [[ "${!#}" == */ && ! -e "${!#}" ]]; then
