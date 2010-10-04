@@ -1,0 +1,24 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+wizard_reprepro_one ()
+{
+	whiptail --title $"reprepro setup" --yesno $"Do you want to setup reprepro?
+If you have an repo managed via reprepro, you can now setup repoadd." 12 85
+
+	if [[ $? == "0" ]]; then
+		repo_home=$(whiptail --title $"reprepro repo home" --inputbox $"Enter the full path to the repo base directory:" 12 85 "$REPO_HOME" 3>&1 1>&2 2>&3)
+		rc_add export REPO_HOME=\"$repo_home\"
+
+		repo_dist=$(whiptail --title $"reprepro repo dist" --inputbox $"Enter the name of the default dist:" 12 85 "$REPO_DIST" 3>&1 1>&2 2>&3)
+		rc_add export REPO_DIST=\"$repo_dist\"
+	fi
+}

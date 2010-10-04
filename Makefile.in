@@ -97,6 +97,7 @@ install:
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/dirinfo/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/ascii/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/bin/
+	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/wizard/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/internal/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/generator/
 	@mkdir -p $(DESTDIR)@PREFIX@/share/bashstyle-ng/system/
@@ -131,7 +132,6 @@ install:
 	@install -m644 data/icons/*.png $(DESTDIR)/usr/share/icons/hicolor/32x32/apps/
 	@echo -e "$(GREEN)installing:$(YELLOW) 	[07/14] nx-rc rcgenerator bs-ng-profiler bs-ng-wizard"
 	@install -m755 rc/nx-rc $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/
-	@install -m755 scripts/*[!.in] $(DESTDIR)@PREFIX@/bin/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[08/14] .desktop file"
 	@install -m644 data/bs-ng.desktop $(DESTDIR)@PREFIX@/share/applications/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[09/14] documentation"
@@ -147,6 +147,7 @@ install:
 	@install -m755 rc/dirinfo/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/dirinfo/
 	@install -m755 rc/ascii/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/ascii/
 	@install -m755 rc/bin/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/bin/
+	@install -m755 rc/wizard/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/wizard/
 	@install -m755 rc/internal/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/internal/
 	@install -m755 rc/generator/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/generator/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[13/14] .pc gconf-schemas"

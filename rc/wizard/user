@@ -1,0 +1,53 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+wizard_user_two ()
+{
+	whiptail --title $"personal infos" --msgbox $"Next follow some options asking your for personal informations (real name, birthday, mail-address)." 12 85
+
+	user_name=$(whiptail --title $"username" --inputbox $"Enter your real name (name and surname)
+This info is mainly used by the Owner-field of .dirinfo files:" 12 85 "$USER_REAL_NAME" 3>&1 1>&2 2>&3)
+
+	if [[ $user_name != "" ]]; then
+		rc_add export USER_REAL_NAME=\"$user_name\"
+	fi
+
+	user_bday=$(whiptail --title $"birthday" --inputbox $"Enter your birthday in MM-DD (eg 12-24) format.
+(You'll see what happens):" 12 85 "$USER_BIRTHDAY" 3>&1 1>&2 2>&3)
+
+	if [[ $user_bday != "" ]]; then
+		rc_add export USER_BIRTHDAY=$user_bday
+	fi
+
+	user_location=$(whiptail --title $"location" --inputbox $"Enter your location in CITY COUNTRY (eg Berlin Deutschland) format." 12 85 "${USER_LOCATION[@]}" 3>&1 1>&2 2>&3)
+
+	if [[ $user_location != "" ]]; then
+		rc_add export USER_LOCATION=\( $user_location \)
+	fi
+
+	user_mail=$(whiptail --title $"mail" --inputbox $"Enter your mail-address." 12 85 "$USER_MAIL" 3>&1 1>&2 2>&3)
+
+	if [[ $user_mail != "" ]]; then
+		rc_add export USER_MAIL=\"$user_mail\"
+	fi
+
+	user_level=$(whiptail --title $"userlevel" --menu $"Choose your userlevel" 12 85 3 1 novice 2 user 3 expert 3>&1 1>&2 2>&3)
+
+	case $user_level in
+
+		1) xlevel="novice" ;;
+		2) xlevel="average" ;;
+		3) xlevel="expert" ;;
+
+	esac
+
+	rc_add export USER_LEVEL=\"$xlevel\"
+}

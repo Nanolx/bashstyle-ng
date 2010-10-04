@@ -1,0 +1,82 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+source $BSNG_RC_DIR/internal/misc
+
+MODULES=( basic cdwriter git lscd reprepro svn user )
+for mod in ${MODULES[@]}; do
+	source $BSNG_RC_DIR/wizard/$mod
+done
+
+CURRENT_WIZARD=2
+
+export RC_FILE=$HOME/.bashstyle.wizard
+
+if [[ $1 == *force ]]; then
+	STAGE=REBUILD
+elif [[ ! -e $RC_FILE ]]; then
+	STAGE=INIT
+elif [[ -e $RC_FILE ]]; then
+	LOCAL_WIZARD=$(grep -w WIZARD $RC_FILE | gawk -F'=' '{print $2}')
+	if [[ $LOCAL_WIZARD -lt $CURRENT_WIZARD ]]; then
+		STAGE=UPDATE
+	else 	STAGE=KEEP
+	fi
+fi
+
+case $STAGE in
+
+	INIT )
+		CONF_MODULES=ALL
+	;;
+
+	REBUILD )
+		source $RC_FILE
+		rm $RC_FILE
+		rc_add "WIZARD=$CURRENT_WIZARD"
+		CONF_MODULES=ALL
+	;;
+
+	UPDATE )
+		CONF_MODULES=$((LOCAL_WIZARD+1))
+	;;
+
+	KEEP )
+		echo "You have already run the wizard."
+		exit 0
+	;;
+
+esac
+
+case $CONF_MODULES in
+
+	ALL )
+		wizard_start
+		wizard_base_one
+		wizard_lscd_one
+		wizard_cdwriter_one
+		wizard_git_base_one
+		wizard_git_accounts_one
+		wizard_svn_accounts_one
+		wizard_reprepro_one
+		wizard_user_two
+		wizard_end
+	;;
+
+	2 )
+		wizard_start
+		wizard_user_two
+		wizard_end
+	;;
+
+# 3 isn't where yet
+
+esac

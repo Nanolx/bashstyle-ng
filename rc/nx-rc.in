@@ -131,14 +131,9 @@ dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/shopt-rc
 
 shopt -s checkwinsize
 
-if [[ -e $HOME/.settings-rc ]]; then \
+if [[ -e $HOME/.bashstyle.wizard ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"Fist-Run-Wizard Settings"
-	dbg_log source $HOME/.settings-rc
-	# until bs-ng-wizard was rewritten...
-	export LSCD_OPTS CD_WRITER DD_OPTS GIT_USER_NAME GIT_USER_EMAIL \
-		GIT_USER_GNOME GIT_USER_XFCE GIT_EDITOR SVN_USER_KDE \
-		SVN_USER_ENLIGHTENMENT REPO_HOME REPO_DIST USER_REAL_NAME \
-		USER_BIRTHDAY USER_LOCATION USER_MAIL USER_LEVEL
+	dbg_log source $HOME/.bashstyle.wizard
 	if [[ $enabcol != true ]]; then
 		LSCD_OPTS+=" --color=no"
 	fi

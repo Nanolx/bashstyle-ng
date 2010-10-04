@@ -1,0 +1,29 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+wizard_svn_accounts_one ()
+{
+	whiptail --title $"svn.kde.org" --yesno $"Do you have a KDE SVN account?
+with this info get_kde can checkout SVN repos with write access." 12 85
+
+		if [[ $? == "0" ]]; then
+			get_kde_user=$(whiptail --title $"svn.kde.org account" --inputbox $"What's your KDE SVN Account?:" 12 85 "$SVN_USER_KDE" 3>&1 1>&2 2>&3)
+			rc_add export SVN_USER_KDE=\"$get_kde_user\"
+		fi
+
+	whiptail --title $"svn.enlightenment.org" --yesno $"Do you have an Enlightenment SVN account?
+With this info get_e can checkout SVN repos with write access." 12 85
+
+		if [[ $? == "0" ]]; then
+			get_e_user=$(whiptail --title $"svn.enlightenment.org account" --inputbox $"What's your Enlightenment SVN Account?:" 12 85 "$SVN_USER_ENLIGHTENMENT" 3>&1 1>&2 2>&3)
+			rc_add export SVN_USER_ENLIGHTENMENT=\"$get_e_user\"
+		fi
+}

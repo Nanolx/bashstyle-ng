@@ -1,0 +1,105 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2010 Christopher Bratusek		#
+#							#
+#########################################################
+
+wizard_git_base_one ()
+{
+whiptail --title $"GIT setup" --yesno $"Do you want to configure GIT?" 12 85
+
+export USER_WANTS_GIT=$?
+
+	if [[ $USER_WANTS_GIT == "0" ]]; then
+
+		gituser=$(whiptail --title $"GIT username" --inputbox $"Enter your real name to be used by GIT:" 12 85 "$GIT_USER_NAME" 3>&1 1>&2 2>&3)
+		if [[ $gituser != "" ]]; then
+			git config --global user.name "$gituser"
+			rc_add export GIT_USER_NAME=\"$gituser\"
+		fi
+
+		gitmail=$(whiptail --title $"GIT email" --inputbox $"Enter your email to be used by GIT:" 12 85 "$GIT_USER_EMAIL" 3>&1 1>&2 2>&3)
+		if [[ $gitmail != "" ]]; then
+			git config --global user.email "$gitmail"
+			rc_add export GIT_USER_EMAIL=\"$gitmail\"
+		fi
+
+		whiptail --title $"GIT key" --yesno $"Do you want to set a default key for signing off GIT?" 12 85
+
+		if [[ $? == "0" ]]; then
+			gitkey=$(whiptail --title "default git signing key" --inputbox "Enter the default key for signing off GIT:" 12 85 "$GIT_USER_SIGNINGKEY" 3>&1 1>&2 2>&3)
+			if [[ $gitkey != "" ]]; then
+				git config --global user.signingkey "$gitkey"
+				rc_add export GIT_USER_SIGNINGKEY=\"$gitkey\"
+			fi
+		fi
+
+
+		whiptail --title $"GIT color" --yesno $"Do you want colored output from GIT?" 12 85
+		COLOR_OPTS=( branch diff interactive pager status )
+
+		if [[ $? == "0" ]]; then
+			for opt in ${COLOR_OPTS[@]}; do
+				git config --global color.$opt true
+			done
+			rc_add export GIT_COLOR=\"true\"
+		else 	for opt in ${COLOR_OPTS[@]}; do
+				git config --global color.$opt false
+			done
+			rc_add export GIT_COLOR=\"false\" >> $HOME/.setting-rc
+		fi
+
+		giteditor=$(whiptail --title $"Editor for GIT" --inputbox $"What editor to use for GIT commit messages & Co?:" 12 85 "$GIT_EDITOR" 3>&1 1>&2 2>&3)
+		if [[ $giteditor != "" ]]; then
+			git config --global core.editor "$giteditor"
+			rc_add export GIT_EDITOR=\"$giteditor\"
+		fi
+
+		whiptail --title $"SVN compat" --yesno $"Do you want some aliases to be defined?
+git co [git checkout]
+git up [git pull]
+git re [git reset --hard HEAD]
+git ma [git checkout master]
+git who [git shortlog -s --]" 12 85
+
+		if [[ $? == "0" ]]; then
+			git config --global alias.co checkout
+			git config --global alias.up pull
+			git config --global alias.re "reset --hard HEAD"
+			git config --global alias.ma "checkout master"
+			git config --global alias.who "shortlog -s --"
+			rc_add export GIT_ALIASES=\"true\"
+		else 	rc_add export GIT_ALIASES=\"false\"
+		fi
+
+	fi
+
+}
+
+wizard_git_accounts_one ()
+{
+	if [[ $USER_WANTS_GIT == "0" ]]; then
+		whiptail --title $"git.gnome.org" --yesno $"Do you have a GNOME GIT account?
+With this info get_gnome can clone GIT repos with write access." 12 85
+
+		if [[ $? == "0" ]]; then
+			get_gnome_user=$(whiptail --title $"git.gnome.org account" --inputbox $"What's your GNOME GIT Account?:" 12 85 "$GIT_USER_GNOME" 3>&1 1>&2 2>&3)
+			rc_add export GIT_USER_GNOME=\"$get_gnome_user\"
+		fi
+
+		whiptail --title $"git.xfce.org" --yesno $"Do you have a XFCE GIT account?
+With this info get_xfce can clone GIT repos with write access." 12 85
+
+		if [[ $? == "0" ]]; then
+			get_xfce_user=$(whiptail --title $"git.xfce.org account" --inputbox $"What's your XFCE GIT Account?:" 12 85 "$GIT_USER_XFCE" 3>&1 1>&2 2>&3)
+			rc_add export GIT_USER_XFCE=\"$get_xfce_user\"
+		fi
+	fi
+
+	unset USER_WANTS_GIT
+}
