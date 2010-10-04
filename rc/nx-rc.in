@@ -212,6 +212,5 @@ if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eorange}${ERR_MSG}\n"
 fi
 
-dbg_log bs-ng-wizard
-
+bs-ng-wizard 1>/dev/null
 dbg_finalize
