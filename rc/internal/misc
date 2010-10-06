@@ -18,9 +18,12 @@ rc_add ()
 
 check_opt() {
 
-	which "$1" &>/dev/null
+	APP="$1"
+	which "$APP" &>/dev/null
+
 	if (( $? != 0 )); then
-		echo -e "$1 not found!\n$2 won't work without it."
-		exit 1
+		shift
+		echo -e "$APP not found!\n\`$@' won't work without it."
+		return 1
 	fi
 }

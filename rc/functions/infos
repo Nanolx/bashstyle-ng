@@ -375,41 +375,45 @@ show_battery_load ()
 	case $1 in
 		*acpi )
 			check_opt acpi show_battery_load::acpi
-			load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
-			out="$(acpi -b)"
-			state="$(echo "${out}" | awk '{print $3}')"
-			case ${state} in
-				charging,)
-					statesign="^"
-				;;
+			if [[ $? != "1" ]]; then
+				load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
+				out="$(acpi -b)"
+				state="$(echo "${out}" | awk '{print $3}')"
+				case ${state} in
+					charging,)
+						statesign="^"
+					;;
 
-				discharging,)
-					statesign="v"
-				;;
+					discharging,)
+						statesign="v"
+					;;
 
-				charged,)
-					statesign="°"
-				;;
-			esac
-			battery="${statesign}${load}"
-			echo $battery
+					charged,)
+						statesign="°"
+					;;
+				esac
+				battery="${statesign}${load}"
+				echo $battery
+			fi
 		;;
 
 		*apm )
 			check_opt apm show_battery_load::apm
-			result="$(apm)"
-			case ${result} in
-				*'AC on'*)
-					state="^"
-				;;
+			if [[ $? != "1" ]]; then
+				result="$(apm)"
+				case ${result} in
+					*'AC on'*)
+						state="^"
+					;;
 
-				*'AC off'*)
-					state="v"
-				;;
-			esac
-			load="${temp##* }"
-			battery="${state}${load}"
-			echo $battery
+					*'AC off'*)
+						state="v"
+					;;
+				esac
+				load="${temp##* }"
+				battery="${state}${load}"
+				echo $battery
+			fi
 		;;
 
 		* )
@@ -520,16 +524,20 @@ system_infos ()
 
 		*pci)
 			check_opt lspci systeminfos::pci
-			echo -e "${ewhite}PCI Devices:\n${eiceblue}"
-			lspci -vkmm
-			echo ""
+			if [[ $? != "1" ]]; then
+				echo -e "${ewhite}PCI Devices:\n${eiceblue}"
+				lspci -vkmm
+				echo ""
+			fi
 		;;
 
 		*usb)
 			check_opt lsusb systeminfos::usb
-			echo -e "${ewhite}USB Devices:\n${eiceblue}"
-			lsusb -v
-			echo ""
+			if [[ $? != "1" ]]; then
+				echo -e "${ewhite}USB Devices:\n${eiceblue}"
+				lsusb -v
+				echo ""
+			fi
 		;;
 
 		*mounts)
@@ -540,13 +548,10 @@ system_infos ()
 
 		*bios)
 			check_opt dmidecode systeminfos::bios
-			if [[ $EUID != 0 ]]; then
-				echo -e "You are not root, exiting!"
-				exit 1
+			if [[ $? != "1" && $EUID == 0 ]]; then
+				echo -e "${ewhite}SMBIOS/DMI Infos:${eiceblue}\n"
+				dmidecode -q
 			fi
-
-			echo -e "${ewhite}SMBIOS/DMI Infos:${eiceblue}\n"
-			dmidecode -q
 		;;
 
 		*all)
@@ -581,37 +586,45 @@ show_weather ()
 
 	check_opt lynx show_weather
 
-	if [[ $1 ]]; then
-		LOC=$1
-	elif [[ ${USER_LOCATION[0]} ]]; then
-		LOC=${USER_LOCATION[0]}
-	else	exit 0
+	if [[ $? != "1" ]]; then
+
+		if [[ $1 ]]; then
+			LOC=$1
+		elif [[ ${USER_LOCATION[0]} ]]; then
+			LOC=${USER_LOCATION[0]}
+		fi
+
+		if [[ $LOC ]]; then
+
+			declare -a WEATHERARRAY
+			WEATHERARRAY=( `lynx -dump "http://www.google.com/search?q=weather+${LOC}" | grep -A 5 -m 1 "Weather for" | grep -v "Add to "`)
+
+
+			STATE=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Current: //g' -e 's/ Wind.*//g')
+			WIND=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Wind: //g' | gawk '{print $1}')
+			WINDINFO=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Wind: //g' | gawk '{print $2 " " $3 " " $4}')
+
+			case ${WEATHERARRAY[8]} in
+
+				N) DIRECTION="North" ;;
+				NE) DIRECTION="North-East" ;;
+				NW) DIRECTION="North-West" ;;
+				E) DIRECTION="East" ;;
+				S) DIRECTION="South" ;;
+				SE) DIRECTION="South-East" ;;
+				SW) DIRECTION="South-West" ;;
+				W) DIRECTION="West" ;;
+
+			esac
+
+			echo -e " >> ${WEATHERARRAY[2]}: ${WEATHERARRAY[4]}\
+				\n >> currently it's $STATE\
+				\n >> Wind from $DIRECTION $WINDINFO" | sed -e 's/,//g'
+
+			unset LOC
+
+		fi
 	fi
-	
-	declare -a WEATHERARRAY
-	WEATHERARRAY=( `lynx -dump "http://www.google.com/search?q=weather+${LOC}" | grep -A 5 -m 1 "Weather for" | grep -v "Add to "`)
-
-
-	STATE=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Current: //g' -e 's/ Wind.*//g')
-	WIND=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Wind: //g' | gawk '{print $1}')
-	WINDINFO=$(echo ${WEATHERARRAY[*]} | sed -e 's/.*Wind: //g' | gawk '{print $2 " " $3 " " $4}')
-
-	case ${WEATHERARRAY[8]} in
-
-		N) DIRECTION="North" ;;
-		NE) DIRECTION="North-East" ;;
-		NW) DIRECTION="North-West" ;;
-		E) DIRECTION="East" ;;
-		S) DIRECTION="South" ;;
-		SE) DIRECTION="South-East" ;;
-		SW) DIRECTION="South-West" ;;
-		W) DIRECTION="West" ;;
-
-	esac
-
-	echo -e " >> ${WEATHERARRAY[2]}: ${WEATHERARRAY[4]}\
-		\n >> currently it's $STATE\
-		\n >> Wind from $DIRECTION $WINDINFO" | sed -e 's/,//g'
 
 
 }

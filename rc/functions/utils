@@ -124,8 +124,9 @@ man2pdf ()
 
 		* )
 			check_opt ps2pdf man2pdf
-			if [[ $1 != "" ]]; then
+			if [[ $? != "1"  && $1 ]]; then
 				man -t $1 | ps2pdf - >$1.pdf
+			else	echo "No manpage given."
 			fi
 		;;
 	esac

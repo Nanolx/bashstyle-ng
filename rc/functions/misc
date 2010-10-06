@@ -164,22 +164,20 @@ lm() {
 
 define ()
 {
-
 	check_opt lynx define
 
-	if [[ $1 ]]; then
-
-	lynx -dump "http://www.google.com/search?hl=en&q=define%3A+${1}&btnG=Google+Search" | grep -m 3 -w "*"  | sed 's/;/ -/g' | cut -d- -f1 > /tmp/templookup.txt
-		if [[ -s  /tmp/templookup.txt ]] ;then
-			until ! read response
-			do
-				echo "${response}"
-			done < /tmp/templookup.txt
-		else
-			echo "Sorry $USER, I can't find the term \"${1} \""
-			fi
-	rm -f /tmp/templookup.txt
-
+	if [[ $? != "1" && $1 ]]; then
+		lynx -dump "http://www.google.com/search?hl=en&q=define%3A+${1}&btnG=Google+Search" | grep -m 3 -w "*"  | sed 's/;/ -/g' | cut -d- -f1 > /tmp/templookup.txt
+			if [[ -s  /tmp/templookup.txt ]] ;then
+				until ! read response
+				do
+					echo "${response}"
+				done < /tmp/templookup.txt
+			else
+				echo "Sorry $USER, I can't find the term \"${1} \""
+				fi
+		rm -f /tmp/templookup.txt
+	else	echo "No keyword given"
 	fi
 }
 

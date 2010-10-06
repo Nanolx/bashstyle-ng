@@ -11,27 +11,27 @@
 
 torswitch () {
 
-	if ! [[ $EUID == 0 ]]; then
-		exit 1
-	fi
+	if [[ $EUID == 0 ]]; then
 
-	case $1 in
-		*on )
-			if [[ $(grep forward-socks4a /etc/privoxy/config) == "" ]]; then
-				echo "forward-socks4a / 127.0.0.1:9050 ." >> /etc/privoxy/config
-			else
-				sed -e 's/\# forward-socks4a/forward-socks4a/g' -i /etc/privoxy/config
+		case $1 in
+			*on )
+				if [[ $(grep forward-socks4a /etc/privoxy/config) == "" ]]; then
+					echo "forward-socks4a / 127.0.0.1:9050 ." >> /etc/privoxy/config
+				else
+					sed -e 's/\# forward-socks4a/forward-socks4a/g' -i /etc/privoxy/config
+					/etc/init.d/tor restart
+					/etc/init.d/privoxy restart
+				fi
+			;;
+
+			*off )
+				sed -e 's/forward-socks4a/\# forward-socks4a/g' -i /etc/privoxy/config
 				/etc/init.d/tor restart
 				/etc/init.d/privoxy restart
-			fi
-		;;
+			;;
+		esac
 
-		*off )
-			sed -e 's/forward-socks4a/\# forward-socks4a/g' -i /etc/privoxy/config
-			/etc/init.d/tor restart
-			/etc/init.d/privoxy restart
-		;;
-	esac
+	fi
 
 }
 
