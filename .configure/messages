@@ -60,7 +60,8 @@ maintainer_message () {
 end_message () {
 
 	export PATH="$OLDPATH"
-	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\n"
+	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\
+		\n${YELLOW}Dirinfo Utils:${WHITE} $DIRINFO_ENABLE\n"
 	if [[ $ERR_MSG != "" ]]; then
 		echo -e "${YELLOW}Notes:\
 			\n${WHITE}${ERR_MSG}"
