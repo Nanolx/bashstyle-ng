@@ -22,7 +22,8 @@ SECTION=$1
 CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
 DONE_COUNTER=1
 
-section_message $2 $3
+shift
+section_message $@
 
 while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
@@ -47,7 +48,8 @@ SECTION=$1
 CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
 DONE_COUNTER=1
 
-section_message $2 $3
+shift
+section_message $@
 
 while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
@@ -79,7 +81,8 @@ SECTION=$1
 CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
 DONE_COUNTER=1
 
-section_message $2 $3
+shift
+section_message $@
 
 while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')

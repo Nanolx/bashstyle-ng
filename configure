@@ -4,74 +4,66 @@ shopt -s extglob
 source $PWD/.configure/base
 source $PWD/.configure/color
 source $PWD/.configure/messages
-source $PWD/.configure/help
 source $PWD/.configure/checks
 source $PWD/.configure/substitute
 
-case $1 in
+xcount=0
+pcount=$#
 
-	*mm | *maint* )
-
-	shift
-
+while [[ $xcount -lt $pcount ]]; do
 	case $1 in
+		*maintainer )
+			MODE=MAINTAINER
+		;;
 
 		*prefix* )
-			PREFIX=$(echo $1 | gawk -F \= '{ print $2 }')
+			PREFIX="${1/*=}"
 		;;
 
-		* )
-			PREFIX=/usr
+		*dirinfo-disable )
+			DIRINFO_ENABLE="false"
+		;;
+
+		*help )
+			MODE=HELP
 		;;
 	esac
+	shift
+	xcount=$(($xcount+1))
+done
+
+unset xcount
+
+if [[ ! $PREFIX ]]; then
+	PREFIX="/usr"
+fi
+
+if [[ ! $DIRINFO_ENABLE ]]; then
+	DIRINFO_ENABLE="true"
+fi
+
+if [[ ! $MODE ]]; then
+	MODE=USER
+fi
+
+if [[ $MODE == HELP ]]; then
+	help_message
+elif [[ $MODE == MAINTAINER ]]; then
 
 	maintainer_message
-
 	copy_in_files
 	substitute_values
-
-	export PATH="$OLDPATH"
-
 	end_message
 
-	;;
-
-	*help )
-
-	display_help
-
-	;;
-
-	* )
-
-	case $1 in
-
-		*prefix* )
-			PREFIX=$(echo $1 | gawk -F \= '{ print $2 }')
-		;;
-
-		* )
-			PREFIX=/usr
-		;;
-	esac
+elif [[ $MODE == USER ]]; then
 
 	start_message
-
-	check_apps 	APP 		Required 	Applications
-	check_apps 	OPT_APP 	Optional 	Applications
-	check_apps 	OPT_SBINAPP 	Optional 	Superuser-Applications
-	#check_libs 	LIB 		Required 	Libraries
-	check_pymods 	PYMOD 		Required 	Python-Modules
-
+	check_apps APP Required Applications
+	check_apps OPT_APP Optional Applications
+	check_apps OPT_SBINAPP Optional Superuser-Applications
+	check_pymods PYMOD Required Python-Modules
 	copy_in_files
 	substitute_values
-
-	export PATH="$OLDPATH"
-
 	end_message
 
-	;;
-
-esac
-
-tput sgr0
+fi

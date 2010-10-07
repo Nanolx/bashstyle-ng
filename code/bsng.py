@@ -26,6 +26,8 @@ if FAILED:
     print "The following modules failed to import: %s" % (" ".join(FAILED))
     sys.exit(1)
 
+PREFIX = commands.getoutput('pkg-config --variable=prefix bashstyle-ng')
+
 parser = optparse.OptionParser("bashstyle <option> [value]\
 				\n\nBashStyle-NG © 2007 - 2010 Christopher Bratusek\
 				\nLicensed under the GNU GENERAL PUBLIC LICENSE v3")
@@ -152,7 +154,7 @@ class BashStyleNG(object):
 		_ = self.lang.gettext
 
 		gtkbuilder.set_translation_domain(APP_NAME)
-		gtkbuilder.add_from_file("@PREFIX@/share/bashstyle-ng/data/bashstyle7.ui")
+		gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/data/bashstyle7.ui")
 
 		self.use_bashstyle = gtkbuilder.get_object("use_bashstyle")
 		self.use_bashstyle.set_active(gdb.get_bool(gbase + "use_bashstyle"))
@@ -1818,7 +1820,7 @@ class BashStyleNG(object):
 		self.show_cpb_help = gtkbuilder.get_object("show_cpb_help")
 
 		def do_show_cpb_help(widget, data=None):
-			subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/chapter07.html", shell=True)
+			subprocess.Popen("x-www-browser " + PREFIX + "/share/doc/bashstyle-ng/chapter07.html", shell=True)
 
 		self.show_cpb_help.connect("clicked", do_show_cpb_help)
 
@@ -2412,7 +2414,7 @@ class BashStyleNG(object):
 			if position <= 9:
 				notebook.set_current_page(position)
 			elif position == 10:
-				subprocess.Popen("x-www-browser @PREFIX@/share/doc/bashstyle-ng/index.html", shell=True)
+				subprocess.Popen("x-www-browser " + PREFIX + "/share/doc/bashstyle-ng/index.html", shell=True)
 			elif position == 11:
 				aboutdialog.show_all()
 				aboutdialog.connect("response", about_destroy, None)

@@ -52,18 +52,32 @@ warn_message () {
 
 maintainer_message () {
 
-	echo -e "\n${RED}Maintainer Mode ${WHITE}/ ${GREEN}Disabled Checks\n"
+	echo -e "\n${RED}Maintainer Mode ${WHITE}/ ${GREEN}Disabled Checks"
 	tput sgr0
 
 }
 
 end_message () {
 
+	export PATH="$OLDPATH"
 	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\n"
 	if [[ $ERR_MSG != "" ]]; then
 		echo -e "${YELLOW}Notes:\
 			\n${WHITE}${ERR_MSG}"
 	fi
+	tput sgr0
+
+}
+
+help_message () {
+
+	echo -e "\n${GREEN}BashStyle-NG ${YELLOW}(configure) ${CYAN}help"
+	echo -e "\n${WHITE}Options:\n"
+	echo -e "\n${ORANGE}--help${WHITE} |${GREEN} Display this help message\
+	\n${ORANGE}--maintainer${WHITE} |${GREEN} Enter Maintainer Mode (disables checks)\
+	\n${ORANGE}--prefix=${WHITE} |${GREEN} Change Installation Prefix (default: /usr)\
+	\n${ORANGE}--dirinfo-disable${WHITE} |${GREEN} Disable Dirinfo Flags (default: enable)" | column -t
+	echo ""
 	tput sgr0
 
 }
