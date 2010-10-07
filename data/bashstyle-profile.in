@@ -1,5 +1,10 @@
+#!/bin/bash
+
+export WANT_DIRINFO_FLAGS="@DIRINFO_ENABLE@"
+
 export CP_CMD=$(which cp)
 export MV_CMD=$(which mv)
 export RM_CMD=$(which rm)
 
+export OLD_PATH="$PATH"
 export PATH="@PREFIX@/share/bashstyle-ng/rc/bin/:$PATH:/usr/games/:/usr/local/games/"

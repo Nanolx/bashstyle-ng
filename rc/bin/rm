@@ -9,20 +9,25 @@
 #							#
 #########################################################
 
-if [[ $1 == --help || $1 == -h ]]; then
-	$RM_CMD --help
-	exit 0
+if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
+
+	if [[ $1 == --help || $1 == -h ]]; then
+		$RM_CMD --help
+		exit 0
+	fi
+
+	for path in "$@"; do
+	    test "${path:0:1}" == - && RMO+="$path " && continue
+	    for try in "$path" "${path%/*}"; do
+		test -e "$try"/.dirinfo || continue
+		grep -q NoDelete "$try"/.dirinfo || continue
+		echo "can not delete $try, it's protected"
+		continue 2
+	    done
+	    $RM_CMD $RM_OPTS $RMO "$path"
+	done
+
+	unset RMO
+
+else	$RM_CMD "$@"
 fi
-
-for path in "$@"; do
-    test "${path:0:1}" == - && RMO+="$path " && continue
-    for try in "$path" "${path%/*}"; do
-	test -e "$try"/.dirinfo || continue
-	grep -q NoDelete "$try"/.dirinfo || continue
-	echo "can not delete $try, it's protected"
-	continue 2
-    done
-    $RM_CMD $RM_OPTS $RMO "$path"
-done
-
-unset RMO

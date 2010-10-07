@@ -9,36 +9,41 @@
 #							#
 #########################################################
 
-if [[ $1 == --help || $1 == -h ]]; then
-	$MV_CMD --help
-	exit 0
-elif [[ ${#} -lt "2" && ${1} != *{,* ]]; then
-	echo "not enough arguements"
-	exit 1
+if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
+
+	if [[ $1 == --help || $1 == -h ]]; then
+		$MV_CMD --help
+		exit 0
+	elif [[ ${#} -lt "2" && ${1} != *{,* ]]; then
+		echo "not enough arguements"
+		exit 1
+	fi
+
+	if [[ "${!#}" == */ && ! -e "${!#}" ]]; then
+		mkdir -p "${!#}"
+	fi
+
+	destination="${!#}"
+
+	args=( "$@" )
+	unset args[$#-1]
+	set -- "${args[@]}"
+
+	for path in "${args[@]}"; do
+	      test "${path:0:1}" == - && MVO+="$path " && continue
+	      for try in "$path" "${path%/*}"; do
+		  test -e "$try"/.dirinfo || continue
+		  grep -q NoMove "$try"/.dirinfo || continue
+		  echo "can not delete $try, it's protected"
+		  continue 2
+	      done
+	      if test "${path}" == "*{,*" ; then
+		   $MV_CMD $MV_OPTS $MVO "$path"
+	      else $MV_CMD $MV_OPTS $MVO "$path" "$destination"
+	      fi
+	done
+
+	unset MVO
+
+else	$MV_CMD "$@"
 fi
-
-if [[ "${!#}" == */ && ! -e "${!#}" ]]; then
-	mkdir -p "${!#}"
-fi
-
-destination="${!#}"
-
-args=( "$@" )
-unset args[$#-1]
-set -- "${args[@]}"
-
-for path in "${args[@]}"; do
-      test "${path:0:1}" == - && MVO+="$path " && continue
-      for try in "$path" "${path%/*}"; do
-	  test -e "$try"/.dirinfo || continue
-	  grep -q NoMove "$try"/.dirinfo || continue
-	  echo "can not delete $try, it's protected"
-	  continue 2
-      done
-      if test "${path}" == "*{,*" ; then
-           $MV_CMD $MV_OPTS $MVO "$path"
-      else $MV_CMD $MV_OPTS $MVO "$path" "$destination"
-      fi
-done
-
-unset MVO
