@@ -9,20 +9,14 @@
 #							#
 #########################################################
 
-BSNG_LOGFILE=$(get_key debug_log)
-
-debug=$(get_key debug)
-
 verbose=$(get_key debug_verbose)
 
 dbg_msg ()
 {
 	if [[ ! $BSNG_RC_GEN ]]; then
-		if [[ $debug == true ]] ; then
-			if [[ $verbose == true ]]; then
-				echo -e "$@" | tee -a $BSNG_LOGFILE
-			else	echo -e "$@" >> $BSNG_LOGFILE
-			fi
+		if [[ $verbose == true ]]; then
+			echo -e "$@" | tee -a $BSNG_LOGFILE
+		else	echo -e "$@" >> $BSNG_LOGFILE
 		fi
 	fi
 
