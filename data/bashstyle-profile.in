@@ -6,5 +6,8 @@ export CP_CMD=$(which cp)
 export MV_CMD=$(which mv)
 export RM_CMD=$(which rm)
 
+export GAME_PATH="/usr/games:/usr/local/games"
 export OLD_PATH="$PATH"
-export PATH="@PREFIX@/share/bashstyle-ng/rc/bin/:$PATH:/usr/games/:/usr/local/games/"
+export BSNG_PATH="@PREFIX@/share/bashstyle-ng/rc/bin/"
+
+export PATH="$BSNG_PATH:$OLD_PATH:$GAME_PATH"
