@@ -32,7 +32,7 @@ while [[ $xcount -lt $pcount ]]; do
 	xcount=$(($xcount+1))
 done
 
-unset xcount
+unset xcount pcount
 
 if [[ ! $PREFIX ]]; then
 	PREFIX="/usr"
