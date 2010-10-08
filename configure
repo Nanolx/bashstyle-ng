@@ -54,6 +54,7 @@ elif [[ $MODE == MAINTAINER ]]; then
 	copy_in_files
 	substitute_values
 	end_message
+	export_result
 
 elif [[ $MODE == USER ]]; then
 
@@ -65,5 +66,6 @@ elif [[ $MODE == USER ]]; then
 	copy_in_files
 	substitute_values
 	end_message
+	export_result
 
 fi

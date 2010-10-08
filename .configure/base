@@ -7,3 +7,19 @@ ERR_MSG=""
 
 export OLDPATH=$PATH
 export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
+
+export_result ()
+{
+
+	RES=$PWD/.configure/results
+
+	if [[ -e $RES ]]; then
+		rm $RES
+	fi
+
+	echo MODE=\"$MODE\" >> $RES
+	echo PREFIX=\"$PREFIX\" >> $RES
+	echo DIRINFO_ENABLE=\"$DIRINFO_ENABLE\" >> $RES
+	echo MISSING=\"\( $MISSING \)\" >> $RES
+
+}

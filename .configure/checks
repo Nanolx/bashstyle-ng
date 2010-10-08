@@ -7,12 +7,12 @@ check ()
         IFS=":"
 
         for dir in $PATH; do
-                if [[ -f "${i}/$1" ]]; then
-                        echo ${dir}/$1
+                if [[ -f "${dir}/$1" ]]; then
+                        echo "found"
                 fi
         done
 
-	IFS=$XFS
+        IFS=$XFS
 
 }
 
@@ -27,14 +27,13 @@ section_message $@
 
 while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-	check $DEPENDENCY &>/dev/null
-	DEP_RETURN=$?
-	if [[ $DEP_RETURN == 0 ]]; then
+	DEP_RETURN=$(check $DEPENDENCY)
+	if [[ $DEP_RETURN == "found" ]]; then
 		ok_message $DEPENDENCY
-	elif [[ $DEP_RETURN != 0 && $SECTION == OPT* ]]; then
+	elif [[ $DEP_RETURN != "found" && $SECTION == OPT* ]]; then
 		warn_message $DEPENDENCY
-		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | \
-		gawk -F _ '{ for (x=3; x <= NF; x++) { print $x; } }')
+		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F ':' '{print $2}')
+		MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
 	else 	fail_message m $DEPENDENCY
 		exit 1
 	fi
@@ -66,8 +65,8 @@ while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 		ok_message $DEPENDENCY ${VERSION}+
 	elif [[ $EXIST_RETURN != 0 && $SECTION == OPT* ]]; then
 		warn_message $DEPENDENCY
-		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | \
-		gawk -F _ '{ for (x=3; x <= NF; x++) { print $x; } }')
+		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
+		MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
 	else	fail_message o $DEPENDENCY $VERSION
 		exit 1
 	fi
@@ -93,8 +92,8 @@ imp.find_module('$DEPENDENCY')"
 		ok_message $DEPENDENCY
 	elif [[ $DEP_RETURN != 0 && $SECTION == OPT* ]]; then
 		warn_message $DEPENDENCY
-		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | \
-			gawk -F _ '{ for (x=3; x <= NF; x++) { print $x; } }')
+		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
+		MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
 	else 	fail_message m $DEPENDENCY
 		exit 1
 	fi
