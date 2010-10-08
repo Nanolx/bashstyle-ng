@@ -1,11 +1,11 @@
 #!/bin/bash
 shopt -s extglob
 
-source $PWD/.configure/base
-source $PWD/.configure/color
-source $PWD/.configure/messages
-source $PWD/.configure/checks
-source $PWD/.configure/substitute
+MODULES=( base color messages checks substitute )
+
+for mod in ${MODULES[@]}; do
+	source $PWD/.configure/$mod
+done
 
 xcount=0
 pcount=$#
