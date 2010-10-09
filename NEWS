@@ -24,7 +24,7 @@ To disable them, pass --dirinfo-disable to configure!
 * #115 (configure): change the way python modules are detected (fixes rpmbuild failure)
 * #116 (ayoli): the first line of the prompt in ayoli was longer than the screen
 * #117 (check_opt): check_opt should error rather than exiting the session (...)
-* #118 (autotools): there's a bug in the autotools which won't let you compile any source
+* #118 (autotools): there's a bug in the autotools which may not let you compile any source
                     if /bin/sh is not /bin/bash (...) workaround this by exporting
                     CONFIG_SHELL="/bin/bash" in /etc/profile.d/bashstyle.sh (...)
 
