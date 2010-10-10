@@ -18,85 +18,93 @@ check ()
 
 check_apps () {
 
-SECTION=$1
-CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
-DONE_COUNTER=1
+for SECTION in APP OPT_APP SBINAPP OPT_SBINAPP; do
+	CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
+	DONE_COUNTER=1
 
-shift
-section_message $@
+	if [[ $CHKS_COUNTER != "0" ]]; then
+		section_message $SECTION
 
-while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
-	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-	DEP_RETURN=$(check $DEPENDENCY)
-	if [[ $DEP_RETURN == "found" ]]; then
-		ok_message $DEPENDENCY
-	elif [[ $DEP_RETURN != "found" && $SECTION == OPT* ]]; then
-		warn_message $DEPENDENCY
-		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F ':' '{print $2}')
-		MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
-	else 	fail_message m $DEPENDENCY
-		exit 1
+		while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
+			DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
+			DEP_RETURN=$(check $DEPENDENCY)
+			if [[ $DEP_RETURN == "found" ]]; then
+				ok_message $DEPENDENCY
+			elif [[ $DEP_RETURN != "found" && $SECTION == OPT* ]]; then
+				warn_message $DEPENDENCY
+				ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F ':' '{print $2}')
+				MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
+			else 	fail_message m $DEPENDENCY
+				exit 1
+			fi
+			DONE_COUNTER=$(($DONE_COUNTER+1)); done
 	fi
-	DONE_COUNTER=$(($DONE_COUNTER+1)); done
+	unset CHKS_COUNTER DONE_COUNTER
+done
 
 }
 
 check_libs () {
 
-SECTION=$1
-CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
-DONE_COUNTER=1
+for SECTION in LIB OPT_LIB; do
+	CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
+	DONE_COUNTER=1
 
-shift
-section_message $@
+	if [[ $CHKS_COUNTER != "0" ]]; then
+	section_message $SECTION
 
-while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
-	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-	VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
-	PC_FILE=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
-	pkg-config --exists $PC_FILE
-	EXIST_RETURN=$?
-	pkg-config --atleast-version=$VERSION $PC_FILE
-	DEP_RETURN=$?
-	if [[ $EXIST_RETURN != 0 && ! $SECTION == OPT* ]]; then
-		fail_message m $DEPENDENCY
-		exit 1
-	elif [[ $DEP_RETURN == 0 ]]; then
-		ok_message $DEPENDENCY ${VERSION}+
-	elif [[ $EXIST_RETURN != 0 && $SECTION == OPT* ]]; then
-		warn_message $DEPENDENCY
-		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
-		MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
-	else	fail_message o $DEPENDENCY $VERSION
-		exit 1
+	while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
+		DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
+		VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
+		PC_FILE=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
+		pkg-config --exists $PC_FILE
+		EXIST_RETURN=$?
+		pkg-config --atleast-version=$VERSION $PC_FILE
+		DEP_RETURN=$?
+		if [[ $EXIST_RETURN != 0 && ! $SECTION == OPT* ]]; then
+			fail_message m $DEPENDENCY
+			exit 1
+		elif [[ $DEP_RETURN == 0 ]]; then
+			ok_message $DEPENDENCY ${VERSION}+
+		elif [[ $EXIST_RETURN != 0 && $SECTION == OPT* ]]; then
+			warn_message $DEPENDENCY
+			ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
+			MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
+		else	fail_message o $DEPENDENCY $VERSION
+			exit 1
+		fi
+		DONE_COUNTER=$(($DONE_COUNTER+1)); done
 	fi
-	DONE_COUNTER=$(($DONE_COUNTER+1)); done
+	unset CHKS_COUNTER DONE_COUNTER
+done
 
 }
 
 check_pymods () {
 
-SECTION=$1
-CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
-DONE_COUNTER=1
+for SECTION in PYMOD OPT_PYMOD; do
+	CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
+	DONE_COUNTER=1
 
-shift
-section_message $@
+	if [[ $CHKS_COUNTER != "0" ]]; then
+		section_message $SECTION
 
-while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
-	DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-	python -c "import imp
+		while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
+			DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
+			python -c "import imp
 imp.find_module('$DEPENDENCY')"
-	DEP_RETURN=$?
-	if [[ $DEP_RETURN == 0 ]]; then
-		ok_message $DEPENDENCY
-	elif [[ $DEP_RETURN != 0 && $SECTION == OPT* ]]; then
-		warn_message $DEPENDENCY
-		ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
-		MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
-	else 	fail_message m $DEPENDENCY
-		exit 1
+			DEP_RETURN=$?
+			if [[ $DEP_RETURN == 0 ]]; then
+				ok_message $DEPENDENCY
+			elif [[ $DEP_RETURN != 0 && $SECTION == OPT* ]]; then
+				warn_message $DEPENDENCY
+				ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
+				MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
+			else 	fail_message m $DEPENDENCY
+				exit 1
+			fi
+			DONE_COUNTER=$(($DONE_COUNTER+1)); done
 	fi
-	DONE_COUNTER=$(($DONE_COUNTER+1)); done
-
+	unset CHKS_COUNTER DONE_COUNTER
+done
 }
