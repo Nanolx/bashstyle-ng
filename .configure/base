@@ -20,16 +20,14 @@ export_result ()
 	echo MODE=\"$MODE\" >> $RES
 	echo PREFIX=\"$PREFIX\" >> $RES
 	echo DATADIR=\"$PREFIX/share/bashstyle-ng/\" >> $RES
-	echo DATADIR_LIST=\"\( ascii bin dirinfo functions internal settings styles wizard \)\" >> $RES
+	echo DATADIR_LIST=\"\( code data rc/{,ascii,bin,dirinfo,functions,internal,settings,styles,wizard} terminfo vim \)\" >> $RES
 	echo PROFILEDIR=\"/etc/profile.d/\" >> $RES
 	echo BINDIR=\"$PREFIX/bin\" >> $RES
-	echo BINDIR_FILES=\"\( bashstyle \)\" >> $RES
 	echo LOCALEDIR=\"$PREFIX/share/locale/\" >> $RES
-	echo LOCALEDIR_LIST=\"\( de es it ru \)\" >> $RES
-	echo ICONDIR=\"/usr/icons/hicolor/32x32/\" >> $RES
-	echo ICONDIR_FILES=\"\( bs-ng-advanced bs-ng-alias bs-ng-custom bs-ng-extra \
-		bs-ng-help bs-ng-info bs-ng-nano bs-ng bs-ng-profile bs-ng-readline \
-		bs-ng-style bs-ng-toolbox bs-ng-vim bs-ng-xterm \)\" >> $RES
+	echo LOCALEDIR_LIST=\"\( {de,es,it,ru}/LC_MESSAGES/ \)\" >> $RES
+	echo ICONDIR=\"/usr/icons/hicolor/32x32/apps/\" >> $RES
+	echo DOCDIR=\"$PREFIX/share/doc/bashstyle-ng/\" >> $RES
+	echo DOCDIR_LIST=\"\( img img-style \)\" >> $RES
 	echo DIRINFO_ENABLE=\"$DIRINFO_ENABLE\" >> $RES
 	echo MISSING=\"\( $MISSING \)\" >> $RES
 
