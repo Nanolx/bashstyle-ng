@@ -1,0 +1,34 @@
+#!/bin/bash
+
+DATA_FILES=( code/bsng.py:${DATADIR}/code
+	     data/bashstyle7.ui:${DATADIR}/data
+	     rc/nx-rc:${DATADIR}/rc
+	     rc/ascii/*:${DATADIR}/rc/ascii
+	     rc/dirinfo/*:${DATADIR}/rc/dirinfo
+	     rc/functions/*:${DATADIR}/rc/functions
+	     rc/internal/*:${DATADIR}/rc/internal
+	     rc/settings/*:${DATADIR}/rc/settings
+	     rc/styles/*:${DATADIR}/rc/styles
+	     rc/wizard/*:${DATADIR}/rc/wizard
+	     data/terminfo/b/*:${DATADIR}/terminfo/b
+	     data/terminfo/m/*:${DATADIR}/terminfo/m
+	     data/terminfo/n/*:${DATADIR}/terminfo/n
+	     data/vim/colors/*:${DATADIR}/vim/colors )
+
+LOCALE_FILES=( translations/mo/*-de.mo:${LOCALEDIR}/de/LC_MESSAGES
+	       translations/mo/*-es.mo:${LOCALEDIR}/es/LC_MESSAGES
+	       translations/mo/*-it.mo:${LOCALEDIR}/it/LC_MESSAGES
+	       translations/mo/*-ru.mo:${LOCALEDIR}/ru/LC_MESSAGES )
+
+DOC_FILES=( documentation/*.html:${DOCDIR}
+	    documentation/img/*.png:${DOCDIR}/img
+	    documentation/img-style/*.png:${DOCDIR}/img-style )
+
+BIN_FILES=( data/bashstyle:${BINDIR}
+	    rc/bin/*:${DATADIR}/rc/bin )
+
+PROFILE_FILES=( data/bashstyle.sh:${PROFILEDIR} )
+
+ICON_FILES=( data/icons/*.png:${ICONDIR} )
+
+PC_FILES=( data/bashstyle.pc:${PCDIR} )

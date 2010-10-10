@@ -1,0 +1,37 @@
+#!/bin/bash
+
+inst ()
+{
+
+	case $1 in
+		data | icon | rc | doc )
+			MODE=644
+		;;
+
+		bin | sh )
+			MODE=755
+		;;
+	esac
+
+	shift
+
+	FILE=${1/:*}
+	DEST=${1/*:}
+
+	install -m${MODE} ${FILE} ${DESTDIR}${DEST}
+
+	unset FILE DEST
+
+}
+
+uninst ()
+{
+
+	FILE=${1/:*}
+	DEST=${1/*:}
+
+	rm -f ${DESTDIR}${DEST}/${FILE}
+
+	unset FILE DEST
+
+}
