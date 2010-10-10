@@ -20,7 +20,8 @@ export_result ()
 	echo MODE=\"$MODE\" >> $RES
 	echo PREFIX=\"$PREFIX\" >> $RES
 	echo DATADIR=\"$PREFIX/share/bashstyle-ng/\" >> $RES
-	echo DATADIR_LIST=\"\( code data rc/{,ascii,bin,dirinfo,functions,internal,settings,styles,wizard} terminfo vim \)\" >> $RES
+	echo DATADIR_LIST=\"\( code data rc/{,ascii,bin,dirinfo,functions,internal,settings,styles,wizard} \
+		terminfo/{,b,m,n} vim/{,colors} \)\" >> $RES
 	echo PROFILEDIR=\"/etc/profile.d/\" >> $RES
 	echo BINDIR=\"$PREFIX/bin\" >> $RES
 	echo LOCALEDIR=\"$PREFIX/share/locale/\" >> $RES
