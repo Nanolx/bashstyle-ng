@@ -75,7 +75,7 @@ clean:
 	@rm -f Makefile
 	@rm -f data/bashstyle-ng.pc
 	@rm -f data/bashstyle7.ui.h
-	@rm -f data/bashstyle-profile
+	@rm -f data/bashstyle.sh
 	@rm -f translations/pot/*
 	@rm -f translations/mo/*
 	@rm -f data/terminfo/m/mostlike
@@ -118,7 +118,7 @@ install:
 	@echo -e "$(GREEN)installing:$(YELLOW) 	[02/14] bashstyle-ng"
 	@install -m644 code/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/code/
 	@install -m755 data/bashstyle $(DESTDIR)@PREFIX@/bin/
-	@install -m755 data/bashstyle-profile $(DESTDIR)/etc/profile.d/bashstyle.sh
+	@install -m755 data/bashstyle.sh $(DESTDIR)/etc/profile.d/
 	@echo -e "$(GREEN)installing:$(YELLOW) 	[03/14] terminfo files:$(CYAN) bold mostlike nebula"
 	@install -m644 data/terminfo/b/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/b/
 	@install -m644 data/terminfo/m/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/terminfo/m/
