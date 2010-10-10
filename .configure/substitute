@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IN_FILES=( Makefile rc/nx-rc data/bashstyle data/bashstyle-ng.pc data/bashstyle-profile )
+IN_FILES=( Makefile rc/nx-rc data/bashstyle data/bashstyle-ng.pc data/bashstyle.sh )
 
 SUB_VERSION_FILES=( data/bashstyle-ng.pc rc/nx-rc )
 SUB_PREFIX_FILES=( Makefile data/bashstyle-ng.pc data/bashstyle data/bashstyle-profile rc/nx-rc )
@@ -22,6 +22,6 @@ substitute_values () {
 	sed -e "s>@PREFIX@>$PREFIX>g" -i ${SUB_PREFIX_FILES[@]}
 
 	# substitute DIRINFO_ENABLE
-	sed -e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" -i data/bashstyle-profile
+	sed -e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" -i data/bashstyle.sh
 
 }
