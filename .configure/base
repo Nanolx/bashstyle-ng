@@ -17,19 +17,18 @@ export_result ()
 		rm $RES
 	fi
 
-	echo MODE=\"$MODE\" >> $RES
-	echo PREFIX=\"$PREFIX\" >> $RES
-	echo DATADIR=\"$PREFIX/share/bashstyle-ng/\" >> $RES
-	echo DATADIR_LIST=\"\( code data rc/{,ascii,bin,dirinfo,functions,internal,settings,styles,wizard} \
-		terminfo/{,b,m,n} vim/{,colors} \)\" >> $RES
-	echo PROFILEDIR=\"/etc/profile.d/\" >> $RES
-	echo BINDIR=\"$PREFIX/bin\" >> $RES
-	echo LOCALEDIR=\"$PREFIX/share/locale/\" >> $RES
-	echo LOCALEDIR_LIST=\"\( {de,es,it,ru}/LC_MESSAGES/ \)\" >> $RES
-	echo ICONDIR=\"/usr/icons/hicolor/32x32/apps/\" >> $RES
-	echo DOCDIR=\"$PREFIX/share/doc/bashstyle-ng/\" >> $RES
-	echo DOCDIR_LIST=\"\( img img-style \)\" >> $RES
-	echo DIRINFO_ENABLE=\"$DIRINFO_ENABLE\" >> $RES
-	echo MISSING=\"\( $MISSING \)\" >> $RES
+	echo -e "MODE=\"$MODE\"\
+\nPREFIX=\"$PREFIX\"\
+\nDATADIR=\"$PREFIX/share/bashstyle-ng/\"\
+\nDATADIR_LIST=( code data rc/{,ascii,bin,dirinfo,functions,internal,settings,styles,wizard} terminfo/{,b,m,n} vim/{,colors} )\
+\nPROFILEDIR=\"/etc/profile.d/\"\
+\nBINDIR=\"$PREFIX/bin\"\
+\nLOCALEDIR=\"$PREFIX/share/locale/\"\
+\nLOCALEDIR_LIST=( {de,es,it,ru}/LC_MESSAGES/ )\
+\nICONDIR=\"/usr/share/icons/hicolor/32x32/apps/\"\
+\nDOCDIR=\"$PREFIX/share/doc/bashstyle-ng/\"\
+\nDOCDIR_LIST=( img img-style )\
+\nDIRINFO_ENABLE=\"$DIRINFO_ENABLE\"\
+\nMISSING=($MISSING )" >> $RES
 
 }
