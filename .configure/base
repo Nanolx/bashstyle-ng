@@ -19,6 +19,17 @@ export_result ()
 
 	echo MODE=\"$MODE\" >> $RES
 	echo PREFIX=\"$PREFIX\" >> $RES
+	echo DATADIR=\"$PREFIX/share/bashstyle-ng/\" >> $RES
+	echo DATADIR_LIST=\"\( ascii bin dirinfo functions internal settings styles wizard \)\" >> $RES
+	echo PROFILEDIR=\"/etc/profile.d/\" >> $RES
+	echo BINDIR=\"$PREFIX/bin\" >> $RES
+	echo BINDIR_FILES=\"\( bashstyle \)\" >> $RES
+	echo LOCALEDIR=\"$PREFIX/share/locale/\" >> $RES
+	echo LOCALEDIR_LIST=\"\( de es it ru \)\" >> $RES
+	echo ICONDIR=\"/usr/icons/hicolor/32x32/\" >> $RES
+	echo ICONDIR_FILES=\"\( bs-ng-advanced bs-ng-alias bs-ng-custom bs-ng-extra \
+		bs-ng-help bs-ng-info bs-ng-nano bs-ng bs-ng-profile bs-ng-readline \
+		bs-ng-style bs-ng-toolbox bs-ng-vim bs-ng-xterm \)\" >> $RES
 	echo DIRINFO_ENABLE=\"$DIRINFO_ENABLE\" >> $RES
 	echo MISSING=\"\( $MISSING \)\" >> $RES
 
