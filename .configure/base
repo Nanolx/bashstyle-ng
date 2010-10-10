@@ -11,10 +11,8 @@ export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 export_result ()
 {
 
-	RES=$PWD/.configure/results
-
-	if [[ -e $RES ]]; then
-		rm $RES
+	if [[ -e $PWD/.configure/results ]]; then
+		rm $PWD/.configure/results
 	fi
 
 	echo -e "MODE=\"$MODE\"\
@@ -30,6 +28,6 @@ export_result ()
 \nDOCDIR_LIST=( img img-style )\
 \nPCDIR=\"$PREFIX/lib/pkgconfig/\"\
 \nDIRINFO_ENABLE=\"$DIRINFO_ENABLE\"\
-\nMISSING=($MISSING )" >> $RES
+\nMISSING=($MISSING )" >> $PWD/.configure/results
 
 }
