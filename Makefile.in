@@ -136,19 +136,19 @@ install:
 	@echo -e "$(GREEN)installing:$(YELLOW)	[09/14] documentation"
 	@cp -r documentation/* $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
 	@cp ChangeLog TODO README AUTHORS COPYING.CODE COPYING.ICONS $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
-	@chmod -R 755 $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
+	@chmod -R 644 $(DESTDIR)/@PREFIX@/share/doc/bashstyle-ng/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[10/14] settings rc"
-	@install -m755 rc/settings/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/settings/
+	@install -m644 rc/settings/*[!.in] $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/settings/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[11/14] styles rc"
-	@install -m755 rc/styles/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/styles/
+	@install -m644 rc/styles/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/styles/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[12/14] functionchain"
-	@install -m755 rc/functions/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/functions/
-	@install -m755 rc/dirinfo/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/dirinfo/
-	@install -m755 rc/ascii/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/ascii/
+	@install -m644 rc/functions/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/functions/
+	@install -m644 rc/dirinfo/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/dirinfo/
+	@install -m644 rc/ascii/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/ascii/
 	@install -m755 rc/bin/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/bin/
-	@install -m755 rc/wizard/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/wizard/
-	@install -m755 rc/internal/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/internal/
-	@install -m755 rc/generator/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/generator/
+	@install -m644 rc/wizard/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/wizard/
+	@install -m644 rc/internal/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/internal/
+	@install -m644 rc/generator/* $(DESTDIR)@PREFIX@/share/bashstyle-ng/rc/generator/
 	@echo -e "$(GREEN)installing:$(YELLOW)	[13/14] .pc gconf-schemas"
 	@install -m644 data/bashstyle-ng.pc $(DESTDIR)/usr/lib/pkgconfig/
 	@install -m644 data/bashstyle.schemas $(DESTDIR)@PREFIX@/share/gconf/schemas/

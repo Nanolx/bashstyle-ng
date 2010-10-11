@@ -9,21 +9,8 @@
 #                                                       #
 #########################################################
 
-export BSNG_RC_GEN=true
-export RC_FILE=$HOME/bashstyle/bashrc.bs-ng-$CURRENT_DATE
-
-source $BSNG_RC_DIR/internal/gconf
-source $BSNG_RC_DIR/internal/misc
-source $BSNG_RC_DIR/internal/logging
-
 bash_nxrc()
 {
-
-	if [[ ! -e $HOME/bashstyle ]]; then
-		mkdir -p $HOME/bashstyle
-	fi
-
-	rm -f $RC_FILE
 
 	rc_add \#\!/bin/bash
 
@@ -402,12 +389,15 @@ bash_finalize()
 
 }
 
-bash_nxrc
-bash_colors
-bash_aliases
-bash_options
-bash_shopts
-bash_prompt
-bash_finalize
+generate_bashrc ()
+{
 
-unset RC_FILE BSNG_RC_GEN
+	bash_nxrc
+	bash_colors
+	bash_aliases
+	bash_options
+	bash_shopts
+	bash_prompt
+	bash_finalize
+
+}

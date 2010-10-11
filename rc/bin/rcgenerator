@@ -9,47 +9,70 @@
 #                                                       #
 #########################################################
 
+MODULES=( internal/gconf internal/misc internal/logging
+	  generate/bash generator/nano generator/readline generator/vim )
+
+for mod in ${MODULES[@]}; do
+	source $BSNG_RC_DIR/$mod
+done
+
 export CURRENT_DATE="$(date +%Y-%m-%d_%I-%M)"
+
+if [[ ! -e $HOME/bashstyle ]]; then
+	mkdir -p $HOME/bashstyle
+fi
 
 case $1 in
 	*bash)
-		$BSNG_RC_DIR/generator/bash
+		export BSNG_RC_GEN=true
+		export RC_FILE=$HOME/bashstyle/bashrc.bs-ng-$CURRENT_DATE
+		generate_bashrc
 		if [[ $? == 0 ]]; then
 			echo -e "${ewhite}Bash configuration saved as: ${eiceblue}$HOME/bashstyle/bashrc.bs-ng-$CURRENT_DATE\
 				\n${ewhite}copy it to ${egreen}$HOME/.bashrc${ewhite} to use it. (disable BashStyle in Bashstyle-NG,\
 				\nbefore using this config-file - settings will be overwritten else)\n"
 			tput sgr0
 		fi
+		unset BSNG_RC_GEN RC_FILE
 	;;
 
 	*readline)
-		$BSNG_RC_DIR/generator/readline
+		export BSNG_RC_GEN=true
+		export RC_FILE=$HOME/bashstyle/readline-rc.bs-ng-$CURRENT_DATE
+		generate_readlinerc
 		if [[ $? == 0 ]]; then
 			echo -e "${ewhite}Readline configuration saved as ${eiceblue}$HOME/bashstyle/readline-rc.bs-ng-$CURRENT_DATE\
 				\n${ewhite}copy it to ${egreen}$HOME/.inputrc${ewhite} to use it (disable ReadlineCFG in Bashstyle-NG,\
 				\nbefore using this config-file - file will be overwritten else)\n"
 			tput sgr0
 		fi
+		unset BSNG_RC_GEN RC_FILE
 	;;
 
 	*vim)
-		$BSNG_RC_DIR/generator/vim
+		export BSNG_RC_GEN=true
+		export RC_FILE=$HOME/bashstyle/vim-rc.bs-ng-$CURRENT_DATE
+		generate_vimrc
 		if [[ $? == 0 ]]; then
 			echo -e "${ewhite}Vim configuration saved as: ${eiceblue}$HOME/bashstyle/vim-rc.bs-ng-$CURRENT_DATE\
 				\n${ewhite}copy it to ${egreen}$HOME/.vimrc${ewhite} to use it (disable VimCFG in BashStyle-NG,\
 				\nbefore using this config-file - file will be overwritten else)\n"
 			tput sgr0
 		fi
+		unst BSNG_RC_GEN RC_FILE
 	;;
 
 	*nano)
-		$BSNG_RC_DIR/generator/nano
+		export BSNG_RC_GEN=true
+		export RC_FILE=$HOME/bashstyle/nano-rc.bs-ng-$CURRENT_DATE
+		generate_nanorc
 		if [[ $? == 0 ]]; then
 			echo -e "${ewhite}Nano configuration saved as: ${eiceblue}$HOME/bashstyle/nano-rc.bs-ng-$CURRENT_DATE\
 				\n${ewhite}copy it to ${egreen}$HOME/.nanorc${ewhite} to use it (disable NanoCFG in BashStyle-NG,\
 				\nbefore using this config-file - file will be overwritten else)\n"
 			tput sgr0
 		fi
+		unset BSNG_RC_GEN RC_FILE
 	;;
 
 	*all)

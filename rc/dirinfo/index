@@ -46,67 +46,71 @@ dirinfo_create_index () {
 
 }
 
-case $1 in
-	*generate)
-		dirinfo_create_index --force
-	;;
+dirinfo_index ()
+{
 
-	*rebuild)
-		dirinfo_create_index
-	;;
+	case $1 in
+		*generate)
+			dirinfo_create_index --force
+		;;
 
-	*search)
+		*rebuild)
+			dirinfo_create_index
+		;;
 
-		if [[ ! -e $HOME/.dirindex ]]; then
-			echo "Please run dirinfo --generate first"
-			exit 1
-		fi
+		*search)
 
-		shift
-		TYPE=$1
-		shift
+			if [[ ! -e $HOME/.dirindex ]]; then
+				echo "Please run dirinfo --generate first"
+				exit 1
+			fi
 
-		case $TYPE in
+			shift
+			TYPE=$1
+			shift
 
-			*tag)
-				gawk -F"::" '$2 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
-			;;
+			case $TYPE in
 
-			*type)
-				gawk -F"::" '$3 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
-			;;
+				*tag)
+					gawk -F"::" '$2 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
+				;;
 
-			*date)
-				gawk -F"::" '$4 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
-			;;
+				*type)
+					gawk -F"::" '$3 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
+				;;
 
-			*owner)
-				gawk -F"::" '$5 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
-			;;
-		esac
-	;;
+				*date)
+					gawk -F"::" '$4 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
+				;;
 
-	*list)
+				*owner)
+					gawk -F"::" '$5 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
+				;;
+			esac
+		;;
 
-		if [[ ! -e $HOME/.dirindex ]]; then
-			echo "Please run dirinfo --generate first"
-			exit 1
-		fi
+		*list)
 
-		cat $HOME/.dirindex | sed -e 's/.dirinfo//g'
-	;;
+			if [[ ! -e $HOME/.dirindex ]]; then
+				echo "Please run dirinfo --generate first"
+				exit 1
+			fi
 
-	*help | "")
+			cat $HOME/.dirindex | sed -e 's/.dirinfo//g'
+		;;
 
-		echo -e "\n${ewhite}Usage:\n"
-		echo -e "${eorange}dirinfo${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
-		\n${eorange}dirinfo${ewhite} | ${egreen}--rebuild ${eiceblue}[update the index, but don't scan for new .dirinfo files]\
-		\n${eorange}dirinfo${ewhite} | ${egreen}--search ${eiceblue}[search the index for --tag, --type, --date, --owner]\
-		\n${eorange}dirinfo${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]\
-		\n${eorange}dirinfo${ewhite} | ${egreen}--create ${eiceblue} [create .dirinfo for currend directory" | column -t
-		echo ""
-		tput sgr0
+		*help | "")
 
-	;;
-esac
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}dirinfo${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
+			\n${eorange}dirinfo${ewhite} | ${egreen}--rebuild ${eiceblue}[update the index, but don't scan for new .dirinfo files]\
+			\n${eorange}dirinfo${ewhite} | ${egreen}--search ${eiceblue}[search the index for --tag, --type, --date, --owner]\
+			\n${eorange}dirinfo${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]\
+			\n${eorange}dirinfo${ewhite} | ${egreen}--create ${eiceblue} [create .dirinfo for currend directory" | column -t
+			echo ""
+			tput sgr0
 
+		;;
+	esac
+
+}

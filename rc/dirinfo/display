@@ -62,25 +62,30 @@ dirinfo_display_ascii () {
 
 }
 
-if [[ ! "$1" ]]; then
-	DIR="."
-else	DIR="$1"
-fi
+dirinfo_display ()
+{
 
-if [[ -e "$DIR"/.dirinfo ]]; then
-	. "$DIR"/.dirinfo
-fi
+	if [[ ! "$1" ]]; then
+		DIR="."
+	else	DIR="$1"
+	fi
 
-echo -e "\n${eyellow} -- $PWD --${ewhite}"
+	if [[ -e "$DIR"/.dirinfo ]]; then
+		. "$DIR"/.dirinfo
+	fi
 
-if [[ $Notes == "" ]]; then
-	Notes="No notes."
-fi
+	echo -e "\n${eyellow} -- $PWD --${ewhite}"
 
-if [[ ! ${Type} ]]; then
-	dirinfo_display_info
-else	dirinfo_display_ascii
-fi
+	if [[ $Notes == "" ]]; then
+		Notes="No notes."
+	fi
 
-unset Owner Created Allow Delete Tags Notes Type ASCII
-echo ""
+	if [[ ! ${Type} ]]; then
+		dirinfo_display_info
+	else	dirinfo_display_ascii
+	fi
+
+	unset Owner Created Allow Delete Tags Notes Type ASCII
+	echo ""
+
+}

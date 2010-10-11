@@ -23,15 +23,13 @@ export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
 
 ERR_MSG=""
 
-BSNG_INTERN=( misc gconf logging )
-BSNG_FUNCS=( admin conversion dirinfo infos media misc random utils versioning )
+BSNG_INTERN=( internal/misc internal/gconf internal/logging )
+BSNG_FUNCS=( functions/admin functions/conversion functions/infos 
+             functions/media functions/misc functions/random
+	     functions/utils functions/versioning )
 
-for RC in ${BSNG_INTERN[@]}; do
-	source $BSNG_RC_DIR/internal/$RC
-done
-
-for RC in ${BSNG_FUNCS[@]}; do
-	source $BSNG_RC_DIR/functions/$RC
+for RC in ${BSNG_INTERN[@]} ${BSNG_FUNCS[@]}; do
+	source $BSNG_RC_DIR/$RC
 done
 
 if [[ $verbose != true ]]; then

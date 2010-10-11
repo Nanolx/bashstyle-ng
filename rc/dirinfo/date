@@ -9,29 +9,34 @@
 #							#
 #########################################################
 
-case $1 in
+dirinfo_date ()
+{
 
-	*get )
-		if [[ ! "$2" ]]; then
-			DIR="."
-		else	DIR="$2"
-		fi
+	case $1 in
 
-		if [[ -d "$DIR" ]]; then
-			stat "$DIR" | grep "Modify" | gawk '{print $2}'
-		fi
-	;;
+		*get )
+			if [[ ! "$2" ]]; then
+				DIR="."
+			else	DIR="$2"
+			fi
 
-	*set )
-		if [[ ! "$2" ]]; then
-			DIR="."
-		else	DIR="$2"
-		fi
+			if [[ -d "$DIR" ]]; then
+				stat "$DIR" | grep "Modify" | gawk '{print $2}'
+			fi
+		;;
 
-		if [[ -e "$DIR"/.dirinfo ]]; then
-			sed -e '/Created/d' -i "$DIR"/.dirinfo
-			echo "Created=$($BSNG_RC_DIR/date --get $DIR)" >> "$DIR"/.dirinfo
-		fi
-	;;
+		*set )
+			if [[ ! "$2" ]]; then
+				DIR="."
+			else	DIR="$2"
+			fi
 
-esac
+			if [[ -e "$DIR"/.dirinfo ]]; then
+				sed -e '/Created/d' -i "$DIR"/.dirinfo
+				echo "Created=$($BSNG_RC_DIR/date --get $DIR)" >> "$DIR"/.dirinfo
+			fi
+		;;
+
+	esac
+
+}
