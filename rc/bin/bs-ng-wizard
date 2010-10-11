@@ -72,6 +72,7 @@ case $CONF_MODULES in
 	;;
 
 	2 )
+		sed -e '/WIZARD.*/WIZARD=2/g' -i $HOME/.bashstyle.wizard
 		wizard_start
 		wizard_user_two
 		wizard_end
