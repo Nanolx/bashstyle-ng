@@ -22,7 +22,8 @@ LOCALE_FILES=( translations/mo/*-de.mo:${LOCALEDIR}/de/LC_MESSAGES
 
 DOC_FILES=( documentation/*.html:${DOCDIR}
 	    documentation/img/*.png:${DOCDIR}/img
-	    documentation/img-style/*.png:${DOCDIR}/img-style )
+	    documentation/img-style/*.png:${DOCDIR}/img-style
+	    {AUTHORS,COPYING.CODE,COPYING.ICONS,CREDITS,NEWS,README}:${DOCDIR} )
 
 BIN_FILES=( data/bashstyle:${BINDIR}
 	    rc/bin/*:${DATADIR}/rc/bin )
