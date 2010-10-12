@@ -4,11 +4,11 @@ inst ()
 {
 
 	case $1 in
-		data | icon | rc | doc )
+		data )
 			MODE=644
 		;;
 
-		bin | sh )
+		bin )
 			MODE=755
 		;;
 	esac
@@ -33,5 +33,27 @@ uninst ()
 	rm -f ${DESTDIR}${DEST}/${FILE}
 
 	unset FILE DEST
+
+}
+
+install_bsng () {
+
+	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
+	${PC_FILES[@]} ${ICON_FILES[@]}; do
+		inst data "$file"
+	done
+
+	for file in ${PROFILE_FILES[@]} ${BIN_FILES[@]}; do
+		inst bin "$file"
+	done
+
+}
+
+remove_bsng () {
+
+	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
+	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]} ${BIN_FILES[@]}; do
+		uninst "$file"
+	done
 
 }

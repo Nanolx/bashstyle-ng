@@ -1,6 +1,6 @@
 #!/bin/bash
 
-installdirs ()
+installdirs_create ()
 {
 
 	mkdir -p $DESTDIR/$DATADIR
@@ -22,5 +22,30 @@ installdirs ()
 	mkdir -p $DESTDIR/$PROFILEDIR
 	mkdir -p $DESTDIR/$ICONDIR
 	mkdir -p $DESTDIR/$PCDIR
+
+}
+
+installdirs_remove ()
+{
+
+	rmdir --ignore-fail-on-non-empty $DESTDIR/$DATADIR
+	for directory in ${DATADIR_LIST[@]}; do
+		rmdir --ignore-fail-on-non-empty $DESTDIR/$DATADIR/$directory
+	done
+
+	rmdir --ignore-fail-on-non-empty $DESTDIR/$LOCALEDIR
+	for directory in ${LOCALEDIR_LIST[@]}; do
+		rmdir --ignore-fail-on-non-empty $DESTDIR/$LOCALEDIR/$directory/
+	done
+
+	rmdir --ignore-fail-on-non-empty $DESTDIR/$DOCDIR
+	for directory in ${DOCDIR_LIST[@]}; do
+		rmdir --ignore-fail-on-non-empty $DESTDIR/$DOCDIR/$directory
+	done
+
+	rmdir --ignore-fail-on-non-empty $DESTDIR/$BINDIR
+	rmdir --ignore-fail-on-non-empty $DESTDIR/$PROFILEDIR
+	rmdir --ignore-fail-on-non-empty $DESTDIR/$ICONDIR
+	rmdir --ignore-fail-on-non-empty $DESTDIR/$PCDIR
 
 }

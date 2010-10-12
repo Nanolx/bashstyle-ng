@@ -2,8 +2,8 @@
 
 clean () {
 
-	REMOVE_FILES=( data/bashstyle data/bashstyle-ng.pc data/bashstyle7.ui.h 
-	               data/bashstyle.sh rc/nx-rc translations/{pot,mo}/*
+	REMOVE_FILES=( data/bashstyle data/bashstyle-ng.pc data/bashstyle7.ui.h
+	               data/bashstyle.sh rc/nx-rc translations/{pot,mo}/* .make/build_done
 		       data/terminfo/{b,m,n}/* .configure/results Makefile )
 
 	for file in ${REMOV_FILES[@]}; do
