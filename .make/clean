@@ -1,0 +1,20 @@
+#!/bin/bash
+
+clean () {
+
+	REMOVE_FILES=( data/bashstyle data/bashstyle-ng.pc data/bashstyle7.ui.h 
+	               data/bashstyle.sh rc/nx-rc translations/{pot,mo}/*
+		       data/terminfo/{b,m,n}/* .configure/results Makefile )
+
+	for file in ${REMOV_FILES[@]}; do
+		rm -f "$file"
+	done
+
+
+}
+
+distclean () {
+
+	clean
+
+}
