@@ -32,7 +32,7 @@ gconfd_kill () {
 post_install () {
 
 	if [[ ! $DISABLE_POSTINSTALL ]]; then
-	
+
 		register_schemas --install
 		update_cache
 		gconfd_kill
@@ -41,7 +41,7 @@ post_install () {
 
 }
 
-post_remove () {
+pre_remove () {
 
 	if [[ ! $DISABLE_POSTREMOVE ]]; then
 

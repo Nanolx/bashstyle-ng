@@ -6,13 +6,21 @@ I.  Check the dependencies:
 
 (see documentation/chapter00.html for more infos)
 
-II.  Compile the terminfo files:
+II.  Generate the terminfo/translation files:
 
-make
+./make build
 
 III. Install BashStyle-NG:
 
-sudo make install -or- su -c "make install"
+sudo ./make install
+-or-
+su -c "./make install"
+
+IV. Uninstall BashStyle-NG:
+
+sudo ./make remove
+-or-
+su -c "./make remove"
 
 Happy Hacking!
 
