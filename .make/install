@@ -38,11 +38,13 @@ uninst ()
 
 install_bsng () {
 
+	echo -e "${GREEN}Installing data files."
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
 	${PC_FILES[@]} ${ICON_FILES[@]}; do
 		inst data "$file"
 	done
 
+	echo -e "${GREEN}Installing binary files."
 	for file in ${PROFILE_FILES[@]} ${BIN_FILES[@]}; do
 		inst bin "$file"
 	done
@@ -51,6 +53,7 @@ install_bsng () {
 
 remove_bsng () {
 
+	echo -e "${RED}Removing all files."
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
 	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]} ${BIN_FILES[@]}; do
 		uninst "$file"

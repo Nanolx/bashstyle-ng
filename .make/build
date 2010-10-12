@@ -3,7 +3,8 @@
 TERM_FILES=( bold mostlike nebula )
 
 generate_terminfo () {
-	
+
+	echo -e "${YELLOW}Generating terminfo files (${TERM_FILES[@]})."
 	for term in ${TERM_FILES[@]}; do
 		tic data/terminfo/${term}.terminfo -o data/terminfo/
 	done

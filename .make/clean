@@ -2,9 +2,10 @@
 
 clean () {
 
+	echo -e "${SMOOTHBLUE}Cleaning up…"
 	REMOVE_FILES=( data/bashstyle data/bashstyle-ng.pc data/bashstyle7.ui.h
-	               data/bashstyle.sh rc/nx-rc translations/{pot,mo}/* .make/build_done
-		       data/terminfo/{b,m,n}/* .configure/results Makefile )
+	               data/bashstyle.sh rc/nx-rc translations/{pot,mo}/*
+		       data/terminfo/{b,m,n}/* .configure/results make/build_done )
 
 	for file in ${REMOV_FILES[@]}; do
 		rm -f "$file"

@@ -33,6 +33,7 @@ post_install () {
 
 	if [[ ! $DISABLE_POSTINSTALL ]]; then
 
+		echo -e "${MAGENTA}Executing post-installation tasks."
 		register_schemas --install
 		update_cache
 		gconfd_kill
@@ -45,6 +46,7 @@ pre_remove () {
 
 	if [[ ! $DISABLE_POSTREMOVE ]]; then
 
+		echo -e "${MAGENTA}Executing pre-removal tasks."
 		register_schemas --remove
 
 	fi

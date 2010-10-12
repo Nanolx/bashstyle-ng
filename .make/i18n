@@ -5,10 +5,7 @@ NXRC_LANGS=( de es )
 
 generate_pot () {
 
-	if [[ ! -e translatons/pot ]]; then
-		mkdir -p translations/pot
-	fi
-
+	echo -e "${YELLOW}Generating .pot files."
 	intltool-extract --type=gettext/glade data/bashstyle7.ui >/dev/null
 	xgettext -L python --keyword=_ --keyword=N_ --output=translations/pot/bs-ng.pot \
 		code/bsng.py.in data/bashstyle7.ui.h >/dev/null
@@ -19,11 +16,13 @@ generate_pot () {
 
 update_po () {
 
+	echo -e "${YELLOW}Updating UI-.po files (${BSNG_LANGS[@]})."
 	for po in ${BSNG_LANGS[@]}; do
 		msgmerge -q -o translations/po/bs-ng-${po}.po translations/po/bs-ng-${po}.po \
 			translations/pot/bs-ng.pot >/dev/null
 	done
 
+	echo -e "${YELLOW}Updating NX-.po files (${NXRC_LANGS[@]})."
 	for po in ${NXRC_LANGS[@]}; do
 		msgmerge -q -o translations/po/nx-rc-${po}.po translations/po/nx-rc-${po}.po \
 			translations/pot/nx-rc.pot >/dev/null
@@ -33,10 +32,12 @@ update_po () {
 
 generate_mo () {
 
+	echo -e "${YELLOW}Generating UI-.mo files (${BSNG_LANGS[@]})."
 	for po in ${BSNG_LANGS[@]}; do
 		msgfmt --output-file=translations/mo/bs-ng-${po}.mo translations/po/bs-ng-${po}.po
 	done
 
+	echo -e "${YELLOW}Generating NX-.mo files (${NXRC_LANGS[@]})."
 	for po in ${NXRC_LANGS[@]}; do
 		msgfmt --output-file=translations/mo/nx-rc-${po}.mo translations/po/nx-rc-${po}.po
 	done
