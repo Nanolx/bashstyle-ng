@@ -1,0 +1,52 @@
+#!/bin/bash
+
+register_schemas () {
+
+	case $1 in
+
+		*install )
+			GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
+				gconftool-2 --makefile-install-rule data/bashstyle.schemas >/dev/null
+		;;
+
+		*remove )
+
+		;;
+
+	esac
+
+}
+
+update_cache () {
+
+	gtk-update-icon-cache -f /usr/share/icons/hicolor 2>/dev/null
+
+}
+
+gconfd_kill () {
+
+	killall -qw gconfd-2 >/dev/null || exit 0
+
+}
+
+post_install () {
+
+	if [[ ! $DISABLE_POSTINSTALL ]]; then
+	
+		register_schemas --install
+		update_cache
+		gconfd_kill
+
+	fi
+
+}
+
+post_remove () {
+
+	if [[ ! $DISABLE_POSTREMOVE ]]; then
+
+		register_schemas --remove
+
+	fi
+
+}
