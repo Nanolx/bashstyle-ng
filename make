@@ -32,12 +32,20 @@ case $1 in
 
 	export ) git_export $HOME/Desktop/bashstyle-ng-$2 ;;
 
-	install ) if [[ -e $PWD/.make/build_done ]]; then
+	install ) if [[ $EUID != 0 ]]; then
+			echo -e "\n${RED}You're not root!\n"
+			exit 1
+		  fi
+		  if [[ -e $PWD/.make/build_done ]]; then
 			installdirs_create && install_bsng && post_install
 		  else 	echo -e "\n${RED}You need to run ./make all first!\n"
 		  fi ;;
 
-	remove ) pre_remove && remove_bsng && installdirs_remove ;;
+	remove ) if [[ $EUID != 0 ]]; then
+			echo -e "\n${RED}You're not root!\n"
+			exit 1
+		 fi
+		 pre_remove && remove_bsng && installdirs_remove ;;
 
 	changelog ) $PWD/.make/changelog ;;
 

@@ -30,24 +30,24 @@ installdirs_remove ()
 {
 
 	echo -e "${RED}Removing directories."
-	rmdir --ignore-fail-on-non-empty $DESTDIR/$DATADIR
+	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DATADIR
 	for directory in ${DATADIR_LIST[@]}; do
-		rmdir --ignore-fail-on-non-empty $DESTDIR/$DATADIR/$directory
+		rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DATADIR/$directory
 	done
 
-	rmdir --ignore-fail-on-non-empty $DESTDIR/$LOCALEDIR
+	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$LOCALEDIR
 	for directory in ${LOCALEDIR_LIST[@]}; do
-		rmdir --ignore-fail-on-non-empty $DESTDIR/$LOCALEDIR/$directory/
+		rmdir -p --ignore-fail-on-non-empty $DESTDIR/$LOCALEDIR/$directory/
 	done
 
-	rmdir --ignore-fail-on-non-empty $DESTDIR/$DOCDIR
+	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DOCDIR
 	for directory in ${DOCDIR_LIST[@]}; do
-		rmdir --ignore-fail-on-non-empty $DESTDIR/$DOCDIR/$directory
+		rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DOCDIR/$directory
 	done
 
-	rmdir --ignore-fail-on-non-empty $DESTDIR/$BINDIR
-	rmdir --ignore-fail-on-non-empty $DESTDIR/$PROFILEDIR
-	rmdir --ignore-fail-on-non-empty $DESTDIR/$ICONDIR
-	rmdir --ignore-fail-on-non-empty $DESTDIR/$PCDIR
+	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$BINDIR
+	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$PROFILEDIR
+	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$ICONDIR
+	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$PCDIR
 
 }

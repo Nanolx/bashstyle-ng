@@ -27,7 +27,8 @@ inst ()
 uninst ()
 {
 
-	FILE=${1/:*}
+	xFILE=${1/:*}
+	FILE=${xFILE/*\/}
 	DEST=${1/*:}
 
 	rm -f ${DESTDIR}${DEST}/${FILE}
