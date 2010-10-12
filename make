@@ -13,11 +13,6 @@ if [[ ! -e $PWD/.configure/results ]]; then
 	exit 1
 fi
 
-if [[ $1 == *destdir* ]]; then
-	export DESTDIR=${1/*=}
-	shift
-fi
-
 case $1 in
 
 	pot ) generate_pot ;;
@@ -53,5 +48,4 @@ case $1 in
 
 esac
 
-unset DESTDIR
 tput sgr0
