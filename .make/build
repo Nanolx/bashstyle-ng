@@ -1,0 +1,18 @@
+#!/bin/bash
+
+TERM_FILES=( bold mostlike nebula )
+
+generate_terminfo () {
+	
+	for term in ${TERM_FILES[@]}; do
+		tic data/terminfo/${term}.terminfo -o data/terminfo/
+	done
+
+}
+
+build() {
+
+	generate_terminfo
+	generate_mo
+
+}
