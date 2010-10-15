@@ -1,0 +1,19 @@
+#!/bin/bash
+
+install_fruitxterm () {
+
+	wget "http://www.nanolx.org/bashstyle-extensions/fruitxterm"
+
+	sudo install -m755 fruitxterm $BSNG_BIN_DIR/
+	rm -f fruitxterm
+	
+	xalias xterm fruitxterm
+}
+
+remove_fruitxterm () {
+
+	rm -f $BSNG_BIN_DIR/fruitxterm
+
+	xunalias xterm
+
+}

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+MODULES=( fruitxterm )
+
+for mod in ${MODULES[@]}; do
+	source $BSNG_RC_DIR/extensions/$mod
+done
+
+case $1 in
+
+	"" | *help )
+
+	;;
+
+	*add )
+		MODE=add
+		shift
+	;;
+
+	*remove )
+		MODE=remove
+		shift
+	;;
+
+esac
+
+if [[ $MODE == "add" ]]; then
+	case $1 in 
+		fruitxterm )
+			install_fruitxterm
+		;;
+	esac
+elif [[ $MODE == "remove" ]]; then
+	case $1 in
+		fruitxterm )
+			remove_fruitxterm
+		;;
+	esac
+fi
