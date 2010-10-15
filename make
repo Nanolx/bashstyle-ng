@@ -1,16 +1,16 @@
 #!/bin/bash
 
-MODULES=( adjust build clean color files help i18n install installdirs )
-
-for mod in ${MODULES[@]}; do
-	source $PWD/.make/$mod
-done
-
 if [[ ! -e $PWD/.configure/results ]]; then
 	echo -e "\n${RED}You need to run configure first!\n"
 	exit 1
 else	source $PWD/.configure/results
 fi
+
+MODULES=( adjust build clean color files help i18n install installdirs )
+
+for mod in ${MODULES[@]}; do
+	source $PWD/.make/$mod
+done
 
 if [[ $1 == *verbose ]]; then
 	VERBOSE="true"
