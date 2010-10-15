@@ -2,12 +2,21 @@
 
 clean () {
 
-	echo -e "${SMOOTHBLUE}Cleaning up…"
+	echo -e "${SMOOTHBLUE} [01/01] Cleaning up."
 	REMOVE_FILES=( data/bashstyle data/bashstyle-ng.pc data/bashstyle7.ui.h
 	               data/bashstyle.sh rc/nx-rc translations/{pot,mo}/*
 		       data/terminfo/{b,m,n}/* .configure/results make/build_done )
 
-	for file in ${REMOV_FILES[@]}; do
+	if [[ $VERBOSE == "true" ]]; then
+		RM_NUM=${#REMOVE_FILES[@]}
+		local CUR_NUM=1
+	fi
+
+	for file in ${REMOVE_FILES[@]}; do
+		if [[ $VERBOSE == "true" ]]; then
+			echo -e "${SILVER}\t [$CUR_NUM/$RM_NUM] $file"
+			local CUR_NUM=$(($CUR_NUM+1))
+		fi
 		rm -f "$file"
 	done
 

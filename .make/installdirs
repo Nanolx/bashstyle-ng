@@ -3,7 +3,7 @@
 installdirs_create ()
 {
 
-	echo -e "${GREEN}Installing directories."
+	echo -e "${GREEN} [01/04] Installing directories."
 	mkdir -p $DESTDIR/$DATADIR
 	for directory in ${DATADIR_LIST[@]}; do
 		mkdir -p $DESTDIR/$DATADIR/$directory

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source $PWD/.configure/results
-
 MODULES=( adjust build clean color files help i18n install installdirs )
 
 for mod in ${MODULES[@]}; do
@@ -11,6 +9,12 @@ done
 if [[ ! -e $PWD/.configure/results ]]; then
 	echo -e "\n${RED}You need to run configure first!\n"
 	exit 1
+else	source $PWD/.configure/results
+fi
+
+if [[ $1 == *verbose ]]; then
+	VERBOSE="true"
+	shift
 fi
 
 case $1 in

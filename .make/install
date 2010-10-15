@@ -18,6 +18,9 @@ inst ()
 	FILE=${1/:*}
 	DEST=${1/*:}
 
+	if [[ $VERBOSE == "true" ]]; then
+		echo -e "${SMOOTHBLUE}\t[$2/$3] ${FILE}"
+	fi
 	install -m${MODE} ${FILE} ${DESTDIR}${DEST}
 
 	unset FILE DEST
@@ -39,15 +42,40 @@ uninst ()
 
 install_bsng () {
 
-	echo -e "${GREEN}Installing data files."
+	if [[ $VERBOSE == "true" ]]; then
+		DATA_NUM=0
+		for num in ${#DATA_FILES[@]} ${#LOCALE_FILES[@]} ${#DOC_FILES[@]} \
+		${#PC_FILES[@]} ${#ICON_FILES[@]}; do
+			DATA_NUM=$(($DATA_NUM+$num))
+		done
+		local CUR_NUM=1
+	fi
+
+	echo -e "${GREEN} [02/04] Installing data files."
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
 	${PC_FILES[@]} ${ICON_FILES[@]}; do
-		inst data "$file"
+		if [[ $VERBOSE == "true" ]]; then
+			inst data "$file" $CUR_NUM $DATA_NUM
+			local CUR_NUM=$(($CUR_NUM+1))
+		else 	inst data "$file"
+		fi
 	done
 
-	echo -e "${GREEN}Installing binary files."
+	if [[ $VERBOSE == "true" ]]; then
+		BIN_NUM=0
+		for num in ${#PROFILE_FILES[@]} ${#BIN_FILES[@]}; do
+			BIN_NUM=$(($BIN_NUM+$num))
+		done
+		local CUR_NUM=1
+	fi
+
+	echo -e "${GREEN} [03/04] Installing binary files."
 	for file in ${PROFILE_FILES[@]} ${BIN_FILES[@]}; do
-		inst bin "$file"
+		if [[ $VERBOSE == "true" ]]; then
+			inst bin "$file" $CUR_NUM $BIN_NUM
+			local CUR_NUM=$(($CUR_NUM+1))
+		else	inst bin "$file"
+		fi
 	done
 
 }

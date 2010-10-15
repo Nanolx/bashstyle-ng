@@ -25,15 +25,26 @@ case $1 in
 esac
 
 if [[ $MODE == "add" ]]; then
-	case $1 in 
+	case $1 in
 		fruitxterm )
 			install_fruitxterm
+			if (( $? == 0 )); then
+				echo -e "${egreen}fruitxterm ${ewhite}installed sucessfully.\
+					\nrun \`fruitxterm' to try it out."
+			else	echo -e "${ered}Something went wrong."
+			fi
 		;;
 	esac
 elif [[ $MODE == "remove" ]]; then
 	case $1 in
 		fruitxterm )
 			remove_fruitxterm
+			if (( $? == 0 )); then
+				echo -e "${egreen}fruitxterm ${ewhite}uninstalled sucessfully."
+			else	echo -e "${ered}Something went wrong."
+			fi
 		;;
 	esac
 fi
+
+tput sgr0

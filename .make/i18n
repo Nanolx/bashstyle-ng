@@ -1,11 +1,14 @@
 #!/bin/bash
 
 BSNG_LANGS=( de es it ru )
+BSNG_NUM=${#BSNG_LANGS[@]}
+
 NXRC_LANGS=( de es )
+NXRC_NUM=${#NXRC_LANGS[@]}
 
 generate_pot () {
 
-	echo -e "${YELLOW}Generating .pot files."
+	echo -e "${YELLOW} [01/01] Generating .pot files."
 	intltool-extract --type=gettext/glade data/bashstyle7.ui >/dev/null
 	xgettext -L python --keyword=_ --keyword=N_ --output=translations/pot/bs-ng.pot \
 		code/bsng.py.in data/bashstyle7.ui.h >/dev/null
@@ -16,14 +19,24 @@ generate_pot () {
 
 update_po () {
 
-	echo -e "${YELLOW}Updating UI-.po files (${BSNG_LANGS[@]})."
+	local CUR_NUM=1
+	echo -e "${YELLOW} [01/02] Updating UI-po files (${BSNG_LANGS[@]})."
 	for po in ${BSNG_LANGS[@]}; do
+		if [[ $VERBOSE == "true" ]]; then
+			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$BSNG_NUM] ${po}"
+			local CUR_NUM=$(($CUR_NUM+1))
+		fi
 		msgmerge -q -o translations/po/bs-ng-${po}.po translations/po/bs-ng-${po}.po \
 			translations/pot/bs-ng.pot >/dev/null
 	done
 
-	echo -e "${YELLOW}Updating NX-.po files (${NXRC_LANGS[@]})."
+	local CUR_NUM=1
+	echo -e "${YELLOW} [02/02] Updating NX-po files (${NXRC_LANGS[@]})."
 	for po in ${NXRC_LANGS[@]}; do
+		if [[ $VERBOSE == "true" ]]; then
+			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$NXRC_NUM] ${po}"
+			local CUR_NUM=$(($CUR_NUM+1))
+		fi
 		msgmerge -q -o translations/po/nx-rc-${po}.po translations/po/nx-rc-${po}.po \
 			translations/pot/nx-rc.pot >/dev/null
 	done
@@ -32,13 +45,23 @@ update_po () {
 
 generate_mo () {
 
-	echo -e "${YELLOW}Generating UI-.mo files (${BSNG_LANGS[@]})."
+	local CUR_NUM=1
+	echo -e "${YELLOW} [02/03] Generating UI-.mo files (${BSNG_LANGS[@]})."
 	for po in ${BSNG_LANGS[@]}; do
+		if [[ $VERBOSE == "true" ]]; then
+			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$BSNG_NUM] ${po}"
+			local CUR_NUM=$(($CUR_NUM+1))
+		fi
 		msgfmt --output-file=translations/mo/bs-ng-${po}.mo translations/po/bs-ng-${po}.po
 	done
 
-	echo -e "${YELLOW}Generating NX-.mo files (${NXRC_LANGS[@]})."
+	local CUR_NUM=1
+	echo -e "${YELLOW} [03/03] Generating NX-.mo files (${NXRC_LANGS[@]})."
 	for po in ${NXRC_LANGS[@]}; do
+		if [[ $VERBOSE == "true" ]]; then
+			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$NXRC_NUM] ${po}"
+			local CUR_NUM=$(($CUR_NUM+1))
+		fi
 		msgfmt --output-file=translations/mo/nx-rc-${po}.mo translations/po/nx-rc-${po}.po
 	done
 
