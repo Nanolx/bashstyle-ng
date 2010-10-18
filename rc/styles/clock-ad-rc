@@ -51,6 +51,8 @@ else
     newPWD="${PWD//\//$esepacolor$dirchar$ewdircolor}"
 fi
 
+PRE_PROMPT_COMMAND
+
 _newPWD () {
 	echo -e $newPWD
 }

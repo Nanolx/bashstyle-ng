@@ -39,6 +39,10 @@ else
 fi
 unset devicetemp
 
+if [[ $enabcol == true ]]; then
+  PRE_PROMPT_COMMAND
+fi
+
 }
 
 PROMPT_COMMAND=prompt_command

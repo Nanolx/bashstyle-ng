@@ -23,6 +23,7 @@ $(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g') ::\
 $(echo $timecolor | sed -e 's/\\\[//g' -e 's/\\\]//g') $(date +%T)\
 $(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g') ]"
 tput rc
+PRE_PROMPT_COMMAND
 }
 
 PROMPT_COMMAND=pre_prompt

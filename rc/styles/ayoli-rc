@@ -33,6 +33,10 @@ then
     newPWD="...$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")"
 fi
 
+if [[ $enabcol == true ]]; then
+  PRE_PROMPT_COMMAND
+fi
+
 }
 
 PROMPT_COMMAND=pre_prompt
