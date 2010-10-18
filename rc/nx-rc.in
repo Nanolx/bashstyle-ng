@@ -17,7 +17,7 @@ else
 
 export BSNG_PREFIX=@PREFIX@
 export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/
-export BSNG_BIN_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/bin/
+export BSNG_BIN_DIR=$BSNG_RC_DIR/bin/
 export BSNG_LOCKFILE=$HOME/.bashstyle.lock
 export BSNG_VERSION=@VERSION@
 export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
@@ -25,7 +25,7 @@ export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
 ERR_MSG=""
 
 BSNG_INTERN=( internal/misc internal/gconf internal/logging )
-BSNG_FUNCS=( functions/admin functions/conversion functions/infos 
+BSNG_FUNCS=( functions/admin functions/conversion functions/infos
              functions/media functions/misc functions/random
 	     functions/utils functions/versioning )
 
@@ -85,17 +85,17 @@ dbg_log alias rd="pwd -P"
 
 if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/readline-rc
+	dbg_log source $BSNG_RC_DIR/settings/readline-rc
 fi
 
 if [[ $(get_key vim/use_vimcfg) == true ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"VimCFG"
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/vim-rc
+	dbg_log source $BSNG_RC_DIR/settings/vim-rc
 fi
 
 if [[ $(get_key nano/use_nanocfg) == true ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"NanoCFG"
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/nano-rc
+	dbg_log source $BSNG_RC_DIR/settings/nano-rc
 fi
 
 if [[ $(get_key use_bashstyle) == false ]]; then \
@@ -107,26 +107,26 @@ fi
 fi
 
 if [[ $(get_key color/enable) == true ]]; then \
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/color-rc
+	dbg_log source $BSNG_RC_DIR/settings/color-rc
 fi
 
 if [[ $(get_key dircolors/enable) == true ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"LSCOLORS"
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/ls-rc
+	dbg_log source $BSNG_RC_DIR/settings/ls-rc
 fi
 
-dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/alias-rc
+dbg_log source $BSNG_RC_DIR/settings/alias-rc
 
 dbg_msg $"BashStyle-NG Setting:" $"ps2 ps3 ps4 char" $(get_key ps234)
 ps234char=$(get_key ps234)
 
 if [[ $(get_key colored_man) == true ]]; then \
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/man-rc
+	dbg_log source $BSNG_RC_DIR/settings/man-rc
 fi
 
-dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/options-rc
+dbg_log source $BSNG_RC_DIR/settings/options-rc
 
-dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/shopt-rc
+dbg_log source $BSNG_RC_DIR/settings/shopt-rc
 
 shopt -s checkwinsize
 
@@ -145,7 +145,7 @@ fi
 
 if [[ $(get_key random_style) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Style Random"
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/settings/random-rc
+	dbg_log source $BSNG_RC_DIR/settings/random-rc
 else
 	pstyle=$(get_key prompt_style)
 fi
@@ -154,13 +154,18 @@ use_custom_prompt=$(get_key use_custom_prompt)
 
 if [[ $use_custom_prompt == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Style Custom"
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/custom-rc
-elif [[ -e $BSNG_PREFIX/share/bashstyle-ng/rc/styles/${pstyle}-rc ]]; then
+	dbg_log source $BSNG_RC_DIR/styles/custom-rc
+elif [[ -e $BSNG_RC_DIR/styles/${pstyle}-rc ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Style" $pstyle
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/${pstyle}-rc
+	dbg_log source $BSNG_RC_DIR/styles/${pstyle}-rc
 else
 	dbg_msg $"BashStyle-NG Setting:" $"Style Fallback"
-	dbg_log source $BSNG_PREFIX/share/bashstyle-ng/rc/styles/fallback-rc
+	dbg_log source $BSNG_RC_DIR/styles/fallback-rc
+fi
+
+if [[ -e $BSNG_RC_DIR/colorshell ]]; then
+	dbg_msg $"BashStyle-NG Loading:" $"ColorShell Extension"
+	dbg_log source $BSNG_RC_DIR/colorshell
 fi
 
 dbg_msg $"BashStyle-NG Setting:" $"PS2 PS3 PS4"
