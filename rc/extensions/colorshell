@@ -1,0 +1,16 @@
+#!/bin/bash
+
+install_colorshell () {
+
+	wget "http://www.nanolx.org/bashstyle-extensions/colorshell"
+
+	sudo install -m644 colorshell $BSNG_RC_DIR/
+	rm -f colorshell
+
+}
+
+remove_fruitxterm () {
+
+	rm -f $BSNG_RC_DIR/colorshell
+
+}

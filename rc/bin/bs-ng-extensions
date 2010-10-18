@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MODULES=( fruitxterm )
+MODULES=( fruitxterm colorshell )
 
 for mod in ${MODULES[@]}; do
 	source $BSNG_RC_DIR/extensions/$mod
@@ -34,6 +34,14 @@ if [[ $MODE == "add" ]]; then
 			else	echo -e "${ered}Something went wrong."
 			fi
 		;;
+		colorshell )
+			install_colorshell
+			if (( $? == 0 )); then
+				echo -e "${egreen}colorshell ${ewhite}installed sucessfully.\
+					\nstart a new session to try it out."
+			else	echo -e "${ered}Something went wrong."
+			fi
+		;;
 	esac
 elif [[ $MODE == "remove" ]]; then
 	case $1 in
@@ -41,6 +49,13 @@ elif [[ $MODE == "remove" ]]; then
 			remove_fruitxterm
 			if (( $? == 0 )); then
 				echo -e "${egreen}fruitxterm ${ewhite}uninstalled sucessfully."
+			else	echo -e "${ered}Something went wrong."
+			fi
+		;;
+		colorshell )
+			remove_colorshell
+			if (( $? == 0 )); then
+				echo -e "${egreen}colorshell ${ewhite}uninstalled sucessfully."
 			else	echo -e "${ered}Something went wrong."
 			fi
 		;;
