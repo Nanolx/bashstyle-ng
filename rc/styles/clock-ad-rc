@@ -91,7 +91,7 @@ let prompt_line=${LINES}-1
 PROMPT_COMMAND=pre_prompt
 
 PS1="\[\033[\${prompt_line};0H\]\n\
-$sepacoloror┌─( $usercolor\u $fontcolor@ $hostcolor\h \
+$sepacolor┌─( $usercolor\u $fontcolor@ $hostcolor\h \
 $sepacolor)─\${fill}─( $wdircolor\$(_newPWD)\
 $sepacolor )────┘\n\
 $sepacolor└─($upcolor uptime: \$(show_uptime)\
