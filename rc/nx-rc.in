@@ -168,9 +168,9 @@ PS2="$pscolor $ps234char$fontcolor "
 PS3="$pscolor $ps234char$ps234char$fontcolor "
 PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
-if [[ $(get_key color/shell) == true ]]; then
+if [[ $(get_key color/shell) == true && $enabcol == true ]]; then
 	dbg_msg $"BashStyle-NG Starting:" $"ColorShell"
-	dbg_log colorshell
+	dbg_log source $BSNG_RC_DIR/functions/colorshell
 fi
 
 if [[ $(get_key tabrotate) == true ]]; then \
