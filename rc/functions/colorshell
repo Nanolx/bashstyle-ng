@@ -26,10 +26,7 @@ cmd_colours=( $setaf_blue $setaf_green $setaf_red $setaf_cyan $setaf_magenta $se
 declare -i cmd_colour_index=-1
 
 function next_colour() {
-  if [[ $(get_key color/random) == true ]]; then
-	cmd_colour_index=$(( ($cmd_colour_index+1) % (RANDOM % ${#cmd_colours[*]}) ))
-  else	cmd_colour_index=$(( ($cmd_colour_index+1) % (${#cmd_colours[*]}) ))
-  fi
+  colour_index=$(( ($cmd_colour_index+1) % (${#cmd_colours[*]}) ))
 }
 
 if [[ $PROMPT_COMMAND ]]; then

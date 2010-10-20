@@ -40,4 +40,10 @@ wizard_base_one ()
 		gconftool-2 -t bool -s /apps/bashstyle/restorepwd true
 	fi
 
+	whiptail --title $"colorshell" --yesno $"Do you want to use colorshell (different text color after each command)?" 12 85
+
+	if [[ $? == "0" ]]; then
+		gconftool-2 -t bool -s /apps/bashstyle/color/shell true
+	fi
+
 }
