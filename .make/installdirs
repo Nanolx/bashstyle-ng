@@ -29,7 +29,7 @@ installdirs_create ()
 installdirs_remove ()
 {
 
-	echo -e "${RED}Removing directories."
+	echo -e "${RED} [03/03] Removing directories."
 	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DATADIR
 	for directory in ${DATADIR_LIST[@]}; do
 		rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DATADIR/$directory
