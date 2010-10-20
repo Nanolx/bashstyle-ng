@@ -163,15 +163,15 @@ else
 	dbg_log source $BSNG_RC_DIR/styles/fallback-rc
 fi
 
-if [[ $(get_key color/shell) == true ]]; then
-	dbg_msg $"BashStyle-NG Starting:" $"ColorShell"
-	dbg_log colorshell
-fi
-
 dbg_msg $"BashStyle-NG Setting:" $"PS2 PS3 PS4"
 PS2="$pscolor $ps234char$fontcolor "
 PS3="$pscolor $ps234char$ps234char$fontcolor "
 PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
+
+if [[ $(get_key color/shell) == true ]]; then
+	dbg_msg $"BashStyle-NG Starting:" $"ColorShell"
+	dbg_log colorshell
+fi
 
 if [[ $(get_key tabrotate) == true ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"On"
