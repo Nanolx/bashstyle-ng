@@ -17,10 +17,12 @@ DATA_FILES=( code/bsng.py:${DATADIR}/code
 	     data/terminfo/n/*:${DATADIR}/terminfo/n
 	     data/vim/colors/*:${DATADIR}/vim/colors )
 
-LOCALE_FILES=( translations/mo/*-de.mo:${LOCALEDIR}/de/LC_MESSAGES
-	       translations/mo/*-es.mo:${LOCALEDIR}/es/LC_MESSAGES
-	       translations/mo/*-it.mo:${LOCALEDIR}/it/LC_MESSAGES
-	       translations/mo/*-ru.mo:${LOCALEDIR}/ru/LC_MESSAGES )
+LOCALE_FILES=( translations/mo/bs-ng-de.mo:${LOCALEDIR}/de/LC_MESSAGES/bashstyle-ng.mo
+               translations/mo/nx-rc-de.mo:${LOCALEDIR}/de/LC_MESSAGES/nx-rc.mo
+	       translations/mo/bs-ng-es.mo:${LOCALEDIR}/es/LC_MESSAGES/bashstyle-ng.mo
+	       translations/mo/nx-rc-es.mo:${LOCALEDIR}/es/LC_MESSAGES/nx-rc.mo
+	       translations/mo/bs-ng-it.mo:${LOCALEDIR}/it/LC_MESSAGES/bashstyle-ng.mo
+	       translations/mo/bs-ng-ru.mo:${LOCALEDIR}/ru/LC_MESSAGES/bashstyle-ng.mo )
 
 DOC_FILES=( documentation/*.html:${DOCDIR}
 	    documentation/img/*.png:${DOCDIR}/img
