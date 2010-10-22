@@ -12,7 +12,7 @@
 wizard_reprepro_one ()
 {
 	whiptail --title $"reprepro setup" --yesno $"Do you want to setup reprepro?
-If you have an repo managed via reprepro, you can now setup repoadd." 12 85
+If you have a repo managed via reprepro, you can now setup repoadd." 12 85
 
 	if [[ $? == "0" ]]; then
 		repo_home=$(whiptail --title $"reprepro repo home" --inputbox $"Enter the full path to the repo base directory:" 12 85 "$REPO_HOME" 3>&1 1>&2 2>&3)
