@@ -14,7 +14,7 @@ if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
 	if [[ $1 == --help || $1 == -h ]]; then
 		$MV_CMD --help
 		exit 0
-	elif [[ ${#} -lt "2" && ${1} != *{,* ]]; then
+	elif [[ ${#} -lt "2" ]]; then
 		echo "not enough arguments"
 		exit 1
 	fi
@@ -22,7 +22,7 @@ if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
 	destination="${!#}"
 
 	if [[ "${destination}" == */ && ! -e "${destination}" ]]; then
-		 mkdir -p "${!#}"
+		 mkdir -p "${!destination}"
 	elif [[ "${destination}" == */ && -f "${destination}" ]]; then
 		echo "destination already exists, but is a file."
 		exit 1
