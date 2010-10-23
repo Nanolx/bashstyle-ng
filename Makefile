@@ -1,5 +1,25 @@
 SHELL=/bin/bash
 
 all:
-	@echo -e "\nBashStyle-NG does now ship it's own make-system!\
-		\nCheck INSTALL for how-to install BashStyle-NG now.\n"
+	@./make build
+
+install:
+	@./make install
+
+uninstall:
+	@./make uninstall
+
+clean:
+	@./make clean
+
+distclean:
+	@./make distclean
+
+help:
+	@./make help
+
+pot:
+	@./make pot
+
+po:
+	@./make po
