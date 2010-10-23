@@ -194,13 +194,6 @@ if [[ $verbose != true ]]; then
 	echo -ne "\b\b\b\b\b\b\b\b\b\n"
 fi
 
-if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
-	cat $BSNG_RC_DIR/ascii/birthday
-elif [[ $WelcomeMessage != "" ]]; then \
-	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
-	dbg_log $WelcomeMessage
-fi
-
 if [[ ! $RM_CMD ]]; then
 	. /etc/profile.d/bashstyle.sh
 fi
@@ -209,6 +202,13 @@ if [[ -e $HOME/.bookmarks ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"Bookmarks"
 	dbg_log . $HOME/.bookmarks
 else	touch $HOME/.bookmarks
+fi
+
+if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
+	cat $BSNG_RC_DIR/ascii/birthday
+elif [[ $WelcomeMessage != "" ]]; then \
+	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
+	dbg_log $WelcomeMessage
 fi
 
 if [[ $ERR_MSG != "" ]]; then
