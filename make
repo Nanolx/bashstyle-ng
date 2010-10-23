@@ -17,39 +17,48 @@ if [[ $1 == *verbose ]]; then
 	shift
 fi
 
-case $1 in
+xcount=0
+pcount=$#
 
-	pot ) generate_pot ;;
+while [[ $xcount -lt $pcount ]]; do
+	case $1 in
 
-	po ) update_po;;
+		pot ) generate_pot ;;
 
-	build ) build && touch .make/build_done;;
+		po ) update_po;;
 
-	clean ) clean ;;
+		build ) build && touch .make/build_done;;
 
-	distclean ) distclean ;;
+		clean ) clean ;;
 
-	export ) git_export $HOME/Desktop/bashstyle-ng-$2 ;;
+		distclean ) distclean ;;
 
-	install ) if [[ $EUID != 0 ]]; then
-			echo -e "\n${RED}You're not root!\n"
-			exit 1
-		  fi
-		  if [[ -e $PWD/.make/build_done ]]; then
-			installdirs_create && install_bsng && post_install
-		  else 	echo -e "\n${RED}You need to run ./make all first!\n"
-		  fi ;;
+		export ) git_export $HOME/Desktop/bashstyle-ng-$2 ;;
 
-	remove ) if [[ $EUID != 0 ]]; then
-			echo -e "\n${RED}You're not root!\n"
-			exit 1
-		 fi
-		 pre_remove && remove_bsng && installdirs_remove ;;
+		install ) if [[ $EUID != 0 ]]; then
+				echo -e "\n${RED}You're not root!\n"
+				exit 1
+			  fi
+			  if [[ -e $PWD/.make/build_done ]]; then
+				installdirs_create && install_bsng && post_install
+			  else 	echo -e "\n${RED}You need to run ./make all first!\n"
+			  fi ;;
 
-	changelog ) $PWD/.make/changelog ;;
+		remove ) if [[ $EUID != 0 ]]; then
+				echo -e "\n${RED}You're not root!\n"
+				exit 1
+			fi
+			pre_remove && remove_bsng && installdirs_remove ;;
 
-	* ) help_message ;;
+		changelog ) $PWD/.make/changelog ;;
 
-esac
+		* ) help_message ;;
+
+	esac
+	shift
+	xcount=$(($xcount+1))
+done
+
+unset xcount pcount
 
 tput sgr0
