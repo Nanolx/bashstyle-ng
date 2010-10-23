@@ -19,22 +19,21 @@ if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
 		exit 1
 	fi
 
-	if [[ "${!#}" == */ && ! -e "${!#}" ]]; then
-		mkdir -p "${!#}"
-	fi
-
 	destination="${!#}"
 
-	args=( "$@" )
-	unset args[$#-1]
-	set -- "${args[@]}"
+	if [[ "${destination}" == */ && ! -e "${destination}" ]]; then
+		 mkdir -p "${!#}"
+	elif [[ -f "${destination}" ]]; then
+		echo "destination already exists, but is a file."
+		exit 1
+	fi
 
 	for path in "${args[@]}"; do
 	      test "${path:0:1}" == - && CPO+="$path " && continue
 	      for try in "$path" "${path%/*}"; do
 		  test -e "$try"/.dirinfo || continue
 		  grep -q NoCopy "$try"/.dirinfo || continue
-		  echo "can not delete $try, it's protected"
+		  echo "can not copy $try, it's protected"
 		  continue 2
 	      done
 	      if test "${path}" == "*{,*" ; then
