@@ -23,7 +23,7 @@ if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
 
 	if [[ "${destination}" == */ && ! -e "${destination}" ]]; then
 		 mkdir -p "${!#}"
-	elif [[ -f "${destination}" ]]; then
+	elif [[ "${destination}" == */ && -f "${destination}" ]]; then
 		echo "destination already exists, but is a file."
 		exit 1
 	fi
@@ -34,16 +34,13 @@ if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
 
 	for path in "${args[@]}"; do
 	      test "${path:0:1}" == - && MVO+="$path " && continue
-	      for try in "$path" "${path%/*}"; do
+	      for try in "$path" "${path%/*}" "$(dirname ${path})"; do
 		  test -e "$try"/.dirinfo || continue
 		  grep -q NoMove "$try"/.dirinfo || continue
-		  echo "can not move $try, it's protected"
+		  echo "can not move $path -- it's protected"
 		  continue 2
 	      done
-	      if test "${path}" == "*{,*" ; then
-		   $MV_CMD $MV_OPTS $MVO "$path"
-	      else $MV_CMD $MV_OPTS $MVO "$path" "$destination"
-	      fi
+	      $MV_CMD $MV_OPTS $MVO "$path" "$destination"
 	done
 
 	unset MVO

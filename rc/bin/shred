@@ -12,22 +12,22 @@
 if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
 
 	if [[ $1 == --help || $1 == -h ]]; then
-		$RM_CMD --help
+		$SH_CMD --help
 		exit 0
 	fi
 
 	for path in "$@"; do
-	    test "${path:0:1}" == - && RMO+="$path " && continue
+	    test "${path:0:1}" == - && SHO+="$path " && continue
 	    for try in "$path" "${path%/*}" "$(dirname ${path})"; do
 		test -e "$try"/.dirinfo || continue
-		grep -q NoDelete "$try"/.dirinfo || continue
-		echo "can not delete $path -- it's protected"
+		grep -q NoShred "$try"/.dirinfo || continue
+		echo "can not shred $path -- it's protected!"
 		continue 2
 	    done
-	    $RM_CMD $RM_OPTS $RMO "$path"
+	    $SH_CMD $SH_OPTS $SHO "$path"
 	done
 
-	unset RMO
+	unset SHO
 
-else	$RM_CMD "$@"
+else	$SH_CMD "$@"
 fi
