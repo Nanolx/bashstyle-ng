@@ -15,6 +15,15 @@ if [[ $0 == *gdm* ]]; then
 	dbg_msg $"BashStyle-NG: Started from GDM -- exiting"
 else
 
+if [[ -e $HOME/.bashstyle.lock ]]; then
+	echo -e "Another BashStyle-NG is currently starting-up -- please wait\n"
+	until [ ! -e $HOME/.bashstyle.lock ]; do
+		sleep 0.1
+	done
+fi
+
+touch $HOME/.bashstyle.lock
+
 export BSNG_PREFIX=@PREFIX@
 export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/
 export BSNG_BIN_DIR=$BSNG_RC_DIR/bin/
@@ -37,7 +46,7 @@ if [[ $verbose != true ]]; then
 
 	spin(){
 
-		while [ true ]
+		until [ ! -e $HOME/.bashstyle.lock ]
 		do
 			echo -ne "l      \b\b\b\b\b\b\b";sleep .08;
 			echo -ne "lo     \b\b\b\b\b\b\b";sleep .08;
@@ -56,8 +65,7 @@ if [[ $verbose != true ]]; then
 
 	}
 
-	spin &
-	spin_id=$!
+	spin & 2>&1>/dev/null
 fi
 
 if [[ $(get_key debug) == true ]]; then \
@@ -189,11 +197,6 @@ if [[ $(get_key restorepwd) == true ]]; then \
 	fi
 fi
 
-if [[ $verbose != true ]]; then
-	kill $spin_id 2>&1>/dev/null
-	echo -ne "\b\b\b\b\b\b\b\b\b\n"
-fi
-
 if [[ ! $RM_CMD ]]; then
 	. /etc/profile.d/bashstyle.sh
 fi
@@ -204,10 +207,19 @@ if [[ -e $HOME/.bookmarks ]]; then
 else	touch $HOME/.bookmarks
 fi
 
+rm $HOME/.bashstyle.lock
+
+if [[ $verbose != true ]]; then
+	sleep 1
+	echo -ne "\b\b\b\b\b\b\b\b\b\n"
+fi
+
 if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
+	sleep 0.5
 	cat $BSNG_RC_DIR/ascii/birthday
 elif [[ $WelcomeMessage != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
+	sleep 0.5
 	dbg_log $WelcomeMessage
 fi
 
