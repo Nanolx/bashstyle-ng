@@ -14,10 +14,8 @@ if [[ -e $HOME/.inputrc && ( ! -w $HOME/.inputrc || ! -r $HOME/.inputrc ) ]]; th
 else
 
 if [[ ! $BSNG_RC_GEN ]]; then
-	export RC_FILE=$HOME/.inputrc
+	export RC_FILE=$HOME/.inputrc.$(date +%I-%M-%S)
 fi
-
-rm -f $HOME/.inputrc
 
 dbg_msg $"ReadlineCFG Setting:" $"Bellstyle" $(get_key readline/bellstyle)
 
@@ -121,6 +119,7 @@ dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(get_key readline/que
 rc_add "set completion-query-items $(get_key readline/query_item)"
 
 if [[ ! $BSNG_RC_GEN ]]; then
+	mv $RC_FILE $HOME/.inputrc
 	unset RC_FILE
 fi
 

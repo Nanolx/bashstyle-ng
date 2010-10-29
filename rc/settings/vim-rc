@@ -14,10 +14,8 @@ if [[ -e $HOME/.vimrc && ( ! -w $HOME/.vimrc || ! -r $HOME/.vimrc ) ]]; then
 else
 
 if [[ ! $BSNG_RC_GEN ]]; then
-	export RC_FILE=$HOME/.vimrc
+	export RC_FILE=$HOME/.vimrc.$(date +%I-%M-%S)
 fi
-
-rm -f $HOME/.vimrc
 
 dbg_msg $"VimCFG Setting:" $"runtimepath"
 rc_add "set runtimepath+=$BSNG_PREFIX/share/bashstyle-ng/vim/"
@@ -215,6 +213,7 @@ rc_add "	source ~/.vimrc.custom"
 rc_add "endif"
 
 if [[ ! $BSNG_RC_GEN ]]; then
+	mv $RC_FILE $HOME/.vimrc
 	unset RC_FILE
 fi
 

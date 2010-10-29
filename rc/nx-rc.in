@@ -15,13 +15,6 @@ if [[ $0 == *gdm* ]]; then
 	dbg_msg $"BashStyle-NG: Started from GDM -- exiting"
 else
 
-if [[ -e $HOME/.bashstyle.lock ]]; then
-	echo -e "Another BashStyle-NG is currently starting-up -- please wait\n"
-	until [ ! -e $HOME/.bashstyle.lock ]; do
-		sleep 0.1
-	done
-fi
-
 touch $HOME/.bashstyle.lock
 
 export BSNG_PREFIX=@PREFIX@
@@ -210,16 +203,13 @@ fi
 rm $HOME/.bashstyle.lock
 
 if [[ $verbose != true ]]; then
-	sleep 1
-	echo -ne "\b\b\b\b\b\b\b\b\b\n"
+	sleep 1.5
 fi
 
 if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
-	sleep 0.5
 	cat $BSNG_RC_DIR/ascii/birthday
 elif [[ $WelcomeMessage != "" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
-	sleep 0.5
 	dbg_log $WelcomeMessage
 fi
 

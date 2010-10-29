@@ -14,10 +14,8 @@ if [[ -e $HOME/.nanorc && ( ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ) ]]; then
 else
 
 if [[ ! $BSNG_RC_GEN ]]; then
-	export RC_FILE=$HOME/.nanorc
+	export RC_FILE=$HOME/.nanorc.$(date +%I-%M-%S)
 fi
-
-rm -f $HOME/.nanorc
 
 if [[ $(get_key nano/auto_indent) == true ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Auto-Indention" $"On"
@@ -109,6 +107,7 @@ else	dbg_msg $"NanoCFG Setting:" $"Colors" $"Off"
 fi
 
 if [[ ! $BSNG_RC_GEN ]]; then
+	mv $RC_FILE $HOME/.nanorc
 	unset RC_FILE
 fi
 
