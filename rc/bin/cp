@@ -34,7 +34,7 @@ if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
 
 	for path in "${args[@]}"; do
 	      test "${path:0:1}" == - && CPO+="$path " && continue
-	      for try in "$path" "${path%/*}" "$(dirname ${path})"; do
+	      for try in "$path" "${path%/*}" "$(dirname ${path} 2>/dev/null)"; do
 		  test -e "$try"/.dirinfo || continue
 		  grep -q NoCopy "$try"/.dirinfo || continue
 		  echo "can not copy $path -- it's protected"
