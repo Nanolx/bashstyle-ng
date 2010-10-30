@@ -25,14 +25,15 @@ We do now have a custom make system. See INSTALL.
 * #113 (vim-rc): fix setting highlighting
 * #114 (readline-rc) (nano-rc) (vim-rc): check wether rc-file is accessible before writing it
 * #115 (configure): change the way python modules are detected (fixes rpmbuild failure)
-* #116 (ayoli): the first line of the prompt in ayoli was longer than the screen
+* #116 (ayoli) (clock-ad): the first line of the prompt in ayoli was longer than the screen
 * #117 (check_opt): check_opt should error rather than exiting the session (...)
 * #118 (autotools): there's a bug in the autotools which may not let you compile any source
                     if /bin/sh is not /bin/bash (...) workaround this by exporting
                     CONFIG_SHELL="/bin/bash" in /etc/profile.d/bashstyle.sh (...)
-* #119  (nx-rc): when you started several shells at once ReadlineCFG, VimCFG and NanoCFG could
-                 have generated invalid configuration files (all instances of them adding the
-		 values), this is now prevented by starting BS-NG one by one
+* #119 (nx-rc): when you started several shells at once ReadlineCFG, VimCFG and NanoCFG could
+                have generated invalid configuration files (all instances of them adding the
+		values), this is now prevented by starting BS-NG one by one
+* #120 (clock-ad) (ayoli): fixed truncated the current directory
 
 === Build & Installation ===
 * removed deprecated schemas

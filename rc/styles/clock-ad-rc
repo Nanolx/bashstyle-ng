@@ -33,7 +33,7 @@ function pre_prompt {
 
 newPWD="${PWD}"
 
-let promptsize=$(echo -n "--($user @ $host)---(${PWD})-------" | wc -c | tr -d " ")
+let promptsize=$(echo -n "--( $user @ $host )--( ${PWD} )----" | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
 fill=""
@@ -45,7 +45,7 @@ done
 if [ "$fillsize" -lt "0" ]
 then
     let cutt=${trunc_length}-${fillsize}
-    xPWD="${trunc_symbol}$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")"
+    xPWD="${trunc_symbol}${PWD:${cutt}}"
     newPWD="${xPWD//\//$esepacolor$dirchar$ewdircolor}"
 else
     newPWD="${PWD//\//$esepacolor$dirchar$ewdircolor}"

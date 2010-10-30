@@ -30,7 +30,7 @@ done
 if [ "$fillsize" -lt "0" ]
 then
     let cutt=3-${fillsize}
-    newPWD="...$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")"
+    xPWD="...${PWD:${cutt}}"
 fi
 
 if [[ $enabcol == true ]]; then
