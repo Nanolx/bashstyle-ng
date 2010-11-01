@@ -13,7 +13,7 @@ generate_pot () {
 
 	echo -e "${YELLOW} [01/01] Generating .pot files."
 	intltool-extract --type=gettext/glade ui/bashstyle7.ui >/dev/null
-	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bs-ng.pot ui/bsng.py ui/bashstyle7.ui.h >/dev/null
+	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bs-ng.pot ui/bs-ng.py ui/bashstyle7.ui.h >/dev/null
 
 	xgettext -o i18n/nx-rc.pot -L shell rc/nx-rc rc/settings/*-rc 2>/dev/null
 
