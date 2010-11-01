@@ -82,7 +82,7 @@ install_bsng () {
 
 remove_bsng () {
 
-	echo -e "${RED} [02/03] Removing all files."
+	echo -e "${RED} [02/02] Removing all files."
 	for file in ${REMOVE_FILES[@]}; do
 		uninst "$file"
 	done

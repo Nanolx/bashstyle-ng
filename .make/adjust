@@ -46,7 +46,7 @@ pre_remove () {
 
 	if [[ ! $DISABLE_POSTREMOVE ]]; then
 
-		echo -e "${MAGENTA} [01/03] Executing pre-removal tasks."
+		echo -e "${MAGENTA} [01/02] Executing pre-removal tasks."
 		register_schemas --remove
 
 	fi
