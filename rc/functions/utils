@@ -416,3 +416,52 @@ lscd () {
 	echo "$PWD" > $HOME/.lastpwd
 
 }
+
+treecd () {
+
+	builtin cd "${@}" &>/dev/null
+	. $BSNG_RC_DIR/dirinfo/display
+	dirinfo_display
+
+	echo -e "${epink}content:"
+	tree -L 1 $TREE_OPTS
+	echo "$PWD" > $HOME/.lastpwd
+
+}
+
+treefind () {
+
+	find "$@" | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/'
+
+}
+
+treeps () {
+
+	ps f -u $USER -o command,pid,%cpu,%mem,time,etime,tty | \
+		awk 'NR <= 1 {print;next} !/awk/ && $0~var' var=${1:-".*"}
+
+}
+
+wininfo () {
+
+	xprop | grep -w "WM_NAME\|WM_CLASS\|WM_WINDOW_ROLE\|_NET_WM_STATE"
+
+}
+
+repeat () {
+
+	local period
+	period=$1; shift;
+
+	while (true); do
+	    eval "$@";
+	    sleep $period;
+	done
+
+}
+
+kitty () {
+
+	cat -n "$@"
+
+}
