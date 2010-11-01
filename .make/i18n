@@ -3,6 +3,9 @@
 BSNG_LANGS=( de es it ru )
 BSNG_NUM=${#BSNG_LANGS[@]}
 
+WIZARD_LANGS=( de )
+WIZARD_NUM=${#WIZARD_LANGS[@]}
+
 NXRC_LANGS=( de es )
 NXRC_NUM=${#NXRC_LANGS[@]}
 
@@ -33,6 +36,17 @@ update_po () {
 	done
 
 	local CUR_NUM=1
+	echo -e "${YELLOW} [02/02] Updating Wizard-po files (${WIZARD_LANGS[@]})."
+	for po in ${WIZARD_LANGS[@]}; do
+		if [[ $VERBOSE == "true" ]]; then
+			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$WIZARD_NUM] ${po}"
+			local CUR_NUM=$(($CUR_NUM+1))
+		fi
+		msgmerge -q -o translations/po/bs-ng-wizard-${po}.po translations/po/bs-ng-wizard-${po}.po \
+			translations/pot/bs-ng-wizard.pot >/dev/null
+	done
+
+	local CUR_NUM=1
 	echo -e "${YELLOW} [02/02] Updating NX-po files (${NXRC_LANGS[@]})."
 	for po in ${NXRC_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
@@ -48,7 +62,7 @@ update_po () {
 generate_mo () {
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [02/03] Generating UI-.mo files (${BSNG_LANGS[@]})."
+	echo -e "${YELLOW} [02/03] Generating UI-mo files (${BSNG_LANGS[@]})."
 	for po in ${BSNG_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$BSNG_NUM] ${po}"
@@ -58,7 +72,17 @@ generate_mo () {
 	done
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [03/03] Generating NX-.mo files (${NXRC_LANGS[@]})."
+	echo -e "${YELLOW} [02/03] Generating Wizard-mo files (${WIZARD_LANGS[@]})."
+	for po in ${WIZARD_LANGS[@]}; do
+		if [[ $VERBOSE == "true" ]]; then
+			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$WIZARD_NUM] ${po}"
+			local CUR_NUM=$(($CUR_NUM+1))
+		fi
+		msgfmt --output-file=translations/mo/bs-ng-wizard-${po}.mo translations/po/bs-ng-wizard-${po}.po
+	done
+
+	local CUR_NUM=1
+	echo -e "${YELLOW} [03/03] Generating NX-mo files (${NXRC_LANGS[@]})."
 	for po in ${NXRC_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$NXRC_NUM] ${po}"
