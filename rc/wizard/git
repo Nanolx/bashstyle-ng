@@ -32,7 +32,7 @@ export USER_WANTS_GIT=$?
 		whiptail --title $"GIT key" --yesno $"Do you want to set a default key for signing off GIT?" 12 85
 
 		if [[ $? == "0" ]]; then
-			gitkey=$(whiptail --title "default git signing key" --inputbox "Enter the default key for signing off GIT:" 12 85 "$GIT_USER_SIGNINGKEY" 3>&1 1>&2 2>&3)
+			gitkey=$(whiptail --title $"default git signing key" --inputbox $"Enter the default key for signing off GIT:" 12 85 "$GIT_USER_SIGNINGKEY" 3>&1 1>&2 2>&3)
 			if [[ $gitkey != "" ]]; then
 				git config --global user.signingkey "$gitkey"
 				rc_add export GIT_USER_SIGNINGKEY=\"$gitkey\"
