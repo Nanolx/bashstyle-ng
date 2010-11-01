@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: BashStyle-NG 7.12\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-21 20:27+0200\n"
-"PO-Revision-Date: 2010-10-30 21:50+0200\n"
+"PO-Revision-Date: 2010-11-01 08:31+0100\n"
 "Last-Translator: Christopher Roy Bratusek <zanghar@freenet.de>\n"
 "Language-Team: German <zanghar@freenet.de>\n"
 "Language: \n"
@@ -30,10 +30,10 @@ msgid ""
 "You can find it in $HOME/.settings-rc. You may re-run this wizard via bs-ng-"
 "wizard --force. To see a list of usefull tips for the bash, run bashtips."
 msgstr ""
-"Deine Konfiguration wurde erfolgreich erstellt.\n"
-"Du kannst sie unter $HOME/.bashstyle.wizard finden. Um diesen Dialog erneut "
-"aufzurufen, führe bs-ng-wizard --force aus. Um eine Liste hilfreicher Tipps "
-"zu sehen, starte bashtips."
+"Konfiguration wurde erfolgreich erstellt.\n"
+"Sie befindet sich unter $HOME/.bashstyle.wizard. Um diesen Dialog erneut "
+"aufzurufen, führe bs-ng-wizard --force aus. Für eine Liste hilfreicher Tipps "
+"starte bashtips."
 
 #: rc/wizard/basic:31
 msgid "verbosity"
@@ -45,13 +45,11 @@ msgstr "Vorbeiziehenden Text beim Starten unterdrücken?"
 
 #: rc/wizard/basic:37
 msgid "restore"
-msgstr "wiederherstellen"
+msgstr "Wiederherstellen"
 
 #: rc/wizard/basic:37
 msgid "Do you want to restore the last working directory when starting bash?"
-msgstr ""
-"Willst du beim nächsten Start das zuletzt besuchte Verzeichnis "
-"wiederherstellen?"
+msgstr "Beim nächsten Start das zuletzt besuchte Verzeichnis wiederherstellen?"
 
 #: rc/wizard/basic:43
 msgid "colorshell"
@@ -60,12 +58,11 @@ msgstr "Farbshell"
 #: rc/wizard/basic:43
 msgid ""
 "Do you want to use colorshell (different text color after each command)?"
-msgstr ""
-"Möchtest du colorshell (wechselnde Textfarbe nach jedem Kommando) verwenden?"
+msgstr "Colorshell (wechselnde Textfarbe nach jedem Kommando) verwenden?"
 
 #: rc/wizard/cdwriter:14
 msgid "Writer device"
-msgstr "Schreibgerät"
+msgstr "Brenner"
 
 #: rc/wizard/cdwriter:14
 msgid ""
@@ -75,7 +72,7 @@ msgid ""
 msgstr ""
 "Die Funktionen writeiso and geniso müssen wissen, welches Gerät sie "
 "verwenden sollen.\n"
-"Standardmäßig wird /dev/dvdrw verwendet, anderes auswählen?"
+"Standardmäßig wird /dev/dvdrw verwendet, ein anderes auswählen?"
 
 #: rc/wizard/cdwriter:22
 msgid "geniso error tolerance"
@@ -95,7 +92,7 @@ msgstr "GIT Einrichtung"
 
 #: rc/wizard/git:14
 msgid "Do you want to configure GIT?"
-msgstr "Möchtest du GIT konfigurieren?"
+msgstr "Soll GIT konfiguriert werden?"
 
 #: rc/wizard/git:20
 msgid "GIT username"
@@ -103,7 +100,7 @@ msgstr "GIT Benutzername"
 
 #: rc/wizard/git:20
 msgid "Enter your real name to be used by GIT:"
-msgstr "Gib deinen bürgerlichen Namen für GIT ein:"
+msgstr "Bürgerlichen Namen für GIT eingeben:"
 
 #: rc/wizard/git:26
 msgid "GIT email"
@@ -111,7 +108,7 @@ msgstr "GIT EMail"
 
 #: rc/wizard/git:26
 msgid "Enter your email to be used by GIT:"
-msgstr "Gib deine Mail-Adresse für GIT ein:"
+msgstr "Mail-Adresse für GIT eingeben:"
 
 #: rc/wizard/git:32
 msgid "GIT key"
@@ -119,7 +116,7 @@ msgstr "GIT Schlüssel"
 
 #: rc/wizard/git:32
 msgid "Do you want to set a default key for signing off GIT?"
-msgstr "Möchtest du einen Standardschlüssel für GIT einrichten?"
+msgstr "Einen Standardschlüssel für GIT einrichten?"
 
 #: rc/wizard/git:43
 msgid "GIT color"
@@ -127,7 +124,7 @@ msgstr "GIT Farbe"
 
 #: rc/wizard/git:43
 msgid "Do you want colored output from GIT?"
-msgstr "Wünscht du farbige Ausgaben von GIT?"
+msgstr "Farbige Ausgaben von GIT erhalten?"
 
 #: rc/wizard/git:57
 msgid "Editor for GIT"
@@ -135,7 +132,7 @@ msgstr "Editor für GIT"
 
 #: rc/wizard/git:57
 msgid "What editor to use for GIT commit messages & Co?:"
-msgstr "Welcher Editor soll für commit-Nachrichten & Co verwendet werden?"
+msgstr "Welcher Editor soll für commit-Nachrichten u. ä. verwendet werden?"
 
 #: rc/wizard/git:63
 msgid "SVN compat"
@@ -166,8 +163,8 @@ msgid ""
 "Do you have a GNOME GIT account?\n"
 "With this info get_gnome can clone GIT repos with write access."
 msgstr ""
-"Hast du einen GNOME-GIT-Account=\n"
-"Mit dieser Info kann get_gnome GIT-Repos mit Schreibrechten klonen."
+"Hast du einen GNOME-GIT-Account?\n"
+"Mit dieser Information kann get_gnome GIT-Repos mit Schreibrechten klonen."
 
 #: rc/wizard/git:91
 msgid "git.gnome.org account"
@@ -175,7 +172,7 @@ msgstr "git.gnome.org Account"
 
 #: rc/wizard/git:91
 msgid "What's your GNOME GIT Account?:"
-msgstr "Wie lautet dein GNOME-GIT-Account?:"
+msgstr "Name des GNOME-GIT-Accounts:"
 
 #: rc/wizard/git:95
 msgid "git.xfce.org"
@@ -187,7 +184,7 @@ msgid ""
 "With this info get_xfce can clone GIT repos with write access."
 msgstr ""
 "Hast du einen XFCE-GIT-Account?\n"
-"Mit dieser Info kann get_xfce GIT-Repos mit Schreibrechten klonen."
+"Mit dieser Information kann get_xfce GIT-Repos mit Schreibrechten klonen."
 
 #: rc/wizard/git:99
 msgid "git.xfce.org account"
@@ -195,7 +192,7 @@ msgstr "git.xfce.org Account"
 
 #: rc/wizard/git:99
 msgid "What's your XFCE GIT Account?:"
-msgstr "Wie lautet dein XFCE-GIT-Account?:"
+msgstr "Name des XFCE-GIT-Accounts:"
 
 #: rc/wizard/lscd:14
 msgid "Use lscd"
@@ -208,8 +205,8 @@ msgid ""
 "information if available Do you want to use lscd rather than cd by default?"
 msgstr ""
 "lscd ist ein Ersatz für cd, welcher den Inhalt des Verzeichnisses\n"
-"anzeigt. Zusätzlich zeigt es .dirinfo Information an, falls vorhanden. "
-"Möchtest du lscd anstelle von cd verwenden?"
+"anzeigt. Zusätzlich zeigt es .dirinfo Informationen an, falls vorhanden. "
+"lscd anstelle von cd verwenden?"
 
 #: rc/wizard/lscd:22
 msgid "lscd options"
@@ -219,8 +216,8 @@ msgstr "lscd Optionen"
 msgid ""
 "Regardless of your previous choise you may give lscd some extra ls options."
 msgstr ""
-"Unabhängig von der vorherigen Wahl kannst du hier zusätzliche Optionen für "
-"lscd angeben."
+"Unabhängig von der vorherigen Wahl können zusätzliche Optionen an lscd "
+"übergeben werden."
 
 #: rc/wizard/reprepro:14
 msgid "reprepro setup"
@@ -231,9 +228,8 @@ msgid ""
 "Do you want to setup reprepro?\n"
 "If you have an repo managed via reprepro, you can now setup repoadd."
 msgstr ""
-"Möchtest du reprepro einrichten?\n"
-"Wenn du ein Repo hast, dass via reprepro verwaltet wird, kannst du nun "
-"repoadd einrichten."
+"Reprepro einrichten?\n"
+"Für mit reprepro verwaltete Apt-Repos kann repoadd eingerichtet werden."
 
 #: rc/wizard/reprepro:18
 msgid "reprepro repo home"
@@ -241,7 +237,7 @@ msgstr "reprepro Repo-Basis"
 
 #: rc/wizard/reprepro:18
 msgid "Enter the full path to the repo base directory:"
-msgstr "Gib den vollen Pfad zum Repo-Basis-Verzeichnis ein:"
+msgstr "Voller Pfad zum Repo-Basis-Verzeichnis:"
 
 #: rc/wizard/reprepro:21
 msgid "reprepro repo dist"
@@ -249,7 +245,7 @@ msgstr "reprepro Repo-Dist"
 
 #: rc/wizard/reprepro:21
 msgid "Enter the name of the default dist:"
-msgstr "Gib den Namen der Standard-Distribution ein:"
+msgstr "Name der Standard-Distribution:"
 
 #: rc/wizard/svn:14
 msgid "svn.kde.org"
@@ -269,7 +265,7 @@ msgstr "svn.kde.org Account"
 
 #: rc/wizard/svn:18
 msgid "What's your KDE SVN Account?:"
-msgstr "Wie lautet dein KDE-SVN-Account:"
+msgstr "Name des KDE-SVN-Accounts:"
 
 #: rc/wizard/svn:22
 msgid "svn.enlightenment.org"
@@ -281,7 +277,7 @@ msgid ""
 "With this info get_e can checkout SVN repos with write access."
 msgstr ""
 "Hast du einen Enlightenment-SVN-Account?\n"
-"Mit dieser Info kann get_e SVN-Repos mit Schreibrechten auschecken."
+"Mit dieser Information kann get_e SVN-Repos mit Schreibrechten auschecken."
 
 #: rc/wizard/svn:26
 msgid "svn.enlightenment.org account"
@@ -289,7 +285,7 @@ msgstr "svn.enlightenment.org Account"
 
 #: rc/wizard/svn:26
 msgid "What's your Enlightenment SVN Account?:"
-msgstr "Wie lautet dein Enlightenment-SVN-Account?"
+msgstr "Name des Enlightenment-SVN-Accounts:"
 
 #: rc/wizard/user:14
 msgid "personal infos"
@@ -312,7 +308,7 @@ msgid ""
 "Enter your real name (name and surname)\n"
 "This info is mainly used by the Owner-field of .dirinfo files:"
 msgstr ""
-"Gibt deinen bürgerlichen Namen ein (Vorname und Name)\n"
+"Bürgerlichen Namen eingeben (Vorname Name)\n"
 "Diese Info wird hauptsächlich vom Owner-Feld von .dirinfo-Dateien verwedet:"
 
 #: rc/wizard/user:23
@@ -324,8 +320,8 @@ msgid ""
 "Enter your birthday in MM-DD (eg 12-24) format.\n"
 "(You'll see what happens):"
 msgstr ""
-"Gib deinen Geburtstag im MM-TT (z. B. 12-24) Format ein.\n"
-"(Lass dich überraschen)"
+"Geburtstag im MM-TT (z. B. 12-24) Format eingeben.\n"
+"(… Überraschung …)"
 
 #: rc/wizard/user:30
 msgid "location"
@@ -333,8 +329,7 @@ msgstr "Standort"
 
 #: rc/wizard/user:30
 msgid "Enter your location in CITY COUNTRY (eg Berlin Deutschland) format."
-msgstr ""
-"Gib deinen Standort im STADT LAND (z. B. Berlin Deutschland) Format ein."
+msgstr "Standort im STADT LAND (z. B. Berlin Deutschland) Format eingeben."
 
 #: rc/wizard/user:36
 msgid "mail"
@@ -342,7 +337,7 @@ msgstr "Mail"
 
 #: rc/wizard/user:36
 msgid "Enter your mail-address."
-msgstr "Gib deine Mail-Adresse an:"
+msgstr "Mail-Adresse angeben:"
 
 #: rc/wizard/user:42
 msgid "userlevel"
@@ -350,4 +345,4 @@ msgstr "Benutzerstufe"
 
 #: rc/wizard/user:42
 msgid "Choose your userlevel"
-msgstr "Wähle deine Benutzerstufe"
+msgstr "Benutzerstufe auswählen"
