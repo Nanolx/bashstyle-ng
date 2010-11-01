@@ -7,7 +7,7 @@ install:
 	@./make install
 
 uninstall:
-	@./make uninstall
+	@./make remove
 
 clean:
 	@./make clean

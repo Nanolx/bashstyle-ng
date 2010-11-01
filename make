@@ -48,7 +48,7 @@ while [[ $xcount -lt $pcount ]]; do
 				echo -e "\n${RED}You're not root!\n"
 				exit 1
 			fi
-			pre_remove && remove_bsng && installdirs_remove ;;
+			pre_remove && remove_bsng ;;
 
 		changelog ) $PWD/.make/changelog ;;
 

@@ -75,7 +75,7 @@ groups = {
 initial_page = groups[options.group]
 
 _ = gettext.gettext
-APP_NAME = "bashstyle-ng"
+APP_NAME = "bs-ng"
 
 icon_theme = gtk.icon_theme_get_default()
 

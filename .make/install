@@ -34,7 +34,7 @@ uninst ()
 	FILE=${xFILE/*\/}
 	DEST=${1/*:}
 
-	rm -f ${DESTDIR}${DEST}/${FILE}
+	rm -rf ${DESTDIR}${DEST}/${FILE}
 
 	unset FILE DEST
 
@@ -83,8 +83,7 @@ install_bsng () {
 remove_bsng () {
 
 	echo -e "${RED} [02/03] Removing all files."
-	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
-	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]} ${BIN_FILES[@]}; do
+	for file in ${REMOVE_FILES[@]}; do
 		uninst "$file"
 	done
 

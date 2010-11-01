@@ -1,8 +1,6 @@
 #!/bin/bash
 
-DATA_FILES=( ui/bsng.py:${DATADIR}/ui
-	     ui/undobuffer.py:${DATADIR}/ui
-	     ui/bashstyle7.ui:${DATADIR}/ui
+DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     rc/nx-rc:${DATADIR}/rc
 	     rc/ascii/*:${DATADIR}/rc/ascii
 	     rc/dirinfo/*:${DATADIR}/rc/dirinfo
@@ -17,13 +15,10 @@ DATA_FILES=( ui/bsng.py:${DATADIR}/ui
 	     data/terminfo/n/*:${DATADIR}/terminfo/n
 	     data/vim/colors/*:${DATADIR}/vim/colors )
 
-LOCALE_FILES=( translations/mo/bs-ng-de.mo:${LOCALEDIR}/de/LC_MESSAGES/bashstyle-ng.mo
-               translations/mo/nx-rc-de.mo:${LOCALEDIR}/de/LC_MESSAGES/nx-rc.mo
-	       translations/mo/bs-ng-wizard-de.mo:${LOCALE_DIR}/de/LC_MESSAGES/bs-ng-wizard.mo
-	       translations/mo/bs-ng-es.mo:${LOCALEDIR}/es/LC_MESSAGES/bashstyle-ng.mo
-	       translations/mo/nx-rc-es.mo:${LOCALEDIR}/es/LC_MESSAGES/nx-rc.mo
-	       translations/mo/bs-ng-it.mo:${LOCALEDIR}/it/LC_MESSAGES/bashstyle-ng.mo
-	       translations/mo/bs-ng-ru.mo:${LOCALEDIR}/ru/LC_MESSAGES/bashstyle-ng.mo )
+LOCALE_FILES=( i18n/de/*.mo:${LOCALEDIR}/de/LC_MESSAGES/
+	       i18n/es/*.mo:${LOCALEDIR}/es/LC_MESSAGES/
+	       i18n/it/*.mo:${LOCALEDIR}/it/LC_MESSAGES/
+	       i18n/ru/*.mo:${LOCALEDIR}/ru/LC_MESSAGES/ )
 
 DOC_FILES=( documentation/*.html:${DOCDIR}
 	    documentation/img/*.png:${DOCDIR}/img
@@ -38,3 +33,11 @@ PROFILE_FILES=( data/bashstyle.sh:${PROFILEDIR} )
 ICON_FILES=( data/icons/*.png:${ICONDIR} )
 
 PC_FILES=( data/bashstyle-ng.pc:${PCDIR} )
+
+REMOVE_FILES=( ${LOCALEDIR}/{de,es,it,ru}/{bs-ng{,-wizard},nx-rc}.mo
+	       ${BINDIR}/bashstyle
+	       ${ICONDIR}/bs-ng*.png
+	       ${PCDIR}/bashstyle-ng.pc
+	       ${PROFILEDIR}/bashstyle.sh
+	       ${DOCDIR}
+	       ${DATADIR} )

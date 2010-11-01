@@ -25,29 +25,3 @@ installdirs_create ()
 	mkdir -p $DESTDIR/$PCDIR
 
 }
-
-installdirs_remove ()
-{
-
-	echo -e "${RED} [03/03] Removing directories."
-	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DATADIR
-	for directory in ${DATADIR_LIST[@]}; do
-		rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DATADIR/$directory
-	done
-
-	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$LOCALEDIR
-	for directory in ${LOCALEDIR_LIST[@]}; do
-		rmdir -p --ignore-fail-on-non-empty $DESTDIR/$LOCALEDIR/$directory/
-	done
-
-	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DOCDIR
-	for directory in ${DOCDIR_LIST[@]}; do
-		rmdir -p --ignore-fail-on-non-empty $DESTDIR/$DOCDIR/$directory
-	done
-
-	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$BINDIR
-	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$PROFILEDIR
-	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$ICONDIR
-	rmdir -p --ignore-fail-on-non-empty $DESTDIR/$PCDIR
-
-}
