@@ -19,7 +19,7 @@
 
 <h4><font color="#33C0F4">1.1 torswitch</font></h4>
 &nbsp;Torswitch is a simple function for switching on or off<br>
-&nbsp;the Tor Union-Router globally, when using Privoxy<br>
+&nbsp;the Tor Union-Router globally, when using Privoxy.<br>
 &nbsp;&nbsp;torswitch --on #turn on tor<br>
 &nbsp;&nbsp;torswitch --off #turn of tor
 
@@ -28,389 +28,406 @@
 &nbsp;set-up apt-repo which uses reprepro to be organized<br>
 &nbsp;The paths it uses are set by environment-variables<br>
 &nbsp;&nbsp;REPO_HOME the root-directory of the apt-repo<br>
-&nbsp;&nbsp;REPO_DIST the dist you wan to add your packaes to<br>
+&nbsp;&nbsp;REPO_DIST the dist you wan to add your packages to<br>
 &nbsp;signing is done automatically
 
 <h4><font color="#33C0F4">1.3 wipe</font></h4>
 &nbsp;Wipe overwrites the given device with random numbers<br>
 &nbsp;Use this on an empty partition which you want to crypt-setup later<br>
-&nbsp;DON'T USE THIS ON PARTITIONS WHICH CONTAIN FILES (or are in use)!
+&nbsp;DON'T USE THIS ON PARTITIONS WHICH CONTAIN FILES YOU WANT TO KEEP!<br>
+&nbsp;&nbsp;wipe &lt;device&gt;
 
 <h4><font color="#33C0F4">1.4 remount</font></h4>
-&nbsp;Simply remount a device with given options
+&nbsp;Simply remount a device with given options<br>
+&nbsp;&nbsp;remount &lt;device&gt; &lt;options&gt;
 
-<h4><font color="#33C0F4">1.5 xchown</font></h4>
-&nbsp;XChown changes the owner of files recursively after asking for root-password
-
-<h4><font color="#33C0F4">1.6 psgrep</font></h4>
-&nbsp;Small script for grepping `ps' output but with nicer output than pgrep
-
-<h4><font color="#33C0F4">1.7 pskill</font></h4>
-&nbsp;Takes two arguements, 1st the process to psgrep for, 2nd any<br>
-&nbsp;additional arguements to pass to `kill'. Will display matches<br>
-&nbsp;before doing anything, not passing a process-id will simply leave
+<h4><font color="#33C0F4">1.5 treeps</font></h4>
+&nbps;A wrapper around ps with nicer output<br>
 
 <h3><font color="#FBA330">2 Conversion functions</font></h3>
 &nbsp;Various functions for conversion
 
 <h4><font color="#33C0F4">2.1 dos2unix</font></h4>
 &nbsp;d2u: for converting dos-lineendings to unix-lineendings<br>
-&nbsp;u2d: for converting unix-lineendings to dos-lineendings
+&nbsp;u2d: for converting unix-lineendings to dos-lineendings<br>
 
 <h4><font color="#33C0F4">2.2 binary conversion</font></h4>
 &nbsp;bin2oct: convert binary to octal number<br>
 &nbsp;bin2dec: convert binary to decimal number<br>
 &nbsp;bin2hex: convert binary to hexadecimal number<br>
-&nbsp;bin2all: overview of all three above
+&nbsp;bin2b32: convert binary to base 32<br>
+&nbsp;bin2b64: convert binary to base 64<br>
+&nbsp;bin2asc: convert binary to ascii<br>
+&nbsp;bin2all: overview of all above
 
 <h4><font color="#33C0F4">2.3 octal conversion</font></h4>
 &nbsp;oct2bin: convert octal to binary number<br>
 &nbsp;oct2dec: convert octal to decimal number<br>
 &nbsp;oct2hex: convert octal to hexadecimal number<br>
-&nbsp;oct2all: overview of all three above
+&nbsp;oct2b32: convert octal to base 32<br>
+&nbsp;oct2b64: convert octal to base 64<br>
+&nbsp;oct2asc: convert octal to ascii<br>
+&nbsp;oct2all: overview of all above
 
 <h4><font color="#33C0F4">2.4 decimal conversion</font></h4>
 &nbsp;dec2oct: convert decimal to octal number<br>
 &nbsp;dec2bin: convert decimal to binary number<br>
 &nbsp;dec2hex: convert decimal to hexadecimal number<br>
-&nbsp;dec2all: overview of all three above
+&nbsp;dec2b32: convert decimal to base 32<br>
+&nbsp;dec2b64: convert decimal to base 64<br>
+&nbsp;dec2asc: convert decimal to ascii<br>
+&nbsp;dec2all: overview of all above
 
 <h4><font color="#33C0F4">2.5 hexadecimal conversion</font></h4>
 &nbsp;hex2oct: convert hexadecimal to octal number<br>
 &nbsp;hex2dec: convert hexadecimal to decimal number<br>
 &nbsp;hex2bin: convert hexadecimal to binary number<br>
-&nbsp;hex2all: overview of all three above
+&nbsp;hex2b32: convert hexadecimal to base 32<br>
+&nbsp;hex2b64: convert hexadecimal to base 64<br>
+&nbsp;hex2asc: convert hexadecimal to ascii<br>
+&nbsp;hex2all: overview of all above
 
-<h4><font color="#33C0F4">2.6 algebra functions</font></h4>
-&nbsp;round: round a number (use `,' as delimiter), 2nd arguement<br>
-&nbsp;is the number of decimal places to keep<br>
-&nbsp;radical: calculate the square-root of a number<br>
-&nbsp;power: calculate the nth power (2nd arguement) of a number (1st arguement)
+<h4><font color="#33C0F4">2.6 ascii conversion</font></h4>
+&nbsp;asc2oct: convert ascii to octal number<br>
+&nbsp;asc2dec: convert ascii to decimal number<br>
+&nbsp;asc2bin: convert ascii to binary number<br>
+&nbsp;asc2hex: convert ascii to ascii number
+&nbsp;asc2b32: convert ascii to base 32<br>
+&nbsp;asc2b64: convert ascii to base 64<br>
+&nbsp;hex2all: overview of all above
 
-<h3><font color="#FBA330">3 Dirinfo functions</font></h3>
-&nbsp;Dirinfo is some kind of cataloging directories, I've though I must have<br>
-&nbsp;it's currently a working prototype neither technically nor functionally finished
+<h4><font color="#33C0F4">2a algebra functions</font></h4>
+&nbsp;Small set of algebra functions
 
-<h4><font color="#33C0F4">3.1 Dirinfo-Spec (Draft 1 Revision 2)</font></h4>
-&nbsp;Example of a .dirinfo file:<br><br>
+<h4><font color="#33C0F4">2a.1 round</font></h4>
+&nbsp;Round a decimal (use `,' as delimiter)<br>
+&nbsp;&nbsp;round 2,457863 2 # = 2,46
 
-&nbsp;Owner="Name Surname" # quotes are important!<br>
-&nbsp;Created=YYYY-MM-DD # this format is recommended<br>
-&nbsp;Type=type # supported types: book, document, download, game, home, mediaplayer, music, picture, share, video*<br>
-&nbsp;Tags=(tag1 tag2 tag3) # this format! anything is allowed<br>
-&nbsp;Notes="put your notes here" # quotes are important!<br><br>
+<h4><font color="#33C0F4">2a.2 radical</font></h4>
+&nbsp;Calculate the square-root of a decimal (use `.' as delimiter)
 
-&nbsp;file-name is always .dirinfo in the desired directory<br><br>
-&nbsp;* if you want to have a different type, create a .dirascii<br>
+<h4><font color="#33C0F4">2a.3 power</font></h4>
+&nbsp;Calculate the nth power of a number<br>
+&nbsp;&nbsp;radical 2 16 # = 2^16 = 65536
 
-&nbsp;file for it. check $BSNG_RC_DIR/ascii/ for examples
+<h3><font color="#FBA330">3 Info functions</font></h3>
 
-<h4><font color="#33C0F4">3.2 LSCD </font></h4>
-&nbsp;lscd is an enhanced version of the built-in cd. It supports<br>
-&nbsp;dirinfo, saving the last directory visited (so that one ends<br>
-&nbsp;up in the same directory again, when starting a new shell),<br>
-&nbsp;aswell as auto-displaying the content of the directory<br><br>
-
-&nbsp;Example output of lscd with a .dirinfo file (Type=home):<br>
-<img src="./img/dirinfo-example.png">
-
-<h4><font color="#33C0F4">3.3 dirinfo_get_creation_date </font></h4>
-&nbsp;... Normally this function would get the creation-date of a file ...<br>
-&nbsp;hah! linux-filesystems don't store it, therefore we fool ourselves<br>
-&nbsp;and get the time of the last modification instead
-
-<h4><font color="#33C0F4">3.4 dirinfo_set_creation_date </font></h4>
-&nbsp;... inserts the date gotten from _get_creation_date into the .dirinfo file
-
-<h4><font color="#33C0F4">3.5 dirinfo_get_dirinfo </font></h4>
-&nbsp;Internal function for getting values off a .dirinfo file (lscd)
-
-<h4><font color="#33C0F4">3.6 dirinfo_display_info </font></h4>
-&nbsp;If the info gotten from _get_dirinfo does not contain a Type field,<br>
-&nbsp;this function is to display the infos (lscd)
-
-<h4><font color="#33C0F4">3.7 dirinfo_display_ascii </font></h4>
-&nbsp;On the other hand, if there's a Type field, display the corresponding<br>
-&nbsp;ascii-art (as shown above) and the infos. If there's no BS-NG shipped<br>
-&nbsp;ascii-art that matches, check for .dirascii file to display, if that<br>
-&nbsp;also fails, call dirinfo_display_info instead (lscd)
-
-<h4><font color="#33C0F4">3.8 dirinfo_index_db </font></h4>
-&nbsp;Search $HOME for all .dirinfo files and create an index<br>
-&nbsp;use dirinfo_index --update instead (described later)
-
-<h4><font color="#33C0F4">3.8.1 dirinfo_index_tags </font></h4>
-&nbsp;Create a tag-index for all  .dirinfo files listed in the index<br>
-&nbsp;user dirinfo_index --rebuild instead (described later)
-
-<h4><font color="#33C0F4">3.8.2 dirinfo_index_types </font></h4>
-&nbsp;Create a type-index for all .dirinfo files listed in the index<br>
-&nbsp;user dirinfo_index --rebuild instead (described later)
-
-<h4><font color="#33C0F4">3.8.3 dirinfo_index_dates </font></h4>
-&nbsp;Create a date-index for all .dirinfo files listed in the index<br>
-&nbsp;user dirinfo_index --rebuild instead (described later)
-
-<h4><font color="#33C0F4">3.9 dirinfo_index </font></h4>
-&nbsp;Function for updating, rebuilding and searching the index<br>
-&nbsp;dirinfo_index --update (call functions 3.8 - 3.8.3)<br>
-&nbsp;dirinfo_index --rebuild (call functions 3.8.1 - 3.8.3)<br>
-&nbsp;dirinfo_index --list (list all indexed directories)<br>
-&nbsp;dirinfo_index --search SEARCH_TYPE (search through the index,<br>
-&nbsp;SEARCH_TYPE is one of --tag, --type or --date)
-
-<h4><font color="#33C0F4">3.10 dirinfo_create </font></h4>
-&nbsp;Ugly query to create a .dirinfo file without the need to remember the syntax
-
-<h3><font color="#FBA330">4 Info functions</font></h3>
-
-<h4><font color="#33C0F4">4.1 count_files</font></h4>
+<h4><font color="#33C0F4">3.1 count_files</font></h4>
 &nbsp;Function for counting files in the current directory, see --help
 
-<h4><font color="#33C0F4">4.2 count_processes</font></h4>
+<h4><font color="#33C0F4">3.2 count_processes</font></h4>
 &nbsp;Function for counting processes
 
-<h4><font color="#33C0F4">4.3 show_battery_load</font></h4>
+<h4><font color="#33C0F4">3.3 show_battery_load</font></h4>
 &nbsp;Function for displaying the battery load, via --acpi or --apm
 
-<h4><font color="#33C0F4">4.4 show_cpu_load</font></h4>
+<h4><font color="#33C0F4">3.4 show_cpu_load</font></h4>
 &nbsp;Function for displaying the CPU-Load
 
-<h4><font color="#33C0F4">4.5 show_ip</font></h4>
+<h4><font color="#33C0F4">3.5 show_ip</font></h4>
 &nbsp;Function for displaying the ip-address of a given interface, see --help
 
-<h4><font color="#33C0F4">4.6 show_mem</font></h4>
+<h4><font color="#33C0F4">3.6 show_mem</font></h4>
 &nbsp;Function for displaying the current free/used ram in mb/percent, see --help
 
-<h4><font color="#33C0F4">4.7 show_size</font></h4>
+<h4><font color="#33C0F4">3.7 show_size</font></h4>
 &nbps;Function for displaying the size of all files in the current directory
 
-<h4><font color="#33C0F4">4.8 show_space</font></h4>
+<h4><font color="#33C0F4">3.8 show_space</font></h4>
 &nbsp;Function for displaying the free space of a given device, see --help
 
-<h4><font color="#33C0F4">4.9 show_system_load</font></h4>
+<h4><font color="#33C0F4">3.9 show_system_load</font></h4>
 &nbsp;Function for displaying the system-load, see --help
 
-<h4><font color="#33C0F4">4.10 show_tty</font></h4>
+<h4><font color="#33C0F4">3.10 show_tty</font></h4>
 &nbsp;Function for displaying the current TTY (in a stylish manner)
 
-<h4><font color="#33C0F4">4.11 show_uptime</font></h4>
+<h4><font color="#33C0F4">3.11 show_uptime</font></h4>
 &nbsp;Function for displaying the machine's uptime
 
-<h4><font color="#33C0F4">4.12 system_infos</font></h4>
-&nbsp;Function for getting various system informations, see --help
+<h4><font color="#33C0F4">3.12 system_infos</font></h4>
+&nbsp;Function for getting various system informations, see system_infos --help
 
-<h3><font color="#FBA330">5 Media functions</font></h3>
+<h4><font color="#33C0F4">3.13 show_weather</font></h4>
+&nbsp;Function for displaying current weather<br>
+&nbsp;&nbsp;show_weather Nürnberg<br>
+&nbsp;&nbsp;uses city from USER_LOCATION if set
 
-<h4><font color="#33C0F4">5.1 geniso</font></h4>
+<h3><font color="#FBA330">4 Media functions</font></h3>
+
+<h4><font color="#33C0F4">4.1 geniso</font></h4>
 &nbsp;Function for creating an ISO9660 image from a cd/dvd-drive<br>
 &nbsp;uses DD_OPTS and CD_WRITER variables
 
-<h4><font color="#33C0F4">5.2 writeiso</font></h4>
+<h4><font color="#33C0F4">4.2 writeiso</font></h4>
 &nbsp;Simple function for writing an ISO9660 image to a disc<br>
 &nbsp;uses cdrecord and CD_WRITER variable
 
-<h4><font color="#33C0F4">5.3 youtube2ogg</font></h4>
+<h4><font color="#33C0F4">4.3 youtube2ogg</font></h4>
 &nbsp;Extracts the audio of .flv files to an OGG/Vorbis file (uses ffmpeg)
 
-<h4><font color="#33C0F4">5.4 conv2avi</font></h4>
+<h4><font color="#33C0F4">4.4 conv2avi</font></h4>
 &nbsp;Simple function for converting a mencoder-supported video file to<br>
 &nbsp;AVI (XVid/Lame), uses mencoder-mt if available
 
-<h3><font color="#FBA330">6 Misc. functions</font></h3>
+<h3><font color="#FBA330">5 Misc. functions</font></h3>
 
-<h4><font color="#33C0F4">6.1 top10</font></h4>
+<h4><font color="#33C0F4">5.1 top10</font></h4>
 &nbsp;Function for displaying your ten most-used commands
 
-<h4><font color="#33C0F4">6.2 crypt</font></h4>
+<h4><font color="#33C0F4">5.2 crypt</font></h4>
 &nbsp;Function for "en/decrypting" text-files using ROT13 method
 
-<h4><font color="#33C0F4">6.3 get_kernel</font></h4>
+<h4><font color="#33C0F4">5.3 get_kernel</font></h4>
 &nbsp;Function for grabbing kernel-sources, supports various options<br>
 &nbsp;-s VERSION for stable, -t VERSION for testing, -sg VERSION for<br>
 &nbsp;stable GIT, -tg VERSION for testing GIT, -z VERSION REVISION<br>
 &nbsp;for getting Zen kernel-patches
 
-<h4><font color="#33C0F4">6.4 stop_watch</font></h4>
+<h4><font color="#33C0F4">5.4 stop_watch</font></h4>
 &nbsp;Simple stopwatch for bash (Ctrl-C to stop)
 
-<h4><font color="#33C0F4">6.5 bashtips</font></h4>
+<h4><font color="#33C0F4">5.5 bashtips</font></h4>
 &nbsp;Displays some useful tips about Bash
 
-<h4><font color="#33C0F4">6.6 ls variants</font></h4>
+<h4><font color="#33C0F4">5.6 define</font></h4>
+&nbsp;Get the definition of a word
+
+<h4><font color="#33C0F4">5.7 kitt</font></h4>
+&nbsp;Toy for the linux-console that flashes the keyboard leds<br>
+&nbsp;just like K.I.T.T's from Knight Rider.
+
+<h4><font color="#33C0F4">5a ls variants</font></h4>
 &nbsp;Some variants of the ls-command
 
-<h4><font color="#33C0F4">6.6.1 ll</font></h4>
+<h4><font color="#33C0F4">5a.1 ll</font></h4>
 &nbsp;Display ls-output as list, directories first
 
-<h4><font color="#33C0F4">6.6.2 la</font></h4>
+<h4><font color="#33C0F4">5a.2 la</font></h4>
 &nbsp;Normal ls, but hidden files included
 
-<h4><font color="#33C0F4">6.6.3 l1</font></h4>
+<h4><font color="#33C0F4">5a.3 l1</font></h4>
 &nbsp;Normal ls, but one file per line (usefull for scripts)
 
-<h4><font color="#33C0F4">6.6.4 lo</font></h4>
+<h4><font color="#33C0F4">5a.4 lo</font></h4>
 &nbsp;Display a list of files and their owner
 
-<h4><font color="#33C0F4">6.6.5 lg</font></h4>
+<h4><font color="#33C0F4">5a.5 lg</font></h4>
 &nbsp;Display a list of files and their group
 
-<h4><font color="#33C0F4">6.6.6 lm</font></h4>
+<h4><font color="#33C0F4">5a.6 lm</font></h4>
 &nbsp;Display the permissions of given files (human-readable and octal)
 
-<h3><font color="#FBA330">7 Random functions</font></h3>
+<h3><font color="#FBA330">6 Random functions</font></h3>
 
-<h4><font color="#33C0F4">7.1 random</font></h4>
+<h4><font color="#33C0F4">6.1 random</font></h4>
 &nbsp;Function for generating random numbers, use -l LENGTH<br>
 &nbsp;to set the length of the number, -r RANGE to set the<br>
 &nbsp;range of the number (so it will be between 0 and RANGE)
 
-<h4><font color="#33C0F4">7.2 randompw</font></h4>
+<h4><font color="#33C0F4">6.2 randompw</font></h4>
 &nbsp;Function similar to random, but outputting strings<br>
 &nbsp;which may be used for passwords, eg randompw 16<br>
 &nbsp;generates a 16 chars long password containing letters<br>
 &nbsp;and numbers randompw 16 ! (note the !) additionally<br>
 &nbsp;add special charachters to the output
 
-<h4><font color="#33C0F4">7.3 randomfile</font></h4>
-&nbsp;Randomly select a file and output, alternatively if you<br>
-&nbsp;pass an application as arguement the file will be opened<br>
-&nbsp;with it. randomfile stores a history, for more see --help
+<h4><font color="#33C0F4">6.3 randomfile</font></h4>
+&nbsp;Randomly select a file and output, see randomfile --help
 
-<h3><font color="#FBA330">8 Utility functions</font></h3>
+<h3><font color="#FBA330">7 Utility functions</font></h3>
 
-<h4><font color="#33C0F4">8.1 bookmark</font></h4>
+<h4><font color="#33C0F4">7.1 bookmark</font></h4>
 &nbsp;Create a bookmark for the current directory, eg bookmark example<br>
 &nbsp;will add a go-example command which will then go back to that directory
 
-<h4><font color="#33C0F4">8.2 unmark</font></h4>
+<h4><font color="#33C0F4">7.2 unmark</font></h4>
 &nbsp;Remove a bookmark, eg unmark example will remove go-example
 
-<h4><font color="#33C0F4">8.3 up</font></h4>
+<h4><font color="#33C0F4">7.3 up</font></h4>
 &nbsp;Easier way of going up several directories, eg instead of<br>
 &nbsp;cd ../../../../../ you do up 5
 
-<h4><font color="#33C0F4">8.4 deadlink</font></h4>
+<h4><font color="#33C0F4">7.4 deadlink</font></h4>
 &nbsp;Search current directory for dead links
 
-<h4><font color="#33C0F4">8.5 empty</font></h4>
+<h4><font color="#33C0F4">7.5 empty</font></h4>
 &nbsp;Search current directory for empty files
 
-<h4><font color="#33C0F4">8.6 exchange</font></h4>
+<h4><font color="#33C0F4">7.6 exchange</font></h4>
 &nbsp;Exchange the value of two variables, eg exchange $X $Y
 &nbsp;before: X=2 Y=4, afterwards X=4 Y=2
 
-<h4><font color="#33C0F4">8.7 man2pdf</font></h4>
+<h4><font color="#33C0F4">7.7 man2pdf</font></h4>
 &nbsp;Create a PDF from a manual page
 
-<h4><font color="#33C0F4">8.8 trunc_pwd</font></h4>
+<h4><font color="#33C0F4">7.8 trunc_pwd</font></h4>
 &nbsp;Used by the styles, to provide nicer pwd-output than \w and \W
 
-<h4><font color="#33C0F4">8.9 xcp</font></h4>
-&nbsp;Wrapper for cp that uses the last arguement as the name of<br>
-&nbsp;the destination directory and creates it if missing
-
-<h4><font color="#33C0F4">8.10 xmv</font></h4>
-&nbsp;Same as xcp, but for mv instead of cp
-
-<h4><font color="#33C0F4">8.11 xdel</font></h4>
+<h4><font color="#33C0F4">7.9 xdel</font></h4>
 &nbsp;Deletes all files recursively matching the pattern without asking!<br>
-&nbsp;This only works on Bash 4.0+, eg xdel \~ .orig .diff<br>
-&nbsp;(special-chars, like ! or ~ need to be escaped)
+&nbsp;This is only loaded on Bash 4.0+
 
-<h4><font color="#33C0F4">8.12 xunalias</font></h4>
-&nbsp;Wrapper for unalis, which doesn't err if an alias doesn't exist
+<h4><font color="#33C0F4">7.10 xalias</font></h4>
+&nbsp;Wrapper for alias, which stores the alias in your $HOME/.custom-rc<br>
+&nbsp;so that it is available in other sessions, too
 
-<h3><font color="#FBA330">9 Versioning functions</font></h3>
+<h4><font color="#33C0F4">7.11 xunalias</font></h4>
+&nbsp;Counterpart to xalias
 
-<h4><font color="#33C0F4">9.1 git_export</font></h4>
+<h4><font color="#33C0F4">7.12 up</font></h4>
+&nbsp;cd given levels up (up 4 = cd ../../../../)
+
+<h4><font color="#33C0F4">7.13 swap</font></h4>
+&nbsp;Exchange two files
+
+<h4><font color="#33C0F4">7.14 progressbar</font></h4>
+&nbsp;Displays a fancy progressbar, examples:<br>
+&nbsp;&nbsp;first do: sleep 15 & => then one of the following:<br>
+&nbsp;&nbsp;progressbar $!<br>
+&nbsp;&nbsp;progressbar $! oOOOo<br>
+&nbsp;&nbsp;progressbar $! "+     =     "<br>
+&nbsp;instead of $! you might give it the PID of a process to watch<br>
+&nbsp;(also valid for all other bars/spinners now following)
+
+<h4><font color="#33C0F4">7.15 spinner</font></h4>
+&nbsp;Displays a spinner, example:<br>
+&nbsp;&nbsp;sleep 10 &<br>
+&nbsp;&nbsp;spinner $!
+
+<h4><font color="#33C0F4">7.16 spanner</font></h4>
+&nbsp;Alternative spinner, which moves the cursor around, instad of rotating<br>
+&nbsp;&nbsp;sleep 10&<br>
+&nbsp;&nbsp;spanner $!
+
+<h4><font color="#33C0F4">7.17 working</font></h4>
+&nbsp;Displays animated "working" text<br>
+&nbsp;&nbsp;sleep 15 &<br>
+&nbsp;&nbsp;working $!
+
+<h4><font color="#33C0F4">7.18 spin</font></h4>
+&nbsp;Combination of spinner and spanner<br>
+&nbsp;&nbsp;sleep 10 &<br>
+&nbsp;&nbsp;spin $!
+
+<h4><font color="#33C0F4">7.19 clock</font></h4>
+&nbsp;A simple clock for the terminal (Ctrl-C to exit)
+
+<h4><font color="#33C0F4">7.20 treefind</font></h4>
+&nbsp;Replacement for find, with nicer output
+
+<h4><font color="#33C0F4">7.21 wininfo</font></h4>
+&nbsp;Get useful info about a window (WM_NAME etc.)<br>
+&nbsp;(for more infos, directly use xprop)
+
+<h4><font color="#33C0F4">7.22 repeat</font></h4>
+&nbsp;repeat a command at a given intervall<br>
+&nbsp;&nbsp;repeat 3 echo "hello world"
+
+<h4><font color="#33C0F4">7.23 kitty</font></h4>
+&nbsp;cat with line-numbers
+
+<h4><font color="#33C0F4">7.24 colorshell</font></h4>
+&nbsp;Changes the color of the text after each command (loaded internally)
+
+<h3><font color="#FBA330">8 Versioning functions</font></h3>
+
+<h4><font color="#33C0F4">8.1 git_export</font></h4>
 &nbsp;GIT version of svn export (export tree ready-to-use for release)
 
-<h4><font color="#33C0F4">9.2 git_bzip</font></h4>
+<h4><font color="#33C0F4">8.2 git_bzip</font></h4>
 &nbsp;Create .tar.bz2 archive from the tree, ready-to-use for release
 
-<h4><font color="#33C0F4">9.3 git_xz</font></h4>
+<h4><font color="#33C0F4">8.3 git_xz</font></h4>
 &nbsp;Same as git_bzip but using XZ for compression
 
-<h4><font color="#33C0F4">9.4 get_gnome</font></h4>
+<h4><font color="#33C0F4">8.4 get_gnome</font></h4>
 &nbps;Function for grabbing git.gnome.org repos<br>
-&nbps;uses GIT_GNOME_USER variable if you have an account<br>
+&nbps;uses GIT_GNOME_USER variable if you have an account<br><br>
 &nbsp;examples for maintainers: get_gnome -m nautilus<br>
-&nbsp;get_gnome -mb nautilus 2-30 (checkout branch 2-30)<br>
+&nbsp;get_gnome -mb nautilus 2-30 (checkout branch 2-30)<br><br>
 &nbsp;examples for users: get_gnome nautilus<br>
 &nbsp;get_gnome -b nautilus 2-30 (checkout branch 2-30)
 
-<h4><font color="#33C0F4">9.5 get_xfce</font></h4>
+<h4><font color="#33C0F4">8.5 get_xfce</font></h4>
 &nbsp;Same as get_gnome but for git.xfce.org, uses GIT_XFCE_USER
 
-<h4><font color="#33C0F4">9.6 git_branch</font></h4>
+<h4><font color="#33C0F4">8.6 git_branch</font></h4>
 &nbsp;Display the current branch
 
-<h4><font color="#33C0F4">9.7 git_revision</font></h4>
+<h4><font color="#33C0F4">8.7 git_revision</font></h4>
 &nbsp;Displays the current revision as 6-digit-number
 
-<h4><font color="#33C0F4">9.8 git_action</font></h4>
-&nbsp;Display the currently running action (eg merge)
+<h4><font color="#33C0F4">8.8 git_action</font></h4>
+&nbsp;Display the currently running action (eg: merge)
 
-<h4><font color="#33C0F4">9.9 get_kde</font></h4>
+<h4><font color="#33C0F4">8.9 get_kde</font></h4>
 &nbsp;Same as get_gnome but for svn.kde.org (may not work for all)<br>
 &nbsp;uses SVN_USER_KDE variable
 
-<h4><font color="#33C0F4">9.10 get_e</font></h4>
-&nbsp;Same as get_gnome but for svn.enlightenment.org -b and -mb<br>
-&nbsp;options are missing, though uses SVN_USER_ENLIGHTENMENT
+<h4><font color="#33C0F4">8.10 get_e</font></h4>
+&nbsp;Same as get_gnome but for svn.enlightenment.org; -b and -mb<br>
+&nbsp;options are missing, though. Uses SVN_USER_ENLIGHTENMENT
 
-<h3><font color="#FBA330">10 Internal functions/variables</font></h3>
+<h3><font color="#FBA330">9 Internal functions/variables</font></h3>
 
-<h4><font color="#33C0F4">10.1 BSNG_PREFIX</font></h4>
+<h4><font color="#33C0F4">9.1 BSNG_PREFIX</font></h4>
 &nbsp;Environment-variable containing the installation-prefix of BS-NG
 
-<h4><font color="#33C0F4">10.2 BSNG_RC_DIR</font></h4>
+<h4><font color="#33C0F4">9.2 BSNG_RC_DIR</font></h4>
 &nbsp;Environment-variable containing the path to the functions directory
 
-<h4><font color="#33C0F4">10.3 BSNG_LOCKFILE</font></h4>
+<h4><font color="#33C0F4">9.3 BSNG_LOCKFILE</font></h4>
 &nbsp;Environment-variable containing the path to the loCKfile
 
-<h4><font color="#33C0F4">10.4 BSNG_VERSION</font></h4>
+<h4><font color="#33C0F4">9.4 BSNG_VERSION</font></h4>
 &nbsp;Environment-variable containing the version of BS-NG
 
-<h4><font color="#33C0F4">10.5 BSNG_LOGFILE</font></h4>
+<h4><font color="#33C0F4">9.5 BSNG_LOGFILE</font></h4>
 &nbsp;Environment-variable containing the path to the loGfile
 
-<h4><font color="#33C0F4">10.6 BSNG_DOCS</font></h4>
+<h4><font color="#33C0F4">9.6 BSNG_DOCS</font></h4>
 &nbsp;Environment-variable containing the path to the documentation
 
-<h4><font color="#33C0F4">10.7 dbg_msg</font></h4>
+<h4><font color="#33C0F4">9.7 dbg_msg</font></h4>
 &nbsp;Displays the debug messages on startup and stores them
 
-<h4><font color="#33C0F4">10.8 dbg_view</font></h4>
+<h4><font color="#33C0F4">9.8 dbg_view</font></h4>
 &nbsp;Displays the debug-log
 
-<h4><font color="#33C0F4">10.9 dbg_verbosity</font></h4>
+<h4><font color="#33C0F4">9.9 dbg_verbosity</font></h4>
 &nbsp;Function for enabling/disabling the verbose debugging at startup
 
-<h4><font color="#33C0F4">10.10 check_opt</font></h4>
+<h4><font color="#33C0F4">9.10 check_opt</font></h4>
 &nbsp;Check optional dependencies for scripts, on run-time
 
-<h4><font color="#33C0F4">10.11 BSNG_GCONF_READ</font></h4>
-&nbsp;Environment-variable used by get_key/set_key with this<br>
-&nbsp;set you can pass eg: alias/one to them rather than<br>
-&nbsp;/apps/bashstyle/alias/one (used by nx-rc for better readability)
+<h4><font color="#33C0F4">9.12 get_key</font></h4>
+&nbsp;Get the value of a BashStyle-NG GConf-Key
 
-<h4><font color="#33C0F4">10.12 get_key</font></h4>
-&nbsp;Get the value of a GConf-Key (listens to BSNG_GCONF_READ)
+<h4><font color="#33C0F4">9.13 set_key</font></h4>
+&nbsp;Set the value of a BashStyle-NG GConf-Key
 
-<h4><font color="#33C0F4">10.13 set_key</font></h4>
-&nbsp;Set the value of a GConf-Key (listens to BSNG_GCONF_READ)
+<h4><font color="#33C0F4">9.14 reset_key</font></h4>
+&nbsp;Reset the value of a BashStyle-NG GConf-Key
 
-<h4><font color="#33C0F4">10.14 reset_key</font></h4>
-&nbsp;Reset the value of a GConf-Key (listens to BSNG_GCONF_READ)
-
-<h4><font color="#33C0F4">10.15 reset_config</font></h4>
+<h4><font color="#33C0F4">9.15 reset_config</font></h4>
 &nbsp;Reset the BS-NG settings to defaults
 
-<h4><font color="#33C0F4">10.16 search_key</font></h4>
+<h4><font color="#33C0F4">9.16 search_key</font></h4>
 &nbsp;Search for a GConf-Key
+
+<h4><font color="#33C0F4">9.17 dbg_log</font></h4>
+&nbsp;Creates a log entry
+
+<h4><font color="#33C0F4">9.18 dbg_finalize</font></h4>
+&nbsp;Finalizes the debug-log
+
+<h4><font color="#33C0F4">9.19 dbg_verbosity</font></h4>
+&nbsp;Enable/disable the debug-text on startup<br>
+&nbsp;&nbsp;dbg_verbosity true [or: false]
+
+<h4><font color="#33C0F4">9.20 rc_add</font></h4>
+&nbsp;Adds entries to various rc files (used for better readability)
 
 </body>
 </html>
