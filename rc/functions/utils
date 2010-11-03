@@ -161,7 +161,7 @@ progressbar()
 	SP_COLOUR="\e[37;44m"
 	SP_WIDTH=5.5
 	SP_DELAY=0.2
-	SP_STRING=${2:-"'|/=\'"}
+	SP_STRING=${2:-'+     '}
 
 	while [ -d /proc/$1 ]
 	do
@@ -191,7 +191,6 @@ spinner()
 spanner(){
 
 	PROC=$1;COUNT=0
-	echo -n "Please wait "
 	while [ -d /proc/$PROC ];do
 		while [ "$COUNT" -lt 10 ];do
 			echo -ne '\x08  ' ; sleep 0.1
@@ -233,95 +232,95 @@ spin () {
         do
         # moving right
         echo -ne "\b\b\b\b\b\b\b-     |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b\b\\     |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b\b|     |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b\b /    |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b-    |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b\\    |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b|    |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b /   |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b-   |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\\   |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b|   |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b /  |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b-  |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\\  |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b|  |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b / |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b- |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\\ |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b| |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b /|"
-        sleep .05
+        sleep .03
         echo -ne "\b\b-|"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\\|"
-        sleep .05
+        sleep .03
         echo -ne "\b\b||"
-        sleep .05
+        sleep .03
         echo -ne "\b\b/|"
-        sleep .05
+        sleep .03
 
         # moving left
         echo -ne "\b\b||"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\\|"
-        sleep .05
+        sleep .03
         echo -ne "\b\b-|"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b/ |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b| |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\\ |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b- |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b/  |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b|  |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\\  |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b-  |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b/   |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b|   |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\\   |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b-   |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b/    |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b|    |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b\\    |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b-    |"
-        sleep .05
+        sleep .03
         echo -ne "\b\b\b\b\b\b\b/     |"
-        sleep .05
+        sleep .03
         done
 	echo -e "\b\b\b\b\b\b\b\b\b|=======| done!"
 }
@@ -335,74 +334,6 @@ clock ()
 		echo "===========";
 		sleep 1;
 	done
-}
-
-checksum ()
-{
-	action=$1
-	shift
-
-	if [[ ( $action == "-c" || $action == "--check" ) && $1 == *.* ]]; then
-		type="${1/*./}"
-	else	type=$1
-		shift
-	fi
-
-	case $type in
-
-		md5 )
-			checktool=md5sum
-		;;
-
-		sha1 | sha )
-			checktool=sha1sum
-		;;
-
-		sha224 )
-			checktool=sha224sum
-		;;
-
-		sha256 )
-			checktool=sha256sum
-		;;
-
-		sha384 )
-			checktool=sha384sum
-		;;
-
-		sha512 )
-			checktool=sha512sum
-		;;
-
-	esac
-
-	case $action in
-
-		-g | --generate )
-
-			for file in "${@}"; do
-				$checktool "${file}" > "${file}".$type
-			done
-
-		;;
-
-		-c | --check )
-
-			for file in "${@}"; do
-				if [[ "${file}" == *.$type ]]; then
-					$checktool --check "${file}"
-				else	$checktool --check "${file}".$type
-				fi
-			done
-
-		;;
-
-		-h | --help )
-
-		;;
-
-	esac
-
 }
 
 lscd () {
