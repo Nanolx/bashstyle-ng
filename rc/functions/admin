@@ -31,6 +31,7 @@ torswitch () {
 			;;
 		esac
 
+	else	echo -e "${ered} You're not root!"
 	fi
 
 }
@@ -45,10 +46,13 @@ repoadd () {
 
 wipe () {
 
-	cryptsetup -d /dev/urandom -c aes-xts-plain create delete $1
-	shred -vzn 0 /dev/mapper/delete
-	sync && sleep 4
-	cryptsetup remove delete
+	if [[ $EUID == 0 ]]; then
+		cryptsetup -d /dev/urandom -c aes-xts-plain create delete $1
+		shred -vzn 0 /dev/mapper/delete
+		sync && sleep 4
+		cryptsetup remove delete
+	else	echo -e "${ered} You're not root!"
+	fi
 
 }
 
@@ -61,58 +65,9 @@ remount () {
 
 }
 
-xchown () {
+treeps () {
 
-	user="$1"
-	shift
-
-	for df in "$@";
-		do su -c "chown -R $user:$user \"$df\"";
-	done
-
-}
-
-psgrep() {
-
-	if [[ $1 == "-u" ]]; then
-
-		ps aux | grep -v grep | grep $2 | awk '{ print $2 " : " $11}' | tee .temp
-		CMDS=$(cat .temp)
-
-	elif [[ $1 != "" ]]; then
-
-		ps aux | grep -v grep | grep "$1" | awk '{ print $11 " : " $2 " : " $1 }' | tee .temp
-		CMDS=$(cat .temp)
-
-	fi
-
-	if [[ $CMDS == "" ]]; then
-		echo "no matching process"
-	fi
-
-	rm -f .temp
-
-}
-
-pskill() {
-
-	if [[ $1 ]]; then
-
-		psgrep $1
-
-		shift
-
-		if [[ $CMDS != "" ]]; then
-
-			echo -e "\nenter process number to kill:\n"
-			read ID
-
-			if [[ ! $ID == 0 || ! $ID == "" ]]; then
-				kill $@ $ID
-			fi
-
-		fi
-
-	fi
+	ps f -u $USER -o command,pid,%cpu,%mem,time,etime,tty | \
+		awk 'NR <= 1 {print;next} !/awk/ && $0~var' var=${1:-".*"}
 
 }
