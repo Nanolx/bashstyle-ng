@@ -30,7 +30,7 @@ This info is mainly used by the Owner-field of .dirinfo files:" 12 85 "$USER_REA
 	user_location=$(whiptail --title $"location" --inputbox $"Enter your location in CITY COUNTRY (eg Berlin Deutschland) format." 12 85 "${USER_LOCATION[@]}" 3>&1 1>&2 2>&3)
 
 	if [[ $user_location != "" ]]; then
-		rc_add export USER_LOCATION=\"\( $user_location \)\"
+		rc_add export USER_LOCATION=\( $user_location \)
 	fi
 
 	user_mail=$(whiptail --title $"mail" --inputbox $"Enter your mail-address." 12 85 "$USER_MAIL" 3>&1 1>&2 2>&3)
