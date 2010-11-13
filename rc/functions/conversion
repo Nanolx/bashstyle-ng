@@ -373,3 +373,51 @@ power () {
 	fi
 
 }
+
+fah2cel () {
+
+  if [[ $1 ]]; then
+	echo "scale=2 ; ( $1 - 32  ) / 1.8" | bc
+  fi
+
+}
+
+fah2kel () {
+
+  if [[ $1 ]]; then
+	echo "scale=2; ( $1 + 459.67 ) / 1.8 " | bc
+  fi
+
+}
+
+cel2fah () {
+
+  if [[ $1 ]]; then
+	echo "scale=2; $1 * 1.8  + 32" | bc
+  fi
+
+}
+
+cel2kel () {
+
+  if [[ $1 ]]; then
+	echo "scale=2; $1 + 237.15" | bc
+  fi
+
+}
+
+kel2fah () {
+
+  if [[ $1 ]]; then
+	echo "scale=2; $1 * 1.8 - 459,67" | bc
+  fi
+
+}
+
+kel2cel () {
+
+  if [[ $1 ]]; then
+	echo "scale=2; $1 - 273.15" | bc
+  fi
+
+}
