@@ -336,6 +336,11 @@ clock ()
 	done
 }
 
+binary-clock ()
+{
+	watch -n 1 --no-title 'echo "obase=2;`date +%s`" | bc'
+}
+
 lscd () {
 
 	builtin cd "${@}" &>/dev/null
@@ -393,5 +398,15 @@ kitty () {
 nseq () {
 
 	seq -w 0 $1
+
+}
+
+ruler () {
+
+  for s in '....^....|' '123456789|'; do
+	w=${#s}; str=$( for (( i=1; $i<=$(( ($COLUMNS + $w) / $w )) ; i=$i+1 )); do
+		echo -n $s; done ); str=$(echo $str | cut -c -$COLUMNS) ;
+	echo $str;
+  done;
 
 }
