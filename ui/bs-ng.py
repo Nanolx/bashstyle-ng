@@ -11,7 +11,7 @@
 #########################################################
 
 MODULES = [ 'os', 'os.path', 'sys', 'gtk', 'locale', 'gettext', 'gconf',
-            'shutil', 'vte', 'ctypes', 'optparse', 'subprocess', 'undobuffer',
+            'shutil', 'ctypes', 'optparse', 'subprocess', 'undobuffer',
             'commands', 'string' ]
 
 FAILED = []
