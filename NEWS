@@ -5,7 +5,7 @@ This version of BS-NG installs wrappers for cp, mv, shred and rm, which
 honour the NoCopy, NoMove, NoShred and NoDelete .dirinfo-flags (see below).
 
 Those are "only" 98% syntax-compatible with the originals (say: `mv test{1,2}'
-works, but `mv test{1,2} test{3,4}' -- only one {,} is supported)
+works, but `mv test{1,2} test{3,4}' does NOT -- only one {,} is supported)
 
 To disable those wrappers, pass --dirinfo-disable to configure!
 
