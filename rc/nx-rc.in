@@ -61,11 +61,9 @@ if [[ $verbose != true ]]; then
 	spin & 2>&1>/dev/null
 fi
 
-if [[ $(get_key debug) == true ]]; then \
-	eval BSNG_LOGFILE=$(get_key debug_log)
-	dbg_log rm -f $BSNG_LOGFILE
-	dbg_log touch $BSNG_LOGFILE
-fi
+export BSNG_LOGFILE=$HOME/.bashstyle.log
+dbg_log rm -f $BSNG_LOGFILE
+dbg_log touch $BSNG_LOGFILE
 
 dbg_log source $BSNG_RC_DIR/styles/null-rc
 
@@ -218,5 +216,5 @@ if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eorange}${ERR_MSG}\n"
 fi
 
-bs-ng-wizard 1>/dev/null
+bs-ng-wizard
 dbg_finalize
