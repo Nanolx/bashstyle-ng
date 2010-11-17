@@ -7,8 +7,8 @@ check ()
         IFS=":"
 
         for dir in $PATH; do
-                if [[ -f "${dir}/$1" ]]; then
-                        echo "found"
+                if [[ -e ${dir}/${1} ]]; then
+                        echo found && continue 2
                 fi
         done
 
