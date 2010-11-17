@@ -15,6 +15,8 @@ if [[ $0 == *gdm* ]]; then
 	dbg_msg $"BashStyle-NG: Started from GDM -- exiting"
 else
 
+export BSNG_RUNNING="true"
+
 touch $HOME/.bashstyle.lock
 
 export BSNG_PREFIX=@PREFIX@
@@ -218,3 +220,4 @@ fi
 
 bs-ng-wizard
 dbg_finalize
+unset BSNG_RUNNING
