@@ -12,6 +12,10 @@ To disable those wrappers, pass --dirinfo-disable to configure!
 --- IMPORTANT NOTE #2 ---
 We do now have a custom make system. See INSTALL.
 
+--- IMPORTANT NOTE #3 ---
+If you have custom settings stored in $HOME/.custom-rc, then rename the file
+to $HOME/.bashstyle.custom, else they won't be loaded anymore.
+
 === Bugfixes ===
 * #105 (unmark): properly unalias the bookmark
 * #106 (bookmark): don't create a bookmark when no name is given
