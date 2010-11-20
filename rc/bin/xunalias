@@ -10,8 +10,8 @@
 #########################################################
 
 for alias in "$@"; do
-	[[ $(grep -w "alias $alias" $HOME/.custom-rc) != "" ]] &&
-		{ sed -e "/alias $alias/d" -i $HOME/.custom-rc ; }
+	[[ $(grep -w "alias $alias" $HOME/.bashstyle.custom) != "" ]] &&
+		{ sed -e "/alias $alias/d" -i $HOME/.bashstyle.custom ; }
 
 	[[ $(alias | grep -w $alias=) != "" ]] &&
 		{ unalias $alias ; }

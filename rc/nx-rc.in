@@ -139,9 +139,9 @@ if [[ -e $HOME/.bashstyle.wizard ]]; then \
 	fi
 fi
 
-if [[ -e $HOME/.custom-rc ]]; then \
+if [[ -e $HOME/.bashstyle.custom ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
-	dbg_log source $HOME/.custom-rc
+	dbg_log source $HOME/.bashstyle.custom
 fi
 
 if [[ $(get_key random_style) == true ]]; then \

@@ -373,8 +373,8 @@ bash_finalize()
 		rc_add complete -d -X \'.[a-zA-Z0-9]*\' cd
 	fi
 
-	if [[ -e $HOME/.custom-rc ]]; then
-		cat $HOME/.custom-rc | sed -e '/#\!/d' >> $RC_FILE
+	if [[ -e $HOME/.bashstyle.custom ]]; then
+		cat $HOME/.bashstyle.custom | sed -e '/#\!/d' >> $RC_FILE
 	fi
 
 	WelcomeMessage=$(get_key welcome_message)

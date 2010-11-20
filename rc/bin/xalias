@@ -12,8 +12,8 @@
 alias=$1
 shift
 
-[[ $(grep -w "alias $alias" $HOME/.custom-rc) != "" ]] &&
-	{ sed -e "/alias $alias/d" -i $HOME/.custom-rc ; }
+[[ $(grep -w "alias $alias" $HOME/.bashstyle.custom) != "" ]] &&
+	{ sed -e "/alias $alias/d" -i $HOME/.bashstyle.custom ; }
 
 alias $alias='$@'
-echo "alias $alias=\"$@\"" >> $HOME/.custom-rc
+echo "alias $alias=\"$@\"" >> $HOME/.bashstyle.custom
