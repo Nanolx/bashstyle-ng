@@ -347,8 +347,11 @@ lscd () {
 	. $BSNG_RC_DIR/dirinfo/display
 	dirinfo_display
 
-	echo -e "${epink}content:"
-	ls $LSCD_OPTS
+	echo -e "${epink}content:\n"
+	if [[ $(count_files -h) -gt 0 ]]; then
+		ls $LSCD_OPTS
+	else	echo -e "${ecream}-- empty --\n"
+	fi
 	echo "$PWD" > $HOME/.lastpwd
 
 }
