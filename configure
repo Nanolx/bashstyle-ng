@@ -24,6 +24,10 @@ while [[ $xcount -lt $pcount ]]; do
 			DIRINFO_ENABLE="false"
 		;;
 
+		*dirinfo-enable )
+			DIRINFO_ENABLE="true"
+		;;
+
 		*help )
 			MODE=HELP
 		;;
