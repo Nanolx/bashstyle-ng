@@ -185,12 +185,11 @@ fi
 dbg_msg $"VimCFG Setting:" $"Linespace 0"
 rc_add "set linespace=0"
 
-dbg_msg $"VimCFG Setting:" $"Autowrap-length" $(get_key vim/wrap_length)
-rc_add "set tw=$(get_key vim/wrap_length)"
-
 if [[ $(get_key vim/wrap) == true ]]; then
 	dbg_msg $"VimCFG Setting:" $"Linewrapping" $"On"
 	rc_add "set wrap"
+	dbg_msg $"VimCFG Setting:" $"Autowrap-length" $(get_key vim/wrap_length)
+	rc_add "set tw=$(get_key vim/wrap_length)"
 else
 	dbg_msg $"VimCFG Setting:" $"Linewrapping" $"Off"
 	rc_add "set nowrap"
