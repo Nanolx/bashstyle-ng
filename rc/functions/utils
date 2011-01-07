@@ -338,7 +338,8 @@ clock ()
 
 binary-clock ()
 {
-	watch -n 1 --no-title 'echo "obase=2;`date +%s`" | bc'
+	clear
+	perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}'
 }
 
 lscd () {
