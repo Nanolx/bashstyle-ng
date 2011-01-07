@@ -423,3 +423,11 @@ box () {
 	echo ${t//?/$c};
 
 }
+
+ugrep () {
+
+	egrep -i "^[0-9a-f]{4,} .*$*" $BSNG_RC_DIR/CharName.pm | while read h d; 
+		do /usr/bin/printf "\U$(printf "%08x" 0x$h)\tU+%s\t%s\n" $h "$d"
+	done
+
+}
