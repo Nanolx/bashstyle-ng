@@ -1,12 +1,14 @@
 Overview of changes in v7.12 "Planetary Collapse"
 
 --- IMPORTANT NOTE #1 ---
-This version of BS-NG can installs wrapper for cp, mv, shred and rm, which
+This version of BS-NG can install wrapper for cp, mv, shred and rm, which
 honour the NoCopy, NoMove, NoShred and NoDelete .dirinfo-flags (see below).
 
-Those are only 95% syntax-compatible with the originals (say: `mv test{1,2}'
+Those are only 90% syntax-compatible with the originals (say: `mv test{1,2}'
 works, but `mv test{1,2} test{3,4}' does NOT -- only one {,} is supported),
 maybe there are more incompatibilities.
+
+This will be fixed with Revision 3 of DirInfo
 
 To disable those wrappers (default for releases), pass --dirinfo-disable to configure!
 To enable those wrappers (default for GIT), pass --dirinfo-enable to configure!
