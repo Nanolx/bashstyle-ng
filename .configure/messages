@@ -101,7 +101,8 @@ help_message () {
 	echo -e "\n${ORANGE}--help${WHITE} |${GREEN} Display this help message\
 	\n${ORANGE}--maintainer${WHITE} |${GREEN} Enter Maintainer Mode (disables checks)\
 	\n${ORANGE}--prefix=${WHITE} |${GREEN} Change Installation Prefix (default: /usr)\
-	\n${ORANGE}--dirinfo-disable${WHITE} |${GREEN} Disable Dirinfo Flags (default: enable)" | column -t
+	\n${ORANGE}--dirinfo-disable${WHITE} |${GREEN} Disable Dirinfo Wrappers (default for releases)\
+	\n${ORANGE}--dirinfo-enable${WHITE} |${GREEN} Enable Dirinfo Wrappers (default for GIT)" | column -t
 	echo ""
 	tput sgr0
 
