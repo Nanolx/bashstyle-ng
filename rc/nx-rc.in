@@ -11,7 +11,7 @@
 . gettext.sh
 TEXTDOMAIN="nx-rc"
 
-if [[ $0 == *gdm* ]]; then
+if [[ $0 == *gdm* || $0 == *kdm* ]]; then
 	dbg_msg $"BashStyle-NG: Started from GDM -- exiting"
 else
 
@@ -103,8 +103,6 @@ if [[ $(get_key use_bashstyle) == false ]]; then \
 	dbg_msg $"BashStyle-NG: Exiting"
 else
 	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
-fi
-
 fi
 
 if [[ $(get_key color/enable) == true ]]; then \
@@ -221,3 +219,5 @@ fi
 bs-ng-wizard
 dbg_finalize
 unset BSNG_RUNNING
+
+fi
