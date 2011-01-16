@@ -43,6 +43,7 @@ dirinfo_create_index () {
 	paste -d' ' $HOME/.dirindex.[0-4] > $HOME/.dirindex
 	sed -e 's/\"//g' -i $HOME/.dirindex
 	rm $HOME/.dirindex.[0-4]
+	rm $HOME/.wait
 
 }
 
@@ -51,7 +52,23 @@ dirinfo_index ()
 
 	case $1 in
 		*generate)
-			dirinfo_create_index --force
+			touch $HOME/.wait
+			dirinfo_create_index --force &
+
+			SP_COLOUR="\e[37;44m"
+			SP_WIDTH=5.5
+			SP_DELAY=0.2
+			SP_STRING=${2:-'+     '}
+
+			while [ -e $HOME/.wait ]
+			do
+				printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
+				sleep ${SP_DELAY:-.2}
+				SP_STRING=${SP_STRING#"${SP_STRING%?}"}${SP_STRING%?}
+			done
+
+			tput sgr0
+
 		;;
 
 		*rebuild)
