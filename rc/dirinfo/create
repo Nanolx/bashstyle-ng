@@ -56,6 +56,15 @@ dirinfo_create ()
 	notes=$(whiptail --title "directory notes" --inputbox "Enter additional notes for the directory" 12 85 "$Notes" 3>&1 1>&2 2>&3)
 	echo Notes=\"$notes\" >> $PWD/.dirinfo
 
+	flags=$(whiptail --title "directory type" --checklist "Choose the directory-type" 12 85 4 "#NoCopy" "Disallow copying of files." \
+OFF "#NoMove" "Disallow moving of files." OFF "#NoDelete" "Disallow removing of files." OFF "#NoShred" "Disallow shredding of files." OFF 3>&1 1>&2 2>&3)
+
+	if [[ $flags != "" ]]; then
+		for flag in $flags; do
+			echo $flag | sed -e 's/\"//g' >> $PWD/.dirinfo
+		done
+	fi
+
 	dirinfo_display
 
 	unset Owner Type Tags Created Notes
