@@ -6,7 +6,7 @@ section_message () {
 
 		APP )
 			echo -e "\n${RED}Required ${WHITE}Applications:\n"
-			fail_message m "intelligent life"
+			warn_message "intelligent life"
 		;;
 
 		OPT_APP )
@@ -86,7 +86,7 @@ end_message () {
 
 	export PATH="$OLDPATH"
 	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\
-		\n${YELLOW}Dirinfo Utils:${WHITE} $DIRINFO_ENABLE\n"
+		\n${YELLOW}Dirinfo Wrappers:${WHITE} $DIRINFO_ENABLE\n"
 	if [[ $ERR_MSG != "" ]]; then
 		echo -e "${YELLOW}Notes:\
 			\n${WHITE}${ERR_MSG}"
