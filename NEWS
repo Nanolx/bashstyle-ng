@@ -1,24 +1,23 @@
 Overview of changes in v7.12 "Planetary Collapse"
 
 --- IMPORTANT NOTE #1 ---
+We do now have a custom make system. See INSTALL.
+
+--- IMPORTANT NOTE #2 ---
+If you have custom settings stored in $HOME/.custom-rc, then rename the file
+to $HOME/.bashstyle.custom, else they won't be loaded anymore.
+
+--- (NOT SO) IMPORTANT NOTE #3 ---
 This version of BS-NG can install wrapper for cp, mv, shred and rm, which
 honour the NoCopy, NoMove, NoShred and NoDelete .dirinfo-flags (see below).
 
 Those are only 90% syntax-compatible with the originals (say: `mv test{1,2}'
 works, but `mv test{1,2} test{3,4}' does NOT -- only one {,} is supported),
-maybe there are more incompatibilities.
+maybe there are more incompatibilities. This will be fixed with Revision 3.
 
-This will be fixed with Revision 3 of DirInfo
+Therefore those wrappers are disabled by default, if you feel brave enough
+to try them out pass `--dirinfo-enable' to the configure script.
 
-To disable those wrappers (default for releases), pass --dirinfo-disable to configure!
-To enable those wrappers (default for GIT), pass --dirinfo-enable to configure!
-
---- IMPORTANT NOTE #2 ---
-We do now have a custom make system. See INSTALL.
-
---- IMPORTANT NOTE #3 ---
-If you have custom settings stored in $HOME/.custom-rc, then rename the file
-to $HOME/.bashstyle.custom, else they won't be loaded anymore.
 
 === Bugfixes ===
 * #105 (unmark): properly unalias the bookmark
@@ -112,7 +111,6 @@ to $HOME/.bashstyle.custom, else they won't be loaded anymore.
 * treeps (nicer version of ps)
 * wininfo (get some basic info about a window)
 * repeat (repeat a command in given intervalls)
-* kitty (alias for cat with line-numbers)
 * ugrep (look-up for unicode characters)
 
 * dec2asc (convert decimal to ascii)
@@ -191,7 +189,7 @@ to $HOME/.bashstyle.custom, else they won't be loaded anymore.
 * psgrep (use treeps instead)
 * pskill
 
-=== Dirinfo (Revision 2 Draft 4) ===
+=== Dirinfo (Revision 2 Draft 5) ===
 * major re-structureing
 * improved indexing mechanism
 * displaying info/ascii is now console-compatible
@@ -213,6 +211,7 @@ to $HOME/.bashstyle.custom, else they won't be loaded anymore.
                          included files to be copied
 	x "NoShred" flag: doesn't allow directory and
 			 included files to be shred
+* added documentation (chapter12)
 
 === Documentation ===
 * Updated:
