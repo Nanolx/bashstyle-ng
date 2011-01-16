@@ -58,6 +58,14 @@ dirinfo_index ()
 			dirinfo_create_index
 		;;
 
+		*get-date)
+			dirinfo_date --get
+		;;
+
+		*set-date)
+			dirinfo_date --set
+		;;
+
 		*search)
 
 			if [[ ! -e $HOME/.dirindex ]]; then
@@ -66,26 +74,33 @@ dirinfo_index ()
 			fi
 
 			shift
-			TYPE=$1
-			shift
 
-			case $TYPE in
+			case $1 in
 
-				*tag)
+				+tag)
+					shift
 					gawk -F"::" '$2 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 				;;
 
-				*type)
+				+type)
+					shift
 					gawk -F"::" '$3 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 				;;
 
-				*date)
+				+date)
+					shift
 					gawk -F"::" '$4 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 				;;
 
-				*owner)
+				+owner)
+					shift
 					gawk -F"::" '$5 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 				;;
+
+				*)
+					gawk -F"::" '/'"${@}"'/{print $1}' $HOME/.dirindex
+				;;
+
 			esac
 		;;
 
@@ -102,11 +117,13 @@ dirinfo_index ()
 		*help | "")
 
 			echo -e "\n${ewhite}Usage:\n"
-			echo -e "${eorange}dirinfo${ewhite} | ${egreen}--update ${eiceblue}[update the complete index]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--rebuild ${eiceblue}[update the index, but don't scan for new .dirinfo files]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--search ${eiceblue}[search the index for --tag, --type, --date, --owner]\
+			echo -e "${eorange}dirinfo${ewhite} | ${egreen}--generate ${eiceblue}[generate a new index]\
+			\n${eorange}dirinfo${ewhite} | ${egreen}--rebuild ${eiceblue}[rebuild the index, but don't scan for new .dirinfo files]\
+			\n${eorange}dirinfo${ewhite} | ${egreen}--search ${eiceblue}[search the index for +tag, +type, +date, +owner]\
 			\n${eorange}dirinfo${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--create ${eiceblue} [create .dirinfo for currend directory" | column -t
+			\n${eorange}dirinfo${ewhite} | ${egreen}--create ${eiceblue} [create .dirinfo for current directory]\
+			\n${eorange}dirinfo${ewhite} | ${egreen}--get-date ${eiceblue} [get the date of the last modification]\
+			\n${eorange}dirinfo${ewhite} | ${egreen}--set-date ${eiceblue} [set the date of the last modification]" | column -t
 			echo ""
 			tput sgr0
 
