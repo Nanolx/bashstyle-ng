@@ -217,7 +217,7 @@ kitt () {
 
 }
 
-function hilow()
+hilow()
 {
       biggest=1000                            # maximum number possible
       guess=0                                 # guessed by player
@@ -233,4 +233,9 @@ function hilow()
 	guesses=$(( $guesses + 1 ))
       done
       echo "Right!! Guessed $number in $guesses guesses."
+}
+
+batch()
+{
+	find . -type f -iname '*.'${1}'' -exec ${@:2}  {} \; ;
 }
