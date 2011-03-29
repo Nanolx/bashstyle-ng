@@ -3,6 +3,12 @@ Overview of changes in v7.12.1 "Do You Like The Sound Now?"
 === Bug Fixes ===
 * 125 (ui): change the way the GUI retrieves it's own version and
             prefix, fixes possible startup-failures on foreign setups
+* 126 (dirinfo-wrappers): even if the dirinfo-wrappers were disabled,
+                          they could interfere with the original rm,
+			  mv, cp and shred tools. If you updated from
+			  version 7.12, please restart your machine
+			  after you installed 7.12.1, to ensure every-
+			  thing is fine with your setup.
 
 === Added Features ===
 * batch [TJ Carter]

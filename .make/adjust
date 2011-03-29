@@ -29,6 +29,12 @@ gconfd_kill () {
 
 }
 
+remove_old_wrappers () {
+
+	rm -f $DESTDIR/$PREFIX/share/bashstyle-ng/rc/bin/{rm,mv,cp,shred}
+
+}
+
 post_install () {
 
 	if [[ ! $DISABLE_POSTINSTALL ]]; then
@@ -37,6 +43,7 @@ post_install () {
 		register_schemas --install
 		update_cache
 		gconfd_kill
+		remove_old_wrappers
 
 	fi
 

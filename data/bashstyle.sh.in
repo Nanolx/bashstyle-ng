@@ -10,17 +10,19 @@
 
 export WANT_DIRINFO_FLAGS="@DIRINFO_ENABLE@"
 
-export CP_CMD=$(which cp)
-export MV_CMD=$(which mv)
-export RM_CMD=$(which rm)
-export SH_CMD=$(which shred)
-
-export SH_OPTS="-uvz"
-
 export GAME_PATH="/usr/games:/usr/local/games"
 export OLD_PATH="$PATH"
 export BSNG_PATH="@PREFIX@/share/bashstyle-ng/rc/bin/"
 
 export PATH="$BSNG_PATH:$OLD_PATH:$GAME_PATH:."
+
+if [[ ! $WANT_DIRINFO_FLAGS == "false" ]]; then
+	export CP_CMD=$(which cp)
+	export MV_CMD=$(which mv)
+	export RM_CMD=$(which rm)
+	export SH_CMD=$(which shred)
+	export SH_OPTS="-uvz"
+	export PATH="@PREFIX@/share/bashstyle-ng/rc/opt/:$PATH"
+fi
 
 export CONFIG_SHELL="/bin/bash"
