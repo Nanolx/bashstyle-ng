@@ -1,6 +1,0 @@
-#!/bin/sh -e 
-
-if [ "$1" = "configure" ]; then
-	echo "unregistering gconf schemas"
-	gconf-schemas --unregister bashstyle.schemas
-fi

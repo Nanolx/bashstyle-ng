@@ -1,9 +1,0 @@
-#!/bin/sh -e 
-
-if [ "$1" = "configure" ]; then
-	echo "registering gconf schemas"
-	gconf-schemas --register bashstyle.schemas
-	echo "updating icon cache"
-	gtk-update-icon-cache -f /usr/share/icons/hicolor
-fi
-
