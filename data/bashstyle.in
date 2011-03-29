@@ -2,6 +2,8 @@
 
 cd @PREFIX@/share/bashstyle-ng/
 
+export BSNG_UI_PREFIX="@PREFIX@"
+export BSNG_UI_VERSION="@VERSION@"
 export PYTHONPATH="$PYTHONPATH:@PREFIX@/share/bashstyle-ng/ui/"
 
 python $PWD/ui/bs-ng.py $@

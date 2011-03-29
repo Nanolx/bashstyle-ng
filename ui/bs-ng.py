@@ -26,7 +26,7 @@ if FAILED:
     print "The following modules failed to import: %s" % (" ".join(FAILED))
     sys.exit(1)
 
-PREFIX = commands.getoutput('pkg-config --variable=prefix bashstyle-ng')
+PREFIX = os.getenv('BSNG_UI_PREFIX')
 
 parser = optparse.OptionParser("bashstyle <option> [value]\
 				\n\nBashStyle-NG © 2007 - 2010 Christopher Bratusek\
@@ -52,11 +52,11 @@ parser.add_option("-g", "--group", dest="group", default="style",
 (options, args) = parser.parse_args()
 
 if options.version:
-		print "%s" % commands.getoutput('pkg-config --modversion bashstyle-ng')
+		print "%s" % os.getenv('BSNG_UI_VERSION')
 		sys.exit(0)
 
 if options.prefix:
-		print "%s" % commands.getoutput('pkg-config --variable=prefix bashstyle-ng')
+		print "%s" % os.getenv('BSNG_UI_PREFIX')
 		sys.exit(0)
 
 groups = {
