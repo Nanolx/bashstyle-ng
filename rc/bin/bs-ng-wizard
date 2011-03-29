@@ -52,7 +52,7 @@ case $STAGE in
 	;;
 
 	KEEP )
-		if [[ BSNG_RUNNING ]]; then
+		if [[ ! $BSNG_RUNNING ]]; then
 			echo "You have already run the wizard."
 		fi
 		exit 0
