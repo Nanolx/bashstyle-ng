@@ -2,45 +2,12 @@
 
 export DH_VERBOSE = 1
 
-build: build-stamp
+%:
+	dh $@
 
-build-stamp: 
-	dh_testdir
-	./configure --maintainer
-	./make build
-	touch $@
-
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp 
-	-./make clean
-	dh_clean 
-
-install: build
+override_dh_install:
 	dh_testdir
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
 	DESTDIR=$(CURDIR)/debian/bashstyle-ng/ DISABLE_POSTINSTALL=1 ./make install
-
-binary-indep: build install
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs ChangeLog
-	dh_installdocs
-	dh_installexamples
-	dh_installman
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install 
