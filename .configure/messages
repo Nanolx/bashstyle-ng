@@ -2,41 +2,43 @@
 
 section_message () {
 
-	case $1 in
+	if [[ ! $QUIET ]]; then
+		case $1 in
 
-		APP )
-			echo -e "\n${RED}Required ${WHITE}Applications:\n"
-			warn_message "intelligent life"
-		;;
+			APP )
+				echo -e "\n${RED}Required ${WHITE}Applications:\n"
+				warn_message "intelligent life"
+			;;
 
-		OPT_APP )
-			echo -e "\n${MAGENTA}Optional ${WHITE}Applications:\n"
-		;;
+			OPT_APP )
+				echo -e "\n${MAGENTA}Optional ${WHITE}Applications:\n"
+			;;
 
-		SBINAPP )
-			echo -e "\n${RED}Required ${WHITE}SuperUser Applications:\n"
-		;;
+			SBINAPP )
+				echo -e "\n${RED}Required ${WHITE}SuperUser Applications:\n"
+			;;
 
-		OPT_SBINAPP )
-			echo -e "\n${MAGENTA}Optional ${WHITE}SuperUser Applications:\n"
-		;;
+			OPT_SBINAPP )
+				echo -e "\n${MAGENTA}Optional ${WHITE}SuperUser Applications:\n"
+			;;
 
-		PYMOD )
-			echo -e "\n${RED}Required ${WHITE}Python Modules:\n"
-		;;
+			PYMOD )
+				echo -e "\n${RED}Required ${WHITE}Python Modules:\n"
+			;;
 
-		OPT_PYMOD )
-			echo -e "\n${MAGENTA}Optional ${WHITE}Python Modules:\n"
-		;;
+			OPT_PYMOD )
+				echo -e "\n${MAGENTA}Optional ${WHITE}Python Modules:\n"
+			;;
 
-		LIB )
-			echo -e "\n${RED}Required ${WHITE}Libraries:\n"
-		;;
+			LIB )
+				echo -e "\n${RED}Required ${WHITE}Libraries:\n"
+			;;
 
-		OPT_LIB )
-			echo -e "\n${MAGENTA}Optional ${WHITE}Libraries:\n"
-		;;
-	esac
+			OPT_LIB )
+				echo -e "\n${MAGENTA}Optional ${WHITE}Libraries:\n"
+			;;
+		esac
+	fi
 	tput sgr0
 
 }
@@ -50,9 +52,11 @@ start_message () {
 
 ok_message () {
 
-	if [[ $2 != "" ]]; then
-		echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K.${SILVER} ( $2 )"
-	else 	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K."
+	if [[ ! $QUIET ]]; then
+		if [[ $2 != "" ]]; then
+			echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K.${SILVER} ( $2 )"
+		else 	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K."
+		fi
 	fi
 	tput sgr0
 }
@@ -91,8 +95,6 @@ end_message () {
 		echo -e "${YELLOW}Notes:\
 			\n${WHITE}${ERR_MSG}"
 	fi
-	echo -e "${GREEN}Thank you for choosing BashStyle-NG.\
-		\nWe can't promise to not kill any kittens.\n"
 	tput sgr0
 
 }
@@ -104,6 +106,7 @@ help_message () {
 	echo -e "\n${ORANGE}--help${WHITE} |${GREEN} Display this help message\
 	\n${ORANGE}--maintainer${WHITE} |${GREEN} Enter Maintainer Mode (disables checks)\
 	\n${ORANGE}--prefix=${WHITE} |${GREEN} Change Installation Prefix (default: /usr)\
+	\n${ORANGE}--quiet${WHITE} |${GREEN} Only display warnings, failures and results\
 	\n${ORANGE}--dirinfo-disable${WHITE} |${GREEN} Disable Dirinfo Wrappers (default for releases)\
 	\n${ORANGE}--dirinfo-enable${WHITE} |${GREEN} Enable Dirinfo Wrappers (default for GIT)" | column -t
 	echo ""
