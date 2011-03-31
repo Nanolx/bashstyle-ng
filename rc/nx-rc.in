@@ -188,6 +188,10 @@ if [[ $(get_key restorepwd) == true ]]; then \
 	fi
 fi
 
+if [[ $(which bs-ng-wizard 2>/dev/null) == "" ]]; then
+	export PATH="@PREFIX@/share/bashstyle-ng/rc/bin/:$PATH"
+fi
+
 if [[ -e $HOME/.bookmarks ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"Bookmarks"
 	dbg_log . $HOME/.bookmarks
