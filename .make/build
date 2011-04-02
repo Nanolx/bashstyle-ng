@@ -6,7 +6,7 @@ TERM_NUM=${#TERM_FILES[@]}
 generate_terminfo () {
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${YELLOW}[01/03]${WHITE} terminfos${CYAN} (${TERM_FILES[@]})"
+	echo -e "\t${WHITE}+ ${WHITE} terminfos${CYAN} (${TERM_FILES[@]})"
 	for term in ${TERM_FILES[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$TERM_NUM]${WHITE} ${term}"

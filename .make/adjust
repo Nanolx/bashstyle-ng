@@ -39,7 +39,7 @@ post_install () {
 
 	if [[ ! $DISABLE_POSTINSTALL ]]; then
 
-		echo -e "\t${WHITE}+ ${MAGENTA}[04/04]${WHITE} post-installation tasks"
+		echo -e "\t${WHITE}+ ${WHITE} post-installation tasks"
 		register_schemas --install
 		update_cache
 		remove_old_wrappers
@@ -54,7 +54,7 @@ pre_remove () {
 
 	if [[ ! $DISABLE_POSTREMOVE ]]; then
 
-		echo -e "${WHITE}+ ${MAGENTA}[01/02] pre-removal tasks"
+		echo -e "${WHITE}+  pre-removal tasks"
 		register_schemas --remove
 
 	fi
