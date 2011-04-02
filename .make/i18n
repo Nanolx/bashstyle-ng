@@ -24,7 +24,7 @@ generate_pot () {
 update_po () {
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${YELLOW}[01/02]${WHITE} UI .po files${CYAN} (${BSNG_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${YELLOW}[01/03]${WHITE} UI .po files${CYAN} (${BSNG_LANGS[@]})"
 	for lang in ${BSNG_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$BSNG_NUM]${WHITE} ${lang}"
@@ -34,7 +34,7 @@ update_po () {
 	done
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${YELLOW}[02/02] Wizard .po files${CYAN} (${WIZARD_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${YELLOW}[02/03]${WHITE} Wizard .po files${CYAN} (${WIZARD_LANGS[@]})"
 	for lang in ${WIZARD_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$WIZARD_NUM]${WHITE} ${lang}"
@@ -45,7 +45,7 @@ update_po () {
 	done
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${YELLOW}[02/02]${WHITE} NX-RC .po files${CYAN} (${NXRC_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${YELLOW}[03/03]${WHITE} NX-RC .po files${CYAN} (${NXRC_LANGS[@]})"
 	for lang in ${NXRC_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$NXRC_NUM]${WHITE} ${lang}"

@@ -2,7 +2,7 @@
 
 clean () {
 
-	echo -e "${SMOOTHBLUE} [01/01] Cleaning up."
+	echo -e "\n${SMOOTHBLUE} cleaning up\n"
 	REMOVE_FILES=( data/bashstyle data/bashstyle-ng.pc ui/bashstyle7.ui.h
 	               data/bashstyle.sh rc/nx-rc i18n/??/*.mo i18n/*.pot
 		       data/terminfo/?/* .configure/results .make/build_done )
@@ -14,7 +14,7 @@ clean () {
 
 	for file in ${REMOVE_FILES[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
-			echo -e "${SILVER}\t [$CUR_NUM/$RM_NUM] $file"
+			echo -e "\t${WHITE}  * ${SILVER}[$CUR_NUM/$RM_NUM]${CYAN} $file"
 			local CUR_NUM=$(($CUR_NUM+1))
 		fi
 		rm -f "$file"

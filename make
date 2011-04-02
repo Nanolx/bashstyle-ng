@@ -28,7 +28,7 @@ while [[ $xcount -lt $pcount ]]; do
 		po ) update_po;;
 
 		build ) echo -e "\n${YELLOW}Building BashStyle-NG:\n"
-			build && touch .make/build_done ;;
+			build && touch .make/build_done && echo ;;
 
 		clean ) clean ;;
 
@@ -65,4 +65,3 @@ done
 unset xcount pcount
 
 tput sgr0
-echo
