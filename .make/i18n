@@ -11,7 +11,7 @@ NXRC_NUM=${#NXRC_LANGS[@]}
 
 generate_pot () {
 
-	echo -e "${YELLOW} [01/01] Generating .pot files."
+	echo -e "\t${WHITE}+ ${YELLOW}[01/01]${WHITE} .pot files"
 	intltool-extract --type=gettext/glade ui/bashstyle7.ui >/dev/null
 	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bs-ng.pot ui/bs-ng.py ui/bashstyle7.ui.h >/dev/null
 
@@ -24,20 +24,20 @@ generate_pot () {
 update_po () {
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [01/02] Updating UI-po files (${BSNG_LANGS[@]})."
+	echo -e "\t${WHITE}+ ${YELLOW}[01/02]${WHITE} UI .po files${CYAN} (${BSNG_LANGS[@]})"
 	for lang in ${BSNG_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
-			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$BSNG_NUM] ${lang}"
+			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$BSNG_NUM]${WHITE} ${lang}"
 			local CUR_NUM=$(($CUR_NUM+1))
 		fi
 		msgmerge -q -o i18n/${lang}/bs-ng.po i18n/${lang}/bs-ng.po i18n/bs-ng.pot >/dev/null
 	done
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [02/02] Updating Wizard-po files (${WIZARD_LANGS[@]})."
+	echo -e "\t${WHITE}+ ${YELLOW}[02/02] Wizard .po files${CYAN} (${WIZARD_LANGS[@]})"
 	for lang in ${WIZARD_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
-			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$WIZARD_NUM] ${lang}"
+			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$WIZARD_NUM]${WHITE} ${lang}"
 			local CUR_NUM=$(($CUR_NUM+1))
 		fi
 		msgmerge -q -o i18n/${lang}/bs-ng-wizard.po i18n/${lang}/bs-ng-wizard.po \
@@ -45,10 +45,10 @@ update_po () {
 	done
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [02/02] Updating NX-po files (${NXRC_LANGS[@]})."
+	echo -e "\t${WHITE}+ ${YELLOW}[02/02]${WHITE} NX-RC .po files${CYAN} (${NXRC_LANGS[@]})"
 	for lang in ${NXRC_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
-			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$NXRC_NUM] ${lang}"
+			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$NXRC_NUM]${WHITE} ${lang}"
 			local CUR_NUM=$(($CUR_NUM+1))
 		fi
 		msgmerge -q -o i18n/${lang}/nx-rc.po i18n/${lang}/nx-rc.po i18n/nx-rc.pot >/dev/null
@@ -59,30 +59,30 @@ update_po () {
 generate_mo () {
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [02/03] Generating UI-mo files (${BSNG_LANGS[@]})."
+	echo -e "\t${WHITE}+ ${YELLOW}[02/03]${WHITE} UI .mo files${CYAN} (${BSNG_LANGS[@]})"
 	for lang in ${BSNG_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
-			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$BSNG_NUM] ${lang}"
+			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$BSNG_NUM]${WHITE} ${lang}"
 			local CUR_NUM=$(($CUR_NUM+1))
 		fi
 		msgfmt --output-file=i18n/${lang}/bs-ng.mo i18n/${lang}/bs-ng.po
 	done
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [02/03] Generating Wizard-mo files (${WIZARD_LANGS[@]})."
+	echo -e "\t${WHITE}+ ${YELLOW}[02/03]${WHITE} Wizard .mo files${CYAN} (${WIZARD_LANGS[@]})"
 	for lang in ${WIZARD_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
-			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$WIZARD_NUM] ${lang}"
+			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$WIZARD_NUM]${WHITE} ${lang}"
 			local CUR_NUM=$(($CUR_NUM+1))
 		fi
 		msgfmt --output-file=i18n/${lang}/bs-ng-wizard.mo i18n/${lang}/bs-ng-wizard.po
 	done
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [03/03] Generating NX-mo files (${NXRC_LANGS[@]})."
+	echo -e "\t${WHITE}+ ${YELLOW}[03/03]${WHITE} NX-RC .mo files${CYAN} (${NXRC_LANGS[@]})"
 	for lang in ${NXRC_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
-			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$NXRC_NUM] ${lang}"
+			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$NXRC_NUM]${WHITE} ${lang}"
 			local CUR_NUM=$(($CUR_NUM+1))
 		fi
 		msgfmt --output-file=i18n/${lang}/nx-rc.mo i18n/${lang}/nx-rc.po

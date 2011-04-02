@@ -19,7 +19,7 @@ inst ()
 	DEST=${1/*:}
 
 	if [[ $VERBOSE == "true" ]]; then
-		echo -e "${SMOOTHBLUE}\t[$2/$3] ${FILE}"
+		echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$2/$3]${WHITE} ${FILE}"
 	fi
 	install -m${MODE} ${FILE} ${DESTDIR}${DEST}
 
@@ -51,7 +51,7 @@ install_bsng () {
 		local CUR_NUM=1
 	fi
 
-	echo -e "${GREEN} [02/04] Installing data files."
+	echo -e "\t${WHITE}+ ${GREEN}[02/04]${WHITE} data files"
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
 	${PC_FILES[@]} ${ICON_FILES[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
@@ -69,7 +69,7 @@ install_bsng () {
 		local CUR_NUM=1
 	fi
 
-	echo -e "${GREEN} [03/04] Installing binary files."
+	echo -e "\t${WHITE}+ ${GREEN}[03/04]${WHITE} bin files"
 	for file in ${PROFILE_FILES[@]} ${BIN_FILES[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			inst bin "$file" $CUR_NUM $BIN_NUM
@@ -82,7 +82,7 @@ install_bsng () {
 
 remove_bsng () {
 
-	echo -e "${RED} [02/02] Removing all files."
+	echo -e "\t${WHITE}+ ${RED}[02/02]${WHITE} all files"
 	for file in ${REMOVE_FILES[@]}; do
 		uninst "$file"
 	done

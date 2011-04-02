@@ -10,7 +10,8 @@ register_schemas () {
 		;;
 
 		*remove )
-
+			GCONF_CONFIG_SOURCE=xml:merged:/etc/gconf/gconf.xml.defaults \
+				gconftool-2 --makefile-uninstall-rule data/bashstyle.schemas >/dev/null
 		;;
 
 	esac
@@ -32,18 +33,18 @@ gconfd_kill () {
 remove_old_wrappers () {
 
 	rm -f $DESTDIR/$PREFIX/share/bashstyle-ng/rc/bin/{rm,mv,cp,shred}
-
 }
 
 post_install () {
 
 	if [[ ! $DISABLE_POSTINSTALL ]]; then
 
-		echo -e "${MAGENTA} [04/04] Executing post-installation tasks."
+		echo -e "\t${WHITE}+ ${MAGENTA}[04/04]${WHITE} post-installation tasks"
 		register_schemas --install
 		update_cache
-		gconfd_kill
 		remove_old_wrappers
+		echo
+		gconfd_kill
 
 	fi
 
@@ -53,7 +54,7 @@ pre_remove () {
 
 	if [[ ! $DISABLE_POSTREMOVE ]]; then
 
-		echo -e "${MAGENTA} [01/02] Executing pre-removal tasks."
+		echo -e "${WHITE}+ ${MAGENTA}[01/02] pre-removal tasks"
 		register_schemas --remove
 
 	fi

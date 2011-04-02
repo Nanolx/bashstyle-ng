@@ -6,10 +6,10 @@ TERM_NUM=${#TERM_FILES[@]}
 generate_terminfo () {
 
 	local CUR_NUM=1
-	echo -e "${YELLOW} [01/03] Generating terminfo files (${TERM_FILES[@]})."
+	echo -e "\t${WHITE}+ ${YELLOW}[01/03]${WHITE} terminfos${CYAN} (${TERM_FILES[@]})"
 	for term in ${TERM_FILES[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
-			echo -e "${SMOOTHBLUE}\t[$CUR_NUM/$TERM_NUM] ${term}"
+			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$TERM_NUM]${WHITE} ${term}"
 			local CUR_NUM=$(($CUR_NUM+1))
 		fi
 		tic data/terminfo/${term}.terminfo -o data/terminfo/
