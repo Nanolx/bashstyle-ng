@@ -2,6 +2,7 @@
 
 export DH_VERBOSE = 1
 export DISABLE_POSTINSTALL = 1
+export DEB_CONFIGURE_EXTRA_FLAGS = "--maintainer"
 
 %:
 	dh $@
@@ -9,13 +10,3 @@ export DISABLE_POSTINSTALL = 1
 override_dh_auto_clean:
 	dh_testdir
 	-make clean
-
-override_dh_auto_configure:
-	dh_testdir
-	./configure --prefix=/usr --maintainer
-
-override_dh_install:
-	dh_testdir
-	dh_testroot
-	dh_installdirs
-	DESTDIR=$(CURDIR)/debian/bashstyle-ng/ make install
