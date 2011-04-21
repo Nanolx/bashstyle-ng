@@ -54,7 +54,7 @@ pre_remove () {
 
 	if [[ ! $DISABLE_POSTREMOVE ]]; then
 
-		echo -e "${WHITE}+  pre-removal tasks"
+		echo -e "\t${WHITE}+  pre-removal tasks"
 		register_schemas --remove
 
 	fi
