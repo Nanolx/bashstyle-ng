@@ -5,7 +5,3 @@ export DISABLE_POSTINSTALL = 1
 
 %:
 	dh $@
-
-override_dh_auto_clean:
-	dh_testdir
-	-make clean
