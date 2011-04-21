@@ -16,7 +16,7 @@ while [[ $xcount -lt $pcount ]]; do
 			MODE=MAINTAINER
 		;;
 
-		*prefix* )
+		--prefix* )
 			PREFIX="${1/*=}"
 		;;
 
