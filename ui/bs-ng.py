@@ -29,7 +29,7 @@ if FAILED:
 PREFIX = os.getenv('BSNG_UI_PREFIX')
 
 parser = optparse.OptionParser("bashstyle <option> [value]\
-				\n\nBashStyle-NG © 2007 - 2010 Christopher Bratusek\
+				\n\nBashStyle-NG © 2007 - 2011 Christopher Bratusek\
 				\nLicensed under the GNU GENERAL PUBLIC LICENSE v3")
 
 if sys.platform == 'linux2':
