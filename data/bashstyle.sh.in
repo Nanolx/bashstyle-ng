@@ -43,3 +43,7 @@ fi
 export CONFIG_SHELL="/bin/bash"
 
 export PATH="$PATH:."
+
+# envvar for nx-rc to know, whether this
+# file was actually sourced. XDM doesn't!
+export BSNG_PROFILED=1

@@ -212,6 +212,10 @@ if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eorange}${ERR_MSG}\n"
 fi
 
+if [[ ! BSNG_PROFILED ]]; then
+	. /etc/profile.d/bashstyle.sh
+fi
+
 bs-ng-wizard
 dbg_finalize
 unset BSNG_RUNNING
