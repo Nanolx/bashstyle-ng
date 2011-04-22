@@ -45,7 +45,7 @@ install_bsng () {
 	if [[ $VERBOSE == "true" ]]; then
 		DATA_NUM=0
 		for num in ${#DATA_FILES[@]} ${#LOCALE_FILES[@]} ${#DOC_FILES[@]} \
-		${#PC_FILES[@]} ${#ICON_FILES[@]}; do
+		${#PC_FILES[@]} ${#ICON_FILES[@]} ${PROFILE_FILES[@]}; do
 			DATA_NUM=$(($DATA_NUM+$num))
 		done
 		local CUR_NUM=1
@@ -53,7 +53,7 @@ install_bsng () {
 
 	echo -e "\t${WHITE}+ ${WHITE} data files"
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
-	${PC_FILES[@]} ${ICON_FILES[@]}; do
+	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			inst data "$file" $CUR_NUM $DATA_NUM
 			local CUR_NUM=$(($CUR_NUM+1))
@@ -63,14 +63,14 @@ install_bsng () {
 
 	if [[ $VERBOSE == "true" ]]; then
 		BIN_NUM=0
-		for num in ${#PROFILE_FILES[@]} ${#BIN_FILES[@]}; do
+		for num in ${#BIN_FILES[@]}; do
 			BIN_NUM=$(($BIN_NUM+$num))
 		done
 		local CUR_NUM=1
 	fi
 
 	echo -e "\t${WHITE}+ ${WHITE} bin files"
-	for file in ${PROFILE_FILES[@]} ${BIN_FILES[@]}; do
+	for file in ${BIN_FILES[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			inst bin "$file" $CUR_NUM $BIN_NUM
 			local CUR_NUM=$(($CUR_NUM+1))
