@@ -32,7 +32,7 @@ gconfd_kill () {
 
 remove_old_wrappers () {
 
-	rm -f $DESTDIR/$PREFIX/share/bashstyle-ng/rc/bin/{rm,mv,cp,shred}
+	rm -rf $DESTDIR/$PREFIX/share/bashstyle-ng/rc/bin/
 }
 
 post_install () {
