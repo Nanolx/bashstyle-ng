@@ -8,13 +8,12 @@
 #							#
 #########################################################
 
-WANT_DIRINFO_FLAGS="@DIRINFO_ENABLE@"
-
 if [[ $PATH != *games* && -d /usr/games/ ]]; then
 	PATH="$PATH:/usr/games/:/usr/local/games/"
 fi
 
-if [[ ! $WANT_DIRINFO_FLAGS == "false" ]]; then
+# substituted value from configure script
+if [[ @DIRINFO_ENABLE@ != "false" ]]; then
 
 	if [[ ! $CP_CMD ]]; then
 		export CP_CMD=$(which cp)
