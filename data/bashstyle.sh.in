@@ -8,22 +8,39 @@
 #							#
 #########################################################
 
-export WANT_DIRINFO_FLAGS="@DIRINFO_ENABLE@"
+WANT_DIRINFO_FLAGS="@DIRINFO_ENABLE@"
 
-export GAME_PATH="/usr/games:/usr/local/games"
-export OLD_PATH="$PATH"
-
-export PATH="$OLD_PATH:$GAME_PATH:."
+if [[ $PATH != *games* && -d /usr/games/ ]]; then
+	PATH="$PATH:/usr/games/:/usr/local/games/"
+fi
 
 if [[ ! $WANT_DIRINFO_FLAGS == "false" ]]; then
-	export CP_CMD=$(which cp)
-	export MV_CMD=$(which mv)
-	export RM_CMD=$(which rm)
-	export SH_CMD=$(which shred)
-	export SH_OPTS="-uvz"
-	export PATH="@PREFIX@/share/bashstyle-ng/bin/:$PATH"
+
+	if [[ ! $CP_CMD ]]; then
+		export CP_CMD=$(which cp)
+	fi
+
+	if [[ ! $MV_CMD ]]; then
+		export MV_CMD=$(which mv)
+	fi
+
+	if [[ ! $RM_CMD ]]; then
+		export RM_CMD=$(which rm)
+	fi
+
+	if [[ ! $SH_CMD ]]; then
+		export SH_CMD=$(which shred)
+		export SH_OPTS="-uvz"
+	fi
+
+	if [[ $PATH != *bashstyle-ng* ]]; then
+		PATH="@PREFIX@/share/bashstyle-ng/bin/:$PATH"
+	fi
+
 fi
 
 # work-around a bug in specific
 # autoconf versions (...)
 export CONFIG_SHELL="/bin/bash"
+
+export PATH
