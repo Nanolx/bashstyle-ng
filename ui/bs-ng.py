@@ -10,9 +10,11 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'sys', 'gtk', 'locale', 'gettext', 'gconf',
+MODULES = [ 'os', 'os.path', 'sys', 'gtk', 'locale', 'gettext', 'configobj',
             'shutil', 'ctypes', 'optparse', 'subprocess', 'undobuffer',
-            'commands', 'string' ]
+            'commands', 'string', 'gconf' ]
+
+# XXX Remove GConf dependency, when porting finished
 
 FAILED = []
 
@@ -27,6 +29,9 @@ if FAILED:
     sys.exit(1)
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')
+
+USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
+FACTORY_DEFAULTS = (PREFIX + '/share/bashstyle-ng/bs-ng.ini')
 
 parser = optparse.OptionParser("bashstyle <option> [value]\
 				\n\nBashStyle-NG © 2007 - 2011 Christopher Bratusek\
@@ -65,26 +70,18 @@ groups = {
 	  "advanced" : "2",
 	  "readline" : "3",
 	  "extra" : "4",
-	  "vim" : "6",
-	  "nano" : "7",
-	  "ls" : "8",
-	  "custom" : "9",
+	  "vim" : "5",
+	  "nano" : "6",
+	  "ls" : "7",
+	  "custom" : "8",
 	 }
 
 initial_page = groups[options.group]
 
-_ = gettext.gettext
-APP_NAME = "bs-ng"
-
-icon_theme = gtk.icon_theme_get_default()
-
-gtkbuilder = gtk.Builder()
-
+# XXX Remove
 gdb = gconf.client_get_default()
 gdb.add_dir ("/apps/bashstyle", gconf.CLIENT_PRELOAD_RECURSIVE)
 gbase = "/apps/bashstyle/"
-
-blacklist = ['\'', '\"']
 
 lockfile = os.path.expanduser("~/.bashstyle.lock")
 
@@ -133,6 +130,18 @@ class BashStyleNG(object):
 		####################### write the lockfile #########################################
 		write_lockfile()
 
+		####################### load configuration #########################################
+
+		if not os.access(USER_DEFAULTS, os.F_OK):
+			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
+
+		cfo = configobj.ConfigObj(USER_DEFAULTS)
+
+		####################### blacklist / gtkBuilder #####################################
+
+		blacklist = ['\'', '\"']
+		gtkbuilder = gtk.Builder()
+
 		####################### cd into $HOME ##############################################
 		os.chdir(os.getenv("HOME"))
 
@@ -146,13 +155,13 @@ class BashStyleNG(object):
 			langs += language.split(":")
 		langs += ["C", "de", "it", "ru", "es"]
 
-		gettext.bindtextdomain(APP_NAME)
-		gettext.textdomain(APP_NAME)
-		self.lang = gettext.translation(APP_NAME, languages=langs, fallback = True)
+		gettext.bindtextdomain("bs-ng")
+		gettext.textdomain("bs-ng")
+		self.lang = gettext.translation("bs-ng", languages=langs, fallback = True)
 		global _
 		_ = self.lang.gettext
 
-		gtkbuilder.set_translation_domain(APP_NAME)
+		gtkbuilder.set_translation_domain("bs-ng")
 		gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle7.ui")
 
 		self.use_bashstyle = gtkbuilder.get_object("use_bashstyle")
@@ -2306,6 +2315,8 @@ class BashStyleNG(object):
 		textcolumn.add_attribute(textcell, "text", 1)
 		textcolumn.set_attributes(textcell, markup=1)
 		treeview.append_column(textcolumn)
+
+		icon_theme = gtk.icon_theme_get_default()
 
 		image_style=icon_theme.load_icon( "bs-ng-style", 32, 0 )
 		liststore.append([image_style, _("<b>Style</b>")])
