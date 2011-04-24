@@ -47,7 +47,7 @@ parser.add_option("-p", "--prefix", dest="prefix",
 
 parser.add_option("-g", "--group", dest="group", default="style",
                   help="display a given group of options at startup, one of:\
-                  \nstyle, alias, advanced, readline, extra, profile, vim, nano, ls or custom")
+                  \nstyle, alias, advanced, readline, extra, vim, nano, ls or custom")
 
 (options, args) = parser.parse_args()
 
@@ -65,7 +65,6 @@ groups = {
 	  "advanced" : "2",
 	  "readline" : "3",
 	  "extra" : "4",
-	  "profile" : "5",
 	  "vim" : "6",
 	  "nano" : "7",
 	  "ls" : "8",
@@ -380,6 +379,8 @@ class BashStyleNG(object):
 			gdb.set_string(gbase + "prompt_style", prompt_styles[selection])
 
 		self.prompt_style.connect("changed", set_prompt_style)
+
+                ######################## emit blacklisted chars ##################################
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -1033,69 +1034,6 @@ class BashStyleNG(object):
 			gdb.set_bool(gbase + "shopt/dirspell", widget.get_active())
 
 		self.dirspell.connect("clicked", set_dirspell)
-
-		####################### Connect the Export Profile Button #########################
-
-		self.export_profile = gtkbuilder.get_object("export_profile")
-
-		def do_export_profile(widget, data=None):
-			subprocess.Popen("bs-ng-profiler --export", shell=True)
-
-		self.export_profile.connect("clicked", do_export_profile)
-
-		####################### Connect the Import Profile Button #########################
-
-		self.import_profile = gtkbuilder.get_object("import_profile")
-
-		def do_import_profile(widget, data=None):
-			subprocess.Popen("bs-ng-profiler --import " + widget.get_filename(), shell=True)
-
-		self.import_profile.connect("file-set", do_import_profile)
-
-		####################### Connect the Bashrc Button #################################
-
-		self.make_bashrc = gtkbuilder.get_object("make_bashrc")
-
-		def do_make_bashrc(widget, data=None):
-			subprocess.Popen("rcgenerator --bash", shell=True)
-
-		self.make_bashrc.connect("clicked", do_make_bashrc)
-
-		####################### Connect the Inputrc Button ################################
-
-		self.make_inputrc = gtkbuilder.get_object("make_inputrc")
-
-		def do_make_inputrc(widget, data=None):
-			subprocess.Popen("rcgenerator --readline", shell=True)
-
-		self.make_inputrc.connect("clicked", do_make_inputrc)
-
-		####################### Connect the Vimrc Button ##################################
-
-		self.make_vimrc = gtkbuilder.get_object("make_vimrc")
-
-		def do_make_vimrc(widget, data=None):
-			subprocess.Popen("rcgenerator --vim", shell=True)
-
-		self.make_vimrc.connect("clicked", do_make_vimrc)
-
-		####################### Connect the Nanorc Button #################################
-
-		self.make_nanorc = gtkbuilder.get_object("make_nanorc")
-
-		def do_make_nanorc(widget, data=None):
-			subprocess.Popen("rcgenerator --nano", shell=True)
-
-		self.make_nanorc.connect("clicked", do_make_nanorc)
-
-		####################### Connect the All RC Button ##################################
-
-		self.make_allrc = gtkbuilder.get_object("make_allrc")
-
-		def do_make_allrc(widget, data=None):
-			subprocess.Popen("rcgenerator --all", shell=True)
-
-		self.make_allrc.connect("clicked", do_make_allrc)
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -2384,9 +2322,6 @@ class BashStyleNG(object):
 		image_extra=icon_theme.load_icon( "bs-ng-extra", 32, 0 )
 		liststore.append([image_extra, _("<b>Extras</b>")])
 
-		image_profile=icon_theme.load_icon( "bs-ng-profile", 32, 0 )
-		liststore.append([image_profile, _("<b>Profiles</b>")])
-
 		image_vim=icon_theme.load_icon( "bs-ng-vim", 32, 0 )
 		liststore.append([image_vim, _("<b>VIM</b>")])
 
@@ -2411,11 +2346,11 @@ class BashStyleNG(object):
 		def treeview_action(widget, extra, data=None):
 			selection = treeview.get_selection()
 			position = int(selection.get_selected_rows()[1][0][0])
-			if position <= 9:
+			if position <= 8:
 				notebook.set_current_page(position)
-			elif position == 10:
+			elif position == 9:
 				subprocess.Popen("x-www-browser " + PREFIX + "/share/doc/bashstyle-ng/index.html", shell=True)
-			elif position == 11:
+			elif position == 10:
 				aboutdialog.show_all()
 				aboutdialog.connect("response", about_destroy, None)
 

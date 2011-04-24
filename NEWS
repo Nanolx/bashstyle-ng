@@ -1,5 +1,11 @@
 Overview of changes in v7.99 "Hardstyle Preacher"
 
+!! IMPORTANT NOTE #1 !!
+With this alpha-version the configuration-system was moved from
+GConf to ConfigObj. Meaning everything is now cleaner and easier.
+(profiler and rcgenerator no longer needed and removed). On the
+other hand, you'll have to completely re-adjust your settings.
+
 === Bug fixes ===
 * #128 (ui): fixed C-P-B showing no longer existent, respectively
              wrong themes (and theme-code) from the "Choose Style
@@ -8,6 +14,10 @@ Overview of changes in v7.99 "Hardstyle Preacher"
                     got the prefix wrong
 * #130 (profile): display-managers like XDM don't source /etc/profile.d/*,
                   so let nx-rc self-check, whether our profile was sourced
+
+=== Removed Features ===
+* bs-ng-profiler (no longer required)
+* rcgenerator (no longer required)
 
 === Misc changes ===
 * shifted around some paths
