@@ -28,7 +28,7 @@ _export ()
 
 	echo BashStyle-Profile > $PROFILE
 
-	for key in ${BASH_KEYS[@]} ${ALIAS_KEYS[@]} ${COLOR_KEY[@]} \
+	for key in ${BASH_KEYS[@]} ${ALIAS_KEYS[@]} ${COLOR_KEYS[@]} \
 		${DIRCOLOR_KEYS[@]} ${SEPARATOR_KEYS[@]} ${NANO_KEYS[@]} \
 		${READLINE_KEYS[@]} ${SHOPT_KEYS[@]} ${VIMKEYS[@]}; do
 		echo "$key="\"$(get_key $key)\" >> $PROFILE
@@ -51,7 +51,7 @@ _import ()
 		echo "This is not a profile" && exit 1; \
 	fi
 
-	for key in ${BASH_KEYS[@]} ${ALIAS_KEYS[@]} ${COLOR_KEY[@]} \
+	for key in ${BASH_KEYS[@]} ${ALIAS_KEYS[@]} ${COLOR_KEYS[@]} \
 		${DIRCOLOR_KEYS[@]} ${SEPARATOR_KEYS[@]} ${NANO_KEYS[@]} \
 		${READLINE_KEYS[@]} ${SHOPT_KEYS[@]} ${VIMKEYS[@]}; do
 		set_key $(gconftool-2 -T /apps/bashstyle/$key) $key \
