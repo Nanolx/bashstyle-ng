@@ -20,7 +20,8 @@ export BSNG_RUNNING="true"
 touch $HOME/.bashstyle.lock
 
 export BSNG_PREFIX=@PREFIX@
-export BSNG_RC_DIR=$BSNG_PREFIX/share/bashstyle-ng/rc/
+export BSNG_DATA_DIR=$BSNG_PREFIX/share/bashstyle-ng/
+export BSNG_RC_DIR=$BSNG_DATA_DIR/rc/
 export BSNG_BIN_DIR=$BSNG_RC_DIR/bin/
 export BSNG_LOCKFILE=$HOME/.bashstyle.lock
 export BSNG_VERSION=@VERSION@
