@@ -9,6 +9,35 @@
 #							#
 #########################################################
 
+ini_get ()
+{
+
+	sed -n "s/^${1} = \(.*$\)/\1/p" $HOME/.bs-ng.ini
+
+}
+
+ini_set ()
+{
+
+	SETTING=${1}
+	shift
+	VALUE=${@}
+
+	sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i $HOME/bs-ng.ini
+
+}
+
+ini_add ()
+{
+
+	SECTION=${1}
+	shift
+	VALUE=${@}
+
+	sed -e "/\[${SECTION}\]/ a ${VALUE}" $HOME/.bs-ng.ini
+
+}
+
 rc_add ()
 {
 
