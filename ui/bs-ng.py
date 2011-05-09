@@ -28,6 +28,7 @@ if FAILED:
 PREFIX = os.getenv('BSNG_UI_PREFIX')
 
 USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
+USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
 FACTORY_DEFAULTS = (PREFIX + '/share/bashstyle-ng/bs-ng.ini')
 
 parser = optparse.OptionParser("bashstyle <option> [value]\
@@ -76,6 +77,7 @@ groups = {
 initial_page = groups[options.group]
 
 lockfile = os.path.expanduser("~/.bashstyle.lock")
+app_ini_version = 2
 
 def check_lockfile():
 	####################### Check the lockfile ########################################
@@ -128,6 +130,17 @@ class BashStyleNG(object):
 			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
 
 		cfo = configobj.ConfigObj(USER_DEFAULTS)
+
+		if cfo.as_int("ini_version") < app_ini_version:
+			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
+			new = configobj.ConfigObj(USER_DEFAULTS_NEW)
+			old = configobj.ConfigObj(USER_DEFAULTS)
+			new.merge(old)
+			new["ini_version"] = app_ini_version
+			new.write()
+			shutil.move(USER_DEFAULTS_NEW, USER_DEFAULTS)
+
+		cfo.reload()
 
 		####################### blacklist / gtkBuilder #####################################
 
@@ -1041,10 +1054,10 @@ class BashStyleNG(object):
 		####################### Connect the Vim/Backup files Button #######################
 
 		self.vim_backup = gtkbuilder.get_object("vim_backup")
-		self.vim_backup.set_active(cfo["Vim"].as_bool("backup"))
+		self.vim_backup.set_active(cfo["Vim"].as_bool("vim_backup"))
 
 		def set_vim_backup(widget, data=None):
-			cfo["Vim"]["backup"] = widget.get_active()
+			cfo["Vim"]["vim_backup"] = widget.get_active()
 
 		self.vim_backup.connect("clicked", set_vim_backup)
 
@@ -1302,10 +1315,10 @@ class BashStyleNG(object):
 		####################### Connect the Nano/Backup Button ############################
 
 		self.nano_backup = gtkbuilder.get_object("nano_backup")
-		self.nano_backup.set_active(cfo["Nano"].as_bool("backup"))
+		self.nano_backup.set_active(cfo["Nano"].as_bool("nano_backup"))
 
 		def set_nano_backup(widget, data=None):
-			cfo["Nano"]["backup"] = widget.get_active()
+			cfo["Nano"]["nano_backup"] = widget.get_active()
 
 		self.nano_backup.connect("clicked", set_nano_backup)
 
