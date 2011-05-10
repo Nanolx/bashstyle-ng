@@ -8,31 +8,36 @@
 # Copyright 2007 - 2011 Christopher Bratusek		#
 #							#
 #########################################################
+
 . gettext.sh
 TEXTDOMAIN="bs-ng-wizard"
 
 source $BSNG_RC_DIR/internal/misc
 
-MODULES=( basic cdwriter git lscd reprepro svn user )
+MODULES=( ini basic cdwriter git lscd reprepro svn user )
 for mod in ${MODULES[@]}; do
 	source $BSNG_RC_DIR/wizard/$mod
 done
 
-CURRENT_WIZARD=2
+CURRENT_WIZARD=1
 
-export RC_FILE=$HOME/.bashstyle.wizard
+if [[ ! -e $HOME/.bs-ng-wizard.ini ]]; then
+	cp $BSNG_PREFIX/share/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
+	STAGE=INIT
+elif [[ $(wizard_get ini_version) < $CURRENT_WIZARD ]]; then
+	bs-ng-wizard.update
+	STAGE=UPDATE
+elif [[ $(wizard_get ini_version) == $CURRENT_WIZARD ]]; then
+	STAGE=KEEP
+fi
 
 if [[ $1 == *force ]]; then
-	STAGE=REBUILD
-elif [[ ! -e $RC_FILE ]]; then
+	cp $BSNG_PREFIX/share/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
 	STAGE=INIT
-elif [[ -e $RC_FILE ]]; then
-	LOCAL_WIZARD=$(grep -w WIZARD $RC_FILE | gawk -F'=' '{print $2}')
-	if [[ $LOCAL_WIZARD -lt $CURRENT_WIZARD ]]; then
-		STAGE=UPDATE
-	else 	STAGE=KEEP
-	fi
+	shift
 fi
+
+export RC_FILE=$HOME/.bashstyle.wizard
 
 case $STAGE in
 
@@ -40,48 +45,31 @@ case $STAGE in
 		CONF_MODULES=ALL
 	;;
 
-	REBUILD )
-		source $RC_FILE
-		rm $RC_FILE
-		rc_add "WIZARD=$CURRENT_WIZARD"
-		CONF_MODULES=ALL
-	;;
-
 	UPDATE )
-		CONF_MODULES=$((LOCAL_WIZARD+1))
+		CONF_MODULES=$(seq $(($(wizard_get ini_version)+1)) $CURRENT_WIZARD)
 	;;
 
 	KEEP )
-		if [[ ! $1 == "--silent" ]]; then
-			echo "You have already run the wizard."
-		fi
 		exit 0
 	;;
 
 esac
 
-case $CONF_MODULES in
+for mod in $CONF_MODULES ; do
+	case $mod in
 
-	ALL )
-		wizard_start
-		wizard_base_one
-		wizard_lscd_one
-		wizard_cdwriter_one
-		wizard_git_base_one
-		wizard_git_accounts_one
-		wizard_svn_accounts_one
-		wizard_reprepro_one
-		wizard_user_two
-		wizard_end
-	;;
+		ALL )
+			wizard_start
+			wizard_base
+			wizard_lscd
+			wizard_cdwriter
+			wizard_git_base
+			wizard_git_accounts
+			wizard_svn_accounts
+			wizard_reprepro
+			wizard_user
+			wizard_end
+		;;
 
-	2 )
-		sed -e '/WIZARD.*/WIZARD=2/g' -i $HOME/.bashstyle.wizard
-		wizard_start
-		wizard_user_two
-		wizard_end
-	;;
-
-# 3 isn't where yet
-
-esac
+	esac
+done

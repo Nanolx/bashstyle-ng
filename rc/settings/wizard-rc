@@ -1,0 +1,84 @@
+#!/bin/bash
+
+source $BSNG_RC_DIR/wizard/ini
+
+export debug_verbose=$(wizard_get debug_verbose)
+
+if [[ $(wizard_get restore_directory) == True ]]; then
+	dbg_log trap 'printf %s "$PWD" > $HOME/.lastpwd' EXIT
+	if [[ -e $HOME/.lastpwd && -d "$(cat $HOME/.lastpwd)" ]]; then 
+		dbg_log cd "$(cat $HOME/.lastpwd)"
+	fi
+fi
+
+if [[ $(wizard_get use_lscd) == True ]]; then
+	alias cd=lscd
+	export LSCD_OPTS=$(wizard_get lscd_opts)
+	if [[ $(ini_get enable_colors) != True ]]; then
+		LSCD_OPTS+=" --color=no"
+	fi
+fi
+
+if [[ $(wizard_get color_shell) == True ]]; then
+	source $BSNG_RC_DIR/functions/colorshell
+fi
+
+export CD_WRITER=$(wizard_get cd_writer)
+
+if [[ $(wizard_get dd_noerror) == True ]]; then
+	export DD_OPTS="conv=noerror"
+fi
+
+if [[ $(wizard_get git_user_name) != "" ]]; then
+	git config --global user.name "$(wizard_get git_user_name)"
+fi
+
+if [[ $(wizard_get git_user_mail) != "" ]]; then
+	git config --global user.email "$(wizard_get git_user_mail)"
+fi
+
+if [[ $(wizard_get git_singkey) != "" ]]; then
+	git config --global user.signingkey "$(wizard_get git_signkey)"
+fi
+
+COLOR_OPTS=( branch diff interactive pager status )
+
+if [[ $(wizard_get git_color) == True ]]; then
+	for opt in ${COLOR_OPTS[@]}; do
+		git config --global color.$opt true
+	done
+else 	for opt in ${COLOR_OPTS[@]}; do
+		git config --global color.$opt false
+	done
+fi
+
+if [[ $(wizard_get git_editor) != "" ]]; then
+	git config --global core.editor "$(wizard_get git_editor)"
+fi
+
+if [[ $(wizard_get git_aliases) == True ]]; then
+	git config --global alias.co checkout
+	git config --global alias.up pull
+	git config --global alias.re "reset --hard HEAD"
+	git config --global alias.ma "checkout master"
+	git config --global alias.who "shortlog -s --"
+else	git config --global --unset alias.co
+	git config --global --unset alias.up
+	git config --global --unset alias.re
+	git config --global --unset alias.ma
+	git config --global --unset.who
+fi
+
+export GIT_USER_GNOME=$(wizard_get gnome_vcs_user)
+export GIT_USER_XFCE=$(wizard_get xfce_vcs_user)
+export SVN_USER_KDE=$(wizard_get kde_vcs_user)
+export SVN_USER_ENLIGHTENMENT=$(wizard_get e_vcs_user)
+
+export REPO_HOME=$(wizard_get repo_home)
+export REPO_DIST=$(wizard_get repo_dist)
+
+export USER_REAL_NAME=$(wizard_get user_real_name)
+export USER_BIRTHDAY=$(wizard_get user_birthday)
+export USER_LOCATION=$(wizard_get user_location)
+export USER_MAIL=$(wizard_get user_mail)
+export USER_LEVEL=$(wizard_get user_level)

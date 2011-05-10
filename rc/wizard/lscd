@@ -9,21 +9,22 @@
 #							#
 #########################################################
 
-wizard_lscd_one ()
+wizard_lscd ()
 {
 	whiptail --title $"Use lscd" --yesno $"lscd is a replacement for cd, which immediately displays
 the content of the directory gone into. Also it displays .dirinfo information if available \
 Do you want to use lscd rather than cd by default?" 12 85
 
 	if [[ $? == "0" ]]; then
-		rc_add alias cd=lscd
+		wizard_set use_lscd True
+	else	wizard_set use_lscd False
 	fi
 
 	whiptail --title $"lscd options" --yesno $"Regardless of your previous choise you may give lscd some extra ls options." 12 85
 
 	if [[ $? == "0" ]]; then
-		xlscdopts=$(whiptail --title "Set LSCD_OPTS" --inputbox "Enter desired lscd options:" 12 85 "$LSCD_OPTS" 3>&1 1>&2 2>&3)
-		rc_add export LSCD_OPTS=\" $xlscdopts\"
+		xlscdopts=$(whiptail --title "Set LSCD_OPTS" --inputbox "Enter desired lscd options:" 12 85 "$(wizard_get lscd_opts)" 3>&1 1>&2 2>&3)
+		wizard_set lscd_opts $xlscdopts
 	fi
 
 }

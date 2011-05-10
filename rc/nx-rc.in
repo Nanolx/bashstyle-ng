@@ -8,14 +8,13 @@
 # Copyright 2007 - 2011 Christopher Bratusek		#
 #							#
 #########################################################
+
 . gettext.sh
 TEXTDOMAIN="nx-rc"
 
 if [[ $0 == *gdm* || $0 == *kdm* ]]; then
 	dbg_msg $"BashStyle-NG: Started from GDM -- exiting"
 else
-
-touch $HOME/.bashstyle.lock
 
 export BSNG_PREFIX=@PREFIX@
 export BSNG_DATA_DIR=$BSNG_PREFIX/share/bashstyle-ng/
@@ -27,7 +26,7 @@ export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
 
 ERR_MSG=""
 
-BSNG_INTERN=( internal/misc internal/gconf internal/logging )
+BSNG_INTERN=( wizard/ini internal/misc internal/logging )
 BSNG_FUNCS=( functions/admin functions/conversion functions/infos
              functions/media functions/misc functions/random
 	     functions/utils functions/versioning )
@@ -56,6 +55,11 @@ dbg_log alias reload="source ~/.bashrc"
 
 dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
 dbg_log alias rd="pwd -P"
+
+bs-ng-wizard
+
+dbg_msg $"BashStyle-NG Loading:" $"BSNG Wizard Settings"
+dbg_log source $BSNG_RC_DIR/settings/wizard-rc
 
 if [[ $(ini_get use_readlinecfg) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
@@ -102,14 +106,6 @@ dbg_log source $BSNG_RC_DIR/settings/shopt-rc
 
 shopt -s checkwinsize
 
-if [[ -e $HOME/.bashstyle.wizard ]]; then \
-	dbg_msg $"BashStyle-NG Loading:" $"Fist-Run-Wizard Settings"
-	dbg_log source $HOME/.bashstyle.wizard
-	if [[ $enabcol != "True" ]]; then
-		LSCD_OPTS+=" --color=no"
-	fi
-fi
-
 if [[ -e $HOME/.bashstyle.custom ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
 	dbg_log source $HOME/.bashstyle.custom
@@ -140,11 +136,6 @@ PS2="$pscolor $ps234char$fontcolor "
 PS3="$pscolor $ps234char$ps234char$fontcolor "
 PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
-if [[ $(ini_get use_color_shell) == "True" && $enabcol == "True" ]]; then
-	dbg_msg $"BashStyle-NG Starting:" $"ColorShell"
-	dbg_log source $BSNG_RC_DIR/functions/colorshell
-fi
-
 if [[ $(ini_get tab_rotation) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"On"
 	dbg_log bind 'TAB:menu-complete'
@@ -153,13 +144,6 @@ else	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"Off"
 fi
 
 WelcomeMessage=$(ini_get welcome_message)
-
-if [[ $(ini_get restore_directory) == "True" ]]; then \
-	dbg_log trap 'printf %s "$PWD" > $HOME/.lastpwd' EXIT
-	if [[ -e $HOME/.lastpwd && -d "$(cat $HOME/.lastpwd)" ]]; then \
-		dbg_log cd "$(cat $HOME/.lastpwd)"
-	fi
-fi
 
 if [[ -e $HOME/.bookmarks ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"Bookmarks"
@@ -182,8 +166,6 @@ fi
 if [[ ! $BSNG_PROFILED ]]; then
 	. /etc/profile.d/bashstyle.sh
 fi
-
-bs-ng-wizard --silent
 
 dbg_finalize
 

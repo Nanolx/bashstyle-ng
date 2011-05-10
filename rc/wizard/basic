@@ -18,32 +18,35 @@ of BashStyle-NG to be able to make use of all shipped functions." 12 85
 
 wizard_end ()
 {
-whiptail --title $"BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox $"You just finished generating your configuration.
+	whiptail --title $"BashStyle-NG $BSNG_VERSION First-Run-Wizard" --msgbox $"You just finished generating your configuration.
 You can find it in $HOME/.bashstyle.wizard. You may re-run this wizard via bs-ng-wizard --force. \
 To see a list of usefull tips for the bash, run bashtips." 12 85
 
 }
 
 
-wizard_base_one ()
+wizard_base ()
 {
 
 	whiptail --title $"verbosity" --yesno $"Do you want to disable the text flying by, when starting bash?" 12 85
 
 	if [[ $? == "0" ]]; then
-		gconftool-2 -t bool -s /apps/bashstyle/debug_verbose false
+		wizard_set debug_verbose False
+	else	wizard_set debug_verbose True
 	fi
 
 	whiptail --title $"restore" --yesno $"Do you want to restore the last working directory when starting bash?" 12 85
 
 	if [[ $? == "0" ]]; then
-		gconftool-2 -t bool -s /apps/bashstyle/restorepwd true
+		wizard_set restore_directory True
+	else	wizard_set restore_directory False
 	fi
 
 	whiptail --title $"colorshell" --yesno $"Do you want to use colorshell (different text color after each command)?" 12 85
 
 	if [[ $? == "0" ]]; then
-		gconftool-2 -t bool -s /apps/bashstyle/color/shell true
+		wizard_set color_shell True
+	else	wizard_set color_shell False
 	fi
 
 }
