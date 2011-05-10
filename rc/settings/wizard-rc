@@ -19,10 +19,6 @@ if [[ $(wizard_get use_lscd) == True ]]; then
 	fi
 fi
 
-if [[ $(wizard_get color_shell) == True ]]; then
-	source $BSNG_RC_DIR/functions/colorshell
-fi
-
 export CD_WRITER=$(wizard_get cd_writer)
 
 if [[ $(wizard_get dd_noerror) == True ]]; then

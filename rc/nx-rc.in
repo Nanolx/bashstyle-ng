@@ -136,6 +136,10 @@ PS2="$pscolor $ps234char$fontcolor "
 PS3="$pscolor $ps234char$ps234char$fontcolor "
 PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
+if [[ $(wizard_get color_shell) == True ]]; then
+	. $BSNG_RC_DIR/functions/colorshell
+fi
+
 if [[ $(ini_get tab_rotation) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"On"
 	dbg_log bind 'TAB:menu-complete'
