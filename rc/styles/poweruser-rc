@@ -39,7 +39,7 @@ else
 fi
 unset devicetemp
 
-if [[ $enabcol == true ]]; then
+if [[ $enabcol == "True" ]]; then
   PRE_PROMPT_COMMAND
 fi
 
@@ -47,7 +47,7 @@ fi
 
 PROMPT_COMMAND=prompt_command
 
-if [[ $enabcol == true ]]; then
+if [[ $enabcol == "True" ]]; then
 
 PS1="\n\
 $sepacolor[ $timecolor\$(date +%T) $fontcolor-$datecolor \$(date +%D) $sepacolor]\

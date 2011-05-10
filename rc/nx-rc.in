@@ -15,8 +15,6 @@ if [[ $0 == *gdm* || $0 == *kdm* ]]; then
 	dbg_msg $"BashStyle-NG: Started from GDM -- exiting"
 else
 
-export BSNG_RUNNING="true"
-
 touch $HOME/.bashstyle.lock
 
 export BSNG_PREFIX=@PREFIX@
@@ -37,32 +35,6 @@ BSNG_FUNCS=( functions/admin functions/conversion functions/infos
 for RC in ${BSNG_INTERN[@]} ${BSNG_FUNCS[@]}; do
 	source $BSNG_RC_DIR/$RC
 done
-
-if [[ $verbose != true ]]; then
-
-	spin(){
-
-		until [ ! -e $HOME/.bashstyle.lock ]
-		do
-			echo -ne "l      \b\b\b\b\b\b\b";sleep .08;
-			echo -ne "lo     \b\b\b\b\b\b\b";sleep .08;
-			echo -ne "loa    \b\b\b\b\b\b\b";sleep .08;
-			echo -ne "load   \b\b\b\b\b\b\b";sleep .08;
-			echo -ne "loadi  \b\b\b\b\b\b\b";sleep .08;
-			echo -ne "loadin \b\b\b\b\b\b\b";sleep .08;
-			echo -ne "loading\b\b\b\b\b\b\b";sleep .08;
-			echo -ne " oading\b\b\b\b\b\b\b";sleep .08;
-			echo -ne "  ading\b\b\b\b\b\b\b";sleep .08;
-			echo -ne "   ding\b\b\b\b\b\b\b";sleep .08;
-			echo -ne "    ing\b\b\b\b\b\b\b";sleep .08;
-			echo -ne "     ng\b\b\b\b\b\b\b";sleep .08;
-			echo -ne "      g\b\b\b\b\b\b\b";sleep .08;
-		done
-
-	}
-
-	spin & 2>&1>/dev/null
-fi
 
 export BSNG_LOGFILE=$HOME/.bashstyle.log
 dbg_log rm -f $BSNG_LOGFILE
@@ -85,42 +57,42 @@ dbg_log alias reload="source ~/.bashrc"
 dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
 dbg_log alias rd="pwd -P"
 
-if [[ $(get_key readline/use_readlinecfg) == true ]]; then \
+if [[ $(ini_get use_readlinecfg) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
 	dbg_log source $BSNG_RC_DIR/settings/readline-rc
 fi
 
-if [[ $(get_key vim/use_vimcfg) == true ]]; then \
+if [[ $(ini_get use_vimcfg) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"VimCFG"
 	dbg_log source $BSNG_RC_DIR/settings/vim-rc
 fi
 
-if [[ $(get_key nano/use_nanocfg) == true ]]; then \
+if [[ $(ini_get use_nanocfg) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"NanoCFG"
 	dbg_log source $BSNG_RC_DIR/settings/nano-rc
 fi
 
-if [[ $(get_key use_bashstyle) == false ]]; then \
+if [[ $(ini_get use_bashstyle) == False ]]; then \
 	dbg_msg $"BashStyle-NG: Exiting"
 else
 	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
 fi
 
-if [[ $(get_key color/enable) == true ]]; then \
+if [[ $(ini_get enable_colors) == "True" ]]; then \
 	dbg_log source $BSNG_RC_DIR/settings/color-rc
 fi
 
-if [[ $(get_key dircolors/enable) == true ]]; then \
+if [[ $(ini_get use_lscolors) == "True" && $(ini_get enable_colors) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"LSCOLORS"
 	dbg_log source $BSNG_RC_DIR/settings/ls-rc
 fi
 
 dbg_log source $BSNG_RC_DIR/settings/alias-rc
 
-dbg_msg $"BashStyle-NG Setting:" $"ps2 ps3 ps4 char" $(get_key ps234)
-ps234char=$(get_key ps234)
+dbg_msg $"BashStyle-NG Setting:" $"ps2 ps3 ps4 char" $(ini_get ps234)
+ps234char=$(ini_get ps234)
 
-if [[ $(get_key colored_man) == true ]]; then \
+if [[ $(ini_get colored_man) == "True" ]]; then \
 	dbg_log source $BSNG_RC_DIR/settings/man-rc
 fi
 
@@ -133,7 +105,7 @@ shopt -s checkwinsize
 if [[ -e $HOME/.bashstyle.wizard ]]; then \
 	dbg_msg $"BashStyle-NG Loading:" $"Fist-Run-Wizard Settings"
 	dbg_log source $HOME/.bashstyle.wizard
-	if [[ $enabcol != true ]]; then
+	if [[ $enabcol != "True" ]]; then
 		LSCD_OPTS+=" --color=no"
 	fi
 fi
@@ -143,16 +115,16 @@ if [[ -e $HOME/.bashstyle.custom ]]; then \
 	dbg_log source $HOME/.bashstyle.custom
 fi
 
-if [[ $(get_key random_style) == true ]]; then \
+if [[ $(ini_get random_style) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Style Random"
 	dbg_log source $BSNG_RC_DIR/settings/random-rc
 else
-	pstyle=$(get_key prompt_style)
+	pstyle=$(ini_get prompt_style)
 fi
 
-use_custom_prompt=$(get_key use_custom_prompt)
+use_custom_prompt=$(ini_get use_custom_prompt)
 
-if [[ $use_custom_prompt == true ]]; then \
+if [[ $use_custom_prompt == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Style Custom"
 	dbg_log source $BSNG_RC_DIR/styles/custom-rc
 elif [[ -e $BSNG_RC_DIR/styles/${pstyle}-rc ]]; then
@@ -168,21 +140,21 @@ PS2="$pscolor $ps234char$fontcolor "
 PS3="$pscolor $ps234char$ps234char$fontcolor "
 PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
-if [[ $(get_key color/shell) == true && $enabcol == true ]]; then
+if [[ $(ini_get use_color_shell) == "True" && $enabcol == "True" ]]; then
 	dbg_msg $"BashStyle-NG Starting:" $"ColorShell"
 	dbg_log source $BSNG_RC_DIR/functions/colorshell
 fi
 
-if [[ $(get_key tabrotate) == true ]]; then \
+if [[ $(ini_get tab_rotation) == "True" ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"On"
 	dbg_log bind 'TAB:menu-complete'
 	dbg_log complete -d -X '.[a-zA-Z0-9]*' cd
 else	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"Off"
 fi
 
-WelcomeMessage=$(get_key welcome_message)
+WelcomeMessage=$(ini_get welcome_message)
 
-if [[ $(get_key restorepwd) == true ]]; then \
+if [[ $(ini_get restore_directory) == "True" ]]; then \
 	dbg_log trap 'printf %s "$PWD" > $HOME/.lastpwd' EXIT
 	if [[ -e $HOME/.lastpwd && -d "$(cat $HOME/.lastpwd)" ]]; then \
 		dbg_log cd "$(cat $HOME/.lastpwd)"
@@ -193,12 +165,6 @@ if [[ -e $HOME/.bookmarks ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"Bookmarks"
 	dbg_log . $HOME/.bookmarks
 else	touch $HOME/.bookmarks
-fi
-
-rm $HOME/.bashstyle.lock
-
-if [[ $verbose != true ]]; then
-	sleep 1.5
 fi
 
 if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
@@ -213,12 +179,12 @@ if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eorange}${ERR_MSG}\n"
 fi
 
-if [[ ! BSNG_PROFILED ]]; then
+if [[ ! $BSNG_PROFILED ]]; then
 	. /etc/profile.d/bashstyle.sh
 fi
 
-bs-ng-wizard
+bs-ng-wizard --silent
+
 dbg_finalize
-unset BSNG_RUNNING
 
 fi

@@ -10,15 +10,13 @@
 #########################################################
 
 
-enabcol=$(get_key color/enable)
-
-if [[ $enabcol == true ]]; then
+enabcol=True
 
 dbg_msg $"BashStyle-NG Setting:" $"Colors" $"On"
 
-dbg_msg $"BashStyle-NG Setting:" $"Color-Style" $(get_key color/style)
+dbg_msg $"BashStyle-NG Setting:" $"Color-Style" $(ini_get color_style)
 
-colstyle=$(get_key color/style)
+colstyle=$(ini_get color_style)
 
 if [[ $colstyle == bright ]]; then \
 	style="01"
@@ -126,17 +124,14 @@ else
 
 fi
 
-eval usercolor=$(get_key color/user)
-eval hostcolor=$(get_key color/host)
-eval datecolor=$(get_key color/date)
-eval timecolor=$(get_key color/time)
-eval wdircolor=$(get_key color/wdir)
-eval fontcolor=$(get_key color/font)
-eval sepacolor=$(get_key color/separatorc)
-eval upcolor=$(get_key color/uptime)
-eval pscolor=$(get_key color/ps234c)
+eval usercolor=$(ini_get color_user)
+eval hostcolor=$(ini_get color_host)
+eval datecolor=$(ini_get color_date)
+eval timecolor=$(ini_get color_time)
+eval wdircolor=$(ini_get color_wdir)
+eval fontcolor=$(ini_get color_font)
+eval sepacolor=$(ini_get color_separator)
+eval upcolor=$(ini_get color_uptime)
+eval pscolor=$(ini_get color_ps234c)
 
 dbg_log export enabcol black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream eblack ered egreen eyellow eblue emagenta ecyan ewhite ecoldblue esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher eorange epurple epink ecream
-
-else	dbg_msg $"BashStyle-NG Setting:" $"Colors" $"Off"
-fi

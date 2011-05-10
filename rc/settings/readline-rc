@@ -13,21 +13,19 @@ if [[ -e $HOME/.inputrc && ( ! -w $HOME/.inputrc || ! -r $HOME/.inputrc ) ]]; th
 	ERR_MSG+="\n * $HOME/.inputrc is not accessible! -- adjust permissions."
 else
 
-if [[ ! $BSNG_RC_GEN ]]; then
-	export RC_FILE=$HOME/.inputrc.$(date +%I-%M-%S)
-fi
+export RC_FILE=$HOME/.inputrc.$(date +%I-%M-%S)
 
-dbg_msg $"ReadlineCFG Setting:" $"Bellstyle" $(get_key readline/bellstyle)
+dbg_msg $"ReadlineCFG Setting:" $"Bellstyle" $(ini_get bellstyle)
 
-if [[ $(get_key readline/bellstyle) == audible ]]; then
+if [[ $(ini_get bellstyle) == audible ]]; then
 	rc_add "set bell-style audible"
-elif [[ $(get_key readline/bellstyle) == visible ]]; then
+elif [[ $(ini_get bellstyle) == visible ]]; then
 	rc_add "set bell-style visible"
-elif [[ $(get_key readline/bellstyle) == none ]]; then
+elif [[ $(ini_get bellstyle) == none ]]; then
 	rc_add "set bell-style none"
 fi
 
-if [[ $(get_key readline/completion) == true ]]; then
+if [[ $(ini_get completion) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"Off"
 	rc_add "set disable-completion off"
 else
@@ -35,7 +33,7 @@ else
 	rc_add "set disable-completion on"
 fi
 
-if [[ $(get_key readline/scrollhz) == true ]]; then
+if [[ $(ini_get scroll_horizontal) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"On"
 	rc_add "set horizontal-scroll-mode on"
 else
@@ -43,7 +41,7 @@ else
 	rc_add "set horizontal-scroll-mode off"
 fi
 
-if [[ $(get_key readline/ambiguous) == true ]]; then
+if [[ $(ini_get ambiguous_show) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"On"
 	rc_add "set show-all-if-ambiguous on"
 else
@@ -51,7 +49,7 @@ else
 	rc_add "set show-all-if-ambiguous off"
 fi
 
-if [[ $(get_key readline/hidden) == true ]]; then
+if [[ $(ini_get complete_hidden) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"On"
 	rc_add "set match-hidden-files on"
 else
@@ -59,7 +57,7 @@ else
 	rc_add "set match-hidden-files off"
 fi
 
-if [[ $(get_key readline/ignorecase) == true ]]; then
+if [[ $(ini_get ignore_case) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"On"
 	rc_add "set completition-ignore-case on"
 else
@@ -67,7 +65,7 @@ else
 	rc_add "set completition-ignore-case off"
 fi
 
-if [[ $(get_key readline/editing_mode) == emacs ]]; then
+if [[ $(ini_get editing_mode) == emacs ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Emacs"
 	rc_add "set editing-mode emacs"
 else
@@ -75,7 +73,7 @@ else
 	rc_add "set editing-mode vi"
 fi
 
-if [[ $(get_key readline/vstats) == true ]]; then
+if [[ $(ini_get visible_stats) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"On"
 	rc_add "set visible-stats on"
 else
@@ -83,7 +81,7 @@ else
 	rc_add "set visible-stats off"
 fi
 
-if [[ $(get_key readline/completionhz) == true ]]; then
+if [[ $(ini_get complete_horizontal) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"On"
 	rc_add "set print-completions-horizontally on"
 else
@@ -91,7 +89,7 @@ else
 	rc_add "set print-completions-horizontally off"
 fi
 
-if [[ $(get_key readline/mark_dirs) == true ]]; then
+if [[ $(ini_get mark_directories) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"On"
 	rc_add "set mark-directories on"
 else
@@ -99,7 +97,7 @@ else
 	rc_add "set mark-directories off"
 fi
 
-if [[ $(get_key readline/mark_sym_dirs) == true ]]; then
+if [[ $(ini_get mark_symbolic_directories) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"On"
 	rc_add "set mark-symlinked-directories on"
 else
@@ -107,7 +105,7 @@ else
 	rc_add "set mark-symlinked-directories off"
 fi
 
-if [[ $(get_key readline/mark_modlines) == true ]]; then
+if [[ $(ini_get mark_modified) == True ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"On"
 	rc_add "set mark-modified-lines on"
 else
@@ -115,14 +113,12 @@ else
 	rc_add "set mark-modified-lines off"
 fi
 
-dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(get_key readline/query_item)
-rc_add "set completion-query-items $(get_key readline/query_item)"
-
-if [[ ! $BSNG_RC_GEN ]]; then
-	mv $RC_FILE $HOME/.inputrc
-	unset RC_FILE
-fi
+dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(ini_get query_items)
+rc_add "set completion-query-items $(ini_get query_items)"
 
 dbg_msg $"ReadlineCFG Loading:" $"BashStyle-NG"
+
+mv $RC_FILE $HOME/.inputrc
+unset RC_FILE
 
 fi

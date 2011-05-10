@@ -128,7 +128,7 @@ show_system_load () {
 	tmp=$(echo $load*100 | bc)
 	load100=${tmp%.*}
 
-	if [[ $enabcol == true ]]; then
+	if [[ $enabcol == "True" ]]; then
 		if [[ ${load100} -lt 35 ]]; then
 			loadcolor=${eblue}
 		elif [[ ${load100} -ge 35 ]] && [[ ${load100} -lt 120 ]]; then
@@ -360,7 +360,7 @@ show_cpu_load ()
 				prepend=0
 			fi
 
-			if [[ $enabcol == true ]]; then
+			if [[ $enabcol == "True" ]]; then
 				echo -e "$color$prepend$cpu"
 			else	echo $prepend$cpu
 			fi

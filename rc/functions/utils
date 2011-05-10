@@ -36,9 +36,9 @@ trunc_pwd ()
 
 		* )
 
-			pwdmaxlen=$(get_key pwdmaxlength)
-			trunc_symbol=$(get_key pwdchar)
-			dirchar=$(get_key dirchar)
+			pwdmaxlen=$(ini_get pwdlength)
+			trunc_symbol=$(ini_get pwdcut)
+			dirchar=$(ini_get directory_indicator)
 
 			newsepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 			newwdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
@@ -46,16 +46,16 @@ trunc_pwd ()
 
 			if [ ${#PWD} -gt $pwdmaxlen ]; then
 				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
-				if [[ $pstyle_supported == true ]]; then
+				if [[ $pstyle_supported == "True" ]]; then
 					xPWD="$newpscoloror${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
 				else	xPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
 				fi
-				if [[ $enabcol == true && $pstyle_supported == true ]]; then
+				if [[ $enabcol == "True" && $pstyle_supported == "True" ]]; then
 					newPWD="${xPWD//\//$newsepacolor$dirchar$newwdircolor}"
 				else	newPWD="${xPWD//\//$dirchar}"
 				fi
 			else
-				if [[ $enabcol == true && $pstyle_supported == true ]]; then
+				if [[ $enabcol == "True" && $pstyle_supported == "True" ]]; then
 				newPWD="${PWD//\//$newsepacolor$dirchar$newwdircolor}"
 			else	newPWD="${PWD//\//$dirchar}"
 			fi

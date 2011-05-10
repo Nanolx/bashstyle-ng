@@ -12,7 +12,7 @@
 ini_get ()
 {
 
-	sed -n "s/^${1} = \(.*$\)/\1/p" $HOME/.bs-ng.ini
+	sed -n "s/^${1} = \(.*$\)/\1/p" $HOME/.bs-ng.ini | sed -e 's/\"//g'
 
 }
 

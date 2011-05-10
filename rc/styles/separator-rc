@@ -9,59 +9,59 @@
 #							#
 #########################################################
 
-enabup=$(get_key separator/uptimes)
+enabup=$(ini_get uptimes)
 
-enabsize=$(get_key separator/file_size)
+enabsize=$(ini_get file_size)
 
-enablf=$(get_key separator/files_amount)
+enablf=$(ini_get files_amount)
 
-enabtty=$(get_key separator/tty)
+enabtty=$(ini_get tty)
 
-enabmem=$(get_key separator/mem)
+enabmem=$(ini_get mem)
 
-enabload=$(get_key separator/load)
+enabload=$(ini_get load)
 
-enabproc=$(get_key separator/processes)
+enabproc=$(ini_get processes)
 
-enabbatt=$(get_key separator/battery_load)
+enabbatt=$(ini_get battery_load)
 
-sepa=$(get_key separator/separator)
+sepa=$(ini_get separator)
 
-export pstyle_supported=true
+export pstyle_supported="True"
 
-if [[ $enabcol == true ]]; then \
+if [[ $enabcol == "True" ]]; then \
 
 	PS1="\n$usercolor\u$fontcolor @$hostcolor \h$sepacolor $sepa $datecolor\d$sepacolor $sepa $timecolor\t$sepacolor $sepa $wdircolor\$(trunc_pwd)"
 
-	if [[ $enablf == true ]]; then
+	if [[ $enablf == "True" ]]; then
 		PS1+=" files: \$(count_files -f)"
 	fi
 
-	if [[ $enablf == true && $enabsize == true ]]; then
+	if [[ $enablf == "True" && $enabsize == "True" ]]; then
 		PS1+="$sepacolor /"
 	fi
 
-	if [[ $enabsize == true ]]; then
+	if [[ $enabsize == "True" ]]; then
 		PS1+="$wdircolor size: \$(show_size)"
 	fi
 
-	if [[ $enabtty == true ]]; then
+	if [[ $enabtty == "True" ]]; then
 		PS1+=" $sepacolor$sepa$hostcolor tty: \$(show_tty)"
 	fi
 
-	if [[ $enabup == true ]]; then
+	if [[ $enabup == "True" ]]; then
 		PS1+=" $sepacolor$sepa$upcolor uptime: \$(show_uptime)"
 	fi
 
-	if [[ $enabload == true ]]; then
+	if [[ $enabload == "True" ]]; then
 		PS1+=" $sepacolor$sepa$upcolor system load: \$(show_system_load)"
 	fi
 
-	if [[ $enabproc == true ]]; then
+	if [[ $enabproc == "True" ]]; then
 		PS1+=" $sepacolor$sepa$pscolor processes: \$(count_processes)"
 	fi
 
-	if [[ $enabbatt == true ]]; then
+	if [[ $enabbatt == "True" ]]; then
 		PS1+=" $sepacolor$sepa$pscolor battery: \$(show_battery_load)"
 	fi
 
@@ -79,35 +79,35 @@ else
 
 	PS1="\n\u @ \h $sepa \d $sepa \t $sepa \$(trunc_pwd)"
 
-	if [[ $enablf == true ]]; then
+	if [[ $enablf == "True" ]]; then
 		PS1+=" files: \$(count_files -f)"
 	fi
 
-	if [[ $enablf == true && $enabsize == true ]]; then
+	if [[ $enablf == "True" && $enabsize == "True" ]]; then
 		PS1+=" /"
 	fi
 
-	if [[ $enabsize == true ]]; then
+	if [[ $enabsize == "True" ]]; then
 		PS1+=" size: \$(show_size)"
 	fi
 
-	if [[ $enabtty == true ]]; then
+	if [[ $enabtty == "True" ]]; then
 		PS1+=" $sepa tty: \$(show_tty)"
 	fi
 
-	if [[ $enabup == true ]]; then
+	if [[ $enabup == "True" ]]; then
 		PS1+=" $sepa uptime: \$(show_uptime)"
 	fi
 
-	if [[ $enabload == true ]]; then
+	if [[ $enabload == "True" ]]; then
 		PS1+=" $sepa system load: \$(show_system_load)"
 	fi
 
-	if [[ $enabproc == true ]]; then
+	if [[ $enabproc == "True" ]]; then
 		PS1+=" $sepa processes: \$(count_processes)"
 	fi
 
-	if [[ $enabbatt == true ]]; then
+	if [[ $enabbatt == "True" ]]; then
 		PS1+=" $sepa battery: \$(show_battery_load)"
 	fi
 

@@ -9,12 +9,12 @@
 #							#
 #########################################################
 
-verbose=$(get_key debug_verbose)
+verbose=$(ini_get debug_verbose)
 
 dbg_msg ()
 {
 	if [[ ! $BSNG_RC_GEN ]]; then
-		if [[ $verbose == true ]]; then
+		if [[ $verbose == True ]]; then
 			echo -e "$@" | tee -a $BSNG_LOGFILE
 		else	echo -e "$@" >> $BSNG_LOGFILE
 		fi
@@ -46,10 +46,10 @@ dbg_view ()
 dbg_verbosity ()
 {
 
-	if [[ $1 == "true" ]]; then
-		set_key bool debug_verbose true
-	elif [[ $1 == "false" ]]; then
-		set_key bool debug_verbose false
+	if [[ $1 == "True" ]]; then
+		ini_set debug_verbose True
+	elif [[ $1 == "False" ]]; then
+		ini_set debug_verbose False
 	fi
 
 }

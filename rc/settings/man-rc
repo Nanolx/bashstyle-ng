@@ -9,15 +9,15 @@
 #							#
 #########################################################
 
-if [[ $enabcol == true ]]; then
+if [[ $enabcol == True ]]; then
 
-	if	[[ $(get_key man_style) == mostlike ]]; then \
+	if	[[ $(ini_get man_style) == mostlike ]]; then \
 		dbg_msg $"BashStyle-NG Setting:" $"Terminfo Mostlike"
 		db_log alias man="TERMINFO=$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=mostlike LESS=C PAGER=less man"
-	elif	[[ $(get_key man_style) ==  bold ]]; then \
+	elif	[[ $(ini_get man_style) ==  bold ]]; then \
 		dbg_msg $"BashStyle-NG Setting:" $"Terminfo Bold"
 		dbg_log alias man="TERMINFO=$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=bold LESS=C PAGER=less man"
-	elif	[[ $(get_key man_style) == nebula ]]; then \
+	elif	[[ $(ini_get man_style) == nebula ]]; then \
 		dbg_msg $"BashStyle-NG Setting:" $"Terminfo Nebula"
 		dbg_log alias man="TERMINFO=$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=nebula LESS=C PAGER=less man"
 	fi

@@ -254,7 +254,7 @@ class BashStyleNG(object):
 
 		def set_color_style(widget, data=None):
 			selection = widget.get_active()
-			cfo["Style"]["color/style"] = color_styles[selection]
+			cfo["Style"]["color_style"] = color_styles[selection]
 
 		self.color_style.connect("changed", set_color_style)
 
@@ -947,7 +947,7 @@ class BashStyleNG(object):
 		self.cdable_vars.set_active(cfo["Shopt"].as_bool("cdable_vars"))
 
 		def set_cdable_vars(widget, data=None):
-			cfo["shopt"]["cdable_vars"] = widget.get_active()
+			cfo["Shopt"]["cdable_vars"] = widget.get_active()
 
 		self.cdable_vars.connect("clicked", set_cdable_vars)
 
@@ -2132,8 +2132,8 @@ class BashStyleNG(object):
 \ntput rc",
 			      4 : "user=\"whoami\"\
 \nhost=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
-\ndirchar=$(get_key dirchar)\
-\ntrunc_symbol=$(get_key pwdchar)\
+\ndirchar=$(ini_get directory_indicator)\
+\ntrunc_symbol=$(ini_get pwdcut)\
 \ntrunc_length=$(($(echo $trunc_symbol | wc -m)-1))\
 \n\
 \nj=4 k=6 l=8 m=10 newPWD=\"${PWD}\" fill=\"\"\

@@ -13,11 +13,9 @@ if [[ -e $HOME/.nanorc && ( ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ) ]]; then
 	ERR_MSG+="\n * $HOME/.nanorc is not fully acccessible! -- adjust permissions."
 else
 
-if [[ ! $BSNG_RC_GEN ]]; then
-	export RC_FILE=$HOME/.nanorc.$(date +%I-%M-%S)
-fi
+export RC_FILE=$HOME/.nanorc.$(date +%I-%M-%S)
 
-if [[ $(get_key nano/auto_indent) == true ]]; then
+if [[ $(ini_get auto_indent) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Auto-Indention" $"On"
 	rc_add "set autoindent"
 else
@@ -25,7 +23,7 @@ else
 	rc_add "unset autoindent"
 fi
 
-if [[ $(get_key nano/backup) == true ]]; then
+if [[ $(ini_get nano_backup) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Autosave" $"On"
 	rc_add "set backup"
 else
@@ -33,7 +31,7 @@ else
 	rc_add "unset backup"
 fi
 
-if [[ $(get_key nano/bold_text) == true ]]; then
+if [[ $(ini_get bold_text) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Bold-Text" $"On"
 	rc_add "set boldtext"
 else
@@ -41,7 +39,7 @@ else
 	rc_add "unset boldtext"
 fi
 
-if [[ $(get_key nano/case_sensitive) == true ]]; then
+if [[ $(ini_get case_sensitive) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Case-Sensitive" $"On"
 	rc_add "set casesensitive"
 else
@@ -49,7 +47,7 @@ else
 	rc_add "unset casesensitive"
 fi
 
-if [[ $(get_key nano/const) == true ]]; then
+if [[ $(ini_get show_positon) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Show-Position" $"On"
 	rc_add "set const"
 else
@@ -57,7 +55,7 @@ else
 	rc_add "unset const"
 fi
 
-if [[ $(get_key nano/more_space) == true ]]; then
+if [[ $(ini_get more_space) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"More-Space" $"On"
 	rc_add "set morespace"
 else
@@ -65,7 +63,7 @@ else
 	rc_add "unset morespace"
 fi
 
-if [[ $(get_key nano/nohelp) == true ]]; then
+if [[ $(ini_get hide_help) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"No-Help" $"On"
 	rc_add "set nohelp"
 else
@@ -73,7 +71,7 @@ else
 	rc_add "unset nohelp"
 fi
 
-if [[ $(get_key nano/history) == true ]]; then
+if [[ $(ini_get history) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"History Log:" $"On"
 	rc_add "set historylog"
 else
@@ -81,7 +79,7 @@ else
 	rc_add "unset historylog"
 fi
 
-if [[ $(get_key nano/rebind_del) == true ]]; then
+if [[ $(ini_get rebind_delete) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Rebind Delete:" $"On"
 	rc_add "set rebinddelete"
 else
@@ -89,7 +87,7 @@ else
 	rc_add "unset rebinddelete"
 fi
 
-if [[ $(get_key nano/rebind_kp) == true ]]; then
+if [[ $(ini_get rebind_keypad) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Rebind Keypad:" $"On"
 	rc_add "set rebindkeypad"
 else
@@ -97,20 +95,18 @@ else
 	rc_add "unset rebindkeypad"
 fi
 
-if [[ $(get_key nano/use_colors) == true ]]; then
+if [[ $(ini_get syntax_highlight) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Colors" $"On"
-	COLOR_FILES="$(ls /usr/share/nano/*.nanorc)"
+	COLOR_FILES="$(ls /usr/share/*.nanorc)"
 	for file in $COLOR_FILES; \
 		do rc_add "include \"$file\""; \
 	done
 else	dbg_msg $"NanoCFG Setting:" $"Colors" $"Off"
 fi
 
-if [[ ! $BSNG_RC_GEN ]]; then
-	mv $RC_FILE $HOME/.nanorc
-	unset RC_FILE
-fi
-
 dbg_msg $"NanoCFG Loading:" $"BashStyle-NG"
+
+mv $RC_FILE $HOME/.nanorc
+unset RC_FILE
 
 fi

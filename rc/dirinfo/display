@@ -39,7 +39,7 @@ dirinfo_display_ascii () {
 		ASCII="$DIR/.dirascii"
 	fi
 
-	if [[ $ASCII && $enabcol == true ]]; then
+	if [[ $ASCII && $enabcol == "True" ]]; then
 		echo -e "$(cat $ASCII)" | sed -e "s/@OWNER@/${Owner}/g" \
 			-e "s/@CREATED@/${Created}/g" \
 			-e "s/@TAGS@/${Tags[*]}/g" \

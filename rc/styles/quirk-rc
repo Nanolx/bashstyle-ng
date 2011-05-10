@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ $enabcol == true ]]; then
+if [[ $enabcol == "True" ]]; then
 
 PS1="\n$sepacolor -$pscolor( $usercolor\u$sepacolor /$hostcolor \h$pscolor )$sepacolor-$pscolor( \$(show_tty) )$sepacolor-$pscolor($upcolor uptime: \$(show_uptime)$pscolor )$sepacolor-$pscolor($timecolor \$(date +%H:%M)$datecolor \$(date +%d-%b-%y)$pscolor )$sepacolor-$pscolor($wdircolor files: \$(count_files +f)$sepacolor /$wdircolor folders: \$(count_files -d)$pscolor )$sepacolor-\n -$pscolor<$wdircolor \$(trunc_pwd)$QUIRK_1_COLOR\$(QUIRK_1) $pscolor>$sepacolor-$fontcolor "
 

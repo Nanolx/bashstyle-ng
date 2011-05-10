@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ $enabcol == true ]]; then
+if [[ $enabcol == "True" ]]; then
 
 user="whoami"
 host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
@@ -20,8 +20,8 @@ etimecolor=$(echo $timecolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 efontcolor=$(echo $fontcolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 epscolor=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 ewdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-dirchar=$(get_key dirchar)
-trunc_symbol=$(get_key pwdchar)
+dirchar=$(ini_get directory_indicator)
+trunc_symbol=$(ini_get pwdcut)
 trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
 
 j=4
@@ -101,8 +101,8 @@ else
 
 user="whoami"
 host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
-dirchar=$(get_key dirchar)
-trunc_symbol=$(get_key pwdchar)
+dirchar=$(ini_get directory_indicator)
+trunc_symbol=$(ini_get pwdcut)
 trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
 
 j=4

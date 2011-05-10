@@ -13,20 +13,18 @@ if [[ -e $HOME/.vimrc && ( ! -w $HOME/.vimrc || ! -r $HOME/.vimrc ) ]]; then
 	ERR_MSG+="\n * $HOME/.vimrc is not accessible! -- adjust permissions"
 else
 
-if [[ ! $BSNG_RC_GEN ]]; then
-	export RC_FILE=$HOME/.vimrc.$(date +%I-%M-%S)
-fi
+export RC_FILE=$HOME/.vimrc.$(date +%I-%M-%S)
 
 dbg_msg $"VimCFG Setting:" $"runtimepath"
 rc_add "set runtimepath+=$BSNG_PREFIX/share/bashstyle-ng/vim/"
 
-if [[ $(get_key vim/vim_colorscheme) != "default" ]]; then
-	colorscheme=$(get_key vim/vim_colorscheme)
+if [[ $(ini_get colorscheme) != "default" ]]; then
+	colorscheme=$(ini_get colorscheme)
 	dbg_msg $"VimCFG Setting:" $"Colorscheme" $colorscheme
 	rc_add "colorscheme $colorscheme"
 fi
 
-if [[ $(get_key vim/syntax_hilight) == "true" ]]; then
+if [[ $(ini_get syntax_hilight) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Syntax" $"On"
 	rc_add "syntax on"
 else
@@ -34,7 +32,7 @@ else
 	rc_add "syntax off"
 fi
 
-if [[ $(get_key vim/dark_background) == "true" ]]; then
+if [[ $(ini_get dark_background) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Background dark"
 	rc_add "set background=dark"
 else
@@ -42,7 +40,7 @@ else
 	rc_add "set background=light"
 fi
 
-if [[ $(get_key vim/jump_back) == "true" ]]; then
+if [[ $(ini_get jump_back) == "True" ]]; then
 
 	if [[ -e $HOME/.viminfo && ( ! -w $HOME/.viminfo || ! -r $HOME/.viminfo ) ]]; then
 		ERR_MSG+="\n * $HOME/.viminfo is not accessible! -- adjust permissions."
@@ -57,7 +55,7 @@ if [[ $(get_key vim/jump_back) == "true" ]]; then
 else	dbg_msg $"VimCFG Setting:" $"Jump-Back" $"Off"
 fi
 
-if [[ $(get_key vim/filetype_indent) == "true" ]]; then
+if [[ $(ini_get filetype_indent) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"On"
 	rc_add "if has(\"autocmd\")"
 	rc_add "    filetype plugin indent on"
@@ -74,7 +72,7 @@ dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"Off"
 	rc_add "set nosmartindent"
 fi
 
-if [[ $(get_key vim/show_cmd) == "true" ]]; then
+if [[ $(ini_get show_command) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Show-Command" $"On"
 	rc_add "set showcmd"
 else
@@ -82,7 +80,7 @@ else
 	rc_add "set noshowcmd"
 fi
 
-if [[ $(get_key vim/show_match) == "true" ]]; then
+if [[ $(ini_get highlight_matches) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Show-Matches" $"On"
 	rc_add "set showmatch"
 else
@@ -90,7 +88,7 @@ else
 	rc_add "set noshowmatch"
 fi
 
-if [[ $(get_key vim/ignore_case) == "true" ]]; then
+if [[ $(ini_get ignore_case) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Ignore-Case" $"On"
 	rc_add "set ignorecase"
 else
@@ -98,7 +96,7 @@ else
 	rc_add "set noignorecase"
 fi
 
-if [[ $(get_key vim/smart_case) == "true" ]]; then
+if [[ $(ini_get smart_case) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Smart-Case" $"On"
 	rc_add "set smartcase"
 else
@@ -106,7 +104,7 @@ else
 	rc_add "set nosmartcase"
 fi
 
-if [[ $(get_key vim/inc_search) == "true" ]]; then
+if [[ $(ini_get incremental_search) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Incremental-Search" $"On"
 	rc_add "set incsearch"
 else
@@ -114,7 +112,7 @@ else
 	rc_add "set noincsearch"
 fi
 
-if [[ $(get_key vim/highlight) == "true" ]]; then
+if [[ $(ini_get highlight_brackets) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Highlight" $"On"
 	rc_add "set hls"
 else
@@ -122,7 +120,7 @@ else
 	rc_add "set nohls"
 fi
 
-if [[ $(get_key vim/number) == "true" ]]; then
+if [[ $(ini_get show_lineno) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Show-Number" $"On"
 	rc_add "set number"
 else
@@ -130,7 +128,7 @@ else
 	rc_add "set nonumber"
 fi
 
-if [[ $(get_key vim/autosave) == "true" ]]; then
+if [[ $(ini_get autosave) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Auto-Save" $"On"
 	rc_add "set autowriteall"
 else
@@ -138,7 +136,7 @@ else
 	rc_add "set noautowriteall"
 fi
 
-if [[ $(get_key vim/hl_cursor) == "true" ]]; then
+if [[ $(ini_get highlight_line) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Highlight-Current-Line" $"On"
 	rc_add "set cursorline"
 	rc_add "hi CursorLine term=none cterm=underline ctermbg=none"
@@ -147,7 +145,7 @@ else
 	rc_add "set nocursorline"
 fi
 
-if [[ $(get_key vim/hl_column) == "true" ]]; then
+if [[ $(ini_get highlight_column) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Highlight-Current-Column" $"On"
 	rc_add "set cursorcolumn"
 	rc_add "hi CursorColumn term=none cterm=underline ctermbg=none"
@@ -156,17 +154,17 @@ else
 	rc_add "set nocursorcolumn"
 fi
 
-if [[ $(get_key vim/ruler) == "true" ]]; then
+if [[ $(ini_get ruler) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Show-Ruler" $"On"
 	rc_add "set ruler"
-	dbg_msg $"VimCFG Setting:" $"Ruler-Format" $(get_key vim/rulerformat)
-	rc_add "set rulerformat=$(get_key vim/rulerformat)"
+	dbg_msg $"VimCFG Setting:" $"Ruler-Format" $(ini_get rulerformat)
+	rc_add "set rulerformat=$(ini_get rulerformat)"
 else
 	dbg_msg $"VimCFG Setting:" $"Show-Ruler" $"Off"
 	rc_add "set noruler"
 fi
 
-if [[ $(get_key vim/backup) == "true" ]]; then
+if [[ $(ini_get vim_backup) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Backup" $"On"
 	rc_add "set backup"
 else
@@ -174,7 +172,7 @@ else
 	rc_add "set nobackup"
 fi
 
-if [[ $(get_key vim/startofline) == "true" ]]; then
+if [[ $(ini_get start_line) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Start-Of-Line" $"On"
 	rc_add "set startofline"
 else
@@ -185,21 +183,22 @@ fi
 dbg_msg $"VimCFG Setting:" $"Linespace 0"
 rc_add "set linespace=0"
 
-if [[ $(get_key vim/wrap) == true ]]; then
+if [[ $(ini_get wrap_line) == True ]]; then
 	dbg_msg $"VimCFG Setting:" $"Linewrapping" $"On"
 	rc_add "set wrap"
-	dbg_msg $"VimCFG Setting:" $"Autowrap-length" $(get_key vim/wrap_length)
-	rc_add "set tw=$(get_key vim/wrap_length)"
+	dbg_msg $"VimCFG Setting:" $"Autowrap-length" $(ini_get wrap_length)
+	rc_add "set tw=$(ini_get wrap_length)"
 else
 	dbg_msg $"VimCFG Setting:" $"Linewrapping" $"Off"
 	rc_add "set nowrap"
+	rc_add "set tw=0"
 fi
 
-dbg_msg $"VimCFG Setting:" $"Tab-width" $(get_key vim/tabstop)
-rc_add "set tabstop=$(get_key vim/tabstop)"
-rc_add "set shiftwidth=$(get_key vim/tabstop)"
+dbg_msg $"VimCFG Setting:" $"Tab-width" $(ini_get tab_length)
+rc_add "set tabstop=$(ini_get tab_length)"
+rc_add "set shiftwidth=$(ini_get tab_length)"
 
-if [[ $(get_key vim/chdir) == "true" ]]; then
+if [[ $(ini_get chdir) == "True" ]]; then
 	dbg_msg $"VimCFG Setting:" $"Auto chdir" $"On"
 	rc_add "set autochdir"
 else
@@ -211,11 +210,10 @@ rc_add "if filereadable(\"~/.vimrc.custom\")"
 rc_add "	source ~/.vimrc.custom"
 rc_add "endif"
 
-if [[ ! $BSNG_RC_GEN ]]; then
-	mv $RC_FILE $HOME/.vimrc
-	unset RC_FILE
-fi
-
 dbg_msg $"VimCFG Loading:" $"BashStyle-NG"
 
+mv $RC_FILE $HOME/.vimrc
+unset RC_FILE
+
 fi
+

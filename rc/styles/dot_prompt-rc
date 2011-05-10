@@ -11,7 +11,7 @@
 
 export pstyle_supported=true
 
-if [[ $enabcol == true ]]; then
+if [[ $enabcol == "True" ]]; then
 
 PS1="\n$pscolor.:$sepacolor[ $usercolor\u$pscolor @ $hostcolor\h$sepacolor ]$pscolor:. .:$sepacolor[ $wdircolor\$(trunc_pwd)$sepacolor ]$pscolor:.\n.:$sepacolor[·>$fontcolor "
 

@@ -9,9 +9,7 @@
 #                                                       #
 #########################################################
 
-if [[ $enabcol == true ]]; then
-
-colstyle=$(get_key color/style)
+colstyle=$(ini_get color_style)
 
 if [[ $colstyle == bright ]]; then \
 	style="01"
@@ -71,33 +69,28 @@ fi
 export lblack lred lgreen lyellow lblue lmagenta lcyan lwhite lcoldblue lsmoothblue liceblue lturqoise
 export lsmoothgreen lwinered lbrown lsilver locher lorange lpurple lpink lcream
 
-eval _exec=$(get_key dircolors/exec)
-eval _gen=$(get_key dircolors/generic)
-eval _log=$(get_key dircolors/logs)
-eval _deb=$(get_key dircolors/deb)
-eval _rpm=$(get_key dircolors/rpm)
-eval _dirs=$(get_key dircolors/dirs)
-eval _jpg=$(get_key dircolors/jpeg)
-eval _png=$(get_key dircolors/png)
-eval _gif=$(get_key dircolors/gif)
-eval _mp3=$(get_key dircolors/mp3)
-eval _ogg=$(get_key dircolors/ogg)
-eval _flac=$(get_key dircolors/flac)
-eval _tar=$(get_key dircolors/tar)
-eval _targz=$(get_key dircolors/targz)
-eval _tarbz2=$(get_key dircolors/tarbz2)
-eval _zip=$(get_key dircolors/zip)
-eval _rar=$(get_key dircolors/rar)
+eval _exec=$(ini_get exec)
+eval _gen=$(ini_get generic)
+eval _log=$(ini_get logs)
+eval _deb=$(ini_get deb)
+eval _rpm=$(ini_get rpm)
+eval _dirs=$(ini_get dirs)
+eval _jpg=$(ini_get jpeg)
+eval _png=$(ini_get png)
+eval _gif=$(ini_get gif)
+eval _mp3=$(ini_get mp3)
+eval _ogg=$(ini_get ogg)
+eval _flac=$(ini_get flac)
+eval _tar=$(ini_get tar)
+eval _targz=$(ini_get targz)
+eval _tarbz2=$(ini_get tarbz2)
+eval _zip=$(ini_get zip)
+eval _rar=$(ini_get rar)
 
-_custom="$(get_key dircolors/custom)"
+_custom="$(ini_get custom)"
 
 dbg_log export LS_COLORS="ex=$_exec:*=$_gen:*.log=$_log:*.deb=$_deb:*.rpm=$_rpm:di=$_dirs:*.jpg=$_jpg:*.png=$_png:*.gif=$_gif:\
 *.mp3=$_mp3:*.ogg=$_ogg:*.flac=$_flac:*.tar=$_tar:*.tar.gz=$_targz:*.tar.bz2=$_tarbz2:*.zip=$_zip:*.rar=$_rar:$_custom"
 
 dbg_msg $"LS_COLORS Setting: LS_COLORS" "$LS_COLORS"
 dbg_msg $"LS_COLORS Loading: BashStyle-NG"
-else	dbg_msg $"LS_COLORS Message: colors disabled!"
-	dbg_msg $"LS_COLORS Message: not setting LS_COLORS"
-	dbg_msg $"LS_COLORS Loading: BashStyle-NG"
-	unset LS_COLORS
-fi

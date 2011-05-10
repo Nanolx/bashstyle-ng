@@ -33,7 +33,7 @@ then
     xPWD="...${PWD:${cutt}}"
 fi
 
-if [[ $enabcol == true ]]; then
+if [[ $enabcol == "True" ]]; then
   PRE_PROMPT_COMMAND
 fi
 
@@ -41,7 +41,7 @@ fi
 
 PROMPT_COMMAND=pre_prompt
 
-if [[ $enabcol == true ]]; then
+if [[ $enabcol == "True" ]]; then
 
         PS1="$sepacolor┌─($usercolor \u$fontcolor @ $hostcolor\h\
 $datecolor \$(date \"+%a, %d %b %y\")$sepacolor )─\${fill}─($wdircolor \$newPWD \
