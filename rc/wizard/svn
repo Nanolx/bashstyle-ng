@@ -11,13 +11,6 @@
 
 wizard_svn_accounts ()
 {
-	whiptail --title $"svn.kde.org" --yesno $"Do you have a KDE SVN account?
-With this info get_kde can checkout SVN repos with write access." 12 85
-
-		if [[ $? == "0" ]]; then
-			get_kde_user=$(whiptail --title $"svn.kde.org account" --inputbox $"What's your KDE SVN Account?:" 12 85 "$(wizard_get kde_vcs_user)" 3>&1 1>&2 2>&3)
-			wizard_set kde_vcs_user $get_kde_user
-		fi
 
 	whiptail --title $"svn.enlightenment.org" --yesno $"Do you have an Enlightenment SVN account?
 With this info get_e can checkout SVN repos with write access." 12 85

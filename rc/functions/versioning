@@ -31,35 +31,20 @@ git_xz() {
 
 get_gnome () {
 
-	if [[ $GIT_USER_GNOME ]]; then
-		if [[ $1 == "-m" ]]; then
-			git clone git+ssh://$GIT_USER_GNOME@git.gnome.org/git/$2
-		elif [[ $1 == "-mb" ]]; then
-			git clone -b $3 git+ssh://$GIT_USER_GNOME@git.gnome.org/git/$2
-		fi
-	fi
-
-
-	if [[ $1 == "-b" ]]; then
-		git clone -b $3 git://git.gnome.org/$2
-	else 	git clone git://git.gnome.org/$1
+	if [[ $1 == "-m" && $GIT_USER_GNOME ]]; then
+		git clone git+ssh://$GIT_USER_GNOME@git.gnome.org/git/$2
+	elif [[ $1 ]]; then
+		git clone git://git.gnome.org/$1
 	fi
 
 }
 
 get_xfce () {
 
-	if [[ $GIT_USER_XFCE ]]; then
-		if [[ $1 == "-m" ]]; then
-			git clone ssh://$GIT_USER_XFCE@git.xfce.org/git/$2
-		elif [[ $1 == "-mb" ]]; then
-			git clone -b $3 ssh://$GIT_USER_XFCE@git.xfce.org/git/$2
-		fi
-	fi
-
-	if [[ $1 == "-b" ]]; then
-		git clone -b $3 git://git.xfce.org/$2
-	else	git clone git://git.xfce.org/$1
+	if [[ $1 == "-m" && $GIT_USER_XFCE ]]; then
+		git clone ssh://$GIT_USER_XFCE@git.xfce.org/git/$2
+	elif [[ $1 ]]; then
+		git clone git://git.xfce.org/$1
 	fi
 
 }
@@ -113,17 +98,10 @@ git_action () {
 
 get_kde () {
 
-	if [[ "$SVN_USER_KDE" ]]; then
-		if [[ $1 == "-m" ]]; then
-			svn co --user-name="$SVN_USER_KDE" svn+ssh://svn.kde.org/home/kde/trunk/KDE/$2
-		elif [[ $1 == "-mb" ]]; then
-			svn co --user-name="$SVN_USER_KDE" svn+ssh://svn.kde.org/home/kde/branches/KDE/$2
-		fi
-	fi
-
-	if [[ $1 == "-b" ]]; then
-		svn co svn://svn.kde.org/home/kde/branches/KDE/$2
-	else	svn co svn://svn.kde.org/home/kde/trunk/KDE/$2
+	if [[ $1 == "-m" && $GIT_USER_KDE ]]; then
+		git clone ssh://$GIT_USER_KDE@git.kde.org/git/$2
+	elif [[ $1 ]]; then
+		git clone git://anongit.kde.org/$1.git
 	fi
 
 }

@@ -84,6 +84,15 @@ With this info get_xfce can clone GIT repos with write access." 12 85
 			get_xfce_user=$(whiptail --title $"git.xfce.org account" --inputbox $"What's your XFCE GIT Account?:" 12 85 "$(wizard_get xfce_vcs_user)" 3>&1 1>&2 2>&3)
 			wizard_set xfce_vcs_user $get_xfce_user
 		fi
+
+		whiptail --title $"git.kde.org" --yesno $"Do you have a KDE GIT account?
+With this info get_kde can checkout GIT repos with write access." 12 85
+
+		if [[ $? == "0" ]]; then
+			get_kde_user=$(whiptail --title $"git.kde.org account" --inputbox $"What's your KDE GIT Account?:" 12 85 "$(wizard_get kde_vcs_user)" 3>&1 1>&2 2>&3)
+			wizard_set kde_vcs_user $get_kde_user
+		fi
+
 	fi
 
 	unset USER_WANTS_GIT
