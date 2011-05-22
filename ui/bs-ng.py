@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'sys', 'gtk', 'locale', 'gettext', 'configobj', 'string',
+MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'configobj', 'string',
             'shutil', 'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands' ]
 
 FAILED = []
@@ -20,6 +20,12 @@ for module in MODULES:
 		globals()[module] = __import__(module)
 	except ImportError:
 		FAILED.append(module)
+
+try:
+	from gi.repository import Gtk
+	from gi.repository import GdkPixbuf
+except ImportError:
+	FAILED.append("Gtk/Gdk (from gi.repository)")
 
 if FAILED:
     print "The following modules failed to import: %s" % (" ".join(FAILED))
@@ -145,7 +151,7 @@ class BashStyleNG(object):
 		####################### blacklist / gtkBuilder #####################################
 
 		blacklist = ['\'', '\"']
-		gtkbuilder = gtk.Builder()
+		gtkbuilder = Gtk.Builder()
 
 		####################### cd into $HOME ##############################################
 		os.chdir(os.getenv("HOME"))
@@ -2273,7 +2279,7 @@ class BashStyleNG(object):
 		def destroy(self, widget):
 			cfo.write()
 			remove_lockfile()
-			gtk.main_quit()
+			Gtk.main_quit()
 
 		self.bashstyle.connect("destroy", destroy, None)
 
@@ -2289,24 +2295,23 @@ class BashStyleNG(object):
 		notebook.set_show_tabs(0)
 
 		####################### Load the TreeView ##########################################
-		liststore = gtk.ListStore(gtk.gdk.Pixbuf, str)
+		liststore = Gtk.ListStore(GdkPixbuf.Pixbuf, str)
 		treeview = gtkbuilder.get_object("treeview")
 		treeview.set_model(liststore)
 
-		imagecell = gtk.CellRendererPixbuf()
-		imagecolumn = gtk.TreeViewColumn("")
+		imagecell = Gtk.CellRendererPixbuf()
+		imagecolumn = Gtk.TreeViewColumn("")
 		imagecolumn.pack_start(imagecell, True)
 		imagecolumn.add_attribute(imagecell, "pixbuf", 0)
 		treeview.append_column(imagecolumn)
 
-		textcell = gtk.CellRendererText()
-		textcolumn = gtk.TreeViewColumn("")
+		textcell = Gtk.CellRendererText()
+		textcolumn = Gtk.TreeViewColumn("")
 		textcolumn.pack_start(textcell, True)
 		textcolumn.add_attribute(textcell, "text", 1)
-		textcolumn.set_attributes(textcell, markup=1)
 		treeview.append_column(textcolumn)
 
-		icon_theme = gtk.icon_theme_get_default()
+		icon_theme = Gtk.IconTheme.get_default()
 
 		image_style=icon_theme.load_icon( "bs-ng-style", 32, 0 )
 		liststore.append([image_style, _("<b>Style</b>")])
@@ -2342,7 +2347,8 @@ class BashStyleNG(object):
 		liststore.append([image_info, _("<b>Info</b>")])
 
 		tree_selection = treeview.get_selection()
-		treeview.set_cursor(int(initial_page))
+		treepath = Gtk.TreePath.new_from_string("%s" % initial_page)
+		treeview.set_cursor(treepath, None, False)
 
 		def treeview_action(widget, extra, data=None):
 			selection = treeview.get_selection()
@@ -2362,4 +2368,4 @@ class BashStyleNG(object):
 if __name__ == "__main__":
 	check_lockfile()
 	hwg = BashStyleNG()
-	gtk.main()
+	Gtk.main()

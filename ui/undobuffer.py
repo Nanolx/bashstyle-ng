@@ -3,7 +3,7 @@
 
 """ gtk textbuffer with undo functionality """
 
-import gtk
+from gi.repository import Gtk
 
 class UndoableInsert(object):
     """something that has been inserted into our textbuffer"""
@@ -34,7 +34,7 @@ class UndoableDelete(object):
         else:
             self.mergeable = True
 
-class UndoableBuffer(gtk.TextBuffer):
+class UndoableBuffer(Gtk.TextBuffer):
     """text buffer with added undo capabilities
 
     designed as a drop-in replacement for gtksourceview,
@@ -44,7 +44,7 @@ class UndoableBuffer(gtk.TextBuffer):
         """
         we'll need empty stacks for undo/redo and some state keeping
         """
-        gtk.TextBuffer.__init__(self)
+        Gtk.TextBuffer.__init__(self)
         self.undo_stack = []
         self.redo_stack = []
         self.not_undoable_action = False
