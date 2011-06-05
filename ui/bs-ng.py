@@ -1757,15 +1757,6 @@ class BashStyleNG(object):
 
 		self.show_toolbox.connect("clicked", do_show_toolbox)
 
-		####################### Connect the Show Help Button ##############################
-
-		self.show_cpb_help = gtkbuilder.get_object("show_cpb_help")
-
-		def do_show_cpb_help(widget, data=None):
-			subprocess.Popen("x-www-browser " + PREFIX + "/share/doc/bashstyle-ng/chapter07.html", shell=True)
-
-		self.show_cpb_help.connect("clicked", do_show_cpb_help)
-
 		####################### Connect the Username Button ###############################
 
 		self.username = gtkbuilder.get_object("username")
@@ -2292,76 +2283,22 @@ class BashStyleNG(object):
 		####################### Load the Notebook ##########################################
 		notebook = gtkbuilder.get_object("notebook")
 		notebook.set_current_page(int(initial_page))
-		notebook.set_show_tabs(0)
 
-		####################### Load the TreeView ##########################################
-		liststore = Gtk.ListStore(GdkPixbuf.Pixbuf, str)
-		treeview = gtkbuilder.get_object("treeview")
-		treeview.set_model(liststore)
+		####################### Load last two buttons ######################################
+		self.show_doc = gtkbuilder.get_object("show_doc")
 
-		imagecell = Gtk.CellRendererPixbuf()
-		imagecolumn = Gtk.TreeViewColumn("")
-		imagecolumn.pack_start(imagecell, True)
-		imagecolumn.add_attribute(imagecell, "pixbuf", 0)
-		treeview.append_column(imagecolumn)
+		def show_documentation(widget, data=None):
+			subprocess.Popen("x-www-browser " + PREFIX + "/share/doc/bashstyle-ng/index.html", shell=True)
 
-		textcell = Gtk.CellRendererText()
-		textcolumn = Gtk.TreeViewColumn("")
-		textcolumn.pack_start(textcell, True)
-		textcolumn.add_attribute(textcell, "text", 1)
-		treeview.append_column(textcolumn)
+		self.show_doc.connect("clicked", show_documentation, None)
 
-		icon_theme = Gtk.IconTheme.get_default()
+		self.show_about = gtkbuilder.get_object("show_about")
 
-		image_style=icon_theme.load_icon( "bs-ng-style", 32, 0 )
-		liststore.append([image_style, _("<b>Style</b>")])
+		def show_aboutdialog(widget, data=None):
+			aboutdialog.show_all()
+			aboutdialog.connect("response", about_destroy, None)
 
-		image_alias=icon_theme.load_icon( "bs-ng-alias", 32, 0 )
-		liststore.append([image_alias, _("<b>Aliases</b>")])
-
-		image_advanced=icon_theme.load_icon( "bs-ng-advanced", 32, 0 )
-		liststore.append([image_advanced, _("<b>Advanced</b>")])
-
-		image_readline=icon_theme.load_icon( "bs-ng-readline", 32, 0 )
-		liststore.append([image_readline, _("<b>Readline</b>")])
-
-		image_extra=icon_theme.load_icon( "bs-ng-extra", 32, 0 )
-		liststore.append([image_extra, _("<b>Extras</b>")])
-
-		image_vim=icon_theme.load_icon( "bs-ng-vim", 32, 0 )
-		liststore.append([image_vim, _("<b>VIM</b>")])
-
-		image_nano=icon_theme.load_icon( "bs-ng-nano", 32, 0 )
-		liststore.append([image_nano, _("<b>Nano</b>")])
-
-		image_ls=icon_theme.load_icon( "bs-ng-ls", 32, 0 )
-		liststore.append([image_ls, _("<b>LS Colors</b>")])
-
-		image_custom=icon_theme.load_icon( "bs-ng-custom", 32, 0 )
-		liststore.append([image_custom, _("<b>Custom</b>")])
-
-		image_help=icon_theme.load_icon( "bs-ng-help", 32, 0 )
-		liststore.append([image_help, _("<b>Help</b>")])
-
-		image_info=icon_theme.load_icon( "bs-ng-info", 32, 0 )
-		liststore.append([image_info, _("<b>Info</b>")])
-
-		tree_selection = treeview.get_selection()
-		treepath = Gtk.TreePath.new_from_string("%s" % initial_page)
-		treeview.set_cursor(treepath, None, False)
-
-		def treeview_action(widget, extra, data=None):
-			selection = treeview.get_selection()
-			position = int(selection.get_selected_rows()[1][0][0])
-			if position <= 8:
-				notebook.set_current_page(position)
-			elif position == 9:
-				subprocess.Popen("x-www-browser " + PREFIX + "/share/doc/bashstyle-ng/index.html", shell=True)
-			elif position == 10:
-				aboutdialog.show_all()
-				aboutdialog.connect("response", about_destroy, None)
-
-		treeview.connect("cursor-changed", treeview_action, None)
+		self.show_about.connect("clicked", show_aboutdialog, None)
 
 		self.bashstyle.show
 
