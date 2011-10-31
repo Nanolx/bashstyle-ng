@@ -11,7 +11,7 @@
 
 d2u () {
 
-	if [[ -e "$1" ]]; then
+	if [[ -f "$1" ]]; then
 		sed -r 's/\r$//' -i "$1"
 	fi
 
@@ -19,7 +19,7 @@ d2u () {
 
 u2d () {
 
-	if [[ -e "$1" ]]; then
+	if [[ -f "$1" ]]; then
 		sed -r 's/$/\r/' -i "$1"
 	fi
 
@@ -374,6 +374,8 @@ power () {
 
 }
 
+##### DEGREES #####
+
 fah2cel () {
 
   if [[ $1 ]]; then
@@ -421,6 +423,8 @@ kel2cel () {
   fi
 
 }
+
+#### Letters ####
 
 arabic2roman () {
 

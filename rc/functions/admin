@@ -38,10 +38,11 @@ torswitch () {
 
 repoadd () {
 
-	reprepro -Vb "$REPO_HOME" include "$REPO_DIST" *.changes
-	cd "$REPO_HOME"/dists/"$REPO_DIST"
-	gpg -abs -o Release.gpg Release
-
+	if [[ $REPO_HOME && $REPO_DIST ]]; then
+		reprepro -Vb "$REPO_HOME" include "$REPO_DIST" *.changes
+		cd "$REPO_HOME"/dists/"$REPO_DIST"
+		gpg -abs -o Release.gpg Release
+	fi
 }
 
 wipe () {

@@ -12,45 +12,45 @@
 
 if [[ $enabcol == "True" ]]; then
 
-setaf_black=`tput setaf 0`
-setaf_blue=`tput setaf 1`
-setaf_green=`tput setaf 2`
-setaf_cyan=`tput setaf 3`
-setaf_red=`tput setaf 4`
-setaf_magenta=`tput setaf 5`
-setaf_yellow=`tput setaf 6`
-setaf_white=`tput setaf 7`
+	setaf_black=`tput setaf 0`
+	setaf_blue=`tput setaf 1`
+	setaf_green=`tput setaf 2`
+	setaf_cyan=`tput setaf 3`
+	setaf_red=`tput setaf 4`
+	setaf_magenta=`tput setaf 5`
+	setaf_yellow=`tput setaf 6`
+	setaf_white=`tput setaf 7`
 
-cmd_colours=( $setaf_blue $setaf_green $setaf_red $setaf_cyan $setaf_magenta $setaf_yellow )
+	cmd_colours=( $setaf_blue $setaf_green $setaf_red $setaf_cyan $setaf_magenta $setaf_yellow )
 
-declare -i cmd_colour_index=-1
+	declare -i cmd_colour_index=-1
 
-function next_colour() {
-  colour_index=$(( ($cmd_colour_index+1) % (${#cmd_colours[*]}) ))
-}
+	function next_colour() {
+	  colour_index=$(( ($cmd_colour_index+1) % (${#cmd_colours[*]}) ))
+	}
 
-if [[ $PROMPT_COMMAND ]]; then
-  PRE_PROMPT_COMMAND () {
-    cmd_colours=( $setaf_cyan $setaf_magenta $setaf_yellow $setaf_blue $setaf_green $setaf_red )
-    cmd_colour_index=$(( ($cmd_colour_index+1) % (${#cmd_colours[*]}) ))
-  }
-else
-  PROMPT_COMMAND=next_colour
-fi
+	if [[ $PROMPT_COMMAND ]]; then
+	  PRE_PROMPT_COMMAND () {
+	    cmd_colours=( $setaf_cyan $setaf_magenta $setaf_yellow $setaf_blue $setaf_green $setaf_red )
+	    cmd_colour_index=$(( ($cmd_colour_index+1) % (${#cmd_colours[*]}) ))
+	  }
+	else
+	  PROMPT_COMMAND=next_colour
+	fi
 
 
-function cmd_colour() {
-  echo ${cmd_colours[$cmd_colour_index]}
-}
+	function cmd_colour() {
+	  echo ${cmd_colours[$cmd_colour_index]}
+	}
 
-shopt -s promptvars
+	shopt -s promptvars
 
-prompt_prefix="\\[${prompt_colour}\\]"
-prompt_suffix='\[`cmd_colour`\]'
+	prompt_prefix="\\[${prompt_colour}\\]"
+	prompt_suffix='\[`cmd_colour`\]'
 
-PS1="${prompt_prefix}${PS1}${prompt_suffix}"
-PS2="${prompt_prefix}${PS2}${prompt_suffix}"
-PS3="${prompt_prefix}${PS3}${prompt_suffix}"
-PS4="${prompt_prefix}${PS4}${prompt_suffix}"
+	PS1="${prompt_prefix}${PS1}${prompt_suffix}"
+	PS2="${prompt_prefix}${PS2}${prompt_suffix}"
+	PS3="${prompt_prefix}${PS3}${prompt_suffix}"
+	PS4="${prompt_prefix}${PS4}${prompt_suffix}"
 
 fi
