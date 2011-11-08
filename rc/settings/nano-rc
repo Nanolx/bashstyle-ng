@@ -11,9 +11,9 @@
 
 if [[ -e $HOME/.nanorc && ( ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ) ]]; then
 	ERR_MSG+="\n * $HOME/.nanorc is not fully acccessible! -- adjust permissions."
-else
+elif [[ ! -e $HOME/.nanorc.bs-ng.* ]]; then
 
-export RC_FILE=$HOME/.nanorc.$(date +%I-%M-%S)
+export RC_FILE=$HOME/.nanorc.bs-ng.$(date +%I-%M-%S)
 
 if [[ $(ini_get auto_indent) == True ]]; then
 	dbg_msg $"NanoCFG Setting:" $"Auto-Indention" $"On"

@@ -11,9 +11,9 @@
 
 if [[ -e $HOME/.vimrc && ( ! -w $HOME/.vimrc || ! -r $HOME/.vimrc ) ]]; then
 	ERR_MSG+="\n * $HOME/.vimrc is not accessible! -- adjust permissions"
-else
+elif [[ ! -e $HOME/.vimrc.bs-ng.* ]]; then
 
-export RC_FILE=$HOME/.vimrc.$(date +%I-%M-%S)
+export RC_FILE=$HOME/.vimrc.bs-ng.$(date +%I-%M-%S)
 
 dbg_msg $"VimCFG Setting:" $"runtimepath"
 rc_add "set runtimepath+=$BSNG_PREFIX/share/bashstyle-ng/vim/"

@@ -25,6 +25,10 @@ Disadvantages:
                     got the prefix wrong
 * #130 (profile): display-managers like XDM don't source /etc/profile.d/*,
                   so let nx-rc self-check, whether our profile was sourced
+* #131 (readline/vim/nano): don't create an rc for readline, vim or nano,
+                            if one is already going to be created (fixes
+                            annoying issues when opening splitvt or two
+                            terminals at a time)
 
 === Removed Features ===
 * bs-ng-profiler (no longer required)
