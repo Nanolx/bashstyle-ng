@@ -622,14 +622,6 @@ es_ES: Kenny Meyer</property>
     <property name="upper">10000</property>
     <property name="step_increment">1</property>
   </object>
-  <object class="GtkAdjustment" id="adjustment2">
-    <property name="upper">1000000</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustment3">
-    <property name="upper">1000</property>
-    <property name="step_increment">1</property>
-  </object>
   <object class="GtkAdjustment" id="adjustment4">
     <property name="upper">10000</property>
     <property name="step_increment">1</property>
@@ -640,6 +632,14 @@ es_ES: Kenny Meyer</property>
   </object>
   <object class="GtkAdjustment" id="adjustment6">
     <property name="upper">10000</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="advanced.adjustment.history_size">
+    <property name="upper">1000000</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="advanced.adjustment.pwd_len">
+    <property name="upper">1000</property>
     <property name="step_increment">1</property>
   </object>
   <object class="GtkWindow" id="bashstyle">
@@ -917,6 +917,7 @@ es_ES: Kenny Meyer</property>
                         <property name="right_attach">2</property>
                         <property name="x_options">GTK_EXPAND</property>
                         <property name="y_options"></property>
+                        <property name="y_padding">2</property>
                       </packing>
                     </child>
                     <child>
@@ -967,6 +968,7 @@ es_ES: Kenny Meyer</property>
                         <property name="bottom_attach">2</property>
                         <property name="x_options"></property>
                         <property name="y_options"></property>
+                        <property name="y_padding">2</property>
                       </packing>
                     </child>
                     <child>
@@ -1017,6 +1019,7 @@ es_ES: Kenny Meyer</property>
                         <property name="bottom_attach">3</property>
                         <property name="x_options"></property>
                         <property name="y_options"></property>
+                        <property name="y_padding">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1150,6 +1153,7 @@ es_ES: Kenny Meyer</property>
                         <property name="bottom_attach">2</property>
                         <property name="x_options"></property>
                         <property name="y_options"></property>
+                        <property name="y_padding">2</property>
                       </packing>
                     </child>
                     <child>
@@ -1238,144 +1242,27 @@ es_ES: Kenny Meyer</property>
             <property name="can_focus">False</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="valign">center</property>
+            <property name="margin_left">50</property>
+            <property name="margin_right">50</property>
             <property name="n_rows">9</property>
             <property name="n_columns">2</property>
+            <property name="column_spacing">5</property>
             <property name="row_spacing">2</property>
             <child>
               <object class="GtkEntry" id="alias1">
+                <property name="width_request">450</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
                 <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="alias2">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="alias3">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="alias4">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">3</property>
-                <property name="bottom_attach">4</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="alias5">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">4</property>
-                <property name="bottom_attach">5</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="alias6">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">5</property>
-                <property name="bottom_attach">6</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="alias7">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">6</property>
-                <property name="bottom_attach">7</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="alias8">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">7</property>
-                <property name="bottom_attach">8</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="alias9">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">8</property>
-                <property name="bottom_attach">9</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1386,6 +1273,7 @@ es_ES: Kenny Meyer</property>
                 <property name="label" translatable="yes">Alias #1</property>
               </object>
               <packing>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1398,6 +1286,7 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">2</property>
                 <property name="bottom_attach">3</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1410,6 +1299,7 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1422,6 +1312,7 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">3</property>
                 <property name="bottom_attach">4</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1434,6 +1325,7 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">4</property>
                 <property name="bottom_attach">5</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1446,6 +1338,7 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">5</property>
                 <property name="bottom_attach">6</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1458,6 +1351,7 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">6</property>
                 <property name="bottom_attach">7</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1470,6 +1364,7 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">7</property>
                 <property name="bottom_attach">8</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1482,6 +1377,167 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">8</property>
                 <property name="bottom_attach">9</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="alias2">
+                <property name="width_request">450</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="invisible_char">●</property>
+                <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">1</property>
+                <property name="bottom_attach">2</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="alias3">
+                <property name="width_request">450</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="invisible_char">●</property>
+                <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="alias4">
+                <property name="width_request">450</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="invisible_char">●</property>
+                <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">3</property>
+                <property name="bottom_attach">4</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="alias5">
+                <property name="width_request">450</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="invisible_char">●</property>
+                <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">4</property>
+                <property name="bottom_attach">5</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="alias6">
+                <property name="width_request">450</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="invisible_char">●</property>
+                <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">5</property>
+                <property name="bottom_attach">6</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="alias7">
+                <property name="width_request">450</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="invisible_char">●</property>
+                <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">6</property>
+                <property name="bottom_attach">7</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="alias8">
+                <property name="width_request">450</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="invisible_char">●</property>
+                <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">7</property>
+                <property name="bottom_attach">8</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="alias9">
+                <property name="width_request">450</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="invisible_char">●</property>
+                <property name="invisible_char_set">True</property>
+                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                <property name="secondary_icon_stock">gtk-delete</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">8</property>
+                <property name="bottom_attach">9</property>
+                <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
@@ -1533,31 +1589,44 @@ es_ES: Kenny Meyer</property>
           </packing>
         </child>
         <child>
-          <object class="GtkTable" id="table3">
+          <object class="GtkNotebook" id="advanced.notebook">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="valign">center</property>
-            <property name="n_rows">3</property>
+            <property name="can_focus">True</property>
             <child>
-              <object class="GtkFrame" id="frame11">
+              <object class="GtkTable" id="advanced.table">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="valign">center</property>
+                <property name="n_rows">3</property>
                 <child>
-                  <object class="GtkAlignment" id="alignment11">
+                  <object class="GtkBox" id="advanced.box.history">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkTable" id="table9">
+                      <object class="GtkLabel" id="advanced.label.history">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">History</property>
+                        <property name="angle">90</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkTable" id="advanced.table.history">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="n_rows">2</property>
                         <property name="n_columns">2</property>
                         <child>
-                          <object class="GtkVBox" id="vbox16">
+                          <object class="GtkVBox" id="advanced.box.histroy_size">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1568,7 +1637,9 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">•</property>
                                 <property name="invisible_char_set">True</property>
-                                <property name="adjustment">adjustment2</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="adjustment">advanced.adjustment.history_size</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1577,7 +1648,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label17">
+                              <object class="GtkLabel" id="advanced.lable.history_size">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">History Size</property>
@@ -1599,7 +1670,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox1">
+                          <object class="GtkVBox" id="advanced.box.histroy_blacklist">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1612,6 +1683,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1620,7 +1693,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label3">
+                              <object class="GtkLabel" id="advanced.lable.history_blacklist">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -1658,7 +1731,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox49">
+                          <object class="GtkVBox" id="advanced.box.history_control">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1686,7 +1759,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label96">
+                              <object class="GtkLabel" id="advanced.label.history_control">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">Choose historycontrol type</property>
@@ -1703,44 +1776,46 @@ es_ES: Kenny Meyer</property>
                             <property name="right_attach">2</property>
                             <property name="x_options">GTK_EXPAND</property>
                             <property name="y_options"></property>
+                            <property name="y_padding">5</property>
                           </packing>
                         </child>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
                 </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label15">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;History&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame" id="frame12">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkAlignment" id="alignment12">
+                  <object class="GtkBox" id="advanced.box.style">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkTable" id="table10">
+                      <object class="GtkLabel" id="advanced.label.style">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Style</property>
+                        <property name="angle">90</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkTable" id="advanced.table.style">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="n_rows">2</property>
                         <property name="n_columns">2</property>
                         <child>
-                          <object class="GtkVBox" id="vbox2">
+                          <object class="GtkVBox" id="advanced.box.separator">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1753,6 +1828,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1761,7 +1838,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label1">
+                              <object class="GtkLabel" id="advanced.label.separator">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -1780,7 +1857,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox3">
+                          <object class="GtkVBox" id="advanced.box.ps234">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1793,6 +1870,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1801,7 +1880,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label2">
+                              <object class="GtkLabel" id="advanced.label.ps234">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -1822,7 +1901,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox15">
+                          <object class="GtkVBox" id="advanced.box.pwd_cutter">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1833,6 +1912,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1841,7 +1922,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label9">
+                              <object class="GtkLabel" id="advanced.label.pwd_cutter">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">PWD cut char</property>
@@ -1861,7 +1942,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox8">
+                          <object class="GtkVBox" id="advanced.box.pwd_len">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1872,7 +1953,9 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">•</property>
                                 <property name="invisible_char_set">True</property>
-                                <property name="adjustment">adjustment3</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="adjustment">advanced.adjustment.pwd_len</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1881,7 +1964,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label10">
+                              <object class="GtkLabel" id="advanced.label.pwd_len">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">Maximum PWD length</property>
@@ -1903,43 +1986,46 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
+                  <packing>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                  </packing>
                 </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label25">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Style&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame" id="frame13">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkAlignment" id="alignment13">
+                  <object class="GtkBox" id="advanced.box.misc">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkTable" id="table11">
+                      <object class="GtkLabel" id="advanced.label.misc">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Misc</property>
+                        <property name="angle">90</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkTable" id="advanced.table.misc">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="n_rows">3</property>
                         <property name="n_columns">2</property>
                         <child>
-                          <object class="GtkVBox" id="vbox4">
+                          <object class="GtkVBox" id="advanced.box.cdpath">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1952,6 +2038,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1960,7 +2048,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label6">
+                              <object class="GtkLabel" id="advanced.label.cdpath">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -1978,7 +2066,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox6">
+                          <object class="GtkVBox" id="advanced.box.completion_blacklist">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -1991,6 +2079,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1999,7 +2089,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label4">
+                              <object class="GtkLabel" id="advanced.label.completion_blacklist">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -2019,7 +2109,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox7">
+                          <object class="GtkVBox" id="advanced.box.timeout">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -2031,6 +2121,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">•</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                                 <property name="adjustment">adjustment1</property>
                                 <property name="climb_rate">0.01</property>
                               </object>
@@ -2041,7 +2133,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label8">
+                              <object class="GtkLabel" id="advanced.label.timeout">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -2062,7 +2154,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox5">
+                          <object class="GtkVBox" id="advanced.box.fcedit">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -2075,6 +2167,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -2083,7 +2177,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label5">
+                              <object class="GtkLabel" id="advanced.label.fcedit">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -2105,7 +2199,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox14">
+                          <object class="GtkVBox" id="advanced.box.welcome">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -2116,6 +2210,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -2124,7 +2220,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label16">
+                              <object class="GtkLabel" id="advanced.label.welcome">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">Welcome Message</property>
@@ -2143,7 +2239,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vbox17">
+                          <object class="GtkVBox" id="advanced.box.path">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -2154,6 +2250,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
                                 <property name="invisible_char_set">True</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -2162,7 +2260,7 @@ es_ES: Kenny Meyer</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label18">
+                              <object class="GtkLabel" id="advanced.label.path ">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">Path</property>
@@ -2183,36 +2281,58 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label27">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Misc&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                  </object>
+                  <packing>
+                    <property name="top_attach">2</property>
+                    <property name="bottom_attach">3</property>
+                  </packing>
                 </child>
               </object>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="advanced.label.page1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">History - Style - Misc</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
               <packing>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-                <property name="y_options"></property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="advanced.label.page2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">page 2</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+                <property name="tab_fill">False</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="position">2</property>
-            <property name="tab_fill">False</property>
           </packing>
         </child>
         <child type="tab">
-          <object class="GtkBox" id="box4">
+          <object class="GtkBox" id="advanced.box.tab">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkImage" id="image9">
+              <object class="GtkImage" id="advanced.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="pixel_size">16</property>
@@ -2225,7 +2345,7 @@ es_ES: Kenny Meyer</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLinkButton" id="linkbutton3">
+              <object class="GtkLinkButton" id="advanced.doc">
                 <property name="label" translatable="yes">Advanced</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
