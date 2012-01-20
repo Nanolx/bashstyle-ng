@@ -4,10 +4,6 @@ Overview of changes in v7.99 "Energie"
 
 This release switched from GConf based configuration to ConfigObj.
 
---- Important Note #2 ---
-
-This release requires GTK+ 3
-
 Advantages:
 	- *much* faster startup from terminal
 	- usable from both python (ConfigObj) and Bash (ini-parser)
@@ -16,6 +12,10 @@ Advantages:
 
 Disadvantages:
 	- you have to fully re-setup BashStyle-NG (both GUI and Wizard)
+
+--- Important Note #2 ---
+
+This release requires GTK+3
 
 === Bug fixes ===
 * #128 (ui): fixed C-P-B showing no longer existent, respectively
