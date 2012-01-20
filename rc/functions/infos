@@ -102,15 +102,15 @@ show_tty ()
 show_system_load () {
 	case $1 in
 		1 )
-			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\1/" -e "s/ //g")
+			load=$(LANG=C uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\1/" -e "s/ //g")
 		;;
 
 		10 )
-			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\2/" -e "s/ //g")
+			load=$(LANG=C uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\2/" -e "s/ //g")
 		;;
 
 		15 )
-			load=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\3/" -e "s/ //g")
+			load=$(LANG=C uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\3/" -e "s/ //g")
 		;;
 
 		*help | "")
