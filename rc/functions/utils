@@ -344,6 +344,7 @@ binary-clock ()
 
 lscd () {
 
+	clear
 	builtin cd "${@}" &>/dev/null
 	. $BSNG_RC_DIR/dirinfo/display
 	dirinfo_display
