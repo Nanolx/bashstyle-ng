@@ -6,7 +6,7 @@
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3		#
 #							#
-# Copyright 2007 - 2011 Christopher Bratusek		#
+# Copyright 2007 - 2012 Christopher Bratusek		#
 #							#
 #########################################################
 
@@ -38,7 +38,7 @@ USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
 FACTORY_DEFAULTS = (PREFIX + '/share/bashstyle-ng/bs-ng.ini')
 
 parser = optparse.OptionParser("bashstyle <option> [value]\
-				\n\nBashStyle-NG © 2007 - 2011 Christopher Bratusek\
+				\n\nBashStyle-NG © 2007 - 2012 Christopher Bratusek\
 				\nLicensed under the GNU GENERAL PUBLIC LICENSE v3")
 
 if sys.platform == 'linux2':
