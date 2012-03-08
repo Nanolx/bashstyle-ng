@@ -56,7 +56,7 @@ parser.add_option("-p", "--prefix", dest="prefix",
 
 parser.add_option("-g", "--group", dest="group", default="style",
                   help="display a given group of options at startup, one of:\
-                  \nstyle, alias, advanced, readline, extra, vim, nano, ls or custom")
+                  \nstyle, alias, advanced, readline, vim, nano, ls or custom")
 
 (options, args) = parser.parse_args()
 
@@ -73,7 +73,6 @@ groups = {
 	  "alias" : "1",
 	  "advanced" : "2",
 	  "readline" : "3",
-	  "extra" : "4",
 	  "vim" : "5",
 	  "nano" : "6",
 	  "ls" : "7",
