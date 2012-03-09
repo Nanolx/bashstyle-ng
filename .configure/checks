@@ -131,8 +131,16 @@ for SECTION in PYMOD OPT_PYMOD; do
 
 		while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 			DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-			python -c "import imp
+			
+			if [[ $DEPENDENCY == *:* ]]; then
+				FROM=$(echo $DEPENDENCY | gawk -F \: '{print $1}')
+				SMOD=$(echo $DEPENDENCY | gawk -F \: '{print $2}')
+				python -c "from $FROM import $SMOD"
+			else
+				python -c "import imp
 imp.find_module('$DEPENDENCY')"
+			fi
+
 			DEP_RETURN=$?
 			if [[ $DEP_RETURN == 0 ]]; then
 				ok_message $DEPENDENCY
