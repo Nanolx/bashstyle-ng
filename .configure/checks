@@ -80,6 +80,46 @@ done
 
 }
 
+check_gir () {
+
+for SECTION in GIR OPT_GIR; do
+	CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
+	DONE_COUNTER=1
+
+	if [[ $CHKS_COUNTER != "0" ]]; then
+	section_message $SECTION
+
+	while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
+		DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
+		VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
+		TYPE_LIB=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
+		FILE=$(basename $(ls /usr/lib/girepository-1.0/$TYPE_LIB-* 2>/dev/null) .typelib 2>/dev/null)
+		
+		if [[ $FILE != ".typelib" ]]; then
+			EXIST_RETURN=0
+			XVER=$(echo $FILE | gawk -F \- '{print $2}')
+			DEP_RETURN=$(echo "$XVER >= $VERSION" | bc)
+		fi
+
+		if [[ $EXIST_RETURN != 0 && ! $SECTION == OPT* ]]; then
+			fail_message m $DEPENDENCY
+			exit 1
+		elif [[ $DEP_RETURN == 1 ]]; then
+			ok_message $DEPENDENCY ${VERSION}+
+		elif [[ $EXIST_RETURN != 0 && $SECTION == OPT* ]]; then
+			warn_message $DEPENDENCY
+			ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
+			MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
+		else	fail_message o $DEPENDENCY $VERSION
+			exit 1
+		fi
+		DONE_COUNTER=$(($DONE_COUNTER+1)); done
+	fi
+	unset CHKS_COUNTER DONE_COUNTER
+done
+
+}
+
 check_pymods () {
 
 for SECTION in PYMOD OPT_PYMOD; do
@@ -107,4 +147,5 @@ imp.find_module('$DEPENDENCY')"
 	fi
 	unset CHKS_COUNTER DONE_COUNTER
 done
+
 }

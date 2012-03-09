@@ -23,9 +23,8 @@ for module in MODULES:
 
 try:
 	from gi.repository import Gtk
-	from gi.repository import GdkPixbuf
 except ImportError:
-	FAILED.append("Gtk/Gdk (from gi.repository)")
+	FAILED.append("Gtk (from gi.repository)")
 
 if FAILED:
     print "The following modules failed to import: %s" % (" ".join(FAILED))

@@ -36,6 +36,14 @@ section_message () {
 			OPT_LIB )
 				echo -e "\n${MAGENTA}Optional ${WHITE}Libraries:\n"
 			;;
+
+			GIR )
+				echo -e "\n${RED}Required ${WHITE}GIR Repositories:\n"
+			;;
+
+			OPT_GIR)
+				echo -e "\n${MAGENTA}Optional ${WHITE}GIR Repositories:\n"
+			;;
 		esac
 	fi
 	tput sgr0
