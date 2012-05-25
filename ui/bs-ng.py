@@ -1747,11 +1747,12 @@ class BashStyleNG(object):
 
 		####################### Connect the Show Toolbox Button ###########################
 
-		self.toolbox = gtkbuilder.get_object("Toolbox")
 		self.show_toolbox = gtkbuilder.get_object("show_toolbox")
 
 		def do_show_toolbox(widget, data=None):
-			self.toolbox.show_all()
+			toolbox = gtkbuilder.get_object("Toolbox")
+			toolbox.show_all()
+			toolbox.connect("delete-event", lambda w, e: w.hide() or True)
 
 		self.show_toolbox.connect("clicked", do_show_toolbox)
 
@@ -2272,12 +2273,6 @@ class BashStyleNG(object):
 
 		self.bashstyle.connect("destroy", destroy, None)
 
-		####################### load the AboutDialog/NoteBook/TreeView #####################
-		aboutdialog = gtkbuilder.get_object("aboutdialog")
-
-		def about_destroy(widget, extra, data=None):
-			widget.hide()
-
 		####################### Load the Notebook ##########################################
 		notebook = gtkbuilder.get_object("notebook")
 		notebook.set_current_page(int(initial_page))
@@ -2293,8 +2288,10 @@ class BashStyleNG(object):
 		self.show_about = gtkbuilder.get_object("show_about")
 
 		def show_aboutdialog(widget, data=None):
+			aboutdialog = gtkbuilder.get_object("aboutdialog")
 			aboutdialog.show_all()
-			aboutdialog.connect("response", about_destroy, None)
+			aboutdialog.connect("response", lambda w, e: w.hide() or True)
+			aboutdialog.connect("delete-event", lambda w, e: w.hide() or True)
 
 		self.show_about.connect("clicked", show_aboutdialog, None)
 

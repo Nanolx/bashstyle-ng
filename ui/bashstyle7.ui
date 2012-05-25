@@ -1,588 +1,620 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
-  <object class="GtkWindow" id="Toolbox">
+  <object class="GtkDialog" id="Toolbox">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">BashStyle-NG Toolbox</property>
-    <property name="window_position">center-on-parent</property>
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">Bashstyle-NG Toolbox</property>
+    <property name="destroy_with_parent">True</property>
     <property name="icon_name">bs-ng-toolbox</property>
-    <child>
-      <object class="GtkVBox" id="toolbox.box">
-        <property name="visible">True</property>
+    <property name="type_hint">dialog</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="dialog-vbox1">
         <property name="can_focus">False</property>
-        <child>
-          <object class="GtkBox" id="toolbox.box.standard">
-            <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
             <child>
-              <object class="GtkLabel" id="toolbox.label.standard">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Standard Stuff</property>
-                <property name="angle">90</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              <placeholder/>
             </child>
             <child>
-              <object class="GtkTable" id="toolbox.table.stanard">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="n_rows">5</property>
-                <property name="n_columns">3</property>
-                <property name="homogeneous">True</property>
-                <child>
-                  <object class="GtkButton" id="number">
-                    <property name="label" translatable="yes">Command Number [Session]</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="bang">
-                    <property name="label" translatable="yes">Command Number [History]</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="jobs">
-                    <property name="label" translatable="yes">Background Processes</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="sign">
-                    <property name="label" translatable="yes">$ (# if root)</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="workdir">
-                    <property name="label" translatable="yes">Base Workdir</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="fhostname">
-                    <property name="label" translatable="yes">Full Hostname</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="fworkdir">
-                    <property name="label" translatable="yes">Full Workdir</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="time">
-                    <property name="label" translatable="yes">Time</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="date">
-                    <property name="label" translatable="yes">Date</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="hostname">
-                    <property name="label" translatable="yes">Hostname</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="username">
-                    <property name="label" translatable="yes">Username</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="pid">
-                    <property name="label" translatable="yes">Bash's Process ID</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="shlvl">
-                    <property name="label" translatable="yes">Shell Level</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="euid">
-                    <property name="label" translatable="yes">Effective User ID</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="showseconds">
-                    <property name="label" translatable="yes">Time since Bash started</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              <placeholder/>
             </child>
           </object>
           <packing>
-            <property name="expand">True</property>
+            <property name="expand">False</property>
             <property name="fill">True</property>
+            <property name="pack_type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkSeparator" id="toolbox.separator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_left">100</property>
-            <property name="margin_right">100</property>
-            <property name="margin_top">5</property>
-            <property name="margin_bottom">5</property>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox" id="toolbox.box.bsng">
+          <object class="GtkVBox" id="toolbox.box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkLabel" id="toolbox.label.bsng">
+              <object class="GtkBox" id="toolbox.box.standard">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">BS-NG Stuff</property>
-                <property name="angle">90</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
+                <child>
+                  <object class="GtkLabel" id="toolbox.label.standard">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Standard Stuff</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="toolbox.table.stanard">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_rows">5</property>
+                    <property name="n_columns">3</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="number">
+                        <property name="label" translatable="yes">Command Number [Session]</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="bang">
+                        <property name="label" translatable="yes">Command Number [History]</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="jobs">
+                        <property name="label" translatable="yes">Background Processes</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="sign">
+                        <property name="label" translatable="yes">$ (# if root)</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="workdir">
+                        <property name="label" translatable="yes">Base Workdir</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="fhostname">
+                        <property name="label" translatable="yes">Full Hostname</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="fworkdir">
+                        <property name="label" translatable="yes">Full Workdir</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="time">
+                        <property name="label" translatable="yes">Time</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="date">
+                        <property name="label" translatable="yes">Date</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="hostname">
+                        <property name="label" translatable="yes">Hostname</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="username">
+                        <property name="label" translatable="yes">Username</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="pid">
+                        <property name="label" translatable="yes">Bash's Process ID</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="shlvl">
+                        <property name="label" translatable="yes">Shell Level</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="euid">
+                        <property name="label" translatable="yes">Effective User ID</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="showseconds">
+                        <property name="label" translatable="yes">Time since Bash started</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <object class="GtkTable" id="toolbox.table.bsng">
+              <object class="GtkSeparator" id="toolbox.separator">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="n_rows">4</property>
-                <property name="n_columns">3</property>
-                <property name="homogeneous">True</property>
-                <child>
-                  <object class="GtkButton" id="showtty">
-                    <property name="label" translatable="yes">Current TTY</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="countprocesses">
-                    <property name="label" translatable="yes">Number of Processes</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="truncpwd">
-                    <property name="label" translatable="yes">Trunced Workdir</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="showsize">
-                    <property name="label" translatable="yes">Files Size</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="showuptime">
-                    <property name="label" translatable="yes">Uptime</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="countfiles">
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">toolbox.liststore.countfiles</property>
-                    <property name="tearoff_title">Files Amount</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="toolbox.cellrenderer.countfiles"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="showload">
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">toolbox.liststore.load</property>
-                    <property name="tearoff_title">Load Average</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="toolbox.cellrenderer.showload"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="showmem">
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">toolbox.liststore.memory</property>
-                    <property name="tearoff_title">Display Memory:</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="toolbox.cellrenderer.showmem"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="showcpuload">
-                    <property name="label" translatable="yes">CPU Load</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="showbatteryload">
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">toolbox.liststore.battery</property>
-                    <property name="tearoff_title">Display Batteryload:</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="toolbox.cellrenderer.showbatteryload"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="showspace">
-                    <property name="height_request">26</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">toolbox.liststore.space</property>
-                    <property name="tearoff_title">Display Diskspace</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="toolbox.cellrenderer.showspace"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLinkButton" id="toolbox.link.doc">
-                    <property name="label" translatable="yes">Documentation</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="has_tooltip">True</property>
-                    <property name="use_action_appearance">False</property>
-                    <property name="relief">none</property>
-                    <property name="uri">file:///usr/share/doc/bashstyle-ng/chapter08.html</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
+                <property name="margin_left">100</property>
+                <property name="margin_right">100</property>
+                <property name="margin_top">5</property>
+                <property name="margin_bottom">5</property>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkBox" id="toolbox.box.bsng">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkLabel" id="toolbox.label.bsng">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">BS-NG Stuff</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="toolbox.table.bsng">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_rows">4</property>
+                    <property name="n_columns">3</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="showtty">
+                        <property name="label" translatable="yes">Current TTY</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="countprocesses">
+                        <property name="label" translatable="yes">Number of Processes</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="truncpwd">
+                        <property name="label" translatable="yes">Trunced Workdir</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="showsize">
+                        <property name="label" translatable="yes">Files Size</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="showuptime">
+                        <property name="label" translatable="yes">Uptime</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="countfiles">
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">toolbox.liststore.countfiles</property>
+                        <property name="tearoff_title">Files Amount</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="toolbox.cellrenderer.countfiles"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="showload">
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">toolbox.liststore.load</property>
+                        <property name="tearoff_title">Load Average</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="toolbox.cellrenderer.showload"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="showmem">
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">toolbox.liststore.memory</property>
+                        <property name="tearoff_title">Display Memory:</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="toolbox.cellrenderer.showmem"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="showcpuload">
+                        <property name="label" translatable="yes">CPU Load</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="showbatteryload">
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">toolbox.liststore.battery</property>
+                        <property name="tearoff_title">Display Batteryload:</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="toolbox.cellrenderer.showbatteryload"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="showspace">
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">toolbox.liststore.space</property>
+                        <property name="tearoff_title">Display Diskspace</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="toolbox.cellrenderer.showspace"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLinkButton" id="toolbox.link.doc">
+                        <property name="label" translatable="yes">Documentation</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="has_tooltip">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="relief">none</property>
+                        <property name="uri">file:///usr/share/doc/bashstyle-ng/chapter08.html</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
-            <property name="expand">True</property>
+            <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
