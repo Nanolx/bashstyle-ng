@@ -704,178 +704,6 @@ es_ES: Kenny Meyer</property>
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="cpb.liststore.style">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Choose Style to modify:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vector</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Floating Clock</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Clock Advanced</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Elite</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Power-User</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dirks</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dot.Prompt</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sepa-NG</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Quirk</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sputnik</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ayoli</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="cpb.liststore.symbolic_color">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Insert Symbolic Color:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Username</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Hostname</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Date</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Time</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Workdir</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Font</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Uptime</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">PS2 PS3 PS4</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkImage" id="image17">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixel_size">24</property>
-    <property name="icon_name">bs-ng-toolbox</property>
-  </object>
-  <object class="GtkListStore" id="ls_colors.liststore.choice">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Black</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Red</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Yellow</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Blue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Magenta</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cyan</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">White</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Coldblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Iceblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Turqoise</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothgreen</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Winered</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Brown</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Silver</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ocher</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Purple</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Pink</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cream</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkAdjustment" id="readline.adjustment.query_items">
-    <property name="upper">10000</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkImage" id="style.icon.doc">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixel_size">16</property>
-    <property name="icon_name">bs-ng-help</property>
-  </object>
   <object class="GtkWindow" id="bashstyle">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -920,30 +748,11 @@ es_ES: Kenny Meyer</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="style.box.basic.opts">
+                  <object class="GtkGrid" id="style.table.basic">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkCheckButton" id="use_bashstyle">
-                        <property name="label" translatable="yes">Use BashStyle-NG</property>
-                        <property name="use_action_appearance">False</property>
-                        <property name="width_request">220</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="use_action_appearance">False</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
+                    <property name="column_spacing">15</property>
+                    <property name="row_homogeneous">True</property>
                     <child>
                       <object class="GtkCheckButton" id="colored_prompts">
                         <property name="label" translatable="yes">Colored Prompts</property>
@@ -959,15 +768,37 @@ es_ES: Kenny Meyer</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="use_bashstyle">
+                        <property name="label" translatable="yes">Use BashStyle-NG</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
                     <property name="expand">True</property>
-                    <property name="fill">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -1067,6 +898,7 @@ es_ES: Kenny Meyer</property>
                     <property name="can_focus">False</property>
                     <property name="n_rows">2</property>
                     <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkComboBox" id="color_of">
                         <property name="width_request">220</property>
@@ -1185,8 +1017,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -1222,6 +1054,7 @@ es_ES: Kenny Meyer</property>
                     <property name="can_focus">False</property>
                     <property name="n_rows">3</property>
                     <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="ls_color">
                         <property name="label" translatable="yes">Colored ls output</property>
@@ -1437,8 +1270,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -1881,6 +1714,7 @@ es_ES: Kenny Meyer</property>
                         <property name="can_focus">False</property>
                         <property name="n_rows">2</property>
                         <property name="n_columns">2</property>
+                        <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkVBox" id="advanced.box.histroy_size">
                             <property name="width_request">220</property>
@@ -2037,8 +1871,8 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -2082,6 +1916,7 @@ es_ES: Kenny Meyer</property>
                         <property name="can_focus">False</property>
                         <property name="n_rows">4</property>
                         <property name="n_columns">2</property>
+                        <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkVBox" id="advanced.box.cdpath">
                             <property name="width_request">220</property>
@@ -2400,8 +2235,8 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -2437,6 +2272,7 @@ es_ES: Kenny Meyer</property>
                         <property name="can_focus">False</property>
                         <property name="n_rows">2</property>
                         <property name="n_columns">2</property>
+                        <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkVBox" id="advanced.box.separator">
                             <property name="width_request">220</property>
@@ -2610,8 +2446,8 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -2681,6 +2517,7 @@ es_ES: Kenny Meyer</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="n_rows">4</property>
                         <property name="n_columns">2</property>
+                        <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkCheckButton" id="show_battery">
                             <property name="label" translatable="yes">Display battery load</property>
@@ -2878,8 +2715,8 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -2911,6 +2748,7 @@ es_ES: Kenny Meyer</property>
                         <property name="can_focus">False</property>
                         <property name="n_rows">2</property>
                         <property name="n_columns">2</property>
+                        <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkCheckButton" id="autocd">
                             <property name="label" translatable="yes">Enable autocd</property>
@@ -2993,8 +2831,8 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -3042,6 +2880,7 @@ es_ES: Kenny Meyer</property>
                         <property name="can_focus">False</property>
                         <property name="n_rows">4</property>
                         <property name="n_columns">2</property>
+                        <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkCheckButton" id="no_empty_cmd">
                             <property name="label" translatable="yes">Enable no empty cmd comp.</property>
@@ -3208,8 +3047,8 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -3323,6 +3162,7 @@ es_ES: Kenny Meyer</property>
                     <property name="can_focus">False</property>
                     <property name="n_rows">2</property>
                     <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="scroll_hz">
                         <property name="label" translatable="yes">Scroll horizontally</property>
@@ -3390,8 +3230,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -3439,6 +3279,7 @@ es_ES: Kenny Meyer</property>
                     <property name="can_focus">False</property>
                     <property name="n_rows">4</property>
                     <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="mark_symdirs">
                         <property name="label" translatable="yes">Mark symbolic directories</property>
@@ -3632,8 +3473,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -3681,6 +3522,7 @@ es_ES: Kenny Meyer</property>
                     <property name="can_focus">False</property>
                     <property name="n_rows">2</property>
                     <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="readline">
                         <property name="label" translatable="yes">Use ReadlineCFG</property>
@@ -3819,8 +3661,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -3894,11 +3736,11 @@ es_ES: Kenny Meyer</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTable" id="vim.box.basi">
+                  <object class="GtkTable" id="vim.table.basic">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="n_columns">2</property>
-                    <property name="homogeneous">True</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="use_vimcfg">
                         <property name="label" translatable="yes">Use VimCFG</property>
@@ -3939,8 +3781,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -3984,6 +3826,7 @@ es_ES: Kenny Meyer</property>
                     <property name="can_focus">False</property>
                     <property name="n_rows">2</property>
                     <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="vim_icase">
                         <property name="label" translatable="yes">Match case-insensitivley</property>
@@ -4066,8 +3909,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -4103,6 +3946,7 @@ es_ES: Kenny Meyer</property>
                     <property name="can_focus">False</property>
                     <property name="n_rows">5</property>
                     <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="vim_match">
                         <property name="label" translatable="yes">Highlight matching brackets</property>
@@ -4361,8 +4205,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -4422,6 +4266,7 @@ es_ES: Kenny Meyer</property>
                     <property name="can_focus">False</property>
                     <property name="n_rows">4</property>
                     <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
                       <object class="GtkCheckButton" id="vim_number">
                         <property name="label" translatable="yes">Display line numbers</property>
@@ -4640,8 +4485,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -4658,11 +4503,11 @@ es_ES: Kenny Meyer</property>
           </packing>
         </child>
         <child type="tab">
-          <object class="GtkBox" id="box7">
+          <object class="GtkBox" id="vim.box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkImage" id="image12">
+              <object class="GtkImage" id="vim.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="pixel_size">24</property>
@@ -4693,369 +4538,402 @@ es_ES: Kenny Meyer</property>
           </packing>
         </child>
         <child>
-          <object class="GtkTable" id="table29">
+          <object class="GtkTable" id="nano.table">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="valign">center</property>
-            <property name="n_rows">3</property>
+            <property name="n_rows">5</property>
             <child>
-              <object class="GtkFrame" id="frame32">
+              <object class="GtkBox" id="nano.box.basic">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkAlignment" id="alignment32">
+                  <object class="GtkLabel" id="nano.label.basic">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
+                    <property name="label" translatable="yes">Basic</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="nano.table.basic">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_rows">2</property>
+                    <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
-                      <object class="GtkTable" id="table30">
+                      <object class="GtkCheckButton" id="nano_backup">
+                        <property name="label" translatable="yes">Backup files</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_rows">2</property>
-                        <property name="n_columns">2</property>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_indent">
-                            <property name="label" translatable="yes">Enable auto-indention</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_case">
-                            <property name="label" translatable="yes">Search case-sensitivley</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options"></property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_colors">
-                            <property name="label" translatable="yes">Enable syntax highlighting</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_nohelp">
-                            <property name="label" translatable="yes">Hide shortcuts</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options"></property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
                       </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_const">
+                        <property name="label" translatable="yes">Display position of cursor</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_history">
+                        <property name="label" translatable="yes">Use search-string history</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="use_nanocfg">
+                        <property name="label" translatable="yes">Use NanoCFG</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
                     </child>
                   </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label50">
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="nano.box.misc">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkLabel" id="nano.label.misc">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Editing&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
+                    <property name="label" translatable="yes">Misc</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="nano.table.misc">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_rows">2</property>
+                    <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_boldtext">
+                        <property name="label" translatable="yes">Use bold text</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_morespace">
+                        <property name="label" translatable="yes">Have more space for editing</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_rbdel">
+                        <property name="label" translatable="yes">Rebind delete keys</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_rbkp">
+                        <property name="label" translatable="yes">Rebind keypad</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
               </object>
               <packing>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-                <property name="y_options"></property>
+                <property name="top_attach">4</property>
+                <property name="bottom_attach">5</property>
               </packing>
             </child>
             <child>
-              <object class="GtkFrame" id="frame31">
+              <object class="GtkBox" id="nano.box.editing">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkAlignment" id="alignment31">
+                  <object class="GtkLabel" id="nano.label.editing">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
+                    <property name="label" translatable="yes">Editing</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="nano.table.editing">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_rows">2</property>
+                    <property name="n_columns">2</property>
+                    <property name="column_spacing">15</property>
                     <child>
-                      <object class="GtkTable" id="table33">
+                      <object class="GtkCheckButton" id="nano_indent">
+                        <property name="label" translatable="yes">Enable auto-indention</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_rows">2</property>
-                        <property name="n_columns">2</property>
-                        <child>
-                          <object class="GtkCheckButton" id="use_nanocfg">
-                            <property name="label" translatable="yes">Use NanoCFG</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="x_options"></property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_backup">
-                            <property name="label" translatable="yes">Backup files</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_const">
-                            <property name="label" translatable="yes">Display position of cursor</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_history">
-                            <property name="label" translatable="yes">Use search-string history</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options"></property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
                       </object>
+                      <packing>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_case">
+                        <property name="label" translatable="yes">Search case-sensitivley</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_colors">
+                        <property name="label" translatable="yes">Enable syntax highlighting</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="nano_nohelp">
+                        <property name="label" translatable="yes">Hide shortcuts</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
                     </child>
                   </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label49">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Basic&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="y_options"></property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame" id="frame35">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkAlignment" id="alignment35">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
-                    <child>
-                      <object class="GtkTable" id="table34">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_rows">2</property>
-                        <property name="n_columns">2</property>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_boldtext">
-                            <property name="label" translatable="yes">Use bold text</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_morespace">
-                            <property name="label" translatable="yes">Have more space for editing</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_rbdel">
-                            <property name="label" translatable="yes">Rebind delete keys</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options"></property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_rbkp">
-                            <property name="label" translatable="yes">Rebind keypad</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options"></property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label51">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Extras&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
               </object>
               <packing>
                 <property name="top_attach">2</property>
                 <property name="bottom_attach">3</property>
-                <property name="y_options"></property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator" id="nano.separator.1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">100</property>
+                <property name="margin_right">100</property>
+              </object>
+              <packing>
+                <property name="top_attach">3</property>
+                <property name="bottom_attach">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparator" id="nano.separator.2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">100</property>
+                <property name="margin_right">100</property>
+              </object>
+              <packing>
+                <property name="top_attach">1</property>
+                <property name="bottom_attach">2</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="position">5</property>
-            <property name="tab_fill">False</property>
           </packing>
         </child>
         <child type="tab">
-          <object class="GtkBox" id="box8">
+          <object class="GtkBox" id="nano.box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkImage" id="image13">
+              <object class="GtkImage" id="nano.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="pixel_size">24</property>
@@ -6366,7 +6244,7 @@ es_ES: Kenny Meyer</property>
                                         <property name="halign">center</property>
                                         <property name="valign">center</property>
                                         <property name="use_action_appearance">False</property>
-                                        <property name="image">image17</property>
+                                        <property name="image">cpb.icon.toolbox</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -6690,6 +6568,172 @@ es_ES: Kenny Meyer</property>
       </object>
     </child>
   </object>
+  <object class="GtkImage" id="cpb.icon.toolbox">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixel_size">24</property>
+    <property name="icon_name">bs-ng-toolbox</property>
+  </object>
+  <object class="GtkListStore" id="cpb.liststore.style">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Choose Style to modify:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vector</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Floating Clock</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Clock Advanced</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Elite</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Power-User</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dirks</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dot.Prompt</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sepa-NG</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Quirk</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sputnik</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ayoli</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="cpb.liststore.symbolic_color">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Insert Symbolic Color:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Username</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Hostname</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Date</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Time</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Workdir</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Font</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Uptime</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">PS2 PS3 PS4</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="ls_colors.liststore.choice">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="readline.adjustment.query_items">
+    <property name="upper">10000</property>
+    <property name="step_increment">1</property>
+  </object>
   <object class="GtkListStore" id="readline.liststore.bellstyle">
     <columns>
       <!-- column-name item -->
@@ -6720,6 +6764,18 @@ es_ES: Kenny Meyer</property>
         <col id="0" translatable="yes">Vi</col>
       </row>
     </data>
+  </object>
+  <object class="GtkImage" id="style.icon.about">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixel_size">16</property>
+    <property name="icon_name">bs-ng-info</property>
+  </object>
+  <object class="GtkImage" id="style.icon.doc">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixel_size">16</property>
+    <property name="icon_name">bs-ng-help</property>
   </object>
   <object class="GtkListStore" id="style.liststore.color_of">
     <columns>
@@ -6987,12 +7043,6 @@ es_ES: Kenny Meyer</property>
         <col id="0" translatable="yes">Nebula</col>
       </row>
     </data>
-  </object>
-  <object class="GtkImage" id="style.icon.about">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixel_size">16</property>
-    <property name="icon_name">bs-ng-info</property>
   </object>
   <object class="GtkListStore" id="toolbox.liststore.battery">
     <columns>
