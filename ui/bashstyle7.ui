@@ -709,6 +709,7 @@ es_ES: Kenny Meyer</property>
     <property name="can_focus">False</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">BashStyle-NG</property>
+    <property name="resizable">False</property>
     <property name="window_position">center-always</property>
     <property name="icon_name">bs-ng</property>
     <property name="gravity">south-east</property>
@@ -3251,6 +3252,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">3</property>
                 <property name="bottom_attach">4</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
             <child>
@@ -3494,6 +3497,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
             <child>
@@ -3798,6 +3803,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
             <child>
@@ -4226,6 +4233,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">3</property>
                 <property name="bottom_attach">4</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
             <child>
@@ -4238,6 +4247,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">5</property>
                 <property name="bottom_attach">6</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
             <child>
@@ -4909,6 +4920,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">3</property>
                 <property name="bottom_attach">4</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
             <child>
@@ -4921,6 +4934,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
           </object>
@@ -4979,6 +4994,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">4</property>
               </packing>
             </child>
             <child>
@@ -5026,7 +5043,7 @@ es_ES: Kenny Meyer</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="ls_colors.lable.null">
+                      <object class="GtkLabel" id="ls_colors.label.null">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -5074,8 +5091,6 @@ es_ES: Kenny Meyer</property>
                     <property name="n_columns">3</property>
                     <child>
                       <object class="GtkVBox" id="ls_colors.box.exec">
-                        <property name="width_request">220</property>
-                        <property name="height_request">44</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
@@ -5092,7 +5107,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_exec">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5112,7 +5127,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="x_options"></property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
@@ -5134,7 +5149,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_gen">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5178,7 +5193,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_log">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5222,7 +5237,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_deb">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5266,7 +5281,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_rpm">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5312,7 +5327,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_dirs">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5342,8 +5357,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -5363,6 +5378,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">3</property>
                 <property name="bottom_attach">4</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
             <child>
@@ -5393,8 +5410,6 @@ es_ES: Kenny Meyer</property>
                     <property name="n_columns">3</property>
                     <child>
                       <object class="GtkVBox" id="ls_colors.box.jpeg">
-                        <property name="width_request">220</property>
-                        <property name="height_request">44</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
@@ -5411,7 +5426,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_jpeg">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5431,7 +5446,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="x_options"></property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
@@ -5453,7 +5468,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_png">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5497,7 +5512,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_gif">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5541,7 +5556,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_mp3">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5585,7 +5600,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_ogg">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5631,7 +5646,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_flac">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5661,8 +5676,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -5682,6 +5697,8 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="top_attach">5</property>
                 <property name="bottom_attach">6</property>
+                <property name="x_padding">100</property>
+                <property name="y_padding">5</property>
               </packing>
             </child>
             <child>
@@ -5712,8 +5729,6 @@ es_ES: Kenny Meyer</property>
                     <property name="n_columns">3</property>
                     <child>
                       <object class="GtkVBox" id="ls_colors.box.custom">
-                        <property name="width_request">220</property>
-                        <property name="height_request">44</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
@@ -5730,7 +5745,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkEntry" id="ls_custom">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
@@ -5755,8 +5770,6 @@ es_ES: Kenny Meyer</property>
                     </child>
                     <child>
                       <object class="GtkVBox" id="ls_colors.box.tar">
-                        <property name="width_request">220</property>
-                        <property name="height_request">44</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
@@ -5773,7 +5786,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_tar">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5793,7 +5806,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="x_options"></property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
@@ -5815,7 +5828,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_targz">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5859,7 +5872,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_tarbz2">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5903,7 +5916,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_zip">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5947,7 +5960,7 @@ es_ES: Kenny Meyer</property>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="ls_rar">
-                            <property name="width_request">220</property>
+                            <property name="width_request">200</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -5977,8 +5990,8 @@ es_ES: Kenny Meyer</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
+                    <property name="expand">True</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -6318,7 +6331,7 @@ es_ES: Kenny Meyer</property>
                                     <property name="can_focus">True</property>
                                     <child>
                                       <object class="GtkTextView" id="prompt_command">
-                                        <property name="height_request">45</property>
+                                        <property name="height_request">40</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="left_margin">2</property>
@@ -6536,7 +6549,7 @@ es_ES: Kenny Meyer</property>
                                     <property name="can_focus">True</property>
                                     <child>
                                       <object class="GtkTextView" id="custom_prompt">
-                                        <property name="height_request">45</property>
+                                        <property name="height_request">40</property>
                                         <property name="visible">True</property>
                                         <property name="sensitive">False</property>
                                         <property name="can_focus">True</property>
