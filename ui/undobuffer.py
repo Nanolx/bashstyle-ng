@@ -19,7 +19,7 @@ class UndoableInsert(object):
 class UndoableDelete(object):
     """something that has ben deleted from our textbuffer"""
     def __init__(self, text_buffer, start_iter, end_iter):
-        self.text = text_buffer.get_text(start_iter, end_iter)
+        self.text = text_buffer.get_text(start_iter, end_iter, False)
         self.start = start_iter.get_offset()
         self.end = end_iter.get_offset()
         # need to find out if backspace or delete key has been used

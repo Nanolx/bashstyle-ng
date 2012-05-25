@@ -1676,7 +1676,7 @@ class BashStyleNG(object):
 		def set_prompt_command(widget, data=None):
 			start = widget.get_start_iter()
 			end = widget.get_end_iter()
-			cfo["Custom"]["command"] = widget.get_text(start, end)
+			cfo["Custom"]["command"] = widget.get_text(start, end, False)
 
 		self.prompt_command_buffer.connect("changed", set_prompt_command)
 
@@ -1693,7 +1693,7 @@ class BashStyleNG(object):
 		def set_custom_prompt(widget, data=None):
 			start = widget.get_start_iter()
 			end = widget.get_end_iter()
-			cfo["Custom"]["prompt"] = widget.get_text(start, end)
+			cfo["Custom"]["prompt"] = widget.get_text(start, end, False)
 
 		self.custom_prompt_buffer.connect("changed", set_custom_prompt)
 
