@@ -15,14 +15,12 @@ Disadvantages:
 
 --- Important Note #2 ---
 
-This release requires GTK+3
+This release requires GTK+3 / Python-GI
 
 === Bug fixes ===
-* #128 (ui): fixed C-P-B showing no longer existent, respectively
-             wrong themes (and theme-code) from the "Choose Style
-	     to modify:" combo-box
-* #129 (configure): when configured via debian/rules, configure
-                    got the prefix wrong
+* #128 (ui): fixed C-P-B (Custom Prompt Builder) showing no longer existent
+	     themes (and theme-code) from the "Choose Style to modify:" combo-box
+* #129 (configure): when configured via debian/rules, configure got the prefix wrong
 * #130 (profile): display-managers like XDM don't source /etc/profile.d/*,
                   so let nx-rc self-check, whether our profile was sourced
 * #131 (readline/vim/nano): don't create an rc for readline, vim or nano,
