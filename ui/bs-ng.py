@@ -171,7 +171,7 @@ class BashStyleNG(object):
 		_ = self.lang.gettext
 
 		gtkbuilder.set_translation_domain("bs-ng")
-		gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle7.ui")
+		gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle8.ui")
 
 		self.use_bashstyle = gtkbuilder.get_object("use_bashstyle")
 		self.use_bashstyle.set_active(cfo["Style"].as_bool("use_bashstyle"))
