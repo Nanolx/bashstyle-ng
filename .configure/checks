@@ -93,8 +93,9 @@ for SECTION in GIR OPT_GIR; do
 		DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
 		VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
 		TYPE_LIB=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
-		FILE=$(basename $(ls /usr/lib/girepository-1.0/$TYPE_LIB-* 2>/dev/null) .typelib 2>/dev/null)
+		FILE=$(basename $(ls /usr/lib/girepository-1.0/$TYPE_LIB* 2>/dev/null) .typelib 2>/dev/null)
 		
+
 		if [[ $FILE != ".typelib" ]]; then
 			EXIST_RETURN=0
 			XVER=$(echo $FILE | gawk -F \- '{print $2}')
@@ -135,10 +136,10 @@ for SECTION in PYMOD OPT_PYMOD; do
 			if [[ $DEPENDENCY == *:* ]]; then
 				FROM=$(echo $DEPENDENCY | gawk -F \: '{print $1}')
 				SMOD=$(echo $DEPENDENCY | gawk -F \: '{print $2}')
-				python -c "from $FROM import $SMOD"
+				python -c "from $FROM import $SMOD" 2>/dev/null
 			else
 				python -c "import imp
-imp.find_module('$DEPENDENCY')"
+imp.find_module('$DEPENDENCY')" 2>/dev/null
 			fi
 
 			DEP_RETURN=$?
