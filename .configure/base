@@ -5,6 +5,10 @@ CODENAME="We're Getting High With The Rhythm"
 
 ERR_MSG=""
 
+if [[ ! $GIRPATH ]];  then
+	export GIRPATH="/usr/lib/girepository-1.0/"
+fi
+
 export OLDPATH=$PATH
 export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 

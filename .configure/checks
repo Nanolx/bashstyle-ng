@@ -93,7 +93,7 @@ for SECTION in GIR OPT_GIR; do
 		DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
 		VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
 		TYPE_LIB=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
-		FILE=$(basename $(ls /usr/lib/girepository-1.0/$TYPE_LIB* 2>/dev/null) .typelib 2>/dev/null)
+		FILE=$(basename $(ls ${GIRPATH}/$TYPE_LIB* 2>/dev/null) .typelib 2>/dev/null)
 		
 
 		if [[ $FILE != ".typelib" ]]; then
