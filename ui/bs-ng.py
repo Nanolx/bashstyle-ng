@@ -149,6 +149,7 @@ class BashStyleNG(object):
 		####################### factory defaults for stuff #################################
 
 		fdc = configobj.ConfigObj(FACTORY_DEFAULTS)
+		udc = configobj.ConfigObj(USER_DEFAULTS)
 
 		####################### blacklist / gtkBuilder #####################################
 
@@ -408,20 +409,27 @@ class BashStyleNG(object):
 			if text in blacklist:
 				widget.emit_stop_by_name('insert-text')
 
+		####################### metafunc for revert/reset options #########################
+
+		def revert_option(group, setting, type, widget, pos):
+			if pos == Gtk.EntryIconPosition.SECONDARY:
+				opt = fdc["%s" % group]["%s" % setting]
+			else:
+				opt = udc["%s" % group]["%s" % setting]
+			if type == "text":
+				cfo["%s" % group]["%s" % setting] = opt
+				widget.set_text("%s" % cfo["%s" % group]["%s" % setting])
+
 		####################### Load the Alias #1 Entry ###################################
 
 		self.alias1 = gtkbuilder.get_object("alias1")
 		self.alias1.set_text("%s" % cfo["Alias"]["alias_one"])
-		alias1_pre = cfo["Alias"]["alias_one"]
 
 		def set_alias1(widget, data=None):
 			cfo["Alias"]["alias_one"] = widget.get_text()
 
 		def icon_alias1(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias1.set_text("%s" % alias1_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias1.set_text("%s" % fdc["Alias"]["alias_one"])
+			revert_option("Alias", "alias_one", "text", self.alias1, pos)
 
 		self.alias1.connect("icon-press", icon_alias1)
 		self.alias1.connect("insert-text", emit_text)
@@ -431,16 +439,12 @@ class BashStyleNG(object):
 
 		self.alias2 = gtkbuilder.get_object("alias2")
 		self.alias2.set_text("%s" % cfo["Alias"]["alias_two"])
-		alias2_pre = cfo["Alias"]["alias_two"]
 
 		def set_alias2(widget, data=None):
 			cfo["Alias"]["alias_two"] = widget.get_text()
 
 		def icon_alias2(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias2.set_text("%s" % alias2_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias2.set_text("%s" % fdc["Alias"]["alias_two"])
+			revert_option("Alias", "alias_two", "text", self.alias2, pos)
 
 		self.alias2.connect("icon-press", icon_alias2)
 		self.alias2.connect("insert-text", emit_text)
@@ -450,16 +454,12 @@ class BashStyleNG(object):
 
 		self.alias3 = gtkbuilder.get_object("alias3")
 		self.alias3.set_text("%s" % cfo["Alias"]["alias_three"])
-		alias3_pre = cfo["Alias"]["alias_three"]
 
 		def set_alias3(widget, data=None):
 			cfo["Alias"]["alias_one"] = widget.get_text()
 
 		def icon_alias3(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias3.set_text("%s" % alias3_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias3.set_text("%s" % fdc["Alias"]["alias_three"])
+			revert_option("Alias", "alias_three", "text", self.alias3, pos)
 
 		self.alias3.connect("icon-press", icon_alias3)
 		self.alias3.connect("insert-text", emit_text)
@@ -469,16 +469,12 @@ class BashStyleNG(object):
 
 		self.alias4 = gtkbuilder.get_object("alias4")
 		self.alias4.set_text("%s" % cfo["Alias"]["alias_four"])
-		alias4_pre = cfo["Alias"]["alias_four"]
 
 		def set_alias4(widget, data=None):
 			cfo["Alias"]["alias_four"] = widget.get_text()
 
 		def icon_alias4(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias4.set_text("%s" % alias4_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias4.set_text("%s" % fdc["Alias"]["alias_four"])
+			revert_option("Alias", "alias_four", "text", self.alias4, pos)
 
 		self.alias4.connect("icon-press", icon_alias4)
 		self.alias4.connect("insert-text", emit_text)
@@ -488,16 +484,12 @@ class BashStyleNG(object):
 
 		self.alias5 = gtkbuilder.get_object("alias5")
 		self.alias5.set_text("%s" % cfo["Alias"]["alias_five"])
-		alias5_pre = cfo["Alias"]["alias_five"]
 
 		def set_alias5(widget, data=None):
 			cfo["Alias"]["alias_five"] = widget.get_text()
 
 		def icon_alias5(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias5.set_text("%s" % alias5_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias5.set_text("%s" % fdc["Alias"]["alias_five"])
+			revert_option("Alias", "alias_five", "text", self.alias5, pos)
 
 		self.alias5.connect("icon-press", icon_alias5)
 		self.alias5.connect("insert-text", emit_text)
@@ -507,16 +499,12 @@ class BashStyleNG(object):
 
 		self.alias6 = gtkbuilder.get_object("alias6")
 		self.alias6.set_text("%s" % cfo["Alias"]["alias_six"])
-		alias6_pre = cfo["Alias"]["alias_six"]
 
 		def set_alias6(widget, data=None):
 			cfo["Alias"]["alias_six"] = widget.get_text()
 
 		def icon_alias6(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias6.set_text("%s" % alias6_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias6.set_text("%s" % fdc["Alias"]["alias_six"])
+			revert_option("Alias", "alias_six", "text", self.alias6, pos)
 
 		self.alias6.connect("icon-press", icon_alias6)
 		self.alias6.connect("insert-text", emit_text)
@@ -526,16 +514,12 @@ class BashStyleNG(object):
 
 		self.alias7 = gtkbuilder.get_object("alias7")
 		self.alias7.set_text("%s" % cfo["Alias"]["alias_seven"])
-		alias7_pre = cfo["Alias"]["alias_seven"]
 
 		def set_alias7(widget, data=None):
 			cfo["Alias"]["alias_seven"] = widget.get_text()
 
 		def icon_alias7(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias7.set_text("%s" % alias7_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias7.set_text("%s" % fdc["Alias"]["alias_seven"])
+			revert_option("Alias", "alias_seven", "text", self.alias7, pos)
 
 		self.alias7.connect("icon-press", icon_alias7)
 		self.alias7.connect("insert-text", emit_text)
@@ -545,16 +529,12 @@ class BashStyleNG(object):
 
 		self.alias8 = gtkbuilder.get_object("alias8")
 		self.alias8.set_text("%s" % cfo["Alias"]["alias_eight"])
-		alias8_pre = cfo["Alias"]["alias_eight"]
 
 		def set_alias8(widget, data=None):
 			cfo["Alias"]["alias_eight"] = widget.get_text()
 
 		def icon_alias8(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias8.set_text("%s" % alias8_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias8.set_text("%s" % fdc["Alias"]["alias_eight"])
+			revert_option("Alias", "alias_eight", "text", self.alias8, pos)
 
 		self.alias8.connect("icon-press", icon_alias8)
 		self.alias8.connect("insert-text", emit_text)
@@ -564,16 +544,12 @@ class BashStyleNG(object):
 
 		self.alias9 = gtkbuilder.get_object("alias9")
 		self.alias9.set_text("%s" % cfo["Alias"]["alias_nine"])
-		alias9_pre = cfo["Alias"]["alias_nine"]
 
 		def set_alias9(widget, data=None):
 			cfo["Alias"]["alias_nine"] = widget.get_text()
 
 		def icon_alias9(widget, pos, event):
-			if pos == Gtk.EntryIconPosition.PRIMARY:
-				self.alias9.set_text("%s" % alias9_pre)
-			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias9.set_text("%s" % fdc["Alias"]["alias_nine"])
+			revert_option("Alias", "alias_nine", "text", self.alias9, pos)
 
 		self.alias9.connect("icon-press", icon_alias9)
 		self.alias9.connect("insert-text", emit_text)
