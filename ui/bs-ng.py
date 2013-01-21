@@ -146,6 +146,10 @@ class BashStyleNG(object):
 
 		cfo.reload()
 
+		####################### factory defaults for stuff #################################
+
+		fdc = configobj.ConfigObj(FACTORY_DEFAULTS)
+
 		####################### blacklist / gtkBuilder #####################################
 
 		blacklist = ['\'', '\"']
@@ -417,7 +421,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias1.set_text("%s" % alias1_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias1.set_text("")
+				self.alias1.set_text("%s" % fdc["Alias"]["alias_one"])
 
 		self.alias1.connect("icon-press", icon_alias1)
 		self.alias1.connect("insert-text", emit_text)
@@ -436,7 +440,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias2.set_text("%s" % alias2_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias2.set_text("")
+				self.alias2.set_text("%s" % fdc["Alias"]["alias_two"])
 
 		self.alias2.connect("icon-press", icon_alias2)
 		self.alias2.connect("insert-text", emit_text)
@@ -455,7 +459,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias3.set_text("%s" % alias3_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias3.set_text("")
+				self.alias3.set_text("%s" % fdc["Alias"]["alias_three"])
 
 		self.alias3.connect("icon-press", icon_alias3)
 		self.alias3.connect("insert-text", emit_text)
@@ -474,7 +478,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias4.set_text("%s" % alias4_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias4.set_text("")
+				self.alias4.set_text("%s" % fdc["Alias"]["alias_four"])
 
 		self.alias4.connect("icon-press", icon_alias4)
 		self.alias4.connect("insert-text", emit_text)
@@ -493,7 +497,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias5.set_text("%s" % alias5_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias5.set_text("")
+				self.alias5.set_text("%s" % fdc["Alias"]["alias_five"])
 
 		self.alias5.connect("icon-press", icon_alias5)
 		self.alias5.connect("insert-text", emit_text)
@@ -512,7 +516,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias6.set_text("%s" % alias6_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias6.set_text("")
+				self.alias6.set_text("%s" % fdc["Alias"]["alias_six"])
 
 		self.alias6.connect("icon-press", icon_alias6)
 		self.alias6.connect("insert-text", emit_text)
@@ -531,7 +535,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias7.set_text("%s" % alias7_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias7.set_text("")
+				self.alias7.set_text("%s" % fdc["Alias"]["alias_seven"])
 
 		self.alias7.connect("icon-press", icon_alias7)
 		self.alias7.connect("insert-text", emit_text)
@@ -550,7 +554,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias8.set_text("%s" % alias8_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias8.set_text("")
+				self.alias8.set_text("%s" % fdc["Alias"]["alias_eight"])
 
 		self.alias8.connect("icon-press", icon_alias8)
 		self.alias8.connect("insert-text", emit_text)
@@ -569,7 +573,7 @@ class BashStyleNG(object):
 			if pos == Gtk.EntryIconPosition.PRIMARY:
 				self.alias9.set_text("%s" % alias9_pre)
 			elif pos == Gtk.EntryIconPosition.SECONDARY:
-				self.alias9.set_text("")
+				self.alias9.set_text("%s" % fdc["Alias"]["alias_nine"])
 
 		self.alias9.connect("icon-press", icon_alias9)
 		self.alias9.connect("insert-text", emit_text)
