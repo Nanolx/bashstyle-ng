@@ -482,16 +482,17 @@ class BashStyleNG(object):
 
 		self.history_control.connect("changed", set_history_control)
 
-		####################### Load the History Blacklist Entry ##########################
+		####################### History - Style - Misc ####################################
 
-		self.history_blacklist = gtkbuilder.get_object("history_blacklist")
-		self.history_blacklist.set_text(cfo["Advanced"]["history_ignore"])
-
-		def set_history_blacklist(widget, data=None):
-			cfo["Advanced"]["history_ignore"] = widget.get_text()
-
-		self.history_blacklist.connect("insert-text", emit_text)
-		self.history_blacklist.connect("changed", set_history_blacklist)
+		init_widget("history_blacklist", "Advanced", "history_ignore", "text")
+		init_widget("separator", "Advanced", "separator", "text")
+		init_widget("ps234", "Advanced", "ps234", "text")
+		init_widget("pwd_cutter", "Advanced", "pwdcut", "text")
+		init_widget("cdpath", "Advanced", "cdpath", "text")
+		init_widget("completion_blacklist", "Advanced", "completion_ignore", "text")
+		init_widget("fcedit", "Advanced", "fcedit", "text")
+		init_widget("welcome", "Advanced", "welcome_message", "text")
+		init_widget("path", "Advanced", "path", "text")
 
 		####################### Load the History Size Entry ###############################
 
@@ -503,39 +504,6 @@ class BashStyleNG(object):
 
 		self.history_size.connect("value-changed", set_history_size)
 
-		####################### Load the Separator Entry ##################################
-
-		self.separator = gtkbuilder.get_object("separator")
-		self.separator.set_text(cfo["Advanced"]["separator"])
-
-		def set_separator(widget, data=None):
-			cfo["Advanced"]["separator"] = widget.get_text()
-
-		self.separator.connect("insert-text", emit_text)
-		self.separator.connect("changed", set_separator)
-
-		####################### Load the PS234 Char Entry #################################
-
-		self.ps234 = gtkbuilder.get_object("ps234")
-		self.ps234.set_text(cfo["Advanced"]["ps234"])
-
-		def set_ps234(widget, data=None):
-			cfo["Advanced"]["ps234"] = widget.get_text()
-
-		self.ps234.connect("insert-text", emit_text)
-		self.ps234.connect("changed", set_ps234)
-
-		####################### Load the PWD Cutter Entry #################################
-
-		self.pwd_cutter = gtkbuilder.get_object("pwd_cutter")
-		self.pwd_cutter.set_text(cfo["Advanced"]["pwdcut"])
-
-		def set_pwd_cutter(widget, data=None):
-			cfo["Advanced"]["pwdcut"] = widget.get_text()
-
-		self.pwd_cutter.connect("insert-text", emit_text)
-		self.pwd_cutter.connect("changed", set_pwd_cutter)
-
 		####################### Load the PWD Length Entry #################################
 
 		self.pwd_len = gtkbuilder.get_object("pwd_len")
@@ -546,28 +514,6 @@ class BashStyleNG(object):
 
 		self.pwd_len.connect("value-changed", set_pwd_len)
 
-		####################### Load the CDPATH Entry #####################################
-
-		self.cdpath = gtkbuilder.get_object("cdpath")
-		self.cdpath.set_text(cfo["Advanced"]["cdpath"])
-
-		def set_cdpath(widget, data=None):
-			cfo["Advanced"]["cdpath"] = widget.get_text()
-
-		self.cdpath.connect("insert-text", emit_text)
-		self.cdpath.connect("changed", set_cdpath)
-
-		####################### Load the Completion Blacklist Entry #######################
-
-		self.completion_blacklist = gtkbuilder.get_object("completion_blacklist")
-		self.completion_blacklist.set_text(cfo["Advanced"]["completion_ignore"])
-
-		def set_completion_blacklist(widget, data=None):
-			cfo["Advanced"]["completion_ignore"] = widget.get_text()
-
-		self.completion_blacklist.connect("insert-text", emit_text)
-		self.completion_blacklist.connect("changed", set_completion_blacklist)
-
 		####################### Load the Timeout Entry ####################################
 
 		self.timeout = gtkbuilder.get_object("timeout")
@@ -577,39 +523,6 @@ class BashStyleNG(object):
 			cfo["Advanced"]["timeout"] = widget.get_value_as_int()
 
 		self.timeout.connect("value-changed", set_timeout)
-
-		####################### Load the FCEDITOR Entry ###################################
-
-		self.fcedit = gtkbuilder.get_object("fcedit")
-		self.fcedit.set_text(cfo["Advanced"]["fcedit"])
-
-		def set_fcedit(widget, data=None):
-			cfo["Advanced"]["fcedit"] = widget.get_text()
-
-		self.fcedit.connect("insert-text", emit_text)
-		self.fcedit.connect("changed", set_fcedit)
-
-		####################### Load the Welcome Message Entry ############################
-
-		self.welcome = gtkbuilder.get_object("welcome")
-		self.welcome.set_text(cfo["Advanced"]["welcome_message"])
-
-		def set_welcome(widget, data=None):
-			cfo["Advanced"]["welcome_message"] = widget.get_text()
-
-		self.welcome.connect("insert-text", emit_text)
-		self.welcome.connect("changed", set_welcome)
-
-		####################### Load the PATH Entry #######################################
-
-		self.path = gtkbuilder.get_object("path")
-		self.path.set_text(cfo["Advanced"]["path"])
-
-		def set_path(widget, data=None):
-			cfo["Advanced"]["path"] = widget.get_text()
-
-		self.path.connect("insert-text", emit_text)
-		self.path.connect("changed", set_path)
 
 		####################### Connect the Use Readlinecfg Button ########################
 
@@ -1246,16 +1159,7 @@ class BashStyleNG(object):
 
 		self.vim_colorscheme.connect("changed", set_vim_colorscheme)
 
-		####################### Connect the Rulerformat Entry #############################
-
-		self.vim_rulerformat = gtkbuilder.get_object("vim_rulerformat")
-		self.vim_rulerformat.set_text(cfo["Vim"]["rulerformat"])
-
-		def set_vim_rulerformat(widget, data=None):
-			cfo["Vim"]["rulerformat"] = widget.get_text()
-
-		self.vim_rulerformat.connect("insert-text", emit_text)
-		self.vim_rulerformat.connect("changed", set_vim_rulerformat)
+		init_widget("vim_rulerformat", "Vim", "rulerformat", "text")
 
 		####################### Connect the Use Nanocfg Button ############################
 
@@ -1605,16 +1509,7 @@ class BashStyleNG(object):
 
 		self.ls_rar.connect("changed", set_ls_rar)
 
-		####################### Connect the Custom-LS-COLORS Entry ########################
-
-		self.ls_custom = gtkbuilder.get_object("ls_custom")
-		self.ls_custom.set_text(cfo["LSColors"]["custom"])
-
-		def set_ls_custom(widget, data=None):
-			cfo["LSColors"]["custom"] = widget.get_text()
-
-		self.ls_custom.connect("insert-text", emit_text)
-		self.ls_custom.connect("changed", set_ls_custom)
+		init_widget("ls_custom", "LSColors", "custom", "text")
 
 		####################### Connect the PROMPT_COMMAND TextView ########################
 
