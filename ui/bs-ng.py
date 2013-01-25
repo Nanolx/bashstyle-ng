@@ -180,11 +180,9 @@ class BashStyleNG(object):
 
 		####################### metafuncs for handling widgets ###########################
 		def init_widget(widget, group, setting, type):
-			widget_group = group
-			widget_setting = setting
 			object = load_widget(widget)
 			load_value(object, group, setting, type)
-			connect_signals(object, type, widget_group, widget_setting)
+			connect_signals(object, type, group, setting)
 
 		def load_widget(widget):
 			object = gtkbuilder.get_object("%s" % widget)
