@@ -178,6 +178,47 @@ class BashStyleNG(object):
 		gtkbuilder.set_translation_domain("bs-ng")
 		gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle8.ui")
 
+		####################### metafuncs for handling widgets ###########################
+		def init_widget(widget, group, setting, type):
+			widget_group = group
+			widget_setting = setting
+			object = load_widget(widget)
+			load_value(object, group, setting, type)
+			connect_signals(object, type, widget_group, widget_setting)
+
+		def load_widget(widget):
+			object = gtkbuilder.get_object("%s" % widget)
+			return object
+
+		def load_value(object, group, setting, type):
+			if type == "text":
+				object.set_text("%s" % cfo["%s" % group]["%s" % setting])
+
+		def connect_signals(object, type, widget_group, widget_setting):
+			if type == "text":
+				object.connect("insert-text", emit_text)
+				object.connect("icon-press", revert_option, type, widget_group, widget_setting)
+				object.connect("changed", set_option, type, widget_group, widget_setting)
+
+		def revert_option(widget, pos, event, type, widget_group, widget_setting):
+			if type == "text":
+				if pos == Gtk.EntryIconPosition.SECONDARY:
+					opt = fdc["%s" % widget_group]["%s" % widget_setting]
+				else:
+					opt = udc["%s" % widget_group]["%s" % widget_setting]
+				cfo["%s" % widget_group]["%s" % widget_setting] = opt
+				widget.set_text("%s" % cfo["%s" % widget_group]["%s" % widget_setting])
+
+		def set_option(widget, type, widget_group, widget_setting):
+			if type == "text":
+				cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
+
+		def emit_text(widget, text, *args):
+			if text in blacklist:
+				widget.emit_stop_by_name('insert-text')
+
+		###################### Load Use-Bashstyle Button ##################################
+
 		self.use_bashstyle = gtkbuilder.get_object("use_bashstyle")
 		self.use_bashstyle.set_active(cfo["Style"].as_bool("use_bashstyle"))
 
@@ -403,157 +444,17 @@ class BashStyleNG(object):
 
 		self.prompt_style.connect("changed", set_prompt_style)
 
-                ######################## emit blacklisted chars ##################################
-
-		def emit_text(widget, text, *args):
-			if text in blacklist:
-				widget.emit_stop_by_name('insert-text')
-
-		####################### metafunc for revert/reset options #########################
-
-		def revert_option(group, setting, type, widget, pos):
-			if pos == Gtk.EntryIconPosition.SECONDARY:
-				opt = fdc["%s" % group]["%s" % setting]
-			else:
-				opt = udc["%s" % group]["%s" % setting]
-			if type == "text":
-				cfo["%s" % group]["%s" % setting] = opt
-				widget.set_text("%s" % cfo["%s" % group]["%s" % setting])
-
 		####################### Load the Alias #1 Entry ###################################
 
-		self.alias1 = gtkbuilder.get_object("alias1")
-		self.alias1.set_text("%s" % cfo["Alias"]["alias_one"])
-
-		def set_alias1(widget, data=None):
-			cfo["Alias"]["alias_one"] = widget.get_text()
-
-		def icon_alias1(widget, pos, event):
-			revert_option("Alias", "alias_one", "text", self.alias1, pos)
-
-		self.alias1.connect("icon-press", icon_alias1)
-		self.alias1.connect("insert-text", emit_text)
-		self.alias1.connect("changed", set_alias1)
-
-		####################### Load the Alias #2 Entry ###################################
-
-		self.alias2 = gtkbuilder.get_object("alias2")
-		self.alias2.set_text("%s" % cfo["Alias"]["alias_two"])
-
-		def set_alias2(widget, data=None):
-			cfo["Alias"]["alias_two"] = widget.get_text()
-
-		def icon_alias2(widget, pos, event):
-			revert_option("Alias", "alias_two", "text", self.alias2, pos)
-
-		self.alias2.connect("icon-press", icon_alias2)
-		self.alias2.connect("insert-text", emit_text)
-		self.alias2.connect("changed", set_alias2)
-
-		####################### Load the Alias #3 Entry ###################################
-
-		self.alias3 = gtkbuilder.get_object("alias3")
-		self.alias3.set_text("%s" % cfo["Alias"]["alias_three"])
-
-		def set_alias3(widget, data=None):
-			cfo["Alias"]["alias_one"] = widget.get_text()
-
-		def icon_alias3(widget, pos, event):
-			revert_option("Alias", "alias_three", "text", self.alias3, pos)
-
-		self.alias3.connect("icon-press", icon_alias3)
-		self.alias3.connect("insert-text", emit_text)
-		self.alias3.connect("changed", set_alias3)
-
-		####################### Load the Alias #4 Entry ###################################
-
-		self.alias4 = gtkbuilder.get_object("alias4")
-		self.alias4.set_text("%s" % cfo["Alias"]["alias_four"])
-
-		def set_alias4(widget, data=None):
-			cfo["Alias"]["alias_four"] = widget.get_text()
-
-		def icon_alias4(widget, pos, event):
-			revert_option("Alias", "alias_four", "text", self.alias4, pos)
-
-		self.alias4.connect("icon-press", icon_alias4)
-		self.alias4.connect("insert-text", emit_text)
-		self.alias4.connect("changed", set_alias4)
-
-		####################### Load the Alias #5 Entry ###################################
-
-		self.alias5 = gtkbuilder.get_object("alias5")
-		self.alias5.set_text("%s" % cfo["Alias"]["alias_five"])
-
-		def set_alias5(widget, data=None):
-			cfo["Alias"]["alias_five"] = widget.get_text()
-
-		def icon_alias5(widget, pos, event):
-			revert_option("Alias", "alias_five", "text", self.alias5, pos)
-
-		self.alias5.connect("icon-press", icon_alias5)
-		self.alias5.connect("insert-text", emit_text)
-		self.alias5.connect("changed", set_alias5)
-
-		####################### Load the Alias #6 Entry ###################################
-
-		self.alias6 = gtkbuilder.get_object("alias6")
-		self.alias6.set_text("%s" % cfo["Alias"]["alias_six"])
-
-		def set_alias6(widget, data=None):
-			cfo["Alias"]["alias_six"] = widget.get_text()
-
-		def icon_alias6(widget, pos, event):
-			revert_option("Alias", "alias_six", "text", self.alias6, pos)
-
-		self.alias6.connect("icon-press", icon_alias6)
-		self.alias6.connect("insert-text", emit_text)
-		self.alias6.connect("changed", set_alias6)
-
-		####################### Load the Alias #7 Entry ###################################
-
-		self.alias7 = gtkbuilder.get_object("alias7")
-		self.alias7.set_text("%s" % cfo["Alias"]["alias_seven"])
-
-		def set_alias7(widget, data=None):
-			cfo["Alias"]["alias_seven"] = widget.get_text()
-
-		def icon_alias7(widget, pos, event):
-			revert_option("Alias", "alias_seven", "text", self.alias7, pos)
-
-		self.alias7.connect("icon-press", icon_alias7)
-		self.alias7.connect("insert-text", emit_text)
-		self.alias7.connect("changed", set_alias7)
-
-		####################### Load the Alias #8 Entry ###################################
-
-		self.alias8 = gtkbuilder.get_object("alias8")
-		self.alias8.set_text("%s" % cfo["Alias"]["alias_eight"])
-
-		def set_alias8(widget, data=None):
-			cfo["Alias"]["alias_eight"] = widget.get_text()
-
-		def icon_alias8(widget, pos, event):
-			revert_option("Alias", "alias_eight", "text", self.alias8, pos)
-
-		self.alias8.connect("icon-press", icon_alias8)
-		self.alias8.connect("insert-text", emit_text)
-		self.alias8.connect("changed", set_alias8)
-
-		####################### Load the Alias #9 Entry ###################################
-
-		self.alias9 = gtkbuilder.get_object("alias9")
-		self.alias9.set_text("%s" % cfo["Alias"]["alias_nine"])
-
-		def set_alias9(widget, data=None):
-			cfo["Alias"]["alias_nine"] = widget.get_text()
-
-		def icon_alias9(widget, pos, event):
-			revert_option("Alias", "alias_nine", "text", self.alias9, pos)
-
-		self.alias9.connect("icon-press", icon_alias9)
-		self.alias9.connect("insert-text", emit_text)
-		self.alias9.connect("changed", set_alias9)
+		init_widget("alias1", "Alias", "alias_one", "text")
+		init_widget("alias2", "Alias", "alias_two", "text")
+		init_widget("alias3", "Alias", "alias_three", "text")
+		init_widget("alias4", "Alias", "alias_four", "text")
+		init_widget("alias5", "Alias", "alias_five", "text")
+		init_widget("alias6", "Alias", "alias_six", "text")
+		init_widget("alias7", "Alias", "alias_seven", "text")
+		init_widget("alias8", "Alias", "alias_eight", "text")
+		init_widget("alias9", "Alias", "alias_nine", "text")
 
 		####################### Load the Reset History Button #############################
 
