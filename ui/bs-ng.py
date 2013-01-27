@@ -191,25 +191,35 @@ class BashStyleNG(object):
 		def load_value(object, group, setting, type):
 			if type == "text":
 				object.set_text("%s" % cfo["%s" % group]["%s" % setting])
+			elif type == "int":
+				object.set_value(cfo["%s" % group].as_int("%s" % setting))
 
 		def connect_signals(object, type, widget_group, widget_setting):
 			if type == "text":
 				object.connect("insert-text", emit_text)
 				object.connect("icon-press", revert_option, type, widget_group, widget_setting)
 				object.connect("changed", set_option, type, widget_group, widget_setting)
+			elif type == "int":
+				object.connect("value-changed", set_option, type, widget_group, widget_setting)
+				object.connect("icon-press", revert_option, type, widget_group, widget_setting)
 
 		def revert_option(widget, pos, event, type, widget_group, widget_setting):
-			if type == "text":
+			if type == "text" or type == "int":
 				if pos == Gtk.EntryIconPosition.SECONDARY:
 					opt = fdc["%s" % widget_group]["%s" % widget_setting]
 				else:
 					opt = udc["%s" % widget_group]["%s" % widget_setting]
 				cfo["%s" % widget_group]["%s" % widget_setting] = opt
-				widget.set_text("%s" % cfo["%s" % widget_group]["%s" % widget_setting])
+				if type == "text":
+					widget.set_text("%s" % cfo["%s" % widget_group]["%s" % widget_setting])
+				elif type == "int":
+					widget.set_value(cfo["%s" % widget_group].as_int("%s" % widget_setting))
 
 		def set_option(widget, type, widget_group, widget_setting):
 			if type == "text":
 				cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
+			elif type == "int":
+				cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -482,7 +492,7 @@ class BashStyleNG(object):
 
 		self.history_control.connect("changed", set_history_control)
 
-		####################### History - Style - Misc ####################################
+		####################### Advanced Stuff ############################################
 
 		init_widget("history_blacklist", "Advanced", "history_ignore", "text")
 		init_widget("separator", "Advanced", "separator", "text")
@@ -493,36 +503,9 @@ class BashStyleNG(object):
 		init_widget("fcedit", "Advanced", "fcedit", "text")
 		init_widget("welcome", "Advanced", "welcome_message", "text")
 		init_widget("path", "Advanced", "path", "text")
-
-		####################### Load the History Size Entry ###############################
-
-		self.history_size = gtkbuilder.get_object("history_size")
-		self.history_size.set_value(cfo["Advanced"].as_int("history_size"))
-
-		def set_history_size(widget, data=None):
-			cfo["Advanced"]["history_size"] = widget.get_value_as_int()
-
-		self.history_size.connect("value-changed", set_history_size)
-
-		####################### Load the PWD Length Entry #################################
-
-		self.pwd_len = gtkbuilder.get_object("pwd_len")
-		self.pwd_len.set_value(cfo["Advanced"].as_int("pwdlength"))
-
-		def set_pwd_len(widget, data=None):
-			cfo["Advanced"]["pwdlength"] = widget.get_value_as_int()
-
-		self.pwd_len.connect("value-changed", set_pwd_len)
-
-		####################### Load the Timeout Entry ####################################
-
-		self.timeout = gtkbuilder.get_object("timeout")
-		self.timeout.set_value(cfo["Advanced"].as_int("timeout"))
-
-		def set_timeout(widget, data=None):
-			cfo["Advanced"]["timeout"] = widget.get_value_as_int()
-
-		self.timeout.connect("value-changed", set_timeout)
+		init_widget("history_size", "Advanced", "history_size", "int")
+		init_widget("pwd_len", "Advanced", "pwdlength", "int")
+		init_widget("timeout", "Advanced", "timeout", "int")
 
 		####################### Connect the Use Readlinecfg Button ########################
 
@@ -611,13 +594,7 @@ class BashStyleNG(object):
 
 		####################### Connect the Query Items Button ############################
 
-		self.query_items = gtkbuilder.get_object("query_items")
-		self.query_items.set_value(cfo["Readline"].as_int("query_items"))
-
-		def set_query_items(widget, data=None):
-			cfo["Readline"]["query_items"] = widget.get_value_as_int()
-
-		self.query_items.connect("value-changed", set_query_items)
+		init_widget("query_items", "Readline", "query_items", "int")
 
 		####################### Connect the Horizontal Completion Button ##################
 
@@ -949,25 +926,8 @@ class BashStyleNG(object):
 
 		self.vim_sline.connect("clicked", set_vim_sline)
 
-		##################### Connect the Vim/Tabstop Button ##############################
-
-		self.vim_tabstop = gtkbuilder.get_object("vim_tabstop")
-		self.vim_tabstop.set_value(cfo["Vim"].as_int("tab_length"))
-
-		def set_vim_tabstop(widget, data=None):
-			cfo["Vim"]["tab_length"] = widget.get_value_as_int()
-
-		self.vim_tabstop.connect("value-changed", set_vim_tabstop)
-
-		####################### Connect the Vim/Autowrap Entry ############################
-
-		self.vim_autowrap = gtkbuilder.get_object("vim_autowrap")
-		self.vim_autowrap.set_value(cfo["Vim"].as_int("wrap_length"))
-
-		def set_vim_autowrap(widget, data=None):
-			cfo["Vim"]["wrap_length"] = widget.get_value_as_int()
-
-		self.vim_autowrap.connect("value-changed", set_vim_autowrap)
+		init_widget("vim_tabstop", "Vim", "tab_length", "int")
+		init_widget("vim_autowrap", "Vim", "wrap_length", "int")
 
 		####################### Connect the Vim/Wrap line Button ##########################
 
