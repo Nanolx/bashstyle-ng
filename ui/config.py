@@ -27,6 +27,7 @@ if FAILED:
 PREFIX = os.getenv('BSNG_UI_PREFIX') or "/usr"
 USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
 USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
+USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (PREFIX + '/share/bashstyle-ng/bs-ng.ini')
 
 app_ini_version = 2
@@ -55,6 +56,12 @@ class Config(object):
 			new["ini_version"] = app_ini_version
 			new.write()
 			shutil.move(USER_DEFAULTS_NEW, USER_DEFAULTS)
+
+	def ResetConfig(self):
+		shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
+
+	def BackupConfig(self):
+		shutil.copy(USER_DEFAULTS, USER_DEFAULTS_SAVE)
 
 	def WriteConfig(self):
 		self.cfo.write()
