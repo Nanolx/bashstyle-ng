@@ -160,14 +160,7 @@ class BashStyleNG(object):
 		os.chdir(os.getenv("HOME"))
 
 		####################### load gettext ###############################################
-		langs = []
-		lc, encoding = locale.getdefaultlocale()
-		if (lc):
-			langs = [lc]
-		language = os.environ.get('LANGUAGE', None)
-		if (language):
-			langs += language.split(":")
-		langs += ["C", "de", "it", "ru", "es"]
+		langs = ["C", "de", "it", "ru", "es"]
 
 		gettext.bindtextdomain("bs-ng")
 		gettext.textdomain("bs-ng")
