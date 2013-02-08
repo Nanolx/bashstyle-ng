@@ -63,6 +63,9 @@ class Config(object):
 	def BackupConfig(self):
 		shutil.copy(USER_DEFAULTS, USER_DEFAULTS_SAVE)
 
+	def RestoreConfig(self):
+		shutil.copy(USER_DEFAULTS_SAVE, USER_DEFAULTS)
+
 	def WriteConfig(self):
 		self.cfo.write()
 
