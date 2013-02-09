@@ -12,7 +12,7 @@
 
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'configobj', 'string',
             'shutil', 'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
-	   'i18n', 'misc' ]
+	   'i18n', 'misc', 'lockfile' ]
 
 FAILED = []
 
@@ -80,50 +80,14 @@ groups = {
 	 }
 
 initial_page = groups[options.group]
-
-lockfile = os.path.expanduser("~/.bashstyle.lock")
 app_ini_version = 2
 
-def check_lockfile():
-	####################### Check the lockfile ########################################
-	if os.access(lockfile, os.F_OK):
-		rlockfile = open(lockfile, "r")
-		rlockfile.seek(0)
-		oldpid = rlockfile.readline()
-		if os.path.exists("/proc/%s" % oldpid):
-			xpid = commands.getoutput("pgrep -l bashstyle")
-			gpid = string.split(xpid)
-			if not xpid == "" and gpid[1] == "bashstyle":
-				print "Lockfile does exist and bashstyle-ng is already running."
-				print "bashstyle-ng is running as process %s" % oldpid
-				sys.exit(1)
-			else:
-				print "Lockfile does exist but the process with that pid is not"
-				print "bashstyle-ng, removing lockfile of old process: %s" % oldpid
-				os.remove(lockfile)
-		else:
-			print "Lockfile does exist but the process with that pid is no"
-			print "longer running, removing lockfile of old process: %s" % oldpid
-			os.remove(lockfile)
-
-def write_lockfile():
-	####################### Write the lockfile ########################################
-	if not os.access(lockfile, os.F_OK):
-		wlockfile = open(lockfile, "w")
-		wlockfile.write("%s" % os.getpid())
-		wlockfile.close
-
-def remove_lockfile():
-	####################### Remove the lockfile #######################################
-	if os.access(lockfile, os.F_OK):
-		os.remove(lockfile)
+lock = lockfile.LockFile()
 
 class BashStyleNG(object):
 
 	def __init__(self):
-
-		####################### write the lockfile #########################################
-		write_lockfile()
+		lock.Write()
 
 		####################### load configuration #########################################
 
@@ -2048,7 +2012,7 @@ class BashStyleNG(object):
 
 		def destroy(self, widget):
 			cfo.write()
-			remove_lockfile()
+			lock.Remove()
 			Gtk.main_quit()
 
 		self.bashstyle.connect("destroy", destroy, None)
@@ -2078,6 +2042,6 @@ class BashStyleNG(object):
 		self.bashstyle.show
 
 if __name__ == "__main__":
-	check_lockfile()
+	lock.Check()
 	hwg = BashStyleNG()
 	Gtk.main()
