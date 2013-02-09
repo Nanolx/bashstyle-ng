@@ -11,7 +11,8 @@
 #########################################################
 
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'configobj', 'string',
-            'shutil', 'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands' ]
+            'shutil', 'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
+	   'i18n' ]
 
 FAILED = []
 
@@ -159,14 +160,8 @@ class BashStyleNG(object):
 		####################### cd into $HOME ##############################################
 		os.chdir(os.getenv("HOME"))
 
-		####################### load gettext ###############################################
-		langs = ["C", "de", "it", "ru", "es"]
-
-		gettext.bindtextdomain("bs-ng")
-		gettext.textdomain("bs-ng")
-		self.lang = gettext.translation("bs-ng", languages=langs, fallback = True)
-		global _
-		_ = self.lang.gettext
+		lang = i18n.Gettext()
+		lang.SetLang()
 
 		gtkbuilder.set_translation_domain("bs-ng")
 		gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle8.ui")
