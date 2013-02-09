@@ -1984,12 +1984,11 @@ class BashStyleNG(object):
 
 		self.insert_prompt.connect("changed", do_insert_prompt)
 
-
 		####################### Load the Main-Window #######################################
 		self.bashstyle = gtkbuilder.get_object("bashstyle")
 
 		def destroy(self, widget):
-			config.cfo.write()
+			config.WriteConfig()
 			lock.Remove()
 			Gtk.main_quit()
 
