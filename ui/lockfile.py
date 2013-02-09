@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'string', 'shutil' ]
+MODULES = [ 'os', 'os.path', 'string', 'shutil', 'commands', 'sys' ]
 
 FAILED = []
 
