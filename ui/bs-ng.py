@@ -10,9 +10,9 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'configobj', 'string',
-            'shutil', 'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
-	   'i18n', 'misc', 'lockfile' ]
+MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
+            'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
+	   'i18n', 'misc', 'lockfile', 'config' ]
 
 FAILED = []
 
@@ -32,10 +32,6 @@ if FAILED:
     sys.exit(1)
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')
-
-USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
-USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
-FACTORY_DEFAULTS = (PREFIX + '/share/bashstyle-ng/bs-ng.ini')
 
 parser = optparse.OptionParser("bashstyle <option> [value]\
 				\n\nBashStyle-NG (c) 2007 - 2013 Christopher Bratusek\
@@ -83,34 +79,16 @@ initial_page = groups[options.group]
 app_ini_version = 2
 
 lock = lockfile.LockFile()
+config = config.Config()
 
 class BashStyleNG(object):
 
 	def __init__(self):
 		lock.Write()
 
-		####################### load configuration #########################################
-
-		if not os.access(USER_DEFAULTS, os.F_OK):
-			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
-
-		cfo = configobj.ConfigObj(USER_DEFAULTS)
-
-		if cfo.as_int("ini_version") < app_ini_version:
-			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
-			new = configobj.ConfigObj(USER_DEFAULTS_NEW)
-			old = configobj.ConfigObj(USER_DEFAULTS)
-			new.merge(old)
-			new["ini_version"] = app_ini_version
-			new.write()
-			shutil.move(USER_DEFAULTS_NEW, USER_DEFAULTS)
-
-		cfo.reload()
-
-		####################### factory defaults for stuff #################################
-
-		fdc = configobj.ConfigObj(FACTORY_DEFAULTS)
-		udc = configobj.ConfigObj(USER_DEFAULTS)
+		config.InitConfig()
+		config.LoadConfig()
+		config.UpdateConfig()
 
 		####################### blacklist / gtkBuilder #####################################
 
@@ -138,9 +116,9 @@ class BashStyleNG(object):
 
 		def load_value(object, group, setting, type):
 			if type == "text":
-				object.set_text("%s" % cfo["%s" % group]["%s" % setting])
+				object.set_text("%s" % config.cfo["%s" % group]["%s" % setting])
 			elif type == "int":
-				object.set_value(cfo["%s" % group].as_int("%s" % setting))
+				object.set_value(config.cfo["%s" % group].as_int("%s" % setting))
 
 		def connect_signals(object, type, widget_group, widget_setting):
 			if type == "text":
@@ -157,17 +135,17 @@ class BashStyleNG(object):
 					opt = fdc["%s" % widget_group]["%s" % widget_setting]
 				else:
 					opt = udc["%s" % widget_group]["%s" % widget_setting]
-				cfo["%s" % widget_group]["%s" % widget_setting] = opt
+					config.cfo["%s" % widget_group]["%s" % widget_setting] = opt
 				if type == "text":
-					widget.set_text("%s" % cfo["%s" % widget_group]["%s" % widget_setting])
+					widget.set_text("%s" % config.cfo["%s" % widget_group]["%s" % widget_setting])
 				elif type == "int":
-					widget.set_value(cfo["%s" % widget_group].as_int("%s" % widget_setting))
+					widget.set_value(config.cfo["%s" % widget_group].as_int("%s" % widget_setting))
 
 		def set_option(widget, type, widget_group, widget_setting):
 			if type == "text":
-				cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
+				config.cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
 			elif type == "int":
-				cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
+				config.cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
 
 		def emit_text(widget, text, *args):
 			if text in blacklist:
@@ -176,10 +154,10 @@ class BashStyleNG(object):
 		###################### Load Use-Bashstyle Button ##################################
 
 		self.use_bashstyle = gtkbuilder.get_object("use_bashstyle")
-		self.use_bashstyle.set_active(cfo["Style"].as_bool("use_bashstyle"))
+		self.use_bashstyle.set_active(config.cfo["Style"].as_bool("use_bashstyle"))
 
 		def set_use_bashstyle(widget, data=None):
-			cfo["Style"]["use_bashstyle"] = widget.get_active()
+			config.cfo["Style"]["use_bashstyle"] = widget.get_active()
 			misc.EnableBashstyleNG(widget.get_active())
 
 		self.use_bashstyle.connect("toggled", set_use_bashstyle)
@@ -187,50 +165,50 @@ class BashStyleNG(object):
 		####################### Load the Colored Prompts Button ###########################
 
 		self.colored_prompts = gtkbuilder.get_object("colored_prompts")
-		self.colored_prompts.set_active(cfo["Style"].as_bool("enable_colors"))
+		self.colored_prompts.set_active(config.cfo["Style"].as_bool("enable_colors"))
 
 		def set_colored_prompts(widget, data=None):
-			cfo["Style"]["enable_colors"] = widget.get_active()
+			config.cfo["Style"]["enable_colors"] = widget.get_active()
 
 		self.colored_prompts.connect("toggled", set_colored_prompts)
 
 		####################### Load the Colored ls Button ################################
 
 		self.ls_color = gtkbuilder.get_object("ls_color")
-		self.ls_color.set_active(cfo["Style"].as_bool("colored_ls"))
+		self.ls_color.set_active(config.cfo["Style"].as_bool("colored_ls"))
 
 		def set_colored_ls(widget, data=None):
-			cfo["Style"]["colored_ls"] =  widget.get_active()
+			config.cfo["Style"]["colored_ls"] =  widget.get_active()
 
 		self.ls_color.connect("toggled", set_colored_ls)
 
 		####################### Lad the Colored Manpages Button ###########################
 
 		self.manpage_color = gtkbuilder.get_object("manpage_color")
-		self.manpage_color.set_active(cfo["Style"].as_bool("colored_man"))
+		self.manpage_color.set_active(config.cfo["Style"].as_bool("colored_man"))
 
 		def set_colored_man(widget, data=None):
-			cfo["Style"]["colored_man"] = widget.get_active()
+			config.cfo["Style"]["colored_man"] = widget.get_active()
 
 		self.manpage_color.connect("toggled", set_colored_man)
 
 		####################### Load the Colored Grep Button #############################
 
 		self.grep_color = gtkbuilder.get_object("grep_color")
-		self.grep_color.set_active(cfo["Style"].as_bool("colored_grep"))
+		self.grep_color.set_active(config.cfo["Style"].as_bool("colored_grep"))
 
 		def set_colored_grep(widget, data=None):
-			cfo["Style"]["colored_grep"] = widget.get_active()
+			config.cfo["Style"]["colored_grep"] = widget.get_active()
 
 		self.grep_color.connect("toggled", set_colored_grep)
 
 		####################### Load the Random Style Button ##############################
 
 		self.random_style = gtkbuilder.get_object("random_style")
-		self.random_style.set_active(cfo["Style"].as_bool("random_style"))
+		self.random_style.set_active(config.cfo["Style"].as_bool("random_style"))
 
 		def set_random_style(widget, data=None):
-			cfo["Style"]["random_style"] = widget.get_active()
+			config.cfo["Style"]["random_style"] = widget.get_active()
 
 		self.random_style.connect("toggled", set_random_style)
 
@@ -246,11 +224,11 @@ class BashStyleNG(object):
 				 4 : "underlined",
 			        }
 
-		self.color_style.set_active(misc.SwapDictionary(color_styles)[cfo["Style"]["color_style"]])
+		self.color_style.set_active(misc.SwapDictionary(color_styles)[config.cfo["Style"]["color_style"]])
 
 		def set_color_style(widget, data=None):
 			selection = widget.get_active()
-			cfo["Style"]["color_style"] = color_styles[selection]
+			config.cfo["Style"]["color_style"] = color_styles[selection]
 
 		self.color_style.connect("changed", set_color_style)
 
@@ -264,11 +242,11 @@ class BashStyleNG(object):
 			      2 : "nebula",
 			     }
 
-		self.terminfo.set_active(misc.SwapDictionary(man_styles)[cfo["Style"]["man_style"]])
+		self.terminfo.set_active(misc.SwapDictionary(man_styles)[config.cfo["Style"]["man_style"]])
 
 		def set_man_style(widget, data=None):
 			selection = widget.get_active()
-			cfo["Style"]["man_style"] = man_styles[selection]
+			config.cfo["Style"]["man_style"] = man_styles[selection]
 
 		self.terminfo.connect("changed", set_man_style)
 
@@ -300,11 +278,11 @@ class BashStyleNG(object):
 			       20 : "01;38;5;5344",
 			      }
 
-		self.grep_colour.set_active(misc.SwapDictionary(grep_colors)[cfo["Style"]["grep_color"]])
+		self.grep_colour.set_active(misc.SwapDictionary(grep_colors)[config.cfo["Style"]["grep_color"]])
 
 		def set_grep_color(widget, data=None):
 			selection = widget.get_active()
-			cfo["Style"]["color/grep"] = grep_colors[selection]
+			config.cfo["Style"]["color/grep"] = grep_colors[selection]
 
 		self.grep_colour.connect("changed", set_grep_color)
 
@@ -356,7 +334,7 @@ class BashStyleNG(object):
 			color_set = self.color_of.get_active()
 			color_is = self.color_to.get_active()
 			if color_set != 0 and color_is != 0:
-				cfo["Style"][color_keys[color_set]] = colors[color_is]
+				config.cfo["Style"][color_keys[color_set]] = colors[color_is]
 				self.color_to.set_active(0)
 				self.color_of.set_active(0)
 
@@ -382,11 +360,11 @@ class BashStyleNG(object):
 				 11 : "ayoli",
 				}
 
-		self.prompt_style.set_active(misc.SwapDictionary(prompt_styles)[cfo["Style"]["prompt_style"]])
+		self.prompt_style.set_active(misc.SwapDictionary(prompt_styles)[config.cfo["Style"]["prompt_style"]])
 
 		def set_prompt_style(widget, data=None):
 			selection = widget.get_active()
-			cfo["Style"]["prompt_style"] =  prompt_styles[selection]
+			config.cfo["Style"]["prompt_style"] =  prompt_styles[selection]
 
 		self.prompt_style.connect("changed", set_prompt_style)
 
@@ -422,11 +400,11 @@ class BashStyleNG(object):
 				 3 : "ignoreboth",
 				}
 
-		self.history_control.set_active(misc.SwapDictionary(history_types)[cfo["Advanced"]["history_control"]])
+		self.history_control.set_active(misc.SwapDictionary(history_types)[config.cfo["Advanced"]["history_control"]])
 
 		def set_history_control(widget, data=None):
 			selection = widget.get_active()
-			cfo["Advanced"]["hist_control"] = history_types[selection]
+			config.cfo["Advanced"]["hist_control"] = history_types[selection]
 
 		self.history_control.connect("changed", set_history_control)
 
@@ -448,20 +426,20 @@ class BashStyleNG(object):
 		####################### Connect the Use Readlinecfg Button ########################
 
 		self.readline = gtkbuilder.get_object("readline")
-		self.readline.set_active(cfo["Readline"].as_bool("use_readlinecfg"))
+		self.readline.set_active(config.cfo["Readline"].as_bool("use_readlinecfg"))
 
 		def set_readline(widget, data=None):
-			cfo["Readline"]["use_readlinecfg"] = widget.get_active()
+			config.cfo["Readline"]["use_readlinecfg"] = widget.get_active()
 
 		self.readline.connect("clicked", set_readline)
 
 		####################### Connect the Completion Button #############################
 
 		self.completion = gtkbuilder.get_object("completion")
-		self.completion.set_active(cfo["Readline"].as_bool("completion"))
+		self.completion.set_active(config.cfo["Readline"].as_bool("completion"))
 
 		def set_completion(widget, data=None):
-			cfo["Readline"]["completion"] = widget.get_active()
+			config.cfo["Readline"]["completion"] = widget.get_active()
 
 		self.completion.connect("clicked", set_completion)
 
@@ -475,11 +453,11 @@ class BashStyleNG(object):
 				2 : "none",
 			      }
 
-		self.bellstyle.set_active(misc.SwapDictionary(bell_styles)[cfo["Readline"]["bellstyle"]])
+		self.bellstyle.set_active(misc.SwapDictionary(bell_styles)[config.cfo["Readline"]["bellstyle"]])
 
 		def set_bellstyle(widget, data=None):
 			selection = widget.get_active()
-			cfo["Readline"]["bellstyle"] = bell_styles[selection]
+			config.cfo["Readline"]["bellstyle"] = bell_styles[selection]
 
 		self.bellstyle.connect("changed", set_bellstyle)
 
@@ -492,41 +470,41 @@ class BashStyleNG(object):
 			      1 : "vi",
 			     }
 
-		self.editmode.set_active(misc.SwapDictionary(edit_modes)[cfo["Readline"]["editing_mode"]])
+		self.editmode.set_active(misc.SwapDictionary(edit_modes)[config.cfo["Readline"]["editing_mode"]])
 
 		def set_editmode(widget, data=None):
 			selection = widget.get_active()
-			cfo["Readline"]["editing_mode"] = edit_modes[selection]
+			config.cfo["Readline"]["editing_mode"] = edit_modes[selection]
 
 		self.editmode.connect("changed", set_editmode)
 
 		####################### Connect the Ambiguous Button ##################################
 
 		self.ambiguous = gtkbuilder.get_object("ambiguous")
-		self.ambiguous.set_active(cfo["Readline"].as_bool("ambiguous_show"))
+		self.ambiguous.set_active(config.cfo["Readline"].as_bool("ambiguous_show"))
 
 		def set_ambiguous(widget, data=None):
-			cfo["Readline"]["ambiguous_show"] = widget.get_active()
+			config.cfo["Readline"]["ambiguous_show"] = widget.get_active()
 
 		self.ambiguous.connect("clicked", set_ambiguous)
 
 		####################### Connect the Match Hidden Button ###########################
 
 		self.match_hidden = gtkbuilder.get_object("match_hidden")
-		self.match_hidden.set_active(cfo["Readline"].as_bool("complete_hidden"))
+		self.match_hidden.set_active(config.cfo["Readline"].as_bool("complete_hidden"))
 
 		def set_match_hidden(widget, data=None):
-			cfo["Readline"]["complete_hidden"] = widget.get_active()
+			config.cfo["Readline"]["complete_hidden"] = widget.get_active()
 
 		self.match_hidden.connect("clicked", set_match_hidden)
 
 		####################### Connect the Ignore Case Button ############################
 
 		self.ignore_case = gtkbuilder.get_object("ignore_case")
-		self.ignore_case.set_active(cfo["Readline"].as_bool("ignore_case"))
+		self.ignore_case.set_active(config.cfo["Readline"].as_bool("ignore_case"))
 
 		def set_ignore_case(widget, data=None):
-			cfo["Readline"]["ignore_case"] = widget.get_active()
+			config.cfo["Readline"]["ignore_case"] = widget.get_active()
 
 		self.ignore_case.connect("clicked", set_ignore_case)
 
@@ -537,130 +515,130 @@ class BashStyleNG(object):
 		####################### Connect the Horizontal Completion Button ##################
 
 		self.completion_hz = gtkbuilder.get_object("completion_hz")
-		self.completion_hz.set_active(cfo["Readline"].as_bool("complete_horizontal"))
+		self.completion_hz.set_active(config.cfo["Readline"].as_bool("complete_horizontal"))
 
 		def set_completion_hz(widget, data=None):
-			cfo["Readline"]["complete_horizontal"] = widget.get_active()
+			config.cfo["Readline"]["complete_horizontal"] = widget.get_active()
 
 		self.completion_hz.connect("clicked", set_completion_hz)
 
 		####################### Connect the Mark Directories Button #######################
 
 		self.mark_dirs = gtkbuilder.get_object("mark_dirs")
-		self.mark_dirs.set_active(cfo["Readline"].as_bool("mark_directories"))
+		self.mark_dirs.set_active(config.cfo["Readline"].as_bool("mark_directories"))
 
 		def set_mark_dirs(widget, data=None):
-			cfo["Readline"]["mark_directories"] = widget.get_active()
+			config.cfo["Readline"]["mark_directories"] = widget.get_active()
 
 		self.mark_dirs.connect("clicked", set_mark_dirs)
 
 		####################### Connect the Mark Symbolic Directories Button ##############
 
 		self.mark_symdirs = gtkbuilder.get_object("mark_symdirs")
-		self.mark_symdirs.set_active(cfo["Readline"].as_bool("mark_symbolic_directories"))
+		self.mark_symdirs.set_active(config.cfo["Readline"].as_bool("mark_symbolic_directories"))
 
 		def set_mark_symdirs(widget, data=None):
-			cfo["Readline"]["mark_symbolic_directories"] = widget.get_active()
+			config.cfo["Readline"]["mark_symbolic_directories"] = widget.get_active()
 
 		self.mark_symdirs.connect("clicked", set_mark_symdirs)
 
 		####################### Connect the Visible Stats Button ##########################
 
 		self.vstats = gtkbuilder.get_object("vstats")
-		self.vstats.set_active(cfo["Readline"].as_bool("visible_stats"))
+		self.vstats.set_active(config.cfo["Readline"].as_bool("visible_stats"))
 
 		def set_vstats(widgets, data=None):
-			cfo["Readline"]["visible_stats"] = widgets.get_active()
+			config.cfo["Readline"]["visible_stats"] = widgets.get_active()
 
 		self.vstats.connect("clicked", set_vstats)
 
 		####################### Connect the Horizontal Scroll Button ######################
 
 		self.scroll_hz = gtkbuilder.get_object("scroll_hz")
-		self.scroll_hz.set_active(cfo["Readline"].as_bool("scroll_horizontal"))
+		self.scroll_hz.set_active(config.cfo["Readline"].as_bool("scroll_horizontal"))
 
 		def set_scroll_hz(widget, data=None):
-			cfo["Readline"]["scroll_horizontal"] = widget.get_active()
+			config.cfo["Readline"]["scroll_horizontal"] = widget.get_active()
 
 		self.scroll_hz.connect("clicked", set_scroll_hz)
 
 		####################### Connect the Mark Modified Lines Button ####################
 
 		self.modlines = gtkbuilder.get_object("modlines")
-		self.modlines.set_active(cfo["Readline"].as_bool("mark_modified"))
+		self.modlines.set_active(config.cfo["Readline"].as_bool("mark_modified"))
 
 		def set_modlines(widget, data=None):
-			cfo["Readline"]["mark_modified"] = widget.get_active()
+			config.cfo["Readline"]["mark_modified"] = widget.get_active()
 
 		self.modlines.connect("clicked", set_modlines)
 
 		####################### Connect the Show Files Amount Button ######################
 
 		self.show_files_amount = gtkbuilder.get_object("show_files_amount")
-		self.show_files_amount.set_active(cfo["Separator"].as_bool("files_amount"))
+		self.show_files_amount.set_active(config.cfo["Separator"].as_bool("files_amount"))
 
 		def set_show_files_amount(widget, data=None):
-			cfo["Separator"]["files_amount"] = widget.get_active()
+			config.cfo["Separator"]["files_amount"] = widget.get_active()
 
 		self.show_files_amount.connect("clicked", set_show_files_amount)
 
 		####################### Connect the Show Uptime Button ############################
 
 		self.show_uptime = gtkbuilder.get_object("show_uptime")
-		self.show_uptime.set_active(cfo["Separator"].as_bool("uptime"))
+		self.show_uptime.set_active(config.cfo["Separator"].as_bool("uptime"))
 
 		def set_show_uptime(widget, data=None):
-			cfo["Separator"]["uptime"] = widget.get_active()
+			config.cfo["Separator"]["uptime"] = widget.get_active()
 
 		self.show_uptime.connect("clicked", set_show_uptime)
 
 		####################### Connect the Show Files Size Button ########################
 
 		self.show_file_size = gtkbuilder.get_object("show_file_size")
-		self.show_file_size.set_active(cfo["Separator"].as_bool("files_size"))
+		self.show_file_size.set_active(config.cfo["Separator"].as_bool("files_size"))
 
 		def set_show_file_size(widget, data=None):
-			cfo["Separator"]["files_size"] = widget.get_active()
+			config.cfo["Separator"]["files_size"] = widget.get_active()
 
 		self.show_file_size.connect("clicked", set_show_file_size)
 
 		####################### Connect the Show TTY Button ##############################
 
 		self.show_tty = gtkbuilder.get_object("show_tty")
-		self.show_tty.set_active(cfo["Separator"].as_bool("tty"))
+		self.show_tty.set_active(config.cfo["Separator"].as_bool("tty"))
 
 		def set_show_tty(widget, data=None):
-			cfo["Separator"]["tty"] = widget.get_active()
+			config.cfo["Separator"]["tty"] = widget.get_active()
 
 		self.show_tty.connect("clicked", set_show_tty)
 
 		####################### Connect the Show Running Processes Button #################
 
 		self.show_processes = gtkbuilder.get_object("show_processes")
-		self.show_processes.set_active(cfo["Separator"].as_bool("processes"))
+		self.show_processes.set_active(config.cfo["Separator"].as_bool("processes"))
 
 		def set_show_processes(widget, data=None):
-			cfo["Separator"]["processes"] = widget.get_active()
+			config.cfo["Separator"]["processes"] = widget.get_active()
 
 		self.show_processes.connect("clicked", set_show_processes)
 
 		####################### Connect the Show Systemload Button ########################
 
 		self.show_load = gtkbuilder.get_object("show_load")
-		self.show_load.set_active(cfo["Separator"].as_bool("load"))
+		self.show_load.set_active(config.cfo["Separator"].as_bool("load"))
 
 		def set_show_load(widget, data=None):
-			cfo["Separator"]["load"] = widget.get_active()
+			config.cfo["Separator"]["load"] = widget.get_active()
 
 		self.show_processes.connect("clicked", set_show_load)
 
 		####################### Connect the Show Batteryload Button #######################
 
 		self.show_battery = gtkbuilder.get_object("show_battery")
-		self.show_battery.set_active(cfo["Separator"].as_bool("battery_load"))
+		self.show_battery.set_active(config.cfo["Separator"].as_bool("battery_load"))
 
 		def set_show_battery(widget, data=None):
-			cfo["Separator"]["battery_load"] = widget.get_active()
+			config.cfo["Separator"]["battery_load"] = widget.get_active()
 
 		self.show_battery.connect("clicked", set_show_battery)
 
@@ -675,21 +653,21 @@ class BashStyleNG(object):
 				3 : "none",
 			       }
 
-		self.show_mem.set_active(misc.SwapDictionary(memory_types)[cfo["Separator"]["mem"]])
+		self.show_mem.set_active(misc.SwapDictionary(memory_types)[config.cfo["Separator"]["mem"]])
 
 		def set_show_mem(widget, data=None):
 			selection = widget.get_active()
-			cfo["Separator"]["mem"] = memory_types[selection]
+			config.cfo["Separator"]["mem"] = memory_types[selection]
 
 		self.show_mem.connect("changed", set_show_mem)
 
 		####################### Connect the Dirchar Entry #################################
 
 		self.dirchar = gtkbuilder.get_object("dirchar")
-		self.dirchar.set_text(cfo["Extra"]["directory_indicator"])
+		self.dirchar.set_text(config.cfo["Extra"]["directory_indicator"])
 
 		def set_dirchar(widget, data=None):
-			cfo["Extra"]["directory_indicator"] = widget.get_text()
+			config.cfo["Extra"]["directory_indicator"] = widget.get_text()
 
 		self.dirchar.connect("insert-text", emit_text)
 		self.dirchar.connect("changed", set_dirchar)
@@ -697,170 +675,170 @@ class BashStyleNG(object):
 		####################### Connect the Tab Rotation Button ###########################
 
 		self.tabrotate = gtkbuilder.get_object("tabrotate")
-		self.tabrotate.set_active(cfo["Extra"].as_bool("tab_rotation"))
+		self.tabrotate.set_active(config.cfo["Extra"].as_bool("tab_rotation"))
 
 		def set_tabrotate(widget, data=None):
-			cfo["Extra"]["tab_rotation"] = widget.get_active()
+			config.cfo["Extra"]["tab_rotation"] = widget.get_active()
 
 		self.tabrotate.connect("clicked", set_tabrotate)
 
 		####################### Connect the histappend Button ###########################
 
 		self.histappend = gtkbuilder.get_object("histappend")
-		self.histappend.set_active(cfo["Shopt"].as_bool("histappend"))
+		self.histappend.set_active(config.cfo["Shopt"].as_bool("histappend"))
 
 		def set_histappend(widget, data=None):
-			cfo["Shopt"]["histappend"] = widget.get_active()
+			config.cfo["Shopt"]["histappend"] = widget.get_active()
 
 		self.histappend.connect("clicked", set_histappend)
 
 		####################### Connect the cdspell Button ###########################
 
 		self.cdspell = gtkbuilder.get_object("cdspell")
-		self.cdspell.set_active(cfo["Shopt"].as_bool("cdspell"))
+		self.cdspell.set_active(config.cfo["Shopt"].as_bool("cdspell"))
 
 		def set_cdspell(widget, data=None):
-			cfo["Shopt"]["cdspell"] = widget.get_active()
+			config.cfo["Shopt"]["cdspell"] = widget.get_active()
 
 		self.cdspell.connect("clicked", set_cdspell)
 
 		####################### Connect the cdable_vars Button ###########################
 
 		self.cdable_vars = gtkbuilder.get_object("cdable_vars")
-		self.cdable_vars.set_active(cfo["Shopt"].as_bool("cdable_vars"))
+		self.cdable_vars.set_active(config.cfo["Shopt"].as_bool("cdable_vars"))
 
 		def set_cdable_vars(widget, data=None):
-			cfo["Shopt"]["cdable_vars"] = widget.get_active()
+			config.cfo["Shopt"]["cdable_vars"] = widget.get_active()
 
 		self.cdable_vars.connect("clicked", set_cdable_vars)
 
 		####################### Connect the checkhash Button ###########################
 
 		self.checkhash = gtkbuilder.get_object("checkhash")
-		self.checkhash.set_active(cfo["Shopt"].as_bool("checkhash"))
+		self.checkhash.set_active(config.cfo["Shopt"].as_bool("checkhash"))
 
 		def set_checkhash(widget, data=None):
-			cfo["Shopt"]["checkhash"] = widget.get_active()
+			config.cfo["Shopt"]["checkhash"] = widget.get_active()
 
 		self.checkhash.connect("clicked", set_checkhash)
 
 		####################### Connect the cmdhist Button ###########################
 
 		self.cmdhist = gtkbuilder.get_object("cmdhist")
-		self.cmdhist.set_active(cfo["Shopt"].as_bool("cmdhist"))
+		self.cmdhist.set_active(config.cfo["Shopt"].as_bool("cmdhist"))
 
 		def set_cmdhist(widget, data=None):
-			cfo["Shopt"]["cmdhist"] = widget.get_active()
+			config.cfo["Shopt"]["cmdhist"] = widget.get_active()
 
 		self.cmdhist.connect("clicked", set_cmdhist)
 
 		####################### Connect the force_fignore Button ###########################
 
 		self.force_fignore = gtkbuilder.get_object("force_fignore")
-		self.force_fignore.set_active(cfo["Shopt"].as_bool("force_fignore"))
+		self.force_fignore.set_active(config.cfo["Shopt"].as_bool("force_fignore"))
 
 		def set_force_fignore(widget, data=None):
-			cfo["Shopt"]["force_fignore"] = widget.get_active()
+			config.cfo["Shopt"]["force_fignore"] = widget.get_active()
 
 		self.force_fignore.connect("clicked", set_force_fignore)
 
 		####################### Connect the histreedit Button ###########################
 
 		self.histreedit = gtkbuilder.get_object("histreedit")
-		self.histreedit.set_active(cfo["Shopt"].as_bool("histreedit"))
+		self.histreedit.set_active(config.cfo["Shopt"].as_bool("histreedit"))
 
 		def set_histreedit(widget, data=None):
-			cfo["Shopt"]["histreedit"] = widget.get_active()
+			config.cfo["Shopt"]["histreedit"] = widget.get_active()
 
 		self.histreedit.connect("clicked", set_histreedit)
 
 		####################### Connect the no_empty_cmd Button ###########################
 
 		self.no_empty_cmd = gtkbuilder.get_object("no_empty_cmd")
-		self.no_empty_cmd.set_active(cfo["Shopt"].as_bool("no_empty_cmd_completion"))
+		self.no_empty_cmd.set_active(config.cfo["Shopt"].as_bool("no_empty_cmd_completion"))
 
 		def set_no_empty_cmd(widget, data=None):
-			cfo["Shopt"]["no_empty_cmd_completion"] = widget.get_active()
+			config.cfo["Shopt"]["no_empty_cmd_completion"] = widget.get_active()
 
 		self.no_empty_cmd.connect("clicked", set_no_empty_cmd)
 
 		####################### Connect the autocd Button ###########################
 
 		self.autocd = gtkbuilder.get_object("autocd")
-		self.autocd.set_active(cfo["Shopt"].as_bool("autocd"))
+		self.autocd.set_active(config.cfo["Shopt"].as_bool("autocd"))
 
 		def set_autocd(widget, data=None):
-			cfo["Shopt"]["autocd"] = widget.get_active()
+			config.cfo["Shopt"]["autocd"] = widget.get_active()
 
 		self.autocd.connect("clicked", set_autocd)
 
 		####################### Connect the checkjobs Button ###########################
 
 		self.checkjobs = gtkbuilder.get_object("checkjobs")
-		self.checkjobs.set_active(cfo["Shopt"].as_bool("checkjobs"))
+		self.checkjobs.set_active(config.cfo["Shopt"].as_bool("checkjobs"))
 
 		def set_checkjobs(widget, data=None):
-			cfo["Shopt"]["checkjobs"] = widget.get_active()
+			config.cfo["Shopt"]["checkjobs"] = widget.get_active()
 
 		self.checkjobs.connect("clicked", set_checkjobs)
 
 		####################### Connect the globstar Button ###########################
 
 		self.globstar = gtkbuilder.get_object("globstar")
-		self.globstar.set_active(cfo["Shopt"].as_bool("globstar"))
+		self.globstar.set_active(config.cfo["Shopt"].as_bool("globstar"))
 
 		def set_globstar(widget, data=None):
-			cfo["Shopt"]["globstar"] = widget.get_active()
+			config.cfo["Shopt"]["globstar"] = widget.get_active()
 
 		self.globstar.connect("clicked", set_globstar)
 
 		####################### Connect the dirspell Button ###########################
 
 		self.dirspell = gtkbuilder.get_object("dirspell")
-		self.dirspell.set_active(cfo["Shopt"].as_bool("dirspell"))
+		self.dirspell.set_active(config.cfo["Shopt"].as_bool("dirspell"))
 
 		def set_dirspell(widget, data=None):
-			cfo["Shopt"]["dirspell"] = widget.get_active()
+			config.cfo["Shopt"]["dirspell"] = widget.get_active()
 
 		self.dirspell.connect("clicked", set_dirspell)
 
 		####################### Connect the Use VimCFG Button #############################
 
 		self.use_vimcfg = gtkbuilder.get_object("use_vimcfg")
-		self.use_vimcfg.set_active(cfo["Vim"].as_bool("use_vimcfg"))
+		self.use_vimcfg.set_active(config.cfo["Vim"].as_bool("use_vimcfg"))
 
 		def set_use_vimcfg(widget, data=None):
-			cfo["Vim"]["use_vimcfg"] = widget.get_active()
+			config.cfo["Vim"]["use_vimcfg"] = widget.get_active()
 
 		self.use_vimcfg.connect("clicked", set_use_vimcfg)
 
 		####################### Connect the Vim/Backup files Button #######################
 
 		self.vim_backup = gtkbuilder.get_object("vim_backup")
-		self.vim_backup.set_active(cfo["Vim"].as_bool("vim_backup"))
+		self.vim_backup.set_active(config.cfo["Vim"].as_bool("vim_backup"))
 
 		def set_vim_backup(widget, data=None):
-			cfo["Vim"]["vim_backup"] = widget.get_active()
+			config.cfo["Vim"]["vim_backup"] = widget.get_active()
 
 		self.vim_backup.connect("clicked", set_vim_backup)
 
 		####################### Connect the Vim/Jump Back Button ##########################
 
 		self.vim_jump = gtkbuilder.get_object("vim_jump")
-		self.vim_jump.set_active(cfo["Vim"].as_bool("jump_back"))
+		self.vim_jump.set_active(config.cfo["Vim"].as_bool("jump_back"))
 
 		def set_vim_jump(widget, data=None):
-			cfo["Vim"]["jump_back"] = widget.get_active()
+			config.cfo["Vim"]["jump_back"] = widget.get_active()
 
 		self.vim_jump.connect("clicked", set_vim_jump)
 
 		###################### Connect the Vim/Jump to start of line Button ##############
 
 		self.vim_sline = gtkbuilder.get_object("vim_sline")
-		self.vim_sline.set_active(cfo["Vim"].as_bool("start_line"))
+		self.vim_sline.set_active(config.cfo["Vim"].as_bool("start_line"))
 
 		def set_vim_sline(widget, data=None):
-			cfo["Vim"]["start_line"] = widget.get_active()
+			config.cfo["Vim"]["start_line"] = widget.get_active()
 
 		self.vim_sline.connect("clicked", set_vim_sline)
 
@@ -870,160 +848,160 @@ class BashStyleNG(object):
 		####################### Connect the Vim/Wrap line Button ##########################
 
 		self.vim_wrap = gtkbuilder.get_object("vim_wrap")
-		self.vim_wrap.set_active(cfo["Vim"].as_bool("wrap_line"))
+		self.vim_wrap.set_active(config.cfo["Vim"].as_bool("wrap_line"))
 
 		def set_vim_wrap(widget, data=None):
-			cfo["Vim"]["wrap_line"] = widget.get_active()
+			config.cfo["Vim"]["wrap_line"] = widget.get_active()
 
 		self.vim_wrap.connect("clicked", set_vim_wrap)
 
 		###################### Connect the Vim/Autochdir Button ##########################
 
 		self.vim_cd = gtkbuilder.get_object("vim_cd")
-		self.vim_cd.set_active(cfo["Vim"].as_bool("chdir"))
+		self.vim_cd.set_active(config.cfo["Vim"].as_bool("chdir"))
 
 		def set_vim_cd(widget, data=None):
-			cfo["Vim"]["chdir"] = widget.get_active()
+			config.cfo["Vim"]["chdir"] = widget.get_active()
 
 		self.vim_cd.connect("clicked", set_vim_cd)
 
 		####################### Connect the Vim/Indention Button ##########################
 
 		self.vim_indent = gtkbuilder.get_object("vim_indent")
-		self.vim_indent.set_active(cfo["Vim"].as_bool("filetype_indent"))
+		self.vim_indent.set_active(config.cfo["Vim"].as_bool("filetype_indent"))
 
 		def set_vim_indent(widget, data=None):
-			cfo["Vim"]["filetype_indent"] = widget.get_active()
+			config.cfo["Vim"]["filetype_indent"] = widget.get_active()
 
 		self.vim_indent.connect("clicked", set_vim_indent)
 
 		####################### Connect the Vim/Show (partial) command Button #############
 
 		self.vim_cmd = gtkbuilder.get_object("vim_cmd")
-		self.vim_cmd.set_active(cfo["Vim"].as_bool("show_command"))
+		self.vim_cmd.set_active(config.cfo["Vim"].as_bool("show_command"))
 
 		def set_vim_cmd(widget, data=None):
-			cfo["Vim"]["show_command"] = widget.get_active()
+			config.cfo["Vim"]["show_command"] = widget.get_active()
 
 		self.vim_cmd.connect("clicked", set_vim_cmd)
 
 		####################### Connect the Vim/Match Brackets Button #####################
 
 		self.vim_match = gtkbuilder.get_object("vim_match")
-		self.vim_match.set_active(cfo["Vim"].as_bool("highlight_matches"))
+		self.vim_match.set_active(config.cfo["Vim"].as_bool("highlight_matches"))
 
 		def set_vim_match(widget, data=None):
-			cfo["Vim"]["highlight_matches"] = widget.get_active()
+			config.cfo["Vim"]["highlight_matches"] = widget.get_active()
 
 		self.vim_match.connect("clicked", set_vim_match)
 
 		####################### Connect the Vim/Syntax Highlight Button ###################
 
 		self.vim_syntax = gtkbuilder.get_object("vim_syntax")
-		self.vim_syntax.set_active(cfo["Vim"].as_bool("syntax_hilight"))
+		self.vim_syntax.set_active(config.cfo["Vim"].as_bool("syntax_hilight"))
 
 		def set_vim_syntax(widget, data=None):
-			cfo["Vim"]["syntax_hilight"] = widget.get_active()
+			config.cfo["Vim"]["syntax_hilight"] = widget.get_active()
 
 		self.vim_syntax.connect("clicked", set_vim_syntax)
 
 		####################### Connect the Vim/Background Button #########################
 
 		self.vim_bg = gtkbuilder.get_object("vim_bg")
-		self.vim_bg.set_active(cfo["Vim"].as_bool("dark_background"))
+		self.vim_bg.set_active(config.cfo["Vim"].as_bool("dark_background"))
 
 		def set_vim_bg(widget, data=None):
-			cfo["Vim"]["dark_background"] = widget.get_active()
+			config.cfo["Vim"]["dark_background"] = widget.get_active()
 
 		self.vim_bg.connect("clicked", set_vim_bg)
 
 		####################### Connect the Vim/Case-Insensitive Button ###################
 
 		self.vim_icase = gtkbuilder.get_object("vim_icase")
-		self.vim_icase.set_active(cfo["Vim"].as_bool("ignore_case"))
+		self.vim_icase.set_active(config.cfo["Vim"].as_bool("ignore_case"))
 
 		def set_vim_icase(widget, data=None):
-			cfo["Vim"]["ignore_case"] = widget.get_active()
+			config.cfo["Vim"]["ignore_case"] = widget.get_active()
 
 		self.vim_icase.connect("clicked", set_vim_icase)
 
 		####################### Connect the Vim/Smart-Case Button #########################
 
 		self.vim_scase = gtkbuilder.get_object("vim_scase")
-		self.vim_scase.set_active(cfo["Vim"].as_bool("smart_case"))
+		self.vim_scase.set_active(config.cfo["Vim"].as_bool("smart_case"))
 
 		def set_vim_scase(widget, data=None):
-			cfo["Vim"]["smart_case"] = widget.get_active()
+			config.cfo["Vim"]["smart_case"] = widget.get_active()
 
 		self.vim_scase.connect("clicked", set_vim_scase)
 
 		####################### Connect the Vim/Incremental Search Button #################
 
 		self.vim_isearch = gtkbuilder.get_object("vim_isearch")
-		self.vim_isearch.set_active(cfo["Vim"].as_bool("incremental_search"))
+		self.vim_isearch.set_active(config.cfo["Vim"].as_bool("incremental_search"))
 
 		def set_vim_isearch(widget, data=None):
-			cfo["Vim"]["incremental_search"] = widget.get_active()
+			config.cfo["Vim"]["incremental_search"] = widget.get_active()
 
 		self.vim_isearch.connect("clicked", set_vim_isearch)
 
 		####################### Connect the Vim/Hilight Matches Button ####################
 
 		self.vim_hilight = gtkbuilder.get_object("vim_hilight")
-		self.vim_hilight.set_active(cfo["Vim"].as_bool("highlight_brackets"))
+		self.vim_hilight.set_active(config.cfo["Vim"].as_bool("highlight_brackets"))
 
 		def set_vim_hilight(widget, data=None):
-			cfo["Vim"]["highlight_brackets"] = widget.get_active()
+			config.cfo["Vim"]["highlight_brackets"] = widget.get_active()
 
 		self.vim_hilight.connect("clicked", set_vim_hilight)
 
 		####################### Connect the Vim/Linenumber Button #########################
 
 		self.vim_number = gtkbuilder.get_object("vim_number")
-		self.vim_number.set_active(cfo["Vim"].as_bool("show_lineno"))
+		self.vim_number.set_active(config.cfo["Vim"].as_bool("show_lineno"))
 
 		def set_vim_number(widget, data=None):
-			cfo["Vim"]["show_lineno"] = widget.get_active()
+			config.cfo["Vim"]["show_lineno"] = widget.get_active()
 
 		self.vim_number.connect("clicked", set_vim_number)
 
 		####################### Connect the Vim/Autosave Button ###########################
 
 		self.vim_save = gtkbuilder.get_object("vim_save")
-		self.vim_save.set_active(cfo["Vim"].as_bool("autosave"))
+		self.vim_save.set_active(config.cfo["Vim"].as_bool("autosave"))
 
 		def set_vim_save(widget, data=None):
-			cfo["Vim"]["autosave"] = widget.get_active()
+			config.cfo["Vim"]["autosave"] = widget.get_active()
 
 		self.vim_save.connect("clicked", set_vim_save)
 
 		####################### Connect the Vim/Highlight Line Button #####################
 
 		self.vim_hiline = gtkbuilder.get_object("vim_hiline")
-		self.vim_hiline.set_active(cfo["Vim"].as_bool("highlight_line"))
+		self.vim_hiline.set_active(config.cfo["Vim"].as_bool("highlight_line"))
 
 		def set_vim_hiline(widget, data=None):
-			cfo["Vim"]["highlight_line"] = widget.get_active()
+			config.cfo["Vim"]["highlight_line"] = widget.get_active()
 
 		self.vim_hiline.connect("clicked", set_vim_hiline)
 
 		####################### Connect the Vim/Highlight Column Button ###################
 
 		self.vim_hicol = gtkbuilder.get_object("vim_hicol")
-		self.vim_hicol.set_active(cfo["Vim"].as_bool("highlight_column"))
+		self.vim_hicol.set_active(config.cfo["Vim"].as_bool("highlight_column"))
 
 		def set_vim_hicol(widget, data=None):
-			cfo["Vim"]["highlight_column"] = widget.get_active()
+			config.cfo["Vim"]["highlight_column"] = widget.get_active()
 
 		self.vim_hicol.connect("clicked", set_vim_hicol)
 
 		####################### Connect the Vim/Show Ruler Button #########################
 
 		self.vim_ruler = gtkbuilder.get_object("vim_ruler")
-		self.vim_ruler.set_active(cfo["Vim"].as_bool("ruler"))
+		self.vim_ruler.set_active(config.cfo["Vim"].as_bool("ruler"))
 
 		def set_vim_ruler(widget, data=None):
-			cfo["Vim"]["ruler"] = widget.get_active()
+			config.cfo["Vim"]["ruler"] = widget.get_active()
 
 		self.vim_ruler.connect("clicked", set_vim_ruler)
 
@@ -1049,11 +1027,11 @@ class BashStyleNG(object):
 			      14 : "tango",
 			     }
 
-		self.vim_colorscheme.set_active(misc.SwapDictionary(vim_colors)[cfo["Vim"]["colorscheme"]])
+		self.vim_colorscheme.set_active(misc.SwapDictionary(vim_colors)[config.cfo["Vim"]["colorscheme"]])
 
 		def set_vim_colorscheme(widget, data=None):
 			selection = widget.get_active()
-			cfo["Vim"]["colorscheme"] = vim_colors[selection]
+			config.cfo["Vim"]["colorscheme"] = vim_colors[selection]
 
 		self.vim_colorscheme.connect("changed", set_vim_colorscheme)
 
@@ -1062,120 +1040,120 @@ class BashStyleNG(object):
 		####################### Connect the Use Nanocfg Button ############################
 
 		self.use_nanocfg = gtkbuilder.get_object("use_nanocfg")
-		self.use_nanocfg.set_active(cfo["Nano"].as_bool("use_nanocfg"))
+		self.use_nanocfg.set_active(config.cfo["Nano"].as_bool("use_nanocfg"))
 
 		def set_use_nanocfg(widget, data=None):
-			cfo["Nano"]["use_nanocfg"] = widget.get_active()
+			config.cfo["Nano"]["use_nanocfg"] = widget.get_active()
 
 		self.use_nanocfg.connect("clicked", set_use_nanocfg)
 
 		####################### Connect the Nano/Backup Button ############################
 
 		self.nano_backup = gtkbuilder.get_object("nano_backup")
-		self.nano_backup.set_active(cfo["Nano"].as_bool("nano_backup"))
+		self.nano_backup.set_active(config.cfo["Nano"].as_bool("nano_backup"))
 
 		def set_nano_backup(widget, data=None):
-			cfo["Nano"]["nano_backup"] = widget.get_active()
+			config.cfo["Nano"]["nano_backup"] = widget.get_active()
 
 		self.nano_backup.connect("clicked", set_nano_backup)
 
 		####################### Connect the Nano/Display Cursor Position Button ###########
 
 		self.nano_const = gtkbuilder.get_object("nano_const")
-		self.nano_const.set_active(cfo["Nano"].as_bool("show_position"))
+		self.nano_const.set_active(config.cfo["Nano"].as_bool("show_position"))
 
 		def set_nano_const(widget, data=None):
-			cfo["Nano"]["show_position"] = widget.get_active()
+			config.cfo["Nano"]["show_position"] = widget.get_active()
 
 		self.nano_const.connect("clicked", set_nano_const)
 
 		####################### Connect the Nano/Indention Button #########################
 
 		self.nano_indent = gtkbuilder.get_object("nano_indent")
-		self.nano_indent.set_active(cfo["Nano"].as_bool("auto_indent"))
+		self.nano_indent.set_active(config.cfo["Nano"].as_bool("auto_indent"))
 
 		def set_nano_indent(widget, data=None):
-			cfo["Nano"]["auto_indent"] = widget.get_active()
+			config.cfo["Nano"]["auto_indent"] = widget.get_active()
 
 		self.nano_indent.connect("clicked", set_nano_indent)
 
 		####################### Connect the Nano/Syntax Button ############################
 
 		self.nano_colors = gtkbuilder.get_object("nano_colors")
-		self.nano_colors.set_active(cfo["Nano"].as_bool("syntax_highlight"))
+		self.nano_colors.set_active(config.cfo["Nano"].as_bool("syntax_highlight"))
 
 		def set_nano_colors(widget, data=None):
-			cfo["Nano"]["syntax_highlight"] = widget.get_active()
+			config.cfo["Nano"]["syntax_highlight"] = widget.get_active()
 
 		self.nano_colors.connect("clicked", set_nano_colors)
 
 		####################### Connect the Nano/No Help Button ###########################
 
 		self.nano_nohelp = gtkbuilder.get_object("nano_nohelp")
-		self.nano_nohelp.set_active(cfo["Nano"].as_bool("hide_help"))
+		self.nano_nohelp.set_active(config.cfo["Nano"].as_bool("hide_help"))
 
 		def set_nano_nohelp(widget, data=None):
-			cfo["Nano"]["hide_help"] = widget.get_active()
+			config.cfo["Nano"]["hide_help"] = widget.get_active()
 
 		self.nano_nohelp.connect("clicked", set_nano_nohelp)
 
 		####################### Connect the Nano/Case-Sensitive Button ####################
 
 		self.nano_case = gtkbuilder.get_object("nano_case")
-		self.nano_case.set_active(cfo["Nano"].as_bool("case_sensitive"))
+		self.nano_case.set_active(config.cfo["Nano"].as_bool("case_sensitive"))
 
 		def set_nano_case(widget, data=None):
-			cfo["Nano"]["case_sensitive"] = widget.get_active()
+			config.cfo["Nano"]["case_sensitive"] = widget.get_active()
 
 		self.nano_case.connect("clicked", set_nano_case)
 
 		####################### Connect the Nano/Bold Text Button #########################
 
 		self.nano_boldtext = gtkbuilder.get_object("nano_boldtext")
-		self.nano_boldtext.set_active(cfo["Nano"].as_bool("bold_text"))
+		self.nano_boldtext.set_active(config.cfo["Nano"].as_bool("bold_text"))
 
 		def set_nano_boldtext(widget, data=None):
-			cfo["Nano"]["bold_text"] = widget.get_active()
+			config.cfo["Nano"]["bold_text"] = widget.get_active()
 
 		self.nano_boldtext.connect("clicked", set_nano_boldtext)
 
 		####################### Connect the Nano/More Space Button ########################
 
 		self.nano_morespace = gtkbuilder.get_object("nano_morespace")
-		self.nano_morespace.set_active(cfo["Nano"].as_bool("more_space"))
+		self.nano_morespace.set_active(config.cfo["Nano"].as_bool("more_space"))
 
 		def set_nano_morespace(widget, data=None):
-			cfo["Nano"]["more_space"] = widget.get_active()
+			config.cfo["Nano"]["more_space"] = widget.get_active()
 
 		self.nano_morespace.connect("clicked", set_nano_morespace)
 
 		####################### Connect the Nano/History Button ############################
 
 		self.nano_history = gtkbuilder.get_object("nano_history")
-		self.nano_history.set_active(cfo["Nano"].as_bool("history"))
+		self.nano_history.set_active(config.cfo["Nano"].as_bool("history"))
 
 		def set_nano_history(widget, data=None):
-			cfo["Nano"]["history"] = widget.get_active()
+			config.cfo["Nano"]["history"] = widget.get_active()
 
 		self.nano_history.connect("clicked", set_nano_history)
 
 		####################### Connect the Nano/Rebind delete Button ######################
 
 		self.nano_rbdel = gtkbuilder.get_object("nano_rbdel")
-		self.nano_rbdel.set_active(cfo["Nano"].as_bool("rebind_delete"))
+		self.nano_rbdel.set_active(config.cfo["Nano"].as_bool("rebind_delete"))
 
 		def set_nano_rbdel(widget, data=None):
-			cfo["Nano"]["rebind_delete"] = widget.get_active()
+			config.cfo["Nano"]["rebind_delete"] = widget.get_active()
 
 		self.nano_rbdel.connect("clicked", set_nano_rbdel)
 
 		####################### Connect the Nano/Rebind Keypad Button ######################
 
 		self.nano_rbkp = gtkbuilder.get_object("nano_rbkp")
-		self.nano_rbkp.set_active(cfo["Nano"].as_bool("rebind_keypad"))
+		self.nano_rbkp.set_active(config.cfo["Nano"].as_bool("rebind_keypad"))
 
 		def set_nano_rbkp(widget, data=None):
-			cfo["Nano"]["rebind_keypad"] = widget.get_active()
+			config.cfo["Nano"]["rebind_keypad"] = widget.get_active()
 
 		self.nano_rbkp.connect("clicked", set_nano_rbkp)
 
@@ -1208,22 +1186,22 @@ class BashStyleNG(object):
 		ls_colors_inv = misc.SwapDictionary(ls_colors)
 
 		def set_ls_color(self, type, selection):
-			cfo["LSColors"]["%s" % type] = ls_colors[selection]
+			config.cfo["LSColors"]["%s" % type] = ls_colors[selection]
 
 		####################### Connect the use LS-COLORS Button ##########################
 
 		self.use_lscolors = gtkbuilder.get_object("use_lscolors")
-		self.use_lscolors.set_active(cfo["LSColors"].as_bool("use_lscolors"))
+		self.use_lscolors.set_active(config.cfo["LSColors"].as_bool("use_lscolors"))
 
 		def set_use_lscolors(widget, data=None):
-			cfo["LSColors"]["use_lscolors"] = widget.get_active()
+			config.cfo["LSColors"]["use_lscolors"] = widget.get_active()
 
 		self.use_lscolors.connect("clicked", set_use_lscolors)
 
 		####################### Connect the Executable Files Combobox #####################
 
 		self.ls_exec = gtkbuilder.get_object("ls_exec")
-		self.ls_exec.set_active(ls_colors_inv[cfo["LSColors"]["exec"]])
+		self.ls_exec.set_active(ls_colors_inv[config.cfo["LSColors"]["exec"]])
 
 		def set_ls_exec(widget, data=None):
 			selection = widget.get_active()
@@ -1234,7 +1212,7 @@ class BashStyleNG(object):
 		####################### Connect the Generic Files Combobox ########################
 
 		self.ls_gen = gtkbuilder.get_object("ls_gen")
-		self.ls_gen.set_active(ls_colors_inv[cfo["LSColors"]["generic"]])
+		self.ls_gen.set_active(ls_colors_inv[config.cfo["LSColors"]["generic"]])
 
 		def set_ls_gen(widget, data=None):
 			selection = widget.get_active()
@@ -1245,7 +1223,7 @@ class BashStyleNG(object):
 		####################### Connect the Log Files Combobox ############################
 
 		self.ls_log = gtkbuilder.get_object("ls_log")
-		self.ls_log.set_active(ls_colors_inv[cfo["LSColors"]["logs"]])
+		self.ls_log.set_active(ls_colors_inv[config.cfo["LSColors"]["logs"]])
 
 		def set_ls_log(widget, data=None):
 			selection = widget.get_active()
@@ -1256,7 +1234,7 @@ class BashStyleNG(object):
 		####################### Connect the Deb Files Combobox ############################
 
 		self.ls_deb = gtkbuilder.get_object("ls_deb")
-		self.ls_deb.set_active(ls_colors_inv[cfo["LSColors"]["deb"]])
+		self.ls_deb.set_active(ls_colors_inv[config.cfo["LSColors"]["deb"]])
 
 		def set_ls_deb(widget, data=None):
 			selection = widget.get_active()
@@ -1267,7 +1245,7 @@ class BashStyleNG(object):
 		####################### Connect the RPM Files Combobox ############################
 
 		self.ls_rpm = gtkbuilder.get_object("ls_rpm")
-		self.ls_rpm.set_active(ls_colors_inv[cfo["LSColors"]["rpm"]])
+		self.ls_rpm.set_active(ls_colors_inv[config.cfo["LSColors"]["rpm"]])
 
 		def set_ls_rpm(widget, data=None):
 			selection = widget.get_active()
@@ -1278,7 +1256,7 @@ class BashStyleNG(object):
 		####################### Connect the Desktop Files Combobox ########################
 
 		self.ls_dirs = gtkbuilder.get_object("ls_dirs")
-		self.ls_dirs.set_active(ls_colors_inv[cfo["LSColors"]["dirs"]])
+		self.ls_dirs.set_active(ls_colors_inv[config.cfo["LSColors"]["dirs"]])
 
 		def set_ls_dirs(widget, data=None):
 			selection = widget.get_active()
@@ -1289,7 +1267,7 @@ class BashStyleNG(object):
 		####################### Connect the JPEG Files Combobox ###########################
 
 		self.ls_jpeg = gtkbuilder.get_object("ls_jpeg")
-		self.ls_jpeg.set_active(ls_colors_inv[cfo["LSColors"]["jpeg"]])
+		self.ls_jpeg.set_active(ls_colors_inv[config.cfo["LSColors"]["jpeg"]])
 
 		def set_ls_jpeg(widget, data=None):
 			selection = widget.get_active()
@@ -1300,7 +1278,7 @@ class BashStyleNG(object):
 		####################### Connect the PNG Files Combobox ############################
 
 		self.ls_png = gtkbuilder.get_object("ls_png")
-		self.ls_png.set_active(ls_colors_inv[cfo["LSColors"]["png"]])
+		self.ls_png.set_active(ls_colors_inv[config.cfo["LSColors"]["png"]])
 
 		def set_ls_png(widget, data=None):
 			selection = widget.get_active()
@@ -1311,7 +1289,7 @@ class BashStyleNG(object):
 		####################### Connect the GIF Files Combobox ############################
 
 		self.ls_gif = gtkbuilder.get_object("ls_gif")
-		self.ls_gif.set_active(ls_colors_inv[cfo["LSColors"]["gif"]])
+		self.ls_gif.set_active(ls_colors_inv[config.cfo["LSColors"]["gif"]])
 
 		def set_ls_gif(widget, data=None):
 			selection = widget.get_active()
@@ -1322,7 +1300,7 @@ class BashStyleNG(object):
 		####################### Connect the MP3 Files Combobox ############################
 
 		self.ls_mp3 = gtkbuilder.get_object("ls_mp3")
-		self.ls_mp3.set_active(ls_colors_inv[cfo["LSColors"]["mp3"]])
+		self.ls_mp3.set_active(ls_colors_inv[config.cfo["LSColors"]["mp3"]])
 
 		def set_ls_mp3(widget, data=None):
 			selection = widget.get_active()
@@ -1333,7 +1311,7 @@ class BashStyleNG(object):
 		####################### Connect the OGG Files Combobox ############################
 
 		self.ls_ogg = gtkbuilder.get_object("ls_ogg")
-		self.ls_ogg.set_active(ls_colors_inv[cfo["LSColors"]["ogg"]])
+		self.ls_ogg.set_active(ls_colors_inv[config.cfo["LSColors"]["ogg"]])
 
 		def set_ls_ogg(widget, data=None):
 			selection = widget.get_active()
@@ -1344,7 +1322,7 @@ class BashStyleNG(object):
 		####################### Connect the FLAC Files Combobox ###########################
 
 		self.ls_flac = gtkbuilder.get_object("ls_flac")
-		self.ls_flac.set_active(ls_colors_inv[cfo["LSColors"]["flac"]])
+		self.ls_flac.set_active(ls_colors_inv[config.cfo["LSColors"]["flac"]])
 
 		def set_ls_flac(widget, data=None):
 			selection = widget.get_active()
@@ -1355,7 +1333,7 @@ class BashStyleNG(object):
 		####################### Connect the TAR Files Combobox ############################
 
 		self.ls_tar = gtkbuilder.get_object("ls_tar")
-		self.ls_tar.set_active(ls_colors_inv[cfo["LSColors"]["tar"]])
+		self.ls_tar.set_active(ls_colors_inv[config.cfo["LSColors"]["tar"]])
 
 		def set_ls_tar(widget, data=None):
 			selection = widget.get_active()
@@ -1366,7 +1344,7 @@ class BashStyleNG(object):
 		####################### Connect the TARGZ Files Combobox ##########################
 
 		self.ls_targz = gtkbuilder.get_object("ls_targz")
-		self.ls_targz.set_active(ls_colors_inv[cfo["LSColors"]["targz"]])
+		self.ls_targz.set_active(ls_colors_inv[config.cfo["LSColors"]["targz"]])
 
 		def set_ls_targz(widget, data=None):
 			selection = widget.get_active()
@@ -1377,7 +1355,7 @@ class BashStyleNG(object):
 		####################### Connect the TARBZ2 Files Combobox #########################
 
 		self.ls_tarbz2 = gtkbuilder.get_object("ls_tarbz2")
-		self.ls_tarbz2.set_active(ls_colors_inv[cfo["LSColors"]["tarbz2"]])
+		self.ls_tarbz2.set_active(ls_colors_inv[config.cfo["LSColors"]["tarbz2"]])
 
 		def set_ls_tarbz2(widget, data=None):
 			selection = widget.get_active()
@@ -1388,7 +1366,7 @@ class BashStyleNG(object):
 		####################### Connect the ZIP Files Combobox ############################
 
 		self.ls_zip = gtkbuilder.get_object("ls_zip")
-		self.ls_zip.set_active(ls_colors_inv[cfo["LSColors"]["zip"]])
+		self.ls_zip.set_active(ls_colors_inv[config.cfo["LSColors"]["zip"]])
 
 		def set_ls_zip(widget, data=None):
 			selection = widget.get_active()
@@ -1399,7 +1377,7 @@ class BashStyleNG(object):
 		####################### Connect the RAR Files Combobox ############################
 
 		self.ls_rar = gtkbuilder.get_object("ls_rar")
-		self.ls_rar.set_active(ls_colors_inv[cfo["LSColors"]["rar"]])
+		self.ls_rar.set_active(ls_colors_inv[config.cfo["LSColors"]["rar"]])
 
 		def set_ls_rar(widget, data=None):
 			selection = widget.get_active()
@@ -1415,12 +1393,12 @@ class BashStyleNG(object):
 
 		self.prompt_command_buffer = undobuffer.UndoableBuffer()
 		self.prompt_command.set_buffer(self.prompt_command_buffer)
-		self.prompt_command_buffer.set_text("%s" % cfo["Custom"]["command"])
+		self.prompt_command_buffer.set_text("%s" % config.cfo["Custom"]["command"])
 
 		def set_prompt_command(widget, data=None):
 			start = widget.get_start_iter()
 			end = widget.get_end_iter()
-			cfo["Custom"]["command"] = widget.get_text(start, end, False)
+			config.cfo["Custom"]["command"] = widget.get_text(start, end, False)
 
 		self.prompt_command_buffer.connect("changed", set_prompt_command)
 
@@ -1432,12 +1410,12 @@ class BashStyleNG(object):
 
 		self.custom_prompt_buffer = undobuffer.UndoableBuffer()
 		self.custom_prompt.set_buffer(self.custom_prompt_buffer)
-		self.custom_prompt_buffer.set_text("%s" % cfo["Custom"]["prompt"])
+		self.custom_prompt_buffer.set_text("%s" % config.cfo["Custom"]["prompt"])
 
 		def set_custom_prompt(widget, data=None):
 			start = widget.get_start_iter()
 			end = widget.get_end_iter()
-			cfo["Custom"]["prompt"] = widget.get_text(start, end, False)
+			config.cfo["Custom"]["prompt"] = widget.get_text(start, end, False)
 
 		self.custom_prompt_buffer.connect("changed", set_custom_prompt)
 
@@ -1482,10 +1460,10 @@ class BashStyleNG(object):
 		####################### Connect the Use Custom Prompt Button #######################
 
 		self.use_custom_prompt = gtkbuilder.get_object("use_custom_prompt")
-		self.use_custom_prompt.set_active(cfo["Custom"].as_bool("use_custom_prompt"))
+		self.use_custom_prompt.set_active(config.cfo["Custom"].as_bool("use_custom_prompt"))
 
 		def set_use_custom_prompt(widget, data=None):
-			cfo["Custom"]["use_custom_prompt"] = widget.get_active()
+			config.cfo["Custom"]["use_custom_prompt"] = widget.get_active()
 
 		self.use_custom_prompt.connect("clicked", set_use_custom_prompt)
 
@@ -2011,7 +1989,7 @@ class BashStyleNG(object):
 		self.bashstyle = gtkbuilder.get_object("bashstyle")
 
 		def destroy(self, widget):
-			cfo.write()
+			config.cfo.write()
 			lock.Remove()
 			Gtk.main_quit()
 

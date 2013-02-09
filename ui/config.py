@@ -56,6 +56,7 @@ class Config(object):
 			new["ini_version"] = app_ini_version
 			new.write()
 			shutil.move(USER_DEFAULTS_NEW, USER_DEFAULTS)
+			self.cfo.reload()
 
 	def ResetConfig(self):
 		shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
