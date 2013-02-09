@@ -12,7 +12,7 @@
 
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'configobj', 'string',
             'shutil', 'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
-	   'i18n' ]
+	   'i18n', 'misc' ]
 
 FAILED = []
 
@@ -118,10 +118,6 @@ def remove_lockfile():
 	if os.access(lockfile, os.F_OK):
 		os.remove(lockfile)
 
-def swap_dic(original_dict):
-	####################### Swap Keys and Values of a dictionary ######################
-	return dict([(v, k) for (k, v) in original_dict.iteritems()])
-
 class BashStyleNG(object):
 
 	def __init__(self):
@@ -220,17 +216,7 @@ class BashStyleNG(object):
 
 		def set_use_bashstyle(widget, data=None):
 			cfo["Style"]["use_bashstyle"] = widget.get_active()
-			rc = open(os.path.expanduser("~/.bashrc"), "r")
-			rc_new = open(os.path.expanduser("~/.bashrc.new"), "w")
-			content = rc.readlines()
-			for line in content:
-				if line.find("bashstyle-ng/rc/nx-rc") == -1:
-					rc_new.write(line)
-			rc.close
-			if widget.get_active() == True:
-				rc_new.write("source /usr/share/bashstyle-ng/rc/nx-rc")
-			rc_new.close
-			shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))
+			misc.EnableBashstyleNG(widget.get_active())
 
 		self.use_bashstyle.connect("toggled", set_use_bashstyle)
 
@@ -296,7 +282,7 @@ class BashStyleNG(object):
 				 4 : "underlined",
 			        }
 
-		self.color_style.set_active(swap_dic(color_styles)[cfo["Style"]["color_style"]])
+		self.color_style.set_active(misc.SwapDictionary(color_styles)[cfo["Style"]["color_style"]])
 
 		def set_color_style(widget, data=None):
 			selection = widget.get_active()
@@ -314,7 +300,7 @@ class BashStyleNG(object):
 			      2 : "nebula",
 			     }
 
-		self.terminfo.set_active(swap_dic(man_styles)[cfo["Style"]["man_style"]])
+		self.terminfo.set_active(misc.SwapDictionary(man_styles)[cfo["Style"]["man_style"]])
 
 		def set_man_style(widget, data=None):
 			selection = widget.get_active()
@@ -350,7 +336,7 @@ class BashStyleNG(object):
 			       20 : "01;38;5;5344",
 			      }
 
-		self.grep_colour.set_active(swap_dic(grep_colors)[cfo["Style"]["grep_color"]])
+		self.grep_colour.set_active(misc.SwapDictionary(grep_colors)[cfo["Style"]["grep_color"]])
 
 		def set_grep_color(widget, data=None):
 			selection = widget.get_active()
@@ -432,7 +418,7 @@ class BashStyleNG(object):
 				 11 : "ayoli",
 				}
 
-		self.prompt_style.set_active(swap_dic(prompt_styles)[cfo["Style"]["prompt_style"]])
+		self.prompt_style.set_active(misc.SwapDictionary(prompt_styles)[cfo["Style"]["prompt_style"]])
 
 		def set_prompt_style(widget, data=None):
 			selection = widget.get_active()
@@ -472,7 +458,7 @@ class BashStyleNG(object):
 				 3 : "ignoreboth",
 				}
 
-		self.history_control.set_active(swap_dic(history_types)[cfo["Advanced"]["history_control"]])
+		self.history_control.set_active(misc.SwapDictionary(history_types)[cfo["Advanced"]["history_control"]])
 
 		def set_history_control(widget, data=None):
 			selection = widget.get_active()
@@ -525,7 +511,7 @@ class BashStyleNG(object):
 				2 : "none",
 			      }
 
-		self.bellstyle.set_active(swap_dic(bell_styles)[cfo["Readline"]["bellstyle"]])
+		self.bellstyle.set_active(misc.SwapDictionary(bell_styles)[cfo["Readline"]["bellstyle"]])
 
 		def set_bellstyle(widget, data=None):
 			selection = widget.get_active()
@@ -542,7 +528,7 @@ class BashStyleNG(object):
 			      1 : "vi",
 			     }
 
-		self.editmode.set_active(swap_dic(edit_modes)[cfo["Readline"]["editing_mode"]])
+		self.editmode.set_active(misc.SwapDictionary(edit_modes)[cfo["Readline"]["editing_mode"]])
 
 		def set_editmode(widget, data=None):
 			selection = widget.get_active()
@@ -725,7 +711,7 @@ class BashStyleNG(object):
 				3 : "none",
 			       }
 
-		self.show_mem.set_active(swap_dic(memory_types)[cfo["Separator"]["mem"]])
+		self.show_mem.set_active(misc.SwapDictionary(memory_types)[cfo["Separator"]["mem"]])
 
 		def set_show_mem(widget, data=None):
 			selection = widget.get_active()
@@ -1099,7 +1085,7 @@ class BashStyleNG(object):
 			      14 : "tango",
 			     }
 
-		self.vim_colorscheme.set_active(swap_dic(vim_colors)[cfo["Vim"]["colorscheme"]])
+		self.vim_colorscheme.set_active(misc.SwapDictionary(vim_colors)[cfo["Vim"]["colorscheme"]])
 
 		def set_vim_colorscheme(widget, data=None):
 			selection = widget.get_active()
@@ -1255,7 +1241,7 @@ class BashStyleNG(object):
 			     20 : "$lcream",
 			    }
 
-		ls_colors_inv = swap_dic(ls_colors)
+		ls_colors_inv = misc.SwapDictionary(ls_colors)
 
 		def set_ls_color(self, type, selection):
 			cfo["LSColors"]["%s" % type] = ls_colors[selection]
