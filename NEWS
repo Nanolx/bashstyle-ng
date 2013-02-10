@@ -1,4 +1,4 @@
-Overview of changes in v8.00 "We're Getting High With The Rhythm"
+Overview of changes in v7.99.1 "We're Getting High With The Rhythm"
 
 --- Important Note #1 ---
 
@@ -18,25 +18,29 @@ Disadvantages:
 This release requires GTK+3 / Python-GI
 
 === Bug fixes ===
-* #128 (ui): fixed C-P-B (Custom Prompt Builder) showing no longer existent
-	     themes (and theme-code) from the "Choose Style to modify:" combo-box
-* #129 (configure): when configured via debian/rules, configure got the prefix wrong
-* #130 (profile): display-managers like XDM don't source /etc/profile.d/*,
-                  so let nx-rc self-check, whether our profile was sourced
-* #131 (readline/vim/nano): don't create an rc for readline, vim or nano,
-                            if one is already going to be created (fixes
-                            annoying issues when opening splitvt or two
-                            terminals at a time)
-* #132 (show_system_load): enforce LANG=C when calling uptime, so that it
-                           properly works in all environments
-* #133 (toolbox/about): fix the bug that the toolbox and about-dialog could only
-                        be properly invoked once per session
+* #128 (ui):
+	fixed C-P-B (Custom Prompt Builder) showing no longer existent
+	themes (and theme-code) from the "Choose Style to modify:" combo-box
+* #129 (configure):
+	when configured via debian/rules, configure got the prefix wrong
+* #130 (profile):
+	display-managers like XDM don't source /etc/profile.d/*,
+	so let nx-rc self-check, whether our profile was sourced
+* #131 (readline/vim/nano):
+	don't create an rc for readline, vim or nano, if one is already going
+	to be created (fixes annoying issues when opening splitvt or two
+	terminals at a time)
+* #132 (show_system_load):
+	enforce LANG=C when calling uptime, so that it properly works in all cases
+* #133 (toolbox/about):
+	fix the bug that the toolbox and about-dialog could only
+	be properly invoked once per session
 
 === Added Features ===
 * configure can now check for GIR Repositories
 * configure can now check for python sub-modules
 * options like aliases can now be reverted to previous user-value
-  or reset to factory defaults
+  or reset to factory defaults in the user interface
 
 === Removed Features ===
 * bs-ng-profiler (no longer required)
