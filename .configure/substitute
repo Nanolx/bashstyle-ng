@@ -15,13 +15,8 @@ copy_in_files () {
 
 substitute_values () {
 
-	# substitute VERSION
 	sed -e "s>@VERSION@>$xVERSION>g" -i ${SUB_VERSION_FILES[@]}
-
-	# substitute PREFIX
 	sed -e "s>@PREFIX@>$PREFIX>g" -i ${SUB_PREFIX_FILES[@]}
-
-	# substitute DIRINFO_ENABLE
 	sed -e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" -i data/bashstyle.sh
 
 }

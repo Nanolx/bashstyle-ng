@@ -9,6 +9,18 @@
 #							#
 #########################################################
 
+assign() {
+
+	for opt in $@; do
+		var="X=\$${opt/:*}"
+		eval $var
+		if [[ $X == "" ]]; then
+			read ${opt/:*} <<< $(echo ${opt/*:})
+		fi
+	done
+
+}
+
 if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 
 	xdel() {
@@ -421,7 +433,7 @@ box () {
 
 ugrep () {
 
-	egrep -i "^[0-9a-f]{4,} .*$*" $BSNG_DATA_DIR/CharName.pm | while read h d; 
+	egrep -i "^[0-9a-f]{4,} .*$*" $BSNG_DATA_DIR/CharName.pm | while read h d;
 		do /usr/bin/printf "\U$(printf "%08x" 0x$h)\tU+%s\t%s\n" $h "$d"
 	done
 
