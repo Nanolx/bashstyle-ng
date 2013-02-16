@@ -25,7 +25,7 @@ dirinfo_create ()
 	owner=$(whiptail --title "directory owner" --inputbox "Enter the owner of the folder" 12 85 "$xname" 3>&1 1>&2 2>&3)
 	echo Owner=\"$owner\" > $PWD/.dirinfo
 
-	type=$(whiptail --title "directory type" --menu "Choose the directory-type" 12 85 10 1 book 2 document 3 download 4 game 5 home 6 mediaplayer 7 music 8 picture 9 share 10 video 3>&1 1>&2 2>&3)
+	type=$(whiptail --title "directory type" --menu "Choose the directory-type" 12 85 10 1 book 2 document 3 download 4 game 5 home 6 mediaplayer 7 music 8 picture 9 share 10 video 11 none 3>&1 1>&2 2>&3)
 
 	case $type in
 		1) xtype=book ;;
@@ -37,7 +37,8 @@ dirinfo_create ()
 		7) xtype=music ;;
 		8) xtype=picture ;;
 		9) xtype=share ;;
-	       10) xtype=video;;
+	       10) xtype=video ;;
+	       11) xtype="" ;;
 	esac
 
 	echo Type=\"$xtype\" >> $PWD/.dirinfo
@@ -58,6 +59,9 @@ dirinfo_create ()
 
 	flags=$(whiptail --title "directory type" --checklist "Choose the directory-type (dirinfo-wrappers MUST be enabled for this to work / use with caution!)" 12 85 4 "#NoCopy" "Disallow copying of files." \
 OFF "#NoMove" "Disallow moving of files." OFF "#NoDelete" "Disallow removing of files." OFF "#NoShred" "Disallow shredding of files." OFF 3>&1 1>&2 2>&3)
+
+	mark=$(whiptail --title "directory mark" --inputbox "Enter a jump-mark for this directory" 12 85 "$Mark" 3>&1 1>&2 2>&3)
+	echo Mark=\"$mark\" >> $PWD/.dirinfo
 
 	if [[ $flags != "" ]]; then
 		for flag in $flags; do

@@ -10,8 +10,8 @@
 #########################################################
 
 # .dirindex syntax
-# column1   :: column2 :: column3 :: column4 :: column5
-# directory :: tags    :: type    :: date    :: owner
+# column1   :: column2 :: column3 :: column4 :: column5 :: column6
+# directory :: tags    :: type    :: date    :: owner :: mark
 
 dirinfo_create_index () {
 
@@ -40,9 +40,14 @@ dirinfo_create_index () {
 	done
 	sed -e 's/Owner=//g' -e 's/\"//g' -i $HOME/.dirindex.4
 
-	paste -d' ' $HOME/.dirindex.[0-4] > $HOME/.dirindex
+	for directory in $(cat $HOME/.dirindex.0); do
+		echo :: $(grep Mark "$directory/.dirinfo") >> $HOME/.dirindex.5
+	done
+	sed -e 's/Mark=//g' -e 's/\"//g' -i $HOME/.dirindex.5
+
+	paste -d' ' $HOME/.dirindex.[0-5] > $HOME/.dirindex
 	sed -e 's/\"//g' -i $HOME/.dirindex
-	rm $HOME/.dirindex.[0-4]
+	rm $HOME/.dirindex.[0-5]
 	rm $HOME/.wait
 
 }
@@ -94,24 +99,29 @@ dirinfo_index ()
 
 			case $1 in
 
-				+tag)
+				*tag)
 					shift
 					gawk -F"::" '$2 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 				;;
 
-				+type)
+				*type)
 					shift
 					gawk -F"::" '$3 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 				;;
 
-				+date)
+				*date)
 					shift
 					gawk -F"::" '$4 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 				;;
 
-				+owner)
+				*owner)
 					shift
 					gawk -F"::" '$5 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
+				;;
+
+				*mark)
+					shift
+					gawk -F"::" '$6 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
 				;;
 
 				*)
