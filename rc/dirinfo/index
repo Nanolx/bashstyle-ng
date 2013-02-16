@@ -143,17 +143,15 @@ dirinfo_index ()
 
 		*help | "")
 
-			echo -e "\n${ewhite}Usage:\n"
-			echo -e "${eorange}dirinfo${ewhite} | ${egreen}--generate ${eiceblue}[generate a new index]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--rebuild ${eiceblue}[rebuild the index, but don't scan for new .dirinfo files]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--search ${eiceblue}[search the index for +tag, +type, +date, +owner]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--list ${eiceblue}[list all .dirinfo files indexed]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--create ${eiceblue} [create .dirinfo for current directory]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--get-date ${eiceblue} [get the date of the last modification]\
-			\n${eorange}dirinfo${ewhite} | ${egreen}--set-date ${eiceblue} [set the date of the last modification]" | column -t
-			echo ""
-			tput sgr0
-
+			bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "dirinfo" -s "directory indexing facilities" -v "v2draft6" -y "2011-2013"\
+				-o "--generate:|generate a new index"\
+				-o "--rebuild:|rebuild the index, but do not scan for new .dirinfo files"\
+				-o "--search:tag type date owner mark|search in the index"\
+				-o "--list:|list all .dirinfo files indexed"\
+				-o "--create:|create .dirinfo for current directory"\
+				-o "--get-date:|get the date of last modification"\
+				-o "--set-date:|set the date of last modification"
 		;;
 	esac
 
