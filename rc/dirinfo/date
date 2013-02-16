@@ -33,7 +33,7 @@ dirinfo_date ()
 
 			if [[ -e "$DIR"/.dirinfo ]]; then
 				sed -e '/Created/d' -i "$DIR"/.dirinfo
-				echo "Created=$($BSNG_RC_DIR/date --get $DIR)" >> "$DIR"/.dirinfo
+				echo "Created=$($BSNG_RC_DIR/dirinfo/date --get $DIR)" >> "$DIR"/.dirinfo
 			fi
 		;;
 
