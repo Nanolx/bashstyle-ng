@@ -121,7 +121,13 @@ dirinfo_index ()
 
 				*mark)
 					shift
-					gawk -F"::" '$6 ~ /'"${@}"'/{print $1}' $HOME/.dirindex
+					gawk -F"::" '$6 ~ /'"${@}"'/{print $1 $6}' $HOME/.dirindex
+
+				;;
+
+				*jump)
+					shift
+					gawk -F"::" '$6 ~ /'"${@}"'/{print $1 $6}' $HOME/.dirindex | grep -w "${@}"
 				;;
 
 				*)
