@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-git_export() {
+function git_export() {
 
 	if [[ "$1" != "" ]]; then
 		git checkout-index --prefix="$1"/ -a
@@ -17,19 +17,19 @@ git_export() {
 
 }
 
-git_bzip() {
+function git_bzip() {
 
 	git archive master | bzip2 -9 >"$PWD".tar.bz2
 
 }
 
-git_xz() {
+function git_xz() {
 
 	git archive master | xz -9 > "$PWD".tar.xz
 
 }
 
-get_gnome () {
+function get_gnome () {
 
 	if [[ $1 == "-m" && $GIT_USER_GNOME ]]; then
 		git clone git+ssh://$GIT_USER_GNOME@git.gnome.org/git/$2
@@ -39,7 +39,7 @@ get_gnome () {
 
 }
 
-get_xfce () {
+function get_xfce () {
 
 	if [[ $1 == "-m" && $GIT_USER_XFCE ]]; then
 		git clone ssh://$GIT_USER_XFCE@git.xfce.org/git/$2
@@ -49,7 +49,7 @@ get_xfce () {
 
 }
 
-git_branch () {
+function git_branch () {
 
 	if [[ -d .git ]]; then
 		BRANCH=$(git symbolic-ref HEAD 2>/dev/null)
@@ -59,7 +59,7 @@ git_branch () {
 
 }
 
-git_revision () {
+function git_revision () {
 
 	if [[ -d .git ]]; then
 		REVISION=$(git rev-parse HEAD 2>/dev/null)
@@ -70,7 +70,7 @@ git_revision () {
 
 }
 
-git_action () {
+function git_action () {
 
 	if [[ -d .git ]]; then
 
@@ -96,7 +96,7 @@ git_action () {
 
 }
 
-get_kde () {
+function get_kde () {
 
 	if [[ $1 == "-m" && $GIT_USER_KDE ]]; then
 		git clone ssh://$GIT_USER_KDE@git.kde.org/git/$2
@@ -106,7 +106,7 @@ get_kde () {
 
 }
 
-get_e () {
+function get_e () {
 
 	if [[ "$SVN_USER_ENLIGTENMENT" && $1 == "-m" ]]; then
 		svn co svn+ssh://"$SVN_USER_ENLIGTENMENT"@svn.enlightenment.org/var/svn/$2

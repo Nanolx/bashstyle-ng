@@ -9,13 +9,13 @@
 #							#
 #########################################################
 
-youtube2ogg () {
+function youtube2ogg () {
 
 	ffmpeg -i "$1" -vn "$1".ogg
 
 }
 
-conv2avi () {
+function conv2avi () {
 
 	if [[ $(which mencoder-mt) != "" ]]; then
 
@@ -35,7 +35,7 @@ conv2avi () {
 
 }
 
-geniso () {
+function geniso () {
 
 	if [[ $CD_WRITER ]]; then
 		dd $DD_OPTS if=$CD_WRITER of="$1"
@@ -44,7 +44,7 @@ geniso () {
 
 }
 
-writeiso () {
+function writeiso () {
 
 	if [[ $CD_WRITER ]]; then
 		cdrecord dev=$CD_WRITER "$1"

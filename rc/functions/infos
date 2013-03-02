@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-show_uptime () {
+function show_uptime () {
 
 	case $1 in
 
@@ -81,7 +81,7 @@ show_uptime () {
 
 }
 
-show_tty ()
+function show_tty ()
 {
 
 	case $1 in
@@ -99,7 +99,7 @@ show_tty ()
 
 }
 
-show_system_load () {
+function show_system_load () {
 	case $1 in
 		1 )
 			load=$(LANG=C uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\1/" -e "s/ //g")
@@ -147,7 +147,7 @@ show_system_load () {
 
 }
 
-show_space ()
+function show_space ()
 {
 
 	case $1 in
@@ -184,7 +184,7 @@ show_space ()
 
 }
 
-show_size ()
+function show_size ()
 {
 
 	case $1 in
@@ -221,7 +221,7 @@ show_size ()
 
 }
 
-show_mem () {
+function show_mem () {
 
 	case $1 in
 		*used )
@@ -284,7 +284,7 @@ show_mem () {
 
 }
 
-show_ip ()
+function show_ip ()
 {
 
 	case $1 in
@@ -306,7 +306,7 @@ show_ip ()
 
 }
 
-show_cpu_load ()
+function show_cpu_load ()
 {
 
 	case $1 in
@@ -369,7 +369,7 @@ show_cpu_load ()
 
 }
 
-show_battery_load ()
+function show_battery_load ()
 {
 
 	case $1 in
@@ -427,7 +427,7 @@ show_battery_load ()
 
 }
 
-count_files ()
+function count_files ()
 {
 	case $1 in
 		*+h)
@@ -467,7 +467,7 @@ count_files ()
 	esac
 }
 
-count_processes ()
+function count_processes ()
 {
 
 	case $1 in
@@ -491,7 +491,7 @@ count_processes ()
 	esac
 
 }
-system_infos ()
+function system_infos ()
 {
 
 	case $1 in
@@ -581,7 +581,7 @@ system_infos ()
 
 }
 
-show_weather ()
+function show_weather ()
 {
 
 	check_opt lynx show_weather

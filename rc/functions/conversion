@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-d2u () {
+function d2u () {
 
 	if [[ -f "$1" ]]; then
 		sed -r 's/\r$//' -i "$1"
@@ -17,7 +17,7 @@ d2u () {
 
 }
 
-u2d () {
+function u2d () {
 
 	if [[ -f "$1" ]]; then
 		sed -r 's/$/\r/' -i "$1"
@@ -27,7 +27,7 @@ u2d () {
 
 ##### BINARY -> X #####
 
-bin2oct () {
+function bin2oct () {
 
 	if [[ $1 ]]; then
 		echo "obase=8 ; ibase=2 ; $1" | bc
@@ -35,7 +35,7 @@ bin2oct () {
 
 }
 
-bin2dec () {
+function bin2dec () {
 
 	if [[ $1 ]]; then
 		echo $((2#$1))
@@ -43,7 +43,7 @@ bin2dec () {
 
 }
 
-bin2hex () {
+function bin2hex () {
 
 	if [[ $1 ]]; then
 		echo "obase=16 ; ibase=2 ; $1" | bc
@@ -51,7 +51,7 @@ bin2hex () {
 
 }
 
-bin2b32 () {
+function bin2b32 () {
 
 	if [[ $1 ]]; then
 		echo "obase=32 ; ibase=2 ; $1 " | bc
@@ -59,14 +59,14 @@ bin2b32 () {
 
 }
 
-bin2b64 () {
+function bin2b64 () {
 
 	if [[ $1 ]]; then
 		echo "obase=64 ; ibase=2 ; $1" | bc
 	fi
 }
 
-bin2asc () {
+function bin2asc () {
 
 	if [[ $1 ]]; then
 		echo -e "\0$(printf %o $((2#$1)))"
@@ -74,7 +74,7 @@ bin2asc () {
 
 }
 
-bin2all () {
+function bin2all () {
 
 	if [[ $1 ]]; then
 		echo "binary $1 = octal $(bin2oct $1)"
@@ -89,7 +89,7 @@ bin2all () {
 
 ##### OCTAL -> X #####
 
-oct2bin () {
+function oct2bin () {
 
 	if [[ $1 ]]; then
 		echo "obase=2 ; ibase=8 ; $1" | bc
@@ -97,7 +97,7 @@ oct2bin () {
 
 }
 
-oct2dec () {
+function oct2dec () {
 
 	if [[ $1 ]]; then
 		echo $((8#$1))
@@ -105,7 +105,7 @@ oct2dec () {
 
 }
 
-oct2hex () {
+function oct2hex () {
 
 	if [[ $1 ]]; then
 		echo "obase=16 ; ibase=8 ; $1" | bc
@@ -113,7 +113,7 @@ oct2hex () {
 
 }
 
-oct2b32 () {
+function oct2b32 () {
 
 	if [[ $1 ]]; then
 		echo "obase=32 ; ibase=8 ; $1" | bc
@@ -121,7 +121,7 @@ oct2b32 () {
 
 }
 
-oct2b64 () {
+function oct2b64 () {
 
 	if [[ $1 ]]; then
 		echo "obase=64 ; ibase=8 ; $1" | bc
@@ -129,7 +129,7 @@ oct2b64 () {
 
 }
 
-oct2asc () {
+function oct2asc () {
 
 	if [[ $1 ]]; then
 		echo -e "\0$(printf %o $((8#$1)))"
@@ -138,22 +138,22 @@ oct2asc () {
 }
 
 
-oct2all () {
+function oct2all () {
 
 	if [[ $1 ]]; then
-		echo "octal $1 = binary $(oct2bin $1)"
-		echo "octal $1 = decimal $(oct2dec $1)"
-		echo "octal $1 = hexadecimal $(oct2hex $1)"
-		echo "octal $1 = base32 $(oct2b32 $1)"
-		echo "octal $1 = base64 $(oct2b64 $1)"
-		echo "octal $1 = ascii $(oct2asc $1)"
+		echo "octal $1 = binary $(function oct2bin $1)"
+		echo "octal $1 = decimal $(function oct2dec $1)"
+		echo "octal $1 = hexadecimal $(function oct2hex $1)"
+		echo "octal $1 = base32 $(function oct2b32 $1)"
+		echo "octal $1 = base64 $(function oct2b64 $1)"
+		echo "octal $1 = ascii $(function oct2asc $1)"
 	fi
 
 }
 
 ##### DECIMAL -> X #####
 
-dec2bin () {
+function dec2bin () {
 
 	if [[ $1 ]]; then
 		echo "obase=2 ; $1" | bc
@@ -161,7 +161,7 @@ dec2bin () {
 
 }
 
-dec2oct () {
+function dec2oct () {
 
 	if [[ $1 ]]; then
 		echo "obase=8 ; $1" | bc
@@ -169,7 +169,7 @@ dec2oct () {
 
 }
 
-dec2hex () {
+function dec2hex () {
 
 	if [[ $1 ]]; then
 		echo "obase=16 ; $1" | bc
@@ -178,7 +178,7 @@ dec2hex () {
 
 }
 
-dec2b32 () {
+function dec2b32 () {
 
 	if [[ $1 ]]; then
 		echo "obase=32 ; $1" | bc
@@ -186,7 +186,7 @@ dec2b32 () {
 
 }
 
-dec2b64 () {
+function dec2b64 () {
 
 	if [[ $1 ]]; then
 		echo "obase=64 ; $1" | bc
@@ -194,7 +194,7 @@ dec2b64 () {
 
 }
 
-dec2asc () {
+function dec2asc () {
 
 	if [[ $1 ]]; then
 		echo -e "\0$(printf %o 97)"
@@ -202,22 +202,22 @@ dec2asc () {
 
 }
 
-dec2all () {
+function dec2all () {
 
 	if [[ $1 ]]; then
-		echo "decimal $1 = binary $(dec2bin $1)"
-		echo "decimal $1 = octal $(dec2oct $1)"
-		echo "decimal $1 = hexadecimal $(dec2hex $1)"
-		echo "decimal $1 = base32 $(dec2b32 $1)"
-		echo "decimal $1 = base64 $(dec2b64 $1)"
-		echo "deciaml $1 = ascii $(dec2asc $1)"
+		echo "decimal $1 = binary $(function dec2bin $1)"
+		echo "decimal $1 = octal $(function dec2oct $1)"
+		echo "decimal $1 = hexadecimal $(function dec2hex $1)"
+		echo "decimal $1 = base32 $(function dec2b32 $1)"
+		echo "decimal $1 = base64 $(function dec2b64 $1)"
+		echo "deciaml $1 = ascii $(function dec2asc $1)"
 	fi
 
 }
 
 ##### HEXADECIMAL -> X #####
 
-hex2bin () {
+function hex2bin () {
 
 	if [[ $1 ]]; then
 		echo "obase=2 ; ibase=16 ; $1" | bc
@@ -225,7 +225,7 @@ hex2bin () {
 
 }
 
-hex2oct () {
+function hex2oct () {
 
 	if [[ $1 ]]; then
 		echo "obase=8 ; ibase=16 ; $1" | bc
@@ -234,7 +234,7 @@ hex2oct () {
 }
 
 
-hex2dec () {
+function hex2dec () {
 
 	if [[ $1 ]]; then
 		 echo $((16#$1))
@@ -242,7 +242,7 @@ hex2dec () {
 
 }
 
-hex2b32 () {
+function hex2b32 () {
 
 	if [[ $1 ]]; then
 		echo "obase=32 ; ibase=16 ; $1" | bc
@@ -250,7 +250,7 @@ hex2b32 () {
 
 }
 
-hex2b64 () {
+function hex2b64 () {
 
 	if [[ $1 ]]; then
 		echo "obase=64 ; ibase=16 ; $1" | bc
@@ -258,7 +258,7 @@ hex2b64 () {
 
 }
 
-hex2asc () {
+function hex2asc () {
 
 	if [[ $1 ]]; then
 		echo -e "\0$(printf %o $((16#$1)))"
@@ -266,15 +266,15 @@ hex2asc () {
 
 }
 
-hex2all () {
+function hex2all () {
 
 	if [[ $1 ]]; then
-		echo "hexadecimal $1 = binary $(hex2bin $1)"
-		echo "hexadecimal $1 = octal $(hex2oct $1)"
-		echo "hexadecimal $1 = decimal $(hex2dec $1)"
-		echo "hexadecimal $1 = base32 $(hex2b32 $1)"
-		echo "hexadecimal $1 = base64 $(hex2b64 $1)"
-		echo "hexadecimal $1 = ascii $(hex2asc $1)"
+		echo "hexadecimal $1 = binary $(function hex2bin $1)"
+		echo "hexadecimal $1 = octal $(function hex2oct $1)"
+		echo "hexadecimal $1 = decimal $(function hex2dec $1)"
+		echo "hexadecimal $1 = base32 $(function hex2b32 $1)"
+		echo "hexadecimal $1 = base64 $(function hex2b64 $1)"
+		echo "hexadecimal $1 = ascii $(function hex2asc $1)"
 	fi
 
 }
@@ -344,7 +344,7 @@ asc2all () {
 
 ##### DECIMAL (INTEGER | FLOATINGPOINT) #####
 
-round () {
+function round () {
 
 	if [[ $1 ]]; then
 		if [[ $2 ]]; then
@@ -355,7 +355,7 @@ round () {
 
 }
 
-radical () {
+function radical () {
 
 	if [[ $1 ]]; then
 		echo "sqrt($1)" | bc -l
@@ -376,7 +376,7 @@ power () {
 
 ##### DEGREES #####
 
-fah2cel () {
+function fah2cel () {
 
   if [[ $1 ]]; then
 	echo "scale=2 ; ( $1 - 32  ) / 1.8" | bc
@@ -384,7 +384,7 @@ fah2cel () {
 
 }
 
-fah2kel () {
+function fah2kel () {
 
   if [[ $1 ]]; then
 	echo "scale=2; ( $1 + 459.67 ) / 1.8 " | bc
@@ -392,7 +392,7 @@ fah2kel () {
 
 }
 
-cel2fah () {
+function cel2fah () {
 
   if [[ $1 ]]; then
 	echo "scale=2; $1 * 1.8  + 32" | bc
@@ -400,7 +400,7 @@ cel2fah () {
 
 }
 
-cel2kel () {
+function cel2kel () {
 
   if [[ $1 ]]; then
 	echo "scale=2; $1 + 237.15" | bc
@@ -408,7 +408,7 @@ cel2kel () {
 
 }
 
-kel2fah () {
+function kel2fah () {
 
   if [[ $1 ]]; then
 	echo "scale=2; $1 * 1.8 - 459,67" | bc
@@ -416,7 +416,7 @@ kel2fah () {
 
 }
 
-kel2cel () {
+function kel2cel () {
 
   if [[ $1 ]]; then
 	echo "scale=2; $1 - 273.15" | bc
@@ -426,7 +426,7 @@ kel2cel () {
 
 #### Letters ####
 
-arabic2roman () {
+function arabic2roman () {
 
   echo $1 | sed -e 's/1...$/M&/;s/2...$/MM&/;s/3...$/MMM&/;s/4...$/MMMM&/
 s/6..$/DC&/;s/7..$/DCC&/;s/8..$/DCCC&/;s/9..$/CM&/
@@ -439,7 +439,7 @@ s/[0-9]//g'
 
 }
 
-morse2text ()
+function morse2text ()
 {
 echo $@ | tr . 0 | sed -e {s/0----\ /1/g} -e {s/00---\ /2/g} -e {s/000--\ /3/g} -e {s/000-\ /4/g} -e {s/00000\ /5/g} -e {s/-0000\ /6/g} -e {s/--000\ /7/g} -e {s/---00\ /8/g} -e {s/----0\ /9/g} -e {s/-----\ /0/g} \
 	| sed -e {s/-0-0\ /c/g} -e {s/-000\ /b/g} -e {s/00-0\ /f/g} -e {s/0000\ /h/g} -e {s/0---\ /j/g} -e {s/0-00\ /l/g} -e {s/0--0\ /p/g} -e {s/--0-\ /q/g} -e {s/000-\ /v/g} -e {s/-00-\ /x/g} -e {s/-0--\ /y/g} -e {s/--00\ /z/g} \

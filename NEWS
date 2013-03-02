@@ -35,6 +35,11 @@ This release requires GTK+3 / Python-GI
 * #133 (toolbox/about):
 	fix the bug that the toolbox and about-dialog could only
 	be properly invoked once per session
+* #134 (configure):
+	fix detection of gir-repository-path on x86_64 (tested on Fedora 18)
+* #135 (functions):
+	define all functions as such, to prevent errors on startup if a vendor
+	alias has the same name then a BS-NG function (eg: ll on Fedora)
 
 === Added Features ===
 * configure can now check for GIR Repositories

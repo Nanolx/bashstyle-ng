@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-top10 () {
+function top10 () {
 
 	history | awk '{print $2}' |\
 	awk 'BEGIN {FS="|"}{print $1}' |\
@@ -17,7 +17,7 @@ top10 () {
 
 }
 
-crypt () {
+function crypt () {
 
 	if [[ -e "$1" ]]; then
 		tr a-zA-Z n-za-mN-ZA-M < "$1" > "$1".crypt
@@ -26,7 +26,7 @@ crypt () {
 	fi
 }
 
-get_kernel () {
+function get_kernel () {
 
 	if [[ $1 == "-s" ]]; then
 		wget http://www.kernel.org/pub/linux/kernel/v2.6/linux-${2}.tar.bz2
@@ -42,22 +42,22 @@ get_kernel () {
 
 }
 
-stop_watch () {
+function stop_watch () {
 
-BEGIN=$(date +%s)
+	BEGIN=$(date +%s)
 
-while true; do
-    NOW=$(date +%s)
-    DIFF=$(($NOW - $BEGIN))
-    MINS=$(($DIFF / 60))
-    SECS=$(($DIFF % 60))
-    echo -ne "Time elapsed: $MINS:`printf %02d $SECS`\r"
-    sleep .1
-done
+	while true; do
+		NOW=$(date +%s)
+		DIFF=$(($NOW - $BEGIN))
+		MINS=$(($DIFF / 60))
+		SECS=$(($DIFF % 60))
+		echo -ne "Time elapsed: $MINS:`printf %02d $SECS`\r"
+		sleep .1
+	done
 
 }
 
-bashtips () {
+function bashtips () {
 
 cat <<EOF
 	DIRECTORIES
@@ -112,25 +112,25 @@ EOF
 
 }
 
-ll() {
+function ll() {
 
 	ls -l --group-directories-first "$@"
 
 }
 
-la() {
+function la() {
 
 	ls -A --group-directories-first "$@"
 
 }
 
-l1() {
+function l1() {
 
 	ls -1 --group-directories-first "$@"
 
 }
 
-lo() {
+function lo() {
 
 	if [[ "$@" == "" ]]; then
 		$@="*"
@@ -140,7 +140,7 @@ lo() {
 
 }
 
-lg() {
+function lg() {
 
 	if [[ "$@" == "" ]]; then
 		$@="*"
@@ -150,7 +150,7 @@ lg() {
 
 }
 
-lm() {
+function lm() {
 
 	if [[ ! "$@" == "" ]]; then
 
@@ -162,7 +162,7 @@ lm() {
 
 }
 
-define ()
+function define ()
 {
 	check_opt lynx define
 
@@ -181,14 +181,14 @@ define ()
 	fi
 }
 
-resetleds ()
+function resetleds ()
 {
 
 	setleds -L < /dev/tty1
 
 }
 
-kitt () {
+function kitt () {
 
 	setleds -L -num;
 	setleds -L -caps;
@@ -217,7 +217,7 @@ kitt () {
 
 }
 
-hilow()
+function hilow()
 {
       biggest=1000                            # maximum number possible
       guess=0                                 # guessed by player
@@ -235,7 +235,7 @@ hilow()
       echo "Right!! Guessed $number in $guesses guesses."
 }
 
-batch()
+function batch()
 {
 	find . -type f -iname '*.'${1}'' -exec ${@:2}  {} \; ;
 }

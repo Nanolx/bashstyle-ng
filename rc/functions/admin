@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-torswitch () {
+function torswitch () {
 
 	if [[ $EUID == 0 ]]; then
 
@@ -45,7 +45,7 @@ repoadd () {
 	fi
 }
 
-wipe () {
+function wipe () {
 
 	if [[ $EUID == 0 ]]; then
 		cryptsetup -d /dev/urandom -c aes-xts-plain create delete $1
@@ -57,7 +57,7 @@ wipe () {
 
 }
 
-remount () {
+function remount () {
 
 	DEVICE=$1
 	shift
@@ -66,7 +66,7 @@ remount () {
 
 }
 
-treeps () {
+function treeps () {
 
 	ps f -u $USER -o command,pid,%cpu,%mem,time,etime,tty | \
 		awk 'NR <= 1 {print;next} !/awk/ && $0~var' var=${1:-".*"}

@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-assign() {
+function assign() {
 
 	for opt in $@; do
 		var="X=\$${opt/:*}"
@@ -23,7 +23,7 @@ assign() {
 
 if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 
-	xdel() {
+function xdel() {
 
 		shopt -s globstar
 
@@ -36,7 +36,7 @@ if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 
 fi
 
-trunc_pwd ()
+function trunc_pwd ()
 {
 
 	case $1 in
@@ -79,7 +79,7 @@ trunc_pwd ()
 
 }
 
-up () {
+function up () {
 
 [ "${1/[^0-9]/}" == "$1" ] && {
         local ups=""
@@ -92,18 +92,18 @@ up () {
 
 }
 
-empty () {
+function empty () {
 
 	find "$1" -empty
 
 }
 
-deadlink () {
+function deadlink () {
 
 	find -L -type l
 }
 
-bookmark () {
+function bookmark () {
 
 	if [[ $1 != "" && $(alias | grep -w go-$1) == "" ]]; then
 		echo "alias go-$1='cd $PWD'" >> $HOME/.bookmarks
@@ -115,7 +115,7 @@ bookmark () {
 
 }
 
-unmark () {
+function unmark () {
 
 	if [[ $(alias | grep -w go-$1= ) != "" ]]; then
 		sed -e "/go-$1/d" -i $HOME/.bookmarks
@@ -124,7 +124,7 @@ unmark () {
 
 }
 
-man2pdf ()
+function man2pdf ()
 {
 
 	case $1 in
@@ -145,7 +145,7 @@ man2pdf ()
 
 }
 
-exchange()
+function exchange()
 {
 	typeset temp
 	SAVE=$IFS
@@ -156,7 +156,7 @@ exchange()
 	IFS=$SAVE
 }
 
-swap()
+function swap()
 {
 
 	if [[ $1 && $2 ]]; then
@@ -167,7 +167,7 @@ swap()
 
 }
 
-progressbar()
+function progressbar()
 {
 
 	SP_COLOUR="\e[37;44m"
@@ -186,7 +186,7 @@ progressbar()
 
 }
 
-spinner()
+function spinner()
 {
 
 	PROC=$1
@@ -199,8 +199,7 @@ spinner()
 
 }
 
-
-spanner(){
+function spanner(){
 
 	PROC=$1;COUNT=0
 	while [ -d /proc/$PROC ];do
@@ -216,7 +215,7 @@ spanner(){
 
 }
 
-working ()
+function working ()
 {
    while [ -d /proc/$1 ]
    do
@@ -237,7 +236,7 @@ working ()
 
 }
 
-spin () {
+function spin () {
 
         echo -n "|/     |"
         while [ -d /proc/$1 ]
@@ -337,7 +336,7 @@ spin () {
 	echo -e "\b\b\b\b\b\b\b\b\b|=======| done!"
 }
 
-clock ()
+function clock ()
 {
 	while true; do
 		clear;
@@ -348,13 +347,13 @@ clock ()
 	done
 }
 
-binary-clock ()
+function binary-clock ()
 {
 	clear
 	perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}'
 }
 
-lscd () {
+function lscd () {
 
 	clear
 	builtin cd "${@}" &>/dev/null
@@ -370,7 +369,7 @@ lscd () {
 
 }
 
-treecd () {
+function treecd () {
 
 	builtin cd "${@}" &>/dev/null
 	. $BSNG_RC_DIR/dirinfo/display
@@ -382,19 +381,19 @@ treecd () {
 
 }
 
-treefind () {
+function treefind () {
 
 	find "$@" | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/'
 
 }
 
-wininfo () {
+function wininfo () {
 
 	xprop | grep -w "WM_NAME\|WM_CLASS\|WM_WINDOW_ROLE\|_NET_WM_STATE"
 
 }
 
-repeat () {
+function repeat () {
 
 	local period
 	period=$1; shift;
@@ -406,13 +405,13 @@ repeat () {
 
 }
 
-nseq () {
+function nseq () {
 
 	seq -w 0 $1
 
 }
 
-ruler () {
+function ruler () {
 
   for s in '....^....|' '123456789|'; do
 	w=${#s}; str=$( for (( i=1; $i<=$(( ($COLUMNS + $w) / $w )) ; i=$i+1 )); do
@@ -422,7 +421,7 @@ ruler () {
 
 }
 
-box () {
+function box () {
 
 	t="$1xxxx";c=${2:-#};
 	echo ${t//?/$c};
@@ -431,7 +430,7 @@ box () {
 
 }
 
-ugrep () {
+function ugrep () {
 
 	egrep -i "^[0-9a-f]{4,} .*$*" $BSNG_DATA_DIR/CharName.pm | while read h d;
 		do /usr/bin/printf "\U$(printf "%08x" 0x$h)\tU+%s\t%s\n" $h "$d"

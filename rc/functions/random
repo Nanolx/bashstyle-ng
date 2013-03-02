@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-random () {
+function random () {
 
 	if [[ $1 == -l ]]; then
 		echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
@@ -20,7 +20,7 @@ random () {
 
 }
 
-randompw () {
+function randompw () {
 
 	if [[ $2 == "!" ]]; then
 		echo $(cat /dev/urandom | tr -cd '[:graph:]' | head -c ${1:-32})
@@ -28,7 +28,7 @@ randompw () {
 	fi
 }
 
-randomfile () {
+function randomfile () {
 
 	case $1 in
 
