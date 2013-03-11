@@ -1,6 +1,10 @@
 #!/bin/bash
 
-if [[ ! -e $PWD/.configure/results ]]; then
+if [[ $1 == *clean* ]]; then
+	source $PWD/.make/clean
+	clean
+	exit 0
+elif [[ ! -e $PWD/.configure/results ]]; then
 	echo -e "\n${RED}You need to run configure first!\n"
 	exit 1
 else	source $PWD/.configure/results
