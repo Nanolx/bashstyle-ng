@@ -37,48 +37,49 @@ gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle8.ui")
 
 class WidgetHandler(object):
 		####################### metafuncs for handling widgets ###########################
-		def InitWidget(widget, group, setting, type):
+		def InitWidget(self, widget, group, setting, type, cfo, udc, fdc):
+
+			def LoadWidget(widget):
+				object = gtkbuilder.get_object("%s" % widget)
+				return object
+
+			def LoadValue(object, group, setting, type):
+				if type == "text":
+					object.set_text("%s" % cfo["%s" % group]["%s" % setting])
+				elif type == "int":
+					object.set_value(cfo["%s" % group].as_int("%s" % setting))
+
+			def ConnectSignals(object, type, widget_group, widget_setting):
+				if type == "text":
+					object.connect("insert-text", emit_text)
+					object.connect("icon-press", revert_option, type, widget_group, widget_setting)
+					object.connect("changed", set_option, type, widget_group, widget_setting)
+				elif type == "int":
+					object.connect("value-changed", set_option, type, widget_group, widget_setting)
+					object.connect("icon-press", revert_option, type, widget_group, widget_setting)
+
+			def revert_option(widget, pos, event, type, widget_group, widget_setting):
+				if type == "text" or type == "int":
+					if pos == Gtk.EntryIconPosition.SECONDARY:
+						opt = fdc["%s" % widget_group]["%s" % widget_setting]
+					else:
+						opt = udc["%s" % widget_group]["%s" % widget_setting]
+					cfo["%s" % widget_group]["%s" % widget_setting] = opt
+					if type == "text":
+						widget.set_text("%s" % cfo["%s" % widget_group]["%s" % widget_setting])
+					elif type == "int":
+						widget.set_value(cfo["%s" % widget_group].as_int("%s" % widget_setting))
+
+			def set_option(widget, type, widget_group, widget_setting):
+				if type == "text":
+					cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
+				elif type == "int":
+					cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
+
+			def emit_text(widget, text, *args):
+				if text in blacklist:
+					widget.emit_stop_by_name('insert-text')
+			
 			object = LoadWidget(widget)
 			LoadValue(object, group, setting, type)
 			ConnectSignals(object, type, group, setting)
-
-		def LoadWidget(widget):
-			object = gtkbuilder.get_object("%s" % widget)
-			return object
-
-		def LoadValue(object, group, setting, type):
-			if type == "text":
-				object.set_text("%s" % cfo["%s" % group]["%s" % setting])
-			elif type == "int":
-				object.set_value(cfo["%s" % group].as_int("%s" % setting))
-
-		def ConnectSignals(object, type, widget_group, widget_setting):
-			if type == "text":
-				object.connect("insert-text", emit_text)
-				object.connect("icon-press", revert_option, type, widget_group, widget_setting)
-				object.connect("changed", set_option, type, widget_group, widget_setting)
-			elif type == "int":
-				object.connect("value-changed", set_option, type, widget_group, widget_setting)
-				object.connect("icon-press", revert_option, type, widget_group, widget_setting)
-
-		def revert_option(widget, pos, event, type, widget_group, widget_setting):
-			if type == "text" or type == "int":
-				if pos == Gtk.EntryIconPosition.SECONDARY:
-					opt = fdc["%s" % widget_group]["%s" % widget_setting]
-				else:
-					opt = udc["%s" % widget_group]["%s" % widget_setting]
-				cfo["%s" % widget_group]["%s" % widget_setting] = opt
-				if type == "text":
-					widget.set_text("%s" % cfo["%s" % widget_group]["%s" % widget_setting])
-				elif type == "int":
-					widget.set_value(cfo["%s" % widget_group].as_int("%s" % widget_setting))
-
-		def set_option(widget, type, widget_group, widget_setting):
-			if type == "text":
-				cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
-			elif type == "int":
-				cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
-
-		def emit_text(widget, text, *args):
-			if text in blacklist:
-				widget.emit_stop_by_name('insert-text')

@@ -12,7 +12,7 @@
 
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
             'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
-	   'i18n', 'misc', 'lockfile', 'config' ]
+	   'i18n', 'misc', 'lockfile', 'config', 'widgethandler' ]
 
 FAILED = []
 
@@ -93,63 +93,15 @@ class BashStyleNG(object):
 		####################### blacklist / gtkBuilder #####################################
 
 		blacklist = ['\'', '\"']
-		gtkbuilder = Gtk.Builder()
+		gtkbuilder = widgethandler.gtkbuilder
 
 		####################### cd into $HOME ##############################################
 		os.chdir(os.getenv("HOME"))
 
 		lang = i18n.Gettext()
 		lang.SetLang()
-
-		gtkbuilder.set_translation_domain("bs-ng")
-		gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle8.ui")
-
-		####################### metafuncs for handling widgets ###########################
-		def init_widget(widget, group, setting, type):
-			object = load_widget(widget)
-			load_value(object, group, setting, type)
-			connect_signals(object, type, group, setting)
-
-		def load_widget(widget):
-			object = gtkbuilder.get_object("%s" % widget)
-			return object
-
-		def load_value(object, group, setting, type):
-			if type == "text":
-				object.set_text("%s" % config.cfo["%s" % group]["%s" % setting])
-			elif type == "int":
-				object.set_value(config.cfo["%s" % group].as_int("%s" % setting))
-
-		def connect_signals(object, type, widget_group, widget_setting):
-			if type == "text":
-				object.connect("insert-text", emit_text)
-				object.connect("icon-press", revert_option, type, widget_group, widget_setting)
-				object.connect("changed", set_option, type, widget_group, widget_setting)
-			elif type == "int":
-				object.connect("value-changed", set_option, type, widget_group, widget_setting)
-				object.connect("icon-press", revert_option, type, widget_group, widget_setting)
-
-		def revert_option(widget, pos, event, type, widget_group, widget_setting):
-			if type == "text" or type == "int":
-				if pos == Gtk.EntryIconPosition.SECONDARY:
-					opt = fdc["%s" % widget_group]["%s" % widget_setting]
-				else:
-					opt = udc["%s" % widget_group]["%s" % widget_setting]
-					config.cfo["%s" % widget_group]["%s" % widget_setting] = opt
-				if type == "text":
-					widget.set_text("%s" % config.cfo["%s" % widget_group]["%s" % widget_setting])
-				elif type == "int":
-					widget.set_value(config.cfo["%s" % widget_group].as_int("%s" % widget_setting))
-
-		def set_option(widget, type, widget_group, widget_setting):
-			if type == "text":
-				config.cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
-			elif type == "int":
-				config.cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
-
-		def emit_text(widget, text, *args):
-			if text in blacklist:
-				widget.emit_stop_by_name('insert-text')
+		
+		WidgetHandler = widgethandler.WidgetHandler()
 
 		###################### Load Use-Bashstyle Button ##################################
 
@@ -370,15 +322,15 @@ class BashStyleNG(object):
 
 		####################### Load the Alias #1 Entry ###################################
 
-		init_widget("alias1", "Alias", "alias_one", "text")
-		init_widget("alias2", "Alias", "alias_two", "text")
-		init_widget("alias3", "Alias", "alias_three", "text")
-		init_widget("alias4", "Alias", "alias_four", "text")
-		init_widget("alias5", "Alias", "alias_five", "text")
-		init_widget("alias6", "Alias", "alias_six", "text")
-		init_widget("alias7", "Alias", "alias_seven", "text")
-		init_widget("alias8", "Alias", "alias_eight", "text")
-		init_widget("alias9", "Alias", "alias_nine", "text")
+		WidgetHandler.InitWidget("alias1", "Alias", "alias_one", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias2", "Alias", "alias_two", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias3", "Alias", "alias_three", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias4", "Alias", "alias_four", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias5", "Alias", "alias_five", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias6", "Alias", "alias_six", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias7", "Alias", "alias_seven", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias8", "Alias", "alias_eight", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias9", "Alias", "alias_nine", "text", config.cfo, config.udc, config.fdc)
 
 		####################### Load the Reset History Button #############################
 
@@ -410,18 +362,18 @@ class BashStyleNG(object):
 
 		####################### Advanced Stuff ############################################
 
-		init_widget("history_blacklist", "Advanced", "history_ignore", "text")
-		init_widget("separator", "Advanced", "separator", "text")
-		init_widget("ps234", "Advanced", "ps234", "text")
-		init_widget("pwd_cutter", "Advanced", "pwdcut", "text")
-		init_widget("cdpath", "Advanced", "cdpath", "text")
-		init_widget("completion_blacklist", "Advanced", "completion_ignore", "text")
-		init_widget("fcedit", "Advanced", "fcedit", "text")
-		init_widget("welcome", "Advanced", "welcome_message", "text")
-		init_widget("path", "Advanced", "path", "text")
-		init_widget("history_size", "Advanced", "history_size", "int")
-		init_widget("pwd_len", "Advanced", "pwdlength", "int")
-		init_widget("timeout", "Advanced", "timeout", "int")
+		WidgetHandler.InitWidget("history_blacklist", "Advanced", "history_ignore", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("separator", "Advanced", "separator", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ps234", "Advanced", "ps234", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("pwd_cutter", "Advanced", "pwdcut", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("cdpath", "Advanced", "cdpath", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("completion_blacklist", "Advanced", "completion_ignore", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("fcedit", "Advanced", "fcedit", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("welcome", "Advanced", "welcome_message", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("path", "Advanced", "path", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("history_size", "Advanced", "history_size", "int", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("pwd_len", "Advanced", "pwdlength", "int", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("timeout", "Advanced", "timeout", "int", config.cfo, config.udc, config.fdc)
 
 		####################### Connect the Use Readlinecfg Button ########################
 
@@ -510,7 +462,7 @@ class BashStyleNG(object):
 
 		####################### Connect the Query Items Button ############################
 
-		init_widget("query_items", "Readline", "query_items", "int")
+		WidgetHandler.InitWidget("query_items", "Readline", "query_items", "int", config.cfo, config.udc, config.fdc)
 
 		####################### Connect the Horizontal Completion Button ##################
 
@@ -663,14 +615,7 @@ class BashStyleNG(object):
 
 		####################### Connect the Dirchar Entry #################################
 
-		self.dirchar = gtkbuilder.get_object("dirchar")
-		self.dirchar.set_text(config.cfo["Extra"]["directory_indicator"])
-
-		def set_dirchar(widget, data=None):
-			config.cfo["Extra"]["directory_indicator"] = widget.get_text()
-
-		self.dirchar.connect("insert-text", emit_text)
-		self.dirchar.connect("changed", set_dirchar)
+		WidgetHandler.InitWidget("dirchar", "Extra", "directory_indicator", "text", config.cfo, config.udc, config.fdc)
 
 		####################### Connect the Tab Rotation Button ###########################
 
@@ -842,8 +787,8 @@ class BashStyleNG(object):
 
 		self.vim_sline.connect("clicked", set_vim_sline)
 
-		init_widget("vim_tabstop", "Vim", "tab_length", "int")
-		init_widget("vim_autowrap", "Vim", "wrap_length", "int")
+		WidgetHandler.InitWidget("vim_tabstop", "Vim", "tab_length", "int", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_autowrap", "Vim", "wrap_length", "int", config.cfo, config.udc, config.fdc)
 
 		####################### Connect the Vim/Wrap line Button ##########################
 
@@ -1035,7 +980,7 @@ class BashStyleNG(object):
 
 		self.vim_colorscheme.connect("changed", set_vim_colorscheme)
 
-		init_widget("vim_rulerformat", "Vim", "rulerformat", "text")
+		WidgetHandler.InitWidget("vim_rulerformat", "Vim", "rulerformat", "text", config.cfo, config.udc, config.fdc)
 
 		####################### Connect the Use Nanocfg Button ############################
 
@@ -1385,7 +1330,7 @@ class BashStyleNG(object):
 
 		self.ls_rar.connect("changed", set_ls_rar)
 
-		init_widget("ls_custom", "LSColors", "custom", "text")
+		WidgetHandler.InitWidget("ls_custom", "LSColors", "custom", "text", config.cfo, config.udc, config.fdc)
 
 		####################### Connect the PROMPT_COMMAND TextView ########################
 
