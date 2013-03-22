@@ -49,7 +49,7 @@ class WidgetHandler(object):
 				elif type == "int":
 					object.set_value(cfo["%s" % group].as_int("%s" % setting))
 				elif type == "bool":
-					object.set_active(cfo["%s" % group]["%s" % setting])
+					object.set_active(cfo["%s" % group].as_bool("%s" % setting))
 
 			def ConnectSignals(object, type, widget_group, widget_setting):
 				if type == "text":
