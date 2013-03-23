@@ -103,43 +103,18 @@ class BashStyleNG(object):
 		WidgetHandler = widgethandler.WidgetHandler()
 
 		####################### Style Options ##############################################
-		WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("ls_color", "Style", "colored_ls", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("manpage_color", "Style", "colored_man", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("grep_color", "Style", "colored_grep", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("random_style", "Style", "random_style", "bool", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_color", "Style", "colored_ls", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("manpage_color", "Style", "colored_man", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("grep_color", "Style", "colored_grep", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("random_style", "Style", "random_style", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("prompt_style", "Style", "prompt_style", "combo", dicts.prompt_styles, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("color_style", "Style", "color_style", "combo", dicts.color_styles, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("terminfo", "Style", "man_style", "combo", dicts.man_styles, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("grep_colour", "Style", "grep_color", "combo", dicts.grep_colors, config.cfo, config.udc, config.fdc)
 
-		self.color_style = gtkbuilder.get_object("color_style")
-
-		self.color_style.set_active(misc.SwapDictionary(dicts.color_styles)[config.cfo["Style"]["color_style"]])
-
-		def set_color_style(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Style"]["color_style"] = dicts.color_styles[selection]
-
-		self.color_style.connect("changed", set_color_style)
-
-		self.terminfo = gtkbuilder.get_object("terminfo")
-
-		self.terminfo.set_active(misc.SwapDictionary(dicts.man_styles)[config.cfo["Style"]["man_style"]])
-
-		def set_man_style(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Style"]["man_style"] = dicts.man_styles[selection]
-
-		self.terminfo.connect("changed", set_man_style)
-
-		self.grep_colour = gtkbuilder.get_object("grep_colour")
-
-		self.grep_colour.set_active(misc.SwapDictionary(dicts.grep_colors)[config.cfo["Style"]["grep_color"]])
-
-		def set_grep_color(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Style"]["grep_color"] = dicts.grep_colors[selection]
-
-		self.grep_colour.connect("changed", set_grep_color)
-
+		# special combobox not (yet) handled by widgethandler.py
 		self.color_of = gtkbuilder.get_object("color_of")
 		self.color_to = gtkbuilder.get_object("color_to")
 
@@ -157,40 +132,31 @@ class BashStyleNG(object):
 		self.color_of.connect("changed", change_color)
 		self.color_to.connect("changed", change_color)
 
-		self.prompt_style = gtkbuilder.get_object("prompt_style")
-
-		self.prompt_style.set_active(misc.SwapDictionary(dicts.prompt_styles)[config.cfo["Style"]["prompt_style"]])
-
-		def set_prompt_style(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Style"]["prompt_style"] =  dicts.prompt_styles[selection]
-
-		self.prompt_style.connect("changed", set_prompt_style)
-
 		####################### Aliases ####################################################
-		WidgetHandler.InitWidget("alias1", "Alias", "alias_one", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("alias2", "Alias", "alias_two", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("alias3", "Alias", "alias_three", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("alias4", "Alias", "alias_four", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("alias5", "Alias", "alias_five", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("alias6", "Alias", "alias_six", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("alias7", "Alias", "alias_seven", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("alias8", "Alias", "alias_eight", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("alias9", "Alias", "alias_nine", "text", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias1", "Alias", "alias_one", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias2", "Alias", "alias_two", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias3", "Alias", "alias_three", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias4", "Alias", "alias_four", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias5", "Alias", "alias_five", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias6", "Alias", "alias_six", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias7", "Alias", "alias_seven", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias8", "Alias", "alias_eight", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("alias9", "Alias", "alias_nine", "text", None, config.cfo, config.udc, config.fdc)
 
 		####################### Advanced Stuff #############################################
-		WidgetHandler.InitWidget("history_blacklist", "Advanced", "history_ignore", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("separator", "Advanced", "separator", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("ps234", "Advanced", "ps234", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("pwd_cutter", "Advanced", "pwdcut", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("cdpath", "Advanced", "cdpath", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("completion_blacklist", "Advanced", "completion_ignore", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("fcedit", "Advanced", "fcedit", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("welcome", "Advanced", "welcome_message", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("path", "Advanced", "path", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("history_size", "Advanced", "history_size", "int", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("pwd_len", "Advanced", "pwdlength", "int", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("timeout", "Advanced", "timeout", "int", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("history_blacklist", "Advanced", "history_ignore", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("separator", "Advanced", "separator", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ps234", "Advanced", "ps234", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("pwd_cutter", "Advanced", "pwdcut", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("cdpath", "Advanced", "cdpath", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("completion_blacklist", "Advanced", "completion_ignore", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("fcedit", "Advanced", "fcedit", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("welcome", "Advanced", "welcome_message", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("path", "Advanced", "path", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("history_size", "Advanced", "history_size", "int", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("pwd_len", "Advanced", "pwdlength", "int", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("timeout", "Advanced", "timeout", "int", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("history_control", "Advanced", "history_control", "combo", dicts.history_types, config.cfo, config.udc, config.fdc)
 
 		self.reset_history = gtkbuilder.get_object("reset_history")
 
@@ -199,308 +165,113 @@ class BashStyleNG(object):
 
 		self.reset_history.connect("clicked", do_reset_history)
 
-
-		self.history_control = gtkbuilder.get_object("history_control")
-
-		self.history_control.set_active(misc.SwapDictionary(dicts.history_types)[config.cfo["Advanced"]["history_control"]])
-
-		def set_history_control(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Advanced"]["hist_control"] = dicts.history_types[selection]
-
-		self.history_control.connect("changed", set_history_control)
-
 		####################### Readline stuff #############################################
-		WidgetHandler.InitWidget("readline", "Readline", "use_readlinecfg", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("completion", "Readline", "completion", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("ambiguous", "Readline", "ambiguous_show", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("match_hidden", "Readline", "complete_hidden", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("ignore_case", "Readline", "ignore_case", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("query_items", "Readline", "query_items", "int", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("completion_hz", "Readline", "complete_horizontal", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("mark_dirs", "Readline", "mark_directories", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("mark_symdirs", "Readline", "mark_symbolic_directories", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vstats", "Readline", "visible_stats", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("scroll_hz", "Readline", "scroll_horizontal", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("modlines", "Readline", "mark_modified", "bool", config.cfo, config.udc, config.fdc)
-
-		self.bellstyle = gtkbuilder.get_object("bellstyle")
-
-		self.bellstyle.set_active(misc.SwapDictionary(dicts.bell_styles)[config.cfo["Readline"]["bellstyle"]])
-
-		def set_bellstyle(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Readline"]["bellstyle"] = dicts.bell_styles[selection]
-
-		self.bellstyle.connect("changed", set_bellstyle)
-
-		self.editmode = gtkbuilder.get_object("editmode")
-
-		self.editmode.set_active(misc.SwapDictionary(dicts.edit_modes)[config.cfo["Readline"]["editing_mode"]])
-
-		def set_editmode(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Readline"]["editing_mode"] = dicts.edit_modes[selection]
-
-		self.editmode.connect("changed", set_editmode)
+		WidgetHandler.InitWidget("readline", "Readline", "use_readlinecfg", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("completion", "Readline", "completion", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ambiguous", "Readline", "ambiguous_show", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("match_hidden", "Readline", "complete_hidden", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ignore_case", "Readline", "ignore_case", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("query_items", "Readline", "query_items", "int", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("completion_hz", "Readline", "complete_horizontal", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("mark_dirs", "Readline", "mark_directories", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("mark_symdirs", "Readline", "mark_symbolic_directories", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vstats", "Readline", "visible_stats", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("scroll_hz", "Readline", "scroll_horizontal", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("modlines", "Readline", "mark_modified", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("bellstyle", "Readline", "bellstyle", "combo", dicts.bell_styles, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("editmode", "Readline", "editing_mode", "combo", dicts.edit_modes, config.cfo, config.udc, config.fdc)
 
 		######################## Separator Stuff ###########################################
-		WidgetHandler.InitWidget("show_files_amount", "Separator", "files_amount", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("show_uptime", "Separator", "uptime", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("show_file_size", "Separator", "files_size", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("show_tty", "Separator", "tty", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("show_processes", "Separator", "processes", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("show_load", "Separator", "load", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("show_battery", "Separator", "battery_load", "bool", config.cfo, config.udc, config.fdc)
-
-		self.show_mem = gtkbuilder.get_object("show_mem")
-
-		self.show_mem.set_active(misc.SwapDictionary(dicts.memory_types)[config.cfo["Separator"]["mem"]])
-
-		def set_show_mem(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Separator"]["mem"] = dicts.memory_types[selection]
-
-		self.show_mem.connect("changed", set_show_mem)
+		WidgetHandler.InitWidget("show_files_amount", "Separator", "files_amount", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("show_uptime", "Separator", "uptime", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("show_file_size", "Separator", "files_size", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("show_tty", "Separator", "tty", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("show_processes", "Separator", "processes", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("show_load", "Separator", "load", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("show_battery", "Separator", "battery_load", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("show_mem", "Separator", "mem", "combo", dicts.memory_types, config.cfo, config.udc, config.fdc)
 
 		######################## Extra Stuff ###############################################
-		WidgetHandler.InitWidget("dirchar", "Extra", "directory_indicator", "text", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("tabrotate", "Extra", "tab_rotation", "bool", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("dirchar", "Extra", "directory_indicator", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("tabrotate", "Extra", "tab_rotation", "bool", None, config.cfo, config.udc, config.fdc)
 		
 		######################## Shopt Stuff ###############################################
-		WidgetHandler.InitWidget("histappend", "Shopt", "histappend", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("cdspell", "Shopt", "cdspell", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("cdable_vars", "Shopt", "cdable_vars", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("checkhash", "Shopt", "checkhash", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("cmdhist", "Shopt", "cmdhist", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("force_fignore", "Shopt", "force_fignore", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("histreedit", "Shopt", "histreedit", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("no_empty_cmd", "Shopt", "no_empty_cmd_completion", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("autocd", "Shopt", "autocd", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("checkjobs", "Shopt", "checkjobs", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("globstar", "Shopt", "globstar", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("dirspell", "Shopt", "dirspell", "bool", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("histappend", "Shopt", "histappend", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("cdspell", "Shopt", "cdspell", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("cdable_vars", "Shopt", "cdable_vars", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("checkhash", "Shopt", "checkhash", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("cmdhist", "Shopt", "cmdhist", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("force_fignore", "Shopt", "force_fignore", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("histreedit", "Shopt", "histreedit", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("no_empty_cmd", "Shopt", "no_empty_cmd_completion", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("autocd", "Shopt", "autocd", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("checkjobs", "Shopt", "checkjobs", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("globstar", "Shopt", "globstar", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("dirspell", "Shopt", "dirspell", "bool", None, config.cfo, config.udc, config.fdc)
 
 		######################## VimCFG Stuff ##############################################
-		WidgetHandler.InitWidget("use_vimcfg", "Vim", "use_vimcfg", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_backup", "Vim", "vim_backup", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_jump", "Vim", "jump_back", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_sline", "Vim", "start_line", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_tabstop", "Vim", "tab_length", "int", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_autowrap", "Vim", "wrap_length", "int", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_wrap", "Vim", "wrap_line", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_cd", "Vim", "chdir", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_indent", "Vim", "filetype_indent", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_cmd", "Vim", "show_command", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_match", "Vim", "highlight_matches", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_syntax", "Vim", "syntax_hilight", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_bg", "Vim", "dark_background", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_icase", "Vim", "ignore_case", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_scase", "Vim", "smart_case", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_isearch", "Vim", "incremental_search", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_hilight", "Vim", "highlight_brackets", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_number", "Vim", "show_lineno", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_save", "Vim", "autosave", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_hiline", "Vim", "highlight_line", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_hicol", "Vim", "highlight_column", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_ruler", "Vim", "ruler", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("vim_rulerformat", "Vim", "rulerformat", "text", config.cfo, config.udc, config.fdc)
-
-		self.vim_colorscheme = gtkbuilder.get_object("vim_colorscheme")
-
-		self.vim_colorscheme.set_active(misc.SwapDictionary(dicts.vim_colors)[config.cfo["Vim"]["colorscheme"]])
-
-		def set_vim_colorscheme(widget, data=None):
-			selection = widget.get_active()
-			config.cfo["Vim"]["colorscheme"] = dicts.vim_colors[selection]
-
-		self.vim_colorscheme.connect("changed", set_vim_colorscheme)
+		WidgetHandler.InitWidget("use_vimcfg", "Vim", "use_vimcfg", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_backup", "Vim", "vim_backup", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_jump", "Vim", "jump_back", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_sline", "Vim", "start_line", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_tabstop", "Vim", "tab_length", "int", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_autowrap", "Vim", "wrap_length", "int", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_wrap", "Vim", "wrap_line", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_cd", "Vim", "chdir", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_indent", "Vim", "filetype_indent", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_cmd", "Vim", "show_command", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_match", "Vim", "highlight_matches", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_syntax", "Vim", "syntax_hilight", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_bg", "Vim", "dark_background", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_icase", "Vim", "ignore_case", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_scase", "Vim", "smart_case", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_isearch", "Vim", "incremental_search", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_hilight", "Vim", "highlight_brackets", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_number", "Vim", "show_lineno", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_save", "Vim", "autosave", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_hiline", "Vim", "highlight_line", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_hicol", "Vim", "highlight_column", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_ruler", "Vim", "ruler", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_rulerformat", "Vim", "rulerformat", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("vim_colorscheme", "Vim", "colorscheme", "combo", dicts.vim_colors, config.cfo, config.udc, config.fdc)
 
 		######################## NanoCFG Stuff #############################################
-		WidgetHandler.InitWidget("use_nanocfg", "Nano", "use_nanocfg", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_backup", "Nano", "nano_backup", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_const", "Nano", "show_position", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_indent", "Nano", "auto_indent", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_colors", "Nano", "syntax_highlight", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_nohelp", "Nano", "hide_help", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_case", "Nano", "case_sensitive", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_boldtext", "Nano", "bold_text", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_morespace", "Nano", "more_space", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_history", "Nano", "history", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_rbdel", "Nano", "rebind_delete", "bool", config.cfo, config.udc, config.fdc)
-		WidgetHandler.InitWidget("nano_rbkp", "Nano", "rebind_keypad", "bool", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("use_nanocfg", "Nano", "use_nanocfg", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_backup", "Nano", "nano_backup", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_const", "Nano", "show_position", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_indent", "Nano", "auto_indent", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_colors", "Nano", "syntax_highlight", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_nohelp", "Nano", "hide_help", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_case", "Nano", "case_sensitive", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_boldtext", "Nano", "bold_text", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_morespace", "Nano", "more_space", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_history", "Nano", "history", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_rbdel", "Nano", "rebind_delete", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("nano_rbkp", "Nano", "rebind_keypad", "bool", None, config.cfo, config.udc, config.fdc)
 
 		######################## LS Colors Stuff ###########################################
-		WidgetHandler.InitWidget("ls_custom", "LSColors", "custom", "text", config.cfo, config.udc, config.fdc)
-		
-		ls_colors_inv = misc.SwapDictionary(dicts.ls_colors)
-
-		def set_ls_color(self, type, selection):
-			config.cfo["LSColors"]["%s" % type] = dicts.ls_colors[selection]
-
-		self.use_lscolors = gtkbuilder.get_object("use_lscolors")
-		self.use_lscolors.set_active(config.cfo["LSColors"].as_bool("use_lscolors"))
-
-		def set_use_lscolors(widget, data=None):
-			config.cfo["LSColors"]["use_lscolors"] = widget.get_active()
-
-		self.use_lscolors.connect("clicked", set_use_lscolors)
-
-		self.ls_exec = gtkbuilder.get_object("ls_exec")
-		self.ls_exec.set_active(ls_colors_inv[config.cfo["LSColors"]["exec"]])
-
-		def set_ls_exec(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "exec", selection)
-
-		self.ls_exec.connect("changed", set_ls_exec)
-
-		self.ls_gen = gtkbuilder.get_object("ls_gen")
-		self.ls_gen.set_active(ls_colors_inv[config.cfo["LSColors"]["generic"]])
-
-		def set_ls_gen(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "generic", selection)
-
-		self.ls_gen.connect("changed", set_ls_gen)
-
-		self.ls_log = gtkbuilder.get_object("ls_log")
-		self.ls_log.set_active(ls_colors_inv[config.cfo["LSColors"]["logs"]])
-
-		def set_ls_log(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "logs", selection)
-
-		self.ls_log.connect("changed", set_ls_log)
-
-		self.ls_deb = gtkbuilder.get_object("ls_deb")
-		self.ls_deb.set_active(ls_colors_inv[config.cfo["LSColors"]["deb"]])
-
-		def set_ls_deb(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "deb", selection)
-
-		self.ls_deb.connect("changed", set_ls_deb)
-
-		self.ls_rpm = gtkbuilder.get_object("ls_rpm")
-		self.ls_rpm.set_active(ls_colors_inv[config.cfo["LSColors"]["rpm"]])
-
-		def set_ls_rpm(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "rpm", selection)
-
-		self.ls_rpm.connect("changed", set_ls_rpm)
-
-		self.ls_dirs = gtkbuilder.get_object("ls_dirs")
-		self.ls_dirs.set_active(ls_colors_inv[config.cfo["LSColors"]["dirs"]])
-
-		def set_ls_dirs(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "dirs", selection)
-
-		self.ls_dirs.connect("changed", set_ls_dirs)
-
-		self.ls_jpeg = gtkbuilder.get_object("ls_jpeg")
-		self.ls_jpeg.set_active(ls_colors_inv[config.cfo["LSColors"]["jpeg"]])
-
-		def set_ls_jpeg(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "jpeg", selection)
-
-		self.ls_jpeg.connect("changed", set_ls_jpeg)
-
-		self.ls_png = gtkbuilder.get_object("ls_png")
-		self.ls_png.set_active(ls_colors_inv[config.cfo["LSColors"]["png"]])
-
-		def set_ls_png(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "png", selection)
-
-		self.ls_png.connect("changed", set_ls_png)
-
-		self.ls_gif = gtkbuilder.get_object("ls_gif")
-		self.ls_gif.set_active(ls_colors_inv[config.cfo["LSColors"]["gif"]])
-
-		def set_ls_gif(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "gif", selection)
-
-		self.ls_gif.connect("changed", set_ls_gif)
-
-		self.ls_mp3 = gtkbuilder.get_object("ls_mp3")
-		self.ls_mp3.set_active(ls_colors_inv[config.cfo["LSColors"]["mp3"]])
-
-		def set_ls_mp3(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "mp3", selection)
-
-		self.ls_mp3.connect("changed", set_ls_mp3)
-
-		self.ls_ogg = gtkbuilder.get_object("ls_ogg")
-		self.ls_ogg.set_active(ls_colors_inv[config.cfo["LSColors"]["ogg"]])
-
-		def set_ls_ogg(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "ogg", selection)
-
-		self.ls_ogg.connect("changed", set_ls_ogg)
-
-		self.ls_flac = gtkbuilder.get_object("ls_flac")
-		self.ls_flac.set_active(ls_colors_inv[config.cfo["LSColors"]["flac"]])
-
-		def set_ls_flac(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "flac", selection)
-
-		self.ls_flac.connect("changed", set_ls_flac)
-
-		self.ls_tar = gtkbuilder.get_object("ls_tar")
-		self.ls_tar.set_active(ls_colors_inv[config.cfo["LSColors"]["tar"]])
-
-		def set_ls_tar(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "tar", selection)
-
-		self.ls_tar.connect("changed", set_ls_tar)
-
-		self.ls_targz = gtkbuilder.get_object("ls_targz")
-		self.ls_targz.set_active(ls_colors_inv[config.cfo["LSColors"]["targz"]])
-
-		def set_ls_targz(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "targz", selection)
-
-		self.ls_targz.connect("changed", set_ls_targz)
-
-		self.ls_tarbz2 = gtkbuilder.get_object("ls_tarbz2")
-		self.ls_tarbz2.set_active(ls_colors_inv[config.cfo["LSColors"]["tarbz2"]])
-
-		def set_ls_tarbz2(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "tarbz2", selection)
-
-		self.ls_tarbz2.connect("changed", set_ls_tarbz2)
-
-		self.ls_zip = gtkbuilder.get_object("ls_zip")
-		self.ls_zip.set_active(ls_colors_inv[config.cfo["LSColors"]["zip"]])
-
-		def set_ls_zip(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "zip", selection)
-
-		self.ls_zip.connect("changed", set_ls_zip)
-
-		self.ls_rar = gtkbuilder.get_object("ls_rar")
-		self.ls_rar.set_active(ls_colors_inv[config.cfo["LSColors"]["rar"]])
-
-		def set_ls_rar(widget, data=None):
-			selection = widget.get_active()
-			set_ls_color(self, "rar", selection)
-
-		self.ls_rar.connect("changed", set_ls_rar)
+		WidgetHandler.InitWidget("ls_custom", "LSColors", "custom", "text", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("use_lscolors", "LSColors", "use_lscolors", "bool", None, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_exec", "LSColors", "exec", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_gen", "LSColors", "generic", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_log", "LSColors", "logs", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_deb", "LSColors", "deb", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_rpm", "LSColors", "rpm", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_dirs", "LSColors", "dirs", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_jpeg", "LSColors", "jpeg", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_png", "LSColors", "png", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_gif", "LSColors", "gif", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_mp3", "LSColors", "mp3", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_ogg", "LSColors", "ogg", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_flac", "LSColors", "flac", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_tar", "LSColors", "tar", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_targz", "LSColors", "targz", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_tarbz2", "LSColors", "tarbz2", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_zip", "LSColors", "zip", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("ls_rar", "LSColors", "rar", "combo", dicts.ls_colors, config.cfo, config.udc, config.fdc)
 
 		######################## Custom Prompt Builder #####################################
-		WidgetHandler.InitWidget("use_custom_prompt", "Custom", "use_custom_prompt", "bool", config.cfo, config.udc, config.fdc)
+		WidgetHandler.InitWidget("use_custom_prompt", "Custom", "use_custom_prompt", "bool", None, config.cfo, config.udc, config.fdc)
 
 		self.prompt_command = gtkbuilder.get_object("prompt_command")
 
