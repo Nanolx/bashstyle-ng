@@ -13,7 +13,7 @@
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
             'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
 	   'i18n', 'misc', 'lockfile', 'config', 'widgethandler', 'dicts',
-	   'prompts', 'promptbuilder' ]
+	   'prompts', 'promptbuilder', 'args' ]
 
 FAILED = []
 
@@ -34,50 +34,8 @@ if FAILED:
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')
 
-parser = optparse.OptionParser("bashstyle <option> [value]\
-				\n\nBashStyle-NG (c) 2007 - 2013 Christopher Bratusek\
-				\nLicensed under the GNU GENERAL PUBLIC LICENSE v3")
-
-if sys.platform == 'linux2':
-	try:
-		libc = ctypes.CDLL('libc.so.6')
-		libc.prctl(15, 'bashstyle', 0, 0, 0)
-	except:
-		pass
-
-parser.add_option("-v", "--version", dest="version",
-                  action="store_true", default=False, help="print version and exit")
-
-parser.add_option("-p", "--prefix", dest="prefix",
-                  action="store_true", default=False, help="print prefix and exit")
-
-parser.add_option("-g", "--group", dest="group", default="style",
-                  help="display a given group of options at startup, one of:\
-                  \nstyle, alias, advanced, readline, vim, nano, ls or custom")
-
-(options, args) = parser.parse_args()
-
-if options.version:
-		print "%s" % os.getenv('BSNG_UI_VERSION')
-		sys.exit(0)
-
-if options.prefix:
-		print "%s" % os.getenv('BSNG_UI_PREFIX')
-		sys.exit(0)
-
-groups = {
-	  "style" : "0",
-	  "alias" : "1",
-	  "advanced" : "2",
-	  "readline" : "3",
-	  "vim" : "5",
-	  "nano" : "6",
-	  "ls" : "7",
-	  "custom" : "8",
-	 }
-
-initial_page = groups[options.group]
-app_ini_version = 2
+args.CmdArgs()
+initial_page = dicts.groups[args.CmdArgs.options.group]
 
 lock = lockfile.LockFile()
 config = config.Config()
