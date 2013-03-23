@@ -37,7 +37,7 @@ gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle8.ui")
 
 class WidgetHandler(object):
 		####################### metafuncs for handling widgets ###########################
-		def InitWidget(self, widget, group, setting, type, cfo, udc, fdc):
+		def InitWidget(self, widget, group, setting, type, dict, cfo, udc, fdc):
 
 			def LoadWidget(widget):
 				object = gtkbuilder.get_object("%s" % widget)
@@ -50,17 +50,21 @@ class WidgetHandler(object):
 					object.set_value(cfo["%s" % group].as_int("%s" % setting))
 				elif type == "bool":
 					object.set_active(cfo["%s" % group].as_bool("%s" % setting))
+				elif type == "combo":
+					object.set_active(misc.SwapDictionary(dict)[cfo["%s" % group]["%s" % setting]])
 
 			def ConnectSignals(object, type, widget_group, widget_setting):
 				if type == "text":
 					object.connect("insert-text", emit_text)
 					object.connect("icon-press", revert_option, type, widget_group, widget_setting)
-					object.connect("changed", set_option, type, widget_group, widget_setting)
+					object.connect("changed", set_option, type, None, widget_group, widget_setting)
 				elif type == "int":
-					object.connect("value-changed", set_option, type, widget_group, widget_setting)
+					object.connect("value-changed", set_option, type, None, widget_group, widget_setting)
 					object.connect("icon-press", revert_option, type, widget_group, widget_setting)
 				elif type == "bool":
-					object.connect("toggled", set_option, type, widget_group, widget_setting)
+					object.connect("toggled", set_option, type, None, widget_group, widget_setting)
+				elif type == "combo":
+					object.connect("changed", set_option, type, dict, widget_group, widget_setting)
 
 			def revert_option(widget, pos, event, type, widget_group, widget_setting):
 				if type == "text" or type == "int":
@@ -74,7 +78,7 @@ class WidgetHandler(object):
 					elif type == "int":
 						widget.set_value(cfo["%s" % widget_group].as_int("%s" % widget_setting))
 
-			def set_option(widget, type, widget_group, widget_setting):
+			def set_option(widget, type, dict, widget_group, widget_setting):
 				if type == "text":
 					cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
 				elif type == "int":
@@ -83,6 +87,8 @@ class WidgetHandler(object):
 					cfo["%s" % widget_group]["%s" % widget_setting] = widget.get_active()
 					if widget_setting == "use_bashstyle":
 						misc.EnableBashstyleNG(widget.get_active())
+				elif type == "combo":
+					cfo["%s" % widget_group]["%s" % widget_setting] =  dict[widget.get_active()]
 
 			def emit_text(widget, text, *args):
 				if text in blacklist:
