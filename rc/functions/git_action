@@ -1,0 +1,32 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ -d .git ]]; then
+
+	if [[ -f .git/dotest/rebasing ]]; then
+		ACTION="rebase"
+	elif [[ -f .git/dotest/applying ]]; then
+		ACTION="apply"
+	elif [[ -f .git/dotest-merge/interactive ]]; then
+		ACTION="rebase -i"
+	elif [[ -d .git/dotest-merge ]]; then
+		ACTION="rebase -m"
+	elif [[ -f .git/MERGE_HEAD ]]; then
+		ACTION="merge"
+	elif [[ -f .git/index.lock ]]; then
+		ACTION="locked"
+	elif [[ -f .git/BISECT_LOG ]]; then
+		ACTION="bisect"
+	else	ACTION="nothing"
+	fi
+	echo $ACTION
+else	echo --
+fi

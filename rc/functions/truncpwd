@@ -1,0 +1,48 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+case $1 in
+	*help )
+		echo -e "\n${ewhite}Usage:\n"
+		echo -e "${eorange}trunc_pwd ${ewhite}|${egreen} ! no options !\n"
+		tput sgr0
+	;;
+
+	* )
+
+		pwdmaxlen=$(ini_get pwdlength)
+		trunc_symbol=$(ini_get pwdcut)
+		dirchar=$(ini_get directory_indicator)
+
+		newsepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+		newwdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+		newpscoloror=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+
+		if [ ${#PWD} -gt $pwdmaxlen ]; then
+			pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
+			if [[ $pstyle_supported == "True" ]]; then
+				xPWD="$newpscoloror${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
+			else	xPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
+			fi
+			if [[ $enabcol == "True" && $pstyle_supported == "True" ]]; then
+				newPWD="${xPWD//\//$newsepacolor$dirchar$newwdircolor}"
+			else	newPWD="${xPWD//\//$dirchar}"
+			fi
+		else
+			if [[ $enabcol == "True" && $pstyle_supported == "True" ]]; then
+			newPWD="${PWD//\//$newsepacolor$dirchar$newwdircolor}"
+		else	newPWD="${PWD//\//$dirchar}"
+		fi
+		fi
+
+		echo -e $newPWD
+	;;
+esac

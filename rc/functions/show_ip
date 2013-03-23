@@ -1,0 +1,27 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+case $1 in
+	*help | "" )
+		echo -e "\n${ewhite}Usage:\n"
+		echo -e "${eorange}show_ip${ewhite} |${egreen} <interface> ${eiceblue}[show ip-address for <interface>]\
+		\n${eorange}show_ip${ewhite} |${egreen} external${eiceblue} [show external ip address]\n"
+		tput sgr0
+	;;
+
+	*external )
+		wget -q -O - http://showip.spamt.net/
+	;;
+
+	* )
+		LANG=C /sbin/ifconfig $1 | grep 'inet addr:' | cut -d: -f2 | gawk '{ print $1}'
+	;;
+esac

@@ -9,9 +9,10 @@
 #							#
 #########################################################
 
-if [[ $1 == -l ]]; then
-	echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
-elif [[ $1 == -r ]]; then
-	echo $((RANDOM%${2}))
-else	echo $((RANDOM%${1}))
+if [[ $EUID == 0 ]]; then
+	cryptsetup -d /dev/urandom -c aes-xts-plain create delete $1
+	shred -vzn 0 /dev/mapper/delete
+	sync && sleep 4
+	cryptsetup remove delete
+else	echo -e "${ered} You're not root!"
 fi

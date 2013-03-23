@@ -27,19 +27,6 @@ inst ()
 
 }
 
-uninst ()
-{
-
-	xFILE=${1/:*}
-	FILE=${xFILE/*\/}
-	DEST=${1/*:}
-
-	rm -rf ${DESTDIR}${DEST}/${FILE}
-
-	unset FILE DEST
-
-}
-
 install_bsng () {
 
 	if [[ $VERBOSE == "true" ]]; then
@@ -84,7 +71,7 @@ remove_bsng () {
 
 	echo -e "\t${WHITE}+ ${WHITE} all files"
 	for file in ${REMOVE_FILES[@]}; do
-		uninst "$file"
+		rm -rf "$file"
 	done
 
 }

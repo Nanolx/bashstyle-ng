@@ -1,0 +1,42 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+case $1 in
+	*help )
+		echo -e "\n${ewhite}Usage:\n"
+		echo -e "${eorange}show_size ${ewhite}|${egreen} ! no options !\n"
+		tput sgr0
+	;;
+
+	* )
+		let TotalBytes=0
+
+		for Bytes in $(ls -lA -1 | grep "^-" | awk '{ print $5 }'); do
+			let TotalBytes=$TotalBytes+$Bytes
+		done
+
+		if [ $TotalBytes -lt 1024 ]; then
+			TotalSize=$(echo -e "scale=1 \n$TotalBytes \nquit" | bc)
+			suffix="B"
+		elif [ $TotalBytes -lt 1048576 ]; then
+			TotalSize=$(echo -e "scale=1 \n$TotalBytes/1024 \nquit" | bc)
+			suffix="KB"
+		elif [ $TotalBytes -lt 1073741824 ]; then
+			TotalSize=$(echo -e "scale=1 \n$TotalBytes/1048576 \nquit" | bc)
+			suffix="MB"
+		else
+			TotalSize=$(echo -e "scale=1 \n$TotalBytes/1073741824 \nquit" | bc)
+			suffix="GB"
+		fi
+
+		echo "${TotalSize} ${suffix}"
+	;;
+esac

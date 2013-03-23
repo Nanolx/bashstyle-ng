@@ -9,9 +9,5 @@
 #							#
 #########################################################
 
-if [[ $1 == -l ]]; then
-	echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
-elif [[ $1 == -r ]]; then
-	echo $((RANDOM%${2}))
-else	echo $((RANDOM%${1}))
-fi
+ps f -u $USER -o command,pid,%cpu,%mem,time,etime,tty | \
+	awk 'NR <= 1 {print;next} !/awk/ && $0~var' var=${1:-".*"}

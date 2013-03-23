@@ -9,9 +9,7 @@
 #							#
 #########################################################
 
-if [[ $1 == -l ]]; then
-	echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
-elif [[ $1 == -r ]]; then
-	echo $((RANDOM%${2}))
-else	echo $((RANDOM%${1}))
+if [[ $CD_WRITER ]]; then
+	cdrecord dev=$CD_WRITER "$1"
+else	cdrecord deV=/dev/dvdrw "$1"
 fi

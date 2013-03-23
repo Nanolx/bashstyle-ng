@@ -9,9 +9,6 @@
 #							#
 #########################################################
 
-if [[ $1 == -l ]]; then
-	echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
-elif [[ $1 == -r ]]; then
-	echo $((RANDOM%${2}))
-else	echo $((RANDOM%${1}))
-fi
+history | awk '{print $2}' |\
+awk 'BEGIN {FS="|"}{print $1}' |\
+sort | uniq -c | sort -n | tail | sort -nr

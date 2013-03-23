@@ -1,0 +1,42 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+case $1 in
+	*used-percent )
+		echo $(df | grep -w $2 | gawk '{print $5}')
+	;;
+
+	*free-percent )
+		echo $((100-$(df | grep -w $2 | gawk '{print $5}' | sed -e 's/\%//g')))%
+	;;
+
+	*used )
+		echo $(df -h | grep -w $2 | gawk '{print $3}')B
+	;;
+
+	*free )
+		echo $(df -h | grep -w $2 | gawk '{print $4}')B
+	;;
+
+	*total )
+		echo $(df -h | grep -w $2 | gawk '{print $2}')B
+	;;
+
+	* )
+		echo -e "\n${ewhite}Usage:\n"
+		echo -e "${eorange}show_space ${ewhite}|${egreen} --used ${eiceblue}[display used space in mb/gb]\
+		\n${eorange}show_space ${ewhite}|${egreen} --free ${eiceblue}[display free space in mb/gb]\
+		\n${eorange}show_space ${ewhite}|${egreen} --percent-used ${eiceblue}[display used space in %]\
+		\n${eorange}show_space ${ewhite}|${egreen} --percent-free ${eiceblue}[display free space in %]" | column -t
+		echo ""
+		tput sgr0
+	;;
+esac

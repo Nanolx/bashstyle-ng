@@ -9,9 +9,15 @@
 #							#
 #########################################################
 
-if [[ $1 == -l ]]; then
-	echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
-elif [[ $1 == -r ]]; then
-	echo $((RANDOM%${2}))
-else	echo $((RANDOM%${1}))
-fi
+case $1 in
+	*help )
+		echo -e "\n${ewhite}Usage:\n"
+		echo -e "${eorange}show_tty${ewhite}|${egreen} ! no options !\n"
+		tput sgr0
+	;;
+
+	* )
+		TTY=$(tty)
+		echo ${TTY:5} | sed -e 's/\//\:/g'
+	;;
+esac

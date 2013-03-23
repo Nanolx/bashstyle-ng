@@ -4,7 +4,6 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     rc/nx-rc:${DATADIR}/rc
 	     rc/ascii/*:${DATADIR}/rc/ascii
 	     rc/dirinfo/*:${DATADIR}/rc/dirinfo
-	     rc/functions/*:${DATADIR}/rc/functions
 	     rc/internal/*:${DATADIR}/rc/internal
 	     rc/settings/*:${DATADIR}/rc/settings
 	     rc/styles/*:${DATADIR}/rc/styles
@@ -27,8 +26,8 @@ DOC_FILES=( docs/*.html:${DOCDIR}
 	    {AUTHORS,COPYING.CODE,COPYING.ICONS,CREDITS,NEWS,README}:${DOCDIR} )
 
 BIN_FILES=( data/bashstyle:${BINDIR}
-	    bin/*:${BINDIR}
-	    bin-extra/*:${DATADIR}/bin )
+	    bin-extra/*:${DATADIR}/bin
+	    rc/functions/*:${DATADIR}/rc/functions )
 
 PROFILE_FILES=( data/bashstyle.sh:${PROFILEDIR} )
 

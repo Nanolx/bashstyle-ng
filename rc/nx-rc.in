@@ -27,11 +27,8 @@ export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
 ERR_MSG=""
 
 BSNG_INTERN=( wizard/ini internal/misc internal/logging )
-BSNG_FUNCS=( functions/admin functions/conversion functions/infos
-             functions/media functions/misc functions/random
-	     functions/utils functions/versioning dirinfo/public )
 
-for RC in ${BSNG_INTERN[@]} ${BSNG_FUNCS[@]}; do
+for RC in ${BSNG_INTERN[@]}; do
 	source $BSNG_RC_DIR/$RC
 done
 

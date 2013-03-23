@@ -55,7 +55,7 @@ while [[ $xcount -lt $pcount ]]; do
 				exit 1
 			fi
 			echo -e "\n${RED}Removing BashStyle-NG:\n"
-			pre_remove && remove_bsng ;;
+			remove_bsng ;;
 
 		changelog ) $PWD/.make/changelog ;;
 

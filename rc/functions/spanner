@@ -1,7 +1,7 @@
 #!/bin/bash
 #########################################################
 # 							#
-# This is BashStyle-NG  				#
+# This is BashStyle-NG					#
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
 #							#
@@ -9,9 +9,14 @@
 #							#
 #########################################################
 
-if [[ $1 == -l ]]; then
-	echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
-elif [[ $1 == -r ]]; then
-	echo $((RANDOM%${2}))
-else	echo $((RANDOM%${1}))
-fi
+PROC=$1;COUNT=0
+while [ -d /proc/$PROC ];do
+	while [ "$COUNT" -lt 10 ];do
+		echo -ne '\x08  ' ; sleep 0.1
+		((COUNT++))
+	done
+	until [ "$COUNT" -eq 0 ];do
+		echo -ne '\x08\x08 ' ; sleep 0.1
+		((COUNT -= 1))
+	done
+done

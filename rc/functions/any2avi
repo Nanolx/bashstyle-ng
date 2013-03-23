@@ -1,0 +1,26 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ $(which mencoder-mt) != "" ]]; then
+
+	mencoder-mt "$1" -lavdopts threads=8 \
+	  -ovc xvid -xvidencopts fixed_quant=4 -of avi \
+	  -oac mp3lame -lameopts vbr=3 \
+	  -o "$1".avi
+
+else
+
+	mencoder "$1" -lavdopts \
+	  -ovc xvid -xvidencopts fixed_quant=4 -of avi \
+	  -oac mp3lame -lameopts vbr=3 \
+	  -o "$1".avi
+
+fi

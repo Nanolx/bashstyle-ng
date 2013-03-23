@@ -1,0 +1,61 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+case $1 in
+
+		-f | --first)
+			sed -n '1p' $HOME/.randomhistory
+		;;
+
+		-L | --last)
+			sed -n '$p' $HOME/.randomhistory
+		;;
+
+		-i | --item)
+			sed -n "${2}p" $HOME/.randomhistory
+		;;
+
+		-l | --length)
+			wc -l $HOME/.randomhistory | gawk '{print $1}'
+		;;
+
+		-c | --clear)
+			rm $HOME/.randomhistory
+		;;
+
+		-h | --help )
+			echo -e "\n${ewhite}Usage:\n"
+			echo -e "${eorange}randomfile${ewhite} | ${egreen}--first ${eiceblue}[get the first file in the history]\
+			\n${eorange}randomfile${ewhite} | ${egreen}--last ${eiceblue}[get the last file in the history]\
+			\n${eorange}randomfile${ewhite} | ${egreen}--n ${eiceblue}[get the NUMBERth file in the history]\
+			\n${eorange}randomfile${ewhite} | ${egreen}--l ${eiceblue}[get the number of files in history]\
+			\n${eorange}randomfile${ewhite} | ${egreen}--c ${eiceblue}[clear the history]\n" | column -t
+			tput sgr0
+		;;
+
+		*)
+			if [[ ! "$FILES" ]]; then
+				files=(*)
+			else	files=("$FILES")
+			fi
+
+			n=${#files[@]}
+
+			RANDOMFILE="${files[RANDOM % n]}"
+
+			echo "$RANDOMFILE" >> $HOME/.randomhistory
+
+			if [[ ! "$@" ]]; then
+				echo "$RANDOMFILE"
+			else	"$@" "$RANDOMFILE"
+			fi
+		;;
+esac

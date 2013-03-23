@@ -1,0 +1,24 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+SP_COLOUR="\e[37;44m"
+SP_WIDTH=5.5
+SP_DELAY=0.2
+SP_STRING=${2:-'+     '}
+
+while [ -d /proc/$1 ]
+do
+	printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
+	sleep ${SP_DELAY:-.2}
+	SP_STRING=${SP_STRING#"${SP_STRING%?}"}${SP_STRING%?}
+done
+
+tput sgr0

@@ -9,9 +9,11 @@
 #							#
 #########################################################
 
-if [[ $1 == -l ]]; then
-	echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
-elif [[ $1 == -r ]]; then
-	echo $((RANDOM%${2}))
-else	echo $((RANDOM%${1}))
+if [[ $1 ]]; then
+	echo "hexadecimal $1 = binary $(hex2bin $1)"
+	echo "hexadecimal $1 = octal $(hex2oct $1)"
+	echo "hexadecimal $1 = decimal $(hex2dec $1)"
+	echo "hexadecimal $1 = base32 $(hex2b32 $1)"
+	echo "hexadecimal $1 = base64 $(hex2b64 $1)"
+	echo "hexadecimal $1 = ascii $(hex2asc $1)"
 fi
