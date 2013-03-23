@@ -12,7 +12,7 @@
 
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
             'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
-	   'i18n', 'misc', 'lockfile', 'config', 'widgethandler' ]
+	   'i18n', 'misc', 'lockfile', 'config', 'widgethandler', 'dicts' ]
 
 FAILED = []
 
@@ -111,69 +111,31 @@ class BashStyleNG(object):
 
 		self.color_style = gtkbuilder.get_object("color_style")
 
-		color_styles = {
-				 0 : "normal",
-				 1 : "bright",
-				 2 : "dimmed",
-				 3 : "inverted",
-				 4 : "underlined",
-			        }
-
-		self.color_style.set_active(misc.SwapDictionary(color_styles)[config.cfo["Style"]["color_style"]])
+		self.color_style.set_active(misc.SwapDictionary(dicts.color_styles)[config.cfo["Style"]["color_style"]])
 
 		def set_color_style(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Style"]["color_style"] = color_styles[selection]
+			config.cfo["Style"]["color_style"] = dicts.color_styles[selection]
 
 		self.color_style.connect("changed", set_color_style)
 
 		self.terminfo = gtkbuilder.get_object("terminfo")
 
-		man_styles = {
-			      0 : "mostlike",
-			      1 : "bold",
-			      2 : "nebula",
-			     }
-
-		self.terminfo.set_active(misc.SwapDictionary(man_styles)[config.cfo["Style"]["man_style"]])
+		self.terminfo.set_active(misc.SwapDictionary(dicts.man_styles)[config.cfo["Style"]["man_style"]])
 
 		def set_man_style(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Style"]["man_style"] = man_styles[selection]
+			config.cfo["Style"]["man_style"] = dicts.man_styles[selection]
 
 		self.terminfo.connect("changed", set_man_style)
 
 		self.grep_colour = gtkbuilder.get_object("grep_colour")
 
-		grep_colors = {
-			        0 : "01;38;5;0",
-			        1 : "01;38;5;1",
-			        2 : "01;38;5;2",
-			        3 : "01;38;5;3",
-			        4 : "01;38;5;4",
-			        5 : "01;38;5;5",
-			        6 : "01;38;5;6",
-			        7 : "01;38;5;7",
-			        8 : "01;38;5;33",
-			        9 : "01;38;5;111",
-			       10 : "01;38;5;45",
-			       11 : "01;38;5;60",
-			       12 : "01;38;5;42",
-			       13 : "01;38;5;637",
-			       14 : "01;38;5;684",
-			       15 : "01;38;5;761",
-			       16 : "01;38;5;690",
-			       17 : "01;38;5;714",
-			       18 : "01;38;5;604",
-			       19 : "01;38;5;213",
-			       20 : "01;38;5;5344",
-			      }
-
-		self.grep_colour.set_active(misc.SwapDictionary(grep_colors)[config.cfo["Style"]["grep_color"]])
+		self.grep_colour.set_active(misc.SwapDictionary(dicts.grep_colors)[config.cfo["Style"]["grep_color"]])
 
 		def set_grep_color(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Style"]["color/grep"] = grep_colors[selection]
+			config.cfo["Style"]["grep_color"] = dicts.grep_colors[selection]
 
 		self.grep_colour.connect("changed", set_grep_color)
 
@@ -183,47 +145,11 @@ class BashStyleNG(object):
 		self.color_of.set_active(0)
 		self.color_to.set_active(0)
 
-		color_keys = {
-			      1 : "color_user",
-			      2 : "color_host",
-			      3 : "color_date",
-			      4 : "color_time",
-			      5 : "color_wdir",
-			      6 : "color_font",
-			      7 : "color_separator",
-			      8 : "color_uptime",
-			      9 : "color_ps234",
-			     }
-
-		colors = {
-			   1 : "$black",
-			   2 : "$red",
-			   3 : "$green",
-			   4 : "$yellow",
-			   5 : "$blue",
-			   6 : "$magenta",
-			   7 : "$cyan",
-			   8 : "$white",
-			   9 : "$coldblue",
-			  10 : "$smoothblue",
-			  11 : "$iceblue",
-			  12 : "$turqoise",
-			  13 : "$smoothgreen",
-			  14 : "$winered",
-			  15 : "$brown",
-			  16 : "$silver",
-			  17 : "$ocher",
-			  18 : "$orange",
-			  19 : "$purple",
-			  20 : "$pink",
-			  21 : "$cream",
-			 }
-
 		def change_color(widget, data=None):
 			color_set = self.color_of.get_active()
 			color_is = self.color_to.get_active()
 			if color_set != 0 and color_is != 0:
-				config.cfo["Style"][color_keys[color_set]] = colors[color_is]
+				config.cfo["Style"][dicts.color_keys[color_set]] = dicts.colors[color_is]
 				self.color_to.set_active(0)
 				self.color_of.set_active(0)
 
@@ -232,26 +158,11 @@ class BashStyleNG(object):
 
 		self.prompt_style = gtkbuilder.get_object("prompt_style")
 
-		prompt_styles = {
-				  0 : "separator",
-				  1 : "vector",
-				  2 : "clock",
-				  3 : "clock-ad",
-				  4 : "elite",
-				  5 : "poweruser",
-				  6 : "dirks",
-				  7 : "dot_prompt",
-				  8 : "sepa_ng",
-				  9 : "quirk",
-				 10 : "sputnik",
-				 11 : "ayoli",
-				}
-
-		self.prompt_style.set_active(misc.SwapDictionary(prompt_styles)[config.cfo["Style"]["prompt_style"]])
+		self.prompt_style.set_active(misc.SwapDictionary(dicts.prompt_styles)[config.cfo["Style"]["prompt_style"]])
 
 		def set_prompt_style(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Style"]["prompt_style"] =  prompt_styles[selection]
+			config.cfo["Style"]["prompt_style"] =  dicts.prompt_styles[selection]
 
 		self.prompt_style.connect("changed", set_prompt_style)
 
@@ -290,18 +201,11 @@ class BashStyleNG(object):
 
 		self.history_control = gtkbuilder.get_object("history_control")
 
-		history_types = {
-				 0 : "erasedups",
-				 1 : "ignoredups",
-				 2 : "ignorespace",
-				 3 : "ignoreboth",
-				}
-
-		self.history_control.set_active(misc.SwapDictionary(history_types)[config.cfo["Advanced"]["history_control"]])
+		self.history_control.set_active(misc.SwapDictionary(dicts.history_types)[config.cfo["Advanced"]["history_control"]])
 
 		def set_history_control(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Advanced"]["hist_control"] = history_types[selection]
+			config.cfo["Advanced"]["hist_control"] = dicts.history_types[selection]
 
 		self.history_control.connect("changed", set_history_control)
 
@@ -321,32 +225,21 @@ class BashStyleNG(object):
 
 		self.bellstyle = gtkbuilder.get_object("bellstyle")
 
-		bell_styles = {
-				0 : "audible",
-				1 : "visible",
-				2 : "none",
-			      }
-
-		self.bellstyle.set_active(misc.SwapDictionary(bell_styles)[config.cfo["Readline"]["bellstyle"]])
+		self.bellstyle.set_active(misc.SwapDictionary(dicts.bell_styles)[config.cfo["Readline"]["bellstyle"]])
 
 		def set_bellstyle(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Readline"]["bellstyle"] = bell_styles[selection]
+			config.cfo["Readline"]["bellstyle"] = dicts.bell_styles[selection]
 
 		self.bellstyle.connect("changed", set_bellstyle)
 
 		self.editmode = gtkbuilder.get_object("editmode")
 
-		edit_modes = {
-			      0 : "emacs",
-			      1 : "vi",
-			     }
-
-		self.editmode.set_active(misc.SwapDictionary(edit_modes)[config.cfo["Readline"]["editing_mode"]])
+		self.editmode.set_active(misc.SwapDictionary(dicts.edit_modes)[config.cfo["Readline"]["editing_mode"]])
 
 		def set_editmode(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Readline"]["editing_mode"] = edit_modes[selection]
+			config.cfo["Readline"]["editing_mode"] = dicts.edit_modes[selection]
 
 		self.editmode.connect("changed", set_editmode)
 
@@ -361,18 +254,11 @@ class BashStyleNG(object):
 
 		self.show_mem = gtkbuilder.get_object("show_mem")
 
-		memory_types = {
-				0 : "free",
-				1 : "used",
-				2 : "both",
-				3 : "none",
-			       }
-
-		self.show_mem.set_active(misc.SwapDictionary(memory_types)[config.cfo["Separator"]["mem"]])
+		self.show_mem.set_active(misc.SwapDictionary(dicts.memory_types)[config.cfo["Separator"]["mem"]])
 
 		def set_show_mem(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Separator"]["mem"] = memory_types[selection]
+			config.cfo["Separator"]["mem"] = dicts.memory_types[selection]
 
 		self.show_mem.connect("changed", set_show_mem)
 
@@ -421,29 +307,11 @@ class BashStyleNG(object):
 
 		self.vim_colorscheme = gtkbuilder.get_object("vim_colorscheme")
 
-		vim_colors = {
-			       0 : "default",
-			       1 : "adaryn",
-			       2 : "advantage",
-			       3 : "desert",
-			       4 : "gobo",
-			       5 : "impact",
-			       6 : "nightshade",
-			       7 : "nightwish",
-			       8 : "wombat",
-			       9 : "asu1dark",
-			      10 : "candycode",
-			      11 : "dw_orange",
-			      12 : "fruit",
-			      13 : "relaxedgreen",
-			      14 : "tango",
-			     }
-
-		self.vim_colorscheme.set_active(misc.SwapDictionary(vim_colors)[config.cfo["Vim"]["colorscheme"]])
+		self.vim_colorscheme.set_active(misc.SwapDictionary(dicts.vim_colors)[config.cfo["Vim"]["colorscheme"]])
 
 		def set_vim_colorscheme(widget, data=None):
 			selection = widget.get_active()
-			config.cfo["Vim"]["colorscheme"] = vim_colors[selection]
+			config.cfo["Vim"]["colorscheme"] = dicts.vim_colors[selection]
 
 		self.vim_colorscheme.connect("changed", set_vim_colorscheme)
 
@@ -464,34 +332,10 @@ class BashStyleNG(object):
 		######################## LS Colors Stuff ###########################################
 		WidgetHandler.InitWidget("ls_custom", "LSColors", "custom", "text", config.cfo, config.udc, config.fdc)
 		
-		ls_colors = {
-			      0 : "$lblack",
-			      1 : "$lred",
-			      2 : "$lgreen",
-			      3 : "$lyellow",
-			      4 : "$lblue",
-			      5 : "$lmagenta",
-			      6 : "$lcyan",
-			      7 : "$lwhite",
-			      8 : "$lcoldblue",
-			      9 : "$lsmoothblue",
-			     10 : "$liceblue",
-			     11 : "$lturqoise",
-			     12 : "$lsmoothgreen",
-			     13 : "$lwinered",
-			     14 : "$lbrown",
-			     15 : "$lsilver",
-			     16 : "$locher",
-			     17 : "$lorange",
-			     18 : "$lpurple",
-			     19 : "$lpink",
-			     20 : "$lcream",
-			    }
-
-		ls_colors_inv = misc.SwapDictionary(ls_colors)
+		ls_colors_inv = misc.SwapDictionary(dicts.ls_colors)
 
 		def set_ls_color(self, type, selection):
-			config.cfo["LSColors"]["%s" % type] = ls_colors[selection]
+			config.cfo["LSColors"]["%s" % type] = dicts.ls_colors[selection]
 
 		self.use_lscolors = gtkbuilder.get_object("use_lscolors")
 		self.use_lscolors.set_active(config.cfo["LSColors"].as_bool("use_lscolors"))
@@ -839,15 +683,10 @@ class BashStyleNG(object):
 		self.countfiles = gtkbuilder.get_object("countfiles")
 		self.countfiles.set_active(0)
 
-		counters = {
-			    1 : "\\$(count_files +f)",
-			    2 : "\\$(count_files -f)",
-			   }
-
 		def set_countfiles(widget, data=None):
 			selection = widget.get_active()
 			if selection != 0:
-				prompt_add(counters[selection])
+				prompt_add(dicts.counters[selection])
 
 		self.countfiles.connect("changed", set_countfiles)
 
@@ -868,16 +707,10 @@ class BashStyleNG(object):
 		self.showload = gtkbuilder.get_object("showload")
 		self.showload.set_active(0)
 
-		load_getters = {
-				1 : "\\$(show_system_load 1)",
-				2 : "\\$(show_system_load 10)",
-				3 : "\\$(show_system_load 15)",
-			       }
-
 		def set_showload(widget, data=None):
 			selection = widget.get_active()
 			if selection != 0:
-				prompt_add(load_getters[selection])
+				prompt_add(dicts.load_getters[selection])
 
 		self.showload.connect("changed", set_showload)
 
@@ -891,17 +724,10 @@ class BashStyleNG(object):
 		self.showmem = gtkbuilder.get_object("showmem")
 		self.showmem.set_active(0)
 
-		memory_getters = {
-				  1 : "\\$(show_mem --used)",
-				  2 : "\\$(show_mem --free)",
-				  3 : "\\$(show_mem --used-percent)",
-				  4 : "\\$(show_mem --free-percent)",
-				 }
-
 		def set_showmem(widget, data=None):
 			selection = widget.get_active()
 			if selection != 0:
-				prompt_add(memory_getters[selection])
+				prompt_add(dicts.memory_getters[selection])
 
 		self.showmem.connect("changed", set_showmem)
 
@@ -915,32 +741,20 @@ class BashStyleNG(object):
 		self.showbatteryload = gtkbuilder.get_object("showbatteryload")
 		self.showbatteryload.set_active(0)
 
-		battery_getters = {
-				   1 : "\\$(show_battery_load --acpi)",
-				   2 : "\\$(show_battery_load --apm)",
-				  }
-
 		def set_showbatteryload(widget, data=None):
 			selection = widget.get_active()
 			if selection != 0:
-				prompt_add(battery_getters[selection])
+				prompt_add(dicts.battery_getters[selection])
 
 		self.showbatteryload.connect("changed", set_showbatteryload)
 
 		self.showspace = gtkbuilder.get_object("showspace")
 		self.showspace.set_active(0)
 
-		space_getters = {
-				  1 : "\\$(show_space --used <device>)",
-				  2 : "\\$(show_space --free <device>)",
-				  3 : "\\$(show_space --used-percent <device>)",
-				  4 : "\\$(show_space --free-percent <device>)",
-				 }
-
 		def set_showspace(widget, data=None):
 			selection = widget.get_active()
 			if selection != 0:
-				prompt_add(space_getters[selection])
+				prompt_add(dicts.space_getters[selection])
 
 		self.showspace.connect("changed", set_showspace)
 
@@ -996,22 +810,10 @@ class BashStyleNG(object):
 		self.insert_color = gtkbuilder.get_object("insert_color")
 		self.insert_color.set_active(0)
 
-		symbolic_colors = {
-				   1 : "$usercolor",
-				   2 : "$hostcolor",
-				   3 : "$datecolor",
-				   4 : "$timecolor",
-				   5 : "$wdircolor",
-				   6 : "$fontcolor",
-				   7 : "$sepacolor",
-				   8 : "$upcolor",
-				   9 : "$pscolor",
-				  }
-
 		def do_insert_color(widget, data=None):
 			selection = widget.get_active()
 			if selection != 0:
-				prompt_add(symbolic_colors[selection])
+				prompt_add(dicts.symbolic_colors[selection])
 
 		self.insert_color.connect("changed", do_insert_color)
 
