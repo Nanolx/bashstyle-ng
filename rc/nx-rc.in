@@ -171,3 +171,19 @@ fi
 dbg_finalize
 
 fi
+
+function lscd() {
+	
+	clear
+	builtin cd "${@}" &>/dev/null
+	. $BSNG_RC_DIR/dirinfo/display
+	dirinfo_display
+
+	echo -e "${epink}content:\n"
+	if [[ $(count_files -h) -gt 0 ]]; then
+		ls $LSCD_OPTS
+	else	echo -e "${ecream}-- empty --\n"
+	fi
+	echo "$PWD" > $HOME/.lastpwd
+
+}
