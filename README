@@ -5,9 +5,7 @@ BashStyle-NG
 BashStyle-NG consists of a graphical tool and a functionchain.
 
 The graphical tool (bashstyle) is used to easily change a huge amount options
-regarding Bash, Readline, VIm and Nano. The configurtion is stored via GConf.
-
-// Future versions will use DConf
+regarding Bash, Readline, VIm and Nano. The configurtion is stored using ConfigOBJ.
 
 The functionchain is used to realize the setup when starting a new Bash.
 Besides a diversity of additional functions or wrappers is provided.
@@ -18,18 +16,13 @@ mechanism for the shell), aswell as a first-run-wizard.
 12 different prompt-styles are shipped, all of them can be modified using the
 GUIs built-in custom-prompt-builder (CPB).
 
-Of course it is possible to export or import your configuration over different
-machines or users (bs-ng-profiler --help). In case you don't like GConf to be
-called whle your Bash starts-up, you have the opportunity to create rc-files
-from your configuration (rcgenerator --help).
-
 Every option and every function is described in the documentation.
 
 === GIT Access ===
 
 You can get the latest in-development version by running:
 
-git clone git://git.tuxfamily.org/gitroot/bashstyleng/bashstyleng.git
+git clone git://github.com/Nanolx/bashstyle-ng.git
 
 === Translations ===
 
@@ -47,7 +40,7 @@ es (Spanish) (Kenny Meyer)
 *** New Translations: ***
 
 If you want to translate BashStyle-NG into another language, simply get
-in concat with me via mail.
+in contact with me via mail.
 
 === Features Requests ===
 
