@@ -31,6 +31,25 @@ case $1 in
 			rm $HOME/.randomhistory
 		;;
 
+		-n | --count)
+			shift
+			count=$1
+			shift
+			while test $count -gt 0; do
+				if [[ "$FILES" ]]; then
+					FILES="$FILES" randomfile >> /tmp/randomtmp
+				else
+					randomfile >> /tmp/randomtmp
+				fi
+				count=$(($count - 1))
+			done
+
+			cat /tmp/randomtmp | awk '{print $1}' |\
+				sort | uniq -c | sort -n | tail | sort -nr
+
+			rm /tmp/randomtmp
+		;;
+
 		-h | --help )
 			echo -e "\n${ewhite}Usage:\n"
 			echo -e "${eorange}randomfile${ewhite} | ${egreen}--first ${eiceblue}[get the first file in the history]\
