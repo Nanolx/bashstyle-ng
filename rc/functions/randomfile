@@ -44,8 +44,7 @@ case $1 in
 				count=$(($count - 1))
 			done
 
-			cat /tmp/randomtmp | awk '{print $1}' |\
-				sort | uniq -c | sort -n | tail | sort -nr
+			cat /tmp/randomtmp | sort | uniq -c | sort -n | tail | sort -nr
 
 			rm /tmp/randomtmp
 		;;
