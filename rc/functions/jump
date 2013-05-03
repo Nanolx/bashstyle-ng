@@ -9,12 +9,9 @@
 #							#
 #########################################################
 
-jump()
-{
-	RET=$(dirinfo --search -jump "$1")
-	if [[ -d "$(echo ${RET/ */})" ]]; then
-		lscd $(dirinfo --search -jump "$1")
-	else
-		echo "No directory with mark \"$1\" found."
-	fi
-}
+RET=$(dirinfo --search -jump "$1")
+if [[ -d "$(echo ${RET/ */})" ]]; then
+	lscd $(dirinfo --search -jump "$1")
+else
+	echo "No directory with mark \"$1\" found."
+fi
