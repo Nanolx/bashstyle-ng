@@ -4,93 +4,93 @@
 <title>BashStyle-NG 7.12 Doc / Chapter 4</title>
 </head>
 <body>
-<h2 align="center"><font color="#00A8FF">Chapter 4: Readline</font></h2>
+<h2 align="center"><font color="#00A8FF">Chapter 4: Extras</font></h2>
 <table border=0 align=center>
 	<tr>
 		<td><a href="chapter03.html">Chapter 3 &lt;&lt;</a></td>
 		<td><a href="index.html">Index</a></td>
-		<td><a href="chapter05.html">&gt;&gt; Chapter 5</a></td>
+		<td><a href="chapter06.html">&gt;&gt; Chapter 6</a></td>
 	</tr>
 </table>
 <hr><br>
+<img src="img/bs-ng-extra.png" border="0" alt=""><br><br>
 
-<img src="img/bs-ng-readline.png" border="0" alt=""><br><br>
+<h3><font color="#FBA330">4.1 Display number of files:</font></h3>
+&nbsp;Display the amount of files in the current directory [Separator Style].<br><br>
 
-<h3><font color="#FBA330">4.0 Use ReadlineCFG:</font></h3>
-&nbsp;Let BS-NG setup Readline.<br><br>
+<h3><font color="#FBA330">4.2 Display uptime:</font></h3>
+&nbsp;Display the System's uptime [Separator Style].<br><br>
 
-<h3><font color="#FBA330">4.1 Enable Completion:</font></h3>
-&nbsp;Enable Filename/Pathcompletion by pressing [TAB].<br><br>
+<h3><font color="#FBA330">4.3 Display size of files:</font></h3>
+&nbsp;Display the size of the files in the current directory [Separator Style].<br><br>
 
-<h3><font color="#FBA330">4.2 Change Bellstyle:</font></h3>
-&nbsp;Change the Bellstyle of readline<br><br>
-<table border="1">
-	<tr>
-		<td width="60%">audible</td>
-		<td width="40%">beep</td>
-	</tr>
-	<tr>
-		<td>visible</td>
-		<td><blink>blink</blink></td>
-	</tr>
-	<tr>
-		<td>none</td>
-		<td>----</td>
-	</tr>
-</table>
+<h3><font color="#FBA330">4.4 Display number of the TTY:</font></h3>
+&nbsp;Display the current TTY's number [Separator Style].<br><br>
 
-<h3><font color="#FBA330">4.3 Choose Editing Mode:</font></h3>
-&nbsp;Whether to use Emacs or Vi like shortcuts<br>
-&nbsp;Bashs default setting is Emacs<br><br>
+<h3><font color="#FBA330">4.5 Display number of running hobs:</font></h3>
+&nbsp;Display the number of running jobs (processes) [Separator Style].<br><br>
 
-<h3><font color="#FBA330">4.4 Show matches if ambiguous:</font></h3>
-&nbsp;Instead of ringing the bell, immediately all<br>
-&nbsp;possibilities for completion are shown.<br><br>
+<h3><font color="#FBA330">4.6 Display system load:</font></h3>
+&nbsp;Display the System Load (1 min) [Separator Style].<br><br>
 
-<h3><font color="#FBA330">4.5 Match hidden files:</font></h3>
-&nbsp;Include hidden files in the completion.<br><br>
+<h3><font color="#FBA330">4.7 Display battery load:</font></h3>
+&nbsp;Display the Battery Load (using apm) [Separator Style].<br><br>
 
-<h3><font color="#FBA330">4.6 Ignore case:</font></h3>
-&nbsp;Let completion ignore upper and lowercase.<br><br>
+<h3><font color="#FBA330">4.8 Display Memory:</font></h3>
+&nbsp;Display the free or used RAM (or both) in MB [Separator Style].<br><br>
 
-<h3><font color="#FBA330">4.7 Completion Query Items:</font></h3>
-&nbsp;When pressing [TAB] for completion, this is the query limit.<br>
-&nbsp;If the amount of possible completions is higher or equal to<br>
-&nbsp;this value ask the user whether to display all completions.<br><br>
+<h3><font color="#FBA330">4.9 Directory Indicator:</font></h3>
+&nbsp;When using truncpwd for displaying the PWD, this character is used as directory indicator,<br>
+&nbsp;eg: if set to `\' it will look like: \home\chris\Desktop instead like /home/chris/Desktop.<br><br>
 
-<h3><font color="#FBA330">4.8 Show stats:</font></h3>
-&nbsp;Display stats when completing file names.<br><br>
-<table border="1">
-	<tr>
-		<td>&nbsp;@&nbsp;</td>
-		<td>&nbsp;= link&nbsp;</td>
-	</tr>
-	<tr>
-		<td>&nbsp;/&nbsp;</td>
-		<td>&nbsp;= folder&nbsp;</td>
-	</tr>
-	<tr>
-		<td width="20%">&nbsp;*&nbsp;</td>
-		<td width="80%">&nbsp;= executable&nbsp;</td>
-	</tr>
-</table>
+<h3><font color="#FBA330">4.10 Enable Tab-Rotation</font></h3>
+&nbsp;Use [TAB] to rotate between possible completions.<br><br>
 
-<h3><font color="#FBA330">4.9 Horizontal completion:</font></h3>
-&nbsp;Arrange completion possibilities horizontally rather than vertically.<br><br>
+<h3><font color="#FBA330">4.11 Enable histappend:</font></h3>
+&nbsp;Append new history content instead of overwriting it.<br>
+&nbsp;[only if HISTCONTROL is not erasedups]<br><br>
 
-<h3><font color="#FBA330">4.10 Mark directories:</font></h3>
-&nbsp;Completion marks directories with a `/', that saves one time pressing [TAB].<br><br>
+<h3><font color="#FBA330">4.12 Enable cd-spell:</font></h3>
+&nbsp;Works around misstyped paths, eg:<br>
+&nbsp;&nbsp;`cd /usr/sarhe' will still `cd /usr/share'<br>
+&nbsp;(as long as the first and the last letter are correct)<br><br>
 
-<h3><font color="#FBA330">4.11 Mark symbolic directories:</font></h3>
-&nbsp;The same as `Mark Directories', but for symbolic links.<br><br>
+<h3><font color="#FBA330">4.13 Enable cdable vars:</font></h3>
+&nbsp;Treat non-existing pathnames as variables, so<br>
+&nbsp;`cd HOME' would when be the same than `cd $HOME'<br><br>
 
-<h3><font color="#FBA330">4.12 Scroll horizontally:</font></h3>
-&nbsp;Scroll the line horizontally, rather than entering a new line,<br>
-&nbsp;if the command is too long to be displayed in one line.<br><br>
+<h3><font color="#FBA330">4.14 Enable checkhash:</font></h3>
+&nbsp;Check if hash is up-to-date, else perform a normal pathsearch.<br><br>
 
-<h3><font color="#FBA330">4.13 Mark modified history lines:</font></h3>
-&nbsp;When cycling trough previously ran commands, mark modified<br>
-&nbsp;history lines by prepending an asterisk (*).
+<h3><font color="#FBA330">4.15 Enable cmdhist:</font></h3>
+&nbsp;Save multi-line commands in a single history-line.<br><br>
 
-</body>
+<h3><font color="#FBA330">4.16 Enable force fignore:</font></h3>
+&nbsp;Completions masked by FIGNORE are also hidden if there is no other result.<br><br>
+
+<h3><font color="#FBA330">4.17 Enable histreedit:</font></h3>
+&nbsp;Allow reediting of wrong history substitutions.<br><br>
+
+<h3><font color="#FBA330">4.18 Enable no empty cmd comp.:</font></h3>
+&nbsp;Don't list all possible commands then pressing [TAB] on an empty prompt.<br><br>
+
+<h3><font color="#FBA330">4.19 Enable autocd:</font></h3>
+&nbsp;Trying to execute a "command" that is not an executable, but the name of<br>
+&nbsp;an existing directory, then cd into that directory rather than erroring.<br>
+&nbsp;[Bash 4.0+]<br><br>
+
+<h3><font color="#FBA330">4.20 Enable dirspell:</font></h3>
+&nbsp;This is similar to cd-spell, but for directories and only during completion.<br>
+&nbsp;[Bash 4.0+]<br><br>
+
+<h3><font color="#FBA330">4.21 Enable globstar:</font></h3>
+&nbsp;A new wildcard will be available: `**'. It matches everything in any directory(-depth).<br>
+&nbsp;[Bash 4.0+]<br><br>
+
+<h3><font color="#FBA330">4.22 Enable checkjobs:</font></h3>
+&nbsp;Exiting the shell while there are still processes in the background,<br>
+&nbsp;print a warning rather than logging out and killing those processes.<br>
+&nbsp;[Bash 4.0+]<br><br>
+
+</body>	
 </html>
