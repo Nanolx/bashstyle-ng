@@ -48,6 +48,10 @@ This release requires GTK+3 / Python-GI
 * configure can now check for python sub-modules
 * options like aliases can now be reverted to previous user-value
   or reset to factory defaults in the user interface
+* -n param for 'randomfile' (exec randomfile N times)
+* 'jump' feature (jump between directories, uses dirinfo database)
+* 'assign' function
+* 'bsng-help' function (auto-generates help messages)
 
 === Removed Features ===
 * bs-ng-profiler (no longer required)
@@ -66,10 +70,12 @@ This release requires GTK+3 / Python-GI
 
 * majorly improved the profile (/etc/profile.d/bashstyle.sh)
 
+* split all functions into own scripts
+
 * updated all copyright year notices to "2007 - 2013"
 
-* modularized code
-* many automatisms, saving lots of code
+* modularized user-interface code
+* many automatisms, saving lots of code for user-interface
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
