@@ -4,6 +4,7 @@ IN_FILES=( rc/nx-rc data/bashstyle data/bashstyle-ng.pc data/bashstyle.sh )
 
 SUB_VERSION_FILES=( data/bashstyle-ng.pc rc/nx-rc data/bashstyle )
 SUB_PREFIX_FILES=( data/bashstyle-ng.pc data/bashstyle data/bashstyle.sh rc/nx-rc )
+SUB_PY_FILES=( )
 
 copy_in_files () {
 
@@ -18,5 +19,6 @@ substitute_values () {
 	sed -e "s>@VERSION@>$xVERSION>g" -i ${SUB_VERSION_FILES[@]}
 	sed -e "s>@PREFIX@>$PREFIX>g" -i ${SUB_PREFIX_FILES[@]}
 	sed -e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" -i data/bashstyle.sh
+	sed -e "s>@PYTHON@>$PYTHON>g" -i ${SUB_PY_FILES[@]}
 
 }

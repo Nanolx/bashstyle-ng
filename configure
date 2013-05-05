@@ -37,7 +37,7 @@ while [[ $xcount -lt $pcount ]]; do
 		;;
 
 		*help )
-			MODE=HELP
+			MODE=help
 		;;
 	esac
 	shift
@@ -46,23 +46,11 @@ done
 
 unset xcount pcount
 
-if [[ ! $PREFIX ]]; then
-	PREFIX="/usr"
-fi
-
-if [[ ! $DIRINFO_ENABLE ]]; then
-	DIRINFO_ENABLE="false"
-fi
-
-if [[ ! $MODE ]]; then
-	MODE=USER
-fi
-
-if [[ $MODE == HELP ]]; then
+if [[ $MODE == help ]]; then
 
 	help_message
 
-elif [[ $MODE == MAINTAINER ]]; then
+elif [[ $MODE == maintainer ]]; then
 
 	maintainer_message
 	copy_in_files
@@ -70,7 +58,7 @@ elif [[ $MODE == MAINTAINER ]]; then
 	end_message
 	export_result
 
-elif [[ $MODE == USER ]]; then
+elif [[ $MODE == user ]]; then
 
 	start_message
 	check_apps
