@@ -109,12 +109,11 @@ end_message () {
 help_message () {
 
 	echo -e "\n${GREEN}BashStyle-NG ${YELLOW}(configure 4.0.2) ${CYAN}help
-	\n${WHITE}Environment variables:\
-	\n${ORANGE}GIRPATH${WHITE} |${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1,0/)\
 	\n\n${WHITE}Options:\
 	\n${ORANGE}--help${WHITE} |${GREEN} Display this help message\
 	\n${ORANGE}--maintainer${WHITE} |${GREEN} Enter Maintainer Mode (disables checks)\
 	\n${ORANGE}--prefix=${WHITE} |${GREEN} Change Installation Prefix (default: /usr)\
+	\n${ORANGE}--girpath=${WHITE} |${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)\
 	\n${ORANGE}--quiet${WHITE} |${GREEN} Only display warnings, failures and results\
 	\n${ORANGE}--dirinfo-disable${WHITE} |${GREEN} Disable Dirinfo Wrappers (default)\
 	\n${ORANGE}--dirinfo-enable${WHITE} |${GREEN} Enable Dirinfo Wrappers (RTFM first!)\n"

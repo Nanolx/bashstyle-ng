@@ -19,6 +19,10 @@ while [[ $xcount -lt $pcount ]]; do
 		--prefix* )
 			PREFIX="${1/*=}"
 		;;
+		
+		--girpath* )
+			GIRPATH="${$1/*=}"
+		;;
 
 		*dirinfo-disable )
 			DIRINFO_ENABLE="false"
