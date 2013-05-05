@@ -2,7 +2,7 @@
 
 section_message () {
 
-	if [[ ! $QUIET ]]; then
+	if [[ $QUIET != "true" ]]; then
 		case $1 in
 
 			APP )
@@ -19,6 +19,10 @@ section_message () {
 
 			OPT_SBINAPP )
 				echo -e "\n${MAGENTA}Optional ${WHITE}SuperUser Applications:\n"
+			;;
+
+			PY )
+				echo -e "\n${RED}Python Interpreter ${WHITE} > 2.6 && < 3.0:\n"
 			;;
 
 			PYMOD )
@@ -59,7 +63,7 @@ start_message () {
 
 ok_message () {
 
-	if [[ ! $QUIET ]]; then
+	if [[ $QUIET != "true" ]]; then
 		if [[ $2 != "" ]]; then
 			echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K.${SILVER} ( $2 )"
 		else 	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K."
@@ -70,11 +74,28 @@ ok_message () {
 
 fail_message () {
 
-	if [[ $1 == "m" ]]; then
-		echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !MISSING!"
-	elif [[ $1 == "o" ]]; then
-		echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !OLDER THAN $3!"
-	fi
+	case $1 in
+
+		m )
+			echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !MISSING!"
+		;;
+
+		o )
+			echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !OLDER THAN $3!"
+		;;
+
+		p )
+			echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !MISSING!"
+		;;
+
+		p- )
+			echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !OLDER THAN 2.7.0!"
+		;;
+
+		p+ )
+			echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS 3.0 OR ABOVE!"
+		;;
+	esac
 	tput sgr0
 
 }
@@ -108,15 +129,15 @@ end_message () {
 
 help_message () {
 
-	echo -e "\n${GREEN}BashStyle-NG ${YELLOW}(configure 4.0.2) ${CYAN}help
-	\n\n${WHITE}Options:\
+	echo -e "\n${GREEN}BashStyle-NG ${YELLOW}(configure 4.1.0) ${CYAN}help
+	\n${WHITE}Options:\
 	\n${ORANGE}--help${WHITE} |${GREEN} Display this help message\
-	\n${ORANGE}--maintainer${WHITE} |${GREEN} Enter Maintainer Mode (disables checks)\
+	\n${ORANGE}--mode${WHITE} |${GREEN} user (do checks) or maintainer (skip checks)\
 	\n${ORANGE}--prefix=${WHITE} |${GREEN} Change Installation Prefix (default: /usr)\
 	\n${ORANGE}--girpath=${WHITE} |${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)\
+	\n${ORANGE}--python=${WHITE} |${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)\
 	\n${ORANGE}--quiet${WHITE} |${GREEN} Only display warnings, failures and results\
-	\n${ORANGE}--dirinfo-disable${WHITE} |${GREEN} Disable Dirinfo Wrappers (default)\
-	\n${ORANGE}--dirinfo-enable${WHITE} |${GREEN} Enable Dirinfo Wrappers (RTFM first!)\n"
+	\n${ORANGE}--dirinfo=${WHITE} |${GREEN} true: enable dirinfo wrappers, false: disable (default: disable)\n"
 	tput sgr0
 
 }

@@ -94,7 +94,7 @@ for SECTION in GIR OPT_GIR; do
 		VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
 		TYPE_LIB=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
 		FILE=$(basename $(ls ${GIRPATH}/$TYPE_LIB* 2>/dev/null) .typelib 2>/dev/null)
-		
+
 
 		if [[ $FILE != ".typelib" ]]; then
 			EXIST_RETURN=0
@@ -121,6 +121,30 @@ done
 
 }
 
+check_python () {
+
+section_message PY
+
+if [[ ! -e $PYTHON ]]; then
+	fail_message p
+	exit 1
+else
+	PYMINVER=270
+	PYMAXVER=300
+	PYVER=$(python --version 2>&1 | gawk '{ gsub(/\./,""); print $2 }')
+	if [[ $PYVER -lt $PYMINVER ]]; then
+		fail_message p-
+		exit 1
+	elif [[ $PYVER -gt $PYMAXVER ]]; then
+		fail_message p+
+		exit 1
+	else
+		ok_message Python $PYTHON
+	fi
+fi
+
+}
+
 check_pymods () {
 
 for SECTION in PYMOD OPT_PYMOD; do
@@ -132,7 +156,7 @@ for SECTION in PYMOD OPT_PYMOD; do
 
 		while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
 			DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-			
+
 			if [[ $DEPENDENCY == *:* ]]; then
 				FROM=$(echo $DEPENDENCY | gawk -F \: '{print $1}')
 				SMOD=$(echo $DEPENDENCY | gawk -F \: '{print $2}')

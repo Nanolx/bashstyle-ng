@@ -1,12 +1,22 @@
 Overview of changes in v8.1 "Sonic Empire"
 
 === Bug fixes ===
-* 138 (ui):
+* #138 (ui):
 	don't enforce window to be centered
-	
-=== Added Features ===
-* configure now accepts --girpath argument (tell configure where to look
-  for gobject introspection files
+* #139 (configure, ui):
+	add ability to specify which python interpreter to use
+
+=== configure 4.1.0 ===
+* configure now accepts --girpath argument (girpath to use)
+* configure now accepts --mode argument (user = check dependencies,
+  maintainer = don't check dependencies (speed up re-builds))
+* configure now accepts --dirinfo argument (replacing --dirinfo-enable
+  and --dirinfo-disable arguements)
+* configure now accepts --python argument (python interpreter to use,
+  part of fixing bug #139)
+* configure now checks version of python interpreter to be greater or
+  equal 2.7.0 and lower than 3.0
+* minor internal improvements in configure
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

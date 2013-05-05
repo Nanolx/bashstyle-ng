@@ -12,31 +12,31 @@ pcount=$#
 
 while [[ $xcount -lt $pcount ]]; do
 	case $1 in
-		*maintainer )
-			MODE=MAINTAINER
+		--mode=* )
+			MODE="${1/*=}"
 		;;
 
-		--prefix* )
+		--prefix=* )
 			PREFIX="${1/*=}"
 		;;
 		
-		--girpath* )
-			GIRPATH="${$1/*=}"
+		--girpath=* )
+			GIRPATH="${1/*=}"
 		;;
 
-		*dirinfo-disable )
-			DIRINFO_ENABLE="false"
+		--python=* )
+			PYTHON="${1/*=}"
 		;;
 
-		*dirinfo-enable )
-			DIRINFO_ENABLE="true"
+		--dirinfo=* )
+			DIRINFO_ENABLE="${1/*=}"
 		;;
 
-		*quiet )
-			QUIET="true"
+		--quiet )
+			QUIET=true
 		;;
 
-		*help )
+		--help )
 			MODE=help
 		;;
 	esac
@@ -64,6 +64,7 @@ elif [[ $MODE == user ]]; then
 	check_apps
 	check_libs
 	check_gir
+	check_python
 	check_pymods
 	copy_in_files
 	substitute_values
