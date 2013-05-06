@@ -24,6 +24,10 @@ export BSNG_LOCKFILE=$HOME/.bashstyle.lock
 export BSNG_VERSION=@VERSION@
 export BSNG_DOCS=$BSNG_PREFIX/share/doc/bashstyle-ng/index.html
 
+if [[ ! $BSNG_PROFILED ]]; then
+	. /etc/profile.d/bashstyle.sh
+fi
+
 ERR_MSG=""
 
 BSNG_INTERN=( wizard/ini internal/misc internal/logging )
@@ -164,14 +168,10 @@ if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eorange}${ERR_MSG}\n"
 fi
 
-if [[ ! $BSNG_PROFILED ]]; then
-	. /etc/profile.d/bashstyle.sh
-fi
-
 dbg_finalize
 
 function lscd() {
-	
+
 	clear
 	builtin cd "${@}" &>/dev/null
 	. $BSNG_RC_DIR/dirinfo/display
