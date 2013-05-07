@@ -1,26 +1,20 @@
-APP1 bash
-APP2 gawk
-APP3 grep
-APP4 sed
-APP5 python
-APP6 bc
-APP7 msgfmt
-APP8 whiptail
+APPS=( bash gawk grep sed python bc msgfmt whiptail )
+OPT_APPS=( "apm:showbatteryload --apm won't work" \
+"acpi:showbatteryload --acpi won't work" \
+"lspci:systeminfos --pci won't work"
+"lsusb:systeminfos --usb' won't work"
+"ps2pdf:man2pdf won't work"
+"lynx:show_weather and define won't work"
+"tree:treecd won't work" )
 
-OPT_APP1 apm :* The optional apm coulnd't be found. `showbatteryload --apm' won't work\n
-OPT_APP2 acpi :* The optional acpi couldn't be found. `showbatteryload --acpi' won't work\n
-OPT_APP3 lspci :* The optional lspci couldn't be found. `systeminfos --pci' won't work\n
-OPT_APP4 lsusb :* The optional lsusb couldn't be found.  `systeminfos --usb' won't work\n
-OPT_APP5 ps2pdf :* The optional ps2pdf couldn't be found. `man2pdf' won't work\n
-OPT_APP6 lynx :* The optional lynx couldn't be found. `show_weather' and `define' won't work\n
-OPT_APP7 tree :* The optional tree couldn't be found. `treecd' won't work\n
+SAPPS=( )
+OPT_SAPPS=( "dmidecode:systeminfos --bios won't work" )
 
-OPT_SBINAPP1 dmidecode :* The optional dmidecode couldn't be found. `systeminfos --bios' won't work\n
+LIBS=( )
+OPT_LIBS=( )
 
-GIR1 Gtk+3 3.0 Gtk-3.0
+GIR=( "Gtk+3:3.0:Gtk-3.0" )
+OPT_GIR=( )
 
-PYMOD1 ctypes
-PYMOD2 gettext
-PYMOD3 gi.repository:Gtk
-PYMOD4 configobj
-PYMOD5 shutil
+PYMODS=( ctypes gettext gi.repository:Gtk configobj shutil )
+OPT_PYMODS=( )

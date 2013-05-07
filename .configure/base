@@ -19,6 +19,12 @@ MODE=user
 QUIET=false
 PYTHON=$(which python)
 
+BINDIR="$PREFIX/bin"
+PCDIR="$PREFIX/lib/pkgconfig/"
+DATADIR="$PREFIX/share/"
+DOCDIR="$DATADIR/doc/"
+PROFILEDIR="/etc/profile.d/"
+
 export OLDPATH=$PATH
 export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 
@@ -31,16 +37,16 @@ export_result ()
 
 	echo -e "MODE=\"$MODE\"\
 \nPREFIX=\"$PREFIX\"\
-\nDATADIR=\"$PREFIX/share/bashstyle-ng/\"\
+\nDATADIR=\"$DATADIR/bashstyle-ng/\"\
 \nDATADIR_LIST=( bin ui data rc/{,ascii,dirinfo,functions,generator,internal,settings,styles,wizard} terminfo/{,b,m,n} vim/{,colors} )\
-\nPROFILEDIR=\"/etc/profile.d/\"\
-\nBINDIR=\"$PREFIX/bin\"\
-\nLOCALEDIR=\"$PREFIX/share/locale/\"\
+\nPROFILEDIR=\"$PROFILEDIR/\"\
+\nBINDIR=\"$BINDIR\"\
+\nLOCALEDIR=\"$DATADIR/locale/\"\
 \nLOCALEDIR_LIST=( {de,es,it,ru}/LC_MESSAGES/ )\
-\nICONDIR=\"$PREFIX/share/icons/hicolor/32x32/apps/\"\
-\nDOCDIR=\"$PREFIX/share/doc/bashstyle-ng/\"\
+\nICONDIR=\"$DATADIR/icons/hicolor/32x32/apps/\"\
+\nDOCDIR=\"$DOCDIR/bashstyle-ng/\"\
 \nDOCDIR_LIST=( img img-style )\
-\nPCDIR=\"$PREFIX/lib/pkgconfig/\"\
+\nPCDIR=\"$PCDIR/\"\
 \nDIRINFO_ENABLE=\"$DIRINFO_ENABLE\"\
 \nMISSING=($MISSING )" >> $PWD/.configure/results
 

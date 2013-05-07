@@ -18,6 +18,7 @@ substitute_values () {
 
 	sed -e "s>@VERSION@>$xVERSION>g" -i ${SUB_VERSION_FILES[@]}
 	sed -e "s>@PREFIX@>$PREFIX>g" -i ${SUB_PREFIX_FILES[@]}
+	sed -e "s>@DATADIR@>$DATADIR>g" -i ${SUB_PREFIX_FILES[@]}
 	sed -e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" -i data/bashstyle.sh
 	sed -e "s>@PYTHON@>$PYTHON>g" -i ${SUB_PY_FILES[@]}
 

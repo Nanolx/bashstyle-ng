@@ -1,7 +1,7 @@
 #!/bin/bash
 shopt -s extglob
 
-MODULES=( base color messages checks substitute )
+MODULES=( base color messages checks substitute depends )
 
 for mod in ${MODULES[@]}; do
 	source $PWD/.configure/$mod
@@ -19,9 +19,29 @@ while [[ $xcount -lt $pcount ]]; do
 		--prefix=* )
 			PREFIX="${1/*=}"
 		;;
-		
+
+		--pcdir=* )
+			PCDIR="${1/*=}"
+		;;
+
+		--docdir=* )
+			DOCDIR="${1/*=}"
+		;;
+
+		--profiledir=* )
+			PROFILEDIR="${1/*}"
+		;;
+
+		--bindir=* )
+			BINDIR="${1/*=}"
+		;;
+
 		--girpath=* )
 			GIRPATH="${1/*=}"
+		;;
+
+		--datadir=* )
+			DATADIR="${1/*=}"
 		;;
 
 		--python=* )
@@ -61,11 +81,7 @@ elif [[ $MODE == maintainer ]]; then
 elif [[ $MODE == user ]]; then
 
 	start_message
-	check_apps
-	check_libs
-	check_gir
-	check_python
-	check_pymods
+	check_helper
 	copy_in_files
 	substitute_values
 	end_message

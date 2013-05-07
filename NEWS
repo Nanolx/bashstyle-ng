@@ -9,16 +9,25 @@ Overview of changes in v8.1 "Sonic Empire"
 	make sure PATH is setup early (fixes issue that
 	bs-ng-wizard is not available on bash startup)
 
-=== configure 4.1.0 ===
+=== configure 4.2.0 ===
 * configure now accepts --girpath argument (girpath to use)
 * configure now accepts --mode argument (user = check dependencies,
   maintainer = don't check dependencies (speed up re-builds))
 * configure now accepts --dirinfo argument (replacing --dirinfo-enable
-  and --dirinfo-disable arguements)
+  and --dirinfo-disable arguments)
 * configure now accepts --python argument (python interpreter to use,
   part of fixing bug #139)
 * configure now checks version of python interpreter to be greater or
   equal 2.7.0 and lower than 3.0
+* configure now accepts --bindir argument
+* configure now accepts --pcdir argument
+* configure now accepts --docdir argument
+* configure now accepts --datadir argument
+* configure now accepts --profiledir argument
+* configure now displays information about non-function features due to
+  missing optional dependencies inline, instead of the end
+* improved dependency definition and streamlined checking them
+* improved help message
 * minor internal improvements in configure
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

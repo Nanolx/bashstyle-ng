@@ -16,107 +16,148 @@ check ()
 
 }
 
+check_helper () {
+
+	if [[ ${APPS[@]} != "" ]]; then
+		section_message APP
+		check_apps "false" "${APPS[@]}"
+	fi
+
+	if [[ ${OPT_APPS[@]} != "" ]]; then
+		section_message OPT_APP
+		check_apps "true" "${OPT_APPS[@]}"
+	fi
+
+	if [[ ${SAPPS[@]} != "" ]]; then
+		section_message SBINAPP
+		check_apps "false" "${SAPPS[@]}"
+	fi
+
+	if [[ ${OPT_SAPPS[@]} != "" ]]; then
+		section_message OPT_SBINAPP
+		check_apps "true" "${OPT_SAPPS[@]}"
+	fi
+
+	check_python
+
+	if [[ ${PYMODS[@]} != "" ]]; then
+		section_message PYMOD
+		check_pymods "false" "${PYMODS[@]}"
+	fi
+
+	if [[ ${OPT_PYMODS[@]} != "" ]]; then
+		section_message OPT_PYMOD
+		check_pymods "true" "${OPT_PYMODS[@]}"
+	fi
+
+	if [[ ${LIBS[@]} != "" ]]; then
+		section_message LIB
+		check_libs "false" "${LIBS[@]}"
+	fi
+
+	if [[ ${OPT_LIBS[@]} != "" ]]; then
+		section_message OPT_LIB
+		check_libs "false" "${OPT_LIBS[@]}"
+	fi
+
+	if [[ ${GIR[@]} != "" ]]; then
+		section_message GIR
+		check_gir "false" "${GIR[@]}"
+	fi
+
+	if [[ ${OPT_GIR[@]} != "" ]]; then
+		section_message OPT_GIR
+		check_gir "false" "${OPT_GIR[@]}"
+	fi
+
+}
+
 check_apps () {
 
-for SECTION in APP OPT_APP SBINAPP OPT_SBINAPP; do
-	CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
-	DONE_COUNTER=1
+OPT=$1
+shift
 
-	if [[ $CHKS_COUNTER != "0" ]]; then
-		section_message $SECTION
-
-		while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
-			DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-			DEP_RETURN=$(check $DEPENDENCY)
-			if [[ $DEP_RETURN == "found" ]]; then
-				ok_message $DEPENDENCY
-			elif [[ $DEP_RETURN != "found" && $SECTION == OPT* ]]; then
-				warn_message $DEPENDENCY
-				ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F ':' '{print $2}')
-				MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
-			else 	fail_message m $DEPENDENCY
-				exit 1
-			fi
-			DONE_COUNTER=$(($DONE_COUNTER+1)); done
+for ARG in "$@"; do
+	APP="${ARG/:*}"
+	DESC="${ARG/*:}"
+	DEP_RETURN=$(check $APP)
+	if [[ $DEP_RETURN == "found" ]]; then
+		ok_message "$APP"
+	elif [[ $DEP_RETURN != "found" && $OPT == "true" ]]; then
+		warn_message $APP "$DESC"
+		MISSING+=" $APP"
+	else 	fail_message m $APP
+		exit 1
 	fi
-	unset CHKS_COUNTER DONE_COUNTER
 done
 
 }
 
 check_libs () {
 
-for SECTION in LIB OPT_LIB; do
-	CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
-	DONE_COUNTER=1
+OPT=$1
+shift
 
-	if [[ $CHKS_COUNTER != "0" ]]; then
-	section_message $SECTION
+for ARG in "$@"; do
 
-	while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
-		DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-		VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
-		PC_FILE=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
-		pkg-config --exists $PC_FILE
-		EXIST_RETURN=$?
-		pkg-config --atleast-version=$VERSION $PC_FILE
-		DEP_RETURN=$?
-		if [[ $EXIST_RETURN != 0 && ! $SECTION == OPT* ]]; then
-			fail_message m $DEPENDENCY
-			exit 1
-		elif [[ $DEP_RETURN == 0 ]]; then
-			ok_message $DEPENDENCY ${VERSION}+
-		elif [[ $EXIST_RETURN != 0 && $SECTION == OPT* ]]; then
-			warn_message $DEPENDENCY
-			ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
-			MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
-		else	fail_message o $DEPENDENCY $VERSION
-			exit 1
-		fi
-		DONE_COUNTER=$(($DONE_COUNTER+1)); done
+	LIB=$(gawk -F \: '{print $1}' <(echo $ARG))
+	VERSION=$(gawk -F \: '{print $2}' <(echo $ARG))
+	PC_FILE=$(gawk -F \: '{print $3}' <(echo $ARG))
+	DESC=$(gawk -F \: '{print $4}' <(echo $ARG))
+
+	pkg-config --exists $PC_FILE
+	EXIST_RETURN=$?
+
+	pkg-config --atleast-version=$VERSION $PC_FILE
+	DEP_RETURN=$?
+
+	if [[ $EXIST_RETURN != 0 && ! $OPT == "true" ]]; then
+		fail_message m $LIB
+		exit 1
+	elif [[ $DEP_RETURN == 0 ]]; then
+		ok_message $LIB ${VERSION}+
+	elif [[ $EXIST_RETURN != 0 && $OPT == "true" ]]; then
+		warn_message $LIB "$DESC"
+		MISSING+=" $LIB"
+	else	fail_message o $LIB $VERSION
+		exit 1
 	fi
-	unset CHKS_COUNTER DONE_COUNTER
+
 done
 
 }
 
 check_gir () {
 
-for SECTION in GIR OPT_GIR; do
-	CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
-	DONE_COUNTER=1
+OPT=$1
+shift
 
-	if [[ $CHKS_COUNTER != "0" ]]; then
-	section_message $SECTION
+for ARG in "$@"; do
 
-	while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
-		DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
-		VERSION=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $3}')
-		TYPE_LIB=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $4}')
-		FILE=$(basename $(ls ${GIRPATH}/$TYPE_LIB* 2>/dev/null) .typelib 2>/dev/null)
+	GIR=$(gawk -F \: '{print $1}' <(echo $ARG))
+	VERSION=$(gawk -F \: '{print $2}' <(echo $ARG))
+	TYPE_LIB=$(gawk -F \: '{print $3}' <(echo $ARG))
+	DESC=$(gawk -F \: '{print $4}' <(echo $ARG))
+	FILE=$(basename ${GIRPATH}/$TYPE_LIB* .typelib 2>/dev/null)
 
-
-		if [[ $FILE != ".typelib" ]]; then
-			EXIST_RETURN=0
-			XVER=$(echo $FILE | gawk -F \- '{print $2}')
-			DEP_RETURN=$(echo "$XVER >= $VERSION" | bc)
-		fi
-
-		if [[ $EXIST_RETURN != 0 && ! $SECTION == OPT* ]]; then
-			fail_message m $DEPENDENCY
-			exit 1
-		elif [[ $DEP_RETURN == 1 ]]; then
-			ok_message $DEPENDENCY ${VERSION}+
-		elif [[ $EXIST_RETURN != 0 && $SECTION == OPT* ]]; then
-			warn_message $DEPENDENCY
-			ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
-			MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
-		else	fail_message o $DEPENDENCY $VERSION
-			exit 1
-		fi
-		DONE_COUNTER=$(($DONE_COUNTER+1)); done
+	if [[ $FILE != ".typelib" ]]; then
+		EXIST_RETURN=0
+		XVER=$(gawk -F \- '{print $2}' <(echo $FILE))
+		DEP_RETURN=$(echo "$XVER >= $VERSION" | bc)
 	fi
-	unset CHKS_COUNTER DONE_COUNTER
+
+	if [[ $EXIST_RETURN != 0 && ! $OPT == "true" ]]; then
+		fail_message m $GIR
+		exit 1
+	elif [[ $DEP_RETURN == 1 ]]; then
+		ok_message $GIR ${VERSION}+
+	elif [[ $EXIST_RETURN != 0 && $OPT == "true" ]]; then
+		warn_message $GIR "$DESC"
+		MISSING+=" $GIR"
+	else	fail_message o $GIR $VERSION
+		exit 1
+	fi
+
 done
 
 }
@@ -139,7 +180,7 @@ else
 		fail_message p+
 		exit 1
 	else
-		ok_message Python $PYTHON
+		ok_message Python
 	fi
 fi
 
@@ -147,38 +188,34 @@ fi
 
 check_pymods () {
 
-for SECTION in PYMOD OPT_PYMOD; do
-	CHKS_COUNTER=$(grep -w ${SECTION}[0-9]* .configure/depends | wc -l)
-	DONE_COUNTER=1
+OPT=$1
+shift
 
-	if [[ $CHKS_COUNTER != "0" ]]; then
-		section_message $SECTION
+for ARG in "$@"; do
 
-		while (( $DONE_COUNTER <= $CHKS_COUNTER )); do
-			DEPENDENCY=$(grep -w ${SECTION}${DONE_COUNTER}  .configure/depends | gawk '{print $2}')
+	MOD=$(gawk -F \: '{print $1}' <(echo $ARG))
+	SMOD=$(gawk -F \: '{print $2}' <(echo $ARG))
+	DESC=$(gawk -F \: '{print $3}' <(echo $ARG))
 
-			if [[ $DEPENDENCY == *:* ]]; then
-				FROM=$(echo $DEPENDENCY | gawk -F \: '{print $1}')
-				SMOD=$(echo $DEPENDENCY | gawk -F \: '{print $2}')
-				python -c "from $FROM import $SMOD" 2>/dev/null
-			else
-				python -c "import imp
-imp.find_module('$DEPENDENCY')" 2>/dev/null
-			fi
-
-			DEP_RETURN=$?
-			if [[ $DEP_RETURN == 0 ]]; then
-				ok_message $DEPENDENCY
-			elif [[ $DEP_RETURN != 0 && $SECTION == OPT* ]]; then
-				warn_message $DEPENDENCY
-				ERR_MSG+=$(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk -F':' '{print $2}')
-				MISSING+=" $(grep -w ${SECTION}${DONE_COUNTER} .configure/depends | gawk '{print $2}' )"
-			else 	fail_message m $DEPENDENCY
-				exit 1
-			fi
-			DONE_COUNTER=$(($DONE_COUNTER+1)); done
+	if [[ $SMOD != "" ]]; then
+		DEP="$SMOD ($MOD)"
+		python -c "from $MOD import $SMOD" 2>/dev/null
+	else
+		DEP="$MOD"
+		python -c "import imp
+imp.find_module('$MOD')" 2>/dev/null
 	fi
-	unset CHKS_COUNTER DONE_COUNTER
+
+	DEP_RETURN=$?
+	if [[ $DEP_RETURN == 0 ]]; then
+		ok_message "$DEP"
+	elif [[ $DEP_RETURN != 0 && $OPT == "true" ]]; then
+		warn_message $DEP "${DESC}"
+		MISSING+=" $DEP"
+	else 	fail_message m $DEP
+		exit 1
+	fi
+
 done
 
 }

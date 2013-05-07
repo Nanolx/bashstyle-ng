@@ -102,7 +102,8 @@ fail_message () {
 
 warn_message () {
 
-	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${YELLOW} Not Available"
+	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${YELLOW} Not Available\
+		\n\t  > ${WHITE}$2"
 	tput sgr0
 
 }
@@ -120,25 +121,27 @@ end_message () {
 	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\
 		 \n${YELLOW}Python:${WHITE} $PYTHON\
 		 \n${YELLOW}Dirinfo Wrappers:${WHITE} $DIRINFO_ENABLE\n"
-	if [[ $ERR_MSG != "" ]]; then
-		echo -e "${YELLOW}Notes:\
-			\n${WHITE}${ERR_MSG}"
-	fi
 	tput sgr0
 
 }
 
 help_message () {
 
-	echo -e "\n${GREEN}BashStyle-NG ${YELLOW}(configure 4.1.0) ${CYAN}help
-	\n${WHITE}Options:\
-	\n${ORANGE}--help${WHITE} |${GREEN} Display this help message\
-	\n${ORANGE}--mode${WHITE} |${GREEN} user (do checks) or maintainer (skip checks)\
-	\n${ORANGE}--prefix=${WHITE} |${GREEN} Change Installation Prefix (default: /usr)\
-	\n${ORANGE}--girpath=${WHITE} |${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)\
-	\n${ORANGE}--python=${WHITE} |${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)\
-	\n${ORANGE}--quiet${WHITE} |${GREEN} Only display warnings, failures and results\
-	\n${ORANGE}--dirinfo=${WHITE} |${GREEN} true: enable dirinfo wrappers, false: disable (default: disable)\n"
+	echo -e "\n${GREEN}BashStyle-NG ${YELLOW}(configure 4.2.0) ${CYAN}help
+	\n${WHITE}Options:"
+	echo -e "${ORANGE}--help${WHITE} *|${GREEN} Display this help message\
+	\n${ORANGE}--mode=<mode>${WHITE} *|${GREEN} user (do checks) or maintainer (skip checks)\
+	\n${ORANGE}--prefix=<prefix>${WHITE} *|${GREEN} Change installation prefix (default: /usr)\
+	\n${ORANGE}--bindir=<bindir>${WHITE} *|${GREEN} Change binary path (default: /usr/bin)\
+	\n${ORANGE}--docdir=<docdir>${WHITE} *|${GREEN} Change doc path (default: /usr/share/doc/)\
+	\n${ORANGE}--datadir=<datadir>${WHITE} *|${GREEN} Change data path (default: /usr/share/)\
+	\n${ORANGE}--pcdir=<pcdir>${WHITE} *|${GREEN} Change pkg-config path (default: /usr/lib/pkgconfig)\
+	\n${ORANGE}--profiledir=<profiledir>${WHITE} *|${GREEN} Change profile path (default: /etc/profile.d/)\
+	\n${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)\
+	\n${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)\
+	\n${ORANGE}--quiet${WHITE} *|${GREEN} Only display warnings, failures and results\
+	\n${ORANGE}--dirinfo=<bool>${WHITE} *|${GREEN} true: enable dirinfo wrappers, false: disable (default: disable)" | column -t -s \*
+	echo
 	tput sgr0
 
 }
