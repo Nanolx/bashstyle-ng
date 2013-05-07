@@ -118,7 +118,8 @@ end_message () {
 
 	export PATH="$OLDPATH"
 	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\
-		\n${YELLOW}Dirinfo Wrappers:${WHITE} $DIRINFO_ENABLE\n"
+		 \n${YELLOW}Python:${WHITE} $PYTHON\
+		 \n${YELLOW}Dirinfo Wrappers:${WHITE} $DIRINFO_ENABLE\n"
 	if [[ $ERR_MSG != "" ]]; then
 		echo -e "${YELLOW}Notes:\
 			\n${WHITE}${ERR_MSG}"
