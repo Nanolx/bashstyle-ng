@@ -48,6 +48,6 @@ export_result ()
 \nDOCDIR_LIST=( img img-style )\
 \nPCDIR=\"$PCDIR/\"\
 \nDIRINFO_ENABLE=\"$DIRINFO_ENABLE\"\
-\nMISSING=($MISSING )" >> $PWD/.configure/results
+\nMISSING=($MISSING )" | sed -e 's,\/\/,\/,g' >> $PWD/.configure/results
 
 }
