@@ -1,10 +1,7 @@
 #!/bin/bash
 
 IN_FILES=( rc/nx-rc data/bashstyle data/bashstyle-ng.pc data/bashstyle.sh )
-
-SUB_VERSION_FILES=( data/bashstyle-ng.pc rc/nx-rc data/bashstyle )
-SUB_PREFIX_FILES=( data/bashstyle-ng.pc data/bashstyle data/bashstyle.sh rc/nx-rc )
-SUB_PY_FILES=( data/bashstyle )
+SUB_FILES=( data/bashstyle-ng.pc rc/nx-rc data/bashstyle data/bashstyle.sh )
 
 copy_in_files () {
 
@@ -16,11 +13,12 @@ copy_in_files () {
 
 substitute_values () {
 
-	sed -e "s>@VERSION@>$xVERSION>g" -i ${SUB_VERSION_FILES[@]}
-	sed -e "s>@PREFIX@>$PREFIX>g" -i ${SUB_PREFIX_FILES[@]}
-	sed -e "s>@DATADIR@>$DATADIR>g" -i ${SUB_PREFIX_FILES[@]}
-	sed -e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" -i data/bashstyle.sh
-	sed -e "s>@DOCDIR@>$DOCDIR>g" -i data/bashstyle
-	sed -e "s>@PYTHON@>$PYTHON>g" -i ${SUB_PY_FILES[@]}
+	sed -e "s>@VERSION@>$xVERSION>g" \
+		-e "s>@PREFIX@>$PREFIX>g" \
+		-e "s>@DATADIR@>$DATADIR>g" \
+		-e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" \
+		-e "s>@DOCDIR@>$DOCDIR>g" \
+		-e "s>@PYTHON@>$PYTHON>g" -i ${SUB_FILES[@]}
+	sed -e "s>//>/>g" -i ${SUB_FILES[@]}
 
 }
