@@ -1,7 +1,6 @@
 #!/bin/bash
 
 IN_FILES=( rc/nx-rc data/bashstyle data/bashstyle-ng.pc data/bashstyle.sh )
-SUB_FILES=( data/bashstyle-ng.pc rc/nx-rc data/bashstyle data/bashstyle.sh )
 
 copy_in_files () {
 
@@ -19,7 +18,7 @@ substitute_values () {
 		-e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" \
 		-e "s>@DOCDIR@>$DOCDIR>g" \
 		-e "s>@PYTHON@>$PYTHON>g" \
-		-e "s>@PROFILEDIR@>$PROFILEDIR>g" -i ${SUB_FILES[@]}
-	sed -e "s>//>/>g" -i ${SUB_FILES[@]}
+		-e "s>@PROFILEDIR@>$PROFILEDIR>g" -i ${IN_FILES[@]}
+	sed -e "s>//>/>g" -i ${IN_FILES[@]}
 
 }
