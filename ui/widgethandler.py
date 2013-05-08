@@ -29,11 +29,12 @@ if FAILED:
     print "The following modules failed to import: %s" % (" ".join(FAILED))
     sys.exit(1)
 
-PREFIX = os.getenv('BSNG_UI_PREFIX') or "/usr"
+PREFIX = os.getenv('BSNG_UI_PREFIX')
+DATADIR = os.getenv('BSNG_DATADIR')
 blacklist = ['\'', '\"']
 gtkbuilder = Gtk.Builder()
 gtkbuilder.set_translation_domain("bs-ng")
-gtkbuilder.add_from_file(PREFIX + "/share/bashstyle-ng/ui/bashstyle8.ui")
+gtkbuilder.add_from_file(DATADIR + "/bashstyle-ng/ui/bashstyle8.ui")
 
 class WidgetHandler(object):
 		####################### metafuncs for handling widgets ###########################

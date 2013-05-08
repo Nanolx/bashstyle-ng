@@ -24,11 +24,12 @@ if FAILED:
     print "The following modules failed to import: %s" % (" ".join(FAILED))
     sys.exit(1)
 
-PREFIX = os.getenv('BSNG_UI_PREFIX') or "/usr"
+PREFIX = os.getenv('BSNG_UI_PREFIX')
+DATADIR = os.getenv('BSNG_DATADIR')
 USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
 USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
 USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
-FACTORY_DEFAULTS = (PREFIX + '/share/bashstyle-ng/bs-ng.ini')
+FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 
 app_ini_version = 2
 

@@ -24,7 +24,8 @@ if FAILED:
     print "The following modules failed to import: %s" % (" ".join(FAILED))
     sys.exit(1)
 
-PREFIX = os.getenv('BSNG_UI_PREFIX') or "/usr"
+PREFIX = os.getenv('BSNG_UI_PREFIX')
+DATADIR = os.getenv('BSNG_DATADIR')
 
 def SwapDictionary(original_dict):
 	return dict([(v, k) for (k, v) in original_dict.iteritems()])
@@ -38,6 +39,6 @@ def EnableBashstyleNG(activate):
 			rc_new.write(line)
 	rc.close
 	if activate == True:
-		rc_new.write("source %s/share/bashstyle-ng/rc/nx-rc" % PREFIX)
+		rc_new.write("source %s/bashstyle-ng/rc/nx-rc" % DATADIR)
 	rc_new.close
 	shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))

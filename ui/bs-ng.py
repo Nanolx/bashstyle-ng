@@ -33,6 +33,8 @@ if FAILED:
     sys.exit(1)
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')
+DOCDIR = os.getenv('BSNG_DOCDIR')
+DATDIR = os.getenv('BSNG_DATADIR')
 
 args.CmdArgs()
 initial_page = dicts.groups[args.CmdArgs.options.group]
@@ -250,7 +252,7 @@ class BashStyleNG(object):
 		self.show_doc = gtkbuilder.get_object("show_doc")
 
 		def show_documentation(widget, data=None):
-			subprocess.Popen("x-www-browser " + PREFIX + "/share/doc/bashstyle-ng/index.html", shell=True)
+			subprocess.Popen("x-www-browser " + DOCDIR + "/bashstyle-ng/index.html", shell=True)
 
 		self.show_doc.connect("clicked", show_documentation, None)
 
