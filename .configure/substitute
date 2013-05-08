@@ -18,7 +18,8 @@ substitute_values () {
 		-e "s>@DATADIR@>$DATADIR>g" \
 		-e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" \
 		-e "s>@DOCDIR@>$DOCDIR>g" \
-		-e "s>@PYTHON@>$PYTHON>g" -i ${SUB_FILES[@]}
+		-e "s>@PYTHON@>$PYTHON>g" \
+		-e "s>@PROFILEDIR@>$PROFILEDIR>g" -i ${SUB_FILES[@]}
 	sed -e "s>//>/>g" -i ${SUB_FILES[@]}
 
 }

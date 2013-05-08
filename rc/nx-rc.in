@@ -25,7 +25,7 @@ export BSNG_VERSION=@VERSION@
 export BSNG_DOCS=@DOCDIR@/bashstyle-ng/index.html
 
 if [[ ! $BSNG_PROFILED ]]; then
-	. /etc/profile.d/bashstyle.sh
+	. @PROFILEDIR@/bashstyle.sh
 fi
 
 ERR_MSG=""
