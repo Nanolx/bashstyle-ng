@@ -22,7 +22,7 @@ done
 CURRENT_WIZARD=1
 
 if [[ ! -e $HOME/.bs-ng-wizard.ini ]]; then
-	cp $BSNG_PREFIX/share/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
+	cp $BSNG_DATA_DIR/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
 	STAGE=INIT
 elif [[ $(wizard_get ini_version) < $CURRENT_WIZARD ]]; then
 	bs-ng-wizard.update
@@ -32,7 +32,7 @@ elif [[ $(wizard_get ini_version) == $CURRENT_WIZARD ]]; then
 fi
 
 if [[ $1 == *force ]]; then
-	cp $BSNG_PREFIX/share/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
+	cp $BSNG_DATA_DIR/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
 	STAGE=INIT
 	shift
 fi

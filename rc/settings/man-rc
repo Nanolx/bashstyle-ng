@@ -13,12 +13,12 @@ if [[ $enabcol == True ]]; then
 
 	if	[[ $(ini_get man_style) == mostlike ]]; then \
 		dbg_msg $"BashStyle-NG Setting:" $"Terminfo Mostlike"
-		db_log alias man="TERMINFO=$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=mostlike LESS=C PAGER=less man"
+		db_log alias man="TERMINFO=$BSNG_DATA_DIR/bashstyle-ng/terminfo TERM=mostlike LESS=C PAGER=less man"
 	elif	[[ $(ini_get man_style) ==  bold ]]; then \
 		dbg_msg $"BashStyle-NG Setting:" $"Terminfo Bold"
-		dbg_log alias man="TERMINFO=$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=bold LESS=C PAGER=less man"
+		dbg_log alias man="TERMINFO=$BSNG_DATA_DIR/bashstyle-ng/terminfo TERM=bold LESS=C PAGER=less man"
 	elif	[[ $(ini_get man_style) == nebula ]]; then \
 		dbg_msg $"BashStyle-NG Setting:" $"Terminfo Nebula"
-		dbg_log alias man="TERMINFO=$BSNG_PREFIX/share/bashstyle-ng/terminfo TERM=nebula LESS=C PAGER=less man"
+		dbg_log alias man="TERMINFO=$BSNG_DATA_DIR/bashstyle-ng/terminfo TERM=nebula LESS=C PAGER=less man"
 	fi
 fi
