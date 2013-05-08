@@ -70,6 +70,12 @@ if [[ $MODE == help ]]; then
 
 	help_message
 
+elif [[ $GIRPATH == "" ]]; then
+	echo -e "*** GIRPATH not detected ***\
+		\nconfigure --girpath=<girpath> to specify where to look for\
+gobject-introspection files\n"
+	exit 1
+
 elif [[ $MODE == maintainer ]]; then
 
 	maintainer_message

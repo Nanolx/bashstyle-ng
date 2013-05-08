@@ -9,8 +9,6 @@ if [[ -d "/usr/lib/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib/girepository-1.0/"
 elif [[ -d "/usr/lib64/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib64/girepository-1.0/"
-else
-	echo *** GIRPATH not detected ***
 fi
 
 PREFIX="/usr"
