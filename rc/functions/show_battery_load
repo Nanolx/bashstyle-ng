@@ -10,8 +10,9 @@
 #########################################################
 
 case $1 in
-	*acpi )
-		check_opt acpi show_battery_load::acpi
+
+	* )
+		check_opt acpi show_battery_load
 		if [[ $? != "1" ]]; then
 			load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
 			out="$(acpi -b)"
@@ -32,32 +33,5 @@ case $1 in
 			battery="${statesign}${load}"
 			echo $battery
 		fi
-	;;
-
-	*apm )
-		check_opt apm show_battery_load::apm
-		if [[ $? != "1" ]]; then
-			result="$(apm)"
-			case ${result} in
-				*'AC on'*)
-					state="^"
-				;;
-
-				*'AC off'*)
-					state="v"
-				;;
-			esac
-			load="${temp##* }"
-			battery="${state}${load}"
-			echo $battery
-		fi
-	;;
-
-	* )
-		echo -e "\n${ewhite}Usage:\n"
-		echo -e "${eorange}show_battery_load${ewhite} |${egreen} --acpi${eiceblue} [show batteryload using acpi]\
-		\n${eorange}show_battery_load${ewhite} |${egreen} --apm${eiceblue} [show batteryload using apm]" | column -t
-		echo ""
-		tput sgr0
 	;;
 esac
