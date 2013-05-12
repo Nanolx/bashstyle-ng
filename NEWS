@@ -9,6 +9,16 @@ Overview of changes in v8.1 "Sonic Empire"
 	make sure PATH is setup early (fixes issue that
 	bs-ng-wizard is not available on bash startup)
 
+=== Removed features ===
+* show_weather function
+* show_battery_load --apm (now only using acpi)
+
+=== Other changes ===
+* drop optional dependency on lynx
+* drop optional dependency on apm
+* add optional dependency on ghostscript
+* updated debian/control
+
 === configure 4.2.1 ===
 * configure now accepts --girpath argument (girpath to use)
 * configure now accepts --mode argument (user = check dependencies,
