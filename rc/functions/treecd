@@ -9,9 +9,10 @@
 #							#
 #########################################################
 
-check_opt tree treecd
+source $BSNG_RC_DIR/internal/misc
 
-if [[ $1 != "1" ]]; then
+check_opt tree treecd
+if [[ $? != 1 ]]; then
 	builtin cd "${@}" &>/dev/null
 	. $BSNG_RC_DIR/dirinfo/display
 	dirinfo_display
