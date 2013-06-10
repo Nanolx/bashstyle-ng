@@ -40,10 +40,7 @@ fi
 
 # work-around a bug in specific
 # autoconf versions (...)
-export CONFIG_SHELL="/bin/bash"
+# export CONFIG_SHELL="/bin/bash"
 
 export PATH="@PREFIX@/share/bashstyle-ng/rc/functions/:$PATH:."
-
-# envvar for nx-rc to know, whether this
-# file was actually sourced. XDM doesn't!
-export BSNG_PROFILED=1
+source @PREFIX@/share/bashstyle-ng/rc/nx-rc
