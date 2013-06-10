@@ -6,9 +6,28 @@ update_cache () {
 
 }
 
-remove_old_wrappers () {
+remove_cruft () {
 
 	rm -rf $DESTDIR/$PREFIX/share/bashstyle-ng/rc/bin/
+
+	if [[ -e /etc/profile.d/bashstyle.sh ]]; then
+		rm /etc/profile.d/bashstyle.sh
+	fi
+
+}
+
+add_bsng_init () {
+
+	if [[ -e /etc/bash.bashrc ]]; then
+		BASHFILE=/etc/bash.bashrc
+	else
+		BASHFILE=/etc/bashrc
+	fi
+
+	if [[ $(grep "bashstyle.sh" ${BASHFILE}) == "" ]]; then
+		echo "source ${PROFILEDIR}/bashstyle.sh" | sed -e 's,//,/,g' >> ${BASHFILE}
+	fi
+
 }
 
 post_install () {
@@ -17,7 +36,8 @@ post_install () {
 
 		echo -e "\t${WHITE}+ ${WHITE} post-installation tasks"
 		update_cache
-		remove_old_wrappers
+		remove_cruft
+		add_bsng_init
 		echo -e "\n${CYAN}Thanks for choosing BashStyle-NG!\n"
 
 	fi
