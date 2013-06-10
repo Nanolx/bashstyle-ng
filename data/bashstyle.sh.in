@@ -38,9 +38,5 @@ if [[ @DIRINFO_ENABLE@ != "false" ]]; then
 
 fi
 
-# work-around a bug in specific
-# autoconf versions (...)
-# export CONFIG_SHELL="/bin/bash"
-
 export PATH="@PREFIX@/share/bashstyle-ng/rc/functions/:$PATH:."
 source @PREFIX@/share/bashstyle-ng/rc/nx-rc
