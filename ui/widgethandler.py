@@ -91,8 +91,6 @@ class WidgetHandler(object):
 					self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
 				elif type == "bool":
 					self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_active()
-					if widget_setting == "use_bashstyle":
-						misc.EnableBashstyleNG(widget.get_active())
 				elif type == "combo":
 					self.config["%s" % widget_group]["%s" % widget_setting] =  dict[widget.get_active()]
 
