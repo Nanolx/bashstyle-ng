@@ -9,7 +9,11 @@
 #							#
 #########################################################
 
-verbose=$(wizard_get debug_verbose)
+if [[ -e $HOME/.bs-ng-wizard.ini ]]; then
+	verbose=$(wizard_get debug_verbose)
+else
+	verbose=False
+fi
 
 dbg_msg ()
 {

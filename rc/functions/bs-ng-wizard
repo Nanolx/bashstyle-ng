@@ -13,17 +13,18 @@
 TEXTDOMAIN="bs-ng-wizard"
 
 source $BSNG_RC_DIR/internal/misc
-
-MODULES=( ini basic cdwriter git lscd reprepro svn user )
-for mod in ${MODULES[@]}; do
-	source $BSNG_RC_DIR/wizard/$mod
-done
-
-CURRENT_WIZARD=1
+source $BSNG_RC_DIR/wizard/ini
 
 if [[ ! -e $HOME/.bs-ng-wizard.ini ]]; then
-	cp $BSNG_DATA_DIR/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
-	STAGE=INIT
+	if [[ ! -f ${HOME}/.bs-ng-wizard.ini ]]; then
+		if [[ -f /etc/bs-ng-wizard_vendor.ini ]]; then
+			cp /etc/bs-ng-wizard_vendor.ini ${HOME}/.bs-ng-wizard.ini
+			STAGE=KEEP
+		else
+			cp ${BSNG_DATA_DIR}/bashstyle-ng/bs-ng-wizard.ini ${HOME}/.bs-ng-wizard.ini
+			STAGE=INIT
+		fi
+	fi
 elif [[ $(wizard_get ini_version) < $CURRENT_WIZARD ]]; then
 	bs-ng-wizard.update
 	STAGE=UPDATE
@@ -31,13 +32,20 @@ elif [[ $(wizard_get ini_version) == $CURRENT_WIZARD ]]; then
 	STAGE=KEEP
 fi
 
+MODULES=( basic cdwriter git lscd reprepro svn user )
+for mod in ${MODULES[@]}; do
+	source $BSNG_RC_DIR/wizard/$mod
+done
+
+CURRENT_WIZARD=1
+
 if [[ $1 == *force ]]; then
 	cp $BSNG_DATA_DIR/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
 	STAGE=INIT
 	shift
 fi
 
-export RC_FILE=$HOME/.bashstyle.wizard
+export RC_FILE=$HOME/.bs-ng-wizard.ini
 
 case $STAGE in
 

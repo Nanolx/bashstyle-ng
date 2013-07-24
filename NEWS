@@ -6,12 +6,14 @@ Overview of changes in v8.2 "Fate of the Galaxy"
 	fix python check if version number contains '+'
 
 === Other changes ===
-* bashstyle.sh from /etc/profile.d to /etc
+* fix many lintian warnings, improve debian packaging scripts
+* move bashstyle.sh from /etc/profile.d to /etc
 * let nx-rc create a default $HOME/.bs-ng.ini if none exists
 * improve loading settings, it's now really possible to only
   use readline settings, but not bash or any other constellation
 * add posibility to use a vendor provided config if user
-  does not have $HOME/.bs-ng.ini (/etc/bs-ng_vendor.ini)
+  does not have $HOME/.bs-ng.ini (/etc/bs-ng_vendor.ini),
+  or no $HOME/.bs-ng-wizard.ini (/etc/bs-ng-wizard_vendor.ini)
 * make bashstyle.sh load BashStyle-NG on shell startup,
   (if enabled in users $HOME/.bs-ng.ini)
 
