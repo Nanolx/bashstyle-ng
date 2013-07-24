@@ -1,7 +1,7 @@
 Source: bashstyle-ng
 Section: utils
 Priority: extra
-Maintainer: Christopher Bratusek <nano@tuxfamily.org>
+Maintainer: Christopher Roy Bratusek <nano@tuxfamily.org>
 Build-Depends: 	debhelper (>= 5),
  		autotools-dev,
  		sed,
@@ -11,9 +11,10 @@ Build-Depends: 	debhelper (>= 5),
                 bash (>= 3.2),
                 gawk,
                 debianutils,
-                python (>= 2.4) | python3,
+                python (>= 2.4),
                 python-gi | python3-gi,
-                python-configobj
+                python-configobj,
+                python-support (>= 0.90)
 Standards-Version: 3.7.2
 
 Package: bashstyle-ng
@@ -30,6 +31,8 @@ Depends: 	bash (>= 3.2),
  		libgtk-3-bin,
                 whiptail,
                 gir1.2-gtk-3.0,
+                ${misc:Depends},
+                ${python:Depends}
 Suggests:  	nano,
  		vim,
  		acpi,
@@ -38,15 +41,16 @@ Suggests:  	nano,
                 ghostscript,
                 pciutils,
                 usbutils
-Description: BashStyle-NG
- BashStyle-NG is a graphical tool for changing the behaviour and look'n'feel of Bash, Readline, Vim and Nano
+Description: Graphical tool and toolchain for Bash
+ BashStyle-NG is a graphical tool and toolchain for changing
+ the behaviour and look'n'feel of Bash, Readline, Vim and Nano
  .
  Furthermore you can:
- 	- create your own prompt
- 	- define up to 7 aliases
- 	- get colored manpages [without using most(!)]
- 	- choose between 12 pre-defined prompts
- 	- trip out when seeing your new prompt
-        - change the colors of ls and grep output
-        - store your own customizations in $HOME/.custom-rc
- 	- and much more!
+ - create your own prompt
+ - define up to 9 aliases
+ - get colored manpages [without using most(!)]
+ - choose between 12 pre-defined prompts
+ - trip out when seeing your new prompt
+ - change the colors of ls and grep output
+ - store your own customizations in $HOME/.custom-rc
+ - and much more!
