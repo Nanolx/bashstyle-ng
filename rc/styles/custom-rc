@@ -13,7 +13,7 @@ custom_prompt=$(ini_get prompt)
 
 custom_command=$(ini_get command)
 
-if [[ $use_custom_prompt == "True" && $custom_prompt !=  && $custom_prompt != "Not Supported" ]]; then
+if [[ $use_custom_prompt == "True" && $custom_prompt != "" && $custom_prompt != "Not Supported" ]]; then
 	if [[ $custom_command != "" && $custom_command != "Not Supported" ]]; then
 		echo -E "function pre_prompt { " > $HOME/.custom_prompt 
 		echo -E "$custom_command" >> $HOME/.custom_prompt 

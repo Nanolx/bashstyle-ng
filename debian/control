@@ -4,13 +4,13 @@ Priority: extra
 Maintainer: Christopher Roy Bratusek <nano@tuxfamily.org>
 Build-Depends: 	debhelper (>= 5),
  		autotools-dev,
- 		sed,
- 		grep,
- 		make,
- 		ncurses-bin,
+                sed (>= 4.2.1),
+                grep (>= 2.12),
+                make (>= 3.80),
+                ncurses-bin (>= 5.9),
                 bash (>= 3.2),
                 gawk,
-                debianutils,
+                debianutils (>= 4.3.2),
                 python (>= 2.4),
                 python-gi | python3-gi,
                 python-configobj,
@@ -23,10 +23,10 @@ Depends: 	bash (>= 3.2),
  		bc,
  		procps,
  		gawk,
- 		grep,
+                grep (>= 2.12),
  		python (>= 2.4) | python3,
  		python-gi | python3-gi,
-                sed,
+                sed (>= 4.2.1),
  		less,
  		libgtk-3-bin,
                 whiptail,
@@ -46,11 +46,11 @@ Description: Graphical tool and toolchain for Bash
  the behaviour and look'n'feel of Bash, Readline, Vim and Nano
  .
  Furthermore you can:
- - create your own prompt
- - define up to 9 aliases
- - get colored manpages [without using most(!)]
- - choose between 12 pre-defined prompts
- - trip out when seeing your new prompt
- - change the colors of ls and grep output
- - store your own customizations in $HOME/.custom-rc
- - and much more!
+   - create your own prompt
+   - define up to 9 aliases
+   - get colored manpages [without using most]
+   - choose between 12 pre-defined prompts
+   - trip out when seeing your new prompt
+   - change the colors of ls and grep output
+   - store your own customizations in $HOME/.custom-rc
+   - and much more
