@@ -1,3 +1,21 @@
+bashstyle-ng (8.2-1nano) unstable; urgency=low
+
+  * New upstream stable release
+  * bugfix: fix python check if version number contains '+'
+  * fix many lintian warnings, improve debian packaging scripts
+  * move bashstyle.sh from /etc/profile.d to /etc
+  * let nx-rc create a default $HOME/.bs-ng.ini if none exists
+  * improve loading settings, it's now really possible to only
+    use readline settings, but not bash or any other constellation
+  * add posibility to use a vendor provided config if user
+    does not have $HOME/.bs-ng.ini (/etc/bs-ng_vendor.ini),
+    or no $HOME/.bs-ng-wizard.ini (/etc/bs-ng-wizard_vendor.ini)
+  * make bashstyle.sh load BashStyle-NG on shell startup,
+    (if enabled in users $HOME/.bs-ng.ini)
+  * improved post-installation tasks
+
+ -- Christopher Roy Bratusek <nano@tuxfamily.org>  Wed, 24 Jul 2013 19:03:45 +0200
+
 bashstyle-ng (8.1-1nano) unstable; urgency=low
 
   * New upstream stable release [see NEWS]
