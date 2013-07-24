@@ -73,5 +73,6 @@ remove_bsng () {
 	for file in ${REMOVE_FILES[@]}; do
 		rm -rf "$file"
 	done
+	post_remove
 
 }

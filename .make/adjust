@@ -30,6 +30,20 @@ add_bsng_init () {
 
 }
 
+post_remove () {
+
+	if [[ -e /etc/bash.bashrc ]]; then
+		BASHFILE=/etc/bash.bashrc
+	else
+		BASHFILE=/etc/bashrc
+	fi
+
+	if [[ $(grep "bashstyle.sh" ${BASHFILE}) != "" ]]; then
+		sed -e '/bashstyle.sh/d' -i ${BASHFILE}
+	fi
+
+}
+
 post_install () {
 
 	if [[ ! $DISABLE_POSTINSTALL ]]; then
