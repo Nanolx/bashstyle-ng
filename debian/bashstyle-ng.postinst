@@ -6,4 +6,6 @@ if [ ! $(grep "bashstyle.sh" /etc/bash.bashrc) >/dev/null 2>&1 ]; then
     echo "source /etc/bashstyle.sh" >> /etc/bash.bashrc
 fi
 
+#DEBHELPER#
+
 exit 0
