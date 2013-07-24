@@ -20,10 +20,16 @@ LOCALE_FILES=( i18n/de/*.mo:${LOCALEDIR}/de/LC_MESSAGES/
 	       i18n/it/*.mo:${LOCALEDIR}/it/LC_MESSAGES/
 	       i18n/ru/*.mo:${LOCALEDIR}/ru/LC_MESSAGES/ )
 
-DOC_FILES=( docs/*.html:${DOCDIR}
-	    docs/img/*.png:${DOCDIR}/img
-	    docs/img-style/*.png:${DOCDIR}/img-style
-	    {AUTHORS,COPYING,COPYING.ICONS,CREDITS,NEWS,README}:${DOCDIR} )
+if [[ ! ${FROM_PACKAING_SCRIPT} ]]; then
+	DOC_FILES=( docs/*.html:${DOCDIR}
+		    docs/img/*.png:${DOCDIR}/img
+		    docs/img-style/*.png:${DOCDIR}/img-style
+		    {AUTHORS,COPYING,COPYING.ICONS,CREDITS,NEWS,README}:${DOCDIR} )
+else
+	DOC_FILES=( docs/*.html:${DOCDIR}
+		    docs/img/*.png:${DOCDIR}/img
+		    docs/img-style/*.png:${DOCDIR}/img-style )
+fi
 
 BIN_FILES=( data/bashstyle:${BINDIR}
 	    bin-extra/*:${DATADIR}/bin
