@@ -5,6 +5,10 @@ Overview of changes in v8.3 "Tweeka-Time"
 * #143 (make):
 	don't enforce make install/uninstall to be run as root
 	(prevents building rpm packages)
+* #144 (docs):
+	don't auto-install docs like AUTHORS, COPYING etc. let
+	this the package-maintainer do. Only the user-manual
+	will be installed on your system
 
 === configure v4.2.2 ===
 * add --no-postinstall configure-flag (for package-maintainers)
