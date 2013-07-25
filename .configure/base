@@ -29,10 +29,6 @@ export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 export_result ()
 {
 
-	if [[ -e $PWD/.configure/results ]]; then
-		rm $PWD/.configure/results
-	fi
-
 	echo -e "MODE=\"$MODE\"\
 \nPREFIX=\"$PREFIX\"\
 \nDATADIR=\"$DATADIR/bashstyle-ng/\"\

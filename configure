@@ -7,6 +7,8 @@ for mod in ${MODULES[@]}; do
 	source $PWD/.configure/$mod
 done
 
+rm -f $PWD/.configure/results
+
 xcount=0
 pcount=$#
 
@@ -58,6 +60,16 @@ while [[ $xcount -lt $pcount ]]; do
 
 		--help )
 			MODE=help
+		;;
+
+		--no-postinstall )
+			DISABLE_POSTINSTALL=1
+			echo "DISABLE_POSTINSTALL=1" >> $PWD/.configure/results
+		;;
+
+		--no-installdocs )
+			DISABLE_INSTALLDOCS=1
+			echo "DISABLE_INSTALLDOCS=1" >> $PWD/.configure/results
 		;;
 	esac
 	shift

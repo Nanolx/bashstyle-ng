@@ -118,9 +118,19 @@ maintainer_message () {
 end_message () {
 
 	export PATH="$OLDPATH"
-	echo -e "\n${YELLOW}Prefix:${WHITE} $PREFIX\
-		 \n${YELLOW}Python:${WHITE} $PYTHON\
-		 \n${YELLOW}Dirinfo Wrappers:${WHITE} $DIRINFO_ENABLE\n"
+	echo -e "\n${BLUE}Notes from configure:\
+		 \n\n${YELLOW}Prefix:${WHITE}\t\t\t$PREFIX\
+		 \n${YELLOW}Python:${WHITE}\t\t\t$PYTHON\
+		 \n${YELLOW}Dirinfo Wrappers:${WHITE}\t$DIRINFO_ENABLE"
+	if [[ ${DISABLE_POSTINSTALL} ]]; then
+		echo -e "${YELLOW}Post-Install Tasks:${WHITE}\tDisabled"
+	else	echo -e "${YELLOW}Post-Install Tasks:${WHITE}\tEnabled"
+	fi
+	if [[ ${DISABLE_INSTALLDOCS} ]]; then
+		echo -e "${YELLOW}Install Documentation:${WHITE}\tNo"
+	else	echo -e "${YELLOW}Install Documentation:${WHITE}\tYes"
+	fi
+	echo ""
 	tput sgr0
 
 }
@@ -139,6 +149,8 @@ help_message () {
 	\n${ORANGE}--profiledir=<profiledir>${WHITE} *|${GREEN} Change profile path (default: /etc/)\
 	\n${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)\
 	\n${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)\
+	\n${ORANGE}--no-postinstall *|${GREEN} Disable post-installation tasks (for package-maintainers)\
+	\n${ORANGE}--no-installdocs *|${GREEN} Disable installation of docs (for package-maintainers)\
 	\n${ORANGE}--quiet${WHITE} *|${GREEN} Only display warnings, failures and results\
 	\n${ORANGE}--dirinfo=<bool>${WHITE} *|${GREEN} true: enable dirinfo wrappers, false: disable (default: disable)" | column -t -s \*
 	echo
