@@ -40,21 +40,13 @@ while [[ $xcount -lt $pcount ]]; do
 
 		export ) git_export $HOME/Desktop/bashstyle-ng-$2 ;;
 
-		install ) if [[ $EUID != 0 ]]; then
-				echo -e "\n${RED}You're not root!\n"
-				exit 1
-			  fi
-			  if [[ -e $PWD/.make/build_done ]]; then
+		install ) if [[ -e $PWD/.make/build_done ]]; then
 				echo -e "\n${GREEN}Installing BashStyle-NG:\n"
 				installdirs_create && install_bsng && post_install
 			  else 	echo -e "\n${RED}You need to run ./make build first!\n"
 			  fi ;;
 
-		remove ) if [[ $EUID != 0 ]]; then
-				echo -e "\n${RED}You're not root!\n"
-				exit 1
-			fi
-			echo -e "\n${RED}Removing BashStyle-NG:\n"
+		remove ) echo -e "\n${RED}Removing BashStyle-NG:\n"
 			remove_bsng ;;
 
 		changelog ) $PWD/.make/changelog ;;
