@@ -144,6 +144,9 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 
 	if [[ $(wizard_get color_shell) == True ]]; then
 		. $BSNG_RC_DIR/functions/colorshell
+		if [[ $(wizard_get color_shell_revert) == True ]]; then
+			trap 'echo -ne "\e[0m"' DEBUG
+		fi
 	fi
 
 	if [[ $(ini_get tab_rotation) == "True" ]]; then \

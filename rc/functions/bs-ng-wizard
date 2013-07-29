@@ -14,6 +14,7 @@ TEXTDOMAIN="bs-ng-wizard"
 
 source $BSNG_RC_DIR/internal/misc
 source $BSNG_RC_DIR/wizard/ini
+CURRENT_WIZARD=2
 
 if [[ ! -e $HOME/.bs-ng-wizard.ini ]]; then
 	if [[ ! -f ${HOME}/.bs-ng-wizard.ini ]]; then
@@ -26,18 +27,15 @@ if [[ ! -e $HOME/.bs-ng-wizard.ini ]]; then
 		fi
 	fi
 elif [[ $(wizard_get ini_version) < $CURRENT_WIZARD ]]; then
-	bs-ng-wizard.update
 	STAGE=UPDATE
 elif [[ $(wizard_get ini_version) == $CURRENT_WIZARD ]]; then
 	STAGE=KEEP
 fi
 
-MODULES=( basic cdwriter git lscd reprepro svn user )
+MODULES=( basic cdwriter git lscd reprepro svn user updates )
 for mod in ${MODULES[@]}; do
 	source $BSNG_RC_DIR/wizard/$mod
 done
-
-CURRENT_WIZARD=1
 
 if [[ $1 == *force ]]; then
 	cp $BSNG_DATA_DIR/bashstyle-ng/bs-ng-wizard.ini $HOME/.bs-ng-wizard.ini
@@ -76,7 +74,12 @@ for mod in $CONF_MODULES ; do
 			wizard_svn_accounts
 			wizard_reprepro
 			wizard_user
+			update_wizard_2
 			wizard_end
+		;;
+
+		2 )
+			update_wizard_2
 		;;
 
 	esac
