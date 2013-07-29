@@ -30,9 +30,7 @@ fi
 
 ERR_MSG=""
 
-BSNG_INTERN=( wizard/ini internal/misc internal/logging )
-
-for RC in ${BSNG_INTERN[@]}; do
+for RC in wizard/ini internal/misc internal/logging; do
 	source $BSNG_RC_DIR/$RC
 done
 
