@@ -81,8 +81,13 @@ fi
 
 if [[ $(ini_get use_bashstyle) == "True" ]]; then
 
-	dbg_msg $"BashStyle-NG Setting:" $"Alias" reload=source ~/.bashrc
-	dbg_log alias reload="source ~/.bashrc"
+	if [[ -f /etc/bash.bashrc ]]; then
+		BASHRC=/etc/bash.bashrc
+	else	BASHRC=/etc/bashrc
+	fi
+
+	dbg_msg $"BashStyle-NG Setting:" $"Alias" reload=source $BASHRC
+	dbg_log alias reload="source $BASHRC"
 
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
 	dbg_log alias rd="pwd -P"
