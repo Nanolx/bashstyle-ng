@@ -1,0 +1,51 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2013 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ ${EUID} != 0 ]]; then
+	echo "You're not root, exiting!"
+	exit 1
+fi
+
+echo -e \
+"************************************************
+BashStyle-NG: extras installer
+
+Enter letter for the extra you want to install:
+A	bash-git-prompt
+"
+
+read EXTRA
+
+case $EXTRA in
+
+	A | bash-git-prompt)
+
+		echo -e "\nA bash prompt that displays information about the current
+git repository. In particular the branch name, difference with remote
+branch, number of files staged, changed, etc.
+
+Source: https://github.com/magicmonty/bash-git-prompt"
+
+		git clone https://github.com/magicmonty/bash-git-prompt.git
+		cd bash-git-prompt
+		mkdir -p ${BSNG_RC_DIR}/extras/
+		cp gitprompt.sh ${BSNG_RC_DIR}/extras/gitprompt
+		cp gitstatus.py ${BSNG_RC_DIR}/extras/
+		cd -
+		rm -rf bash-git-prompt
+
+		echo -e "\nbash-git-prompt installed into:
+\n	${BSNG_RC_DIR}/extras/
+\nchoose using a custom prompt in BashStyle-NG and make use of it."
+
+	;;
+
+esac
