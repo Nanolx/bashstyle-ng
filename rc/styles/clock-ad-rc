@@ -11,7 +11,6 @@
 
 if [[ $enabcol == "True" ]]; then
 
-user="whoami"
 host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
 
 esepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
@@ -33,7 +32,7 @@ function pre_prompt {
 
 newPWD="${PWD}"
 
-let promptsize=$(echo -n "--( $user @ $host )--( ${PWD} )----" | wc -c | tr -d " ")
+let promptsize=$(echo -n "--( $(whoami) @ $host )--( ${PWD} )-----" | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
 fill=""
@@ -99,7 +98,6 @@ $fontcolor :$CLOCK_AD_1_COLOR\$(CLOCK_AD_1)$fontcolor \$$sepacolor )·>$fontcolo
 
 else
 
-user="whoami"
 host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
 dirchar=$(ini_get directory_indicator)
 trunc_symbol=$(ini_get pwdcut)
@@ -114,7 +112,7 @@ function pre_prompt {
 
 newPWD="${PWD}"
 
-let promptsize=$(echo -n "--($user @ $host)---(${PWD})-------" | wc -c | tr -d " ")
+let promptsize=$(echo -n "--( $(whoami) @ $host )---( ${PWD} )-----" | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
 fill=""

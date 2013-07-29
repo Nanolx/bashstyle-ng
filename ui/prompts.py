@@ -23,15 +23,14 @@ floating_clock_pc="let prompt_x=$(tput cols)-29\
 \ntput rc"
 floating_clock_ps="[ \u @ \h : \$(trunc_pwd) ] "
 
-clock_advanced_pc="user=\"whoami\"\
-\nhost=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
+clock_advanced_pc="host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
 \ndirchar=$(ini_get directory_indicator)\
 \ntrunc_symbol=$(ini_get pwdcut)\
 \ntrunc_length=$(($(echo $trunc_symbol | wc -m)-1))\
 \n\
 \nj=4 k=6 l=8 m=10 newPWD=\"${PWD}\" fill=\"\"\
 \n\
-\nlet promptsize=$(echo -n \"--($user @ $host)---(${PWD})-------\" | wc -c | tr -d \" \")\
+\nlet promptsize=$(echo -n \"--( $(whoami) @ $host )---(${PWD})-----\" | wc -c | tr -d \" \")\
 \nlet fillsize=${COLUMNS}-${promptsize}\
 \n\
 \nwhile [ \"$fillsize\" -gt \"0\" ]; do\
