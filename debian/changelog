@@ -1,3 +1,35 @@
+bashstyle-ng (8.3-1nano) unstable; urgency=low
+
+  * New upstream stable release
+  * Upstream changes:
+    * fix 143 (make): dont enforce make install/uninstall to
+      be run as root (prevents building rpm packages)
+    * fix 144 (docs): dont auto-install docs like AUTHORS,
+      COPYING etc. let this the package-maintainer do.
+      Only the user-manual will be installed on your system
+    * fix 145 (clock-advanced prompt): 	fix calculating prompt-size
+      when changing user and fix calculating overall prompt-size in
+      monochrome version
+    * fix 146 (nx-rc): make "reload" working again (broken since 8.2)
+    * fix 147 (wizard): fixed some bugs that prevented upgrading the
+      ini-file for bs-ng-wizard (first update of the file in v8.3)
+    * install-extras: simple script to install other (possibly)
+      insteressting stuff for bash (currently: bash-git-prompt)
+    * nx-rc: dont pollute environment with useless variables
+    * installdirs: dont create no longer used directories upon install
+    * colorshell: option to return to normal text-color after pressing enter
+    * bs-ng-wizard: update ini_file to v2 (add color_shell_reset option)
+    * configure 4.2.2:
+      * add --no-postinstall configure-flag (for package-maintainers)
+      [no post-installation tasks will be performed, ensure your packaging
+      scripts will do the thing instead]
+      * add --no-installdocs configure-flag (for package-maintainers)
+        [no documentation will be automatically installed, ensure your
+	packaging scripts will do the thing instead]
+      * changed configures note-message at the end a bit
+
+ -- Christopher Roy Bratusek <nano@tuxfamily>  Sat, 17 Aug 2013 18:54:27 +0200
+
 bashstyle-ng (8.2-1nano) unstable; urgency=low
 
   * New upstream stable release
@@ -5,7 +37,7 @@ bashstyle-ng (8.2-1nano) unstable; urgency=low
   * fix many lintian warnings, improve debian packaging scripts
   * move bashstyle.sh from /etc/profile.d to /etc
   * let nx-rc create a default $HOME/.bs-ng.ini if none exists
-  * improve loading settings, it's now really possible to only
+  * improve loading settings, it is now really possible to only
     use readline settings, but not bash or any other constellation
   * add posibility to use a vendor provided config if user
     does not have $HOME/.bs-ng.ini (/etc/bs-ng_vendor.ini),
