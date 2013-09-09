@@ -9,18 +9,25 @@
 #							#
 #########################################################
 
-if [[ $(which mencoder-mt) != "" ]]; then
+check_opt mencoder any2avi
 
-	mencoder-mt "$1" -lavdopts threads=8 \
-	  -ovc xvid -xvidencopts fixed_quant=4 -of avi \
-	  -oac mp3lame -lameopts vbr=3 \
-	  -o "$1".avi
+MENC_OPTS="-lavdopts threads=8 -ovc xvid -xvidencopts fixed_quant=4 -of avi -oac mp3lame -lameopts vbr=3"
 
-else
+case ${1} in
 
-	mencoder "$1" -lavdopts \
-	  -ovc xvid -xvidencopts fixed_quant=4 -of avi \
-	  -oac mp3lame -lameopts vbr=3 \
-	  -o "$1".avi
+	--help | -h )
 
-fi
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "any2avi" -s "convert any mencoder supported" -v "2" -y "2013"\
+				-o "input:|convert video to Avi (xvid + lame)"
+
+	;;
+
+	* )
+
+		for vid in "${@}"; do
+			mencoder "${vid}" ${MENC_OPTS} -o "${vid}".avi
+		done
+
+	;;
+esac

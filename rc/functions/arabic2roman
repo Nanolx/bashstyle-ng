@@ -9,11 +9,25 @@
 #							#
 #########################################################
 
-echo $1 | sed -e 's/1...$/M&/;s/2...$/MM&/;s/3...$/MMM&/;s/4...$/MMMM&/
-s/6..$/DC&/;s/7..$/DCC&/;s/8..$/DCCC&/;s/9..$/CM&/
-s/1..$/C&/;s/2..$/CC&/;s/3..$/CCC&/;s/4..$/CD&/;s/5..$/D&/
-s/6.$/LX&/;s/7.$/LXX&/;s/8.$/LXXX&/;s/9.$/XC&/
-s/1.$/X&/;s/2.$/XX&/;s/3.$/XXX&/;s/4.$/XL&/;s/5.$/L&/
-s/1$/I/;s/2$/II/;s/3$/III/;s/4$/IV/;s/5$/V/
-s/6$/VI/;s/7$/VII/;s/8$/VIII/;s/9$/IX/
-s/[0-9]//g'
+case ${1} in
+
+	--help | -h )
+
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "arabic2roman" -s "convert arabic number to roman" -v "1" -y "2011"\
+			-o "input:|convert arabic number to roman"
+
+	;;
+
+	* )
+
+		echo ${1} | sed -e 's/1...$/M&/;s/2...$/MM&/;s/3...$/MMM&/;s/4...$/MMMM&/
+			s/6..$/DC&/;s/7..$/DCC&/;s/8..$/DCCC&/;s/9..$/CM&/
+			s/1..$/C&/;s/2..$/CC&/;s/3..$/CCC&/;s/4..$/CD&/;s/5..$/D&/
+			s/6.$/LX&/;s/7.$/LXX&/;s/8.$/LXXX&/;s/9.$/XC&/
+			s/1.$/X&/;s/2.$/XX&/;s/3.$/XXX&/;s/4.$/XL&/;s/5.$/L&/
+			s/1$/I/;s/2$/II/;s/3$/III/;s/4$/IV/;s/5$/V/
+			s/6$/VI/;s/7$/VII/;s/8$/VIII/;s/9$/IX/
+			s/[0-9]//g'
+	;;
+esac
