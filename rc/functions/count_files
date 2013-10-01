@@ -18,19 +18,19 @@ case $1 in
 		echo $(($(ls --color=no -1 -l . | grep -v ^l | wc -l)-1))
 	;;
 
-	*+d)
+	*+f)
 		echo $(($(ls --color=no -1 -la . | grep -v ^- | wc -l)-1))
 	;;
 
-	*-d)
+	*-f)
 		echo $(($(ls --color=no -1 -l . | grep -v ^- | wc -l)-1))
 	;;
 
-	*+f)
+	*+d)
 		echo $(($(ls --color=no -1 -la . | grep -v ^d | wc -l)-1))
 	;;
 
-	*-f)
+	*-d)
 		echo $(($(ls --color=no -1 -l . | grep -v ^d | wc -l)-1))
 	;;
 
