@@ -11,7 +11,7 @@
 
 case ${1} in
 
-	--help | -h | "")
+	--help | -h)
 
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "bashtips" -s "show useful bash tips" -v "${BSNG_VERSION}" -y "2013"\
@@ -21,7 +21,7 @@ case ${1} in
 
 	* )
 
-		cat <<EOF
+cat <<EOF
 			DIRECTORIES
 			-----------
 			~-          Previous working directory
@@ -70,7 +70,7 @@ case ${1} in
 			M-\$    complete variable name
 			M-!     complete command name
 			M-^     complete history
-		EOF
+EOF
 	;;
 
 esac
