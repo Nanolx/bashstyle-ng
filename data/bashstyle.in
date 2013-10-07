@@ -15,13 +15,6 @@ case $1 in
 		echo "@PYTHON@"
 	;;
 
-	--install | -i )
-
-		export BSNG_RC_DIR=@DATADIR@/bashstyle-ng/rc/
-		@DATADIR@/bashstyle-ng/bin/install-extras
-
-	;;
-
 	* )
 		cd @DATADIR@/bashstyle-ng/
 
