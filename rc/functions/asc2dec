@@ -9,6 +9,17 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	printf '%d\n' "'$1'"
-fi
+case ${1} in
+
+	--help | -h | "")
+
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "asc2dec" -s "convert ascii char to decimal equivalent" -v "${BSNG_VERSION}" -y "2007-2013"\
+			-o "letter:|convert ascii char to decimal equivalent"
+
+	;;
+
+	* )
+		printf '%d\n' "'$1'"
+	;;
+esac

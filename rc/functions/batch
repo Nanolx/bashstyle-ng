@@ -9,4 +9,20 @@
 #							#
 #########################################################
 
-find . -type f -iname '*.'${1}'' -exec ${@:2}  {} \; ;
+case ${1} in
+
+	--help | -h | "")
+
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "batch" -s "batch-perform actions on files" -v "${BSNG_VERSION}" -y "2013"\
+			-o "pattern:*.png|pattern matching files"\
+			-o "action:rm -f|action to perform on matching files"
+
+	;;
+
+	* )
+
+		find . -type f -iname '*.'${1}'' -exec ${@:2}  {} \; ;
+	;;
+
+esac

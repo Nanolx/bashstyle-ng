@@ -9,10 +9,23 @@
 #							#
 #########################################################
 
-for opt in $@; do
-	var="X=\$${opt/:*}"
-	eval $var
-	if [[ $X == "" ]]; then
-		read ${opt/:*} <<< $(echo ${opt/*:})
-	fi
-done
+case ${1} in
+
+	--help | -h | "")
+
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "assign" -s "assign multiple variables" -v "${BSNG_VERSION}" -y "2013"\
+			-o "no options:|"
+
+	;;
+
+	* )
+		for opt in $@; do
+			var="X=\$${opt/:*}"
+			eval $var
+			if [[ $X == "" ]]; then
+				read ${opt/:*} <<< $(echo ${opt/*:})
+			fi
+		done
+	;;
+esac
