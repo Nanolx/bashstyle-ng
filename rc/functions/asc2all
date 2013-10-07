@@ -11,10 +11,10 @@
 
 case ${1} in
 
-	--help | -h )
+	--help | -h | "")
 
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "asc2all" -s "convert ascii char to numerical equivalent" -v "1" -y "2011"\
+			-l "GNU GPL v3" -n "asc2all" -s "convert ascii char to numerical equivalent" -v "${BSNG_VERSION}" -y "2011"\
 			-o "letter:|convert ascii char to numerical equivalent"
 
 	;;

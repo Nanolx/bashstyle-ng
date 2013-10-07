@@ -11,10 +11,10 @@
 
 case ${1} in
 
-	--help | -h )
+	--help | -h | "")
 
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "arabic2roman" -s "convert arabic number to roman" -v "1" -y "2011"\
+			-l "GNU GPL v3" -n "arabic2roman" -s "convert arabic number to roman" -v "${BSNG_VERSION}" -y "2011"\
 			-o "input:|convert arabic number to roman"
 
 	;;
