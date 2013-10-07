@@ -11,7 +11,7 @@ NXRC_NUM=${#NXRC_LANGS[@]}
 
 generate_pot () {
 
-	echo -e "\t${WHITE}+ ${WHITE} .pot files"
+	echo -e "\t${WHITE}+ ${WHITE} translation templates"
 	intltool-extract --type=gettext/glade ui/bashstyle8.ui >/dev/null
 	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bs-ng.pot ui/bs-ng.py ui/bashstyle8.ui.h >/dev/null
 
@@ -24,7 +24,7 @@ generate_pot () {
 update_po () {
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} UI .po files${CYAN} (${BSNG_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${WHITE} gui translations${CYAN} (${BSNG_LANGS[@]})"
 	for lang in ${BSNG_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$BSNG_NUM]${WHITE} ${lang}"
@@ -34,7 +34,7 @@ update_po () {
 	done
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} Wizard .po files${CYAN} (${WIZARD_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${WHITE} wizard translations${CYAN} (${WIZARD_LANGS[@]})"
 	for lang in ${WIZARD_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$WIZARD_NUM]${WHITE} ${lang}"
@@ -45,7 +45,7 @@ update_po () {
 	done
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} NX-RC .po files${CYAN} (${NXRC_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${WHITE} nx-rc translation${CYAN} (${NXRC_LANGS[@]})"
 	for lang in ${NXRC_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$NXRC_NUM]${WHITE} ${lang}"
@@ -59,7 +59,7 @@ update_po () {
 generate_mo () {
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} UI .mo files${CYAN} (${BSNG_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${WHITE} gui translations${CYAN} (${BSNG_LANGS[@]})"
 	for lang in ${BSNG_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$BSNG_NUM]${WHITE} ${lang}"
@@ -69,7 +69,7 @@ generate_mo () {
 	done
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} Wizard .mo files${CYAN} (${WIZARD_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${WHITE} wizard translations${CYAN} (${WIZARD_LANGS[@]})"
 	for lang in ${WIZARD_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$WIZARD_NUM]${WHITE} ${lang}"
@@ -79,7 +79,7 @@ generate_mo () {
 	done
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} NX-RC .mo files${CYAN} (${NXRC_LANGS[@]})"
+	echo -e "\t${WHITE}+ ${WHITE} nx-rc translations${CYAN} (${NXRC_LANGS[@]})"
 	for lang in ${NXRC_LANGS[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$NXRC_NUM]${WHITE} ${lang}"
