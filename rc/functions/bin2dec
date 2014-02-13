@@ -9,6 +9,16 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo $((2#$1))
-fi
+case $1 in
+
+	--help | -h | "")
+
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "bin2dec" -s "convert binaries to decimals" -v "${BSNG_VERSION}" -y "2013"\
+			-o "number:|convert binary to decimals"
+
+	;;
+
+	*)	echo $((2#$1)) ;;
+
+esac

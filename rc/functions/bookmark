@@ -9,10 +9,22 @@
 #							#
 #########################################################
 
-if [[ $1 != "" && $(alias | grep -w go-$1) == "" ]]; then
-	echo "alias go-$1='cd $PWD'" >> $HOME/.bookmarks
-	. $HOME/.bookmarks
-elif [[ $1 == "" ]]; then
-	echo "need name for the bookmark."
-else	echo "bookmark go-$1 already exists."
-fi
+case $1 in
+
+	--help | -h | "")
+
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "bookmark" -s "create permanent bookmarks for directories" -v "${BSNG_VERSION}" -y "2013"\
+			-o "alias:|will create a permanent alias go-\$alias for current directory"
+
+	;;
+
+	*)	if [[ ${1} && ! $(alias | grep -w go-${1}) ]]; then
+			echo "alias go-$1='cd $PWD'" >> $HOME/.bookmarks
+			. $HOME/.bookmarks
+		else
+			echo "bookmark go-$1 already exists."
+		fi
+	;;
+
+esac

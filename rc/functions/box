@@ -9,7 +9,20 @@
 #							#
 #########################################################
 
-t="$1xxxx";c=${2:-#};
-echo ${t//?/$c};
-echo "$c $1 $c";
-echo ${t//?/$c};
+case $1 in
+
+	--help | -h | "")
+
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "box" -s "create a boxes around text" -v "${BSNG_VERSION}" -y "2013"\
+			-o "text:|text to place inside the box"
+
+	;;
+
+	* )	t="$1xxxx";c=${2:-#};
+		echo "${t//?/$c}
+$c $1 $c
+${t//?/$c}"
+	;;
+
+esac

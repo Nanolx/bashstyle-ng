@@ -9,5 +9,16 @@
 #							#
 #########################################################
 
-clear
-perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}'
+case $1 in
+
+	--help | -h | "")
+
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "binary-clock" -s "binary clock for bash" -v "${BSNG_VERSION}" -y "2013"\
+			-o "no options:|"
+
+	;;
+
+	*)	clear ; perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}' ;;
+
+esac

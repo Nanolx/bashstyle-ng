@@ -9,45 +9,65 @@
 #							#
 #########################################################
 
-. $BSNG_RC_DIR/functions/utils
+case $1 in
 
-while getopts a:e:h:l:n:o:s:v:y: opts
-do
-	case "$opts" in
-		a) AUTHOR="$OPTARG" ;;
-		e) EMAIL="$OPTARG" ;;
-		h) HOMEPAGE="$OPTARG" ;;
-		l) LICENSE="$OPTARG" ;;
-		n) NAME="$OPTARG" ;;
-		o) OPTIONS+=( "$OPTARG" ) ;;
-		s) SHORT_DESC="$OPTARG" ;;
-		v) VERSION="$OPTARG" ;;
-		y) YEAR="$OPTARG" ;;
-	esac
-done
+	--help | -h | "")
 
-assign NAME:not_given SHORT_DESC:not_given OPTIONS:not_given VERSION:not_given AUTHOR:not_given\
-	EMAIL:not_given HOMEPAGE:not_given LICENSE:not_given YEAR:not_given
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@tuxfamily.org" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "bsng-help" -s "unified way of creating fancy help messages in Bash scripts" -v "${BSNG_VERSION}" -y "2013"\
+			-o "-a:<testboy>|Author to display in help"\
+			-o "-e:<test@boy.com>|Email-Adress to display in help"\
+			-o "-h:<testboy.com>|Homepage to display in help"\
+			-o "-l:<gpl>|License to display in help"\
+			-o "-n:<bsng-help>|Application name to display in help"\
+			-o "-o:<opt><example><description>|Options to display in help"\
+			-o "-s:this is a recursive help|Short description to display in help"\
+			-o "-v:${BSNG_VERSION}|Version to display in help"\
+			-o "-y:2013|Copyright year to display in help"
 
-echo -e "\n${egreen}${NAME} ${eyellow}(${VERSION}) ${ecyan}help
-\n\033[8G${ewhite}-- ${emagenta}${SHORT_DESC} ${ewhite}--
-\n\033[8G${ewhite}(c) ${YEAR}: ${eblue}${AUTHOR} ${ewhite}<${ered}${EMAIL}${ewhite}>
-\033[8G${ecyan}License: ${ered}${LICENSE}${ewhite} // ${ecyan}Homepage: ${emagenta}${HOMEPAGE}\n"
+	;;
 
-EX="${eorange}Options \033[30G${ewhite}(${eblue}Values${ewhite})\033[60G ${egreen}Description\n"
-EX+="${eorange}======= \033[30G${ewhite}=${eblue}======${ewhite}=\033[60G ${egreen}===========\n"
+	*)
+		while getopts a:e:h:l:n:o:s:v:y: opts
+		do
+			case "$opts" in
+				a) AUTHOR="$OPTARG" ;;
+				e) EMAIL="$OPTARG" ;;
+				h) HOMEPAGE="$OPTARG" ;;
+				l) LICENSE="$OPTARG" ;;
+				n) NAME="$OPTARG" ;;
+				o) OPTIONS+=( "$OPTARG" ) ;;
+				s) SHORT_DESC="$OPTARG" ;;
+				v) VERSION="$OPTARG" ;;
+				y) YEAR="$OPTARG" ;;
+			esac
+		done
 
-for opt in "${OPTIONS[@]}"; do
-	OPT=${opt/:*}
-	VAL=${opt/|*}
-	VAL=${VAL/*:}
-	if [[ $VAL == "" ]]; then
-		VAL="---"
-	fi
-	DESC=${opt/*|}
-	EX+="${eorange}${OPT} \033[30G${ewhite}(${eblue}${VAL}${ewhite})\033[60G ${egreen}${DESC}\n"
-done
-echo -e ${EX}
-tput sgr0
+		assign NAME:not_given SHORT_DESC:not_given OPTIONS:not_given VERSION:not_given AUTHOR:not_given\
+			EMAIL:not_given HOMEPAGE:not_given LICENSE:not_given YEAR:not_given
 
-unset NAME SHORT_DESC OPTIONS VERSION AUTHOR EMAIL HOMEPAGE LICENSE YEAR
+		echo -e "\n${egreen}${NAME} ${eyellow}(${VERSION}) ${ecyan}help
+		\n\033[8G${ewhite}-- ${emagenta}${SHORT_DESC} ${ewhite}--
+		\n\033[8G${ewhite}(c) ${YEAR}: ${eblue}${AUTHOR} ${ewhite}<${ered}${EMAIL}${ewhite}>
+		\033[8G${ecyan}License: ${ered}${LICENSE}${ewhite} // ${ecyan}Homepage: ${emagenta}${HOMEPAGE}\n"
+
+		EX="${eorange}Options \033[30G${ewhite}(${eblue}Values${ewhite})\033[60G ${egreen}Description\n"
+		EX+="${eorange}======= \033[30G${ewhite}=${eblue}======${ewhite}=\033[60G ${egreen}===========\n"
+
+		for opt in "${OPTIONS[@]}"; do
+			OPT=${opt/:*}
+			VAL=${opt/|*}
+			VAL=${VAL/*:}
+			if [[ $VAL == "" ]]; then
+				VAL="---"
+			fi
+			DESC=${opt/*|}
+			EX+="${eorange}${OPT} \033[30G${ewhite}(${eblue}${VAL}${ewhite})\033[60G ${egreen}${DESC}\n"
+		done
+		echo -e ${EX}
+		tput sgr0
+
+		unset NAME SHORT_DESC OPTIONS VERSION AUTHOR EMAIL HOMEPAGE LICENSE YEAR
+	;;
+
+esac
