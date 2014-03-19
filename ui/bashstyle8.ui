@@ -43,6 +43,21 @@ es_ES: Kenny Meyer</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="aboutdialog-action_area">
             <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLinkButton" id="report_bugs">
+                <property name="label" translatable="yes">Report Bugs</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">normal</property>
+                <property name="uri">https://github.com/Nanolx/bashstyle-ng/issues</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
