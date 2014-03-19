@@ -17,7 +17,7 @@ generate_pot () {
 
 	xgettext -o i18n/nx-rc.pot -L shell rc/nx-rc rc/settings/*-rc 2>/dev/null
 
-	xgettext -o i18n/bs-ng-wizard.pot -L shell bin/bs-ng-wizard rc/wizard/* 2>/dev/null
+	xgettext -o i18n/bs-ng-wizard.pot -L shell rc/functions/bs-ng-wizard rc/wizard/* 2>/dev/null
 
 }
 
