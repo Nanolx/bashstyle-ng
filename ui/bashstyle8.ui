@@ -1345,6 +1345,7 @@ es_ES: Kenny Meyer</property>
         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
+        <property name="tab_pos">left</property>
         <property name="scrollable">True</property>
         <child>
           <object class="GtkTable" id="style.table">
@@ -1912,11 +1913,12 @@ es_ES: Kenny Meyer</property>
           <object class="GtkBox" id="style.box.tab">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="style.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixel_size">24</property>
+                <property name="pixel_size">22</property>
                 <property name="icon_name">bs-ng-style</property>
               </object>
               <packing>
@@ -2246,11 +2248,12 @@ es_ES: Kenny Meyer</property>
           <object class="GtkBox" id="alias.box.tab">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="alias.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixel_size">24</property>
+                <property name="pixel_size">22</property>
                 <property name="icon_name">bs-ng-alias</property>
               </object>
               <packing>
@@ -3729,11 +3732,12 @@ es_ES: Kenny Meyer</property>
           <object class="GtkBox" id="advanced.box.tab">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="advanced.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixel_size">24</property>
+                <property name="pixel_size">22</property>
                 <property name="icon_name">bs-ng-advanced</property>
               </object>
               <packing>
@@ -3746,6 +3750,7 @@ es_ES: Kenny Meyer</property>
               <object class="GtkLabel" id="advanced.label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="margin_bottom">1</property>
                 <property name="label" translatable="yes">Advanced</property>
               </object>
               <packing>
@@ -4291,11 +4296,12 @@ es_ES: Kenny Meyer</property>
           <object class="GtkBox" id="readline.box.tab">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="readline.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixel_size">24</property>
+                <property name="pixel_size">22</property>
                 <property name="icon_name">bs-ng-readline</property>
               </object>
               <packing>
@@ -5080,11 +5086,12 @@ es_ES: Kenny Meyer</property>
           <object class="GtkBox" id="vim.box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="vim.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixel_size">24</property>
+                <property name="pixel_size">22</property>
                 <property name="icon_name">bs-ng-vim</property>
               </object>
               <packing>
@@ -5486,11 +5493,12 @@ es_ES: Kenny Meyer</property>
           <object class="GtkBox" id="nano.box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="nano.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixel_size">24</property>
+                <property name="pixel_size">22</property>
                 <property name="icon_name">bs-ng-nano</property>
               </object>
               <packing>
@@ -6546,11 +6554,12 @@ es_ES: Kenny Meyer</property>
           <object class="GtkBox" id="ls_colors.box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="ls_colors.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixel_size">24</property>
+                <property name="pixel_size">22</property>
                 <property name="icon_name">bs-ng-ls</property>
               </object>
               <packing>
@@ -6975,11 +6984,12 @@ es_ES: Kenny Meyer</property>
           <object class="GtkBox" id="cpb.box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="cpb.icon">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixel_size">24</property>
+                <property name="pixel_size">22</property>
                 <property name="icon_name">bs-ng-custom</property>
               </object>
               <packing>
