@@ -31,7 +31,7 @@ USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
 USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 
-app_ini_version = 2
+app_ini_version = 3
 
 class Config(object):
 	def InitConfig(self):

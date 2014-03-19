@@ -59,7 +59,7 @@ class BashStyleNG(object):
 		gtkbuilder = widgethandler.gtkbuilder
 		lang = i18n.Gettext()
 		lang.SetLang()
-		
+
 		WidgetHandler = widgethandler.WidgetHandler(config.cfo, config.udc, config.fdc)
 
 		####################### Style Options ##############################################
@@ -140,6 +140,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("modlines", "Readline", "mark_modified", "bool", None)
 		WidgetHandler.InitWidget("bellstyle", "Readline", "bellstyle", "combo", dicts.bell_styles)
 		WidgetHandler.InitWidget("editmode", "Readline", "editing_mode", "combo", dicts.edit_modes)
+		WidgetHandler.InitWidget("show_editmode", "Readline", "show_editmode", "bool", None)
 
 		######################## Separator Stuff ###########################################
 		WidgetHandler.InitWidget("show_files_amount", "Separator", "files_amount", "bool", None)
@@ -154,7 +155,7 @@ class BashStyleNG(object):
 		######################## Extra Stuff ###############################################
 		WidgetHandler.InitWidget("dirchar", "Extra", "directory_indicator", "text", None)
 		WidgetHandler.InitWidget("tabrotate", "Extra", "tab_rotation", "bool", None)
-		
+
 		######################## Shopt Stuff ###############################################
 		WidgetHandler.InitWidget("histappend", "Shopt", "histappend", "bool", None)
 		WidgetHandler.InitWidget("cdspell", "Shopt", "cdspell", "bool", None)
@@ -168,6 +169,8 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("checkjobs", "Shopt", "checkjobs", "bool", None)
 		WidgetHandler.InitWidget("globstar", "Shopt", "globstar", "bool", None)
 		WidgetHandler.InitWidget("dirspell", "Shopt", "dirspell", "bool", None)
+		WidgetHandler.InitWidget("direxpand", "Shopt", "direxpand", "bool", None)
+		WidgetHandler.InitWidget("globasciiranges", "Shopt", "globasciiranges", "bool", None)
 
 		######################## VimCFG Stuff ##############################################
 		WidgetHandler.InitWidget("use_vimcfg", "Vim", "use_vimcfg", "bool", None)

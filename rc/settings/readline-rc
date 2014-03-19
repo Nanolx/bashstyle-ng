@@ -113,6 +113,14 @@ else
 	rc_add "set mark-modified-lines off"
 fi
 
+if [[ $(ini_get show_editmode) == True ]]; then
+	dbg_msg $"ReadlineCFG Setting:" $"Show Editing Mode" $"On"
+	rc_add "set show-mode-in-prompt on"
+else
+	dbg_msg $"ReadlineCFG Setting:" $"Show Editing Mode" $"Off"
+	rc_add "set show-mode-in-prompt off"
+fi
+
 dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(ini_get query_items)
 rc_add "set completion-query-items $(ini_get query_items)"
 

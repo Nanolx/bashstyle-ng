@@ -1,6 +1,700 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.1 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="can_focus">False</property>
+    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">About BashStyle-NG</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="icon_name">bs-ng</property>
+    <property name="type_hint">dialog</property>
+    <property name="program_name">BashStyle-NG</property>
+    <property name="version">8.4</property>
+    <property name="copyright" translatable="yes">
+(c) 2007 - 2013 Christopher Bratusek</property>
+    <property name="comments" translatable="yes">
+BashStyle-NG lets you make more out of your terminal!</property>
+    <property name="website">http://www.nanolx.org/nanolx/bashstyle-ng/</property>
+    <property name="website_label" translatable="yes">BashStyle-NG @ Nanolx.org</property>
+    <property name="license" translatable="yes">BashStyle-NG is licensed under the: 
+	GNU GENERAL PUBLIC LICENSE V3
+
+The Oxygen Icons are licensed under the:
+	GNU LESSER GENERAL PUBLIC LICENSE V3
+
+The Undobuffer Pythonmodule is licensed under the:
+	GNU LESSER GENERAL PUBLIC LICENSE V3</property>
+    <property name="authors">Christopher Bratusek</property>
+    <property name="documenters">Christopher Bratusek</property>
+    <property name="translator_credits" translatable="yes">de_DE: Christopher Bratusek
+it_IT: Alin Hantig
+ru_RU: Alexander Lushpai
+es_ES: Kenny Meyer</property>
+    <property name="artists">Oxygen Icon Devs</property>
+    <property name="logo_icon_name">bs-ng</property>
+    <property name="license_type">custom</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="aboutdialog-vbox">
+        <property name="can_focus">False</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="aboutdialog-action_area">
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="aboutdialog.separator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">50</property>
+            <property name="margin_right">50</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkAdjustment" id="advanced.adjustment.history_size">
+    <property name="upper">1000000</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="advanced.adjustment.pwd_len">
+    <property name="upper">1000</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="advanced.adjustment.timeout">
+    <property name="upper">10000</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkListStore" id="advanced.liststore.history_control">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Erasedups</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ignoredups</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ignorespace</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ignoreboth</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="advanced.liststore.memory">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Free Memory</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Memory</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Both</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">None</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkImage" id="cpb.icon.toolbox">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixel_size">15</property>
+    <property name="icon_name">bs-ng-toolbox</property>
+  </object>
+  <object class="GtkListStore" id="cpb.liststore.style">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Choose Style:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vector</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Floating Clock</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Clock Advanced</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Elite</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Power-User</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dirks</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dot.Prompt</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sepa-NG</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Quirk</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sputnik</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ayoli</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="cpb.liststore.symbolic_color">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Insert Color:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Username</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Hostname</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Date</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Time</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Workdir</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Font</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Uptime</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">PS2 PS3 PS4</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="ls_colors.liststore.choice">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="readline.adjustment.query_items">
+    <property name="upper">10000</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkListStore" id="readline.liststore.bellstyle">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Audible</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Visible</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">None</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="readline.liststore.editmode">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Emacs</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vi</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkImage" id="style.icon.about">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixel_size">16</property>
+    <property name="icon_name">bs-ng-info</property>
+  </object>
+  <object class="GtkImage" id="style.icon.doc">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixel_size">16</property>
+    <property name="icon_name">bs-ng-help</property>
+  </object>
+  <object class="GtkListStore" id="style.liststore.color_of">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Choose Color to Change:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Username</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Hostname</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Date</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Time</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Workdir</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Font</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Uptime</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">PS2 PS3 PS4</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.color_style">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Normal</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dimmed</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Inverted</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Underlined</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.color_to">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Change Color to:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.grep_colour">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.prompt_style">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vector</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Floating Clock</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Clock Advanced</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Elite</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Power-User</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dirks</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dot.Prompt</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sepa-NG</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Quirk</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sputnik</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ayoli</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.terminfo">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Mostlike</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bold</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nebula</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.battery">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Display Batteryload:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Via ACPI</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Via APM</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.countfiles">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Files Amount:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Include Hidden Files</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Exclude Hidden Files</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.load">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Load Average:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">for 1 minute</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">for 10 minutes</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">for 15 minutes</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.memory">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Display Memory:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Memory [MB]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Free Memory [MB]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Memory [%]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Free Memory [%]</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.space">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Display Diskspace:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Space [MB]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Free Space [MB]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Space [%]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Free Space [%]</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkDialog" id="Toolbox">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -576,120 +1270,64 @@
       </object>
     </child>
   </object>
-  <object class="GtkAboutDialog" id="aboutdialog">
-    <property name="can_focus">False</property>
-    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-    <property name="border_width">5</property>
-    <property name="title" translatable="yes">About BashStyle-NG</property>
-    <property name="resizable">False</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="icon_name">bs-ng</property>
-    <property name="type_hint">dialog</property>
-    <property name="program_name">BashStyle-NG</property>
-    <property name="version">8.4</property>
-    <property name="copyright" translatable="yes">
-(c) 2007 - 2013 Christopher Bratusek</property>
-    <property name="comments" translatable="yes">
-BashStyle-NG lets you make more out of your terminal!</property>
-    <property name="website">http://www.nanolx.org/nanolx/bashstyle-ng/</property>
-    <property name="website_label" translatable="yes">BashStyle-NG @ Nanolx.org</property>
-    <property name="license" translatable="yes">BashStyle-NG is licensed under the: 
-	GNU GENERAL PUBLIC LICENSE V3
-
-The Oxygen Icons are licensed under the:
-	GNU LESSER GENERAL PUBLIC LICENSE V3
-
-The Undobuffer Pythonmodule is licensed under the:
-	GNU LESSER GENERAL PUBLIC LICENSE V3</property>
-    <property name="authors">Christopher Bratusek</property>
-    <property name="documenters">Christopher Bratusek</property>
-    <property name="translator_credits" translatable="yes">de_DE: Christopher Bratusek
-it_IT: Alin Hantig
-ru_RU: Alexander Lushpai
-es_ES: Kenny Meyer</property>
-    <property name="artists">Oxygen Icon Devs</property>
-    <property name="logo_icon_name">bs-ng</property>
-    <property name="license_type">custom</property>
-    <child internal-child="vbox">
-      <object class="GtkBox" id="aboutdialog-vbox">
-        <property name="can_focus">False</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="aboutdialog-action_area">
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator" id="aboutdialog.separator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_left">50</property>
-            <property name="margin_right">50</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkAdjustment" id="advanced.adjustment.history_size">
-    <property name="upper">1000000</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkAdjustment" id="advanced.adjustment.pwd_len">
-    <property name="upper">1000</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkAdjustment" id="advanced.adjustment.timeout">
+  <object class="GtkAdjustment" id="vim.adjustment.autowrap">
     <property name="upper">10000</property>
     <property name="step_increment">1</property>
   </object>
-  <object class="GtkListStore" id="advanced.liststore.history_control">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Erasedups</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ignoredups</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ignorespace</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ignoreboth</col>
-      </row>
-    </data>
+  <object class="GtkAdjustment" id="vim.adjustment.tabstop">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
   </object>
-  <object class="GtkListStore" id="advanced.liststore.memory">
+  <object class="GtkListStore" id="vim.liststore.colorscheme">
     <columns>
       <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Free Memory</col>
+        <col id="0" translatable="yes">Default</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Used Memory</col>
+        <col id="0" translatable="yes">Adaryn</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Both</col>
+        <col id="0" translatable="yes">Advantage</col>
       </row>
       <row>
-        <col id="0" translatable="yes">None</col>
+        <col id="0" translatable="yes">Desert</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Gobo</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Impact</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nightshade</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nightwish</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Wombat</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Asu 1 Dark</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Candy Code</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">DW Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Fruit</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Relaxed Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Tango</col>
       </row>
     </data>
   </object>
@@ -1323,7 +1961,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1456,7 +2093,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1476,7 +2112,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1495,7 +2130,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1515,7 +2149,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1535,7 +2168,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1555,7 +2187,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1575,7 +2206,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1595,7 +2225,6 @@ es_ES: Kenny Meyer</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="invisible_char">●</property>
-                <property name="invisible_char_set">True</property>
                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                 <property name="secondary_icon_stock">gtk-delete</property>
               </object>
@@ -1710,7 +2339,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">•</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                                 <property name="adjustment">advanced.adjustment.history_size</property>
@@ -1757,7 +2385,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -1913,7 +2540,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -1954,7 +2580,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -1996,7 +2621,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">•</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                                 <property name="adjustment">advanced.adjustment.timeout</property>
@@ -2042,7 +2666,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -2084,7 +2707,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -2124,7 +2746,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -2186,7 +2807,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -2267,7 +2887,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -2309,7 +2928,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -2350,7 +2968,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
@@ -2391,7 +3008,6 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">•</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
                                 <property name="adjustment">advanced.adjustment.pwd_len</property>
@@ -2457,7 +3073,7 @@ es_ES: Kenny Meyer</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">center</property>
-                <property name="n_rows">5</property>
+                <property name="n_rows">7</property>
                 <child>
                   <object class="GtkBox" id="advanced.box.separato">
                     <property name="visible">True</property>
@@ -2684,7 +3300,7 @@ es_ES: Kenny Meyer</property>
                       <object class="GtkLabel" id="advanced.label.shopt_4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Shopts 4.x</property>
+                        <property name="label" translatable="yes">4.x</property>
                         <property name="angle">90</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -2808,7 +3424,7 @@ es_ES: Kenny Meyer</property>
                       <object class="GtkLabel" id="advanced.label.shopt_3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Shopts 3.x</property>
+                        <property name="label" translatable="yes">3.x | Shopts</property>
                         <property name="angle">90</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -3000,6 +3616,91 @@ es_ES: Kenny Meyer</property>
                     <property name="y_padding">5</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkSeparator" id="advanced.separator.5">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">5</property>
+                    <property name="bottom_attach">6</property>
+                    <property name="x_padding">100</property>
+                    <property name="y_padding">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="advanced.box.shopt_1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkLabel" id="advanced.label.shopt_1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">4.3</property>
+                        <property name="angle">90</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkTable" id="advanced.table.shopt_1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="n_columns">2</property>
+                        <property name="column_spacing">15</property>
+                        <child>
+                          <object class="GtkCheckButton" id="direxpand">
+                            <property name="label" translatable="yes">Enable direxpand</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="x_options">GTK_EXPAND</property>
+                            <property name="y_options"/>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="globasciiranges">
+                            <property name="label" translatable="yes">Enable globasciiranges</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="x_options">GTK_EXPAND</property>
+                            <property name="y_options"/>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="top_attach">6</property>
+                    <property name="bottom_attach">7</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="position">1</property>
@@ -3129,18 +3830,6 @@ es_ES: Kenny Meyer</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="readline.label.null.1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                      </object>
-                      <packing>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_EXPAND</property>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkLabel" id="readline.label.null.2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -3152,6 +3841,20 @@ es_ES: Kenny Meyer</property>
                         <property name="bottom_attach">2</property>
                         <property name="x_options"/>
                         <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="show_editmode">
+                        <property name="label" translatable="yes">Show Edit Mode in Prompt</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
                       </packing>
                     </child>
                   </object>
@@ -3345,7 +4048,6 @@ es_ES: Kenny Meyer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">•</property>
-                            <property name="invisible_char_set">True</property>
                             <property name="adjustment">readline.adjustment.query_items</property>
                           </object>
                           <packing>
@@ -4003,7 +4705,6 @@ es_ES: Kenny Meyer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
-                            <property name="invisible_char_set">True</property>
                             <property name="adjustment">vim.adjustment.tabstop</property>
                           </object>
                           <packing>
@@ -4047,7 +4748,6 @@ es_ES: Kenny Meyer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
-                            <property name="invisible_char_set">True</property>
                             <property name="adjustment">vim.adjustment.autowrap</property>
                           </object>
                           <packing>
@@ -4299,7 +4999,6 @@ es_ES: Kenny Meyer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
-                            <property name="invisible_char_set">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -5588,7 +6287,6 @@ es_ES: Kenny Meyer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
-                            <property name="invisible_char_set">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -6310,642 +7008,5 @@ es_ES: Kenny Meyer</property>
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="cpb.icon.toolbox">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixel_size">15</property>
-    <property name="icon_name">bs-ng-toolbox</property>
-  </object>
-  <object class="GtkListStore" id="cpb.liststore.style">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Choose Style:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vector</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Floating Clock</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Clock Advanced</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Elite</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Power-User</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dirks</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dot.Prompt</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sepa-NG</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Quirk</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sputnik</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ayoli</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="cpb.liststore.symbolic_color">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Insert Color:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Username</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Hostname</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Date</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Time</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Workdir</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Font</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Uptime</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">PS2 PS3 PS4</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="ls_colors.liststore.choice">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Black</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Red</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Yellow</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Blue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Magenta</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cyan</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">White</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Coldblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Iceblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Turqoise</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothgreen</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Winered</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Brown</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Silver</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ocher</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Purple</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Pink</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cream</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkAdjustment" id="readline.adjustment.query_items">
-    <property name="upper">10000</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkListStore" id="readline.liststore.bellstyle">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Audible</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Visible</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">None</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="readline.liststore.editmode">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Emacs</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vi</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkImage" id="style.icon.about">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixel_size">16</property>
-    <property name="icon_name">bs-ng-info</property>
-  </object>
-  <object class="GtkImage" id="style.icon.doc">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixel_size">16</property>
-    <property name="icon_name">bs-ng-help</property>
-  </object>
-  <object class="GtkListStore" id="style.liststore.color_of">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Choose Color to Change:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Username</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Hostname</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Date</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Time</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Workdir</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Font</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Uptime</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">PS2 PS3 PS4</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.color_style">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Normal</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Bright</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dimmed</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Inverted</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Underlined</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.color_to">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Change Color to:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Black</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Red</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Yellow</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Blue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Magenta</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cyan</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">White</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Coldblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Iceblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Turqoise</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothgreen</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Winered</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Brown</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Silver</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ocher</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Purple</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Pink</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cream</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.grep_colour">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Black</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Red</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Yellow</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Blue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Magenta</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cyan</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">White</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Coldblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Iceblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Turqoise</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothgreen</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Winered</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Brown</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Silver</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ocher</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Purple</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Pink</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cream</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.prompt_style">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vector</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Floating Clock</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Clock Advanced</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Elite</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Power-User</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dirks</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dot.Prompt</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sepa-NG</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Quirk</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sputnik</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ayoli</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.terminfo">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Mostlike</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Bold</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nebula</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.battery">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Display Batteryload:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Via ACPI</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Via APM</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.countfiles">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Files Amount:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Include Hidden Files</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Exclude Hidden Files</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.load">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Load Average:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">for 1 minute</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">for 10 minutes</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">for 15 minutes</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.memory">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Display Memory:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Used Memory [MB]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Free Memory [MB]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Used Memory [%]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Free Memory [%]</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.space">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Display Diskspace:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Used Space [MB]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Free Space [MB]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Used Space [%]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Free Space [%]</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkAdjustment" id="vim.adjustment.autowrap">
-    <property name="upper">10000</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkAdjustment" id="vim.adjustment.tabstop">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkListStore" id="vim.liststore.colorscheme">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Default</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Adaryn</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Advantage</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Desert</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Gobo</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Impact</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nightshade</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nightwish</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Wombat</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Asu 1 Dark</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Candy Code</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">DW Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Fruit</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Relaxed Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Tango</col>
-      </row>
-    </data>
   </object>
 </interface>

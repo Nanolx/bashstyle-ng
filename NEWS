@@ -9,6 +9,17 @@ Overview of changes in v8.4 "Mind The Gap"
 * #150 (debian):
 	make bashstyle-ng exlicitely depend on python-configobj
 
+=== New Features ===
+
+* direxpand: Bash >= 4.3 features a new shopt: direxpand. Enabling this
+             causes Bash to expand directory names in completion like
+             Bash 4.1 did.
+* globasciiranges: Bash >= 4.3 features a new shop: globasciirange.
+                   Enabling this causes Bash to use character ordering
+                   like in the C locale when globbing ranges.
+* show-mode-in-prompt: New readline option to show the current editing
+                       mode in the prompt
+
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 Overview of changes in v8.3 "Tweeka-Time"

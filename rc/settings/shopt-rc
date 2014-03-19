@@ -65,6 +65,7 @@ else	dbg_msg $"BashStyle-NG Setting:" $"histappend" $"Off"
 	dbg_log shopt -u histappend
 fi
 
+# Stuff new in Bash 4.0
 if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 
 	if [[ $(ini_get autocd) == True ]]; then
@@ -95,5 +96,21 @@ if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 		dbg_log shopt -u dirspell
 	fi
 else	dbg_msg $"BashStyle-NG Message: Bash is not 4.x -- disabling new shopts"
+fi
 
+# Stuff new in Bash 4.3
+if [[ ${BASH_VERSINFO[0]}${BASH_VERSINFO[1]} -ge "43" ]]; then
+	if [[ $(ini_get direxpand) == True ]]; then
+		dbg_msg $"BashStyle-NG Setting:" $"direxpand" $"On"
+		dbg_log shopt -s direxpand
+	else	dbg_msg $"BashStyle-NG Setting:" $"direxpand" $"Off"
+		dbg_log shopt -u direxpand
+	fi
+	if [[ $(ini_get globasciirange) == True ]]; then
+		dbg_msg $"BashStyle-NG Setting:" $"globasciiranges" $"On"
+		dbg_log shopt -s globasciiranges
+	else	dbg_msg $"BashStyle-NG Setting:" $"globasciiranges" $"Off"
+		dbg_log shopt -u globasciiranges
+	fi
+else	dbg_msg $"BashStyle-NG Message: Bash is not 4.3+ -- disabling new shopts"
 fi
