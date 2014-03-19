@@ -54,6 +54,10 @@ while [[ $xcount -lt $pcount ]]; do
 			DIRINFO_ENABLE="${1/*=}"
 		;;
 
+		--bashrc=* )
+			BASHFILE="${1/*=}"
+		;;
+
 		--quiet )
 			QUIET=true
 		;;

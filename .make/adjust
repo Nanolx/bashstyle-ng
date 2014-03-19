@@ -18,10 +18,12 @@ remove_cruft () {
 
 add_bsng_init () {
 
-	if [[ -e /etc/bash.bashrc ]]; then
-		BASHFILE=/etc/bash.bashrc
-	else
-		BASHFILE=/etc/bashrc
+	if [[ ! $BASHFILE ]]; then
+		if [[ -e /etc/bash.bashrc ]]; then
+			BASHFILE=/etc/bash.bashrc
+		else
+			BASHFILE=/etc/bashrc
+		fi
 	fi
 
 	if [[ $(grep "bashstyle.sh" ${BASHFILE}) == "" ]]; then
