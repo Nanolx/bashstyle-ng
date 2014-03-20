@@ -73,6 +73,8 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("color_style", "Style", "color_style", "combo", dicts.color_styles)
 		WidgetHandler.InitWidget("terminfo", "Style", "man_style", "combo", dicts.man_styles)
 		WidgetHandler.InitWidget("grep_colour", "Style", "grep_color", "combo", dicts.grep_colors)
+		WidgetHandler.InitWidget("colorshell", "Style", "colorshell", "bool", None)
+		WidgetHandler.InitWidget("colorshell_reset", "Style", "colorshell_reset", "bool", None)
 
 		# special combobox not (yet) handled by widgethandler.py
 		self.color_of = gtkbuilder.get_object("color_of")
@@ -171,6 +173,23 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("dirspell", "Shopt", "dirspell", "bool", None)
 		WidgetHandler.InitWidget("direxpand", "Shopt", "direxpand", "bool", None)
 		WidgetHandler.InitWidget("globasciiranges", "Shopt", "globasciiranges", "bool", None)
+
+		######################## Extra Stuff ###############################################
+		WidgetHandler.InitWidget("enable_lscd", "Extra", "use_lscd", "bool", None)
+		WidgetHandler.InitWidget("lscd_options", "Extra", "lscd_opts", "text", None)
+		WidgetHandler.InitWidget("cdwriter", "Extra", "cd_writer", "text", None)
+		WidgetHandler.InitWidget("birthday", "Extra", "user_birthday", "text", None)
+		WidgetHandler.InitWidget("dd_noerror", "Extra", "dd_noerror", "bool", None)
+		WidgetHandler.InitWidget("restore_pwd", "Extra", "restore_directory", "bool", None)
+		WidgetHandler.InitWidget("debug_verbose", "Extra", "debug_verbose", "bool", None)
+
+		######################## GIT Stuff #################################################
+		WidgetHandler.InitWidget("git_user", "Git", "git_user_name", "text", None)
+		WidgetHandler.InitWidget("git_mail", "Git", "git_user_mail", "text", None)
+		WidgetHandler.InitWidget("git_editor", "Git", "git_editor", "text", None)
+		WidgetHandler.InitWidget("git_signkey", "Git", "git_signkey", "text", None)
+		WidgetHandler.InitWidget("git_color", "Git", "git_color", "bool", None)
+		WidgetHandler.InitWidget("git_aliases", "Git", "git_aliases", "bool", None)
 
 		######################## VimCFG Stuff ##############################################
 		WidgetHandler.InitWidget("use_vimcfg", "Vim", "use_vimcfg", "bool", None)

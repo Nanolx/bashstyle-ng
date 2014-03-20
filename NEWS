@@ -1,3 +1,32 @@
+Overview of changes in v8.5 "Nice Sprites"
+
+=== NOTES ===
+
+* The first-run-wizard (bsng-wizard) has been removed, relevant options
+  have been merged into the main application, be sure to run the UI
+  (Style for colorshell, else Advanced > Extras/GIT) after upgrade to
+  re-adjust your settings that got lost by this change.
+
+=== Bug Fixes ===
+
+* #154 (ui):
+	add revert to user-default/factory settings for dirchar
+
+=== Wizard-Merge ===
+
+*** the following options have been merged from the wizard into the main
+    application: colorshell, colorshell_reset, use_lscd, lscd_opts, cd_writer,
+    dd_noerror, restore_directory, debug_verbose, user_birthday, git_user_name,
+    git_user_mail, git_color, git_editor, git_aliases, git_signkey,
+
+*** everything but the above as been dropped.
+
+=== Misc. Changes ===
+
+* look for python3 by default, fallback to python
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 Overview of changes in v8.4 "Mind The Gap"
 
 === NOTES ===

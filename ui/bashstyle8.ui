@@ -49,7 +49,6 @@ es_ES: Kenny Meyer</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="relief">normal</property>
                 <property name="uri">https://github.com/Nanolx/bashstyle-ng/issues</property>
               </object>
               <packing>
@@ -1684,7 +1683,7 @@ es_ES: Kenny Meyer</property>
                   <object class="GtkTable" id="style.table.colors">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="n_rows">3</property>
+                    <property name="n_rows">4</property>
                     <property name="n_columns">2</property>
                     <property name="column_spacing">15</property>
                     <child>
@@ -1892,6 +1891,46 @@ es_ES: Kenny Meyer</property>
                         <property name="x_options"/>
                         <property name="y_options"/>
                         <property name="y_padding">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="colorshell">
+                        <property name="label" translatable="yes">Randomly colored text</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="colorshell_reset">
+                        <property name="label" translatable="yes">Normal text color for output</property>
+                        <property name="width_request">220</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="x_options">GTK_EXPAND</property>
+                        <property name="y_options"/>
                       </packing>
                     </child>
                   </object>
@@ -2335,13 +2374,13 @@ es_ES: Kenny Meyer</property>
                         <property name="n_columns">2</property>
                         <property name="column_spacing">15</property>
                         <child>
-                          <object class="GtkVBox" id="advanced.box.histroy_size">
+                          <object class="GtkVBox" id="advanced.box.history_size">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
-                              <object class="GtkLabel" id="advanced.lable.history_size">
+                              <object class="GtkLabel" id="advanced.lable.histroy_size">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">History Size</property>
@@ -2378,7 +2417,7 @@ es_ES: Kenny Meyer</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="advanced.box.histroy_blacklist">
+                          <object class="GtkVBox" id="advanced.box.history_blacklist">
                             <property name="width_request">220</property>
                             <property name="height_request">44</property>
                             <property name="visible">True</property>
@@ -2825,6 +2864,8 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3623,18 +3664,6 @@ es_ES: Kenny Meyer</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSeparator" id="advanced.separator.1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_padding">100</property>
-                    <property name="y_padding">5</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkSeparator" id="advanced.separator.5">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -3719,6 +3748,18 @@ es_ES: Kenny Meyer</property>
                     <property name="bottom_attach">7</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkSeparator" id="advanced.separator.1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                    <property name="x_padding">100</property>
+                    <property name="y_padding">5</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="position">1</property>
@@ -3735,6 +3776,521 @@ es_ES: Kenny Meyer</property>
               </object>
               <packing>
                 <property name="position">1</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkTable" id="advanced.table.3">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+                <property name="n_rows">3</property>
+                <child>
+                  <object class="GtkSeparator" id="advanced.separator.9">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                    <property name="x_padding">100</property>
+                    <property name="y_padding">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="advanced.box.git">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkLabel" id="advanced.label.git">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">GIT</property>
+                        <property name="angle">90</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkGrid" id="advanced.table.git">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="column_spacing">15</property>
+                        <child>
+                          <object class="GtkVBox" id="advanced.box.git_name">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="advanced.label.git_name">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">GIT user name</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="git_user">
+                                <property name="width_request">220</property>
+                                <property name="height_request">22</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="advanced.box.git_mail">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="advanced.label.git_mail">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">GIT mail address</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="git_mail">
+                                <property name="width_request">220</property>
+                                <property name="height_request">22</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="advanced.box.git_editor">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="advanced.label.git_editor">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Editor for GIT</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="git_editor">
+                                <property name="width_request">220</property>
+                                <property name="height_request">22</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="advanced.box.git_signkey">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="advanced.label.git_signkey">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Default GIT signing key</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="git_signkey">
+                                <property name="width_request">220</property>
+                                <property name="height_request">22</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">1</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="git_color">
+                            <property name="label" translatable="yes">Colorize GIT output</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">2</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="git_aliases">
+                            <property name="label" translatable="yes">GIT aliases co, up, re, ma, who, ci</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">2</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="top_attach">2</property>
+                    <property name="bottom_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="advanced.box.extra">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkLabel" id="advanced.label.extras">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Extras</property>
+                        <property name="angle">90</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkGrid" id="advanced.table.extra">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="column_spacing">15</property>
+                        <child>
+                          <object class="GtkCheckButton" id="enable_lscd">
+                            <property name="label" translatable="yes">Use lscd in favour of cd</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="advanced.box.lscd">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="advanced.label.lscd">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">lscd options</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="lscd_options">
+                                <property name="width_request">220</property>
+                                <property name="height_request">22</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="advanced.box.cdwriter">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="advanced.label.cdwritter">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">CD writer device node</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="cdwriter">
+                                <property name="width_request">220</property>
+                                <property name="height_request">22</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="advanced.box.birthday">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="advanced.label.birthday">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">User birthday (MM-DD)</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="birthday">
+                                <property name="width_request">220</property>
+                                <property name="height_request">22</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">1</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="dd_noerror">
+                            <property name="label" translatable="yes">Let 'dd' continue on error</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">2</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="debug_verbose">
+                            <property name="label" translatable="yes">Verbose output on start</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">3</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="restore_pwd">
+                            <property name="label" translatable="yes">Restore directory in new shell</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">2</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.extras.empty">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">3</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="label1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Extras - GIT</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="position">2</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
