@@ -48,4 +48,29 @@ if [[ $(ini_get colored_grep) == True && $enabcol == True ]]; then \
 else	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"Off"
 fi
 
+export debug_verbose=$(ini_get debug_verbose)
+
+if [[ $(ini_get restore_directory) == True ]]; then
+	dbg_log trap 'printf %s "$PWD" > $HOME/.lastpwd' EXIT
+	if [[ -e $HOME/.lastpwd && -d "$(cat $HOME/.lastpwd)" ]]; then
+		dbg_log cd "$(cat $HOME/.lastpwd)"
+	fi
+fi
+
+if [[ $(ini_get use_lscd) == True ]]; then
+	alias cd=lscd
+	export LSCD_OPTS=$(ini_get lscd_opts)
+	if [[ $(ini_get enable_colors) != True ]]; then
+		LSCD_OPTS+=" --color=no"
+	fi
+fi
+
+export CD_WRITER=$(ini_get cd_writer)
+
+if [[ $(ini_get dd_noerror) == True ]]; then
+	export DD_OPTS="conv=noerror"
+fi
+
+export USER_BIRTHDAY=$(ini_get user_birthday)
+
 dbg_log export HISTCONTROL HISTIGNORE FIGNORE CDPATH FCEDIT TMOUT HISTSIZE HISTFILESIZE PATH GREP_OPTIONS GREP_COLOR

@@ -30,7 +30,7 @@ fi
 
 ERR_MSG=""
 
-for RC in wizard/ini internal/misc internal/logging; do
+for RC in internal/misc internal/logging; do
 	source $BSNG_RC_DIR/$RC
 done
 
@@ -92,8 +92,6 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
 	dbg_log alias rd="pwd -P"
 
-	bs-ng-wizard
-
 	dbg_msg $"BashStyle-NG Loading:" $"BSNG Wizard Settings"
 	dbg_log source $BSNG_RC_DIR/settings/wizard-rc
 
@@ -142,9 +140,9 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	PS3="$pscolor $ps234char$ps234char$fontcolor "
 	PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
-	if [[ $(wizard_get color_shell) == True ]]; then
+	if [[ $(ini_get colorshell) == True ]]; then
 		. $BSNG_RC_DIR/functions/colorshell
-		if [[ $(wizard_get color_shell_revert) == True ]]; then
+		if [[ $(ini_get colorshell_revert) == True ]]; then
 			trap 'echo -ne "\e[0m"' DEBUG
 		fi
 	fi
