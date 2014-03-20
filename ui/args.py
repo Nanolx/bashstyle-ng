@@ -20,6 +20,10 @@ for module in MODULES:
 	except ImportError:
 		FAILED.append(module)
 
+if FAILED:
+    print("The following modules failed to import: %s" % (" ".join(FAILED)))
+    sys.exit(1)
+
 class CmdArgs(object):
 	parser = optparse.OptionParser("bashstyle <option> [value]\
 					\n\nBashStyle-NG (c) 2007 - 2013 Christopher Bratusek\
@@ -45,9 +49,9 @@ class CmdArgs(object):
 	(options, args) = parser.parse_args()
 
 	if options.version:
-		print "%s" % os.getenv('BSNG_UI_VERSION')
+		print("%s" % os.getenv('BSNG_UI_VERSION'))
 		sys.exit(0)
 
 	if options.prefix:
-		print "%s" % os.getenv('BSNG_UI_PREFIX')
+		print("%s" % os.getenv('BSNG_UI_PREFIX'))
 		sys.exit(0)

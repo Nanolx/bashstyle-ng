@@ -10,20 +10,21 @@
 #							#
 #########################################################
 
-empty_pc=""
+empty_pc=r""
 
-separator_ps="\\n\u @ \h | \d | \\t | \\$(trunc_pwd)\n$ -> "
+separator_ps=r"\\n\u @ \h | \d | \\t | \\$(trunc_pwd)\n$ -> "
 
-vector_ps="\\n┌( \u @ \h )─( \$(date +%I:%M%P) -:- \$(date +%m)/\$(date +%d) )\\n└( \$(trunc_pwd) )·> "
+vector_ps=r"\\n┌( \u @ \h )─( \$(date +%I:%M%P) -:- \$(date +%m)/\$(date +%d) )\\n└( \$(trunc_pwd) )·> "
 
-floating_clock_pc="let prompt_x=$(tput cols)-29\
+floating_clock_pc=r"let prompt_x=$(tput cols)-29\
 \ntput sc\
 \ntput cup 0 ${prompt_x}\
 \necho -n \"[ $(date '+%a, %d %b %y') :: $(date +%T) ]\"\
 \ntput rc"
-floating_clock_ps="[ \u @ \h : \$(trunc_pwd) ] "
 
-clock_advanced_pc="host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
+floating_clock_ps=r"[ \u @ \h : \$(trunc_pwd) ] "
+
+clock_advanced_pc=r"host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
 \ndirchar=$(ini_get directory_indicator)\
 \ntrunc_symbol=$(ini_get pwdcut)\
 \ntrunc_length=$(($(echo $trunc_symbol | wc -m)-1))\
@@ -74,11 +75,12 @@ clock_advanced_pc="host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
 \n   let i=$i-1\
 \ndone\
 \nlet prompt_line=${LINES}-1"
-clock_advanced_ps="\[\\033[\${prompt_line};0H\]\\n┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\\n└─( uptime: \$(show_uptime) : $ )·> "
 
-elite_ps="\\n┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(show_uptime) ]\\n└─[ $ : \$(trunc_pwd) ]·> "
+clock_advanced_ps=r"\[\\033[\${prompt_line};0H\]\\n┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\\n└─( uptime: \$(show_uptime) : $ )·> "
 
-poweruser_pc="\
+elite_ps=r"\\n┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(show_uptime) ]\\n└─[ $ : \$(trunc_pwd) ]·> "
+
+poweruser_pc=r"\
 \nlocal one=$(uptime | sed -e \"s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\\1/\" -e \"s/ //g\")\
 \nlocal five=$(uptime | sed -e \"s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\).*/\\2/\" -e \"s/ //g\")\
 \nlocal diff1_5=$(echo -e \"scale = scale ($one) \\nx=$one - $five\\n if (x>0) {print \\\"up\\\"} else {print \\\"down\\\"}\\n print x \\nquit \\n\" | bc)\
@@ -107,23 +109,24 @@ poweruser_pc="\
 \ndevices=\" ${devicetemp}bc\"\
 \nfi\
 \nunset devicetemp"
-poweruser_ps="\\n[ \$(date +%T) - \$(date +%D) ]\
+
+poweruser_ps=r"\\n[ \$(date +%T) - \$(date +%D) ]\
 [ \u @ \h ]\ [ \${files}.\${hiddenfiles}-\${executables}x \$(show_size) \
 \${directories}.\${hiddendirectories}d\${links}\${devices} ][ \${loaddiff} ][ \
 \$(ps ax | wc -l | sed -e \\\"s: ::g\\\")proc ]\\n[ \$(trunc_pwd) ] $ "
 
-dirks_ps="\\n[ \\t ] \u \$(trunc_pwd) $ "
+dirks_ps=r"\\n[ \\t ] \u \$(trunc_pwd) $ "
 
-dotprompt_ps="\\n.:[ \u @ \h ]:. .:[ \$(trunc_pwd) ]:.\n.:[·> "
+dotprompt_ps=r"\\n.:[ \u @ \h ]:. .:[ \$(trunc_pwd) ]:.\n.:[·> "
 
-sepang_ps="\\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(show_uptime) ⁆⊐\\n⊏⁅ \$(trunc_pwd) ⁆⊐≻ "
+sepang_ps=r"\\n⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(show_uptime) ⁆⊐\\n⊏⁅ \$(trunc_pwd) ⁆⊐≻ "
 
-quirk_ps="\\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \
+quirk_ps=r"\\n -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M) \
 \$(date +%d-%b-%y ) )-( files: \$(count_files +f) / folders: \$(count_files -d) )-\\n -< \$(trunc_pwd) >- "
 
-sputnik_ps="\\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(trunc_pwd) )♦♦\\n♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(show_uptime) \$ )♦♦ "
+sputnik_ps=r"\\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(trunc_pwd) )♦♦\\n♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(show_uptime) \$ )♦♦ "
 
-ayoli_pc="newPWD=\"${PWD}\"\
+ayoli_pc=r"newPWD=\"${PWD}\"\
 \nuser=\"whoami\"\
 \nhost=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")\
 \ndatenow=$(date \"+%a, %d %b %y\")\
@@ -142,5 +145,6 @@ ayoli_pc="newPWD=\"${PWD}\"\
 \n    let cutt=3-${fillsize}\
 \n    newPWD=\"...$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")\"\
 \nfi"
-ayoli_ps="┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD \
+
+ayoli_ps=r"┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD \
 )─<\n└─( \$(date \"+%H:%M\") \$ )─> "

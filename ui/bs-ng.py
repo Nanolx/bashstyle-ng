@@ -11,9 +11,9 @@
 #########################################################
 
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
-            'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
-	   'i18n', 'misc', 'lockfile', 'config', 'widgethandler', 'dicts',
-	   'prompts', 'promptbuilder', 'args' ]
+            'ctypes', 'optparse', 'subprocess', 'undobuffer', 'i18n', 'misc',
+	    'lockfile', 'config', 'widgethandler', 'dicts', 'prompts',
+	    'promptbuilder', 'args' ]
 
 FAILED = []
 
@@ -29,7 +29,7 @@ except ImportError:
 	FAILED.append("Gtk (from gi.repository)")
 
 if FAILED:
-    print "The following modules failed to import: %s" % (" ".join(FAILED))
+    print("The following modules failed to import: %s" % (" ".join(FAILED)))
     sys.exit(1)
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')

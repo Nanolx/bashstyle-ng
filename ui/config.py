@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'configobj', 'string', 'shutil' ]
+MODULES = [ 'os', 'os.path', 'sys', 'configobj', 'string', 'shutil' ]
 
 FAILED = []
 
@@ -21,7 +21,7 @@ for module in MODULES:
 		FAILED.append(module)
 
 if FAILED:
-    print "The following modules failed to import: %s" % (" ".join(FAILED))
+    print("The following modules failed to import: %s" % (" ".join(FAILED)))
     sys.exit(1)
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')
@@ -72,7 +72,7 @@ class Config(object):
 		self.cfo.write()
 
 	def GetUserConfig(self, group, setting):
-		print self.cfo["%s" % group]["%s" % setting]
+		print(self.cfo["%s" % group]["%s" % setting])
 
 	def SetUserConfig(self, group, setting, value):
 		self.cfo["%s" % group]["%s" % setting] = value
@@ -84,7 +84,7 @@ class Config(object):
 		self.cfo["%s" % group]["%s" % setting] = self.fdc["%s" % group]["%s" % setting]
 
 	def GetUserOldConfig(self, group, setting):
-		print self.udc["%s" % group]["%s" % setting]
+		print(self.udc["%s" % group]["%s" % setting])
 
 	def GetFactoryConfig(self, group, setting):
-		print self.fdc["%s" % group]["%s" % setting]
+		print(self.fdc["%s" % group]["%s" % setting])

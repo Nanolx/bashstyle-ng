@@ -22,7 +22,7 @@ section_message () {
 			;;
 
 			PY )
-				echo -e "\n${RED}Python Interpreter${WHITE} > 2.6 && < 3.0:\n"
+				echo -e "\n${RED}Python Interpreter${WHITE} > 2.6 && < 3.4:\n"
 			;;
 
 			PYMOD )
@@ -93,7 +93,7 @@ fail_message () {
 		;;
 
 		p+ )
-			echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS 3.0 OR ABOVE!"
+			echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS 3.4 OR ABOVE!"
 		;;
 	esac
 	tput sgr0

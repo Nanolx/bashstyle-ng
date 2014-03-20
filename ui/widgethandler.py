@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'misc' ]
+MODULES = [ 'os', 'misc', 'sys' ]
 
 FAILED = []
 
@@ -26,7 +26,7 @@ except ImportError:
 	FAILED.append("Gtk (from gi.repository)")
 
 if FAILED:
-    print "The following modules failed to import: %s" % (" ".join(FAILED))
+    print("The following modules failed to import: %s" % (" ".join(FAILED)))
     sys.exit(1)
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')
@@ -97,7 +97,7 @@ class WidgetHandler(object):
 			def emit_text(widget, text, *args):
 				if text in blacklist:
 					widget.emit_stop_by_name('insert-text')
-			
+
 			object = LoadWidget(widget)
 			LoadValue(object, group, setting, type)
 			ConnectSignals(object, type, group, setting)

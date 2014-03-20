@@ -21,8 +21,12 @@ for module in MODULES:
 		FAILED.append(module)
 
 if FAILED:
-    print "The following modules failed to import: %s" % (" ".join(FAILED))
+    print("The following modules failed to import: %s" % (" ".join(FAILED)))
     sys.exit(1)
 
 def SwapDictionary(original_dict):
-	return dict([(v, k) for (k, v) in original_dict.iteritems()])
+    try:
+            iteritems = original_dict.iteritems
+    except AttributeError:
+            iteritems = original_dict.items
+    return dict([(v, k) for (k, v) in iteritems()])

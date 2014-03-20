@@ -9,10 +9,10 @@
 # Copyright 2007 - 2013 Christopher Bratusek		#
 #							#
 #########################################################
+
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
-            'ctypes', 'optparse', 'subprocess', 'undobuffer', 'commands',
-	   'i18n', 'misc', 'lockfile', 'config', 'widgethandler', 'dicts',
-	   'prompts' ]
+            'ctypes', 'optparse', 'subprocess', 'undobuffer', 'i18n', 'misc',
+            'lockfile', 'config', 'widgethandler', 'dicts', 'prompts' ]
 
 FAILED = []
 
@@ -28,7 +28,7 @@ except ImportError:
 	FAILED.append("Gtk (from gi.repository)")
 
 if FAILED:
-    print "The following modules failed to import: %s" % (" ".join(FAILED))
+    print("The following modules failed to import: %s" % (" ".join(FAILED)))
     sys.exit(1)
 
 class PromptBuilder(object):
@@ -38,7 +38,7 @@ class PromptBuilder(object):
 		gtkbuilder = widgethandler.gtkbuilder
 		lang = i18n.Gettext()
 		lang.SetLang()
-		
+
 		self.prompt_command = gtkbuilder.get_object("prompt_command")
 
 		self.prompt_command_buffer = undobuffer.UndoableBuffer()
@@ -66,7 +66,7 @@ class PromptBuilder(object):
 			config["Custom"]["prompt"] = widget.get_text(start, end, False)
 
 		self.custom_prompt_buffer.connect("changed", set_custom_prompt)
-		
+
 		###
 
 		self.place_p_c = gtkbuilder.get_object("place_p_c")
@@ -103,11 +103,11 @@ class PromptBuilder(object):
 				self.prompt_command_buffer.set_text(text)
 			elif self.active_buffer == "PS1":
 				self.custom_prompt_buffer.set_text(text)
-				
+
 		###
-		
+
 		self.empty_pc = gtkbuilder.get_object("empty_pc")
-		
+
 		def do_empty_pc(widget, data=None):
 			self.prompt_command_buffer.set_text("")
 
@@ -161,7 +161,7 @@ class PromptBuilder(object):
 		def load_toolbutton(object, text):
 			widget = gtkbuilder.get_object("%s" % object)
 			widget.connect("clicked", prompt_add, text)
-			
+
 		load_toolbutton("username", "\\u")
 		load_toolbutton("hostname", "\\h")
 		load_toolbutton("fhostname", "\\H")
@@ -183,14 +183,14 @@ class PromptBuilder(object):
 		load_toolbutton("showtty", "\\$(showtty)")
 		load_toolbutton("showcpuload", "\\$(show_cpu_load)")
 		load_toolbutton("showseconds", "\\$SECONDS)")
-		
+
 		###
-		
+
 		def load_toolcombo(object, dict):
 			widget = gtkbuilder.get_object("%s" % object)
 			widget.set_active(0)
 			widget.connect("changed", prompt_add_combo, dict)
-			
+
 		load_toolcombo("showmem", dicts.memory_getters)
 		load_toolcombo("showbatteryload", dicts.battery_getters)
 		load_toolcombo("showspace", dicts.space_getters)

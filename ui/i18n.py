@@ -21,13 +21,13 @@ for module in MODULES:
 		FAILED.append(module)
 
 if FAILED:
-    print "The following modules failed to import: %s" % (" ".join(FAILED))
+    print("The following modules failed to import: %s" % (" ".join(FAILED)))
     sys.exit(1)
 
 class Gettext(object):
 	def SetLang(self):
 		self.langs = ["C", "de", "it", "ru", "es"]
-		self.lc, encoding = locale.getdefaultlocale()
+		lc, encoding = locale.getdefaultlocale()
 		gettext.bindtextdomain("bs-ng")
 		gettext.textdomain("bs-ng")
 		self.lang = gettext.translation("bs-ng", languages=self.langs, fallback=True)
@@ -35,10 +35,10 @@ class Gettext(object):
 		_ = self.lang.gettext
 
 	def GetLang(self):
-		print self.lc
+		print(lc)
 
 	def Geti18n(self):
-		if self.lc[:2] in self.langs:
-			print self.lc
+		if lc[:2] in self.langs:
+			print(lc)
 		else:
-			print "C"
+			print("C")
