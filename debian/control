@@ -11,10 +11,10 @@ Build-Depends: 	debhelper (>= 5),
                 bash (>= 3.2),
                 gawk,
                 debianutils (>= 4.3.2),
-                python (>= 2.4),
-                python-gi | python3-gi,
-                python-configobj,
-                python-support (>= 0.90)
+                python3 (<< 3.3),
+                python3-gi,
+                python3-configobj,
+                python3-support (>= 0.90)
 Standards-Version: 3.9.4
 
 Package: bashstyle-ng
@@ -24,8 +24,8 @@ Depends: 	bash (>= 3.2),
  		procps,
  		gawk,
                 grep (>= 2.12),
- 		python (>= 2.4) | python3,
- 		python-gi | python3-gi,
+ 		python3 (<< 3.4),
+ 		python3-gi,
                 sed (>= 4.2.1),
  		less,
  		libgtk-3-bin,
@@ -33,7 +33,7 @@ Depends: 	bash (>= 3.2),
                 gir1.2-gtk-3.0,
                 ${misc:Depends},
                 ${python:Depends},
-                python-configobj
+                python3-configobj
 Suggests:  	nano,
  		vim,
  		acpi,

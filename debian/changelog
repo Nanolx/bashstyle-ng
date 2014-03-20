@@ -1,3 +1,33 @@
+bashstyle-ng (8.4-1nano) unstable; urgency=low
+
+  * New upstream stable release
+  * support for python3
+  * Upstream changes:
+    * #148 (alias): fix aliases #8 and #9 set from UI weren't setup on Bash
+    * #149 (count_files): -f/+f and -d/+d params were exchanged
+    * #150 (debian): make bashstyle-ng exlicitely depend on python-configobj
+    * #151 (make): fix generating pot file for bs-ng-wizard
+    * #152 (configure): fix detection of python version if it's an RC
+    * #153 (python3): full python3 support (ConfigObj only supports 3.2
+                      and 3.3 officially)
+    * direxpand: Bash >= 4.3 features a new shopt: direxpand. Enabling this
+             causes Bash to expand directory names in completion like
+             Bash 4.1 did.
+    * globasciiranges: Bash >= 4.3 features a new shop: globasciirange.
+                   Enabling this causes Bash to use character ordering
+                   like in the C locale when globbing ranges.
+    * show-mode-in-prompt: New readline option to show the current editing
+                       mode in the prompt
+    * minor UI improvement (tabs on the left, smaller icons on tabs,
+      text below icons on tab)
+    * add "Report Bugs" button to the about dialog
+    * updated and completed german translation
+    * configure 4.2.3: add --bashrc option to pass a specific system
+                   wide bashrc (required for bashstyle-ng init)
+    * bump supported python versions to 3.3 (only if you have ConfigObj 5)
+
+ -- Christopher Roy Bratusek <nano@tuxfamily>  Thu, 20 Mar 2014 12:59:07 +0100
+
 bashstyle-ng (8.3-1nano) unstable; urgency=low
 
   * New upstream stable release
