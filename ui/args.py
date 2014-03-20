@@ -6,7 +6,7 @@
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3		#
 #							#
-# Copyright 2007 - 2013 Christopher Bratusek		#
+# Copyright 2007 - 2014 Christopher Bratusek		#
 #							#
 #########################################################
 
@@ -26,7 +26,7 @@ if FAILED:
 
 class CmdArgs(object):
 	parser = optparse.OptionParser("bashstyle <option> [value]\
-					\n\nBashStyle-NG (c) 2007 - 2013 Christopher Bratusek\
+					\n\nBashStyle-NG (c) 2007 - 2014 Christopher Bratusek\
 					\nLicensed under the GNU GENERAL PUBLIC LICENSE v3")
 
 	if sys.platform == 'linux2':
