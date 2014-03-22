@@ -42,10 +42,6 @@ class CmdArgs(object):
 	parser.add_option("-p", "--prefix", dest="prefix",
 			  action="store_true", default=False, help="print prefix and exit")
 
-	parser.add_option("-g", "--group", dest="group", default="style",
-			  help="display a given group of options at startup, one of:\
-			  \nstyle, alias, advanced, readline, vim, nano, ls or custom")
-
 	(options, args) = parser.parse_args()
 
 	if options.version:

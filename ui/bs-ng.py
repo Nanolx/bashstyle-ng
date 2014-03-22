@@ -13,7 +13,7 @@
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
             'ctypes', 'optparse', 'subprocess', 'undobuffer', 'i18n', 'misc',
 	    'lockfile', 'config', 'widgethandler', 'dicts', 'prompts',
-	    'promptbuilder', 'args' ]
+	    'promptbuilder', 'args' , 'iconbook' ]
 
 FAILED = []
 
@@ -37,7 +37,6 @@ DOCDIR = os.getenv('BSNG_DOCDIR')
 DATDIR = os.getenv('BSNG_DATADIR')
 
 args.CmdArgs()
-initial_page = dicts.groups[args.CmdArgs.options.group]
 
 lock = lockfile.LockFile()
 config = config.Config()
@@ -266,27 +265,9 @@ class BashStyleNG(object):
 
 		self.bashstyle.connect("destroy", destroy, None)
 
-		######################## Load the Notebook #########################################
-		notebook = gtkbuilder.get_object("notebook")
-		notebook.set_current_page(int(initial_page))
-
-		######################## Load last two buttons #####################################
-		self.show_doc = gtkbuilder.get_object("show_doc")
-
-		def show_documentation(widget, data=None):
-			subprocess.Popen("x-www-browser " + DOCDIR + "/bashstyle-ng/index.html", shell=True)
-
-		self.show_doc.connect("clicked", show_documentation, None)
-
-		self.show_about = gtkbuilder.get_object("show_about")
-
-		def show_aboutdialog(widget, data=None):
-			aboutdialog = gtkbuilder.get_object("aboutdialog")
-			aboutdialog.show_all()
-			aboutdialog.connect("response", lambda w, e: w.hide() or True)
-			aboutdialog.connect("delete-event", lambda w, e: w.hide() or True)
-
-		self.show_about.connect("clicked", show_aboutdialog, None)
+		######################## Load the IconView and Notebook ############################
+		view = iconview.IconView()
+		view.InitIconView()
 
 		self.bashstyle.show
 
