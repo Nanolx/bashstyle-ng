@@ -78,7 +78,7 @@ notebook_pages = {
 gtkbuilder = widgethandler.gtkbuilder
 DOCDIR = os.getenv('BSNG_DOCDIR')
 
-class IconView(object):
+class IconBook(object):
 
 	def ShowDocumentation(self):
 		subprocess.Popen("x-www-browser " + DOCDIR + "/bashstyle-ng/index.html", shell=True)
@@ -89,7 +89,7 @@ class IconView(object):
 		aboutdialog.connect("response", lambda w, e: w.hide() or True)
 		aboutdialog.connect("delete-event", lambda w, e: w.hide() or True)
 
-	def InitIconView(self):
+	def InitIconBook(self):
 
 		liststore = gtkbuilder.get_object("iconviewstore")
 		iconview = gtkbuilder.get_object("iconview")

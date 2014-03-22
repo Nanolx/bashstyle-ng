@@ -266,8 +266,8 @@ class BashStyleNG(object):
 		self.bashstyle.connect("destroy", destroy, None)
 
 		######################## Load the IconView and Notebook ############################
-		view = iconview.IconView()
-		view.InitIconView()
+		view = iconbook.IconBook()
+		view.InitIconBook()
 
 		self.bashstyle.show
 

@@ -619,6 +619,7 @@ es_ES: Kenny Meyer</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="relief">normal</property>
                 <property name="uri">https://github.com/Nanolx/bashstyle-ng/issues</property>
               </object>
               <packing>
@@ -700,6 +701,647 @@ es_ES: Kenny Meyer</property>
       </row>
       <row>
         <col id="0" translatable="yes">None</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkImage" id="cpb.icon.toolbox">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixel_size">15</property>
+    <property name="icon_name">bs-ng-toolbox</property>
+  </object>
+  <object class="GtkListStore" id="cpb.liststore.style">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Choose Style:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vector</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Floating Clock</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Clock Advanced</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Elite</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Power-User</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dirks</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dot.Prompt</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sepa-NG</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Quirk</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sputnik</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ayoli</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="cpb.liststore.symbolic_color">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Insert Color:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Username</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Hostname</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Date</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Time</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Workdir</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Font</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Uptime</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">PS2 PS3 PS4</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkImage" id="icon.back">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="xalign">0</property>
+    <property name="yalign">0</property>
+    <property name="stock">gtk-go-back</property>
+    <property name="icon_size">2</property>
+  </object>
+  <object class="GtkListStore" id="iconviewstore">
+    <columns>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name gchararray1 -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="ls_colors.liststore.choice">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="readline.adjustment.query_items">
+    <property name="upper">10000</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkListStore" id="readline.liststore.bellstyle">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Audible</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Visible</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">None</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="readline.liststore.editmode">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Emacs</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vi</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.color_of">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Choose Color to Change:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Username</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Hostname</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Date</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Time</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Workdir</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Font</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Uptime</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">PS2 PS3 PS4</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.color_style">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Normal</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dimmed</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Inverted</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Underlined</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.color_to">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Change Color to:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.grep_colour">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.prompt_style">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Separator</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vector</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Floating Clock</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Clock Advanced</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Elite</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Power-User</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dirks</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Dot.Prompt</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sepa-NG</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Quirk</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sputnik</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ayoli</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.terminfo">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Mostlike</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bold</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nebula</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.battery">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Display Batteryload:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Via ACPI</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Via APM</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.countfiles">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Files Amount:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Include Hidden Files</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Exclude Hidden Files</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.load">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Load Average:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">for 1 minute</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">for 10 minutes</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">for 15 minutes</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.memory">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Display Memory:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Memory [MB]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Free Memory [MB]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Memory [%]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Free Memory [%]</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="toolbox.liststore.space">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Display Diskspace:</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Space [MB]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Free Space [MB]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Used Space [%]</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Free Space [%]</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="vim.adjustment.autowrap">
+    <property name="upper">10000</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="vim.adjustment.tabstop">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+  </object>
+  <object class="GtkListStore" id="vim.liststore.colorscheme">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Default</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Adaryn</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Advantage</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Desert</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Gobo</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Impact</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nightshade</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nightwish</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Wombat</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Asu 1 Dark</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Candy Code</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">DW Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Fruit</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Relaxed Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Tango</col>
       </row>
     </data>
   </object>
@@ -6710,646 +7352,5 @@ es_ES: Kenny Meyer</property>
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="cpb.icon.toolbox">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixel_size">15</property>
-    <property name="icon_name">bs-ng-toolbox</property>
-  </object>
-  <object class="GtkListStore" id="cpb.liststore.style">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Choose Style:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vector</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Floating Clock</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Clock Advanced</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Elite</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Power-User</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dirks</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dot.Prompt</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sepa-NG</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Quirk</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sputnik</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ayoli</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="cpb.liststore.symbolic_color">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Insert Color:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Username</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Hostname</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Date</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Time</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Workdir</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Font</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Uptime</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">PS2 PS3 PS4</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkImage" id="icon.back">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="xalign">0</property>
-    <property name="yalign">0</property>
-    <property name="stock">gtk-go-back</property>
-    <property name="icon_size">2</property>
-  </object>
-  <object class="GtkListStore" id="iconviewstore">
-    <columns>
-      <!-- column-name icon -->
-      <column type="GdkPixbuf"/>
-      <!-- column-name gchararray1 -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkListStore" id="ls_colors.liststore.choice">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Black</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Red</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Yellow</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Blue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Magenta</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cyan</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">White</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Coldblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Iceblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Turqoise</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothgreen</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Winered</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Brown</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Silver</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ocher</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Purple</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Pink</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cream</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkAdjustment" id="readline.adjustment.query_items">
-    <property name="upper">10000</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkListStore" id="readline.liststore.bellstyle">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Audible</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Visible</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">None</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="readline.liststore.editmode">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Emacs</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vi</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.color_of">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Choose Color to Change:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Username</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Hostname</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Date</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Time</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Workdir</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Font</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Uptime</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">PS2 PS3 PS4</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.color_style">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Normal</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Bright</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dimmed</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Inverted</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Underlined</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.color_to">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Change Color to:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Black</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Red</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Yellow</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Blue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Magenta</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cyan</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">White</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Coldblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Iceblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Turqoise</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothgreen</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Winered</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Brown</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Silver</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ocher</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Purple</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Pink</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cream</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.grep_colour">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Black</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Red</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Yellow</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Blue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Magenta</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cyan</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">White</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Coldblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Iceblue</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Turqoise</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Smoothgreen</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Winered</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Brown</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Silver</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ocher</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Purple</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Pink</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Cream</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.prompt_style">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Separator</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vector</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Floating Clock</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Clock Advanced</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Elite</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Power-User</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dirks</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Dot.Prompt</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sepa-NG</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Quirk</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Sputnik</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Ayoli</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="style.liststore.terminfo">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Mostlike</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Bold</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nebula</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.battery">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Display Batteryload:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Via ACPI</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Via APM</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.countfiles">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Files Amount:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Include Hidden Files</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Exclude Hidden Files</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.load">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Load Average:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">for 1 minute</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">for 10 minutes</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">for 15 minutes</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.memory">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Display Memory:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Used Memory [MB]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Free Memory [MB]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Used Memory [%]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Free Memory [%]</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="toolbox.liststore.space">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Display Diskspace:</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Used Space [MB]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Free Space [MB]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Used Space [%]</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Free Space [%]</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkAdjustment" id="vim.adjustment.autowrap">
-    <property name="upper">10000</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkAdjustment" id="vim.adjustment.tabstop">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-  </object>
-  <object class="GtkListStore" id="vim.liststore.colorscheme">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Default</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Adaryn</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Advantage</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Desert</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Gobo</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Impact</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nightshade</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nightwish</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Wombat</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Asu 1 Dark</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Candy Code</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">DW Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Fruit</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Relaxed Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Tango</col>
-      </row>
-    </data>
   </object>
 </interface>
