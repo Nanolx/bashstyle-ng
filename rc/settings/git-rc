@@ -9,21 +9,21 @@
 #							#
 #########################################################
 
-if [[ $(wizard_get git_user_name) != "" ]]; then
-	git config --global user.name "$(wizard_get git_user_name)"
+if [[ $(ini_get git_user_name) != "" ]]; then
+	git config --global user.name "$(ini_get git_user_name)"
 fi
 
-if [[ $(wizard_get git_user_mail) != "" ]]; then
-	git config --global user.email "$(wizard_get git_user_mail)"
+if [[ $(ini_get git_user_mail) != "" ]]; then
+	git config --global user.email "$(ini_get git_user_mail)"
 fi
 
-if [[ $(wizard_get git_singkey) != "" ]]; then
-	git config --global user.signingkey "$(wizard_get git_signkey)"
+if [[ $(ini_get git_signkey) != "" ]]; then
+	git config --global user.signingkey "$(ini_get git_signkey)"
 fi
 
 COLOR_OPTS=( branch diff interactive pager status )
 
-if [[ $(wizard_get git_color) == True ]]; then
+if [[ $(ini_get git_color) == True ]]; then
 	for opt in ${COLOR_OPTS[@]}; do
 		git config --global color.$opt true
 	done
@@ -32,21 +32,21 @@ else 	for opt in ${COLOR_OPTS[@]}; do
 	done
 fi
 
-if [[ $(wizard_get git_editor) != "" ]]; then
-	git config --global core.editor "$(wizard_get git_editor)"
+if [[ $(ini_get git_editor) != "" ]]; then
+	git config --global core.editor "$(ini_get git_editor)"
 fi
 
-if [[ $(wizard_get git_aliases) == True ]]; then
+if [[ $(ini_get git_aliases) == True ]]; then
 	git config --global alias.co checkout
 	git config --global alias.up pull
 	git config --global alias.re "reset --hard HEAD"
 	git config --global alias.ma "checkout master"
 	git config --global alias.who "shortlog -s --"
-	git config --global alis.ci commit
+	git config --global alias.ci commit
 else	git config --global --unset alias.co
 	git config --global --unset alias.up
 	git config --global --unset alias.re
 	git config --global --unset alias.ma
 	git config --global --unset alias.who
 	git config --global --unset alias.ci
-if
+fi
