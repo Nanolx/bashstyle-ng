@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env bashstyle --python
 # short mark, dot or 'dit' (.) = .
 # longer mark, dash or 'dah' (-) = -
 # intra-character gap (between the dots and dashes within a character) = no space
@@ -31,7 +31,7 @@ def encode(value):
        try :
                morse_value += codes[c.upper()]+','
        except :
-         print "Unintended character " + c + " omitted"
+         print("Unintended character " + c + " omitted")
     return _get_binary(morse_value)
 
 
@@ -42,10 +42,10 @@ def _get_binary(value):
      return binary_value
 
 def _do_encode(value):
-    print encode(value)
+    print(encode(value))
 
 if __name__ == "__main__":
    if len(sys.argv) > 1:
         _do_encode(sys.argv[1])
    else:
-        print "Usage : "+sys.argv[0]+" [d (decode) |e (encode)] [input string]"
+        print("Usage : "+sys.argv[0]+" [d (decode) |e (encode)] [input string]")
