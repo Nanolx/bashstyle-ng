@@ -114,7 +114,6 @@ class IconBook(object):
 		def iconview_activated(widget, item):
 				model = widget.get_model()
 				notebook.set_current_page(notebook_pages[model[item][1]])
-				print(model[item][1])
 				if model[item][1] == "Documentation" :
 					self.ShowDocumentation()
 				elif model[item][1] == "About BashStyle-NG" :
