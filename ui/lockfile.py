@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'string', 'shutil', 'subprocess', 'sys' ]
+MODULES = [ 'os', 'os.path', 'string', 'shutil', 'sys' ]
 
 FAILED = []
 
@@ -26,6 +26,13 @@ if FAILED:
 
 lockfile = os.path.expanduser("~/.bashstyle.lock")
 
+### python2 vs. python3 ###
+
+if sys.version_info[0] == 2:
+	import commands
+else:
+	import subprocess
+
 class LockFile(object):
 	def Check(self):
 		if os.access(lockfile, os.F_OK):
@@ -33,8 +40,12 @@ class LockFile(object):
 			rlockfile.seek(0)
 			oldpid = rlockfile.readline()
 			if os.path.exists("/proc/%s" % oldpid):
-				xpid = subprocess.getoutput("pgrep -l bashstyle")
-				gpid = string.split(xpid)
+				if sys.version_info[0] == 2:
+					xpid = commands.getoutput("pgrep -l bashstyle")
+					gpid = string.split(xpid)
+				else:
+					xpid = subprocess.getoutput("pgrep -l bashstyle")
+					gpid = xpid.split()
 				if not xpid == "" and gpid[1] == "bashstyle":
 					print("Lockfile does exist and bashstyle-ng is already running.")
 					print("bashstyle-ng is running as process %s" % oldpid)
