@@ -251,6 +251,10 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("ls_zip", "LSColors", "zip", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_rar", "LSColors", "rar", "combo", dicts.ls_colors)
 
+		### keybindings ###
+
+		WidgetHandler.InitKeyWidget("beginning_of_line")
+
 		######################## Custom Prompt Builder #####################################
 		WidgetHandler.InitWidget("use_custom_prompt", "Custom", "use_custom_prompt", "bool", None)
 		promptbuilder.PromptBuilder(config.cfo)
