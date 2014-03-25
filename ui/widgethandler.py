@@ -66,10 +66,6 @@ class WidgetHandler(object):
 				grid.attach_next_to(object, label, Gtk.PositionType.RIGHT, 1, 1)
 				object.set_visible(True)
 
-			def LoadKeyEntry():
-				object_entry = gtkbuilder.get_object("%s.entry" % setting)
-				return object_entry
-
 			def LoadValue():
 				if type == "text":
 					object.set_text("%s" % self.config["%s" % group]["%s" % setting])
@@ -92,7 +88,7 @@ class WidgetHandler(object):
 						object.set_selected(1)
 					else:
 						object.set_selected(-1)
-					object_entry.set_text(boundkey)
+					gtkbuilder.get_object("%s.entry" % setting).set_text(boundkey)
 
 			def ConnectSignals():
 				if type == "text":
@@ -108,9 +104,9 @@ class WidgetHandler(object):
 					object.connect("changed", set_option, None, type, dict, group, setting)
 				elif type == "key":
 					object.connect("mode-changed", set_option, type, None, group, setting)
-					object_entry.connect("insert-text", emit_keytext)
-					object_entry.connect("changed", set_option, None, type, None, group, setting)
-					object_entry.connect("icon-press", revert_option, type, group, setting)
+					gtkbuilder.get_object("%s.entry" % setting).connect("insert-text", emit_keytext)
+					gtkbuilder.get_object("%s.entry" % setting).connect("changed", set_option, None, type, None, group, setting)
+					gtkbuilder.get_object("%s.entry" % setting).connect("icon-press", revert_option, type, group, setting)
 
 			def revert_option(widget, pos, event, type, widget_group, widget_setting):
 				if type == "text" or type == "int":
@@ -138,7 +134,7 @@ class WidgetHandler(object):
 						object.set_selected(1)
 					else:
 						object.set_selected(-1)
-					object_entry.set_text(boundkey)
+					gtkbuilder.get_object("%s.entry" % setting).set_text(boundkey)
 
 			def set_option(widget, data, type, dict, widget_group, widget_setting):
 				if type == "text":
@@ -150,7 +146,7 @@ class WidgetHandler(object):
 				elif type == "combo":
 					self.config["%s" % widget_group]["%s" % widget_setting] =  dict[widget.get_active()]
 				elif type == "key":
-					if object_entry.get_text() != "":
+					if gtkbuilder.get_object("%s.entry" % setting).get_text() != "":
 						if object.get_selected() == 0:
 							new_mod = "e"
 						elif object.get_selected() == 1:
@@ -158,7 +154,7 @@ class WidgetHandler(object):
 						else:
 							new_mod = "C"
 							print("no modifier selected, fallback to C")
-						self.config["%s" % widget_group]["%s" % widget_setting] = new_mod + ":" + object_entry.get_text()
+						self.config["%s" % widget_group]["%s" % widget_setting] = new_mod + ":" + gtkbuilder.get_object("%s.entry" % setting).get_text()
 					else:
 						self.config["%s" % widget_group]["%s" % widget_setting] = ""
 
@@ -173,6 +169,5 @@ class WidgetHandler(object):
 			object = LoadWidget()
 			if type == "key":
 				PrepareKeyWidget()
-				object_entry = LoadKeyEntry()
 			LoadValue()
 			ConnectSignals()
