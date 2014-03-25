@@ -1,5 +1,5 @@
 APPS=( bash gawk grep sed bc msgfmt less )
-OPT_APPS=( "acpi:showbatteryload won't work" \
+OPT_APPS=( "acpi:showbatteryload won't work"
 "lspci:systeminfos --pci won't work"
 "lsusb:systeminfos --usb' won't work"
 "ps2pdf:man2pdf won't work"
@@ -12,8 +12,8 @@ OPT_SAPPS=( "dmidecode:systeminfos --bios won't work" )
 LIBS=( )
 OPT_LIBS=( )
 
-GIR=( "Gtk+3:3.0:Gtk-3.0" )
+GIR=( )
 OPT_GIR=( )
 
-PYMODS=( ctypes gettext gi.repository:Gtk configobj shutil )
+PYMODS=( ctypes gettext gi.repository:Gtk gi.repository:Granite configobj shutil )
 OPT_PYMODS=( )
