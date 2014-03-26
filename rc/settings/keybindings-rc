@@ -15,11 +15,10 @@ keybindings_setter () {
 		MOD=${1/:*}
 		KEY=${1/*:}
 
-		if [[ ${2} == complete-path ]]; then
-			ACT='"\eb`which \ef` \e\C-e"'
-		else
-			ACT=${2}
-		fi
+		case ${2} in
+			complete-path)	ACT='"\eb`which \ef` \e\C-e"' ;;
+			*)		ACT=${2} ;;
+		esac
 
 		if [[ ${MOD} == e ]]; then
 			echo -E \"\\e${KEY}\":${ACT} >> $RC_FILE
