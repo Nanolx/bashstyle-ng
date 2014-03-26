@@ -124,11 +124,14 @@ fi
 dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(ini_get query_items)
 rc_add "set completion-query-items $(ini_get query_items)"
 
-dbg_msg $"ReadlineCFG Loading:" $"BashStyle-NG"
+dbg_msg $"ReadlineCFG Loading:" $"Keybindings"
+source $BSNG_RC_DIR/settings/keybindings-rc
 
 mv $RC_FILE $HOME/.inputrc
 unset RC_FILE
 
 bind -f $HOME/.inputrc
+
+dbg_msg $"ReadlineCFG Loading:" $"BashStyle-NG"
 
 fi

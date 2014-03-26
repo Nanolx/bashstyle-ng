@@ -1,0 +1,43 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2014 Christopher Bratusek		#
+#							#
+#########################################################
+
+keybindings_setter () {
+
+	if [[ "${1}" != "" ]]; then
+		MOD=${1/:*}
+		KEY=${1/*:}
+
+		if [[ ${2} == complete-path ]]; then
+			ACT='"\eb`which \ef` \e\C-e"'
+		else
+			ACT=${2}
+		fi
+
+		if [[ ${MOD} == e ]]; then
+			echo -E \"\\e${KEY}\":${ACT} >> $RC_FILE
+		elif [[ ${MOD} == C ]]; then
+			echo -E \"\\C-${KEY}\":${ACT} >> $RC_FILE
+		fi
+	fi
+
+}
+
+for key in undo upcase_word capitalize_word downcase_word transpose_words \
+	transpose_chars unix_word_rubout kill_word possible_filename_completions \
+	possible_hostname_completions possible_username_completions \
+	possible_variable_completions kill_line unix_line_discard \
+	beginning_of_line end_of_line clear_screen history_search_forward \
+	history_search_backward complete_path; do
+
+	if [[ $(ini_get $key) != $(def_get $key) ]]; then
+		keybindings_setter $(ini_get $key) ${key//_/-}
+	fi
+done

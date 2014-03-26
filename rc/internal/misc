@@ -16,6 +16,13 @@ ini_get ()
 
 }
 
+def_get ()
+{
+
+	sed -n "s/^${1} = \(.*$\)/\1/p" $BSNG_DATA_DIR/bashstyle-ng/bs-ng.ini | sed -e 's/\"//g'
+
+}
+
 ini_set ()
 {
 
