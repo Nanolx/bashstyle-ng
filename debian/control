@@ -14,8 +14,7 @@ Build-Depends: 	debhelper (>= 5),
                 python3 (<< 3.4),
                 python3-gi,
                 python3-configobj,
-                python-support (>= 0.90),
-                gir1.2-granite-1.0 | gir1.2-granite-0.1
+                python-support (>= 0.90)
 Standards-Version: 3.9.4
 
 Package: bashstyle-ng
@@ -33,8 +32,7 @@ Depends: 	bash (>= 3.2),
                 whiptail,
                 ${misc:Depends},
                 ${python:Depends},
-                python3-configobj,
-                gir1.2-granite-1.0 | gir1.2-granite-0.1
+                python3-configobj
 Suggests:  	nano,
  		vim,
  		acpi,

@@ -253,27 +253,6 @@ class BashStyleNG(object):
 
 		######################## Keybindings ###############################################
 
-		WidgetHandler.InitWidget("beginning_of_line", "Keybindings", "beginning_of_line", "key", None)
-		WidgetHandler.InitWidget("undo", "Keybindings", "undo", "key", None)
-		WidgetHandler.InitWidget("upcase_word", "Keybindings", "upcase_word", "key", None)
-		WidgetHandler.InitWidget("capitalize_word", "Keybindings", "capitalize_word", "key", None)
-		WidgetHandler.InitWidget("downcase_word", "Keybindings", "downcase_word", "key", None)
-		WidgetHandler.InitWidget("transpose_words", "Keybindings", "transpose_words", "key", None)
-		WidgetHandler.InitWidget("transpose_chars", "Keybindings", "transpose_chars", "key", None)
-		WidgetHandler.InitWidget("unix_word_rubout", "Keybindings", "unix_word_rubout", "key", None)
-		WidgetHandler.InitWidget("kill_word", "Keybindings", "kill_word", "key", None)
-		WidgetHandler.InitWidget("possible_filename_completions", "Keybindings", "possible_filename_completions", "key", None)
-		WidgetHandler.InitWidget("possible_hostname_completions", "Keybindings", "possible_hostname_completions", "key", None)
-		WidgetHandler.InitWidget("possible_username_completions", "Keybindings", "possible_username_completions", "key", None)
-		WidgetHandler.InitWidget("possible_variable_completions", "Keybindings", "possible_variable_completions", "key", None)
-		WidgetHandler.InitWidget("kill_line", "Keybindings", "kill_line", "key", None)
-		WidgetHandler.InitWidget("unix_line_discard", "Keybindings", "unix_line_discard", "key", None)
-		WidgetHandler.InitWidget("end_of_line", "Keybindings", "end_of_line", "key", None)
-		WidgetHandler.InitWidget("clear_screen", "Keybindings", "clear_screen", "key", None)
-		WidgetHandler.InitWidget("history_search_forward", "Keybindings", "history_search_forward", "key", None)
-		WidgetHandler.InitWidget("history_search_backward", "Keybindings", "history_search_backward", "key", None)
-		WidgetHandler.InitWidget("complete_path", "Keybindings", "complete_path", "key", None)
-
 		######################## Custom Prompt Builder #####################################
 		WidgetHandler.InitWidget("use_custom_prompt", "Custom", "use_custom_prompt", "bool", None)
 		promptbuilder.PromptBuilder(config.cfo)
