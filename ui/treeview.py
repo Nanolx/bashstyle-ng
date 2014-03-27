@@ -34,29 +34,6 @@ if FAILED:
     print("The following modules failed to import: %s" % (" ".join(FAILED)))
     sys.exit(1)
 
-keybindings = ["bs-ng-style", "bs-ng-separator", "bs-ng-alias",
-		  "bs-ng-advanced", "bs-ng-shopts", "bs-ng-git",
-		  "bs-ng-readline", "bs-ng-vim", "bs-ng-nano",
-		  "bs-ng-ls", "bs-ng-keys", "bs-ng-custom",
-		  "bs-ng-help", "bs-ng-info" ]
-
-keybindings_labels = {
-	"bs-ng-style" : "General Style",
-	"bs-ng-alias" : "Aliases",
-	"bs-ng-advanced" : "Advanced",
-	"bs-ng-readline" : "Readline",
-	"bs-ng-vim" : "Vi IMproved",
-	"bs-ng-nano" : "GNU Nano",
-	"bs-ng-ls" : "LS colors",
-	"bs-ng-custom" : "Custom Prompt Builder",
-	"bs-ng-separator" : "Separator Style",
-	"bs-ng-shopts" : "Shell Options",
-	"bs-ng-git" : "GIT",
-	"bs-ng-help" : "Documentation",
-	"bs-ng-info" : "About BashStyle-NG",
-	"bs-ng-keys" : "Keybindings"
-}
-
 gtkbuilder = widgethandler.gtkbuilder
 
 class Tree(object):
