@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.0 -->
+<!-- Generated with glade 3.16.1 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="Toolbox">
@@ -582,7 +582,6 @@
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">bs-ng</property>
     <property name="type_hint">dialog</property>
-    <property name="use_header_bar">1</property>
     <property name="program_name">BashStyle-NG</property>
     <property name="version">8.5</property>
     <property name="copyright" translatable="yes">
@@ -1284,6 +1283,18 @@ es_ES: Kenny Meyer</property>
       </row>
     </data>
   </object>
+  <object class="GtkListStore" id="treeviewstore">
+    <columns>
+      <!-- column-name Binding -->
+      <column type="gchararray"/>
+      <!-- column-name Alt -->
+      <column type="gboolean"/>
+      <!-- column-name Ctrl -->
+      <column type="gboolean"/>
+      <!-- column-name Key -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkAdjustment" id="vim.adjustment.autowrap">
     <property name="upper">10000</property>
     <property name="step_increment">1</property>
@@ -1473,6 +1484,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -1490,6 +1503,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                       </object>
@@ -3066,6 +3081,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3104,6 +3121,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3142,6 +3161,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">1</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3180,6 +3201,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">1</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3197,6 +3220,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">2</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3214,6 +3239,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">3</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3231,6 +3258,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">2</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3241,6 +3270,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">3</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                       </object>
@@ -5015,6 +5046,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -5025,6 +5058,8 @@ es_ES: Kenny Meyer</property>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">0</property>
+                            <property name="width">1</property>
+                            <property name="height">1</property>
                           </packing>
                         </child>
                       </object>
@@ -6686,6 +6721,8 @@ es_ES: Kenny Meyer</property>
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">0</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6724,6 +6761,8 @@ es_ES: Kenny Meyer</property>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">0</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6762,6 +6801,8 @@ es_ES: Kenny Meyer</property>
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6800,6 +6841,8 @@ es_ES: Kenny Meyer</property>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">1</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6817,6 +6860,8 @@ es_ES: Kenny Meyer</property>
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">2</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6834,6 +6879,8 @@ es_ES: Kenny Meyer</property>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">2</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
                       </packing>
                     </child>
                   </object>
@@ -7273,15 +7320,12 @@ es_ES: Kenny Meyer</property>
               </packing>
             </child>
             <child>
-              <object class="GtkScrolledWindow" id="keybindings.scrolledwindow">
+              <object class="GtkTreeView" id="treeview">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkViewport" id="keybindings.viewport">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
+                <property name="model">treeviewstore</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection"/>
                 </child>
               </object>
               <packing>

@@ -13,7 +13,7 @@
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
             'ctypes', 'optparse', 'subprocess', 'undobuffer', 'i18n', 'misc',
 	    'lockfile', 'config', 'widgethandler', 'dicts', 'prompts',
-	    'promptbuilder', 'args' , 'iconbook' ]
+	    'promptbuilder', 'args' , 'iconbook', 'treeview' ]
 
 FAILED = []
 
@@ -252,6 +252,8 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("ls_rar", "LSColors", "rar", "combo", dicts.ls_colors)
 
 		######################## Keybindings ###############################################
+		tree = treeview.Tree(config.cfo, config.udc, config.fdc)
+		tree.InitTree()
 
 		######################## Custom Prompt Builder #####################################
 		WidgetHandler.InitWidget("use_custom_prompt", "Custom", "use_custom_prompt", "bool", None)
