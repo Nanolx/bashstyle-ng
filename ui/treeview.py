@@ -84,7 +84,7 @@ class Tree(object):
 		column_ctrl = Gtk.TreeViewColumn("Ctrl", render_ctrl, active=2)
 		tree.append_column(column_ctrl)
 
-		def on_cell_toggled(self, widget, path, column, concurrent_column):
+		def on_cell_toggled(widget, path, column, concurrent_column):
 			store[path][column] = not store[path][column]
 			store[path][concurrent_column] = not store[path][concurrent_column]
 
@@ -110,7 +110,7 @@ class Tree(object):
 
 		tree.get_selection().connect("changed", on_changed)
 
-		for key in keybindings:
+		for key in sorted(keybindings):
 			modifier, boundkey, label = self.prepare(key)
 			if modifier == "e":
 				alt = True
