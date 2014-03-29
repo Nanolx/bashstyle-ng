@@ -6,8 +6,6 @@ Overview of changes in v8.5 "Nice Sprites"
   have been merged into the main application, be sure to run the UI
   (Style for colorshell, else Advanced > Extras/GIT) after upgrade to
   re-adjust your settings that got lost by this change.
-* This release requires the Granite Framework. You can grab it over at:
-  https://launchpad.net/granite in case your distro does not ship it
 
 === Bug Fixes ===
 
@@ -38,15 +36,14 @@ Overview of changes in v8.5 "Nice Sprites"
 
 === New Features ===
 
-* Keybindings.
+* Keybindings (Emacs editing mode)
   - This allows you to change 19 default bash/readline keybindings.
     (2 of them are not used by default).
   - Additionally theres a 20th, custom, keybinding: complete-path.
     If you press the assigned key while the cursor is at the end of a
-    string resembling an executable the complete path will be added to
+    string resembling an executable, the complete path will be added to
     the command line.
-  - Note that the original key bindings are not
-    going to be unset.
+  - Note that the original key bindings are not going to be unset.
 
 * reload function: a clean function to reload .bashrc (x2cd)
 * quickscript function: writes all commands in history to a file.
@@ -65,7 +62,7 @@ Overview of changes in v8.5 "Nice Sprites"
 
 * improved user interface (GtkIconView and GtkNotebook combination)
 * make whiptail an optional dependency (with the removal of bs-ng-wizard
-  it is only required for 'dirinfo --create'
+  it is only required for 'dirinfo --create')
 * look for python3 by default, fallback to python
 * updated copyright notices 2007 - 2014
 
