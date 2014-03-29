@@ -48,6 +48,19 @@ Overview of changes in v8.5 "Nice Sprites"
   - Note that the original key bindings are not
     going to be unset.
 
+* reload function: a clean function to reload .bashrc (x2cd)
+* quickscript function: writes all commands in history to a file.
+  starting point is the last occurence of "###" (joedhon)
+* filename function: prints only filename from a path
+* filepath function: only prints containing directory from a path
+* filenoext function: prints only filename without extension from a path
+* filext function: only prints file extension from a path
+
+=== Removed Features ===
+
+* rd alias to pw -P removed
+* reload alias to source ~/.bashrc removed
+
 === Misc. Changes ===
 
 * improved user interface (GtkIconView and GtkNotebook combination)
