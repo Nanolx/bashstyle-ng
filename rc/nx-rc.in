@@ -86,12 +86,6 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	else	BASHRC=/etc/bashrc
 	fi
 
-	dbg_msg $"BashStyle-NG Setting:" $"Alias" reload=source $BASHRC
-	dbg_log alias reload="source $BASHRC"
-
-	dbg_msg $"BashStyle-NG Setting:" $"Alias" rd=pwd -P
-	dbg_log alias rd="pwd -P"
-
 	dbg_msg $"BashStyle-NG Loading:" $"BSNG Wizard Settings"
 	dbg_log source $BSNG_RC_DIR/settings/wizard-rc
 
