@@ -1,0 +1,16 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2014 Christopher Bratusek		#
+#							#
+#########################################################
+
+# by joedhon (commandlinefu.com)
+
+filename="$1"
+history | cut -c 8- | sed -e '/^###/{h;d};H;$!d;x' | \
+	sed '$d' > ${filename:?No filename given}
