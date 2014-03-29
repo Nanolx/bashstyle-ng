@@ -6882,7 +6882,7 @@ es_ES: Kenny Meyer</property>
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="git_aliases">
-                        <property name="label" translatable="yes">GIT aliases co, up, re, ma, who, ci</property>
+                        <property name="label" translatable="yes">GIT aliases</property>
                         <property name="width_request">220</property>
                         <property name="height_request">26</property>
                         <property name="visible">True</property>
@@ -6895,6 +6895,42 @@ es_ES: Kenny Meyer</property>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">2</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Explanation of GIT aliases
+
+co = checkout
+up = pull
+re = reset --hard HEAD
+ma = checkout master</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">3</property>
+                        <property name="width">1</property>
+                        <property name="height">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">who = shortlog -s --
+ci = commit
+ls  = log --pretty='format:%Cgreen
+        %H %Cred%ai %Creset- %s
+stage = add -u</property>
+                        <property name="angle">0.080000000000000002</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">3</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
