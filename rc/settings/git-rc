@@ -43,7 +43,7 @@ if [[ $(ini_get git_aliases) == True ]]; then
 	git config --global alias.ma "checkout master"
 	git config --global alias.who "shortlog -s --"
 	git config --global alias.ci commit
-	git config --global alias.ls "log --pretty='format:%Cgreen%H %Cred%ai %Creset- %s"
+	git config --global alias.ls "log --pretty='format:%Cgreen%H %Cred%ai %Creset- %s'"
 	git config --global alias.stage "add -u"
 else	git config --global --unset alias.co
 	git config --global --unset alias.up
