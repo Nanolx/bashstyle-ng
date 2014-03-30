@@ -6900,14 +6900,14 @@ es_ES: Kenny Meyer</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="gitlabelleft">
+                      <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Explanation of GIT aliases
 
 co = checkout
 up = pull
-re = reset --hard HEAD
+re = force reset to HEAD
 ma = checkout master</property>
                       </object>
                       <packing>
@@ -6918,14 +6918,14 @@ ma = checkout master</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="gitlabelright">
+                      <object class="GtkLabel" id="label2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">who = shortlog -s --
+                        <property name="label" translatable="yes">who = no of commits per contributor
 ci = commit
-ls  = log --pretty='format:%Cgreen
-        %H %Cred%ai %Creset- %s
-stage = add -u</property>
+ls  = prettified log
+stage = stage changes to tracked files
+lsb = show branches by last activity</property>
                         <property name="angle">0.080000000000000002</property>
                       </object>
                       <packing>
