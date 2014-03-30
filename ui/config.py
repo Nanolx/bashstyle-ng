@@ -30,6 +30,7 @@ USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
 USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
 USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
+VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
 
 app_ini_version = 5
 
@@ -40,7 +41,10 @@ class Config(object):
 
 	def LoadConfig(self):
 		self.cfo = configobj.ConfigObj(USER_DEFAULTS)
-		self.fdc = configobj.ConfigObj(FACTORY_DEFAULTS)
+		if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
+			self.fdc = configobj.ConfigObj(VENDOR_DEFAULTS)
+		else:
+			self.fdc = configobj.ConfigObj(FACTORY_DEFAULTS)
 		self.udc = configobj.ConfigObj(USER_DEFAULTS)
 
 	def ReloadConfig(self):
