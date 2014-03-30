@@ -26,14 +26,11 @@ if [[ $enabcol == "True" ]]; then
 	declare -i cmd_colour_index=-1
 
 	function next_colour() {
-	  colour_index=$(( ($cmd_colour_index+1) % (${#cmd_colours[*]}) ))
+	  colour_index=$((RANDOM%${#cmd_colours[*]}))
 	}
 
 	if [[ $PROMPT_COMMAND ]]; then
-	  PRE_PROMPT_COMMAND () {
-	    cmd_colours=( $setaf_cyan $setaf_magenta $setaf_yellow $setaf_blue $setaf_green $setaf_red )
-	    cmd_colour_index=$(( ($cmd_colour_index+1) % (${#cmd_colours[*]}) ))
-	  }
+	  PRE_PROMPT_COMMAND () { next_colour; }
 	else
 	  PROMPT_COMMAND=next_colour
 	fi
