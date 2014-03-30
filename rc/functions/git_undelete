@@ -9,4 +9,7 @@
 #							#
 #########################################################
 
-git checkout $(git ls-files --deleted)
+if [[ -d .git ]]; then
+	git checkout $(git ls-files --deleted)
+else	echo "current directory is not the root of a git repository"
+fi

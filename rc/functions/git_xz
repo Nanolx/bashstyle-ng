@@ -9,4 +9,7 @@
 #							#
 #########################################################
 
-git archive master | xz -9 > "$PWD".tar.xz
+if [[ -d .git ]]; then
+	git archive master | xz -9 > "$PWD".tar.xz
+else	echo "current directory is not the root of a git repository"
+fi

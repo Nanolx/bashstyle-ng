@@ -9,5 +9,8 @@
 #							#
 #########################################################
 
-git rev-list --reverse HEAD | \
-	awk "/$(git log -n 1 --pretty="format:%h")/ {print NR}"
+if [[ -d .git ]]; then
+	git rev-list --reverse HEAD | \
+		awk "/$(git log -n 1 --pretty="format:%h")/ {print NR}"
+else	echo --
+fi

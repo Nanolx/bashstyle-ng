@@ -9,7 +9,10 @@
 #							#
 #########################################################
 
-git remote -v | grep fetch | \
-	sed 's/\(.*github.com\)[:|/]\(.*\).git (fetch)/\2/' | \
-	awk {'print "https://github.com/" $1'} | \
-	xargs x-www-browser || echo "not a github repository"
+if [[ -d .git ]]; then
+	git remote -v | grep fetch | \
+		sed 's/\(.*github.com\)[:|/]\(.*\).git (fetch)/\2/' | \
+		awk {'print "https://github.com/" $1'} | \
+		xargs x-www-browser || echo "not a github repository"
+else	echo "current directory is not the root of a git repository"
+fi

@@ -9,4 +9,7 @@
 #							#
 #########################################################
 
-git archive master | bzip2 -9 >"$PWD".tar.bz2
+if [[ -d .git ]]; then
+	git archive master | bzip2 -9 >"$PWD".tar.bz2
+else	echo "current directory is not the root of a git repository"
+fi

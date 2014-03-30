@@ -9,4 +9,7 @@
 #							#
 #########################################################
 
-git archive master --format=zip > "${PWD}".zip
+if [[ -d .git ]]; then
+	git archive master --format=zip > "${PWD}".zip
+else	echo "current directory is not the root of a git repository"
+fi

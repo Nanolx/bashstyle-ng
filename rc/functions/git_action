@@ -10,7 +10,6 @@
 #########################################################
 
 if [[ -d .git ]]; then
-
 	if [[ -f .git/dotest/rebasing ]]; then
 		ACTION="rebase"
 	elif [[ -f .git/dotest/applying ]]; then
