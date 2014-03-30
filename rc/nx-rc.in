@@ -98,7 +98,6 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 		dbg_log source $BSNG_RC_DIR/settings/man-rc
 	fi
 
-	dbg_log source $BSNG_RC_DIR/settings/options-rc
 	dbg_log source $BSNG_RC_DIR/settings/git-rc
 	dbg_log source $BSNG_RC_DIR/settings/shopt-rc
 
@@ -148,6 +147,8 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	else	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"Off"
 	fi
 
+	dbg_log source $BSNG_RC_DIR/settings/options-rc
+
 	WelcomeMessage=$(ini_get welcome_message)
 
 	if [[ -e $HOME/.bookmarks ]]; then
@@ -162,6 +163,7 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
 		dbg_log $WelcomeMessage
 	fi
+
 
 fi
 
