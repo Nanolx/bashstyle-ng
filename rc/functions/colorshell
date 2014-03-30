@@ -45,12 +45,11 @@ if [[ $enabcol == "True" ]]; then
 
 	shopt -s promptvars
 
-	prompt_prefix="\\[${prompt_colour}\\]"
 	prompt_suffix='\[`cmd_colour`\]'
 
-	PS1="${prompt_prefix}${PS1}${prompt_suffix}"
-	PS2="${prompt_prefix}${PS2}${prompt_suffix}"
-	PS3="${prompt_prefix}${PS3}${prompt_suffix}"
-	PS4="${prompt_prefix}${PS4}${prompt_suffix}"
+	PS1="${PS1}${prompt_suffix}"
+	PS2="${PS2}${prompt_suffix}"
+	PS3="${PS3}${prompt_suffix}"
+	PS4="${PS4}${prompt_suffix}"
 
 fi
