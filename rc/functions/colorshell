@@ -22,31 +22,14 @@ if [[ $enabcol == "True" ]]; then
 	setaf_white=`tput setaf 7`
 
 	cmd_colours=( $setaf_blue $setaf_green $setaf_red $setaf_cyan $setaf_magenta $setaf_yellow )
-
-	declare -i cmd_colour_index=-1
-
-	function next_colour() {
-	  colour_index=$((RANDOM%${#cmd_colours[*]}))
-	}
-
-	if [[ $PROMPT_COMMAND ]]; then
-	  PRE_PROMPT_COMMAND () { next_colour; }
-	else
-	  PROMPT_COMMAND=next_colour
-	fi
-
-
-	function cmd_colour() {
-	  echo ${cmd_colours[$cmd_colour_index]}
-	}
+	cmd_colour_index=$((RANDOM%${#cmd_colours[*]}))
+	cmd_text_colour=${cmd_colours[$cmd_colour_index]}
 
 	shopt -s promptvars
 
-	prompt_suffix='\[`cmd_colour`\]'
-
-	PS1="${PS1}${prompt_suffix}"
-	PS2="${PS2}${prompt_suffix}"
-	PS3="${PS3}${prompt_suffix}"
-	PS4="${PS4}${prompt_suffix}"
+	PS1="${PS1}${cmd_text_colour}"
+	PS2="${PS2}${cmd_text_colour}"
+	PS3="${PS3}${cmd_text_colour}"
+	PS4="${PS4}${cmd_text_colour}"
 
 fi

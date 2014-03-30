@@ -134,7 +134,9 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
 	if [[ $(ini_get colorshell) == True ]]; then
-		. $BSNG_RC_DIR/functions/colorshell
+		PRE_PROMPT_COMMAND () {
+			source $BSNG_RC_DIR/functions/colorshell
+		}
 		if [[ $(ini_get colorshell_revert) == True ]]; then
 			trap 'echo -ne "\e[0m"' DEBUG
 		fi
