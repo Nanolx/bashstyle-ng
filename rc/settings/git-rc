@@ -43,8 +43,10 @@ if [[ $(ini_get git_aliases) == True ]]; then
 	git config --global alias.ma "checkout master"
 	git config --global alias.who "shortlog -s --"
 	git config --global alias.ci commit
-	git config --global alias.ls "log --pretty='format:%Cgreen%H %Cred%ai %Creset- %s'"
+	git config --global alias.ls "log --format='%Cgreen%H %Cred%ai %Creset- %s'"
+	git config --global alias.lsb "for-each-ref --sort=-committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative)  %1B[0;m%(refname:short)' refs/remotes refs/heads"
 	git config --global alias.stage "add -u"
+
 else	git config --global --unset alias.co
 	git config --global --unset alias.up
 	git config --global --unset alias.re
@@ -53,4 +55,5 @@ else	git config --global --unset alias.co
 	git config --global --unset alias.ci
 	git config --global --unset alias.ls
 	git config --global --unset alias.stage
+	git config --global --unset alias.lsb
 fi
