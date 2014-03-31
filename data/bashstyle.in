@@ -21,7 +21,6 @@ case $1 in
 		export BSNG_UI_PREFIX="@PREFIX@"
 		export BSNG_UI_VERSION="@VERSION@"
 		export BSNG_DATADIR="@DATADIR@"
-		export BSNG_DOCDIR="@DOCDIR@"
 		export PYTHONPATH="$PYTHONPATH:@DATADIR@/bashstyle-ng/ui/"
 
 		@PYTHON@ $PWD/ui/bs-ng.py $@

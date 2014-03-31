@@ -1478,6 +1478,9 @@ es_ES: Kenny Meyer</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">enable_colors
+
+This will enable fany colorful prompts, else they will be monochrome. This setting also effects other color settings.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1497,6 +1500,9 @@ es_ES: Kenny Meyer</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">use_bashstyle
+
+Checking this will enable BashStyle-NG, that means that all options (except for categories vim, nano and readline) take effect.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1562,6 +1568,9 @@ es_ES: Kenny Meyer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">---
+
+choose a part of the rompt to re-color.</property>
                             <property name="model">style.liststore.color_of</property>
                             <property name="tearoff_title">Choose Color to Change:</property>
                             <child>
@@ -1583,6 +1592,9 @@ es_ES: Kenny Meyer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">---
+
+choose the color for the part to recolor.</property>
                             <property name="model">style.liststore.color_to</property>
                             <property name="tearoff_title">Change Color to</property>
                             <child>
@@ -1609,6 +1621,9 @@ es_ES: Kenny Meyer</property>
                               <object class="GtkLabel" id="label93">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">prompt_style
+
+choose a promptstyle.</property>
                                 <property name="label" translatable="yes">Choose Promptstyle</property>
                               </object>
                               <packing>
@@ -1659,6 +1674,9 @@ es_ES: Kenny Meyer</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">random_style
+
+choose a random promptstyle each time you start a new session.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1694,6 +1712,9 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">separator
+
+several promptstyles use separators between items, here you can choose what to use as separator.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -1737,6 +1758,9 @@ es_ES: Kenny Meyer</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">ps234
+
+this character will be used once for PS2, twice for PS3 and three times for PS4.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -1779,6 +1803,9 @@ es_ES: Kenny Meyer</property>
                               <object class="GtkEntry" id="pwd_cutter">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">pwdcut
+
+most promptstyles display the current directory. They allow to cut it, if it exceeds pwdlength, this is the indicator for a cut directory.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -1819,6 +1846,9 @@ es_ES: Kenny Meyer</property>
                               <object class="GtkSpinButton" id="pwd_len">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">pwdlength
+
+the maximum length for the current directory (as displayed in the promptstyles).</property>
                                 <property name="invisible_char">•</property>
                                 <property name="text" translatable="yes">0</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
@@ -1890,6 +1920,9 @@ es_ES: Kenny Meyer</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">colored_ls
+
+Color the output of the ls command, else it will fallback to distribution default (usually monochrome).</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1907,6 +1940,9 @@ es_ES: Kenny Meyer</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">colored_man
+
+This will highlight keywords when reading manpages for easier readiblity.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1926,6 +1962,9 @@ es_ES: Kenny Meyer</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">colored_grep
+
+this will highlight search results in grep output.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1946,6 +1985,9 @@ es_ES: Kenny Meyer</property>
                               <object class="GtkLabel" id="style.label.color_style">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">color_style
+
+choose the way colors are drawn.</property>
                                 <property name="label" translatable="yes">Choose Color Style</property>
                               </object>
                               <packing>
@@ -1996,6 +2038,9 @@ es_ES: Kenny Meyer</property>
                               <object class="GtkLabel" id="style.label.terminfo">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">man_style
+
+this allows to choose different, colored terminfos for manpages. </property>
                                 <property name="label" translatable="yes">Choose Terminfo for manpages</property>
                               </object>
                               <packing>
@@ -2047,6 +2092,9 @@ es_ES: Kenny Meyer</property>
                               <object class="GtkLabel" id="style.label.grep_colour">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">grep_color
+
+choose the color search results are highlighted in grep output.</property>
                                 <property name="label" translatable="yes">Choose grep color</property>
                               </object>
                               <packing>
@@ -2097,6 +2145,9 @@ es_ES: Kenny Meyer</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">colorshell
+
+changes the default text color (randomly after each command)</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2116,6 +2167,9 @@ es_ES: Kenny Meyer</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">colorshell_reset
+
+Reset the text color to normal when executing a command line (only the command itself will be colored differently)</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -7413,6 +7467,99 @@ lsb = show branches by last activity</property>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="popwindow">
+    <property name="can_focus">False</property>
+    <property name="type">popup</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="icon_name">bs-ng</property>
+    <property name="type_hint">notification</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="gravity">center</property>
+    <property name="transient_for">bashstyle</property>
+    <child>
+      <object class="GtkGrid" id="popwindow.grid1">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="popwindow.description.header">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="xalign">0</property>
+            <property name="label" translatable="yes">&lt;u&gt;&lt;b&gt;Description:&lt;/b&gt;&lt;/u&gt;</property>
+            <property name="use_markup">True</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+            <property name="width">2</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="popwindow.icon">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixel_size">48</property>
+            <property name="icon_name">dialog-information</property>
+            <property name="use_fallback">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">2</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="popwindow.description">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="use_markup">True</property>
+            <property name="selectable">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
+            <property name="width">2</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="popwindow.label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="xalign">0</property>
+            <property name="use_markup">True</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">0</property>
+            <property name="width">1</property>
+            <property name="height">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="popwindow.close">
+            <property name="label">gtk-close</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_stock">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">2</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
           </packing>
         </child>
       </object>

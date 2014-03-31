@@ -20,7 +20,6 @@ PYTHON=$(which python3 || which python)
 BINDIR="$PREFIX/bin"
 PCDIR="$PREFIX/share/pkgconfig/"
 DATADIR="$PREFIX/share/"
-DOCDIR="$DATADIR/doc/"
 PROFILEDIR="/etc/"
 
 export OLDPATH=$PATH
@@ -38,8 +37,6 @@ export_result ()
 \nLOCALEDIR=\"$DATADIR/locale/\"\
 \nLOCALEDIR_LIST=( {de,es,it,ru}/LC_MESSAGES/ )\
 \nICONDIR=\"$DATADIR/icons/hicolor/32x32/apps/\"\
-\nDOCDIR=\"$DOCDIR/bashstyle-ng/\"\
-\nDOCDIR_LIST=( img img-style )\
 \nPCDIR=\"$PCDIR/\"\
 \nDIRINFO_ENABLE=\"$DIRINFO_ENABLE\"\
 \nBASHFILE=\"$BASHFILE\"\

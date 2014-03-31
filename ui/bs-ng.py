@@ -33,7 +33,6 @@ if FAILED:
     sys.exit(1)
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')
-DOCDIR = os.getenv('BSNG_DOCDIR')
 DATDIR = os.getenv('BSNG_DATADIR')
 
 args.CmdArgs()

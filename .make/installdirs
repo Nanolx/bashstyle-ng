@@ -14,11 +14,6 @@ installdirs_create ()
 		mkdir -p $DESTDIR/$LOCALEDIR/$directory/
 	done
 
-	mkdir -p $DESTDIR/$DOCDIR
-	for directory in ${DOCDIR_LIST[@]}; do
-		mkdir -p $DESTDIR/$DOCDIR/$directory
-	done
-
 	mkdir -p $DESTDIR/$BINDIR
 	mkdir -p $DESTDIR/$PROFILEDIR
 	mkdir -p $DESTDIR/$ICONDIR

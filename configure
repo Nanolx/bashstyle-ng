@@ -26,10 +26,6 @@ while [[ $xcount -lt $pcount ]]; do
 			PCDIR="${1/*=}"
 		;;
 
-		--docdir=* )
-			DOCDIR="${1/*=}"
-		;;
-
 		--profiledir=* )
 			PROFILEDIR="${1/*}"
 		;;
@@ -71,10 +67,6 @@ while [[ $xcount -lt $pcount ]]; do
 			echo "DISABLE_POSTINSTALL=1" >> $PWD/.configure/results
 		;;
 
-		--no-installdocs )
-			DISABLE_INSTALLDOCS=1
-			echo "DISABLE_INSTALLDOCS=1" >> $PWD/.configure/results
-		;;
 	esac
 	shift
 	xcount=$(($xcount+1))

@@ -37,8 +37,7 @@ if FAILED:
 iconview_icons = ["bs-ng-style", "bs-ng-separator", "bs-ng-alias",
 		  "bs-ng-advanced", "bs-ng-shopts", "bs-ng-git",
 		  "bs-ng-readline", "bs-ng-vim", "bs-ng-nano",
-		  "bs-ng-ls", "bs-ng-keys", "bs-ng-custom",
-		  "bs-ng-help", "bs-ng-info" ]
+		  "bs-ng-ls", "bs-ng-keys", "bs-ng-custom", "bs-ng-info" ]
 
 iconview_labels = {
 	"bs-ng-style" : "General Style",
@@ -52,7 +51,6 @@ iconview_labels = {
 	"bs-ng-separator" : "Separator Style",
 	"bs-ng-shopts" : "Shell Options",
 	"bs-ng-git" : "GIT",
-	"bs-ng-help" : "Documentation",
 	"bs-ng-info" : "About BashStyle-NG",
 	"bs-ng-keys" : "Keybindings"
 }
@@ -70,18 +68,13 @@ notebook_pages = {
 	"Separator Style" : 9,
 	"Shell Options" : 11,
 	"GIT" : 10,
-	"Documentation" : 0,
 	"About BashStyle-NG" : 0,
 	"Keybindings" : 12
 }
 
 gtkbuilder = widgethandler.gtkbuilder
-DOCDIR = os.getenv('BSNG_DOCDIR')
 
 class IconBook(object):
-
-	def ShowDocumentation(self):
-		subprocess.Popen("x-www-browser " + DOCDIR + "/bashstyle-ng/index.html", shell=True)
 
 	def ShowAboutDialog(self):
 		aboutdialog = gtkbuilder.get_object("aboutdialog")
@@ -114,9 +107,7 @@ class IconBook(object):
 		def iconview_activated(widget, item):
 				model = widget.get_model()
 				notebook.set_current_page(notebook_pages[model[item][1]])
-				if model[item][1] == "Documentation" :
-					self.ShowDocumentation()
-				elif model[item][1] == "About BashStyle-NG" :
+				if model[item][1] == "About BashStyle-NG" :
 					self.ShowAboutDialog()
 
 		iconview.connect("item-activated", iconview_activated)

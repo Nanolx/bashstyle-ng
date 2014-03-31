@@ -31,7 +31,7 @@ install_bsng () {
 
 	if [[ $VERBOSE == "true" ]]; then
 		DATA_NUM=0
-		for num in ${#DATA_FILES[@]} ${#LOCALE_FILES[@]} ${#DOC_FILES[@]} \
+		for num in ${#DATA_FILES[@]} ${#LOCALE_FILES[@]} \
 		${#PC_FILES[@]} ${#ICON_FILES[@]} ${PROFILE_FILES[@]}; do
 			DATA_NUM=$(($DATA_NUM+$num))
 		done
@@ -39,7 +39,7 @@ install_bsng () {
 	fi
 
 	echo -e "\t${WHITE}+ ${WHITE} data files"
-	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} ${DOC_FILES[@]} \
+	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} \
 	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]}; do
 		if [[ $VERBOSE == "true" ]]; then
 			inst data "$file" $CUR_NUM $DATA_NUM

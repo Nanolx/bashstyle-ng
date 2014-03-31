@@ -126,10 +126,6 @@ end_message () {
 		echo -e "${YELLOW}Post-Install Tasks:${WHITE}\tDisabled"
 	else	echo -e "${YELLOW}Post-Install Tasks:${WHITE}\tEnabled"
 	fi
-	if [[ ${DISABLE_INSTALLDOCS} ]]; then
-		echo -e "${YELLOW}Install Documentation:${WHITE}\tNo"
-	else	echo -e "${YELLOW}Install Documentation:${WHITE}\tYes"
-	fi
 	if [[ ${BASHFILE} ]]; then
 		echo -e "${YELLOW}System Bashrc:${WHITE}\t\t${BASHFILE}"
 	else	echo -e "${YELLOW}System Bashrc:${WHITE}\t\tauto detection"
@@ -154,7 +150,6 @@ help_message () {
 	\n${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)\
 	\n${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)\
 	\n${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks (for package-maintainers)\
-	\n${ORANGE}--no-installdocs${WHITE} *|${GREEN} Disable installation of docs (for package-maintainers)\
 	\n${ORANGE}--quiet${WHITE} *|${GREEN} Only display warnings, failures and results\
 	\n${ORANGE}--bashrc${WHITE} *|${GREEN} Path to system bashrc (for bashstyle-ng init)\
 	\n${ORANGE}--dirinfo=<bool>${WHITE} *|${GREEN} true: enable dirinfo wrappers, false: disable (default: disable)" | column -t -s \*
