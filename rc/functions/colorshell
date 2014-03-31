@@ -12,18 +12,7 @@
 
 if [[ $enabcol == "True" ]]; then
 
-	setaf_black=`tput setaf 0`
-	setaf_blue=`tput setaf 1`
-	setaf_green=`tput setaf 2`
-	setaf_cyan=`tput setaf 3`
-	setaf_red=`tput setaf 4`
-	setaf_magenta=`tput setaf 5`
-	setaf_yellow=`tput setaf 6`
-	setaf_white=`tput setaf 7`
-
-	cmd_colours=( $setaf_blue $setaf_green $setaf_red $setaf_cyan $setaf_magenta $setaf_yellow )
-	cmd_colour_index=$((RANDOM%${#cmd_colours[*]}))
-	cmd_text_colour=${cmd_colours[$cmd_colour_index]}
+	cmd_text_colour=`tput setaf $((RANDOM%7))`
 
 	shopt -s promptvars
 
