@@ -25,6 +25,9 @@ PROMPT_COMMAND () {
 	if [[ $(ini_get colorshell_revert) == True ]]; then
 		trap 'echo -ne "\e[0m"' DEBUG
 	fi
+
+	PRE_PROMPT_COMMAND
+
 }
 
 else
