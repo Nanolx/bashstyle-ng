@@ -64,6 +64,7 @@ keybindings = {
 	"forward_char",
 	"backward_word",
 	"forward_word",
+	"overwrite_mode"
 
 }
 
