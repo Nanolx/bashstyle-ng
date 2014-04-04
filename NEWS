@@ -51,7 +51,10 @@ Overview of changes in v8.5 "Nice Sprites"
 	fixed that most styles called trunc_pwd instead of truncpwd
 * #167 (truncpwd):
 	change the way truncpwd obtains it's settings, so that it always
-	works as expected
+	works as expected (and only loads them once)
+* #168 (custom prompt builder):
+	fixed custom prompt builder not properly inserting default styles
+	into the textbuffers for further customization
 
 === Wizard-Merge ===
 
@@ -67,7 +70,7 @@ Overview of changes in v8.5 "Nice Sprites"
 * Keybindings (Emacs editing mode)
   - This allows you to change 29 default bash/readline keybindings.
     (2 of them are not used by default).
-  - Additionally theres a 20th, custom, keybinding: complete-path.
+  - Additionally theres a 30th, custom, keybinding: complete-path.
     If you press the assigned key while the cursor is at the end of a
     string resembling an executable, the complete path will be added to
     the command line.
