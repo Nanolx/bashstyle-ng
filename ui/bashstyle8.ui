@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.18.1 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="Toolbox">
@@ -802,6 +802,14 @@ es_ES: Kenny Meyer</property>
     <property name="stock">gtk-go-back</property>
     <property name="icon_size">2</property>
   </object>
+  <object class="GtkImage" id="icon.reset_key">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="xalign">0</property>
+    <property name="yalign">0</property>
+    <property name="stock">gtk-delete</property>
+    <property name="icon_size">2</property>
+  </object>
   <object class="GtkListStore" id="iconviewstore">
     <columns>
       <!-- column-name icon -->
@@ -1388,6 +1396,21 @@ es_ES: Kenny Meyer</property>
               </packing>
             </child>
             <child>
+              <object class="GtkButton" id="reset_key">
+                <property name="label" translatable="yes">Reset Keybinding</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">icon.reset_key</property>
+                <property name="relief">none</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="back">
                 <property name="label" translatable="yes">Back</property>
                 <property name="visible">True</property>
@@ -1399,7 +1422,7 @@ es_ES: Kenny Meyer</property>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -1487,8 +1510,6 @@ This will enable fany colorful prompts, else they will be monochrome. This setti
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">0</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -1509,8 +1530,6 @@ Checking this will enable BashStyle-NG, that means that all options (except for 
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                       </object>
@@ -3141,8 +3160,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3181,8 +3198,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">0</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3221,8 +3236,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">1</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3261,8 +3274,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">1</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3280,8 +3291,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">2</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3299,8 +3308,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">3</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3318,8 +3325,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">2</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -3330,8 +3335,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">3</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                       </object>
@@ -5114,8 +5117,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                         <child>
@@ -5126,8 +5127,6 @@ Reset the text color to normal when executing a command line (only the command i
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">0</property>
-                            <property name="width">1</property>
-                            <property name="height">1</property>
                           </packing>
                         </child>
                       </object>
@@ -6791,8 +6790,6 @@ Reset the text color to normal when executing a command line (only the command i
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">0</property>
-                        <property name="width">1</property>
-                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6831,8 +6828,6 @@ Reset the text color to normal when executing a command line (only the command i
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">0</property>
-                        <property name="width">1</property>
-                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6871,8 +6866,6 @@ Reset the text color to normal when executing a command line (only the command i
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
-                        <property name="width">1</property>
-                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6911,8 +6904,6 @@ Reset the text color to normal when executing a command line (only the command i
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">1</property>
-                        <property name="width">1</property>
-                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6930,8 +6921,6 @@ Reset the text color to normal when executing a command line (only the command i
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">2</property>
-                        <property name="width">1</property>
-                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6949,8 +6938,6 @@ Reset the text color to normal when executing a command line (only the command i
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">2</property>
-                        <property name="width">1</property>
-                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6967,8 +6954,6 @@ ma = checkout master</property>
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">3</property>
-                        <property name="width">1</property>
-                        <property name="height">1</property>
                       </packing>
                     </child>
                     <child>
@@ -6985,8 +6970,6 @@ lsb = show branches by last activity</property>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">3</property>
-                        <property name="width">1</property>
-                        <property name="height">1</property>
                       </packing>
                     </child>
                   </object>
@@ -7500,7 +7483,6 @@ lsb = show branches by last activity</property>
             <property name="left_attach">0</property>
             <property name="top_attach">1</property>
             <property name="width">2</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -7515,7 +7497,6 @@ lsb = show branches by last activity</property>
             <property name="left_attach">0</property>
             <property name="top_attach">0</property>
             <property name="width">2</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -7529,7 +7510,6 @@ lsb = show branches by last activity</property>
             <property name="left_attach">0</property>
             <property name="top_attach">2</property>
             <property name="width">2</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -7543,7 +7523,6 @@ lsb = show branches by last activity</property>
           <packing>
             <property name="left_attach">2</property>
             <property name="top_attach">0</property>
-            <property name="width">1</property>
             <property name="height">2</property>
           </packing>
         </child>
@@ -7558,8 +7537,6 @@ lsb = show branches by last activity</property>
           <packing>
             <property name="left_attach">2</property>
             <property name="top_attach">2</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
       </object>

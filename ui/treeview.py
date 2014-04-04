@@ -67,6 +67,7 @@ class Tree(object):
 			self.factorydefault = fdc
 
 	def InitTree(self):
+		reset = gtkbuilder.get_object("reset_key")
 		store = gtkbuilder.get_object("treeviewstore")
 		tree = gtkbuilder.get_object("treeview")
 
@@ -110,18 +111,31 @@ class Tree(object):
 
 		tree.get_selection().connect("changed", on_changed)
 
-		for key in sorted(keybindings):
-			modifier, boundkey, label = self.prepare(key)
-			if modifier == "e":
-				alt = True
-				ctrl = False
-			elif modifier == "C":
+		def on_reset(data):
+			sel = tree.get_selection()
+			(model, iter) = sel.get_selected()
+			setting = model[iter][0].replace("-", "_")
+			self.config["Keybindings"][setting] = self.factorydefault["Keybindings"][setting]
+			if self.config["Keybindings"][setting] == "":
 				alt = False
-				ctrl = True
+				ctrl = False
+				boundkey = ""
 			else:
-				alt = False
-				ctrl = False
-			store.append([label, alt, ctrl, boundkey])
+				modifier = self.config["Keybindings"][setting].split(":")[0]
+				if modifier == "e":
+					alt = True
+					ctrl = False
+				elif modifier == "C":
+					alt = False
+					ctrl = True
+				boundkey = self.config["Keybindings"][setting].split(":")[1]
+			model[iter][1] = alt
+			model[iter][2] = ctrl
+			model[iter][3] = boundkey
+
+		reset.connect("clicked", on_reset)
+
+		self.populate(keybindings, store)
 
 	def prepare(self, setting):
 		value = self.config["Keybindings"][setting]
@@ -133,6 +147,20 @@ class Tree(object):
 			boundkey = value.split(":")[1]
 		label = setting.replace("_", "-")
 		return modifier, boundkey, label
+
+	def populate(self, settings, store):
+		for key in sorted(settings):
+			modifier, boundkey, label = self.prepare(key)
+			if modifier == "e":
+				alt = True
+				ctrl = False
+			elif modifier == "C":
+				alt = False
+				ctrl = True
+			else:
+				alt = False
+				ctrl = False
+			store.append([label, alt, ctrl, boundkey])
 
 	def change_setting(self, setting, alt, ctrl, key):
 		if key == "":
