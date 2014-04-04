@@ -13,10 +13,10 @@ export pstyle_supported=true
 
 if [[ $enabcol == "True" ]]; then
 
-PS1="\n$pscolor.:$sepacolor[ $usercolor\u$pscolor @ $hostcolor\h$sepacolor ]$pscolor:. .:$sepacolor[ $wdircolor\$(trunc_pwd)$sepacolor ]$pscolor:.\n.:$sepacolor[·>$fontcolor "
+PS1="\n$pscolor.:$sepacolor[ $usercolor\u$pscolor @ $hostcolor\h$sepacolor ]$pscolor:. .:$sepacolor[ $wdircolor\$(truncpwd)$sepacolor ]$pscolor:.\n.:$sepacolor[·>$fontcolor "
 
 else
 
-PS1="\n.:[ \u @ \h ]:. .:[ \$(trunc_pwd) ]:.\n.:[·> "
+PS1="\n.:[ \u @ \h ]:. .:[ \$(truncpwd) ]:.\n.:[·> "
 
 fi

@@ -13,12 +13,12 @@ export pstyle_supported=true
 
 if [[ $enabcol ==  true ]]; then
 
-PS1="\n$pscolor♦$sepacolor♦($usercolor \u$fontcolor @$hostcolor \h $fontcolor: Space on /: $pscolor\$(show_space --used /)$fontcolor used of$pscolor \$(show_space --total /)$sepacolor )♦♦($wdircolor \$(trunc_pwd)$sepacolor )♦$pscolor♦\n\
+PS1="\n$pscolor♦$sepacolor♦($usercolor \u$fontcolor @$hostcolor \h $fontcolor: Space on /: $pscolor\$(show_space --used /)$fontcolor used of$pscolor \$(show_space --total /)$sepacolor )♦♦($wdircolor \$(truncpwd)$sepacolor )♦$pscolor♦\n\
 $pscolor♦$sepacolor♦($timecolor \$(date +%H:%M)$sepacolor →$datecolor \$(date \"+%a, %d %b %y\")$sepacolor : uptime :$upcolor \$(show_uptime)$sepacolor :$usercolor \$$sepacolor )♦$pscolor♦$fontcolor "
 
 else
 
-PS1="\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(trunc_pwd) )♦♦\n\
+PS1="\n♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(truncpwd) )♦♦\n\
 ♦♦( \$(date +%H:%M) → \$(date \"+%a, %d %b %y\") : uptime : \$(show_uptime) \$ )♦♦ "
 
 fi

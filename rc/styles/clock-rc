@@ -28,7 +28,7 @@ PRE_PROMPT_COMMAND
 
 PROMPT_COMMAND=pre_prompt
 
-PS1="$sepacolor[$usercolor \u $fontcolor@ $hostcolor\h $pscolor: $wdircolor\$(trunc_pwd)$CLOCK_1_COLOR\$(CLOCK_1) $sepacolor]$fontcolor "
+PS1="$sepacolor[$usercolor \u $fontcolor@ $hostcolor\h $pscolor: $wdircolor\$(truncpwd)$CLOCK_1_COLOR\$(CLOCK_1) $sepacolor]$fontcolor "
 
 else
 
@@ -44,6 +44,6 @@ PRE_PROMPT_COMMAND
 
 PROMPT_COMMAND=pre_prompt
 
-PS1="[ \u @ \h : \$(trunc_pwd) \$(CLOCK_1) ] "
+PS1="[ \u @ \h : \$(truncpwd) \$(CLOCK_1) ] "
 
 fi

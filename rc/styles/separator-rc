@@ -31,7 +31,7 @@ export pstyle_supported="True"
 
 if [[ $enabcol == "True" ]]; then \
 
-	PS1="\n$usercolor\u$fontcolor @$hostcolor \h$sepacolor $sepa $datecolor\d$sepacolor $sepa $timecolor\t$sepacolor $sepa $wdircolor\$(trunc_pwd)"
+	PS1="\n$usercolor\u$fontcolor @$hostcolor \h$sepacolor $sepa $datecolor\d$sepacolor $sepa $timecolor\t$sepacolor $sepa $wdircolor\$(truncpwd)"
 
 	if [[ $enablf == "True" ]]; then
 		PS1+=" files: \$(count_files -f)"
@@ -77,7 +77,7 @@ if [[ $enabcol == "True" ]]; then \
 
 else
 
-	PS1="\n\u @ \h $sepa \d $sepa \t $sepa \$(trunc_pwd)"
+	PS1="\n\u @ \h $sepa \d $sepa \t $sepa \$(truncpwd)"
 
 	if [[ $enablf == "True" ]]; then
 		PS1+=" files: \$(count_files -f)"
