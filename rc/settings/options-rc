@@ -73,4 +73,8 @@ fi
 
 export USER_BIRTHDAY=$(ini_get user_birthday)
 
+export pwdmaxlen=$(ini_get pwdlength)
+export trunc_symbol=$(ini_get pwdcut)
+export dirchar=$(ini_get directory_indicator)
+
 dbg_log export HISTCONTROL HISTIGNORE FIGNORE CDPATH FCEDIT TMOUT HISTSIZE HISTFILESIZE PATH GREP_OPTIONS GREP_COLOR

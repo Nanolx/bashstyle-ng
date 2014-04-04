@@ -45,6 +45,13 @@ Overview of changes in v8.5 "Nice Sprites"
 	of that name in ${HOME}/.bashstyle.custom you can hook into those
 	style's PROMPT_COMMAND (the other styles don't have PROMPT_COMMAND,
 	so you can freely create one for them)]
+* #165 (colors):
+	fixed pscolor not being set
+* #166 (styles):
+	fixed that most styles called trunc_pwd instead of truncpwd
+* #167 (truncpwd):
+	change the way truncpwd obtains it's settings, so that it always
+	works as expected
 
 === Wizard-Merge ===
 

@@ -56,7 +56,15 @@ keybindings = {
 	"clear_screen",
 	"history_search_forward",
 	"history_search_backward",
-	"complete_path"
+	"complete_path",
+	"alias_expand_line",
+	"backward_char",
+	"backward_delete_char",
+	"delete_char",
+	"forward_char",
+	"backward_word",
+	"forward_word",
+
 }
 
 class Tree(object):
