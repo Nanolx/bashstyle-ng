@@ -39,6 +39,7 @@ tput sc
 tput cup 0 ${prompt_x}
 echo -n "[ $(date '+%a, %d %b %y') :: $(date +%T) ]"
 tput rc
+PRE_PROMPT_COMMAND
 }
 
 PROMPT_COMMAND=pre_prompt

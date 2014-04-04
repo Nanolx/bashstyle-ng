@@ -9,9 +9,16 @@
 #							#
 #########################################################
 
-if [[ $enabcol == "True" ]]; then
-
 host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
+dirchar=$(ini_get directory_indicator)
+trunc_symbol=$(ini_get pwdcut)
+trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
+j=4
+k=6
+l=8
+m=10
+
+if [[ $enabcol == "True" ]]; then
 
 esepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 edatecolor=$(echo $datecolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
@@ -19,14 +26,6 @@ etimecolor=$(echo $timecolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 efontcolor=$(echo $fontcolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 epscolor=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 ewdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-dirchar=$(ini_get directory_indicator)
-trunc_symbol=$(ini_get pwdcut)
-trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
-
-j=4
-k=6
-l=8
-m=10
 
 function pre_prompt {
 
@@ -98,16 +97,6 @@ $fontcolor :$CLOCK_AD_1_COLOR\$(CLOCK_AD_1)$fontcolor \$$sepacolor )·>$fontcolo
 
 else
 
-host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
-dirchar=$(ini_get directory_indicator)
-trunc_symbol=$(ini_get pwdcut)
-trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
-
-j=4
-k=6
-l=8
-m=10
-
 function pre_prompt {
 
 newPWD="${PWD}"
@@ -129,6 +118,8 @@ then
 else
     newPWD="${PWD//\//$dirchar}"
 fi
+
+PRE_PROMPT_COMMAND
 
 _newPWD () {
         echo -e $newPWD
