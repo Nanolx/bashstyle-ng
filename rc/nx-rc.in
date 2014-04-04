@@ -132,13 +132,8 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	PS3="$pscolor $ps234char$ps234char$fontcolor "
 	PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
-	if [[ $(ini_get colorshell) == True ]]; then
-		PRE_PROMPT_COMMAND () {
-			source $BSNG_RC_DIR/functions/colorshell
-		}
-		if [[ $(ini_get colorshell_revert) == True ]]; then
-			trap 'echo -ne "\e[0m"' DEBUG
-		fi
+	if [[ $(ini_get colorshell) == True && ${enabcol} == True ]]; then
+		source $BSNG_RC_DIR/settings/colorshell
 	fi
 
 	if [[ $(ini_get tab_rotation) == "True" ]]; then \
