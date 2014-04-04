@@ -34,10 +34,10 @@ if FAILED:
     print("The following modules failed to import: %s" % (" ".join(FAILED)))
     sys.exit(1)
 
-iconview_icons = ["bs-ng-style", "bs-ng-separator", "bs-ng-alias",
-		  "bs-ng-advanced", "bs-ng-shopts", "bs-ng-git",
-		  "bs-ng-readline", "bs-ng-vim", "bs-ng-nano",
-		  "bs-ng-ls", "bs-ng-keys", "bs-ng-custom", "bs-ng-info" ]
+iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
+		  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
+		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-keys",
+		  "bs-ng-custom", "bs-ng-info" ]
 
 iconview_labels = {
 	"bs-ng-style" : "General Style",
@@ -48,7 +48,6 @@ iconview_labels = {
 	"bs-ng-nano" : "GNU Nano",
 	"bs-ng-ls" : "LS colors",
 	"bs-ng-custom" : "Custom Prompt Builder",
-	"bs-ng-separator" : "Separator Style",
 	"bs-ng-shopts" : "Shell Options",
 	"bs-ng-git" : "GIT",
 	"bs-ng-info" : "About BashStyle-NG",
@@ -65,11 +64,10 @@ notebook_pages = {
 	"GNU Nano" : 6,
 	"LS colors" : 7,
 	"Custom Prompt Builder" : 8,
-	"Separator Style" : 9,
-	"Shell Options" : 11,
-	"GIT" : 10,
+	"Shell Options" : 10,
+	"GIT" : 9,
 	"About BashStyle-NG" : 0,
-	"Keybindings" : 12
+	"Keybindings" : 11
 }
 
 gtkbuilder = widgethandler.gtkbuilder

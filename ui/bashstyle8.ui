@@ -1460,776 +1460,1021 @@ es_ES: Kenny Meyer</property>
               </packing>
             </child>
             <child>
-              <object class="GtkTable" id="style.table">
+              <object class="GtkScrolledWindow" id="scrolledwindow1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="valign">center</property>
-                <property name="n_rows">5</property>
+                <property name="can_focus">True</property>
+                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkBox" id="style.box.basic">
+                  <object class="GtkViewport" id="viewport1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkLabel" id="style.label.basic">
+                      <object class="GtkTable" id="style.table">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Basic</property>
-                        <property name="angle">90</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkGrid" id="style.table.basic">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="column_spacing">15</property>
-                        <property name="row_homogeneous">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="valign">center</property>
+                        <property name="n_rows">7</property>
                         <child>
-                          <object class="GtkCheckButton" id="colored_prompts">
-                            <property name="label" translatable="yes">Colored Prompts</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
+                          <object class="GtkBox" id="style.box.basic">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">enable_colors
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="style.label.basic">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Basic</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkGrid" id="style.table.basic">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="column_spacing">15</property>
+                                <property name="row_homogeneous">True</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="colored_prompts">
+                                    <property name="label" translatable="yes">Colored Prompts</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">enable_colors
 
 This will enable fany colorful prompts, else they will be monochrome. This setting also effects other color settings.</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="use_bashstyle">
-                            <property name="label" translatable="yes">Use BashStyle-NG</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">use_bashstyle
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="use_bashstyle">
+                                    <property name="label" translatable="yes">Use BashStyle-NG</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">use_bashstyle
 
 Checking this will enable BashStyle-NG, that means that all options (except for categories vim, nano and readline) take effect.</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                           </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">0</property>
-                          </packing>
                         </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkSeparator" id="style.separator.2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="x_padding">100</property>
-                    <property name="y_padding">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox" id="style.box.style">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkLabel" id="style.label.style">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Style</property>
-                        <property name="angle">90</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkTable" id="style.table.style">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_rows">4</property>
-                        <property name="n_columns">2</property>
-                        <property name="column_spacing">15</property>
                         <child>
-                          <object class="GtkComboBox" id="color_of">
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
+                          <object class="GtkSeparator" id="style.separator.2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">---
+                          </object>
+                          <packing>
+                            <property name="top_attach">3</property>
+                            <property name="bottom_attach">4</property>
+                            <property name="x_padding">100</property>
+                            <property name="y_padding">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="style.box.style">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="style.label.style">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Style</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkTable" id="style.table.style">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="n_rows">4</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">15</property>
+                                <child>
+                                  <object class="GtkComboBox" id="color_of">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">---
 
 choose a part of the rompt to re-color.</property>
-                            <property name="model">style.liststore.color_of</property>
-                            <property name="tearoff_title">Choose Color to Change:</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="style.cellrenderer.color_of"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="color_to">
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">---
+                                    <property name="model">style.liststore.color_of</property>
+                                    <property name="tearoff_title">Choose Color to Change:</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="style.cellrenderer.color_of"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkComboBox" id="color_to">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">---
 
 choose the color for the part to recolor.</property>
-                            <property name="model">style.liststore.color_to</property>
-                            <property name="tearoff_title">Change Color to</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="style.cellrenderer.color_to"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkVBox" id="style.box.prompt_style">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="label93">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">prompt_style
+                                    <property name="model">style.liststore.color_to</property>
+                                    <property name="tearoff_title">Change Color to</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="style.cellrenderer.color_to"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="style.box.prompt_style">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="label93">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">prompt_style
 
 choose a promptstyle.</property>
-                                <property name="label" translatable="yes">Choose Promptstyle</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="prompt_style">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">style.liststore.prompt_style</property>
-                                <property name="tearoff_title">Choose Style</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="style.cellrenderer.prompt_style"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
+                                        <property name="label" translatable="yes">Choose Promptstyle</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="prompt_style">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="model">style.liststore.prompt_style</property>
+                                        <property name="tearoff_title">Choose Style</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="style.cellrenderer.prompt_style"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                    <property name="y_padding">2</property>
+                                  </packing>
                                 </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
-                            <property name="y_padding">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="random_style">
-                            <property name="label" translatable="yes">Use random style</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">random_style
+                                <child>
+                                  <object class="GtkCheckButton" id="random_style">
+                                    <property name="label" translatable="yes">Use random style</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">random_style
 
 choose a random promptstyle each time you start a new session.</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkVBox" id="advanced.box.separator">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <child>
-                              <object class="GtkLabel" id="advanced.label.separator">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="label" translatable="yes">Separator</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="separator">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="tooltip_text" translatable="yes">separator
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="advanced.box.separator">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <child>
+                                      <object class="GtkLabel" id="advanced.label.separator">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="label" translatable="yes">Separator</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="separator">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="tooltip_text" translatable="yes">separator
 
 several promptstyles use separators between items, here you can choose what to use as separator.</property>
-                                <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options">GTK_EXPAND</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkVBox" id="advanced.box.ps234">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <child>
-                              <object class="GtkLabel" id="advanced.label.ps234">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="label" translatable="yes">PS2 PS3 and PS4</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="ps234">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="tooltip_text" translatable="yes">ps234
+                                        <property name="invisible_char">●</property>
+                                        <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_stock">gtk-delete</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options">GTK_EXPAND</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="advanced.box.ps234">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <child>
+                                      <object class="GtkLabel" id="advanced.label.ps234">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="label" translatable="yes">PS2 PS3 and PS4</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="ps234">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="tooltip_text" translatable="yes">ps234
 
 this character will be used once for PS2, twice for PS3 and three times for PS4.</property>
-                                <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkVBox" id="advanced.box.pwd_cutter">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="advanced.label.pwd_cutter">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">PWD cut char</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="pwd_cutter">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="tooltip_text" translatable="yes">pwdcut
+                                        <property name="invisible_char">●</property>
+                                        <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_stock">gtk-delete</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="advanced.box.pwd_cutter">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="advanced.label.pwd_cutter">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">PWD cut char</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="pwd_cutter">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip_text" translatable="yes">pwdcut
 
 most promptstyles display the current directory. They allow to cut it, if it exceeds pwdlength, this is the indicator for a cut directory.</property>
-                                <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                        <property name="invisible_char">●</property>
+                                        <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_stock">gtk-delete</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options">GTK_EXPAND</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="advanced.box.pwd_len">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="advanced.label.pwd_len">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Maximum PWD length</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="pwd_len">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip_text" translatable="yes">pwdlength
+
+the maximum length for the current directory (as displayed in the promptstyles).</property>
+                                        <property name="invisible_char">•</property>
+                                        <property name="text" translatable="yes">0</property>
+                                        <property name="adjustment">advanced.adjustment.pwd_len</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
                               </object>
                               <packing>
-                                <property name="expand">False</property>
+                                <property name="expand">True</property>
                                 <property name="fill">False</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
                           <packing>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options">GTK_EXPAND</property>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="advanced.box.pwd_len">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
+                          <object class="GtkBox" id="style.box.colors">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
-                              <object class="GtkLabel" id="advanced.label.pwd_len">
+                              <object class="GtkLabel" id="style.label.colors">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">Maximum PWD length</property>
+                                <property name="label" translatable="yes">Colors</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
-                                <property name="fill">False</property>
+                                <property name="fill">True</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkSpinButton" id="pwd_len">
+                              <object class="GtkTable" id="style.table.colors">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="tooltip_text" translatable="yes">pwdlength
-
-the maximum length for the current directory (as displayed in the promptstyles).</property>
-                                <property name="invisible_char">•</property>
-                                <property name="text" translatable="yes">0</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
-                                <property name="adjustment">advanced.adjustment.pwd_len</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox" id="style.box.colors">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkLabel" id="style.label.colors">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Colors</property>
-                        <property name="angle">90</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkTable" id="style.table.colors">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_rows">4</property>
-                        <property name="n_columns">2</property>
-                        <property name="column_spacing">15</property>
-                        <child>
-                          <object class="GtkCheckButton" id="ls_color">
-                            <property name="label" translatable="yes">Colored ls output</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colored_ls
+                                <property name="can_focus">False</property>
+                                <property name="n_rows">4</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">15</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="ls_color">
+                                    <property name="label" translatable="yes">Colored ls output</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">colored_ls
 
 Color the output of the ls command, else it will fallback to distribution default (usually monochrome).</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="manpage_color">
-                            <property name="label" translatable="yes">Colored manpages</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colored_man
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="manpage_color">
+                                    <property name="label" translatable="yes">Colored manpages</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">colored_man
 
 This will highlight keywords when reading manpages for easier readiblity.</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="grep_color">
-                            <property name="label" translatable="yes">Colored grep output</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colored_grep
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="grep_color">
+                                    <property name="label" translatable="yes">Colored grep output</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">colored_grep
 
 this will highlight search results in grep output.</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkVBox" id="style.box.color_style">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="style.label.color_style">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">color_style
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="style.box.color_style">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="style.label.color_style">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">color_style
 
 choose the way colors are drawn.</property>
-                                <property name="label" translatable="yes">Choose Color Style</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="color_style">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">style.liststore.color_style</property>
-                                <property name="tearoff_title">Change Color Style</property>
-                                <property name="has_frame">False</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="style.cellrenderer.color_style"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
+                                        <property name="label" translatable="yes">Choose Color Style</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="color_style">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="model">style.liststore.color_style</property>
+                                        <property name="tearoff_title">Change Color Style</property>
+                                        <property name="has_frame">False</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="style.cellrenderer.color_style"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                    <property name="y_padding">2</property>
+                                  </packing>
                                 </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                            <property name="y_padding">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkVBox" id="style.box.terminfo">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="style.label.terminfo">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">man_style
+                                <child>
+                                  <object class="GtkVBox" id="style.box.terminfo">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="style.label.terminfo">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">man_style
 
 this allows to choose different, colored terminfos for manpages. </property>
-                                <property name="label" translatable="yes">Choose Terminfo for manpages</property>
+                                        <property name="label" translatable="yes">Choose Terminfo for manpages</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="terminfo">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="model">style.liststore.terminfo</property>
+                                        <property name="tearoff_title">Terminfo for Manpages</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="style.cellrenderer.terminfo"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                    <property name="y_padding">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="style.box.grep_colour">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="style.label.grep_colour">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">grep_color
+
+choose the color search results are highlighted in grep output.</property>
+                                        <property name="label" translatable="yes">Choose grep color</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="grep_colour">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="model">style.liststore.grep_colour</property>
+                                        <property name="tearoff_title">Choose Grep Color</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                    <property name="y_padding">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="colorshell">
+                                    <property name="label" translatable="yes">Randomly colored text</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">colorshell
+
+changes the default text color (randomly after each command)</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="colorshell_reset">
+                                    <property name="label" translatable="yes">Normal text color for output</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">colorshell_reset
+
+Reset the text color to normal when executing a command line (only the command itself will be colored differently)</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
                               </object>
                               <packing>
-                                <property name="expand">False</property>
+                                <property name="expand">True</property>
                                 <property name="fill">False</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
-                            <child>
-                              <object class="GtkComboBox" id="terminfo">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">style.liststore.terminfo</property>
-                                <property name="tearoff_title">Terminfo for Manpages</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="style.cellrenderer.terminfo"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
-                            <property name="y_padding">2</property>
+                            <property name="top_attach">2</property>
+                            <property name="bottom_attach">3</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="style.box.grep_colour">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
+                          <object class="GtkSeparator" id="style.separator.1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
+                            <property name="x_padding">100</property>
+                            <property name="y_padding">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="advanced.box.separato">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
-                              <object class="GtkLabel" id="style.label.grep_colour">
+                              <object class="GtkLabel" id="advanced.label.separato">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">grep_color
-
-choose the color search results are highlighted in grep output.</property>
-                                <property name="label" translatable="yes">Choose grep color</property>
+                                <property name="label" translatable="yes">Separator</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkTable" id="advanced.table.separator">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="valign">center</property>
+                                <property name="n_rows">4</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">15</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="show_battery">
+                                    <property name="label" translatable="yes">Display battery load</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="show_tty">
+                                    <property name="label" translatable="yes">Display number of the tty</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="show_file_size">
+                                    <property name="label" translatable="yes">Display size of files</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="show_uptime">
+                                    <property name="label" translatable="yes">Display uptime</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="show_files_amount">
+                                    <property name="label" translatable="yes">Display number of files</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="show_load">
+                                    <property name="label" translatable="yes">Display system load</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="show_processes">
+                                    <property name="label" translatable="yes">Display number of running jobs</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="advanced.box.show_mem">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="advanced.label.show_mem">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Display memory</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="show_mem">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="model">advanced.liststore.memory</property>
+                                        <property name="tearoff_title">Select Memory Option:</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="advanced.cellrenderer.show_mem"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
                                 <property name="fill">False</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
-                            <child>
-                              <object class="GtkComboBox" id="grep_colour">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="model">style.liststore.grep_colour</property>
-                                <property name="tearoff_title">Choose Grep Color</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
-                            <property name="y_padding">2</property>
+                            <property name="top_attach">6</property>
+                            <property name="bottom_attach">7</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkCheckButton" id="colorshell">
-                            <property name="label" translatable="yes">Randomly colored text</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
+                          <object class="GtkSeparator" id="style.separator.3">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colorshell
-
-changes the default text color (randomly after each command)</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
+                            <property name="can_focus">False</property>
                           </object>
                           <packing>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="colorshell_reset">
-                            <property name="label" translatable="yes">Normal text color for output</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colorshell_reset
-
-Reset the text color to normal when executing a command line (only the command itself will be colored differently)</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
+                            <property name="top_attach">5</property>
+                            <property name="bottom_attach">6</property>
+                            <property name="x_padding">100</property>
+                            <property name="y_padding">5</property>
                           </packing>
                         </child>
                       </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
                   </object>
-                  <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSeparator" id="style.separator.1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_padding">100</property>
-                    <property name="y_padding">5</property>
-                  </packing>
                 </child>
               </object>
               <packing>
                 <property name="position">1</property>
-                <property name="tab_fill">False</property>
               </packing>
             </child>
             <child type="tab">
@@ -6497,238 +6742,6 @@ Reset the text color to normal when executing a command line (only the command i
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="advanced.box.separato">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.separato">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Separator</property>
-                    <property name="angle">90</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkTable" id="advanced.table.separator">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="valign">center</property>
-                    <property name="n_rows">4</property>
-                    <property name="n_columns">2</property>
-                    <property name="column_spacing">15</property>
-                    <child>
-                      <object class="GtkCheckButton" id="show_battery">
-                        <property name="label" translatable="yes">Display battery load</property>
-                        <property name="width_request">220</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_EXPAND</property>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="show_tty">
-                        <property name="label" translatable="yes">Display number of the tty</property>
-                        <property name="width_request">220</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options"/>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="show_file_size">
-                        <property name="label" translatable="yes">Display size of files</property>
-                        <property name="width_request">220</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_EXPAND</property>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="show_uptime">
-                        <property name="label" translatable="yes">Display uptime</property>
-                        <property name="width_request">220</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="x_options"/>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="show_files_amount">
-                        <property name="label" translatable="yes">Display number of files</property>
-                        <property name="width_request">220</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="x_options"/>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="show_load">
-                        <property name="label" translatable="yes">Display system load</property>
-                        <property name="width_request">220</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_EXPAND</property>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="show_processes">
-                        <property name="label" translatable="yes">Display number of running jobs</property>
-                        <property name="width_request">220</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options"/>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkVBox" id="advanced.box.show_mem">
-                        <property name="width_request">220</property>
-                        <property name="height_request">44</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.show_mem">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Display memory</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="show_mem">
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">advanced.liststore.memory</property>
-                            <property name="tearoff_title">Select Memory Option:</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="advanced.cellrenderer.show_mem"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options"/>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">False</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="position">9</property>
-              </packing>
-            </child>
-            <child type="tab">
-              <object class="GtkLabel" id="separator.label">
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Separator</property>
-              </object>
-              <packing>
-                <property name="position">9</property>
-                <property name="tab_fill">False</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkBox" id="advanced.box.git">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -6981,7 +6994,7 @@ lsb = show branches by last activity</property>
                 </child>
               </object>
               <packing>
-                <property name="position">10</property>
+                <property name="position">9</property>
               </packing>
             </child>
             <child type="tab">
@@ -6990,7 +7003,7 @@ lsb = show branches by last activity</property>
                 <property name="label" translatable="yes">GIT</property>
               </object>
               <packing>
-                <property name="position">10</property>
+                <property name="position">9</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
@@ -7395,7 +7408,7 @@ lsb = show branches by last activity</property>
                 </child>
               </object>
               <packing>
-                <property name="position">11</property>
+                <property name="position">10</property>
               </packing>
             </child>
             <child type="tab">
@@ -7404,7 +7417,7 @@ lsb = show branches by last activity</property>
                 <property name="label" translatable="yes">Shopts</property>
               </object>
               <packing>
-                <property name="position">11</property>
+                <property name="position">10</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
@@ -7432,7 +7445,7 @@ lsb = show branches by last activity</property>
                 </child>
               </object>
               <packing>
-                <property name="position">12</property>
+                <property name="position">11</property>
               </packing>
             </child>
             <child type="tab">
@@ -7441,7 +7454,7 @@ lsb = show branches by last activity</property>
                 <property name="label" translatable="yes">Keybindings</property>
               </object>
               <packing>
-                <property name="position">12</property>
+                <property name="position">11</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
@@ -7450,93 +7463,6 @@ lsb = show branches by last activity</property>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkWindow" id="popwindow">
-    <property name="can_focus">False</property>
-    <property name="type">popup</property>
-    <property name="resizable">False</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="icon_name">bs-ng</property>
-    <property name="type_hint">notification</property>
-    <property name="skip_taskbar_hint">True</property>
-    <property name="gravity">center</property>
-    <property name="transient_for">bashstyle</property>
-    <child>
-      <object class="GtkGrid" id="popwindow.grid1">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkLabel" id="popwindow.description.header">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">&lt;u&gt;&lt;b&gt;Description:&lt;/b&gt;&lt;/u&gt;</property>
-            <property name="use_markup">True</property>
-            <property name="wrap">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">1</property>
-            <property name="width">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkImage" id="popwindow.icon">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="pixel_size">48</property>
-            <property name="icon_name">dialog-information</property>
-            <property name="use_fallback">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">0</property>
-            <property name="width">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="popwindow.description">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="use_markup">True</property>
-            <property name="selectable">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">2</property>
-            <property name="width">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="popwindow.label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="xalign">0</property>
-            <property name="use_markup">True</property>
-            <property name="wrap">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">0</property>
-            <property name="height">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="popwindow.close">
-            <property name="label">gtk-close</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="use_stock">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">2</property>
           </packing>
         </child>
       </object>
