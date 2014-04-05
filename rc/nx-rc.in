@@ -85,9 +85,6 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	else	BASHRC=/etc/bashrc
 	fi
 
-	dbg_msg $"BashStyle-NG Loading:" $"BSNG Wizard Settings"
-	dbg_log source $BSNG_RC_DIR/settings/wizard-rc
-
 	dbg_log source $BSNG_RC_DIR/settings/alias-rc
 
 	dbg_msg $"BashStyle-NG Setting:" $"ps2 ps3 ps4 char" $(ini_get ps234)
