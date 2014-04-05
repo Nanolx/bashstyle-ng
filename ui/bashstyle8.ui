@@ -1512,7 +1512,9 @@ es_ES: Kenny Meyer</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">enable_colors
 
-This will enable fany colorful prompts, else they will be monochrome. This setting also effects other color settings.</property>
+This will enable fany colorful prompts, else they
+will be monochrome. This setting also effects 
+other color settings.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -1532,7 +1534,9 @@ This will enable fany colorful prompts, else they will be monochrome. This setti
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">use_bashstyle
 
-Checking this will enable BashStyle-NG, that means that all options (except for categories vim, nano and readline) take effect.</property>
+Checking this will enable BashStyle-NG, that
+means that all options (except for categories
+vim, nano and readline) will take effect.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -1598,7 +1602,7 @@ Checking this will enable BashStyle-NG, that means that all options (except for 
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">---
 
-choose a part of the rompt to re-color.</property>
+choose a part of the prompt to re-color.</property>
                                     <property name="model">style.liststore.color_of</property>
                                     <property name="tearoff_title">Choose Color to Change:</property>
                                     <child>
@@ -1704,7 +1708,8 @@ choose a promptstyle.</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">random_style
 
-choose a random promptstyle each time you start a new session.</property>
+choose a random promptstyle each time you
+start a new session.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -1742,7 +1747,9 @@ choose a random promptstyle each time you start a new session.</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="tooltip_text" translatable="yes">separator
 
-several promptstyles use separators between items, here you can choose what to use as separator.</property>
+several promptstyles use separators between
+items, here you can choose what to use as
+separator.</property>
                                         <property name="invisible_char">●</property>
                                         <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                         <property name="secondary_icon_stock">gtk-delete</property>
@@ -1788,7 +1795,8 @@ several promptstyles use separators between items, here you can choose what to u
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="tooltip_text" translatable="yes">ps234
 
-this character will be used once for PS2, twice for PS3 and three times for PS4.</property>
+this character will be used once for PS2, twice
+for PS3 and three times for PS4.</property>
                                         <property name="invisible_char">●</property>
                                         <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                         <property name="secondary_icon_stock">gtk-delete</property>
@@ -1833,7 +1841,9 @@ this character will be used once for PS2, twice for PS3 and three times for PS4.
                                         <property name="can_focus">True</property>
                                         <property name="tooltip_text" translatable="yes">pwdcut
 
-most promptstyles display the current directory. They allow to cut it, if it exceeds pwdlength, this is the indicator for a cut directory.</property>
+most promptstyles display the current directory.
+They allow to cut it, if it exceeds pwdlength, this
+is the indicator for a cut directory.</property>
                                         <property name="invisible_char">●</property>
                                         <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                         <property name="secondary_icon_stock">gtk-delete</property>
@@ -1876,7 +1886,8 @@ most promptstyles display the current directory. They allow to cut it, if it exc
                                         <property name="can_focus">True</property>
                                         <property name="tooltip_text" translatable="yes">pwdlength
 
-the maximum length for the current directory (as displayed in the promptstyles).</property>
+the maximum length for the current directory
+(as displayed in the prompt styles).</property>
                                         <property name="invisible_char">•</property>
                                         <property name="text" translatable="yes">0</property>
                                         <property name="adjustment">advanced.adjustment.pwd_len</property>
@@ -1948,7 +1959,9 @@ the maximum length for the current directory (as displayed in the promptstyles).
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">colored_ls
 
-Color the output of the ls command, else it will fallback to distribution default (usually monochrome).</property>
+Color the output of the ls command, else it will 
+fallback to distribution default (usually 
+monochrome).</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -1968,7 +1981,8 @@ Color the output of the ls command, else it will fallback to distribution defaul
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">colored_man
 
-This will highlight keywords when reading manpages for easier readiblity.</property>
+This will highlight keywords when reading 
+manpages for easier readiblity.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2066,7 +2080,8 @@ choose the way colors are drawn.</property>
                                         <property name="can_focus">False</property>
                                         <property name="tooltip_text" translatable="yes">man_style
 
-this allows to choose different, colored terminfos for manpages. </property>
+this allows to choose different, colored
+terminfos for manpages. </property>
                                         <property name="label" translatable="yes">Choose Terminfo for manpages</property>
                                       </object>
                                       <packing>
@@ -2120,7 +2135,8 @@ this allows to choose different, colored terminfos for manpages. </property>
                                         <property name="can_focus">False</property>
                                         <property name="tooltip_text" translatable="yes">grep_color
 
-choose the color search results are highlighted in grep output.</property>
+choose the color search results are highlighted
+in grep output.</property>
                                         <property name="label" translatable="yes">Choose grep color</property>
                                       </object>
                                       <packing>
@@ -2173,7 +2189,8 @@ choose the color search results are highlighted in grep output.</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">colorshell
 
-changes the default text color (randomly after each command)</property>
+changes the default text color (randomly after 
+each command)</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2195,7 +2212,9 @@ changes the default text color (randomly after each command)</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">colorshell_reset
 
-Reset the text color to normal when executing a command line (only the command itself will be colored differently)</property>
+Reset the text color to normal when executing
+a command line (only the command itself will be 
+colored differently)</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2270,6 +2289,10 @@ Reset the text color to normal when executing a command line (only the command i
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">battery_load
+
+Applies to "separator" style only. Display the
+battery load using acpi.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2289,6 +2312,10 @@ Reset the text color to normal when executing a command line (only the command i
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">tty
+
+Applies to "separator" style only. Display the
+current tty.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2310,6 +2337,10 @@ Reset the text color to normal when executing a command line (only the command i
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">files_size
+
+Applies to "separator" style only. Show the size
+of all files in the current directory.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2329,6 +2360,10 @@ Reset the text color to normal when executing a command line (only the command i
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">uptime
+
+Applies to "separator" style only. Display the
+computer's uptime.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2348,6 +2383,10 @@ Reset the text color to normal when executing a command line (only the command i
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">files_amount
+
+Applies to "separator" style only. Show the
+number of files in the current directory.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2364,6 +2403,10 @@ Reset the text color to normal when executing a command line (only the command i
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">load
+
+Applies to "separator" style only. Display the
+system load.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2384,6 +2427,10 @@ Reset the text color to normal when executing a command line (only the command i
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">processes
+
+Applies to "separator" style only. Show the
+number of running processes.</property>
                                     <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
@@ -2404,6 +2451,13 @@ Reset the text color to normal when executing a command line (only the command i
                                       <object class="GtkLabel" id="advanced.label.show_mem">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">mem
+
+Applies to "separator" style only.
+
+free: show free RAM in MB
+used: show used RAM in MB
+both: show free / used RAM in MB</property>
                                         <property name="label" translatable="yes">Display memory</property>
                                       </object>
                                       <packing>
