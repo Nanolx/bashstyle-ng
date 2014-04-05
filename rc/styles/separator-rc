@@ -9,116 +9,39 @@
 #							#
 #########################################################
 
-enabup=$(ini_get uptimes)
-
-enabsize=$(ini_get file_size)
-
-enablf=$(ini_get files_amount)
-
-enabtty=$(ini_get tty)
-
-enabmem=$(ini_get mem)
-
-enabload=$(ini_get load)
-
-enabproc=$(ini_get processes)
-
-enabbatt=$(ini_get battery_load)
-
 sepa=$(ini_get separator)
-
 export pstyle_supported=True
 
-if [[ $enabcol == "True" ]]; then \
+if [[ $enabcol == "True" ]]; then
 
 	PS1="\n$usercolor\u$fontcolor @$hostcolor \h$sepacolor $sepa $datecolor\d$sepacolor $sepa $timecolor\t$sepacolor $sepa $wdircolor\$(truncpwd)"
-
-	if [[ $enablf == "True" ]]; then
-		PS1+=" files: \$(count_files -f)"
-	fi
-
-	if [[ $enablf == "True" && $enabsize == "True" ]]; then
-		PS1+="$sepacolor /"
-	fi
-
-	if [[ $enabsize == "True" ]]; then
-		PS1+="$wdircolor size: \$(show_size)"
-	fi
-
-	if [[ $enabtty == "True" ]]; then
-		PS1+=" $sepacolor$sepa$hostcolor tty: \$(show_tty)"
-	fi
-
-	if [[ $enabup == "True" ]]; then
-		PS1+=" $sepacolor$sepa$upcolor uptime: \$(show_uptime)"
-	fi
-
-	if [[ $enabload == "True" ]]; then
-		PS1+=" $sepacolor$sepa$upcolor system load: \$(show_system_load)"
-	fi
-
-	if [[ $enabproc == "True" ]]; then
-		PS1+=" $sepacolor$sepa$pscolor processes: \$(count_processes)"
-	fi
-
-	if [[ $enabbatt == "True" ]]; then
-		PS1+=" $sepacolor$sepa$pscolor battery: \$(show_battery_load)"
-	fi
-
-	if [[ $enabmem == free ]]; then
-		PS1+=" $sepacolor$sepa$usercolor free mem: $pscolor\$(show_mem --free)$usercolor mb"
-	elif [[ $enabmem == used ]]; then
-		PS1+=" $sepacolor$sepa$usercolor used mem: $pscolor\$(show_mem --used)$usercolor mb"
-	elif [[ $enabmem == both ]]; then
-		PS1+=" $sepacolor$sepa$usercolor free$sepacolor/${usercolor}used mem: $pscolor\$(show_mem --free)$sepacolor/$pscolor\$(show_mem --used)$usercolor mb"
-	fi
-
+	[[ $(ini_get files_amount) == "True" ]] && PS1+=" files: \$(count_files -f)"
+	[[ $(ini_get files_amount) == "True" && $(ini_get file_size) == "True" ]] && PS1+="$sepacolor /"
+	[[ $(ini_get file_size) == "True" ]] && PS1+="$wdircolor size: \$(show_size)"
+	[[ $(ini_get tty) == "True" ]] && PS1+=" $sepacolor$sepa$hostcolor tty: \$(show_tty)"
+	[[ $(ini_get uptimes) == "True" ]] && PS1+=" $sepacolor$sepa$upcolor uptime: \$(show_uptime)"
+	[[ $(ini_get load) == "True" ]] && PS1+=" $sepacolor$sepa$upcolor system load: \$(show_system_load)"
+	[[ $(ini_get processes) == "True" ]] && PS1+=" $sepacolor$sepa$pscolor processes: \$(count_processes)"
+	[[ $(ini_get battery_load) == "True" ]] && PS1+=" $sepacolor$sepa$pscolor battery: \$(show_battery_load)"
+	[[ $(ini_get mem) == free ]] && PS1+=" $sepacolor$sepa$usercolor free mem: $pscolor\$(show_mem --free)$usercolor mb"
+	[[ $(ini_get mem) == used ]] && PS1+=" $sepacolor$sepa$usercolor used mem: $pscolor\$(show_mem --used)$usercolor mb"
+	[[ $(ini_get mem) == both ]] && PS1+=" $sepacolor$sepa$usercolor free$sepacolor/${usercolor}used mem: $pscolor\$(show_mem --free)$sepacolor/$pscolor\$(show_mem --used)$usercolor mb"
 	PS1+="$sepacolor $sepa\n$usercolor$SEPA_1_COLOR\$(SEPA_1)\$ $SEPA_2_COLOR\$(SEPA_2)$fontcolor-> "
 
 else
 
 	PS1="\n\u @ \h $sepa \d $sepa \t $sepa \$(truncpwd)"
-
-	if [[ $enablf == "True" ]]; then
-		PS1+=" files: \$(count_files -f)"
-	fi
-
-	if [[ $enablf == "True" && $enabsize == "True" ]]; then
-		PS1+=" /"
-	fi
-
-	if [[ $enabsize == "True" ]]; then
-		PS1+=" size: \$(show_size)"
-	fi
-
-	if [[ $enabtty == "True" ]]; then
-		PS1+=" $sepa tty: \$(show_tty)"
-	fi
-
-	if [[ $enabup == "True" ]]; then
-		PS1+=" $sepa uptime: \$(show_uptime)"
-	fi
-
-	if [[ $enabload == "True" ]]; then
-		PS1+=" $sepa system load: \$(show_system_load)"
-	fi
-
-	if [[ $enabproc == "True" ]]; then
-		PS1+=" $sepa processes: \$(count_processes)"
-	fi
-
-	if [[ $enabbatt == "True" ]]; then
-		PS1+=" $sepa battery: \$(show_battery_load)"
-	fi
-
-	if [[ $enabmem == free ]]; then
-		PS1+=" $sepa free mem: \$(show_mem --free) mb"
-	elif [[ $enabmem == used ]]; then
-		PS1+=" $sepa used mem: \$(show_mem --used) mb"
-	elif [[ $enabmem == both ]]; then
-		PS1+=" $sepa free/used mem: \$(show_mem --free)/\$(show_mem --used) mb"
-	fi
-
+	[[ $(ini_get files_amount) == "True" ]] && PS1+=" files: \$(count_files -f)"
+	[[ $(ini_get files_amount) == "True" && $(ini_get file_size) == "True" ]] && PS1+="$sepacolor /"
+	[[ $(ini_get file_size) == "True" ]] && PS1+=" size: \$(show_size)"
+	[[ $(ini_get tty) == "True" ]] && PS1+=" $sepa tty: \$(show_tty)"
+	[[ $(ini_get uptimes) == "True" ]] && PS1+=" $sepa uptime: \$(show_uptime)"
+	[[ $(ini_get load) == "True" ]] && PS1+=" $sepa system load: \$(show_system_load)"
+	[[ $(ini_get processes) == "True" ]] && PS1+=" $sepa processes: \$(count_processes)"
+	[[ $(ini_get battery_load) == "True" ]] && PS1+=" $sepa battery: \$(show_battery_load)"
+	[[ $(ini_get mem) == free ]] && PS1+=" $sepa free mem: \$(show_mem --free) mb"
+	[[ $(ini_get mem) == used ]] && PS1+=" $sepa used mem: \$(show_mem --used) mb"
+	[[ $(ini_get mem) == both ]] && PS1+=" $sepa free/used mem: \$(show_mem --free)/\$(show_mem --used) mb"
 	PS1+=" $sepa\n\$ -> "
 
 fi
