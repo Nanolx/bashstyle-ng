@@ -1512,7 +1512,7 @@ es_ES: Kenny Meyer</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="tooltip_text" translatable="yes">enable_colors
 
-This will enable fany colorful prompts, else they
+This will enable fancy colorful prompts, else they
 will be monochrome. This setting also effects 
 other color settings.</property>
                                     <property name="xalign">0</property>
@@ -1655,7 +1655,7 @@ choose the color for the part to recolor.</property>
                                         <property name="can_focus">False</property>
                                         <property name="tooltip_text" translatable="yes">prompt_style
 
-choose a promptstyle.</property>
+choose a prompt style.</property>
                                         <property name="label" translatable="yes">Choose Promptstyle</property>
                                       </object>
                                       <packing>
@@ -1747,7 +1747,7 @@ start a new session.</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="tooltip_text" translatable="yes">separator
 
-several promptstyles use separators between
+several prompt styles use separators between
 items, here you can choose what to use as
 separator.</property>
                                         <property name="invisible_char">●</property>
@@ -1841,7 +1841,7 @@ for PS3 and three times for PS4.</property>
                                         <property name="can_focus">True</property>
                                         <property name="tooltip_text" translatable="yes">pwdcut
 
-most promptstyles display the current directory.
+most prompt styles display the current directory.
 They allow to cut it, if it exceeds pwdlength, this
 is the indicator for a cut directory.</property>
                                         <property name="invisible_char">●</property>
@@ -2961,6 +2961,9 @@ Now executing "a" will do "echo hello world"</property>
                               <object class="GtkSpinButton" id="history_size">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">history_size
+
+maximum lines of bash history.</property>
                                 <property name="invisible_char">•</property>
                                 <property name="text" translatable="yes">0</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
@@ -3008,6 +3011,10 @@ Now executing "a" will do "echo hello world"</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">history_ignore
+
+a colon separated list of commands not to log
+in the bash history.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3035,6 +3042,9 @@ Now executing "a" will do "echo hello world"</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">--
+
+delete Bash's history file.</property>
                           </object>
                           <packing>
                             <property name="x_options">GTK_EXPAND</property>
@@ -3051,6 +3061,16 @@ Now executing "a" will do "echo hello world"</property>
                               <object class="GtkLabel" id="advanced.label.history_control">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">history_control
+
+Erase duplicates: only leave the newest entry
+         if a command is executed multiple times
+Ignore duplicates: only leave the oldest entry
+         if a command is executed multiple times
+Ignore Space: ignore all commands with
+         leading space
+Ignore Both: Ignore duplicates and Ignore
+         Space together</property>
                                 <property name="label" translatable="yes">Choose historycontrol type</property>
                               </object>
                               <packing>
@@ -3163,6 +3183,13 @@ Now executing "a" will do "echo hello world"</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">cdpath
+
+a colon separated list of directorys cd can
+directly go to. Example add ${HOME} to it, so
+you can directly go to ${HOME}/Desktop using:
+
+cd Desktop</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3203,6 +3230,10 @@ Now executing "a" will do "echo hello world"</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">completion_ignore
+
+a colon separated list of files to ignore from
+filename completion.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3244,6 +3275,10 @@ Now executing "a" will do "echo hello world"</property>
                               <object class="GtkSpinButton" id="timeout">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">timeout
+
+after x seconds of inactivity bash will log you out
+automatically. 0 to disable.</property>
                                 <property name="invisible_char">•</property>
                                 <property name="text" translatable="yes">0</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
@@ -3290,6 +3325,9 @@ Now executing "a" will do "echo hello world"</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">fcedit
+
+set the editor for the internal fc command.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3331,6 +3369,10 @@ Now executing "a" will do "echo hello world"</property>
                               <object class="GtkEntry" id="welcome">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">welcome_message
+
+some command to run on session start. Most
+commonly this will be something like "fortune".</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3370,6 +3412,12 @@ Now executing "a" will do "echo hello world"</property>
                               <object class="GtkEntry" id="path">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">path
+
+a colon separated list of directories where
+executables are stored. Note: if you change
+it first add the content of your original ${PATH}
+here (else you'll get unwanted results).</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3397,6 +3445,11 @@ Now executing "a" will do "echo hello world"</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">tab_rotation
+
+when doing completion using [TAB] instead of
+display a list of possible completions, "rotate"
+between matches pressing [TAB] multiple times.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3431,6 +3484,12 @@ Now executing "a" will do "echo hello world"</property>
                                 <property name="height_request">22</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">directory_indicator
+
+normally directories are represented by / - eg.:
+/home/test - this option lets you exchange the
+/ by something else (only for displaying in the
+prompt).</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3507,6 +3566,11 @@ Now executing "a" will do "echo hello world"</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">use_lscd
+
+Use "lscd" instead of "cd". lscd displays the
+content of a .dirinfo file (if it exists) and lists
+all files in the current directory when cd-ing.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3523,6 +3587,9 @@ Now executing "a" will do "echo hello world"</property>
                               <object class="GtkLabel" id="advanced.label.lscd">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">lscd_options
+
+extra ls options for lscd. All ls options work.</property>
                                 <property name="label" translatable="yes">lscd options</property>
                               </object>
                               <packing>
@@ -3575,6 +3642,10 @@ Now executing "a" will do "echo hello world"</property>
                                 <property name="height_request">22</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">cd_writer
+
+CD writer device to use for the geniso and
+writeiso functions.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3613,6 +3684,11 @@ Now executing "a" will do "echo hello world"</property>
                                 <property name="height_request">22</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">user_birthday
+
+user birthday in MM-DD format. Example 12-06
+for 6th of December. You will be presented with
+some surprise when starting bash that day.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3638,6 +3714,11 @@ Now executing "a" will do "echo hello world"</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">dd_noerror
+
+normally "dd" abort on any occuring error. This
+will prevent dd from aborting, it will just report
+the read error and continue.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3655,6 +3736,11 @@ Now executing "a" will do "echo hello world"</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">debug_verbose
+
+display full output from NX-RC (the BashStyle-NG
+startup script). Only recommended if you're
+getting an error message on session start.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3672,6 +3758,10 @@ Now executing "a" will do "echo hello world"</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">restore_directory
+
+remember the directory you last cd-ed into and
+restore it in a new session.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
