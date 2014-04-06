@@ -22,7 +22,7 @@ case $1 in
 		newpscolor=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 
 		if [[ ${enabcol} == "True" && ${pstyle_supported} == "True" ]];  then
-			if [ ${#PWD} -gt $pwdmaxlen ]; then
+			if [[ $pwdmaxlen != 0 && ${#PWD} -gt $pwdmaxlen ]]; then
 				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
 				xPWD="$newpscolor${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
 				newPWD="${xPWD//\//$newsepacolor$dirchar$newwdircolor}"
@@ -30,7 +30,7 @@ case $1 in
 				newPWD="${PWD//\//$newsepacolor$dirchar$newwdircolor}"
 			fi
 		else
-			if [ ${#PWD} -gt $pwdmaxlen ]; then
+			if [[ $pwdmaxlen != 0 && ${#PWD} -gt $pwdmaxlen ]]; then
 				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
 				xPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
 				newPWD="${xPWD//\//$dirchar}"
