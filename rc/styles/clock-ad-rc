@@ -63,24 +63,32 @@ i=${LINES}
 
 while [ $i -ge 4 ]
 do
-   if [[ $i == $j ]]; then
-   	echo -en "\033[$j;$((${COLUMNS}-29))H"
-   	echo -en "$esepacolor($efontcolor system-load: $(show_system_load 1)$esepacolor )────────"
-   fi
-   if [[ $i == $k ]]; then
-        echo -en "\033[$k;$((${COLUMNS}-29))H"
-       	echo -en "$esepacolor($efontcolor cpu-load: $(show_cpu_load)$esepacolor )────────────"
-   fi
-   if [[ $i == $l ]]; then
-   	echo -en "\033[$l;$((${COLUMNS}-29))H"
-   	echo -en "$esepacolor($efontcolor ram: $esepacolor$(show_mem --used)mb$efontcolor / $esepacolor$(show_mem --free)mb )─────"
-   fi
-   if [[ $i == $m ]]; then
-       echo -en "\033[$m;$((${COLUMNS}-29))H"
-       echo -en "$esepacolor($efontcolor processes:$epscolor $(count_processes) $esepacolor)──────────"
-   fi
-   echo -en "\033[$(($i-1));${COLUMNS}H$espacolor│"
-   let i=$i-1
+	case $i in
+		$j )
+			echo -en "\033[$j;$((${COLUMNS}-29))H"
+			echo -en "$esepacolor($efontcolor system-load: $(show_system_load 1)$esepacolor )────────┤"
+			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+		;;
+		$k )
+			echo -en "\033[$k;$((${COLUMNS}-29))H"
+			echo -en "$esepacolor($efontcolor cpu-load: $(show_cpu_load)$esepacolor )────────────┤"
+			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+		;;
+		$l )
+			echo -en "\033[$l;$((${COLUMNS}-29))H"
+			echo -en "$esepacolor($efontcolor ram: $esepacolor$(show_mem --used)mb$efontcolor / $esepacolor$(show_mem --free)mb )─────┤"
+			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+		;;
+		$m )
+			echo -en "\033[$m;$((${COLUMNS}-29))H"
+			echo -en "$esepacolor($efontcolor processes:$epscolor $(count_processes) $esepacolor)──────────┤"
+			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+		;;
+		* )
+			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+		;;
+	esac
+	let i=$i-1
 done
 
 let prompt_line=${LINES}-1
@@ -133,24 +141,32 @@ i=${LINES}
 
 while [ $i -ge 4 ]
 do
-   if [[ $i == $j ]]; then
-   	echo -en "\033[$j;$((${COLUMNS}-29))H"
-   	echo -en "( system-load: $(show_system_load 1) )────────"
-   fi
-   if [[ $i == $k ]]; then
-	echo -en "\033[$k;$((${COLUMNS}-29))H"
-	echo -en "( cpu-load: $(show_cpu_load) )────────────"
-   fi
-   if [[ $i == $l ]]; then
-   	echo -en "\033[$l;$((${COLUMNS}-29))H"
-   	echo -en "( ram: $(show_mem --used)mb / $(show_mem --free)mb )─────"
-   fi
-   if [[ $i == $m ]]; then
-	   echo -en "\033[$m;$((${COLUMNS}-29))H"
-	   echo -en "( processes: $(count_processes) )──────────"
-   fi
-   echo -en "\033[$(($i-1));${COLUMNS}H│"
-   let i=$i-1
+	case $i in
+		$j )
+			echo -en "\033[$j;$((${COLUMNS}-29))H"
+			echo -en "( system-load: $(show_system_load 1) )────────┤"
+			echo -en "\033[$(($i-1));${COLUMNS}H│"
+		;;
+		$k )
+			echo -en "\033[$k;$((${COLUMNS}-29))H"
+			echo -en "( cpu-load: $(show_cpu_load) )────────────┤"
+			echo -en "\033[$(($i-1));${COLUMNS}H│"
+		;;
+		$l )
+			echo -en "\033[$l;$((${COLUMNS}-29))H"
+			echo -en "( ram: $(show_mem --used)mb / $(show_mem --free)mb )─────┤"
+			echo -en "\033[$(($i-1));${COLUMNS}H│"
+		;;
+		$m )
+			echo -en "\033[$m;$((${COLUMNS}-29))H"
+			echo -en "( processes:$epscolor $(count_processes) )──────────┤"
+			echo -en "\033[$(($i-1));${COLUMNS}H│"
+		;;
+		* )
+			echo -en "\033[$(($i-1));${COLUMNS}H│"
+		;;
+	esac
+	let i=$i-1
 done
 
 let prompt_line=${LINES}-1
