@@ -4465,6 +4465,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">use_vimcfg
+
+enabling will this create a vimrc with
+below configuration</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4481,6 +4485,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">vim_backup
+
+create a backup ($filename~) when
+saving a file</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4549,6 +4557,9 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">ignore_case
+
+when searching ignore the case</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4565,6 +4576,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">smart_case
+
+when searching smartly decide
+whether to ignore case or not</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4583,6 +4598,11 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">incremental_search
+
+don't wait for the search pattern
+to be complete, immediately start
+the search</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4601,6 +4621,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">highlight_matches
+
+when searching highlight all matches
+in the file</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4661,6 +4685,11 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">highlight_brackets
+
+when moving the cursor to a bracket,
+highlight the corresponding opening
+or closing bracket</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4681,6 +4710,13 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">show_command
+
+by default vim only shows typed-in
+commands only when fully written,
+this will change the behaviour, so
+that you can see your command while
+typing it in</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4699,6 +4735,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">filetype_indent
+
+auto-indent the file according to it's
+type.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4717,6 +4757,11 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">jump_back
+
+when saving a file remember your
+last position in the file and restore it
+when you open it again</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4733,6 +4778,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">syntax_hilight
+
+enable colored syntax highlighting,
+for better readability</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4751,6 +4800,11 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">dark_background
+
+set this when your terminal has a
+dark background - it will change vims
+colors for better readibilty</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4771,6 +4825,11 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">start_line
+
+when opening a new file and restoring
+last position, jump to the start of the
+line, instead of remembered column</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4806,6 +4865,9 @@ or emacs (default) like.</property>
                               <object class="GtkSpinButton" id="vim_tabstop">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">tab_length
+
+length (in spaces) for tabstops</property>
                                 <property name="invisible_char">●</property>
                                 <property name="text" translatable="yes">0</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
@@ -4852,6 +4914,10 @@ or emacs (default) like.</property>
                               <object class="GtkSpinButton" id="vim_autowrap">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">wrap_length
+
+when wraping long lines, this is the
+column where they are wrapped at</property>
                                 <property name="invisible_char">●</property>
                                 <property name="text" translatable="yes">0</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
@@ -4883,6 +4949,11 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">wrap_line
+
+wrap what you type a autowrap
+position rather than having endless
+lines</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4971,6 +5042,9 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">show_lineno
+
+display line numbers at the left</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4987,6 +5061,9 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">autosave
+
+autosave files</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -5005,6 +5082,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">highlight_line
+
+highlight the current line (it will be
+underlined)</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -5023,6 +5104,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">highlight_column
+
+highlight the current column (there
+will be a vertical line of underlines)</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -5043,6 +5128,9 @@ or emacs (default) like.</property>
                               <object class="GtkLabel" id="vim.label.colorscheme">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">colorscheme
+
+choose a colorscheme</property>
                                 <property name="label" translatable="yes">Choose colorscheme</property>
                               </object>
                               <packing>
@@ -5106,6 +5194,12 @@ or emacs (default) like.</property>
                                 <property name="height_request">26</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">rulerformat
+
+format the ruler to your needs, eg.:
+%45(%t\ %y\ %c\ %l\/%L\ %p%%%)
+
+vimdoc.sourceforge.net/htmldoc/options.html</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -5135,6 +5229,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">ruler
+
+display a customizable ruler at the
+bottom of the editor</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -5155,6 +5253,10 @@ or emacs (default) like.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">chdir
+
+when opening a file, let vim cd into
+the file's directory</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
