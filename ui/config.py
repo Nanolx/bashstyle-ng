@@ -32,7 +32,7 @@ USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
 
-app_ini_version = 6
+app_ini_version = 7
 
 class Config(object):
 	def InitConfig(self):
@@ -59,7 +59,11 @@ class Config(object):
 		try:
 			if self.cfo.as_int("ini_version") < app_ini_version:
 				if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
-					shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS_NEW)
+					if vendor_ini.as_int("ini_version") == app_ini_version:
+						shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS_NEW)
+					else:
+						print("vendor configuration outdated, using factory defaults instead!")
+						shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
 				else:
 					shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
 				new = configobj.ConfigObj(USER_DEFAULTS_NEW)
