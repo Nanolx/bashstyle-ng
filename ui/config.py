@@ -58,7 +58,10 @@ class Config(object):
 	def UpdateConfig(self):
 		try:
 			if self.cfo.as_int("ini_version") < app_ini_version:
-				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
+				if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
+					shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS_NEW)
+				else:
+					shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
 				new = configobj.ConfigObj(USER_DEFAULTS_NEW)
 				old = configobj.ConfigObj(USER_DEFAULTS)
 				new.merge(old)
@@ -72,7 +75,7 @@ class Config(object):
 				shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS)
 			else:
 				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
-			self.ReloadConfig
+			self.cfo.reload()
 
 	def ResetConfig(self):
 		shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
