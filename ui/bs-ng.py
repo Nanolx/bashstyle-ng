@@ -73,6 +73,14 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("grep_colour", "Style", "grep_color", "combo", dicts.grep_colors)
 		WidgetHandler.InitWidget("colorshell", "Style", "colorshell", "bool", None)
 		WidgetHandler.InitWidget("colorshell_reset", "Style", "colorshell_reset", "bool", None)
+		WidgetHandler.InitWidget("show_files_amount", "Style", "files_amount", "bool", None)
+		WidgetHandler.InitWidget("show_uptime", "Style", "uptime", "bool", None)
+		WidgetHandler.InitWidget("show_file_size", "Style", "files_size", "bool", None)
+		WidgetHandler.InitWidget("show_tty", "Style", "tty", "bool", None)
+		WidgetHandler.InitWidget("show_processes", "Style", "processes", "bool", None)
+		WidgetHandler.InitWidget("show_load", "Style", "load", "bool", None)
+		WidgetHandler.InitWidget("show_battery", "Style", "battery_load", "bool", None)
+		WidgetHandler.InitWidget("show_mem", "Style", "mem", "combo", dicts.memory_types)
 
 		# special combobox not (yet) handled by widgethandler.py
 		self.color_of = gtkbuilder.get_object("color_of")
@@ -117,6 +125,15 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("pwd_len", "Advanced", "pwdlength", "int", None)
 		WidgetHandler.InitWidget("timeout", "Advanced", "timeout", "int", None)
 		WidgetHandler.InitWidget("history_control", "Advanced", "history_control", "combo", dicts.history_types)
+		WidgetHandler.InitWidget("dirchar", "Advanced", "directory_indicator", "text", None)
+		WidgetHandler.InitWidget("tabrotate", "Advanced", "tab_rotation", "bool", None)
+		WidgetHandler.InitWidget("enable_lscd", "Advanced", "use_lscd", "bool", None)
+		WidgetHandler.InitWidget("lscd_options", "Advanced", "lscd_opts", "text", None)
+		WidgetHandler.InitWidget("cdwriter", "Advanced", "cd_writer", "text", None)
+		WidgetHandler.InitWidget("birthday", "Advanced", "user_birthday", "text", None)
+		WidgetHandler.InitWidget("dd_noerror", "Advanced", "dd_noerror", "bool", None)
+		WidgetHandler.InitWidget("restore_pwd", "Advanced", "restore_directory", "bool", None)
+		WidgetHandler.InitWidget("debug_verbose", "Advanced", "debug_verbose", "bool", None)
 
 		self.reset_history = gtkbuilder.get_object("reset_history")
 
@@ -142,20 +159,6 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("editmode", "Readline", "editing_mode", "combo", dicts.edit_modes)
 		WidgetHandler.InitWidget("show_editmode", "Readline", "show_editmode", "bool", None)
 
-		######################## Separator Stuff ###########################################
-		WidgetHandler.InitWidget("show_files_amount", "Separator", "files_amount", "bool", None)
-		WidgetHandler.InitWidget("show_uptime", "Separator", "uptime", "bool", None)
-		WidgetHandler.InitWidget("show_file_size", "Separator", "files_size", "bool", None)
-		WidgetHandler.InitWidget("show_tty", "Separator", "tty", "bool", None)
-		WidgetHandler.InitWidget("show_processes", "Separator", "processes", "bool", None)
-		WidgetHandler.InitWidget("show_load", "Separator", "load", "bool", None)
-		WidgetHandler.InitWidget("show_battery", "Separator", "battery_load", "bool", None)
-		WidgetHandler.InitWidget("show_mem", "Separator", "mem", "combo", dicts.memory_types)
-
-		######################## Extra Stuff ###############################################
-		WidgetHandler.InitWidget("dirchar", "Extra", "directory_indicator", "text", None)
-		WidgetHandler.InitWidget("tabrotate", "Extra", "tab_rotation", "bool", None)
-
 		######################## Shopt Stuff ###############################################
 		WidgetHandler.InitWidget("histappend", "Shopt", "histappend", "bool", None)
 		WidgetHandler.InitWidget("cdspell", "Shopt", "cdspell", "bool", None)
@@ -171,15 +174,6 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("dirspell", "Shopt", "dirspell", "bool", None)
 		WidgetHandler.InitWidget("direxpand", "Shopt", "direxpand", "bool", None)
 		WidgetHandler.InitWidget("globasciiranges", "Shopt", "globasciiranges", "bool", None)
-
-		######################## Extra Stuff ###############################################
-		WidgetHandler.InitWidget("enable_lscd", "Extra", "use_lscd", "bool", None)
-		WidgetHandler.InitWidget("lscd_options", "Extra", "lscd_opts", "text", None)
-		WidgetHandler.InitWidget("cdwriter", "Extra", "cd_writer", "text", None)
-		WidgetHandler.InitWidget("birthday", "Extra", "user_birthday", "text", None)
-		WidgetHandler.InitWidget("dd_noerror", "Extra", "dd_noerror", "bool", None)
-		WidgetHandler.InitWidget("restore_pwd", "Extra", "restore_directory", "bool", None)
-		WidgetHandler.InitWidget("debug_verbose", "Extra", "debug_verbose", "bool", None)
 
 		######################## GIT Stuff #################################################
 		WidgetHandler.InitWidget("git_user", "Git", "git_user_name", "text", None)
