@@ -3587,9 +3587,6 @@ all files in the current directory when cd-ing.</property>
                               <object class="GtkLabel" id="advanced.label.lscd">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">lscd_options
-
-extra ls options for lscd. All ls options work.</property>
                                 <property name="label" translatable="yes">lscd options</property>
                               </object>
                               <packing>
@@ -3604,6 +3601,9 @@ extra ls options for lscd. All ls options work.</property>
                                 <property name="height_request">22</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">lscd_options
+
+extra ls options for lscd. All ls options work.</property>
                                 <property name="invisible_char">●</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
                                 <property name="secondary_icon_stock">gtk-delete</property>
@@ -3852,6 +3852,13 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">scroll_horizontal
+
+when enabling this typing commands
+longer than the terminals width will
+not break the line, rather will readline
+scroll horizontally, so you can type
+everything in one line</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3868,6 +3875,10 @@ restore it in a new session.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">mark_modified
+
+when modifying a history entry, a *
+will be prepended to the line</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3898,6 +3909,10 @@ restore it in a new session.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">show_editmode
+
+show the editing mode (vim or emacs)
+at the start of the prompt</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3969,6 +3984,11 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">mark_symbolic_directories
+
+when doing file/pathname completion
+append a / to all symbolic linked
+directories</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3988,6 +4008,10 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">mark_directories
+
+when doing file/pathname completion
+append a / to each directory.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4009,6 +4033,10 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">complete_horizontal
+
+do horizontal completion rather than
+vertical (default)</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4028,6 +4056,10 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">ignore_case
+
+when doing completion ignore the
+case of file/pathname or commands</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4047,6 +4079,10 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">complete_hidden
+
+when doing file/pathname or command
+completion also include hidden files</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4066,6 +4102,12 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">ambiguous_show
+
+When completion is unsure rather and
+if the number of completions is less
+than query_items don't tell the user
+how many matches exist, just show them.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4096,6 +4138,11 @@ restore it in a new session.</property>
                               <object class="GtkSpinButton" id="query_items">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">query_items
+
+if the number of possible completions
+exceeds this value the shell will ask
+the user whether to display all.</property>
                                 <property name="invisible_char">•</property>
                                 <property name="text" translatable="yes">0</property>
                                 <property name="primary_icon_stock">gtk-revert-to-saved</property>
@@ -4127,6 +4174,11 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">visible_stats
+
+when doing file/pathname or command
+completion append stats to entries,
+@ for links, * for executables ...</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4202,6 +4254,12 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">use_readlinecfg
+
+This option lets BashStyle-NG create
+an inputrc according to below values
+and the choices in the Keybindings
+configurator.</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4219,6 +4277,11 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">completion
+
+Enable file/pathname, command,
+etc. completion (press TAB on an
+incomplete file/pathname).</property>
                             <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4239,6 +4302,14 @@ restore it in a new session.</property>
                               <object class="GtkLabel" id="readline.lable.bellstyle">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">bellstyle
+
+the readline bell informs you of (more
+or less) important things on the shell.
+
+None: disable readline bell
+Audible: beep the system speaker
+Visible: flash the terminal</property>
                                 <property name="label" translatable="yes">Choose bellstyle</property>
                               </object>
                               <packing>
@@ -4286,6 +4357,10 @@ restore it in a new session.</property>
                               <object class="GtkLabel" id="readline.label.editmode">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">editing_mode
+
+Editing mode for readline, either vim
+or emacs (default) like.</property>
                                 <property name="label" translatable="yes">Choose editing mode</property>
                               </object>
                               <packing>
