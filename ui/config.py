@@ -37,7 +37,10 @@ app_ini_version = 6
 class Config(object):
 	def InitConfig(self):
 		if not os.access(USER_DEFAULTS, os.F_OK):
-			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
+			if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
+				shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS)
+			else:
+				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
 
 	def LoadConfig(self):
 		self.cfo = configobj.ConfigObj(USER_DEFAULTS)
@@ -53,15 +56,23 @@ class Config(object):
 		self.fdc.reload()
 
 	def UpdateConfig(self):
-		if self.cfo.as_int("ini_version") < app_ini_version:
-			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
-			new = configobj.ConfigObj(USER_DEFAULTS_NEW)
-			old = configobj.ConfigObj(USER_DEFAULTS)
-			new.merge(old)
-			new["ini_version"] = app_ini_version
-			new.write()
-			shutil.move(USER_DEFAULTS_NEW, USER_DEFAULTS)
-			self.cfo.reload()
+		try:
+			if self.cfo.as_int("ini_version") < app_ini_version:
+				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
+				new = configobj.ConfigObj(USER_DEFAULTS_NEW)
+				old = configobj.ConfigObj(USER_DEFAULTS)
+				new.merge(old)
+				new["ini_version"] = app_ini_version
+				new.write()
+				shutil.move(USER_DEFAULTS_NEW, USER_DEFAULTS)
+				self.cfo.reload()
+		except KeyError:
+			print("something is wrong with your configuration, restoring defaults")
+			if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
+				shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS)
+			else:
+				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
+			self.ReloadConfig
 
 	def ResetConfig(self):
 		shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
