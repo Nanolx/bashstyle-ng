@@ -68,7 +68,7 @@ keybindings = {
 
 }
 
-class Tree(object):
+class KeyTree(object):
 
 	def __init__(self, cfo, udc, fdc):
 			self.config = cfo
