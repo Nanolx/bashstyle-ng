@@ -11,7 +11,7 @@
 #########################################################
 
 MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
-            'ctypes', 'optparse', 'subprocess', 'undobuffer', 'i18n', 'misc',
+            'optparse', 'subprocess', 'undobuffer', 'i18n', 'misc',
 	    'lockfile', 'config', 'widgethandler', 'dicts', 'prompts',
 	    'promptbuilder', 'args' , 'iconbook', 'treeview' ]
 

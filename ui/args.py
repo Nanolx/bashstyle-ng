@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'sys', 'string', 'ctypes', 'optparse', 'subprocess']
+MODULES = [ 'os', 'sys', 'optparse' ]
 
 FAILED = []
 
@@ -28,13 +28,6 @@ class CmdArgs(object):
 	parser = optparse.OptionParser("bashstyle <option> [value]\
 					\n\nBashStyle-NG (c) 2007 - 2014 Christopher Bratusek\
 					\nLicensed under the GNU GENERAL PUBLIC LICENSE v3")
-
-	if sys.platform == 'linux2':
-		try:
-			libc = ctypes.CDLL('libc.so.6')
-			libc.prctl(15, 'bashstyle', 0, 0, 0)
-		except:
-			pass
 
 	parser.add_option("-v", "--version", dest="version",
 			  action="store_true", default=False, help="print version and exit")

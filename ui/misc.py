@@ -10,20 +10,6 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'shutil', 'string', 'sys' ]
-
-FAILED = []
-
-for module in MODULES:
-	try:
-		globals()[module] = __import__(module)
-	except ImportError:
-		FAILED.append(module)
-
-if FAILED:
-    print("The following modules failed to import: %s" % (" ".join(FAILED)))
-    sys.exit(1)
-
 def SwapDictionary(original_dict):
     try:
             iteritems = original_dict.iteritems

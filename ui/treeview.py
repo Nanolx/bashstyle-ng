@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'sys', 'widgethandler', 'subprocess' ]
+MODULES = [ 'sys', 'widgethandler' ]
 
 FAILED = []
 

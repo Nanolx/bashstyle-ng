@@ -10,9 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
-            'ctypes', 'optparse', 'subprocess', 'undobuffer', 'i18n', 'misc',
-            'lockfile', 'config', 'widgethandler', 'dicts', 'prompts' ]
+MODULES = [ 'sys', 'undobuffer', 'widgethandler', 'i18n', 'dicts', 'prompts' ]
 
 FAILED = []
 

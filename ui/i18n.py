@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'locale', 'gettext' ]
+MODULES = [ 'locale', 'gettext' ]
 
 FAILED = []
 
