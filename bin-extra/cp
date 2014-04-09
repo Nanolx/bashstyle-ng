@@ -9,41 +9,36 @@
 #							#
 #########################################################
 
-if [[ $WANT_DIRINFO_FLAGS == "true" ]]; then
-
-	if [[ $1 == --help || $1 == -h ]]; then
-		$CP_CMD --help
-		exit 0
-	elif [[ ${#} -lt "2" ]]; then
-		echo "not enough arguements"
-		exit 1
-	fi
-
-	destination="${!#}"
-
-	if [[ "${destination}" == */ && ! -e "${destination}" ]]; then
-		 mkdir -p "${!destination}"
-	elif [[ "${destination}" == */ && -f "${destination}" ]]; then
-		echo "destination already exists, but is a file."
-		exit 1
-	fi
-
-	args=( "$@" )
-	unset args[$#-1]
-	set -- "${args[@]}"
-
-	for path in "${args[@]}"; do
-	      test "${path:0:1}" == - && CPO+="$path " && continue
-	      for try in "$path" "${path%/*}" "$(dirname ${path} 2>/dev/null)"; do
-		  test -e "$try"/.dirinfo || continue
-		  grep -q NoCopy "$try"/.dirinfo || continue
-		  echo "can not copy $path -- it's protected"
-		  continue 2
-	      done
-	      $CP_CMD $CP_OPTS $CPO "$path" "$destination"
-	done
-
-	unset CPO
-
-else	$CP_CMD "$@"
+if [[ $1 == --help || $1 == -h ]]; then
+	$CP_CMD --help
+	exit 0
+elif [[ ${#} -lt "2" ]]; then
+	echo "not enough arguements"
+	exit 1
 fi
+
+destination="${!#}"
+
+if [[ "${destination}" == */ && ! -e "${destination}" ]]; then
+	 mkdir -p "${!destination}"
+elif [[ "${destination}" == */ && -f "${destination}" ]]; then
+	echo "destination already exists, but is a file."
+	exit 1
+fi
+
+args=( "$@" )
+unset args[$#-1]
+set -- "${args[@]}"
+
+for path in "${args[@]}"; do
+      test "${path:0:1}" == - && CPO+="$path " && continue
+      for try in "$path" "${path%/*}" "$(dirname ${path} 2>/dev/null)"; do
+	  test -e "$try"/.dirinfo || continue
+	  grep -q NoCopy "$try"/.dirinfo || continue
+	  echo "can not copy $path -- it's protected"
+	  continue 2
+      done
+      $CP_CMD $CP_OPTS $CPO "$path" "$destination"
+done
+
+unset CPO
