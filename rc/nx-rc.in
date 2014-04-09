@@ -25,6 +25,8 @@ if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 	else
 		cp ${BSNG_DATA_DIR}/bashstyle-ng/bs-ng.ini ${HOME}/.bs-ng.ini
 	fi
+elif [[ $(grep Separator ${HOME}/.bs-ng.ini) ]]; then
+	sed -e '/^\[Separator\]$/,$d' -i $HOME/.bs-ng.ini
 fi
 
 ERR_MSG=""
