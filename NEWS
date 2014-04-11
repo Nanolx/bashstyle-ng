@@ -64,6 +64,10 @@ Overview of changes in v9.0 "Nice Sprites"
 	if you felt brave enough to enable dirinfo wrappers, they still didn't
         work properly, because of a change in the setup mechanism that wasn't
 	reflected in the wrappers
+* #172 (clock-ad) (truncpwd):
+	when changing to a user not having BashStyle-NG set-up prompts were
+	incorrect, as some required settings for truncpwd, respectively
+	clock-ad's internal pwd-truncating function were not set
 
 === Wizard-Merge ===
 

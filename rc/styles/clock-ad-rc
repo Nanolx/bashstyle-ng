@@ -29,6 +29,10 @@ ewdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 
 function pre_prompt {
 
+[[ ! ${dirchar} ]] && dirchar="/"
+[[ ! ${trunc_symbol} ]] && trunc_symbol="«"
+[[ ! ${trunc_length} ]] && trunc_length=25
+
 newPWD="${PWD}"
 
 let promptsize=$(echo -n "--( $(whoami) @ $host )--( ${PWD} )-----" | wc -c | tr -d " ")
@@ -106,6 +110,10 @@ $fontcolor :$CLOCK_AD_1_COLOR\$(CLOCK_AD_1)$fontcolor \$$sepacolor )·>$fontcolo
 else
 
 function pre_prompt {
+
+[[ ! ${dirchar} ]] && dirchar="/"
+[[ ! ${trunc_symbol} ]] && trunc_symbol="«"
+[[ ! ${trunc_length} ]] && trunc_length=25
 
 newPWD="${PWD}"
 
