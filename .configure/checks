@@ -171,7 +171,7 @@ if [[ ! -e $PYTHON ]]; then
 	exit 1
 else
 	PYMINVER=270
-	PYMAXVER=335
+	PYMAXVER=350
 	PYVER=$($PYTHON --version 2>&1 | gawk '{ gsub(/\./,""); gsub(/\+/,""); gsub(/rc.*/,""); print $2 }')
 	if [[ $PYVER -lt $PYMINVER ]]; then
 		fail_message p-
