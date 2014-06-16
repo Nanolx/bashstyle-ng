@@ -32,7 +32,7 @@ USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
 
-app_ini_version = 7
+app_ini_version = 8
 
 class Config(object):
 	def InitConfig(self):
@@ -59,6 +59,7 @@ class Config(object):
 		try:
 			if self.cfo.as_int("ini_version") < app_ini_version:
 				if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
+					vendor_ini = configobj.ConfigObj(VENDOR_DEFAULTS)
 					if vendor_ini.as_int("ini_version") == app_ini_version:
 						shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS_NEW)
 					else:
