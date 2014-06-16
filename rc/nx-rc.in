@@ -18,7 +18,7 @@ export BSNG_RC_DIR=$BSNG_DATA_DIR/bashstyle-ng/rc
 export BSNG_BIN_DIR=$BSNG_RC_DIR/bin
 export BSNG_LOCKFILE=$HOME/.bashstyle.lock
 export BSNG_VERSION=@VERSION@
-INI_VERSION=7
+INI_VERSION=8
 
 if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 	if [[ -f /etc/bs-ng_vendor.ini && $(grep ini_version /etc/bs-ng_vendor.ini) == *${INI_VERSION} ]]; then
@@ -165,15 +165,43 @@ fi
 
 function lscd() {
 
+	WCD=$(which wcd || which wcd.exec)
+	export WCDHOME=${HOME}/.wcd
+
 	clear
-	builtin cd "${@}" &>/dev/null
+
+	if [[ -x ${WCD} ]]; then
+		case "$@" in
+			"" )		${WCD} -aa "${HOME}" >/dev/null ;;
+			-[a-z] | --[a-z]* )		${WCD} ${@} ;;
+			-- | ++ )	if [[ ${WCD_PUSH} == "True" ]]; then
+						export WCD_PUSH="False"
+						${WCD} -aa + >/dev/null
+					else
+						export WCD_PUSH="True"
+						${WCD} -aa - >/dev/null
+					fi
+			;;
+			- | + )     ${WCD} -aa "$@" ;;
+			* )		if [[ -d "${@}" ]]; then
+						${WCD} -aa "${@}" >/dev/null
+					elif [[ $(ini_get lscd_mkdir) == "True" ]]; then
+						mkdir -p "${@}" && ${WCD} -aa "${@}" >/dev/null
+					fi
+			;;
+		esac
+	fi
+
+	if [[ -x ${WCD} ]]; then
+		builtin cd "$(gawk '/^cd/ {print $2}' < ${WCDHOME}/bin/wcd.go)"
+	else	builtin cd "${@}"
+	fi
 	. $BSNG_RC_DIR/dirinfo/display
 	dirinfo_display
-
 	echo -e "${epink}content:\n"
 	if [[ $(count_files -h) -gt 0 ]]; then
-		ls $LSCD_OPTS
-	else	echo -e "${ecream}-- empty --\n"
+		ls ${LSCD_OPTS}
+	else    echo -e "${ecream}-- empty --\n"
 	fi
 	echo "$PWD" > $HOME/.lastpwd
 

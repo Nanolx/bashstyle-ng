@@ -87,6 +87,18 @@ Overview of changes in v9.0 "Nice Sprites"
     string resembling an executable, the complete path will be added to
     the command line.
 
+* lscd: support wcd (http://sourceforge.net/projects/wcd/). Features one
+  addition to wcd: -/+ behave like wcd-default -/+ params (cd-ing backward
+  or forward in the directory stack. --/++ on the other hand are special to
+  lscd which let wcd behave like cd - (switching between the current and
+  previous directory only, not the whole stack).
+  .
+  Also calling lscd without arguement when wcd is installed this will result
+  in cd-ing into $HOME (bash default behaviour) instead of showing the stack
+  (wcd default behaviour)
+  . if you tick "lscd: create non-existent directory" in the UI, lscd will
+  create the given directory if it does not exit (yet).
+
 * reload function: a clean function to reload .bashrc (x2cd)
 * quickscript function: writes all commands in history to a file.
   starting point is the last occurence of "###" (joedhon)
