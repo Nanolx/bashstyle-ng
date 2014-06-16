@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="Toolbox">
@@ -3621,45 +3621,25 @@ extra ls options for lscd. All ls options work.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="advanced.box.cdwriter">
+                          <object class="GtkCheckButton" id="dd_noerror">
+                            <property name="label" translatable="yes">Let 'dd' continue on error</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="advanced.label.cdwritter">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">CD writer device node</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="cdwriter">
-                                <property name="width_request">220</property>
-                                <property name="height_request">22</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="tooltip_text" translatable="yes">cd_writer
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">dd_noerror
 
-CD writer device to use for the geniso and
-writeiso functions.</property>
-                                <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
+normally "dd" abort on any occuring error. This
+will prevent dd from aborting, it will just report
+the read error and continue.</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">1</property>
+                            <property name="top_attach">2</property>
                           </packing>
                         </child>
                         <child>
@@ -3701,50 +3681,6 @@ some surprise when starting bash that day.</property>
                             </child>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="dd_noerror">
-                            <property name="label" translatable="yes">Let 'dd' continue on error</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">dd_noerror
-
-normally "dd" abort on any occuring error. This
-will prevent dd from aborting, it will just report
-the read error and continue.</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="debug_verbose">
-                            <property name="label" translatable="yes">Verbose output on start</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">debug_verbose
-
-display full output from NX-RC (the BashStyle-NG
-startup script). Only recommended if you're
-getting an error message on session start.</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">3</property>
                           </packing>
@@ -3766,18 +3702,94 @@ restore it in a new session.</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="debug_verbose">
+                            <property name="label" translatable="yes">Verbose output on start</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">debug_verbose
+
+display full output from NX-RC (the BashStyle-NG
+startup script). Only recommended if you're
+getting an error message on session start.</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">2</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="advanced.extras.empty">
+                          <object class="GtkVBox" id="advanced.box.cdwriter">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="advanced.label.cdwritter">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">CD writer device node</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="cdwriter">
+                                <property name="width_request">220</property>
+                                <property name="height_request">22</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">cd_writer
+
+CD writer device to use for the geniso and
+writeiso functions.</property>
+                                <property name="invisible_char">●</property>
+                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_stock">gtk-delete</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="lscd_mkdir">
+                            <property name="label" translatable="yes">lscd: mkdir non-existent directory</property>
+                            <property name="width_request">220</property>
+                            <property name="height_request">26</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">use_lscd
+
+Use "lscd" instead of "cd". lscd displays the
+content of a .dirinfo file (if it exists) and lists
+all files in the current directory when cd-ing.</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">1</property>
                           </packing>
                         </child>
                       </object>

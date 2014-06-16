@@ -128,6 +128,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("dirchar", "Advanced", "directory_indicator", "text", None)
 		WidgetHandler.InitWidget("tabrotate", "Advanced", "tab_rotation", "bool", None)
 		WidgetHandler.InitWidget("enable_lscd", "Advanced", "use_lscd", "bool", None)
+		WidgetHandler.InitWidget("lscd_mkdir", "Advanced", "lscd_mkdir", "bool", None)
 		WidgetHandler.InitWidget("lscd_options", "Advanced", "lscd_opts", "text", None)
 		WidgetHandler.InitWidget("cdwriter", "Advanced", "cd_writer", "text", None)
 		WidgetHandler.InitWidget("birthday", "Advanced", "user_birthday", "text", None)
