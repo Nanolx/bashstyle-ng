@@ -100,6 +100,10 @@ Overview of changes in v9.0 "Nice Sprites"
   If you tick "lscd: create non-existent directory" in the UI, lscd will
   create the given directory if it does not exit (yet).
 
+* loop function: loop for a colon-divided list (eg. PATH) and return
+  the full path if the second arguement is found inside any member of
+  the colon-divided list (similar to which, but for any provided list
+  and both files and directories)
 * reload function: a clean function to reload .bashrc (x2cd)
 * quickscript function: writes all commands in history to a file.
   starting point is the last occurence of "###" (joedhon)
