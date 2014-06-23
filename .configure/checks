@@ -3,16 +3,11 @@
 check ()
 {
 
-        XFS=$IFS
-        IFS=":"
-
-        for dir in $PATH; do
+        for dir in ${PATH//:/ }; do
                 if [[ -e ${dir}/${1} ]]; then
                         echo found && continue 2
                 fi
         done
-
-        IFS=$XFS
 
 }
 
