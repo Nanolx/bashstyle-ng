@@ -167,42 +167,64 @@ function lscd() {
 
 	WCD=$(which wcd || which wcd.exec)
 	export WCDHOME=${HOME}/.wcd
+	OLD_PWD=${PWD}
 
-	clear
+	if [[ -d "${@}" || -d "${PWD}"/"${@}" || $(loop ${CDPATH} "${@}") != "" ]]; then
+		DEXIST=1
+	else	DEXIST=0
+	fi
 
 	if [[ -x ${WCD} ]]; then
 		case "$@" in
-			"" )		${WCD} -aa "${HOME}" >/dev/null ;;
-			-[a-z] | --[a-z]* )		${WCD} ${@} ;;
-			-- | ++ )	if [[ ${WCD_PUSH} == "True" ]]; then
-						export WCD_PUSH="False"
-						${WCD} -aa + >/dev/null
-					else
-						export WCD_PUSH="True"
-						${WCD} -aa - >/dev/null
-					fi
+			"" )
+				${WCD} -aa -q "${HOME}" | sed /^Wcd/d
 			;;
-			- | + )     ${WCD} -aa "$@" ;;
-			* )		if [[ -d "${@}" ]]; then
-						${WCD} -aa "${@}" >/dev/null
-					elif [[ $(ini_get lscd_mkdir) == "True" ]]; then
-						mkdir -p "${@}" && ${WCD} -aa "${@}" >/dev/null
-					fi
+			-[a-z] | --[a-z]* )
+				${WCD} ${@} && DEXIST=2
+			;;
+			-- | ++ )
+				if [[ ${WCD_PUSH} == "True" ]]; then
+					export WCD_PUSH="False"
+					${WCD} -aa -q + | sed /^Wcd/d
+				else
+					export WCD_PUSH="True"
+					${WCD} -aa -q - | sed /^Wcd/d
+				fi
+			;;
+			- | + )
+				${WCD} -aa -q "${@}" | sed /^Wcd/d
+			;;
+			* )
+				${WCD} -aa -q "${@}" | sed /^Wcd/d
 			;;
 		esac
 	fi
 
-	if [[ -x ${WCD} ]]; then
-		builtin cd "$(gawk '/^cd/ {print $2}' < ${WCDHOME}/bin/wcd.go)"
-	else	builtin cd "${@}"
+	if [[ -x ${WCD} && ${DEXIST} -ne 2 ]]; then
+		NEW_PWD="$(gawk '/^cd/ {print $2}' < ${WCDHOME}/bin/wcd.go)"
+		[[ ${NEW_PWD} != ${PWD} ]] &&	builtin cd \
+			"$(gawk '/^cd/ {print $2}' < ${WCDHOME}/bin/wcd.go)"
+	elif [[ ${DEXIST} -eq 1 ]]; then
+		builtin cd "${@}"
 	fi
-	. $BSNG_RC_DIR/dirinfo/display
-	dirinfo_display
-	echo -e "${epink}content:\n"
-	if [[ $(count_files -h) -gt 0 ]]; then
-		ls ${LSCD_OPTS}
-	else    echo -e "${ecream}-- empty --\n"
+
+	if [[ ${OLD_PWD} == ${PWD} && ${DEXIST} -ne 2 && $(ini_get lscd_mkdir) == "True" ]]; then
+		mkdir -p "${@}"
+		[[ -x ${WCD} ]] && ${WCD} -aa -q "${@}" | sed /^Wcd/d
+		builtin cd "${@}"
 	fi
+
+	if [[ ${OLD_PWD} != ${PWD} ]]; then
+		clear
+		. $BSNG_RC_DIR/dirinfo/display
+		dirinfo_display
+		echo -e "${epink}content:\n"
+		if [[ $(count_files -h) -gt 0 ]]; then
+			ls ${LSCD_OPTS}
+		else    echo -e "${ecream}-- empty --\n"
+		fi
+	fi
+
 	echo "$PWD" > $HOME/.lastpwd
 
 }
