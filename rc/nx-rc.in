@@ -202,8 +202,7 @@ function lscd() {
 
 	if [[ -x ${WCD} && ${DEXIST} -ne 2 ]]; then
 		NEW_PWD="$(gawk '/^cd/ {print $2}' < ${WCDHOME}/bin/wcd.go)"
-		[[ ${NEW_PWD} != ${PWD} ]] &&	builtin cd \
-			"$(gawk '/^cd/ {print $2}' < ${WCDHOME}/bin/wcd.go)"
+		[[ ${NEW_PWD} != ${PWD} ]] &&	builtin cd "${NEW_PWD}"
 	elif [[ ${DEXIST} -eq 1 ]]; then
 		builtin cd "${@}"
 	fi
