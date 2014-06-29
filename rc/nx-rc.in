@@ -169,7 +169,7 @@ function lscd() {
 	export WCDHOME=${HOME}/.wcd
 	OLD_PWD=${PWD}
 
-	if [[ -d "${@}" || -d "${PWD}"/"${@}" || $(loop ${CDPATH} "${@}") != "" ]]; then
+	if [[ -d "${@}" || $(loop ${CDPATH} "${@}") != "" ]]; then
 		DEXIST=1
 	else	DEXIST=0
 	fi
@@ -195,25 +195,22 @@ function lscd() {
 				${WCD} -aa -q "${@}" | sed /^Wcd/d
 			;;
 			* )
-				${WCD} -aa -q "${@}" | sed /^Wcd/d
+				[[ ${DEXIST} -eq 0 ]] && ${WCD} -aa -q "${@}"
 			;;
 		esac
 	fi
 
-	if [[ -x ${WCD} && ${DEXIST} -ne 2 ]]; then
+	if [[ -x ${WCD} && ${DEXIST} -eq 0 ]]; then
 		NEW_PWD="$(gawk '/^cd/ {print $2}' < ${WCDHOME}/bin/wcd.go)"
-		[[ ${NEW_PWD} != ${PWD} ]] &&	builtin cd "${NEW_PWD}"
+		[[ ${NEW_PWD} != ${PWD} ]] && builtin cd "${NEW_PWD}"
 	elif [[ ${DEXIST} -eq 1 ]]; then
 		builtin cd "${@}"
 	fi
 
-	if [[ ${OLD_PWD} == ${PWD} && ${DEXIST} -ne 2 && $(ini_get lscd_mkdir) == "True" ]]; then
+	if [[ ${OLD_PWD} == ${PWD} && ${DEXIST} -eq 0 && $(ini_get lscd_mkdir) == "True" ]]; then
 		mkdir -p "${@}"
-		[[ -x ${WCD} ]] && ${WCD} -aa -q "${@}" | sed /^Wcd/d
 		builtin cd "${@}"
-	fi
-
-	if [[ ${OLD_PWD} != ${PWD} ]]; then
+	elif [[ ${OLD_PWD} != ${PWD} ]]; then
 		clear
 		. $BSNG_RC_DIR/dirinfo/display
 		dirinfo_display
