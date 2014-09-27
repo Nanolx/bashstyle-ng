@@ -1174,20 +1174,43 @@ es_ES: Kenny Meyer</property>
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="style.liststore.terminfo">
+  <object class="GtkListStore" id="style.liststore.terminfo_bar">
     <columns>
       <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Mostlike</col>
+        <col id="0" translatable="yes">black-white</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Bold</col>
+        <col id="0" translatable="yes">white-yellow</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Nebula</col>
+        <col id="0" translatable="yes">yellow-blue</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="style.liststore.terminfo_body">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">blueish</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">blue-magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">magenta-cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">mostlike</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">yellow-green</col>
       </row>
     </data>
   </object>
@@ -1945,9 +1968,12 @@ the maximum length for the current directory
                               <object class="GtkTable" id="style.table.colors">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="n_rows">4</property>
+                                <property name="n_rows">5</property>
                                 <property name="n_columns">2</property>
                                 <property name="column_spacing">15</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
                                 <child>
                                   <object class="GtkCheckButton" id="ls_color">
                                     <property name="label" translatable="yes">Colored ls output</property>
@@ -1989,28 +2015,6 @@ manpages for easier readiblity.</property>
                                   <packing>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
-                                    <property name="x_options">GTK_EXPAND</property>
-                                    <property name="y_options"/>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkCheckButton" id="grep_color">
-                                    <property name="label" translatable="yes">Colored grep output</property>
-                                    <property name="width_request">220</property>
-                                    <property name="height_request">26</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="tooltip_text" translatable="yes">colored_grep
-
-this will highlight search results in grep output.</property>
-                                    <property name="xalign">0</property>
-                                    <property name="draw_indicator">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="top_attach">2</property>
-                                    <property name="bottom_attach">3</property>
                                     <property name="x_options">GTK_EXPAND</property>
                                     <property name="y_options"/>
                                   </packing>
@@ -2069,58 +2073,74 @@ choose the way colors are drawn.</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkVBox" id="style.box.terminfo">
+                                  <object class="GtkCheckButton" id="grep_color">
+                                    <property name="label" translatable="yes">Colored grep output</property>
                                     <property name="width_request">220</property>
-                                    <property name="height_request">44</property>
+                                    <property name="height_request">26</property>
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <child>
-                                      <object class="GtkLabel" id="style.label.terminfo">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="tooltip_text" translatable="yes">man_style
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">colored_grep
 
-this allows to choose different, colored
-terminfos for manpages. </property>
-                                        <property name="label" translatable="yes">Choose Terminfo for manpages</property>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkComboBox" id="terminfo">
-                                        <property name="width_request">220</property>
-                                        <property name="height_request">26</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                        <property name="model">style.liststore.terminfo</property>
-                                        <property name="tearoff_title">Terminfo for Manpages</property>
-                                        <child>
-                                          <object class="GtkCellRendererText" id="style.cellrenderer.terminfo"/>
-                                          <attributes>
-                                            <attribute name="text">0</attribute>
-                                          </attributes>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">2</property>
-                                      </packing>
-                                    </child>
+this will highlight search results in grep output.</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">4</property>
+                                    <property name="bottom_attach">5</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="colorshell">
+                                    <property name="label" translatable="yes">Randomly colored text</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">colorshell
+
+changes the default text color (randomly after 
+each command)</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="colorshell_reset">
+                                    <property name="label" translatable="yes">Normal text color for output</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="tooltip_text" translatable="yes">colorshell_reset
+
+Reset the text color to normal when executing
+a command line (only the command itself will be 
+colored differently)</property>
+                                    <property name="xalign">0</property>
+                                    <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">1</property>
-                                    <property name="bottom_attach">2</property>
-                                    <property name="x_options"/>
+                                    <property name="top_attach">4</property>
+                                    <property name="bottom_attach">5</property>
+                                    <property name="x_options">GTK_EXPAND</property>
                                     <property name="y_options"/>
-                                    <property name="y_padding">2</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -2171,6 +2191,59 @@ in grep output.</property>
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                    <property name="y_padding">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="style.box.terminfo">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="style.label.terminfo">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">man_style
+
+this allows to choose different, colored
+terminfos for manpages. </property>
+                                        <property name="label" translatable="yes">Color for manpage infobar</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="termcap_bar">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="model">style.liststore.terminfo_bar</property>
+                                        <property name="tearoff_title">Terminfo for Manpages</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="style.cellrenderer.terminfo"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
                                     <property name="top_attach">2</property>
                                     <property name="bottom_attach">3</property>
                                     <property name="x_options"/>
@@ -2179,52 +2252,54 @@ in grep output.</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkCheckButton" id="colorshell">
-                                    <property name="label" translatable="yes">Randomly colored text</property>
+                                  <object class="GtkVBox" id="style.box.terminfo1">
                                     <property name="width_request">220</property>
-                                    <property name="height_request">26</property>
+                                    <property name="height_request">44</property>
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="tooltip_text" translatable="yes">colorshell
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="style.label.terminfo1">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">man_style
 
-changes the default text color (randomly after 
-each command)</property>
-                                    <property name="xalign">0</property>
-                                    <property name="draw_indicator">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="top_attach">3</property>
-                                    <property name="bottom_attach">4</property>
-                                    <property name="x_options">GTK_EXPAND</property>
-                                    <property name="y_options"/>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkCheckButton" id="colorshell_reset">
-                                    <property name="label" translatable="yes">Normal text color for output</property>
-                                    <property name="width_request">220</property>
-                                    <property name="height_request">26</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="tooltip_text" translatable="yes">colorshell_reset
-
-Reset the text color to normal when executing
-a command line (only the command itself will be 
-colored differently)</property>
-                                    <property name="xalign">0</property>
-                                    <property name="draw_indicator">True</property>
+this allows to choose different, colored
+terminfos for manpages. </property>
+                                        <property name="label" translatable="yes">Color for manpage body text</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="termcap_body">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="model">style.liststore.terminfo_body</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="style.cellrenderer.terminfo1"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">3</property>
-                                    <property name="bottom_attach">4</property>
-                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options"/>
                                     <property name="y_options"/>
+                                    <property name="y_padding">2</property>
                                   </packing>
                                 </child>
                               </object>

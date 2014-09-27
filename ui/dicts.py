@@ -28,11 +28,19 @@ color_styles = {
 		 3 : "inverted",
 		 4 : "underlined",
 		}
-		
-man_styles = {
-	      0 : "mostlike",
-	      1 : "bold",
-	      2 : "nebula",
+
+termcap_bars = {
+	      0 : "black-white",
+	      1 : "white-yellow",
+	      2 : "yellow-blue",
+	     }
+
+termcap_bodys = {
+	      0 : "blueish",
+	      1 : "blue-magenta",
+	      2 : "magenta-cyan",
+	      3 : "mostlike",
+	      4 : "yellow-green",
 	     }
 
 grep_colors = {
@@ -122,7 +130,7 @@ bell_styles = {
 		1 : "visible",
 		2 : "none",
 	      }
-	      
+
 edit_modes = {
 	      0 : "emacs",
 	      1 : "vi",

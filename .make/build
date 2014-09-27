@@ -1,25 +1,7 @@
 #!/bin/bash
 
-TERM_FILES=( bold mostlike nebula )
-TERM_NUM=${#TERM_FILES[@]}
-
-generate_terminfo () {
-
-	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} terminfos${CYAN} (${TERM_FILES[@]})"
-	for term in ${TERM_FILES[@]}; do
-		if [[ $VERBOSE == "true" ]]; then
-			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$TERM_NUM]${WHITE} ${term}"
-			local CUR_NUM=$(($CUR_NUM+1))
-		fi
-		tic data/terminfo/${term}.terminfo -o data/terminfo/
-	done
-
-}
-
 build() {
 
-	generate_terminfo
 	generate_mo
 
 }

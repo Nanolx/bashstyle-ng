@@ -7,17 +7,16 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     rc/internal/*:${DATADIR}/rc/internal
 	     rc/settings/*:${DATADIR}/rc/settings
 	     rc/styles/*:${DATADIR}/rc/styles
-	     data/terminfo/b/*:${DATADIR}/terminfo/b
-	     data/terminfo/m/*:${DATADIR}/terminfo/m
-	     data/terminfo/n/*:${DATADIR}/terminfo/n
+	     data/termcap/bar/*:${DATADIR}/termcap/bar
+	     data/termcap/body/*:${DATADIR}/termcap/body
 	     data/vim/colors/*:${DATADIR}/vim/colors
 	     data/CharName.pm:${DATADIR}
 	     data/*.ini:${DATADIR} )
 
-LOCALE_FILES=( i18n/de/*.mo:${LOCALEDIR}/de/LC_MESSAGES/
-	       i18n/es/*.mo:${LOCALEDIR}/es/LC_MESSAGES/
-	       i18n/it/*.mo:${LOCALEDIR}/it/LC_MESSAGES/
-	       i18n/ru/*.mo:${LOCALEDIR}/ru/LC_MESSAGES/ )
+LOCALE_FILES=( i18n/de/*.mo:${LOCALEDIR}/de/LC_MESSAGES
+	       i18n/es/*.mo:${LOCALEDIR}/es/LC_MESSAGES
+	       i18n/it/*.mo:${LOCALEDIR}/it/LC_MESSAGES
+	       i18n/ru/*.mo:${LOCALEDIR}/ru/LC_MESSAGES )
 
 BIN_FILES=( data/bashstyle:${BINDIR}
 	    bin-extra/*:${DATADIR}/bin
