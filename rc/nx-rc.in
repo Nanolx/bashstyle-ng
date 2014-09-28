@@ -165,65 +165,30 @@ fi
 
 function lscd() {
 
-	WCD=$(which wcd || which wcd.exec)
-	export WCDHOME=${HOME}/.wcd
 	OLD_PWD=${PWD}
+	clear
+	builtin cd "${@}" &>/dev/null
 
-	if [[ -d "${@}" || $(loop ${CDPATH} "${@}") != "" ]]; then
-		DEXIST=1
-	else	DEXIST=0
+	if [[ ${OLD_PWD} == ${PWD} && ${1} != "" && ${1} != "." && \
+		${1} != "-" && $(ini_get lscd_mkdir) == True ]]; then
+		mkdir -p "${1}"
+		builtin cd "${1}"
 	fi
 
-	if [[ -x ${WCD} ]]; then
-		case "$@" in
-			"" )
-				${WCD} -aa -q "${HOME}" | sed /^Wcd/d
-			;;
-			-[a-z] | --[a-z]* )
-				${WCD} ${@} && DEXIST=2
-			;;
-			-- | ++ )
-				if [[ ${WCD_PUSH} == "True" ]]; then
-					export WCD_PUSH="False"
-					${WCD} -aa -q + | sed /^Wcd/d
-				else
-					export WCD_PUSH="True"
-					${WCD} -aa -q - | sed /^Wcd/d
-				fi
-			;;
-			- | + )
-				${WCD} -aa -q "${@}" | sed /^Wcd/d
-			;;
-			* )
-				[[ ${DEXIST} -eq 0 ]] && ${WCD} -aa -q "${@}"
-			;;
-		esac
-	fi
-
-	if [[ -x ${WCD} && ${DEXIST} -eq 0 ]]; then
-		NEW_PWD="$(gawk '/^cd/ {print $2}' < ${WCDHOME}/bin/wcd.go)"
-		[[ ${NEW_PWD} != ${PWD} ]] && builtin cd "${NEW_PWD}"
-	elif [[ ${DEXIST} -eq 1 ]]; then
-		builtin cd "${@}"
-	fi
-
-	if [[ ${OLD_PWD} == ${PWD} && ${DEXIST} -eq 0 && $(ini_get lscd_mkdir) == "True" ]]; then
-		mkdir -p "${@}"
-		builtin cd "${@}"
-	elif [[ ${OLD_PWD} != ${PWD} ]]; then
-		clear
+	if [[ ${OLD_PWD} != ${PWD} ]]; then
 		. $BSNG_RC_DIR/dirinfo/display
 		dirinfo_display
+
 		echo -e "${epink}content:\n"
 		if [[ $(count_files -h) -gt 0 ]]; then
-			ls ${LSCD_OPTS}
-		else    echo -e "${ecream}-- empty --\n"
+			ls $LSCD_OPTS
+		else	echo -e "${ecream}-- empty --\n"
 		fi
 	fi
 
 	echo "$PWD" > $HOME/.lastpwd
-
 }
+
 
 if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eyellow}\n\nImportant informations:"
