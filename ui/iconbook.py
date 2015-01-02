@@ -93,16 +93,16 @@ class IconBook(object):
 		notebook.set_current_page(0)
 
 		reset_key = gtkbuilder.get_object("reset_key")
-		reset_key.set_sensitive(0)
+		reset_key.set_visible(0)
 
 		def back_clicked(data):
 			notebook.set_current_page(0)
-			reset_key.set_sensitive(0)
-			back.set_sensitive(0)
+			reset_key.set_visible(0)
+			back.set_visible(0)
 
 		back = gtkbuilder.get_object("back")
 		back.connect("clicked", back_clicked)
-		back.set_sensitive(0)
+		back.set_visible(0)
 
 		for icon in iconview_icons:
 			pixbuf = Gtk.IconTheme.get_default().load_icon(icon, 32, 0)
@@ -112,10 +112,10 @@ class IconBook(object):
 				model = widget.get_model()
 				notebook.set_current_page(notebook_pages[model[item][1]])
 				if model[item][1] == "Keybindings" :
-					reset_key.set_sensitive(1)
+					reset_key.set_visible(1)
 				if model[item][1] == "About BashStyle-NG" :
 					self.ShowAboutDialog()
 				if model[item][1] != "About BashStyle-NG" :
-					back.set_sensitive(1)
+					back.set_visible(1)
 
 		iconview.connect("item-activated", iconview_activated)
