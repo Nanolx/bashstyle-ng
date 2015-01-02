@@ -6,7 +6,7 @@
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3		#
 #							#
-# Copyright 2007 - 2014 Christopher Bratusek		#
+# Copyright 2007 - 2015 Christopher Bratusek		#
 #							#
 #########################################################
 
