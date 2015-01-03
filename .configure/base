@@ -1,7 +1,16 @@
 #!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
 
 export xVERSION=8.99
-CODENAME="Nice Sprites"
+CODENAME="Hotride"
 
 ERR_MSG=""
 
@@ -17,29 +26,29 @@ MODE=user
 QUIET=false
 PYTHON=$(which python3 || which python)
 
-BINDIR="$PREFIX/bin"
-PCDIR="$PREFIX/share/pkgconfig/"
-DATADIR="$PREFIX/share/"
+BINDIR="${PREFIX}/bin"
+PCDIR="${PREFIX}/share/pkgconfig/"
+DATADIR="${PREFIX}/share/"
 PROFILEDIR="/etc/"
 
-export OLDPATH=$PATH
-export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
+export OLDPATH=${PATH}
+export PATH="${PATH}:/sbin:/usr/sbin:/usr/local/sbin"
 
 export_result ()
 {
 
-	echo -e "MODE=\"$MODE\"\
-\nPREFIX=\"$PREFIX\"\
-\nDATADIR=\"$DATADIR/bashstyle-ng/\"\
+	echo -e "MODE=\"${MODE}\"\
+\nPREFIX=\"${PREFIX}\"\
+\nDATADIR=\"${DATADIR}/bashstyle-ng/\"\
 \nDATADIR_LIST=( bin ui rc/{,ascii,dirinfo,functions,internal,settings,styles} termcap/{bar,body} vim/{,colors} )\
-\nPROFILEDIR=\"$PROFILEDIR/\"\
-\nBINDIR=\"$BINDIR\"\
-\nLOCALEDIR=\"$DATADIR/locale/\"\
+\nPROFILEDIR=\"${PROFILEDIR}/\"\
+\nBINDIR=\"${BINDIR}\"\
+\nLOCALEDIR=\"${DATADIR}/locale/\"\
 \nLOCALEDIR_LIST=( {de,es,it,ru}/LC_MESSAGES/ )\
-\nICONDIR=\"$DATADIR/icons/hicolor/32x32/apps/\"\
-\nPCDIR=\"$PCDIR/\"\
-\nDIRINFO_ENABLE=\"$DIRINFO_ENABLE\"\
-\nBASHFILE=\"$BASHFILE\"\
-\nMISSING=($MISSING )" | sed -e 's,\/\/,\/,g' >> $PWD/.configure/results
+\nICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"\
+\nPCDIR=\"${PCDIR}/\"\
+\nDIRINFO_ENABLE=\"${DIRINFO_ENABLE}\"\
+\nBASHFILE=\"${BASHFILE}\"\
+\nMISSING=( ${MISSING} )" | sed -e 's,\/\/,\/,g' >> ${PWD}/.configure/results
 
 }

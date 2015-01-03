@@ -1,53 +1,29 @@
 #!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
 
 section_message () {
 
-	if [[ $QUIET != "true" ]]; then
+	if [[ ${QUIET} != "true" ]]; then
 		case $1 in
-
-			APP )
-				echo -e "\n${RED}Required ${WHITE}Applications:\n"
-			;;
-
-			OPT_APP )
-				echo -e "\n${MAGENTA}Optional ${WHITE}Applications:\n"
-			;;
-
-			SBINAPP )
-				echo -e "\n${RED}Required ${WHITE}SuperUser Applications:\n"
-			;;
-
-			OPT_SBINAPP )
-				echo -e "\n${MAGENTA}Optional ${WHITE}SuperUser Applications:\n"
-			;;
-
-			PY )
-				echo -e "\n${RED}Python Interpreter${WHITE} > 2.6 && < 3.5:\n"
-			;;
-
-			PYMOD )
-				echo -e "\n${RED}Required ${WHITE}Python Modules:\n"
-			;;
-
-			OPT_PYMOD )
-				echo -e "\n${MAGENTA}Optional ${WHITE}Python Modules:\n"
-			;;
-
-			LIB )
-				echo -e "\n${RED}Required ${WHITE}Libraries:\n"
-			;;
-
-			OPT_LIB )
-				echo -e "\n${MAGENTA}Optional ${WHITE}Libraries:\n"
-			;;
-
-			GIR )
-				echo -e "\n${RED}Required ${WHITE}GIR Repositories:\n"
-			;;
-
-			OPT_GIR)
-				echo -e "\n${MAGENTA}Optional ${WHITE}GIR Repositories:\n"
-			;;
+			APP )		echo -e "\n${RED}< Required ${WHITE}Applications" ;;
+			OPT_APP )	echo -e "\n${MAGENTA}< Optional ${WHITE}Applications" ;;
+			SBINAPP )	echo -e "\n${RED}< Required ${WHITE}SuperUser Applications" ;;
+			OPT_SBINAPP )	echo -e "\n${MAGENTA}< Optional ${WHITE}SuperUser Applications" ;;
+			PY )		echo -e "\n${RED}< Python Interpreter${WHITE} > 2.6 && < 3.5" ;;
+			PYMOD )		echo -e "\n${RED}< Required ${WHITE}Python Modules" ;;
+			OPT_PYMOD )	echo -e "\n${MAGENTA}< Optional ${WHITE}Python Modules" ;;
+			LIB )		echo -e "\n${RED}< Required ${WHITE}Libraries" ;;
+			OPT_LIB )	echo -e "\n${MAGENTA}< Optional ${WHITE}Libraries" ;;
+			GIR )		echo -e "\n${RED}< Required ${WHITE}GIR Repositories" ;;
+			OPT_GIR)	echo -e "\n${MAGENTA}< Optional ${WHITE}GIR Repositories" ;;
 		esac
 	fi
 	tput sgr0
@@ -56,17 +32,17 @@ section_message () {
 
 start_message () {
 
-	echo -e "\n${GREEN}BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}"
+	echo -e "\n${WHITE}Configuring ${GREEN}BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}(${CODENAME})"
 	tput sgr0
 
 }
 
 ok_message () {
 
-	if [[ $QUIET != "true" ]]; then
+	if [[ ${QUIET} != "true" ]]; then
 		if [[ $2 != "" ]]; then
-			echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K.${SILVER} ( $2 )"
-		else 	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} O.K."
+			echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} OK${SILVER} ( $2 )"
+		else	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} OK"
 		fi
 	fi
 	tput sgr0
@@ -75,26 +51,11 @@ ok_message () {
 fail_message () {
 
 	case $1 in
-
-		m )
-			echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !MISSING!"
-		;;
-
-		o )
-			echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !OLDER THAN $3!"
-		;;
-
-		p )
-			echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !MISSING!"
-		;;
-
-		p- )
-			echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !OLDER THAN 2.7.0!"
-		;;
-
-		p+ )
-			echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS 3.4 OR ABOVE!"
-		;;
+		m )	echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !MISSING!" ;;
+		o )	echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !OLDER THAN $3!" ;;
+		p )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !MISSING!" ;;
+		p- )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !OLDER THAN 2.7.0!" ;;
+		p+ )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS 3.5 OR ABOVE!" ;;
 	esac
 	tput sgr0
 
@@ -119,25 +80,29 @@ end_message () {
 
 	export PATH="$OLDPATH"
 	echo -e "\n${BLUE}Notes from configure:\
-		 \n\n${YELLOW}Prefix:${WHITE}\t\t\t$PREFIX\
-		 \n${YELLOW}Python:${WHITE}\t\t\t$PYTHON\
-		 \n${YELLOW}Dirinfo Wrappers:${WHITE}\t$DIRINFO_ENABLE"
+		 \n${YELLOW}Prefix\t\t\t${WHITE}>${MAGENTA} ${PREFIX}\
+		 \n${YELLOW}Python\t\t\t${WHITE}>${MAGENTA} ${PYTHON}"
+	if [[ ${DIRINFO_ENABLE} == "true" ]]; then
+		echo -e "${YELLOW}Dirinfo Wrappers\t${WHITE}>${GREEN} Enabled"
+	else
+		echo -e "${YELLOW}Dirinfo Wrappers\t${WHITE}>${RED} Disabled"
+	fi
 	if [[ ${DISABLE_POSTINSTALL} ]]; then
-		echo -e "${YELLOW}Post-Install Tasks:${WHITE}\tDisabled"
-	else	echo -e "${YELLOW}Post-Install Tasks:${WHITE}\tEnabled"
+		echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
+	else	echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
 	fi
 	if [[ ${BASHFILE} ]]; then
-		echo -e "${YELLOW}System Bashrc:${WHITE}\t\t${BASHFILE}"
-	else	echo -e "${YELLOW}System Bashrc:${WHITE}\t\tauto detection"
+		echo -e "${YELLOW}System Bashrc\t\t${WHITE}>${GREEN} ${BASHFILE}"
+	else	echo -e "${YELLOW}System Bashrc\t\t${WHITE}>${RED} Auto-Detect"
 	fi
-	echo ""
+	echo
 	tput sgr0
 
 }
 
 help_message () {
 
-	echo -e "\n${GREEN}BashStyle-NG ${YELLOW}(configure 4.2.3) ${CYAN}help
+	echo -e "\n${GREEN}BashStyle-NG ${YELLOW}(configure 4.2.4) ${CYAN}help
 	\n${WHITE}Options:"
 	echo -e "${ORANGE}--help${WHITE} *|${GREEN} Display this help message\
 	\n${ORANGE}--mode=<mode>${WHITE} *|${GREEN} user (do checks) or maintainer (skip checks)\

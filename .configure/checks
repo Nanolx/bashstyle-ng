@@ -1,69 +1,33 @@
 #!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
 
-check ()
-{
-
-        for dir in ${PATH//:/ }; do
-                if [[ -e ${dir}/${1} ]]; then
-                        echo found && continue 2
-                fi
-        done
-
+check () {
+	for dir in ${PATH//:/ }; do
+		[[ -e ${dir}/${1} ]] && (echo found && continue 2)
+	done
 }
 
 check_helper () {
 
-	if [[ ${APPS[@]} != "" ]]; then
-		section_message APP
-		check_apps "false" "${APPS[@]}"
-	fi
-
-	if [[ ${OPT_APPS[@]} != "" ]]; then
-		section_message OPT_APP
-		check_apps "true" "${OPT_APPS[@]}"
-	fi
-
-	if [[ ${SAPPS[@]} != "" ]]; then
-		section_message SBINAPP
-		check_apps "false" "${SAPPS[@]}"
-	fi
-
-	if [[ ${OPT_SAPPS[@]} != "" ]]; then
-		section_message OPT_SBINAPP
-		check_apps "true" "${OPT_SAPPS[@]}"
-	fi
-
+	[[ ${APPS[@]} ]] && (section_message APP && check_apps "false" "${APPS[@]}")
+	[[ ${OPT_APPS[@]} ]] && (section_message OPT_APP && check_apps "true" "${OPT_APPS[@]}")
+	[[ ${SAPPS[@]} ]] && (section_message SBINAPP && check_apps "false" "${SAPPS[@]}")
+	[[ ${OPT_SAPPS[@]} ]] && (section_message OPT_SBINAPP && check_apps "true" "${OPT_SAPPS[@]}")
 	check_python
-
-	if [[ ${PYMODS[@]} != "" ]]; then
-		section_message PYMOD
-		check_pymods "false" "${PYMODS[@]}"
-	fi
-
-	if [[ ${OPT_PYMODS[@]} != "" ]]; then
-		section_message OPT_PYMOD
-		check_pymods "true" "${OPT_PYMODS[@]}"
-	fi
-
-	if [[ ${LIBS[@]} != "" ]]; then
-		section_message LIB
-		check_libs "false" "${LIBS[@]}"
-	fi
-
-	if [[ ${OPT_LIBS[@]} != "" ]]; then
-		section_message OPT_LIB
-		check_libs "false" "${OPT_LIBS[@]}"
-	fi
-
-	if [[ ${GIR[@]} != "" ]]; then
-		section_message GIR
-		check_gir "false" "${GIR[@]}"
-	fi
-
-	if [[ ${OPT_GIR[@]} != "" ]]; then
-		section_message OPT_GIR
-		check_gir "false" "${OPT_GIR[@]}"
-	fi
+	[[ ${PYMODS[@]} ]] && (section_message PYMOD && check_pymods "false" "${PYMODS[@]}")
+	[[ ${OPT_PYMODS[@]} ]] && (section_message OPT_PYMOD && check_pymods "true" "${OPT_PYMODS[@]}")
+	[[ ${LIBS[@]} ]] && (section_message LIB && check_libs "false" "${LIBS[@]}")
+	[[ ${OPT_LIBS[@]} ]] && (section_message OPT_LIB && check_libs "false" "${OPT_LIBS[@]}")
+	[[ ${GIR[@]} ]] && (section_message GIR && check_gir "false" "${GIR[@]}")
+	[[ ${OPT_GIR[@]} ]] && (section_message OPT_GIR && check_gir "false" "${OPT_GIR[@]}")
 
 }
 
