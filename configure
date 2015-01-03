@@ -1,104 +1,66 @@
 #!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
 shopt -s extglob
 
 MODULES=( base color messages checks substitute depends )
 
 for mod in ${MODULES[@]}; do
-	source $PWD/.configure/$mod
+	source ${PWD}/.configure/$mod
 done
 
-rm -f $PWD/.configure/results
+rm -f ${PWD}/.configure/results
 
 xcount=0
-pcount=$#
-
-while [[ $xcount -lt $pcount ]]; do
+while [[ ${xcount} -lt $# ]]; do
 	case $1 in
-		--mode=* )
-			MODE="${1/*=}"
-		;;
-
-		--prefix=* )
-			PREFIX="${1/*=}"
-		;;
-
-		--pcdir=* )
-			PCDIR="${1/*=}"
-		;;
-
-		--profiledir=* )
-			PROFILEDIR="${1/*}"
-		;;
-
-		--bindir=* )
-			BINDIR="${1/*=}"
-		;;
-
-		--girpath=* )
-			GIRPATH="${1/*=}"
-		;;
-
-		--datadir=* )
-			DATADIR="${1/*=}"
-		;;
-
-		--python=* )
-			PYTHON="${1/*=}"
-		;;
-
-		--dirinfo=* )
-			DIRINFO_ENABLE="${1/*=}"
-		;;
-
-		--bashrc=* )
-			BASHFILE="${1/*=}"
-		;;
-
-		--quiet )
-			QUIET=true
-		;;
-
-		--help )
-			MODE=help
-		;;
-
-		--no-postinstall )
-			DISABLE_POSTINSTALL=1
-			echo "DISABLE_POSTINSTALL=1" >> $PWD/.configure/results
-		;;
-
+		--mode=* )		MODE="${1/*=}" ;;
+		--prefix=* )		PREFIX="${1/*=}" ;;
+		--pcdir=* )		PCDIR="${1/*=}" ;;
+		--profiledir=* )	PROFILEDIR="${1/*}" ;;
+		--bindir=* )		BINDIR="${1/*=}" ;;
+		--girpath=* )		GIRPATH="${1/*=}" ;;
+		--datadir=* )		DATADIR="${1/*=}" ;;
+		--python=* )		PYTHON="${1/*=}" ;;
+		--dirinfo=* )		DIRINFO_ENABLE="${1/*=}" ;;
+		--bashrc=* )		BASHFILE="${1/*=}" ;;
+		--quiet )		QUIET=true ;;
+		--help )		MODE=help ;;
+		--no-postinstall )	DISABLE_POSTINSTALL=1
+					echo "DISABLE_POSTINSTALL=1" >> \
+						${PWD}/.configure/results ;;
 	esac
 	shift
 	xcount=$(($xcount+1))
 done
+unset xcount
 
-unset xcount pcount
-
-if [[ $MODE == help ]]; then
-
+if [[ ${MODE} == help ]]; then
 	help_message
-
-elif [[ $GIRPATH == "" ]]; then
+elif [[ ${GIRPATH} == "" ]]; then
 	echo -e "*** GIRPATH not detected ***\
 		\nconfigure --girpath=<girpath> to specify where to look for\
 gobject-introspection files\n"
 	exit 1
-
-elif [[ $MODE == maintainer ]]; then
-
+elif [[ ${MODE} == maintainer ]]; then
 	maintainer_message
 	copy_in_files
 	substitute_values
 	end_message
 	export_result
-
-elif [[ $MODE == user ]]; then
-
+elif [[ ${MODE} == user ]]; then
 	start_message
 	check_helper
 	copy_in_files
 	substitute_values
 	end_message
 	export_result
-
 fi
