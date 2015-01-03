@@ -43,6 +43,15 @@ while [[ ${xcount} -lt $# ]]; do
 done
 unset xcount
 
+if [[ ! $BASHFILE ]]; then
+	BASHFILE_AUTO=true
+	if [[ -e /etc/bash.bashrc ]]; then
+		BASHFILE=/etc/bash.bashrc
+	else
+		BASHFILE=/etc/bashrc
+	fi
+fi
+
 if [[ ${MODE} == help ]]; then
 	help_message
 elif [[ ${GIRPATH} == "" ]]; then

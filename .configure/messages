@@ -91,9 +91,9 @@ end_message () {
 		echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
 	else	echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
 	fi
-	if [[ ${BASHFILE} ]]; then
-		echo -e "${YELLOW}System Bashrc\t\t${WHITE}>${GREEN} ${BASHFILE}"
-	else	echo -e "${YELLOW}System Bashrc\t\t${WHITE}>${RED} Auto-Detect"
+	if [[ ${BASHFILE_AUTO} ]]; then
+		echo -e "${YELLOW}System Bashrc\t\t${WHITE}>${MAGENTA} ${BASHFILE} ${RED}(auto detect)"
+	else	echo -e "${YELLOW}System Bashrc\t\t${WHITE}>${MAGENTA} ${BASHFILE} ${GREEN}(user set)"
 	fi
 	echo
 	tput sgr0
