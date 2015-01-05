@@ -6808,98 +6808,6 @@ the file's directory</property>
                 <property name="can_focus">False</property>
                 <property name="n_rows">5</property>
                 <child>
-                  <object class="GtkTable" id="cpb.table.basic">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="n_rows">2</property>
-                    <property name="n_columns">2</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkCheckButton" id="use_custom_prompt">
-                        <property name="label" translatable="yes">Use a custom prompt</property>
-                        <property name="width_request">180</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="xalign">0</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="x_options"/>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkComboBox" id="insert_prompt">
-                        <property name="width_request">180</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="model">cpb.liststore.style</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cpb.cellrenderer.prompt"/>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="x_options"/>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="show_toolbox">
-                        <property name="label" translatable="yes">Show Toolbox</property>
-                        <property name="width_request">180</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="image">cpb.icon.toolbox</property>
-                      </object>
-                      <packing>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkComboBox" id="insert_color">
-                        <property name="width_request">180</property>
-                        <property name="height_request">26</property>
-                        <property name="visible">True</property>
-                        <property name="app_paintable">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="model">cpb.liststore.symbolic_color</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cpb.cellrenderer.color"/>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options"/>
-                        <property name="y_options"/>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="y_options"/>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkBox" id="cpb.box.ps">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -7040,7 +6948,7 @@ the file's directory</property>
                     <property name="top_attach">3</property>
                     <property name="bottom_attach">4</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="y_options">GTK_SHRINK</property>
                     <property name="x_padding">100</property>
                     <property name="y_padding">5</property>
                   </packing>
@@ -7172,7 +7080,6 @@ the file's directory</property>
                   <packing>
                     <property name="top_attach">2</property>
                     <property name="bottom_attach">3</property>
-                    <property name="y_options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -7186,9 +7093,102 @@ the file's directory</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="y_options">GTK_SHRINK</property>
                     <property name="x_padding">100</property>
                     <property name="y_padding">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="cpb.table.basic">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="n_rows">2</property>
+                    <property name="n_columns">2</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkCheckButton" id="use_custom_prompt">
+                        <property name="label" translatable="yes">Use a custom prompt</property>
+                        <property name="width_request">180</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="xalign">0</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="x_options"/>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="insert_prompt">
+                        <property name="width_request">180</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="model">cpb.liststore.style</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cpb.cellrenderer.prompt"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="x_options"/>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="show_toolbox">
+                        <property name="label" translatable="yes">Show Toolbox</property>
+                        <property name="width_request">180</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="image">cpb.icon.toolbox</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="insert_color">
+                        <property name="width_request">180</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="app_paintable">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="model">cpb.liststore.symbolic_color</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cpb.cellrenderer.color"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options"/>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="y_options">GTK_SHRINK</property>
                   </packing>
                 </child>
               </object>
