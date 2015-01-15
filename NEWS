@@ -87,6 +87,11 @@ Overview of changes in v9.0 "Hotride"
     string resembling an executable, the complete path will be added to
     the command line.
 
+* lscd: various improvements. If a file is passed as arguement to lscd,
+  it will cd into the containing directory. New optional setting lscd_mkdir,
+  if True lscd will create the directory if it does not exist (or if it's
+  not a file which's directory we can cd into or not an -* cd parameter).
+
 * loop function: loop for a colon-divided list (eg. PATH) and return
   the full path if the second arguement is found inside any member of
   the colon-divided list (similar to which, but for any provided list
