@@ -92,6 +92,8 @@ class IconBook(object):
 		notebook = gtkbuilder.get_object("notebook")
 		notebook.set_current_page(0)
 
+		main_label = gtkbuilder.get_object("main.label")
+
 		reset_key = gtkbuilder.get_object("reset_key")
 		reset_key.set_visible(0)
 
@@ -99,6 +101,7 @@ class IconBook(object):
 			notebook.set_current_page(0)
 			reset_key.set_visible(0)
 			back.set_visible(0)
+			main_label.set_visible(1)
 
 		back = gtkbuilder.get_object("back")
 		back.connect("clicked", back_clicked)
@@ -117,5 +120,6 @@ class IconBook(object):
 					self.ShowAboutDialog()
 				if model[item][1] != "About BashStyle-NG" :
 					back.set_visible(1)
+					main_label.set_visible(0)
 
 		iconview.connect("item-activated", iconview_activated)
