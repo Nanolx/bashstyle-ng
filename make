@@ -10,7 +10,7 @@
 #########################################################
 
 CF_MODULES=( base color )
-MK_MODULES=( build clean files install )
+MK_MODULES=( build clean install )
 
 for mod in ${CF_MODULES[@]}; do
 	source .configure/${mod}
@@ -47,6 +47,7 @@ if [[ ! -e .configure/results ]]; then
 	echo -e "\n${RED}You need to run configure first!\n"
 	exit 1
 else	source .configure/results
+	source .make/files
 fi
 
 xcount=0
