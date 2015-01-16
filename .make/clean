@@ -24,6 +24,8 @@ clean () {
 		local CUR_NUM=$(($CUR_NUM+1))
 		rm -f "${file}"
 	done
+	echo
+	tput sgr0
 
 }
 
