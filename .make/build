@@ -18,7 +18,7 @@ NXRC_NUM=${#NXRC_LANGS[@]}
 
 generate_pot () {
 
-	echo -e "\t${WHITE}+ ${WHITE} translation templates"
+	echo -e "\t${WHITE}+ ${MAGENTA} translation templates"
 	echo -e "\t${WHITE}  * ${SMOOTHBLUE}[1/2]${WHITE} bs-ng.pot"
 	intltool-extract --type=gettext/glade ui/bashstyle8.ui >/dev/null
 	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bs-ng.pot\
@@ -36,7 +36,7 @@ update_po () {
 		exit 1
 	else
 		local CUR_NUM=1
-		echo -e "\t${WHITE}+ ${WHITE} gui translations:"
+		echo -e "\t${WHITE}+ ${MAGENTA} gui translations:"
 		for lang in ${BSNG_LANGS[@]}; do
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$BSNG_NUM]${WHITE} ${lang}"
 			local CUR_NUM=$(($CUR_NUM+1))
@@ -44,7 +44,7 @@ update_po () {
 		done
 
 		local CUR_NUM=1
-		echo -e "\t${WHITE}+ ${WHITE} nx-rc translations:"
+		echo -e "\t${WHITE}+ ${MAGENTA} nx-rc translations:"
 		for lang in ${NXRC_LANGS[@]}; do
 			echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$NXRC_NUM]${WHITE} ${lang}"
 			local CUR_NUM=$(($CUR_NUM+1))
@@ -57,7 +57,7 @@ update_po () {
 generate_mo () {
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} gui translations:"
+	echo -e "\t${WHITE}+ ${MAGENTA} gui translations:"
 	for lang in ${BSNG_LANGS[@]}; do
 		echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$BSNG_NUM]${WHITE} ${lang}"
 		local CUR_NUM=$(($CUR_NUM+1))
@@ -65,7 +65,7 @@ generate_mo () {
 	done
 
 	local CUR_NUM=1
-	echo -e "\t${WHITE}+ ${WHITE} nx-rc translations:"
+	echo -e "\t${WHITE}+ ${MAGENTA} nx-rc translations:"
 	for lang in ${NXRC_LANGS[@]}; do
 		echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$CUR_NUM/$NXRC_NUM]${WHITE} ${lang}"
 		local CUR_NUM=$(($CUR_NUM+1))
