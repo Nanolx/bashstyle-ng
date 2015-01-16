@@ -57,15 +57,15 @@ while [[ ${xcount} -lt ${pcount} ]]; do
 	case ${1} in
 		pot )		generate_pot ;;
 		po )		update_po;;
-		build )		echo -e "\n${GREEN}BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}\n"
-				tput sgr0
+		build )		echo -e "\n${GREEN}Building BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}\n"
 				build && touch .make/build_done && echo ;;
 		install )	if [[ -e .make/build_done ]]; then
-					echo -e "\n${GREEN}Installing BashStyle-NG:\n"
+					echo -e "\n${GREEN}Installing BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}\n"
 					installdirs_create && install_bsng && post_install
 				else 	echo -e "\n${RED}You need to run 'make' first!\n"
+					exit 1
 				fi ;;
-		remove ) 	echo -e "\n${RED}Removing BashStyle-NG:\n"
+		remove ) 	echo -e "\n${GREEN}Removing BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}\n"
 				remove_bsng ;;
 		* )		help_message ;;
 	esac
