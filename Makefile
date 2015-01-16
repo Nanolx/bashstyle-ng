@@ -13,7 +13,7 @@ clean:
 	@./make clean
 
 distclean:
-	@./make distclean
+	@./make clean
 
 help:
 	@./make help
