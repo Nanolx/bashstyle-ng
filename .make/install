@@ -1,26 +1,71 @@
 #!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+post_install () {
+
+	if [[ ! $DISABLE_POSTINSTALL ]]; then
+		echo -e "\t${WHITE}+ ${MAGENTA} post-installation tasks"
+		gtk-update-icon-cache -f $PREFIX/share/icons/hicolor 2>/dev/null
+		rm -rf $DESTDIR/$PREFIX/share/bashstyle-ng/rc/bin/
+		rm -f /etc/profile.d/bashstyle.sh
+		if [[ $(grep "bashstyle.sh" ${BASHFILE}) == "" ]]; then
+			echo "source ${PROFILEDIR}/bashstyle.sh" | sed -e 's,//,/,g' >> ${BASHFILE}
+		fi
+		echo -e "\n${CYAN}Thanks for choosing BashStyle-NG!\n"
+	fi
+
+}
+
+post_remove () {
+
+	if [[ $(grep "bashstyle.sh" ${BASHFILE}) != "" ]]; then
+		sed -e '/bashstyle.sh/d' -i ${BASHFILE}
+	fi
+
+}
+
+installdirs_create ()
+{
+
+	echo -e "\t${WHITE}+ ${WHITE} directories"
+	mkdir -p ${DESTDIR}/${DATADIR}
+	for directory in ${DATADIR_LIST[@]}; do
+		mkdir -p ${DESTDIR}/${DATADIR}/$directory
+	done
+
+	mkdir -p ${DESTDIR}/${LOCALEDIR}
+	for directory in ${LOCALEDIR_LIST[@]}; do
+		mkdir -p ${DESTDIR}/${LOCALEDIR}/${directory}/
+	done
+
+	mkdir -p ${DESTDIR}/${BINDIR}
+	mkdir -p ${DESTDIR}/${PROFILEDIR}
+	mkdir -p ${DESTDIR}/${ICONDIR}
+	mkdir -p ${DESTDIR}/${PCDIR}
+
+}
 
 inst ()
 {
 
 	case $1 in
-		data )
-			MODE=644
-		;;
-
-		bin )
-			MODE=755
-		;;
+		data )	MODE=644 ;;
+		bin )	MODE=755 ;;
 	esac
 
 	shift
-
 	FILE=${1/:*}
 	DEST=${1/*:}
 
-	if [[ $VERBOSE == "true" ]]; then
-		echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$2/$3]${WHITE} ${FILE}"
-	fi
+	echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$2/$3]${WHITE} ${FILE}"
 	install -m${MODE} ${FILE} ${DESTDIR}${DEST}
 
 	unset FILE DEST
@@ -29,40 +74,30 @@ inst ()
 
 install_bsng () {
 
-	if [[ $VERBOSE == "true" ]]; then
-		DATA_NUM=0
-		for num in ${#DATA_FILES[@]} ${#LOCALE_FILES[@]} \
-		${#PC_FILES[@]} ${#ICON_FILES[@]} ${PROFILE_FILES[@]}; do
-			DATA_NUM=$(($DATA_NUM+$num))
-		done
-		local CUR_NUM=1
-	fi
+	DATA_NUM=0
+	for num in ${#DATA_FILES[@]} ${#LOCALE_FILES[@]} \
+	${#PC_FILES[@]} ${#ICON_FILES[@]} ${#PROFILE_FILES[@]}; do
+		DATA_NUM=$(($DATA_NUM+$num))
+	done
+	local CUR_NUM=1
 
-	echo -e "\t${WHITE}+ ${WHITE} data files"
+	echo -e "\t${WHITE}+ ${MAGENTA} data files"
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} \
 	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]}; do
-		if [[ $VERBOSE == "true" ]]; then
-			inst data "$file" $CUR_NUM $DATA_NUM
-			local CUR_NUM=$(($CUR_NUM+1))
-		else 	inst data "$file"
-		fi
+		inst data "$file" $CUR_NUM $DATA_NUM
+		local CUR_NUM=$(($CUR_NUM+1))
 	done
 
-	if [[ $VERBOSE == "true" ]]; then
-		BIN_NUM=0
-		for num in ${#BIN_FILES[@]}; do
-			BIN_NUM=$(($BIN_NUM+$num))
-		done
-		local CUR_NUM=1
-	fi
+	BIN_NUM=0
+	for num in ${#BIN_FILES[@]}; do
+		BIN_NUM=$(($BIN_NUM+$num))
+	done
+	local CUR_NUM=1
 
-	echo -e "\t${WHITE}+ ${WHITE} bin files"
+	echo -e "\t${WHITE}+ ${MAGENTA} executable files"
 	for file in ${BIN_FILES[@]}; do
-		if [[ $VERBOSE == "true" ]]; then
-			inst bin "$file" $CUR_NUM $BIN_NUM
-			local CUR_NUM=$(($CUR_NUM+1))
-		else	inst bin "$file"
-		fi
+		inst bin "$file" $CUR_NUM $BIN_NUM
+		local CUR_NUM=$(($CUR_NUM+1))
 	done
 
 }
