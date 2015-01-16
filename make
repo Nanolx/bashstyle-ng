@@ -46,6 +46,7 @@ esac
 if [[ ! -e .configure/results ]]; then
 	echo -e "\n${RED}You need to run configure first!\n"
 	exit 1
+else	source .configure/results
 fi
 
 xcount=0
