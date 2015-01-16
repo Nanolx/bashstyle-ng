@@ -9,12 +9,7 @@
 #							#
 #########################################################
 
-if [[ ! -e .configure/results ]]; then
-	echo -e "\n${RED}You need to run configure first!\n"
-	exit 1
-fi
-
-CF_MODULES=( base color results )
+CF_MODULES=( base color )
 MK_MODULES=( build clean files install )
 
 for mod in ${CF_MODULES[@]}; do
@@ -41,6 +36,18 @@ help_message () {
 
 }
 
+case ${1} in
+	clean )		clean && exit 0;;
+	distclean )	clean && exit 0;;
+	changelog )	.make/changelog && exit 0 ;;
+	help )		help_message && exit 0 ;;
+esac
+
+if [[ ! -e .configure/results ]]; then
+	echo -e "\n${RED}You need to run configure first!\n"
+	exit 1
+fi
+
 xcount=0
 pcount=$#
 
@@ -51,8 +58,6 @@ while [[ ${xcount} -lt ${pcount} ]]; do
 		build )		echo -e "\n${GREEN}BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}\n"
 				tput sgr0
 				build && touch .make/build_done && echo ;;
-		clean )		clean ;;
-		distclean )	distclean ;;
 		install )	if [[ -e .make/build_done ]]; then
 					echo -e "\n${GREEN}Installing BashStyle-NG:\n"
 					installdirs_create && install_bsng && post_install
@@ -60,7 +65,6 @@ while [[ ${xcount} -lt ${pcount} ]]; do
 				fi ;;
 		remove ) 	echo -e "\n${RED}Removing BashStyle-NG:\n"
 				remove_bsng ;;
-		changelog )	.make/changelog ;;
 		* )		help_message ;;
 	esac
 	shift
