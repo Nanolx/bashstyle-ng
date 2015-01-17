@@ -4,7 +4,7 @@ Overview of changes in v9.0 "Hotride"
 
 * The first-run-wizard (bsng-wizard) has been removed, relevant options
   have been merged into the main application, be sure to run the UI
-  (Style for colorshell, else Advanced > Extras/GIT) after upgrade to
+  (Style for colorshell, else Advanced and GIT) after upgrade to
   re-adjust your settings that got lost by this change.
 
 * This release removes the html-documentation. Instead every options will
@@ -108,6 +108,9 @@ Overview of changes in v9.0 "Hotride"
   ngroups lists all user-groups you're NOT in. (gniourf_gniourf)
 * ols function: ls -l with octal file permissions
 * psgrep function: find process by name (flatcap)
+* map function: takes a command with any number of arguments and applies
+  it to each item in a list. It's basically a shorthand way of writing a
+  for loop. (downdiagonal)
 
 * explain git aliases in ui
 * ls alias to git (prettified version of log)
