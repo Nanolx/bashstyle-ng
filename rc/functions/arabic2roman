@@ -12,15 +12,12 @@
 case ${1} in
 
 	--help | -h | "")
-
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "arabic2roman" -s "convert arabic number to roman" -v "${BSNG_VERSION}" -y "2011"\
 			-o "input:|convert arabic number to roman"
-
 	;;
 
 	* )
-
 		echo ${1} | sed -e 's/1...$/M&/;s/2...$/MM&/;s/3...$/MMM&/;s/4...$/MMMM&/
 			s/6..$/DC&/;s/7..$/DCC&/;s/8..$/DCCC&/;s/9..$/CM&/
 			s/1..$/C&/;s/2..$/CC&/;s/3..$/CCC&/;s/4..$/CD&/;s/5..$/D&/
@@ -30,4 +27,5 @@ case ${1} in
 			s/6$/VI/;s/7$/VII/;s/8$/VIII/;s/9$/IX/
 			s/[0-9]//g'
 	;;
+
 esac

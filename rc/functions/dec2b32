@@ -9,6 +9,17 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo "obase=32 ; $1" | bc
-fi
+
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "dec2b32" -s "convert decimal to base32" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "number:|convert number to base32"
+	;;
+
+	*)
+		echo "obase=32 ; $1" | bc
+	;;
+
+esac

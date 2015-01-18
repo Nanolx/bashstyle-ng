@@ -9,11 +9,20 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo "decimal $1 = binary $(dec2bin $1)"
-	echo "decimal $1 = octal $(dec2oct $1)"
-	echo "decimal $1 = hexadecimal $(dec2hex $1)"
-	echo "decimal $1 = base32 $(dec2b32 $1)"
-	echo "decimal $1 = base64 $(dec2b64 $1)"
-	echo "deciaml $1 = ascii $(dec2asc $1)"
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "dec2all" -s "convert decimal to other numerical equivalents" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "number:|convert number to other numerical equivalents"
+	;;
+
+	*)	echo "decimal $1 = binary $(dec2bin $1)
+decimal $1 = octal $(dec2oct $1)
+decimal $1 = hexadecimal $(dec2hex $1)
+decimal $1 = base32 $(dec2b32 $1)
+decimal $1 = base64 $(dec2b64 $1)
+decimal $1 = ascii $(dec2asc $1)"
+	;;
+
+esac

@@ -12,14 +12,13 @@
 case ${1} in
 
 	--help | -h | "")
-
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "asc2hex" -s "convert ascii char to hexadecimal equivalent" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "letter:|convert ascii char to hexadecimal equivalent"
-
 	;;
 
 	* )
 		echo "obase=16 ; $(asc2dec $1)" | bc
 	;;
+
 esac

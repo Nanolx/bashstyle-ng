@@ -9,6 +9,15 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo "scale=2; $1 + 237.15" | bc
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "cel2kel" -s "convert °C to °K" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "number:|convert °C to °K"
+	;;
+
+	* )
+		echo "scale=2; $1 + 237.15" | bc
+	;;
+esac

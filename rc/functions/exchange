@@ -9,10 +9,23 @@
 #							#
 #########################################################
 
-typeset temp
-SAVE=$IFS
-IFS=''
-eval $(echo "temp=\"\$$1\"")
-eval $(echo "$1=\"\$$2\"")
-eval $(echo "$2=\"$temp\"")
-IFS=$SAVE
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "exchange" -s "exchange values of two variables" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "x:|variable x (that will get variable y's value)"\
+			-o "y:|variable y (that will get variable x's value)"
+	;;
+
+	*)
+		typeset temp
+		SAVE=$IFS
+		IFS=''
+		eval $(echo "temp=\"\$$1\"")
+		eval $(echo "$1=\"\$$2\"")
+		eval $(echo "$2=\"$temp\"")
+		IFS=$SAVE
+	;;
+
+esac

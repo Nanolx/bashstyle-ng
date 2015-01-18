@@ -9,6 +9,18 @@
 #							#
 #########################################################
 
-if [[ -f "$1" ]]; then
-	sed -r 's/\r$//' -i "$1"
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "d2u" -s "convert DOS to Unix line endings" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "files:|file to convert"
+	;;
+
+	*)
+		for file in "${@}"; do
+			[[ -f "${1}" ]] && sed -r 's/\r$//' -i "$1"
+		done
+	;;
+
+esac

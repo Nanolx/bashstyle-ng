@@ -9,8 +9,17 @@
 #							#
 #########################################################
 
-if [[ -e "$1" ]]; then
-	tr a-zA-Z n-za-mN-ZA-M < "$1" > "$1".crypt
-	rm -f "$1"
-	mv "$1".crypt "$1"
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "crypt" -s "crypt input string by shift 13 (also known as ceasars code)"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "text:|text to crypt"
+	;;
+
+	*)
+		echo "${@}" | tr a-zA-Z n-za-mN-ZA-M
+	;;
+
+esac

@@ -9,16 +9,14 @@
 #							#
 #########################################################
 
-case $1 in
+case ${1} in
 
 	--help | -h | "")
-
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "bin2asc" -s "convert binaries to ascii equivalent" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "number:|convert binary to ascii equivalent"
-
 	;;
 
 	*)	echo -e "\0$(printf %o $((2#$1)))" ;;
 
-	esac
+esac

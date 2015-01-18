@@ -9,4 +9,16 @@
 #							#
 #########################################################
 
-find -L -type l
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "deadlink" -s "find dead links" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "directory:|(optional) directory to scan (or current)"
+	;;
+
+	*)
+		find -L -type l "${@}"
+	;;
+
+esac

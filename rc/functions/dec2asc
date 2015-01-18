@@ -9,6 +9,17 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo -e "\0$(printf %o 97)"
-fi
+
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "dec2asc" -s "convert decimal to ascii char" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "number:|convert number to ascii char"
+	;;
+
+	*)
+		echo -e "\0$(printf %o 97)"
+	;;
+
+esac

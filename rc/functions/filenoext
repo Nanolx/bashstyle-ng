@@ -9,6 +9,16 @@
 #							#
 #########################################################
 
-for file in "${@}"; do
-	echo ${file%\.*}
-done
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "filenoext" -s "output filename without path and extension" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "file:|output filename without path and extension"
+	;;
+
+	* )	file=$(filename "${1}")
+		echo ${file%\.*}
+	;;
+
+esac

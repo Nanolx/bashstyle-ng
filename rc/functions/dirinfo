@@ -15,7 +15,7 @@ for mod in ${MODULES[@]}; do
 	source $BSNG_RC_DIR/dirinfo/$mod
 done
 
-case $1 in
+case ${1} in
 
 	*help | "")
 		dirinfo_index --help

@@ -12,11 +12,9 @@
 case ${1} in
 
 	--help | -h | "")
-
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "asc2all" -s "convert ascii char to numerical equivalent" -v "${BSNG_VERSION}" -y "2011"\
-			-o "letter:|convert ascii char to numerical equivalent"
-
+			-l "GNU GPL v3" -n "asc2all" -s "convert ascii char to numerical equivalents" -v "${BSNG_VERSION}" -y "2011"\
+			-o "letter:|convert ascii char to numerical equivalents"
 	;;
 
 	* )
@@ -27,4 +25,5 @@ ascii $1 = hexadecimal $(asc2hex $1)
 ascii $1 = base32 $(asc2b32 $1)
 ascii $1 = base64 $(asc2b64 $1)"
 	;;
+
 esac

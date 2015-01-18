@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-case $1 in
+case ${1} in
 	*+h)
 		echo $(($(ls --color=no -1 -la . | grep -v ^l | wc -l)-1))
 	;;
@@ -35,13 +35,14 @@ case $1 in
 	;;
 
 	*)
-		echo -e "\n${ewhite}Usage:"
-		echo -e "\n${eorange}count_files${ewhite} | ${egreen}+h ${eiceblue}[count files and folders - include hidden ones] \
-		\n${eorange}count_files${ewhite} | ${egreen}-h ${eiceblue}[count files and folders - exclude hidden ones] \
-		\n${eorange}count_files${ewhite} | ${egreen}+d ${eiceblue}[count folders - include hidden ones] \
-		\n${eorange}count_files${ewhite} | ${egreen}-d ${eiceblue}[count folders - exclude hidden ones] \
-		\n${eorange}count_files${ewhite} | ${egreen}+f ${eiceblue}[count files - include hidden ones] \
-		\n${eorange}count_files${ewhite} | ${egreen}-f ${eiceblue}[count files - exclude hidden ones]\n"
-		tput sgr0
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "count_files" -s "count files in current directory " -v "${BSNG_VERSION}"\
+			-y "${BSNG_YEAR}"\
+			-o "+h:|count files and folders (include hidden)"\
+			-o "-h:|count files and folders (exclude hidden)"\
+			-o "+d:|count folders only (include hidden)"\
+			-o "-d:|count folders only (exclude hidden)"\
+			-o "+f:|count files only (include hidden)"\
+			-o "-f:|count files only (exclude hidden)"
 	;;
 esac
