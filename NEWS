@@ -67,6 +67,9 @@ Overview of changes in v9.0 "Hotride"
 	when changing to a user not having BashStyle-NG set-up prompts were
 	incorrect, as some required settings for truncpwd, respectively
 	clock-ad's internal pwd-truncating function, were not set
+* #173 (nx-rc):
+	on Debian GNU/Linux ensure that ~/.bashrc does not override BashStyle-NG's
+	PS1, by commenting-out the corresponding parts of the file
 
 === Wizard-Merge ===
 

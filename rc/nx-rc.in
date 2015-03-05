@@ -84,6 +84,22 @@ fi
 
 if [[ $(ini_get use_bashstyle) == "True" ]]; then
 
+	if [[ $(lsb_release -is) == Debian ]]; then
+	#	if [[ ${1} == -r ]]; then
+	#		START_LINE=$(sed -n '/^\#if \[ "$color_prompt" = yes/=' ~/.bashrc)
+	#		if [[ ${START_LINE} ]]; then
+	#			END_LINE=$((${START_LINE}+14))
+	#			sed -e "${START_LINE},${END_LINE}s/^\#//" -i ~/.bashrc
+	#		fi
+	#	else
+			START_LINE=$(sed -n '/^if \[ "$color_prompt" = yes/=' ~/.bashrc)
+			if [[ ${START_LINE} ]]; then
+				END_LINE=$((${START_LINE}+14))
+				sed -e "${START_LINE},${END_LINE}s/^/\#/" -i ~/.bashrc
+			fi
+	#	fi
+	fi
+
 	if [[ -f /etc/bash.bashrc ]]; then
 		BASHRC=/etc/bash.bashrc
 	else	BASHRC=/etc/bashrc
