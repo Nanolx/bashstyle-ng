@@ -9,6 +9,17 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo "obase=8 ; ibase=16 ; $1" | bc
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "hex2oct" -s "convert hexadecimal to octal" \
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "hexadecimal:|number to convert"
+	;;
+
+	*)
+		echo "obase=8 ; ibase=16 ; $1" | bc
+	;;
+
+esac

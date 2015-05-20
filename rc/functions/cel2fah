@@ -11,7 +11,7 @@
 
 case ${1} in
 
-	--help | -h)
+	--help | -h | "")
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "cel2fah" -s "convert °C to °F" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "number:|convert °C to °F"

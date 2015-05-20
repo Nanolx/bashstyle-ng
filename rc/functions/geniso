@@ -9,7 +9,19 @@
 #							#
 #########################################################
 
-if [[ $CD_WRITER ]]; then
-	dd $DD_OPTS if=$CD_WRITER of="$1"
-else	dd $DD_OPTS if=/dev/dvdrw of="$1"
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "geniso" -s "create an ISO image from a CD/DVD" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "isofile:|name of the ISO image to create"
+	;;
+
+	* )
+		if [[ $CD_WRITER ]]; then
+			dd $DD_OPTS if=$CD_WRITER of="$1"
+		else	dd $DD_OPTS if=/dev/dvdrw of="$1"
+		fi
+	;;
+
+esac

@@ -9,6 +9,17 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo -e "\0$(printf %o $((16#$1)))"
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "hex2asc" -s "convert hexadecimal to ascii" \
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "none:|--"
+	;;
+
+	*)
+		echo -e "\0$(printf %o $((16#$1)))"
+	;;
+
+esac

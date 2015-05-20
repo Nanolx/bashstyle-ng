@@ -9,7 +9,20 @@
 #							#
 #########################################################
 
-if [[ -d .git ]]; then
-	git archive master | bzip2 -9 >"$PWD".tar.bz2
-else	echo "current directory is not the root of a git repository"
-fi
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "git_bzip" -s "create bzip2 tarball from GIT repo" \
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "none:|--"
+	;;
+
+	*)
+		if [[ -d .git ]]; then
+			git archive master | bzip2 -9 >"$PWD".tar.bz2
+		else	echo "current directory is not the root of a git repository"
+		fi
+	;;
+
+esac

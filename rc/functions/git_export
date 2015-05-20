@@ -9,6 +9,19 @@
 #							#
 #########################################################
 
-if [[ "$1" && -d .git ]]; then
-	git checkout-index --prefix="$1"/ -a
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "git_export" -s "export GIT repo into directory" \
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "output:|output directory"
+	;;
+
+	*)
+		if [[ "$1" && -d .git ]]; then
+			git checkout-index --prefix="$1"/ -a
+		fi
+	;;
+
+esac

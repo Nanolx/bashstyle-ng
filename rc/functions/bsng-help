@@ -12,7 +12,6 @@
 case $1 in
 
 	--help | -h | "")
-
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "bsng-help" -s "unified way of creating fancy help messages in Bash scripts" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "-a:<testboy>|Author to display in help"\
@@ -24,7 +23,6 @@ case $1 in
 			-o "-s:this is a recursive help|Short description to display in help"\
 			-o "-v:${BSNG_VERSION}|Version to display in help"\
 			-o "-y:2013|Copyright year to display in help"
-
 	;;
 
 	*)

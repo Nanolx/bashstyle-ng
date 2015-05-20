@@ -9,10 +9,23 @@
 #							#
 #########################################################
 
-if [[ -d .git ]]; then
-	git remote -v | grep fetch | \
-		sed 's/\(.*github.com\)[:|/]\(.*\).git (fetch)/\2/' | \
-		awk {'print "https://github.com/" $1'} | \
-		xargs x-www-browser || echo "not a github repository"
-else	echo "current directory is not the root of a git repository"
-fi
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "git_hub" -s "open github page of a GIT repository" \
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "none:|--"
+	;;
+
+	*)
+		if [[ -d .git ]]; then
+			git remote -v | grep fetch | \
+				sed 's/\(.*github.com\)[:|/]\(.*\).git (fetch)/\2/' | \
+				awk {'print "https://github.com/" $1'} | \
+				xargs x-www-browser || echo "not a github repository"
+		else	echo "current directory is not the root of a git repository"
+		fi
+	;;
+
+esac

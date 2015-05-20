@@ -9,9 +9,22 @@
 #							#
 #########################################################
 
-if [[ -d .git ]]; then
-	REVISION=$(git rev-parse HEAD 2>/dev/null)
-	REVISION=${REVISION/HEAD/}
-	echo ${REVISION:0:6}
-else	echo --
-fi
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "git_revision" -s "print 6 digit revision of GIT repo" \
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "none:|--"
+	;;
+
+	*)
+		if [[ -d .git ]]; then
+			REVISION=$(git rev-parse HEAD 2>/dev/null)
+			REVISION=${REVISION/HEAD/}
+			echo ${REVISION:0:6}
+		else	echo --
+		fi
+	;;
+
+esac

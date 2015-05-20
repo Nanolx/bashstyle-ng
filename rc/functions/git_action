@@ -9,23 +9,35 @@
 #							#
 #########################################################
 
-if [[ -d .git ]]; then
-	if [[ -f .git/dotest/rebasing ]]; then
-		ACTION="rebase"
-	elif [[ -f .git/dotest/applying ]]; then
-		ACTION="apply"
-	elif [[ -f .git/dotest-merge/interactive ]]; then
-		ACTION="rebase -i"
-	elif [[ -d .git/dotest-merge ]]; then
-		ACTION="rebase -m"
-	elif [[ -f .git/MERGE_HEAD ]]; then
-		ACTION="merge"
-	elif [[ -f .git/index.lock ]]; then
-		ACTION="locked"
-	elif [[ -f .git/BISECT_LOG ]]; then
-		ACTION="bisect"
-	else	ACTION="nothing"
-	fi
-	echo $ACTION
-else	echo --
-fi
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "git_action" -s "print the current action in a GIT repo" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "none:|--"
+	;;
+
+	* )
+		if [[ -d .git ]]; then
+			if [[ -f .git/dotest/rebasing ]]; then
+				ACTION="rebase"
+			elif [[ -f .git/dotest/applying ]]; then
+				ACTION="apply"
+			elif [[ -f .git/dotest-merge/interactive ]]; then
+				ACTION="rebase -i"
+			elif [[ -d .git/dotest-merge ]]; then
+				ACTION="rebase -m"
+			elif [[ -f .git/MERGE_HEAD ]]; then
+				ACTION="merge"
+			elif [[ -f .git/index.lock ]]; then
+				ACTION="locked"
+			elif [[ -f .git/BISECT_LOG ]]; then
+				ACTION="bisect"
+			else	ACTION="nothing"
+			fi
+			echo $ACTION
+		else	echo --
+		fi
+	;;
+
+esac

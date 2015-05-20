@@ -12,21 +12,15 @@
 MODULES=( create date display index )
 
 for mod in ${MODULES[@]}; do
-	source $BSNG_RC_DIR/dirinfo/$mod
+	source ${BSNG_RC_DIR}/dirinfo/${mod}
 done
 
 case ${1} in
 
-	*help | "")
-		dirinfo_index --help
-	;;
+	*help | -h | "")	dirinfo_index --help	;;
 
-	*create)
-		dirinfo_create
-	;;
+	*create)		dirinfo_create		;;
 
-	*)
-		dirinfo_index "$@"
-	;;
+	*)			dirinfo_index "${@}"	;;
 
 esac

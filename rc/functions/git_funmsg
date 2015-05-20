@@ -9,4 +9,17 @@
 #							#
 #########################################################
 
-wget -qO - http://whatthecommit.com/index.txt
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "git_funmsg" -s "funny commit messages" \
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "none:|--"
+	;;
+
+	* )
+		wget -qO - http://whatthecommit.com/index.txt
+	;;
+
+esac

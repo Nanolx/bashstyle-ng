@@ -11,20 +11,20 @@
 
 case ${1} in
 
-	--help | -h | "")
+	--help | -h)
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "clock" -s "simple clock for bash" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "no options:|"
+			-o "none:|--"
 	;;
 
 	*)
-	while true; do
-		clear;
-		echo "===========";
-		date +"%r";
-		echo "===========";
-		sleep 1;
-	done
+		while true; do
+			clear;
+			echo "===========";
+			date +"%r";
+			echo "===========";
+			sleep 1;
+		done
 	;;
 
 esac
