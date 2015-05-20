@@ -9,10 +9,16 @@
 #							#
 #########################################################
 
-if [[ ! "$@" == "" ]]; then
+case ${1} in
 
-	for file in "$@"; do
-		stat -c "%A %a %n" "$file" | gawk '{print "Permissions of:", $3, "->", $1, "("$2")"}'
-	done | column -t
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "lm" -s "print plain-text and octal permissons of files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "directory:|(optional) directory [or current]"
+	;;
 
-fi
+	* )
+		find -maxdepth 1 -printf "Permissons of %f -> %M (%m)\n" | column -t
+	;;
+
+esac

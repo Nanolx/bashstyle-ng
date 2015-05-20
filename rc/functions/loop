@@ -9,10 +9,23 @@
 #							#
 #########################################################
 
-if [[ ${1} && ${2} ]]; then
-	for dir in ${1//:/ }; do
-		if [[ -e ${dir}/${2} ]]; then
-			echo ${dir}/${2} && continue 2
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "loop" -s "search for file inside colon-separated list of directories" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "diretory-list:|list of directories (colon-separeated)"\
+			-o "file:|file to look for"
+	;;
+
+	* )
+		if [[ ${2} ]]; then
+			for dir in ${1//:/ }; do
+				if [[ -e ${dir}/${2} ]]; then
+					echo ${dir}/${2} && continue 2
+				fi
+			done
 		fi
-	done
-fi
+	;;
+
+esac

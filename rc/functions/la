@@ -9,4 +9,16 @@
 #							#
 #########################################################
 
-ls -l --group-directories-first "$@"
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "la" -s "detailed ls including hidden files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "directory:|(optional) directory [or current]"
+	;;
+
+	* )
+		ls -al --group-directories-first "$@"
+	;;
+
+esac

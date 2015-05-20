@@ -9,15 +9,29 @@
 #							#
 #########################################################
 
-if [ $# -lt 2 ] || [[ ! "$@" =~ :[[:space:]] ]];then
-	echo "Invalid syntax." >&2; exit 1
-fi
+case ${1} in
 
-until [[ $1 =~ : ]]; do
-	command="$command $1"; shift
-done
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "map" -s "run a command on given files or directories" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "command:|command to map"\
+			-o " -- :|end of command"\
+			-o "files:|list of files or directories"
+	;;
 
-command="$command ${1%:}"; shift
-for i in "$@"; do
-	eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
-done
+	* )
+		if [ $# -lt 2 ] || [[ ! "$@" =~ [[:space:]]--[[:space:]] ]];then
+			echo "Invalid syntax." >&2; exit 1
+		fi
+
+		until [[ $1 =~ -- ]]; do
+			command="$command $1"; shift
+		done
+
+		command="$command ${1%:}"; shift
+		for i in "$@"; do
+			eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
+		done
+	;;
+
+esac

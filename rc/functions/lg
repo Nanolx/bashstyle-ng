@@ -9,8 +9,16 @@
 #							#
 #########################################################
 
-if [[ "$@" == "" ]]; then
-	$@="*"
-fi
+case ${1} in
 
-ls -l --group-directories-first "$@" | gawk '{print $9, "belongs to Group ->", $4}' | column -t
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "lg" -s "show group for given files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "directory:|(optional) directory [or current]"
+	;;
+
+	* )
+		ls -l --group-directories-first "$@" | sed -e '1d' | gawk '{print $9, "belongs to Group ->", $4}' | column -t
+	;;
+
+esac
