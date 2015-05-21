@@ -51,15 +51,3 @@ rc_add ()
 	echo "$@" >> $RC_FILE
 
 }
-
-check_opt() {
-
-	APP="$1"
-	which "$APP" &>/dev/null
-
-	if (( $? != 0 )); then
-		shift
-		echo -e "$APP not found!\n\`$@' won't work without it."
-		return 1
-	fi
-}

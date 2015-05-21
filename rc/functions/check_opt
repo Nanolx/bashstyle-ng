@@ -1,0 +1,32 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "check_opt" -s "check for dependency or exit" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "application:|application to check for"\
+			-o "script:|script requiring the application"
+	;;
+
+	* )
+		APP="$1"
+		which "$APP" &>/dev/null
+
+		if (( $? != 0 )); then
+			shift
+			echo -e "$APP not found!\n\`$@' won't work without it."
+			return 1
+		fi
+	;;
+
+esac
