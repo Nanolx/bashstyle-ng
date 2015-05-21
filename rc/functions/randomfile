@@ -9,71 +9,92 @@
 #							#
 #########################################################
 
-case $1 in
+_randomfunc() {
 
-		-f | --first)
-			sed -n '1p' $HOME/.randomhistory
-		;;
+	command=""
 
-		-L | --last)
-			sed -n '$p' $HOME/.randomhistory
-		;;
+	if [ $# -lt 2 ] || [[ ! "$@" =~ [[:space:]]--[[:space:]] ]];then
+			echo "Invalid syntax." >&2; exit 1
+	fi
 
-		-i | --item)
-			sed -n "${2}p" $HOME/.randomhistory
-		;;
+	until [[ $1 =~ -- ]]; do
+		command="$command$1"; shift
+	done
+	shift
 
-		-l | --length)
-			wc -l $HOME/.randomhistory | gawk '{print $1}'
-		;;
+	if [[ ! "${@}" ]]; then
+		files=(*)
+	else	files=("${@}")
+	fi
 
-		-c | --clear)
-			rm $HOME/.randomhistory
-		;;
+	n=${#files[@]}
+	RANDOMFILE="${files[RANDOM % n]}"
 
-		-n | --count)
-			shift
-			count=$1
-			shift
-			while test $count -gt 0; do
-				if [[ "$FILES" ]]; then
-					FILES="$FILES" randomfile >> /tmp/randomtmp
-				else
-					randomfile >> /tmp/randomtmp
-				fi
-				count=$(($count - 1))
-			done
+	if [[ "${command}" == "+" ]]; then
+		echo "$RANDOMFILE" >> /tmp/randomtmp
+	else
+		${command} "$RANDOMFILE"
+		echo "$RANDOMFILE" >> $HOME/.randomhistory
+	fi
 
-			cat /tmp/randomtmp | sort | uniq -c | sort -n | tail | sort -nr
+}
+case ${1} in
 
-			rm /tmp/randomtmp
-		;;
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "randomfile" -s "run a command on a random file" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "command:|command to run for file"\
+				-o "--:|end of command"\
+				-o "files:|list of possible files"\
+				-o "\tor:|--"\
+				-o "-f:|print first entry of random history"\
+				-o "-L:|print last entry of random history"\
+				-o "-i:decimal|print nth entry of random history"\
+				-o "-l:|print number of entries in random history"\
+				-o "-c:|clear random history"\
+				-o "\tor:|--"\
+				-o "-n:decimal|repeat process n times"\
+				-o "--:|delimiter"\
+				-o "files:|for given files and print result"
+	;;
 
-		-h | --help )
-			echo -e "\n${ewhite}Usage:\n"
-			echo -e "${eorange}randomfile${ewhite} | ${egreen}--first ${eiceblue}[get the first file in the history]\
-			\n${eorange}randomfile${ewhite} | ${egreen}--last ${eiceblue}[get the last file in the history]\
-			\n${eorange}randomfile${ewhite} | ${egreen}--n ${eiceblue}[get the NUMBERth file in the history]\
-			\n${eorange}randomfile${ewhite} | ${egreen}--l ${eiceblue}[get the number of files in history]\
-			\n${eorange}randomfile${ewhite} | ${egreen}--c ${eiceblue}[clear the history]\n" | column -t
-			tput sgr0
-		;;
 
-		*)
-			if [[ ! "$FILES" ]]; then
-				files=(*)
-			else	files=("$FILES")
-			fi
+	-f | --first)
+		sed -n '1p' $HOME/.randomhistory
+	;;
 
-			n=${#files[@]}
+	-L | --last)
+		sed -n '$p' $HOME/.randomhistory
+	;;
 
-			RANDOMFILE="${files[RANDOM % n]}"
+	-i | --item)
+		sed -n "${2}p" $HOME/.randomhistory
+	;;
 
-			echo "$RANDOMFILE" >> $HOME/.randomhistory
+	-l | --length)
+		wc -l $HOME/.randomhistory | gawk '{print $1}'
+	;;
 
-			if [[ ! "$@" ]]; then
-				echo "$RANDOMFILE"
-			else	"$@" "$RANDOMFILE"
-			fi
-		;;
+	-c | --clear)
+		rm $HOME/.randomhistory
+	;;
+
+	-n | --count)
+		shift
+		count=$1
+		shift
+
+		while test $count -gt 0; do
+			_randomfunc + -- "${@}"
+			count=$(($count - 1))
+		done
+
+		cat /tmp/randomtmp | sort | uniq -c | sort -n | tail | sort -nr
+		rm /tmp/randomtmp
+	;;
+
+	*)
+		_randomfunc "${@}"
+	;;
+
 esac
