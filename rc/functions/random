@@ -1,7 +1,7 @@
 #!/bin/bash
 #########################################################
 # 							#
-# This is BashStyle-NG  				#
+# This is BashStyle-NG					#
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
 #							#
@@ -9,9 +9,51 @@
 #							#
 #########################################################
 
-if [[ $1 == -l ]]; then
-	echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2-5})
-elif [[ $1 == -r ]]; then
-	echo $((RANDOM%${2}))
-else	echo $((RANDOM%${1}))
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "random" -s "print random numbers or strings" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "-s:length|print string containing all printable chars except space"\
+				-o "-0:length|print random number of given length"\
+				-o "-r:highest|print random number in range 0 and highest"\
+				-o "-a:length|print string containing only mixed-case letters"\
+				-o "-l:length|print string containing only lower-case letters"\
+				-o "-u:length|print string containing only upper-case letters"\
+				-o "-x:length|print string of hexadecimal numbers"\
+				-o "-a0:length|print alpha-numeric string (mixed-case)"
+	;;
+
+	--special | -s )
+		echo $(cat /dev/urandom | tr -cd '[:graph:]' | head -c ${2:-16})
+	;;
+
+	--numerical | -0 )
+		echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2:-16})
+	;;
+
+	--numericalrange | -r )
+		echo $((RANDOM%${2}))
+	;;
+
+	--alpha | -a )
+		echo $(cat /dev/urandom | tr -cd '[:alpha:]' | head -c ${2:-16})
+	;;
+
+	--alphalow | -l )
+		echo $(cat /dev/urandom | tr -cd '[:lower:]' | head -c ${2:-16})
+	;;
+
+	--alphaup | -u )
+		echo $(cat /dev/urandom | tr -cd '[:upper:]' | head -c ${2:-16})
+	;;
+
+	--hexadecimal | -x )
+		echo $(cat /dev/urandom | tr -cd '[:xdigit:]' | head -c ${2:-16})
+	;;
+
+	--alphanumerical | -a0 )
+		echo $(cat /dev/urandom | tr -cd '[:alnum:]' | head -c ${2:-16})
+	;;
+
+esac
