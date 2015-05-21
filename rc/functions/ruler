@@ -9,8 +9,40 @@
 #							#
 #########################################################
 
-for s in '....^....|' '123456789|'; do
-	w=${#s}; str=$( for (( i=1; $i<=$(( ($COLUMNS + $w) / $w )) ; i=$i+1 )); do
-		echo -n $s; done ); str=$(echo $str | cut -c -$COLUMNS) ;
-	echo $str;
-done;
+# by xenospeek
+# modified version by me
+
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "xenospeek" -e "" -h "http://forums.linuxmint.com/viewtopic.php?f=42&t=91908&start=0#p527794"\
+			-l "GNU GPL v3" -n "asc2hex" -s "convert ascii char to hexadecimal equivalent" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "none:|--"
+	;;
+
+	* )
+		cols=$(tput cols)
+		j=1
+		k=1
+
+		for (( i=1 ; i <= cols ; i++ )); do
+			case $j in
+				5)	printf "^" ;;
+				10)	printf "°" && j=0;;
+				*)	printf "." ;;
+			esac
+			j=$(($j+1))
+		done
+		printf "\n"
+
+		for (( i=1 ; i <= cols ; i++ )); do
+			case $k in
+				10)	printf "|" && k=0;;
+				*)	printf "%d" $k ;;
+			esac
+			k=$(($k+1))
+		done
+		printf "\n"
+	;;
+
+esac
