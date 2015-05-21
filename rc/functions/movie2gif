@@ -1,0 +1,34 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+check_opt ffmpeg movie2gif
+
+# by maxwux
+
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "maxwux" -e "" -h "http://www.commandlinefu.com/"\
+				-l "Public Domain" -n "movie2gif"\
+				-s "Create GIF from Movie"\
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "input file:coolfilm.avi|movie file to generate GIF from"\
+				-o "start time:00:00:00.000|start time"\
+				-o "duration:10|scene duration"\
+				-o "scale:320:-1|GIF scale"\
+				-o "output file:coolgif.gif|output file name"
+	;;
+
+	* )
+		ffmpeg -ss ${2} -t ${3} -i ${1} -vf scale=${4} ${5}
+	;;
+
+esac
