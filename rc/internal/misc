@@ -9,6 +9,19 @@
 #							#
 #########################################################
 
+assign() {
+
+	for opt in $@; do
+		var="X=\$${opt/:*}"
+		eval $var
+		if [[ $X == "" ]]; then
+			read ${opt/:*} <<< $(echo ${opt/*:})
+			
+		fi
+	done
+
+}
+
 ini_get ()
 {
 

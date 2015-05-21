@@ -11,6 +11,16 @@
 
 # by xk2c (commandlinefu.com)
 
-builtin unalias -a
-builtin unset -f $(builtin declare -F | sed 's/^.*declare[[:blank:]]\+-f[[:blank:]]\+//')
-source ~/.bashrc
+	--help | -h | "")
+		bsng-help -a "xk2c" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "Public Domain" -n "reload" -s "convert any mencoder supported" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "none:|--"
+	;;
+
+	* )
+		builtin unalias -a
+		builtin unset -f $(builtin declare -F | sed 's/^.*declare[[:blank:]]\+-f[[:blank:]]\+//')
+		source ~/.bashrc
+	;;
+
+esac

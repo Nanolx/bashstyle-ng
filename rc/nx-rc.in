@@ -180,19 +180,6 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 
 fi
 
-function assign() {
-
-	for opt in $@; do
-		var="X=\$${opt/:*}"
-		eval $var
-		if [[ $X == "" ]]; then
-			read ${opt/:*} <<< $(echo ${opt/*:})
-			
-		fi
-	done
-
-}
-
 function lscd() {
 
 	OLD_PWD=${PWD}

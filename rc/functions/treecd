@@ -9,8 +9,6 @@
 #							#
 #########################################################
 
-source $BSNG_RC_DIR/internal/misc
-
 check_opt tree treecd
 if [[ $? != 1 ]]; then
 	builtin cd "${@}" &>/dev/null

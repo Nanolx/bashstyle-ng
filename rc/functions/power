@@ -9,9 +9,20 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	if [[ $2 ]]; then
-		echo "$1 ^ $2" | bc
-	else	echo "$1 ^ 2" | bc
-	fi
-fi
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "power" -s "calculater powers of numbers" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "number:|number to calculate power from"\
+				-o "power:|(optional) power [or 2]"
+	;;
+
+	* )
+		if [[ $2 ]]; then
+			echo "$1 ^ $2" | bc
+		else	echo "$1 ^ 2" | bc
+		fi
+	;;
+
+esac

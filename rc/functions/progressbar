@@ -14,11 +14,22 @@ SP_WIDTH=5.5
 SP_DELAY=0.2
 SP_STRING=${2:-'+     '}
 
-while [ -d /proc/$1 ]
-do
-	printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
-	sleep ${SP_DELAY:-.2}
-	SP_STRING=${SP_STRING#"${SP_STRING%?}"}${SP_STRING%?}
-done
+case ${1} in
 
-tput sgr0
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "progressbar" -s "display a progressbar while given PID is running" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "pid:|process id"
+	;;
+
+	* )
+		while [ -d /proc/$1 ]
+		do
+			printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
+			sleep ${SP_DELAY:-.2}
+			SP_STRING=${SP_STRING#"${SP_STRING%?}"}${SP_STRING%?}
+		done
+		tput sgr0
+	;;
+
+esac

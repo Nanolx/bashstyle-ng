@@ -72,6 +72,10 @@ Overview of changes in v9.0 "Hotride"
 	PS1, by commenting-out the corresponding parts of the file
 * #174 (assign):
 	fix assign function by making it an actual function, not a script
+* #175 (check_opt):
+	make check_opt a script, so that other script can properly call it
+* #176 (ruler):
+	new version of ruler function, working again
 
 === Wizard-Merge ===
 
@@ -116,6 +120,7 @@ Overview of changes in v9.0 "Hotride"
 * map function: takes a command with any number of arguments and applies
   it to each item in a list. It's basically a shorthand way of writing a
   for loop. (downdiagonal)
+* movie2gif function: create GIF from a Movie (using FFMPEG)
 
 * explain git aliases in ui
 * ls alias to git (prettified version of log)
@@ -130,6 +135,11 @@ Overview of changes in v9.0 "Hotride"
 
 * rd alias to pw -P removed
 * reload alias to source ~/.bashrc removed
+* randompw removed (use random now instead)
+* any2avi removed
+* repeat removed
+* repoadd removed
+* reporem removed
 
 === Misc. Changes ===
 
@@ -149,6 +159,9 @@ Overview of changes in v9.0 "Hotride"
   share code with configure where useful, string changes, copyright headers
 * crypt: crypt input string, instead of file
 * d2u, u2d: batch operation
+* random: more features
+* randomfile: several improvements, more clear syntax
+* all scripts: --help message added
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

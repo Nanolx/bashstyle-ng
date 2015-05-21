@@ -12,16 +12,13 @@
 case ${1} in
 
 	--help | -h | "")
-
 		bsng-help -a "flatcap" -e "" -h "http://www.commandlinefu.com/"\
 				-l "Public Domain" -n "psgrep" -s "find process by name" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 				-o "name:|find process by name"
-
 	;;
 
 	* )
-
 		ps aux | grep -v psgrep | grep -E "[${1:0:1}]${1:1}|^USER"
-
 	;;
+
 esac

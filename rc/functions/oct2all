@@ -9,11 +9,21 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo "octal $1 = binary $(oct2bin $1)"
-	echo "octal $1 = decimal $(oct2dec $1)"
-	echo "octal $1 = hexadecimal $(oct2hex $1)"
-	echo "octal $1 = base32 $(oct2b32 $1)"
-	echo "octal $1 = base64 $(oct2b64 $1)"
-	echo "octal $1 = ascii $(oct2asc $1)"
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "oct2all" -s "convert octal to other numerical equivalents" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "octal:|number to convert"
+	;;
+
+	* )
+		echo "octal $1 = binary $(oct2bin $1)
+octal $1 = decimal $(oct2dec $1)
+octal $1 = hexadecimal $(oct2hex $1)
+octal $1 = base32 $(oct2b32 $1)
+octal $1 = base64 $(oct2b64 $1)
+octal $1 = ascii $(oct2asc $1)"
+	;;
+
+esac

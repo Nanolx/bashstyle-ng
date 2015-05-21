@@ -9,4 +9,16 @@
 #							#
 #########################################################
 
-seq -w 0 $1
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "nseq" -s "print a sequence of numbers from 0 to given" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "highest:|highest number of sequence"
+	;;
+
+	* )
+		seq -w 0 $1
+	;;
+
+esac

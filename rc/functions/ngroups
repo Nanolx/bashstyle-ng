@@ -11,5 +11,17 @@
 
 # by gniourf_gniourf
 
-sed -e "/$USER/d;s/:.*//g" /etc/group | \
-	sed -e :a -e '/$/N;s/\n/ /;ta'
+case ${1} in
+
+	--help | -h)
+		bsng-help -a "gniourf_gniourf" -e "" -h "http://www.commandlinefu.com/"\
+				-l "Public Domain" -n "ngroups" -s "Show groups current user is not part of" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "none:|--"
+	;;
+
+	* )
+		sed -e "/$USER/d;s/:.*//g" /etc/group | \
+			sed -e :a -e '/$/N;s/\n/ /;ta'
+	;;
+
+esac

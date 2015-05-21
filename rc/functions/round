@@ -9,9 +9,20 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	if [[ $2 ]]; then
-		echo "$(printf %.${2}f $1)"
-	else	echo "$(printf %.0f $1)"
-	fi
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "round" -s "round number" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "number:|number to round"\
+			-o "decimal places:|(optional) decimal places [or 0]"
+	;;
+
+	* )
+		if [[ $2 ]]; then
+			echo "$(printf %.${2}f $1)"
+		else	echo "$(printf %.0f $1)"
+		fi
+	;;
+
+esac

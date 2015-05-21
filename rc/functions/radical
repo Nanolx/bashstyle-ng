@@ -9,6 +9,16 @@
 #							#
 #########################################################
 
-if [[ $1 ]]; then
-	echo "sqrt($1)" | bc -l
-fi
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "radical" -s "Calculate square root of a number" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "number:|number to calculate square root of"
+	;;
+
+	* )
+		echo "sqrt($1)" | bc -l
+	;;
+
+esac

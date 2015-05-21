@@ -11,6 +11,20 @@
 
 # by joedhon (commandlinefu.com)
 
-filename="$1"
-history | cut -c 8- | sed -e '/^###/{h;d};H;$!d;x' | \
-	sed '$d' > ${filename:?No filename given}
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "joedhon" -e "" -h "http://www.commandlinefu.com/"\
+				-l "Public Domain" -n "quickscript"\
+				-s "Create script from last commands in history, starting from last occurence of ###"\
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "file:|script filename"
+	;;
+
+	* )
+		filename="$1"
+		history | cut -c 8- | sed -e '/^###/{h;d};H;$!d;x' | \
+			sed '$d' > ${filename:?No filename given}
+	;;
+
+esac

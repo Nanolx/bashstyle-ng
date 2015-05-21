@@ -9,11 +9,13 @@
 #							#
 #########################################################
 
+# by downdiagonal
+
 case ${1} in
 
 	--help | -h | "")
-		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "map" -s "run a command on given files or directories" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+		bsng-help -a "downdiagonal" -e "" -h "http://www.commandlinefu.com/"\
+			-l "Public Domain" -n "map" -s "run a command on given files or directories" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "command:|command to map"\
 			-o " -- :|end of command"\
 			-o "files:|list of files or directories"
