@@ -11,62 +11,43 @@
 
 case $1 in
 	*used )
-		free -m | {
-			read
-			read desc total used free shared buffer cached
-			temp=$((used-buffer-cached))
-			if [[ $temp -lt 1000 ]]; then
-				echo 0$temp
-			elif [[ $temp -lt 100 ]]; then
-				echo 00$temp
-			else	echo $temp
-			fi
-			}
+		temp=$(top -n1 | gawk '/Mem :/{print "(" $4 "-" $6 ") /1024"}' | bc)
+		if [[ $temp -lt 1000 ]]; then
+			echo 0$temp
+		elif [[ $temp -lt 100 ]]; then
+			echo 00$temp
+		else	echo $temp
+		fi
 	;;
 
 	*free )
-		free -m | {
-			read
-			read desc total used free shared buffer cached
-			temp=$((free+buffer+cached))
-			if [[ $temp -lt 1000 ]]; then
-				echo 0$temp
-			elif [[ $temp -lt 100 ]]; then
-				echo 00$temp
-			else	echo $temp
-			fi
-			}
+		temp=$(top -n1 | gawk '/Mem :/{print $6 "/1024"}' | bc)
+		if [[ $temp -lt 1000 ]]; then
+			echo 0$temp
+		elif [[ $temp -lt 100 ]]; then
+			echo 00$temp
+		else	echo $temp
+		fi
 	;;
 
 	*total)
-		free -m | {
-			read
-			read desc total used free shared buffer cached
-			if [[ $total -lt 1000 ]]; then
-				echo 0$total
-			elif [[ $total -lt 100 ]]; then
-				echo 00$total
-			else	echo $total
-			fi
-			}
+		temp=$(top -n1 | gawk '/Mem :/{print $4 "/1024"}' | bc)
+		if [[ $total -lt 1000 ]]; then
+			echo 0$total
+		elif [[ $total -lt 100 ]]; then
+			echo 00$total
+		else	echo $total
+		fi
 	;;
 
 	*used-percent )
-		free | {
-			read
-			read desc total used free shared buffer cached
-			temp=$((used-buffer-cached))
-			echo $((100*temp/total))
-			}
+		temp=$(top -n1 | gawk '/Mem :/{print "100*(" $4 "-" $6 ")/" $4}' | bc)
+		echo "${temp}%"
 	;;
 
 	*free-percent )
-		free | {
-			read
-			read desc total used free shared buffer cached
-			temp=$((free+buffer+cached))
-			echo $((100*temp/total))
-			}
+		temp=$(top -n1 | gawk '/Mem :/{print "100 *" $6 "/" $4}' | bc)
+		echo "${temp}%"
 	;;
 
 	* )
