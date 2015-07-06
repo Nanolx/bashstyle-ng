@@ -43,7 +43,7 @@ fi
 
 if [[ $(ini_get colored_grep) == True && $enabcol == True ]]; then \
 	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"On"
-	GREP_OPTIONS="--color=auto";
+	alias grep="grep --color=auto"
 	GREP_COLOR=$(ini_get grep_color);
 else	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"Off"
 fi
