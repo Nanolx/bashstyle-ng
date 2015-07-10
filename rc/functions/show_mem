@@ -11,7 +11,7 @@
 
 case $1 in
 	*used )
-		temp=$(top -n1 | gawk '/Mem :/{print "(" $4 "-" $6 ") /1024"}' | bc)
+		temp=$(top -bn1 | gawk '/Mem :/{print "(" $4 "-" $6 ") /1024"}' | bc)
 		if [[ $temp -lt 1000 ]]; then
 			echo 0$temp
 		elif [[ $temp -lt 100 ]]; then
@@ -21,7 +21,7 @@ case $1 in
 	;;
 
 	*free )
-		temp=$(top -n1 | gawk '/Mem :/{print $6 "/1024"}' | bc)
+		temp=$(top -bn1 | gawk '/Mem :/{print $6 "/1024"}' | bc)
 		if [[ $temp -lt 1000 ]]; then
 			echo 0$temp
 		elif [[ $temp -lt 100 ]]; then
@@ -31,7 +31,7 @@ case $1 in
 	;;
 
 	*total)
-		temp=$(top -n1 | gawk '/Mem :/{print $4 "/1024"}' | bc)
+		temp=$(top -bn1 | gawk '/Mem :/{print $4 "/1024"}' | bc)
 		if [[ $total -lt 1000 ]]; then
 			echo 0$total
 		elif [[ $total -lt 100 ]]; then
@@ -41,12 +41,12 @@ case $1 in
 	;;
 
 	*used-percent )
-		temp=$(top -n1 | gawk '/Mem :/{print "100*(" $4 "-" $6 ")/" $4}' | bc)
+		temp=$(top -bn1 | gawk '/Mem :/{print "100*(" $4 "-" $6 ")/" $4}' | bc)
 		echo "${temp}%"
 	;;
 
 	*free-percent )
-		temp=$(top -n1 | gawk '/Mem :/{print "100 *" $6 "/" $4}' | bc)
+		temp=$(top -bn1 | gawk '/Mem :/{print "100 *" $6 "/" $4}' | bc)
 		echo "${temp}%"
 	;;
 
