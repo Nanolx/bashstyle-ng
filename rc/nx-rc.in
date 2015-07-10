@@ -170,6 +170,8 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	else	touch $HOME/.bookmarks
 	fi
 
+	bind -f ${HOME}/.inputrc
+
 	if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
 		cat $BSNG_RC_DIR/ascii/birthday
 	elif [[ $WelcomeMessage != "" ]]; then \
