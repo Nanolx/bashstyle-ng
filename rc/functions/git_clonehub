@@ -1,0 +1,23 @@
+#!/bin/bash
+
+case $1 in
+	-u | --user)
+		curl -s https://api.github.com/users/"${2}"/repos?per_page=200 | \
+			ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| %x[git clone #{repo["ssh_url"]} ]}'
+	;;
+	
+	-o | --organization)
+		curl -s https://api.github.com/orgs/"${2}"/repos?per_page=200 | \
+			ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| %x[git clone #{repo["ssh_url"]} ]}'
+	;;
+	
+	*)
+		--help | -h)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "git_clonehub" -s "clone all repos from a github user/org via SSH" \
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "-u:|Username"\
+				-o "-o:|Organization"
+	;;
+	;;
+esac
