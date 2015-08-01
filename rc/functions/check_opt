@@ -25,7 +25,7 @@ case ${1} in
 		if (( $? != 0 )); then
 			shift
 			echo -e "$APP not found!\n\`$@' won't work without it."
-			return 1
+			exit 1
 		fi
 	;;
 
