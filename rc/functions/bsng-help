@@ -51,8 +51,8 @@ case $1 in
 		\n\033[8G${ewhite}(c) ${YEAR}: ${eblue}${AUTHOR} ${ewhite}<${ered}${EMAIL}${ewhite}>
 		\033[8G${ecyan}License: ${ered}${LICENSE}${ewhite} // ${ecyan}Homepage: ${emagenta}${HOMEPAGE}\n"
 
-		EX="${eorange}Options \033[30G${ewhite}(${eblue}Values${ewhite})\033[60G ${egreen}Description\n"
-		EX+="${eorange}======= \033[30G${ewhite}=${eblue}======${ewhite}=\033[60G ${egreen}===========\n"
+		EX="${eorange}Options \033[25G${ewhite}(${eblue}Values${ewhite})\033[65G ${egreen}Description\n"
+		EX+="${eorange}======= \033[25G${ewhite}=${eblue}======${ewhite}=\033[65G ${egreen}===========\n"
 
 		for opt in "${OPTIONS[@]}"; do
 			OPT=${opt/:*}
@@ -62,7 +62,7 @@ case $1 in
 				VAL="---"
 			fi
 			DESC=${opt/*|}
-			EX+="${eorange}${OPT} \033[30G${ewhite}(${eblue}${VAL}${ewhite})\033[60G ${egreen}${DESC}\n"
+			EX+="${eorange}${OPT} \033[25G${ewhite}(${eblue}${VAL}${ewhite})\033[65G ${egreen}${DESC}\n"
 		done
 		echo -e ${EX}
 		tput sgr0
