@@ -12,24 +12,176 @@
 SP_COLOUR="\e[37;44m"
 SP_WIDTH=5.5
 SP_DELAY=0.2
-SP_STRING=${2:-'+     '}
+SP_STRING=${3:-'+     '}
 
 case ${1} in
 
 	--help | -h | "")
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 				-l "GNU GPL v3" -n "progressbar" -s "display a progressbar while given PID is running" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "type:bar spin spinner spanner working|visual appearance of progressbar"\
 				-o "pid:|process id"
 	;;
 
-	* )
+    spin | --spin)
+		echo -n "|/     |"
+		while [ -d /proc/$2 ]
+		do
+			# moving right
+			echo -ne "\b\b\b\b\b\b\b-     |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b\b\\     |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b\b|     |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b\b /    |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b-    |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b\\    |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b|    |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b /   |"
+			sleep .03
+			echo -ne "\b\b\b\b\b-   |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\\   |"
+			sleep .03
+			echo -ne "\b\b\b\b\b|   |"
+			sleep .03
+			echo -ne "\b\b\b\b\b /  |"
+			sleep .03
+			echo -ne "\b\b\b\b-  |"
+			sleep .03
+			echo -ne "\b\b\b\b\\  |"
+			sleep .03
+			echo -ne "\b\b\b\b|  |"
+			sleep .03
+			echo -ne "\b\b\b\b / |"
+			sleep .03
+			echo -ne "\b\b\b- |"
+			sleep .03
+			echo -ne "\b\b\b\\ |"
+			sleep .03
+			echo -ne "\b\b\b| |"
+			sleep .03
+			echo -ne "\b\b\b /|"
+			sleep .03
+			echo -ne "\b\b-|"
+			sleep .03
+			echo -ne "\b\b\\|"
+			sleep .03
+			echo -ne "\b\b||"
+			sleep .03
+			echo -ne "\b\b/|"
+			sleep .03
+
+			# moving left
+			echo -ne "\b\b||"
+			sleep .03
+			echo -ne "\b\b\\|"
+			sleep .03
+			echo -ne "\b\b-|"
+			sleep .03
+			echo -ne "\b\b\b/ |"
+			sleep .03
+			echo -ne "\b\b\b| |"
+			sleep .03
+			echo -ne "\b\b\b\\ |"
+			sleep .03
+			echo -ne "\b\b\b- |"
+			sleep .03
+			echo -ne "\b\b\b\b/  |"
+			sleep .03
+			echo -ne "\b\b\b\b|  |"
+			sleep .03
+			echo -ne "\b\b\b\b\\  |"
+			sleep .03
+			echo -ne "\b\b\b\b-  |"
+			sleep .03
+			echo -ne "\b\b\b\b\b/   |"
+			sleep .03
+			echo -ne "\b\b\b\b\b|   |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\\   |"
+			sleep .03
+			echo -ne "\b\b\b\b\b-   |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b/    |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b|    |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b\\    |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b-    |"
+			sleep .03
+			echo -ne "\b\b\b\b\b\b\b/     |"
+			sleep .03
+		done
+		echo -e "\b\b\b\b\b\b\b\b\b|=======| done!"
+    ;;
+    
+    spanner | --spanner)
+		COUNT=0
+		while [ -d /proc/$2 ];do
+			while [ "$COUNT" -lt 10 ];do
+				echo -ne '\x08  ' ; sleep 0.1
+				((COUNT++))
+			done
+			until [ "$COUNT" -eq 0 ];do
+				echo -ne '\x08\x08 ' ; sleep 0.1
+				((COUNT -= 1))
+			done
+		done
+	;;
+	
+	spinner | --spinner)
+		while [ -d /proc/$2 ];do
+			echo -ne '\e[01;32m/\x08' ; sleep 0.05
+			echo -ne '\e[01;32m-\x08' ; sleep 0.05
+			echo -ne '\e[01;32m\\\x08' ; sleep 0.05
+			echo -ne '\e[01;32m|\x08' ; sleep 0.05
+		done
+	;;
+	
+	working | --working)
+		while [ -d /proc/$2 ]
+		do
+			echo -ne "w      \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "wo     \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "wor    \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "work   \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "worki  \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "workin \b\b\b\b\b\b\b";sleep .08;
+			echo -ne "working\b\b\b\b\b\b\b";sleep .08;
+			echo -ne " orking\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "  rking\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "   king\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "    ing\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "     ng\b\b\b\b\b\b\b";sleep .08;
+			echo -ne "      g\b\b\b\b\b\b\b";sleep .08;
+		done
+	;;
+	
+	bar | --bar )
+		while [ -d /proc/$2 ]
+		do
+			printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
+			sleep ${SP_DELAY:-.2}
+			SP_STRING=${SP_STRING#"${SP_STRING%?}"}${SP_STRING%?}
+		done
+	;;
+
+	*)
 		while [ -d /proc/$1 ]
 		do
 			printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
 			sleep ${SP_DELAY:-.2}
 			SP_STRING=${SP_STRING#"${SP_STRING%?}"}${SP_STRING%?}
 		done
-		tput sgr0
 	;;
 
 esac
+
+tput sgr0
