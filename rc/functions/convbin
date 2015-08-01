@@ -1,0 +1,41 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "convbin" -s "convert binaries to other numerical equivalents" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "asc:|convert binary to ascii equivalent"\
+			-o "b32:|convert binary to base32 equivalent"\
+			-o "b64:|convert binary to base64 equivalent"\
+			-o "dec:|convert binary to decimal equivalent"\
+			-o "hex:|convert binary to hexadecimal equivalent"\
+			-o "oct:|convert binary to octal equivalent"\
+			-o "all:|convert binary to other numerical equivalents"
+	;;
+
+	asc | ascii)	echo -e "\0$(printf %o $((2#$2)))" ;;
+	b32 | base32)	echo "obase=32 ; ibase=2 ; $2 " | bc ;;
+	b64 | base64)	echo "obase=64 ; ibase=2 ; $2" | bc ;;
+	dec | decimal)	echo $((2#$2)) ;;
+	hex | hexadecimal)	echo "obase=16 ; ibase=2 ; $2" | bc ;;
+	oct | octal)	echo "obase=8 ; ibase=2 ; $2" | bc ;;
+	all )
+		echo "binary $2 = octal		$(convbin oct $2)
+binary $2 = decimal		$(convbin dec $2)
+binary $2 = hexadecimal	$(convbin hex $2)
+binary $2 = base32		$(convbin b32 $2)
+binary $2 = base64		$(convbin b64 $2)
+binary $2 = ascii		$(convbin asc $2)"
+	;;
+
+esac
