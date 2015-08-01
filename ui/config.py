@@ -43,12 +43,12 @@ class Config(object):
 				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
 
 	def LoadConfig(self):
-		self.cfo = configobj.ConfigObj(USER_DEFAULTS)
+		self.cfo = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
 		if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
-			self.fdc = configobj.ConfigObj(VENDOR_DEFAULTS)
+			self.fdc = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
 		else:
-			self.fdc = configobj.ConfigObj(FACTORY_DEFAULTS)
-		self.udc = configobj.ConfigObj(USER_DEFAULTS)
+			self.fdc = configobj.ConfigObj(infile=FACTORY_DEFAULTS,default_encoding="utf8")
+		self.udc = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
 
 	def ReloadConfig(self):
 		self.cfo.reload()
@@ -59,7 +59,7 @@ class Config(object):
 		try:
 			if self.cfo.as_int("ini_version") < app_ini_version:
 				if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
-					vendor_ini = configobj.ConfigObj(VENDOR_DEFAULTS)
+					vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
 					if vendor_ini.as_int("ini_version") == app_ini_version:
 						shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS_NEW)
 					else:
@@ -67,8 +67,8 @@ class Config(object):
 						shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
 				else:
 					shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
-				new = configobj.ConfigObj(USER_DEFAULTS_NEW)
-				old = configobj.ConfigObj(USER_DEFAULTS)
+				new = configobj.ConfigObj(infile=USER_DEFAULTS_NEW,default_encoding="utf8")
+				old = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
 				new.merge(old)
 				new["ini_version"] = app_ini_version
 				new.write()
