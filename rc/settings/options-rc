@@ -57,6 +57,10 @@ if [[ $(ini_get restore_directory) == True ]]; then
 	fi
 fi
 
+if [[ $(ini_get use_treecd) == True ]]; then
+	alias cd=treecd
+fi
+
 if [[ $(ini_get use_lscd) == True ]]; then
 	alias cd=lscd
 	export LSCD_OPTS=$(ini_get lscd_opts)

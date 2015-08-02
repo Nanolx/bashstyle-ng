@@ -212,6 +212,14 @@ function lscd() {
 	echo "$PWD" > $HOME/.lastpwd
 }
 
+function treecd () {
+	builtin cd "${@}" &>/dev/null
+
+	echo -e "${epink}content:"
+	tree -L 1 $TREE_OPTS
+	echo "$PWD" > $HOME/.lastpwd
+}
+
 
 if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eyellow}\n\nImportant informations:"
