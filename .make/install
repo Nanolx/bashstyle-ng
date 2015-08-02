@@ -14,8 +14,6 @@ post_install () {
 	if [[ ! $DISABLE_POSTINSTALL ]]; then
 		echo -e "\t${WHITE}+ ${MAGENTA} post-installation tasks"
 		gtk-update-icon-cache -f $PREFIX/share/icons/hicolor 2>/dev/null
-		rm -rf $DESTDIR/$PREFIX/share/bashstyle-ng/rc/bin/
-		rm -f /etc/profile.d/bashstyle.sh
 		if [[ $(grep "bashstyle.sh" ${BASHFILE}) == "" ]]; then
 			echo "source ${PROFILEDIR}/bashstyle.sh" | sed -e 's,//,/,g' >> ${BASHFILE}
 		fi

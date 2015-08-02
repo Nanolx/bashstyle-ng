@@ -12,7 +12,6 @@
 DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     rc/nx-rc:${DATADIR}/rc
 	     rc/ascii/*:${DATADIR}/rc/ascii
-	     rc/dirinfo/*:${DATADIR}/rc/dirinfo
 	     rc/internal/*:${DATADIR}/rc/internal
 	     rc/settings/*:${DATADIR}/rc/settings
 	     rc/styles/*:${DATADIR}/rc/styles
@@ -28,7 +27,6 @@ LOCALE_FILES=( i18n/de/*.mo:${LOCALEDIR}/de/LC_MESSAGES
 	       i18n/ru/*.mo:${LOCALEDIR}/ru/LC_MESSAGES )
 
 BIN_FILES=( data/bashstyle:${BINDIR}
-	    bin-extra/*:${DATADIR}/bin
 	    rc/functions/*:${DATADIR}/rc/functions )
 
 PROFILE_FILES=( data/bashstyle.sh:${PROFILEDIR} )

@@ -30,7 +30,6 @@ while [[ ${xcount} -lt $# ]]; do
 		--girpath=* )		GIRPATH="${1/*=}" ;;
 		--datadir=* )		DATADIR="${1/*=}" ;;
 		--python=* )		PYTHON="${1/*=}" ;;
-		--dirinfo=* )		DIRINFO_ENABLE="${1/*=}" ;;
 		--bashrc=* )		BASHFILE="${1/*=}" ;;
 		--quiet )		QUIET=true ;;
 		--help )		MODE=help ;;

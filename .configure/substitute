@@ -24,7 +24,6 @@ substitute_values () {
 	sed -e "s>@VERSION@>$xVERSION>g" \
 		-e "s>@PREFIX@>$PREFIX>g" \
 		-e "s>@DATADIR@>$DATADIR>g" \
-		-e "s>@DIRINFO_ENABLE@>$DIRINFO_ENABLE>g" \
 		-e "s>@PYTHON@>$PYTHON>g" \
 		-e "s>@PROFILEDIR@>$PROFILEDIR>g" -i ${IN_FILES[@]}
 	sed -e "s>//>/>g" -i ${IN_FILES[@]}

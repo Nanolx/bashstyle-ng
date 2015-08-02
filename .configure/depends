@@ -1,13 +1,13 @@
 APPS=( bash gawk grep sed bc msgfmt less )
-OPT_APPS=( "acpi:showbatteryload won't work"
-"lspci:systeminfos --pci won't work"
-"lsusb:systeminfos --usb' won't work"
+OPT_APPS=( "acpi:systemkit battery won't work"
+"lspci:systemkit pci won't work"
+"lsusb:systemkit usb won't work"
+"wget:systemkit externalip won't work"
 "ps2pdf:man2pdf won't work"
-"tree:treecd won't work"
-"whiptail:dirinfo --create won't work")
+"tree:treecd won't work")
 
 SAPPS=( )
-OPT_SAPPS=( "dmidecode:systeminfos --bios won't work" )
+OPT_SAPPS=( "dmidecode:systemkit bios won't work" )
 
 LIBS=( )
 OPT_LIBS=( )

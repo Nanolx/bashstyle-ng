@@ -21,7 +21,6 @@ elif [[ -d "/usr/lib64/girepository-1.0/" ]]; then
 fi
 
 PREFIX="/usr"
-DIRINFO_ENABLE="false"
 MODE=user
 QUIET=false
 PYTHON=$(which python3 || which python)
@@ -40,14 +39,13 @@ export_result ()
 	echo -e "MODE=\"${MODE}\"\
 \nPREFIX=\"${PREFIX}\"\
 \nDATADIR=\"${DATADIR}/bashstyle-ng/\"\
-\nDATADIR_LIST=( bin ui rc/{,ascii,dirinfo,functions,internal,settings,styles} termcap/{bar,body} vim/{,colors} )\
+\nDATADIR_LIST=( ui rc/{,ascii,functions,internal,settings,styles} termcap/{bar,body} vim/{,colors} )\
 \nPROFILEDIR=\"${PROFILEDIR}/\"\
 \nBINDIR=\"${BINDIR}\"\
 \nLOCALEDIR=\"${DATADIR}/locale/\"\
 \nLOCALEDIR_LIST=( {de,es,it,ru}/LC_MESSAGES/ )\
 \nICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"\
 \nPCDIR=\"${PCDIR}/\"\
-\nDIRINFO_ENABLE=\"${DIRINFO_ENABLE}\"\
 \nBASHFILE=\"${BASHFILE}\"\
 \nMISSING=( ${MISSING} )" | sed -e 's,\/\/,\/,g' >> ${PWD}/.configure/results
 

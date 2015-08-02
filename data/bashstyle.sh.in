@@ -12,31 +12,5 @@ if [[ $PATH != *games* && -d /usr/games/ ]]; then
 	PATH="$PATH:/usr/games/:/usr/local/games/"
 fi
 
-# substituted value from configure script
-if [[ @DIRINFO_ENABLE@ != "false" ]]; then
-
-	if [[ ! $CP_CMD ]]; then
-		export CP_CMD=$(which cp)
-	fi
-
-	if [[ ! $MV_CMD ]]; then
-		export MV_CMD=$(which mv)
-	fi
-
-	if [[ ! $RM_CMD ]]; then
-		export RM_CMD=$(which rm)
-	fi
-
-	if [[ ! $SH_CMD ]]; then
-		export SH_CMD=$(which shred)
-		export SH_OPTS="-uvz"
-	fi
-
-	if [[ $PATH != *bashstyle-ng* ]]; then
-		PATH="@PREFIX@/share/bashstyle-ng/bin/:$PATH"
-	fi
-
-fi
-
 export PATH="@PREFIX@/share/bashstyle-ng/rc/functions/:$PATH:."
-source @PREFIX@/share/bashstyle-ng/rc/nx-rc
+. @PREFIX@/share/bashstyle-ng/rc/nx-rc

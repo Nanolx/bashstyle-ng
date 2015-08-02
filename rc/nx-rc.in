@@ -202,9 +202,6 @@ function lscd() {
 
 
 	if [[ ${OLD_PWD} != ${PWD} ]]; then
-		. $BSNG_RC_DIR/dirinfo/display
-		dirinfo_display
-
 		echo -e "${epink}content:\n"
 		if [[ $(count_files -h) -gt 0 ]]; then
 			ls $LSCD_OPTS

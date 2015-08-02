@@ -82,11 +82,6 @@ end_message () {
 	echo -e "\n${BLUE}Notes from configure:\
 		 \n${YELLOW}Prefix\t\t\t${WHITE}>${MAGENTA} ${PREFIX}\
 		 \n${YELLOW}Python\t\t\t${WHITE}>${MAGENTA} ${PYTHON}"
-	if [[ ${DIRINFO_ENABLE} == "true" ]]; then
-		echo -e "${YELLOW}Dirinfo Wrappers\t${WHITE}>${GREEN} Enabled"
-	else
-		echo -e "${YELLOW}Dirinfo Wrappers\t${WHITE}>${RED} Disabled"
-	fi
 	if [[ ${DISABLE_POSTINSTALL} ]]; then
 		echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
 	else	echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
@@ -117,7 +112,6 @@ help_message () {
 	\n${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks (for package-maintainers)\
 	\n${ORANGE}--quiet${WHITE} *|${GREEN} Only display warnings, failures and results\
 	\n${ORANGE}--bashrc${WHITE} *|${GREEN} Path to system bashrc (for bashstyle-ng init)\
-	\n${ORANGE}--dirinfo=<bool>${WHITE} *|${GREEN} true: enable dirinfo wrappers, false: disable (default: disable)" | column -t -s \*
 	echo
 	tput sgr0
 
