@@ -11,7 +11,22 @@
 
 case ${1} in
 
-	--help | -h | "")
+	asc | ascii)	echo -e "\0$(printf %o $((16#$2)))" ;;
+	b32 | base32)	echo "obase=32 ; ibase=16 ; $2" | bc ;;
+	b64 | base64)	echo "obase=64 ; ibase=16 ; $2" | bc ;;
+	bin | binary)	echo "obase=2 ; ibase=16 ; $2" | bc ;;
+	dec | decimal)	echo $((16#$2)) ;;
+	oct | octal)	echo "obase=8 ; ibase=16 ; $2" | bc ;;
+	all)
+		echo "hexadecimal $2 = binary	$(convhex bin $2)
+hexadecimal $2 = octal		$(convhex oct $2)
+hexadecimal $2 = decimal	$(convhex dec $2)
+hexadecimal $2 = base32	$(convhex b32 $2)
+hexadecimal $2 = base64	$(convhex b64 $2)
+hexadecimal $2 = ascii		$(convhex asc $2)"
+	;;
+
+	*)
 		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "convhex" -s "convert hexadecimal to other numerical equivalents" \
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
@@ -22,21 +37,6 @@ case ${1} in
 			-o "bin:|convert hexadecimal to binary equivalent"\
 			-o "oct:|convert hexadecimal to octal equivalent"\
 			-o "all:|convert hexadecimal to other numerical equivalents"
-	;;
-
-	asc | ascii)	echo -e "\0$(printf %o $((16#$2)))" ;;
-	b32 | base32)	echo "obase=32 ; ibase=16 ; $2" | bc ;;
-	b64 | base64)	echo "obase=64 ; ibase=16 ; $2" | bc ;;
-	bin | binary)	echo "obase=2 ; ibase=16 ; $2" | bc ;;
-	dec | decimal)	echo $((16#$2)) ;;
-	oct | octal)	echo "obase=8 ; ibase=16 ; $2" | bc ;;
-	*)
-		echo "hexadecimal $2 = binary	$(convhex bin $2)
-hexadecimal $2 = octal		$(convhex oct $2)
-hexadecimal $2 = decimal	$(convhex dec $2)
-hexadecimal $2 = base32	$(convhex b32 $2)
-hexadecimal $2 = base64	$(convhex b64 $2)
-hexadecimal $2 = ascii		$(convhex asc $2)"
 	;;
 
 esac
