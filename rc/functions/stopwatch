@@ -9,13 +9,25 @@
 #							#
 #########################################################
 
-BEGIN=$(date +%s)
+case ${1} in
 
-while true; do
-	NOW=$(date +%s)
-	DIFF=$(($NOW - $BEGIN))
-	MINS=$(($DIFF / 60))
-	SECS=$(($DIFF % 60))
-	echo -ne "Time elapsed: $MINS:`printf %02d $SECS`\r"
-	sleep .1
-done
+	-h | --help )
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "stopwatch" -s "a simple stopwatch" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "none:|--"
+	;;
+
+	*)
+		BEGIN=$(date +%s)
+
+		while true; do
+			NOW=$(date +%s)
+			DIFF=$(($NOW - $BEGIN))
+			MINS=$(($DIFF / 60))
+			SECS=$(($DIFF % 60))
+			echo -ne "Time elapsed: $MINS:`printf %02d $SECS`\r"
+			sleep .1
+		done
+	;;
+
+esac

@@ -9,4 +9,14 @@
 #							#
 #########################################################
 
-find "$@" | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/'
+case ${1} in
+
+	-h | --help )
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "treefind" -s "tree-ified variant of ind" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "none:|--"
+	;;
+
+	* )	find "$@" | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/' ;;
+
+esac

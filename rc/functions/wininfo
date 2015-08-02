@@ -9,4 +9,14 @@
 #							#
 #########################################################
 
-xprop | grep -w "WM_NAME\|WM_CLASS\|WM_WINDOW_ROLE\|_NET_WM_STATE"
+case ${1} in
+
+	-h | --help)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "wininfo" -s "get basic window information" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "none:|--"
+	;;
+
+	*)	xprop | grep -w "WM_NAME\|WM_CLASS\|WM_WINDOW_ROLE\|_NET_WM_STATE" ;;
+
+esac

@@ -9,5 +9,17 @@
 #							#
 #########################################################
 
-ps f -u $USER -o command,pid,%cpu,%mem,time,etime,tty | \
-	awk 'NR <= 1 {print;next} !/awk/ && $0~var' var=${1:-".*"}
+case $1 in
+
+	-h | --help)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "treeps" -s "tree-ified variant of ps" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "none:|--"
+	;;
+
+	*)
+		ps f -u $USER -o command,pid,%cpu,%mem,time,etime,tty | \
+			awk 'NR <= 1 {print;next} !/awk/ && $0~var' var=${1:-".*"}
+	;;
+
+esac
