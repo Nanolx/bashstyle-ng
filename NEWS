@@ -134,11 +134,11 @@ Overview of changes in v9.0 "Hotride"
 * explain git aliases in ui
 * ls alias to git (prettified version of log)
 * lsb alias to git (sort branches (local + remote) by last activity)
-* git_zip function: create zip archive from master
-* git_undelete function: re-checkout all accidently deleted, tracked files
-* git_funmsg function: random, funny commit message
-* git_hub function: open github url for a repository using x-www-browser
-* git_revno function: get classic revision number (like in SVN)
+* gittool zip function: create zip archive from master
+* gittool undelete function: re-checkout all accidently deleted, tracked files
+* gittool funmsg function: random, funny commit message
+* gittool hub function: open github url for a repository using x-www-browser
+* gittool revno function: get classic revision number (like in SVN)
 
 === Removed Features ===
 
@@ -188,6 +188,9 @@ Overview of changes in v9.0 "Hotride"
   show_ip, show_mem, show_size, show_space, show_system_infos,
   show_system_load, show_tty, show_uptime
 	merged into: systemkit
+* git_action, git_branch, git_bzip, git_clonehub, git_export, git_funmsg,
+  git_openhub, git_revision, git_revno, git_undelete, git_xz, git_zip
+	merged into: gitkit
 
 === Misc. Changes ===
 

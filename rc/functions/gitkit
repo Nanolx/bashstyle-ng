@@ -1,0 +1,136 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+case ${1} in
+
+	action)
+		if [[ -d .git ]]; then
+			if [[ -f .git/dotest/rebasing ]]; then
+				ACTION="rebase"
+			elif [[ -f .git/dotest/applying ]]; then
+				ACTION="apply"
+			elif [[ -f .git/dotest-merge/interactive ]]; then
+				ACTION="rebase -i"
+			elif [[ -d .git/dotest-merge ]]; then
+				ACTION="rebase -m"
+			elif [[ -f .git/MERGE_HEAD ]]; then
+				ACTION="merge"
+			elif [[ -f .git/index.lock ]]; then
+				ACTION="locked"
+			elif [[ -f .git/BISECT_LOG ]]; then
+				ACTION="bisect"
+			else	ACTION="nothing"
+			fi
+			echo $ACTION
+		else	echo --
+		fi
+	;;
+
+	branch)
+		if [[ -d .git ]]; then
+			BRANCH=$(git symbolic-ref HEAD 2>/dev/null)
+			echo ${BRANCH#refs/heads/}
+		else	echo --
+		fi
+	fi
+
+	bz2)
+		if [[ -d .git ]]; then
+			git archive master | bzip2 -9 > "$(basename $PWD)".tar.bz2
+		else	echo "current directory is not the root of a git repository"
+		fi
+	;;
+
+	xz)
+		if [[ -d .git ]]; then
+			git archive master | xz -9 > "$(basename $PWD)".tar.xz
+		else	echo "current directory is not the root of a git repository"
+		fi
+	;;
+
+	zip)
+		if [[ -d .git ]]; then
+			git archive master --format=zip > "$(basename $PWD)".zip
+		else	echo "current directory is not the root of a git repository"
+		fi
+	;;
+
+	cloneuser)
+		curl -s https://api.github.com/users/"${2}"/repos?per_page=200 | \
+			ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| %x[git clone #{repo["ssh_url"]} ]}'
+	;;
+	
+	cloneorg)
+		curl -s https://api.github.com/orgs/"${2}"/repos?per_page=200 | \
+			ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| %x[git clone #{repo["ssh_url"]} ]}'
+	;;
+
+	export)
+		if [[ "$2" && -d .git ]]; then
+			git checkout-index --prefix="$2"/ -a
+		fi
+	;;
+
+	funmsg)	wget -qO - http://whatthecommit.com/index.txt ;;
+
+	openhub)
+		if [[ -d .git ]]; then
+			git remote -v | grep fetch | \
+				sed 's/\(.*github.com\)[:|/]\(.*\).git (fetch)/\2/' | \
+				awk {'print "https://github.com/" $1'} | \
+				xargs x-www-browser || echo "not a github repository"
+		else	echo "current directory is not the root of a git repository"
+		fi
+	;;
+
+	revision)
+		if [[ -d .git ]]; then
+			REVISION=$(git rev-parse HEAD 2>/dev/null)
+			REVISION=${REVISION/HEAD/}
+			echo ${REVISION:0:6}
+		else	echo --
+		fi
+	;;
+
+	revno)
+		if [[ -d .git ]]; then
+			git rev-list --reverse HEAD | \
+				awk "/$(git log -n 1 --pretty="format:%h")/ {print NR}"
+		else	echo --
+		fi
+	;;
+
+	undelete)
+		if [[ -d .git ]]; then
+			git checkout $(git ls-files --deleted)
+		else	echo "current directory is not the root of a git repository"
+		fi
+	;;
+
+	*)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "gitkit" -s "various companion functions for GIT" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "action:|print the current action in a GIT repo"\
+			-o "branch:|print the current branch in a GIT repo"\
+			-o "bz2:|create bz2 archive from a GIT repo"\
+			-o "xz:|create xz archive from a GIT repo"\
+			-o "zip:|create zip archive from a GIT repo"\
+			-o "cloneuser:username|clone all repos from a GitHub user (SSH)"\
+			-o "cloneorg:organization|clone all repos from a GitHub organization (SSH)"\
+			-o "export:directory|export GIT repo for release tarball"\
+			-o "funmsg:|create funny GIT commit message"\
+			-o "openhub:|open GitHub project page using x-www-browser"\
+			-o "revision:|get 6 digit revision from a GIT repo"\
+			-o "revno:|get traditional revision number from a GIT repo"\
+			-o "undelete:|undelete files accidently deleted locally"
+	;;
+
+esac
