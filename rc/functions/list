@@ -1,0 +1,45 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "list" -s "various ls variants" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "single:|one-column ls, directories first"\
+			-o "group:|show group for files in directory"\
+			-o "verbose:|detailed ls without hidden files"\
+			-o "detailed:|detailed ls including hidden files"\
+			-o "voctal:|detailed ls without hidden files (octal perms)"\
+			-o "doctal:|detailed ls including hidden files (octal perms)"\
+			-o "perm:|show plain and octal permissions for files"\
+			-o "owner:|show owner for files in directory"
+	;;
+
+	-s | single)	ls -1 --group-directories-first "${@:2}" ;;
+	-g | group )	ls -l --group-directories-first "${@:2}" | \
+					sed -e '1d' | \
+					gawk '{print $9, "in Group ->", $4}' | \
+					column -t ;;
+	-v | verbose)	ls -l --group-directories-first "${@:2}" ;;
+	-d | detailed)	ls -al --group-directories-first "${@:2}" ;;
+	-p | perm)		find "${@:2}" -maxdepth 1 -printf \
+					"Permissons of %f -> %M (%m)\n" | column -t ;;
+	-o | owner)		ls -l --group-directories-first "${@:2}" | \
+					gawk '{print $9, "by User ->", $3}' | \
+					sed -e '1d' | column -t ;;
+	-V | voctal)	ls -l --group-directories-first "${@:2}" | \
+					awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}' ;;
+	-D | doctal)	ls -al --group-directories-first "${@:2}" | \
+					awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}' ;;
+
+esac
