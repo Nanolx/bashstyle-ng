@@ -190,9 +190,9 @@ function lscd() {
 	if [[ -f "${1}" ]]; then
 		builtin cd "${1%/*}" &>/dev/null
 	elif [[ -d "${1}" ]]; then
-		builtin cd "${*}" &>/dev/null
-	elif [[ "${1}" == -*   ]]; then
 		builtin cd "${1}" &>/dev/null
+	elif [[ "${1}" == -*   ]]; then
+		builtin cd "${*}" &>/dev/null
 	elif [[ ! "${1}" ]]; then
 		builtin cd
 	elif [[ $(ini_get lscd_mkdir) == True ]]; then
