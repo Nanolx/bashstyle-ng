@@ -65,8 +65,6 @@ if [[ $(ini_get use_lscd) == True ]]; then
 	fi
 fi
 
-export CD_WRITER=$(ini_get cd_writer)
-
 if [[ $(ini_get dd_noerror) == True ]]; then
 	export DD_OPTS="conv=noerror"
 fi
@@ -77,4 +75,4 @@ export pwdmaxlen=$(ini_get pwdlength)
 export trunc_symbol=$(ini_get pwdcut)
 export dirchar=$(ini_get directory_indicator)
 
-dbg_log export HISTCONTROL HISTIGNORE FIGNORE CDPATH FCEDIT TMOUT HISTSIZE HISTFILESIZE PATH GREP_OPTIONS GREP_COLOR
+dbg_log export HISTCONTROL HISTIGNORE FIGNORE CDPATH FCEDIT TMOUT HISTSIZE HISTFILESIZE PATH GREP_COLOR
