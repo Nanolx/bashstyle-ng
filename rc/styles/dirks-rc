@@ -15,12 +15,12 @@ if [[ $enabcol == "True" ]]; then
 
 PS1="\n\
 $pscolor┌─$sepacolor[ $wdircolor\$(truncpwd)$DIRKS_1_COLOR\$(DIRKS_1) $sepacolor]\n\
-$pscolor└─$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\H $fontcolor/ $pscolor\$(show_tty) $sepacolor( $timecolor\t $sepacolor) $pscolor$SHLVL$DIRKS_2_COLOR\$(DIRKS_2) $sepacolor]$pscolor·>$fontcolor "
+$pscolor└─$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\H $fontcolor/ $pscolor\$(systemkit tty) $sepacolor( $timecolor\t $sepacolor) $pscolor$SHLVL$DIRKS_2_COLOR\$(DIRKS_2) $sepacolor]$pscolor·>$fontcolor "
 
 else
 
 PS1="\n\
 ┌─[ \$(truncpwd)\$(DIRKS_1) ]\n\
-└─[ \u @ \H / \$(show_tty) ( \t ) $SHLVL\$(DIRKS_2) ]·> "
+└─[ \u @ \H / \$(systemkit tty) ( \t ) $SHLVL\$(DIRKS_2) ]·> "
 
 fi

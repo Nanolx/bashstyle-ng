@@ -50,7 +50,7 @@ if [[ $enabcol == "True" ]]; then
 PS1="\n\
 $sepacolor[ $timecolor\$(date +%T) $fontcolor-$datecolor \$(date +%D) $sepacolor]\
 $sepacolor[ $usercolor\u $fontcolor@ $hostcolor\h $sepacolor]\
-$sepacolor[ $wdircolor\${files}.\${hiddenfiles}-\${executables}x \$(show_size) \
+$sepacolor[ $wdircolor\${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize) \
 \${directories}.\${hiddendirectories}d\${links}\${devices}\
 $sepacolor ][ $upcolor\${loaddiff}$sepacolor ][ \
 $pscolor\$(ps ax | wc -l | sed -e \"s: ::g\")proc $sepacolor]\
@@ -61,7 +61,7 @@ else
 PS1="\n\
 [ \$(date +%T) - \$(date +%D) ]\
 [ \u @ \h ]\
-[ \${files}.\${hiddenfiles}-\${executables}x \$(show_size) \
+[ \${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize) \
 \${directories}.\${hiddendirectories}d\${links}\${devices}\
 ][ \${loaddiff} ][ \
 \$(ps ax | wc -l | sed -e \"s: ::g\")proc ]\

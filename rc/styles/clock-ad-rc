@@ -70,22 +70,22 @@ do
 	case $i in
 		$j )
 			echo -en "\033[$j;$((${COLUMNS}-29))H"
-			echo -en "$esepacolor($efontcolor system-load: $(show_system_load 1)$esepacolor )────────┤"
+			echo -en "$esepacolor($efontcolor system-load: $(systemkit load1)$esepacolor )────────┤"
 			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
 		;;
 		$k )
 			echo -en "\033[$k;$((${COLUMNS}-29))H"
-			echo -en "$esepacolor($efontcolor cpu-load: $(show_cpu_load)$esepacolor )────────────┤"
+			echo -en "$esepacolor($efontcolor cpu-load: $(systemkit cpuload)$esepacolor )────────────┤"
 			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
 		;;
 		$l )
 			echo -en "\033[$l;$((${COLUMNS}-29))H"
-			echo -en "$esepacolor($efontcolor ram: $esepacolor$(show_mem --used)mb$efontcolor / $esepacolor$(show_mem --free)mb )─────┤"
+			echo -en "$esepacolor($efontcolor ram: $esepacolor$(systemkit usedram)mb$efontcolor / $esepacolor$(systemkit freeram)mb )─────┤"
 			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
 		;;
 		$m )
 			echo -en "\033[$m;$((${COLUMNS}-29))H"
-			echo -en "$esepacolor($efontcolor processes:$epscolor $(count_processes) $esepacolor)──────────┤"
+			echo -en "$esepacolor($efontcolor processes:$epscolor $(systemkit processes) $esepacolor)──────────┤"
 			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
 		;;
 		* )
@@ -104,7 +104,7 @@ PS1="\[\033[\${prompt_line};0H\]\n\
 $sepacolor┌─( $usercolor\u $fontcolor@ $hostcolor\h \
 $sepacolor)─\${fill}─( $wdircolor\$(_newPWD)\
 $sepacolor )────┘\n\
-$sepacolor└─($upcolor uptime: \$(show_uptime)\
+$sepacolor└─($upcolor uptime: \$(systemkit uptime)\
 $fontcolor :$CLOCK_AD_1_COLOR\$(CLOCK_AD_1)$fontcolor \$$sepacolor )·>$fontcolor "
 
 else
@@ -152,22 +152,22 @@ do
 	case $i in
 		$j )
 			echo -en "\033[$j;$((${COLUMNS}-29))H"
-			echo -en "( system-load: $(show_system_load 1) )────────┤"
+			echo -en "( system-load: $(systemkit load1) )────────┤"
 			echo -en "\033[$(($i-1));${COLUMNS}H│"
 		;;
 		$k )
 			echo -en "\033[$k;$((${COLUMNS}-29))H"
-			echo -en "( cpu-load: $(show_cpu_load) )────────────┤"
+			echo -en "( cpu-load: $(systemkit cpuload) )────────────┤"
 			echo -en "\033[$(($i-1));${COLUMNS}H│"
 		;;
 		$l )
 			echo -en "\033[$l;$((${COLUMNS}-29))H"
-			echo -en "( ram: $(show_mem --used)mb / $(show_mem --free)mb )─────┤"
+			echo -en "( ram: $(systemkit usedram)mb / $(systemkit freeram)mb )─────┤"
 			echo -en "\033[$(($i-1));${COLUMNS}H│"
 		;;
 		$m )
 			echo -en "\033[$m;$((${COLUMNS}-29))H"
-			echo -en "( processes:$epscolor $(count_processes) )──────────┤"
+			echo -en "( processes:$epscolor $(systemkit processes) )──────────┤"
 			echo -en "\033[$(($i-1));${COLUMNS}H│"
 		;;
 		* )
@@ -184,6 +184,6 @@ PROMPT_COMMAND=pre_prompt
 
 PS1="\[\033[\${prompt_line};0H\]\n\
 ┌─( \u @ \h )─\${fill}─( \$(_newPWD) \
-)────┘\n└─( uptime: \$(show_uptime) :\$(CLOCK_AD_1) \$ )·> "
+)────┘\n└─( uptime: \$(systemkit uptime) :\$(CLOCK_AD_1) \$ )·> "
 
 fi

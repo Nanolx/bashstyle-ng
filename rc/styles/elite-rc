@@ -13,16 +13,16 @@ if [[ $enabcol == "True" ]]; then
 
 PS1="\n\
 $pscolor┌─$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\h$sepacolor ]$pscolor─\
-$sepacolor[$pscolor job #\# $sepacolor]$pscolor─$sepacolor[$fontcolor \$(show_tty)$sepacolor ]\
+$sepacolor[$pscolor job #\# $sepacolor]$pscolor─$sepacolor[$fontcolor \$(systemkit tty)$sepacolor ]\
 $pscolor─$sepacolor[ $timecolor\$(date +%H:%M:%S)\
-$fontcolor : $datecolor\$(date +%m/%d/%y)$fontcolor :$upcolor \$(show_uptime)$sepacolor ]\n\
+$fontcolor : $datecolor\$(date +%m/%d/%y)$fontcolor :$upcolor \$(systemkit uptime)$sepacolor ]\n\
 $pscolor└─$sepacolor[ $usercolor\$$pscolor : $wdircolor\$(truncpwd)$ELITE_1_COLOR\$(ELITE_1)$sepacolor ]\
 $pscolor·>$fontcolor "
 
 else
 
 PS1="\n\
-┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S)\
-: \$(date +%m/%d/%y) : \$(show_uptime) ]\n└─[ \$ : \$(truncpwd)\$(ELITE_1) ]·> "
+┌─[ \u @ \h ]─[ job #\# ]─[ \$(systemkit tty) ]─[ \$(date +%H:%M:%S)\
+: \$(date +%m/%d/%y) : \$(systemkit uptime) ]\n└─[ \$ : \$(truncpwd)\$(ELITE_1) ]·> "
 
 fi
