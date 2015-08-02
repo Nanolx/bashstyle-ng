@@ -1,0 +1,41 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+case ${1} in
+
+	--help | -h | "")
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "convdec" -s "convert decimal to other numerical equivalents" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "asc:|convert decimal to ascii equivalent"\
+			-o "b32:|convert decimal to base32 equivalent"\
+			-o "b64:|convert decimal to base64 equivalent"\
+			-o "bin:|convert decimal to binary equivalent"\
+			-o "hex:|convert decimal to hexadecimal equivalent"\
+			-o "oct:|convert decimal to octal equivalent"\
+			-o "all:|convert decimal to other numerical equivalents"
+	;;
+
+	asc | ascii)	echo -e "\0$(printf %o $2)" ;;
+	b32 | base32)	echo "obase=32 ; $2" | bc ;;
+	b64 | base64)	echo "obase=64 ; $2" | bc ;;
+	bin | binary)	echo "obase=2 ; $2" | bc ;;
+	hex | hexadecimal)	echo "obase=16 ; $2" | bc ;;
+	oct | octal)	echo "obase=8 ; $2" | bc ;;
+	all )
+		echo "decimal $2 = binary		$(convdec bin $2)
+decimal $2 = octal		$(convdec oct $2)
+decimal $2 = hexadecimal	$(convdec hex $2)
+decimal $2 = base32		$(convdec b32 $2)
+decimal $2 = base64		$(convdec b64 $2)
+decimal $2 = ascii		$(convdec asc $2)"
+	;;
+
+esac
