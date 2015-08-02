@@ -202,8 +202,8 @@ function lscd() {
 
 
 	if [[ ${OLD_PWD} != ${PWD} ]]; then
-		echo -e "${epink}content:\n"
-		if [[ $(count_files -h) -gt 0 ]]; then
+		echo -e "\n${epink}content:\n"
+		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
 			ls $LSCD_OPTS
 		else	echo -e "${ecream}-- empty --\n"
 		fi
