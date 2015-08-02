@@ -40,7 +40,7 @@ case ${1} in
 			echo ${BRANCH#refs/heads/}
 		else	echo --
 		fi
-	fi
+	;;
 
 	bz2)
 		if [[ -d .git ]]; then
