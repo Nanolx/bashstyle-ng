@@ -1,0 +1,29 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+case ${1} in
+
+	ext)	echo ${2##*.}	;;
+	name)	echo ${2##*/}	;;
+	noext)	file=$(filename "${1}")
+			echo ${file%\.*} ;;
+	path)	echo ${file%/*}	;;
+
+	*)
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "basefile" -s "variant of basename for files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "ext:file|output extension of file"\
+			-o "name:file|output filename without path"\
+			-o "noext:file|output filename without path and extension"\
+			-o "path:file|output path of file"
+	;;
+
+esac
