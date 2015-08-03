@@ -97,7 +97,7 @@ elif [[ ! -e $HOME/.nanorc.bs-ng.* ]]; then
 
 	if [[ $(ini_get syntax_highlight) == True ]]; then
 		dbg_msg $"NanoCFG Setting:" $"Colors" $"On"
-		COLOR_FILES="$(ls /usr/share/*.nanorc)"
+		COLOR_FILES="$(ls /usr/share/nano/*.nanorc)"
 		for file in $COLOR_FILES; \
 			do rc_add "include \"$file\""; \
 		done
