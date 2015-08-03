@@ -19,14 +19,10 @@ case ${1} in
 	;;
 
 	* )
-		APP="$1"
-		which "$APP" &>/dev/null
-
-		if (( $? != 0 )); then
-			shift
-			echo -e "$APP not found!\n\`$@' won't work without it."
-			exit 1
-		fi
+		which "${1}" &>/dev/null
+		[[ $? != 0 ]] && (
+			echo -e "${1} not found! ${@:2} won't work without it."
+			exit 1 )
 	;;
 
 esac
