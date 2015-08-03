@@ -179,7 +179,10 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 		dbg_log $WelcomeMessage
 	fi
 
+fi
 
+if [[ $(ini_get use_readline == True) ]]; then
+	dbg_log source $BSNG_RC_DIR/settings/keybindings-rc
 fi
 
 function lscd() {
