@@ -220,6 +220,14 @@ function treecd () {
 	echo "$PWD" > $HOME/.lastpwd
 }
 
+function reload () {
+	#xk2c from commandlinefu.com
+	builtin unalias -a
+	builtin unset -f $(builtin declare -F | gawk '{print $3}')
+	source @PROFILEDIR@/bashstyle.sh
+
+}
+
 
 if [[ $ERR_MSG != "" ]]; then
 	echo -e "${eyellow}\n\nImportant informations:"
