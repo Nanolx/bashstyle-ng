@@ -39,13 +39,27 @@ keybindings_setter () {
 
 }
 
-for key in undo upcase_word capitalize_word downcase_word transpose_words \
-	transpose_chars unix_word_rubout kill_word possible_filename_completions \
-	possible_hostname_completions possible_username_completions \
-	possible_variable_completions kill_line unix_line_discard \
-	beginning_of_line end_of_line clear_screen history_search_forward \
-	history_search_backward complete_path; do
 
-		keybindings_setter $(ini_get $key) ${key//_/-}
+if [[ -e $HOME/.keybindings && ( ! -w $HOME/.keybindings || ! -r $HOME/.keybindings ) ]]; then
+	ERR_MSG+="\n * $HOME/.keybindings is not accessible! -- adjust permissions"
+elif [[ ! -e $HOME/.keybindings.bs-ng.* ]]; then
 
-done
+	export RC_FILE=$HOME/.keybindings.bs-ng.$(date +%I-%M-%S)
+	dbg_msg $"ReadlineCFG Loading:" $"Keybindings"
+
+	for key in undo upcase_word capitalize_word downcase_word transpose_words \
+		transpose_chars unix_word_rubout kill_word possible_filename_completions \
+		possible_hostname_completions possible_username_completions \
+		possible_variable_completions kill_line unix_line_discard \
+		beginning_of_line end_of_line clear_screen history_search_forward \
+		history_search_backward complete_path; do
+
+			keybindings_setter $(ini_get $key) ${key//_/-}
+
+	done
+
+	mv ${RC_FILE} ${HOME}/.keybindings
+	builtin bind -f ${HOME}/.keybindings
+	unset RC_FILE
+
+fi
