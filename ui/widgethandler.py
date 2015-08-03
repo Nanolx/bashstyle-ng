@@ -34,7 +34,7 @@ DATADIR = os.getenv('BSNG_DATADIR')
 blacklist = ['\'', '\"']
 gtkbuilder = Gtk.Builder()
 gtkbuilder.set_translation_domain("bs-ng")
-gtkbuilder.add_from_file(DATADIR + "/bashstyle-ng/ui/bashstyle8.ui")
+gtkbuilder.add_from_file(DATADIR + "/bashstyle-ng/ui/bashstyle9.ui")
 
 class WidgetHandler(object):
 		####################### metafuncs for handling widgets ###########################

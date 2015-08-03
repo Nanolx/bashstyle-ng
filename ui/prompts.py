@@ -61,28 +61,28 @@ i=${LINES}
 while [ $i -ge 4 ]; do
    if [[ $i == $j ]]; then
 	echo -en \"\\033[$j;$((${COLUMNS}-29))H\"
-	echo -en \"( system-load: $(show_system_load 1) )────────\"
+	echo -en \"( system-load: $(systemkit load1) )────────\"
    fi
    if [[ $i == $k ]]; then
 	echo -en \"\\033[$k;$((${COLUMNS}-29))H\"
-	echo -en \"( cpu-load: $(show_cpu_load) )────────────\"
+	echo -en \"( cpu-load: $(systemkit cpuload) )────────────\"
    fi
    if [[ $i == $l ]]; then
 	echo -en \"\\033[$l;$((${COLUMNS}-29))H\"
-	echo -en \"( ram: $(show_mem --used)mb / $(show_mem --free)mb )─────\"
+	echo -en \"( ram: $(systemkit usedram)mb / $(systemkit freeram)mb )─────\"
    fi
    if [[ $i == $m ]]; then
 	echo -en \"\\033[$m;$((${COLUMNS}-29))H\"
-	echo -en \"( processes: $(count_processes) )──────────\"
+	echo -en \"( processes: $(systemkit processes) )──────────\"
    fi
    echo -en \"\\033[$(($i-1));${COLUMNS}H│\"
    let i=$i-1
 done
 let prompt_line=${LINES}-1"""
 
-clock_advanced_ps=r"""\[\\033[\${prompt_line};0H\]\┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\└─( uptime: \$(show_uptime) : $ )·> """
+clock_advanced_ps=r"""\[\\033[\${prompt_line};0H\]\┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\└─( uptime: \$(systemkit uptime) : $ )·> """
 
-elite_ps=r"""\┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(show_uptime) ]\└─[ $ : \$(truncpwd) ]·> """
+elite_ps=r"""\┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(systemkit uptime) ]\└─[ $ : \$(truncpwd) ]·> """
 
 poweruser_pc=r"""
 local one=$(uptime | sed -e \"s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\\1/\" -e \"s/ //g\")
@@ -125,12 +125,12 @@ dirks_ps=r"""\[ \\t ] \u \$(truncpwd) $ """
 
 dotprompt_ps=r"""\.:[ \u @ \h ]:. .:[ \$(truncpwd) ]:..:[·> """
 
-sepang_ps=r"""\⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(show_uptime) ⁆⊐\⊏⁅ \$(truncpwd) ⁆⊐≻ """
+sepang_ps=r"""\⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(systemkit uptime) ⁆⊐\⊏⁅ \$(truncpwd) ⁆⊐≻ """
 
-quirk_ps=r"""\ -( \u / \h )-( \$(show_tty) )-( uptime: \$(show_uptime) )-( \$(date +%H:%M)
-$(date +%d-%b-%y ) )-( files: \$(count_files +f) / folders: \$(count_files -d) )-\ -< \$(truncpwd) >- """
+quirk_ps=r"""\ -( \u / \h )-( \$(show_tty) )-( uptime: \$(systemkit uptime) )-( \$(date +%H:%M)
+$(date +%d-%b-%y ) )-( files: \$(systemkit countvisiblefiles) / folders: \$(countvisibledirs) )-\ -< \$(truncpwd) >- """
 
-sputnik_ps=r"""\♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(truncpwd) )♦♦\♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(show_uptime) \$ )♦♦ """
+sputnik_ps=r"""\♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(truncpwd) )♦♦\♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(systemkit uptime) \$ )♦♦ """
 
 ayoli_pc=r"""newPWD=\"${PWD}\"
 user=\"whoami\"

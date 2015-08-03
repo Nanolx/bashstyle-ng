@@ -186,33 +186,28 @@ ls_colors = {
 	    }
 
 counters = {
-	    1 : "\\$(count_files +f)",
-	    2 : "\\$(count_files -f)",
+	    1 : "\\$(systemkit countoverallfiles)",
+	    2 : "\\$(systemkit countvisiblefiles)",
 	   }
 
 load_getters = {
-		1 : "\\$(show_system_load 1)",
-		2 : "\\$(show_system_load 10)",
-		3 : "\\$(show_system_load 15)",
+		1 : "\\$(systemkit load1)",
+		2 : "\\$(systemkit load5)",
+		3 : "\\$(systemkit load15)",
 	       }
 
 memory_getters = {
-		  1 : "\\$(show_mem --used)",
-		  2 : "\\$(show_mem --free)",
-		  3 : "\\$(show_mem --used-percent)",
-		  4 : "\\$(show_mem --free-percent)",
+		  1 : "\\$(systemkit usedram)",
+		  2 : "\\$(systemkit freeram)",
+		  3 : "\\$(systemkit usedram%)",
+		  4 : "\\$(systemkit freeram%)",
 		 }
 
-battery_getters = {
-		   1 : "\\$(show_battery_load --acpi)",
-		   2 : "\\$(show_battery_load --apm)",
-		  }
-
 space_getters = {
-		  1 : "\\$(show_space --used <device>)",
-		  2 : "\\$(show_space --free <device>)",
-		  3 : "\\$(show_space --used-percent <device>)",
-		  4 : "\\$(show_space --free-percent <device>)",
+		  1 : "\\$(systemkit usedspace <device>)",
+		  2 : "\\$(systemkit freespace <device>)",
+		  3 : "\\$(systemkit usedspace% <device>)",
+		  4 : "\\$(systemkit freespace% <device>)",
 		 }
 
 symbolic_colors = {

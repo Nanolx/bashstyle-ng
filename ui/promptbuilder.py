@@ -174,13 +174,14 @@ class PromptBuilder(object):
 		load_toolbutton("number", "\\#")
 		load_toolbutton("pid", "$BASHPID")
 		load_toolbutton("shlvl", "$SHLVL")
-		load_toolbutton("truncpwd", "\\$(trunc_pwd)")
-		load_toolbutton("showsize", "\\$(show_size)")
-		load_toolbutton("countprocesses", "\\$(count_processes)")
-		load_toolbutton("showuptime", "\\$(show_uptime)")
-		load_toolbutton("showtty", "\\$(showtty)")
-		load_toolbutton("showcpuload", "\\$(show_cpu_load)")
+		load_toolbutton("truncpwd", "\\$(truncpwd)")
+		load_toolbutton("showsize", "\\$(systemkit dirsize)")
+		load_toolbutton("countprocesses", "\\$(systemkit processes)")
+		load_toolbutton("showuptime", "\\$(systemkit uptime)")
+		load_toolbutton("showtty", "\\$(systemkit tty)")
+		load_toolbutton("showcpuload", "\\$(systemkit cpuload)")
 		load_toolbutton("showseconds", "\\$SECONDS)")
+		load_toolbutton("showbatteryload", "\\$(systemkit battery)")
 
 		###
 
@@ -190,7 +191,6 @@ class PromptBuilder(object):
 			widget.connect("changed", prompt_add_combo, dict)
 
 		load_toolcombo("showmem", dicts.memory_getters)
-		load_toolcombo("showbatteryload", dicts.battery_getters)
 		load_toolcombo("showspace", dicts.space_getters)
 		load_toolcombo("countfiles", dicts.counters)
 		load_toolcombo("showload", dicts.load_getters)
