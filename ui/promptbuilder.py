@@ -149,9 +149,11 @@ class PromptBuilder(object):
 		self.show_toolbox = gtkbuilder.get_object("show_toolbox")
 
 		def do_show_toolbox(widget, data=None):
-			toolbox = gtkbuilder.get_object("Toolbox")
-			toolbox.show_all()
-			toolbox.connect("delete-event", lambda w, e: w.hide() or True)
+                        toolbox = gtkbuilder.get_object("Toolbox")
+                        toolbox_close = gtkbuilder.get_object("toolbox.close")
+                        toolbox.show_all()
+                        toolbox_close.connect("clicked", lambda w: toolbox.hide() or True)
+                        toolbox.connect("delete-event", lambda w, e: w.hide() or True)
 
 		self.show_toolbox.connect("clicked", do_show_toolbox)
 
