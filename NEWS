@@ -85,6 +85,15 @@ Overview of changes in v9.0 "Hotride"
 	enforce configobj encoding to be utf8 to ensure everything works fine
 * #180 (nanorc):
 	enabling syntax highlighting for GNU Nano did not work properly
+* #181 (git):
+	allow git configuration to apply, if Bash configuration is not used
+* #182 (birthday greetings):
+	fixup user birthday greeting message
+* #183 (readline):
+	make Readline configuration properly apply, if Bash configuration is
+	not used (previously it would be created in the first new Bash session,
+	but not applied, so it (or changes to it) took until the second new
+	Bash session after program run to make readline configuration apply)
 
 === Wizard-Merge ===
 

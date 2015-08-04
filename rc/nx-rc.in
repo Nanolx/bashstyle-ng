@@ -55,6 +55,7 @@ dbg_msg $"BashStyle-NG Logfile:" $BSNG_LOGFILE
 if [[ $(ini_get use_readlinecfg) == "True" ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
 	dbg_log source $BSNG_RC_DIR/settings/readline-rc
+	dbg_log bind -f ${HOME}/.inputrc
 fi
 
 if [[ $(ini_get use_vimcfg) == "True" ]]; then
@@ -81,6 +82,8 @@ if [[ $(ini_get use_lscolors) == "True" && $(ini_get enable_colors) == "True" ]]
 	dbg_msg $"BashStyle-NG Loading:" $"LSCOLORS"
 	dbg_log source $BSNG_RC_DIR/settings/ls-rc
 fi
+
+dbg_log source $BSNG_RC_DIR/settings/git-rc
 
 if [[ $(ini_get use_bashstyle) == "True" ]]; then
 
@@ -114,7 +117,6 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 		dbg_log source $BSNG_RC_DIR/settings/man-rc
 	fi
 
-	dbg_log source $BSNG_RC_DIR/settings/git-rc
 	dbg_log source $BSNG_RC_DIR/settings/shopt-rc
 
 	shopt -s checkwinsize
@@ -164,20 +166,15 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 
 	WelcomeMessage=$(ini_get welcome_message)
 
-	if [[ -e $HOME/.bookmarks ]]; then
-		dbg_msg $"BashStyle-NG Loading:" $"Bookmarks"
-		dbg_log . $HOME/.bookmarks
-	else	touch $HOME/.bookmarks
-	fi
-
-	bind -f ${HOME}/.inputrc
-
 	if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
-		cat $BSNG_RC_DIR/ascii/birthday
+		cat $BSNG_RC_DIR/internal/birthday
+		touch ~/.bday
 	elif [[ $WelcomeMessage != "" ]]; then \
 		dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
 		dbg_log $WelcomeMessage
 	fi
+
+	[[ $USER_BIRTHDAY != $(date +%m-%d) && -e ${HOME}/.bday ]] && rm -f ${HOME}/.bday
 
 fi
 
