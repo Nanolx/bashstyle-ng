@@ -2,18 +2,58 @@ BashStyle-NG
 
 === Introduction ===
 
-BashStyle-NG consists of a graphical tool and a functionchain.
+ BashStyle-NG is a graphical tool and toolchain for changing the behaviour
+ and look'n'feel of Bash, Readline, Vim, Nano and GIT.
 
-The graphical tool (bashstyle) is used to easily change a huge amount options
-regarding Bash, Readline, VIm and Nano. The configurtion is stored using ConfigOBJ.
-
-The functionchain is used to realize the setup when starting a new Bash.
-Besides a diversity of additional functions or wrappers is provided.
-
-12 different prompt-styles are shipped, all of them can be modified using the
-GUIs built-in custom-prompt-builder (CPB).
-
-Every option and every function is described in the documentation.
+ Possibilities include:
+  Bash:
+    - 13 fancy pre-defined prompt styles
+      - colors are customizable
+      - random text color possible
+      - random prompt style for each session possible
+      - create your own prompt using UI
+        - customizing pre-defined ones possible
+      - alternatively monochrome prompts instead of colored
+    - colored manpages (without using most)
+    - colored output from ls and grep (matches)
+      - colors are customizable
+    - rembering last visited directory (and restore upon new session)
+    - customize bash history settings
+    - lscd: customized variant of cd, showing content of directory
+      after cd, can create directories that don't exist, passing of
+      customized ls parameters possible
+    - un/setting shopts (shell options) for Bash 4.3 / 4.0-4.2 / 3.2+
+    - customizable completion blacklist, timeout, welcome message and more
+  GIT:
+    - set GIT user name
+    - set GIT mail address
+    - set GIT editor for commit messages
+    - set GIT colored output
+  Readline:
+    - un/set completion
+    - un/set case sensitivity
+    - un/set horizontal completion
+    - un/set mark filetypes and folders
+    - un/set include hidden files incompletion
+    - customize almost 30 keybindings
+  VIM:
+    - un/set remember last position
+    - un/set syntax highlighting
+    - un/set auto indention
+    - un/set case sensitive search
+    - un/set incremental search
+    - un/set display line numbers
+    - un/set highlight current line/column
+    - set dark or bright background
+    - set line-wrap and tab-length
+    - set color scheme
+    - enable ruler/set ruler format
+  Nano:
+    - un/set search history
+    - un/set syntax highlighting
+    - un/set auto indention
+    - un/set case sensitive search
+    - fix backspace and numblock assignment
 
 === GIT Access ===
 
