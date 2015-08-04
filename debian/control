@@ -2,8 +2,8 @@ Source: bashstyle-ng
 Section: utils
 Priority: extra
 Maintainer: Christopher Roy Bratusek <nano@jpberlin.de>
-Build-Depends: 	debhelper (>= 5),
- 		autotools-dev,
+Build-Depends:  debhelper (>= 5),
+                autotools-dev,
                 sed (>= 4.2.1),
                 grep (>= 2.12),
                 make (>= 3.80),
@@ -11,7 +11,7 @@ Build-Depends: 	debhelper (>= 5),
                 bash (>= 3.2),
                 gawk,
                 debianutils (>= 4.3.2),
-                python3 (>= 3.0),
+                python3 (<< 3.5),
                 python3-gi,
                 python3-configobj,
                 python-support (>= 0.90)
@@ -19,35 +19,79 @@ Standards-Version: 3.9.4
 
 Package: bashstyle-ng
 Architecture: all
-Depends: 	bash (>= 3.2),
- 		bc,
- 		procps,
- 		gawk,
+Depends:        bash (>= 3.2),
+                bc,
+                procps,
+                gawk,
                 grep (>= 2.12),
- 		python3 (<< 3.4),
- 		python3-gi,
+                python3 (<< 3.5),
+                python3-gi,
                 sed (>= 4.2.1),
- 		less,
- 		libgtk-3-bin,
+                less,
+                libgtk-3-bin,
                 ${misc:Depends},
                 ${python:Depends},
                 python3-configobj
-Suggests:  	nano,
- 		vim,
- 		acpi,
- 		dmidecode,
+Suggests:       nano,
+                vim,
+                acpi,
+                dmidecode,
                 tree,
                 ghostscript,
                 pciutils,
-                usbutils
-Description: Graphical tool and toolchain for Bash
- BashStyle-NG is a graphical tool and toolchain for changing
- the behaviour and look'n'feel of Bash, Readline, Vim and Nano
+                usbutils,
+                wget,
+                git
+Description: Graphical tool and functions for customizing Bash
+ BashStyle-NG is a graphical tool and toolchain for changing the behaviour
+ and look'n'feel of Bash, Readline, Vim, Nano and GIT.
  .
  Possibilities include:
-   - create your own prompt
-   - get colored manpages [without using most]
-   - choose between 12 pre-defined prompts
-   - change the colors of ls and grep output
-   - store your own customizations in $HOME/.bashstyle.custom
-   - use vendor configuration (for every new user)
+  Bash:
+    - 13 fancy pre-defined prompt styles
+      - colors are customizable
+      - random text color possible
+      - random prompt style for each session possible
+      - create your own prompt using UI
+        - customizing pre-defined ones possible
+      - alternatively monochrome prompts instead of colored
+    - colored manpages (without using most)
+    - colored output from ls and grep (matches)
+      - colors are customizable
+    - rembering last visited directory (and restore upon new session)
+    - customize bash history settings
+    - lscd: customized variant of cd, showing content of directory
+      after cd, can create directories that don't exist, passing of
+      customized ls parameters possible
+    - un/setting shopts (shell options) for Bash 4.3 / 4.0-4.2 / 3.2+
+    - customizable completion blacklist, timeout, welcome message and more
+  GIT:
+    - set GIT user name
+    - set GIT mail address
+    - set GIT editor for commit messages
+    - set GIT colored output
+  Readline:
+    - un/set completion
+    - un/set case sensitivity
+    - un/set horizontal completion
+    - un/set mark filetypes and folders
+    - un/set include hidden files incompletion
+    - customize almost 30 keybindings
+  VIM:
+    - un/set remember last position
+    - un/set syntax highlighting
+    - un/set auto indention
+    - un/set case sensitive search
+    - un/set incremental search
+    - un/set display line numbers
+    - un/set highlight current line/column
+    - set dark or bright background
+    - set line-wrap and tab-length
+    - set color scheme
+    - enable ruler/set ruler format
+  Nano:
+    - un/set search history
+    - un/set syntax highlighting
+    - un/set auto indention
+    - un/set case sensitive search
+    - fix backspace and numblock assignment
