@@ -20,10 +20,7 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     data/vim/colors/*:${DATADIR}/vim/colors
 	     data/*.ini:${DATADIR} )
 
-LOCALE_FILES=( i18n/de/*.mo:${LOCALEDIR}/de/LC_MESSAGES
-	       i18n/es/*.mo:${LOCALEDIR}/es/LC_MESSAGES
-	       i18n/it/*.mo:${LOCALEDIR}/it/LC_MESSAGES
-	       i18n/ru/*.mo:${LOCALEDIR}/ru/LC_MESSAGES )
+LOCALE_FILES=( i18n/de/*.mo:${LOCALEDIR}/de/LC_MESSAGES )
 
 BIN_FILES=( data/bashstyle:${BINDIR}
 	    rc/functions/*:${DATADIR}/rc/functions )
