@@ -11,6 +11,8 @@ Overview of changes in v9.0 "Hotride"
   have a tooltip showing the name of the configuration variable (or --
   if none) and the description of the setting [work in progress].
 
+* Configure now looks for python3 by default, falls back to python
+
 === Bug Fixes ===
 
 * #154 (ui):
@@ -115,12 +117,29 @@ Overview of changes in v9.0 "Hotride"
     string resembling an executable, the complete path will be added to
     the command line.
 
+* New git aliases
+  - ls alias to git (prettified version of log)
+  - lsb alias to git (sort branches (local + remote) by last activity)
+
+* treecd: option to use treecd in favor of builtin cd
+
+=== Shell Functions ===
+
+==== Improved Shell Functions ====
+
 * lscd: various improvements. If a file is passed as arguement to lscd,
   it will cd into the containing directory. New optional setting lscd_mkdir,
   if True lscd will create the directory if it does not exist (or if it's
   not a file which's directory we can cd into or not an -* cd parameter).
 
-* treecd: option to use treecd in favor of builtin cd
+* treecd: fixes, turn into function instead of script
+
+* crypt: crypt input string, instead of file
+* random: more features
+* randomfile: several improvements, more clear syntax
+* all functions: --help message added
+
+==== New Shell Functions ====
 
 * loop function: loop for a colon-divided list (eg. PATH) and return
   the full path if the second arguement is found inside any member of
@@ -129,7 +148,6 @@ Overview of changes in v9.0 "Hotride"
 * reload function: a clean function to reload .bashrc (x2cd)
 * quickscript function: writes all commands in history to a file.
   starting point is the last occurence of "###" (joedhon)
-* basefile function: advanced basename like tool for files
 * ngroups function: system default 'groups' lists all user-groups you're in
   ngroups lists all user-groups you're NOT in. (gniourf_gniourf)
 * psgrep function: find process by name (flatcap)
@@ -137,44 +155,8 @@ Overview of changes in v9.0 "Hotride"
   it to each item in a list. It's basically a shorthand way of writing a
   for loop. (downdiagonal)
 * movie2gif function: create GIF from a Movie (using FFMPEG)
-* git_clonehub function: clone all repos from a user or organziaton via SSH
 
-* explain git aliases in ui
-* ls alias to git (prettified version of log)
-* lsb alias to git (sort branches (local + remote) by last activity)
-* gittool zip function: create zip archive from master
-* gittool undelete function: re-checkout all accidently deleted, tracked files
-* gittool funmsg function: random, funny commit message
-* gittool hub function: open github url for a repository using x-www-browser
-* gittool revno function: get classic revision number (like in SVN)
-
-=== Removed Features ===
-
-* rd alias to pw -P removed
-* reload alias to source ~/.bashrc removed
-* any2avi removed
-* repeat removed
-* repoadd removed
-* reporem removed
-* bookmark removed
-* unmark removed
-* xdel removed
-* d2u removed
-* u2d removed
-* top10 removed
-* swap removed
-* writeiso removed
-* xalias removed
-* xunalias removed
-* up removed
-* jump removed
-* geniso removed
-* flv2ogg removed
-* dirinfo removed
-* exchange removed
-* wipe removed
-
-=== Consolidated Features ===
+=== Consolidated Shell Functions ===
 
 * random, randompw
 	merged into: random
@@ -202,26 +184,59 @@ Overview of changes in v9.0 "Hotride"
   git_openhub, git_revision, git_revno, git_undelete, git_xz, git_zip
 	merged into: gitkit
 
+==== Removed Shell Functions ====
+
+The following aliases have been removed
+  rd, reload
+
+The following shell functions have been removed
+  any2avi, repeat, repoadd, reporem, bookmark, unmark, xalias, xunalias,
+  xdel, d2u, u2d, top10, sawp, writeiso, geniso, up, jump, dirinfo, wipe,
+  exchange, flv2ogg
+
+=== User Interface Changes ===
+
+* improved user interface
+  - IconView for category selection
+  - close button added to Custom Prompt Builder (CPB) toolbox
+  - various deprecated widgets replaced by new ones (work in progress)
+  - explain git aliases in ui
+  - options now have a tooltip with a description on it's meaning (work in progress)
+
+=== Configure 4.3.0 ===
+
+* minor code improvements
+* output message changes
+* show version in --help
+* improved error handling
+* not just check if application exists, also check if it's executable
+* move detection of system bashrc from Make to Configure
+
+=== Make 1.0.0 ===
+
+* various minor bugfixes
+* more verbosity
+* output message changes
+* code cleanup and consolidation
+* share code with Configure where useful
+* add copyright header
+
+=== Translations ===
+
+* removed abandoned translations
+  - russian
+  - italian
+  - spanish
+* updated german translation
+
 === Misc. Changes ===
 
 * use less termcap variables instead of compiled terminfo files for colored
   manpages (and other pager output)
-* improved user interface (GtkIconView and GtkNotebook combination)
-* make whiptail an optional dependency (with the removal of bs-ng-wizard
-  it is only required for 'dirinfo --create')
 * several improvements in "clock advanced" prompt style
-* look for python3 by default, fallback to python
 * updated copyright notices 2007 - 2015
-* configure 4.3.0: minor code improvements, output message changes, show
-  version in --help, improved error handling, not just check if tested
-  applications exist, test if they are executable, move detection of system
-  bashrc from make to configure
-* make 1.0: various minor fixes, more verbosity, code-cleanup, consolidation,
-  share code with configure where useful, string changes, copyright headers
-* crypt: crypt input string, instead of file
-* random: more features
-* randomfile: several improvements, more clear syntax
-* all scripts: --help message added
+* removed unused CharName.pm perl module
+* removed unused icons (bs-ng-extra, bs-ng-help, bs-ng-profile)
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
