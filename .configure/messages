@@ -32,7 +32,7 @@ section_message () {
 
 start_message () {
 
-	echo -e "\n${WHITE}Configuring ${GREEN}BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}(${CODENAME})"
+	echo -e "\n${WHITE}Configuring ${GREEN}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}(${APP_CODENAME})"
 	tput sgr0
 
 }
@@ -97,7 +97,7 @@ end_message () {
 
 help_message () {
 
-	echo -e "\n${GREEN}BashStyle-NG ${MAGENTA}v${xVERSION}${WHITE} / ${YELLOW}(Configure 4.3.0) ${CYAN}help
+	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}(Configure ${CFG_VERSION}) ${CYAN}help
 	\n${WHITE}Options:"
 	echo -e "${ORANGE}--help${WHITE} *|${GREEN} Display this help message\
 	\n${ORANGE}--mode=<mode>${WHITE} *|${GREEN} user (do checks) or maintainer (skip checks)\

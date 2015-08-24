@@ -21,7 +21,7 @@ copy_in_files () {
 
 substitute_values () {
 
-	sed -e "s>@VERSION@>$xVERSION>g" \
+	sed -e "s>@VERSION@>$APP_VERSION>g" \
 		-e "s>@PREFIX@>$PREFIX>g" \
 		-e "s>@DATADIR@>$DATADIR>g" \
 		-e "s>@PYTHON@>$PYTHON>g" \
