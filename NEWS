@@ -218,6 +218,11 @@ The following shell functions have been removed
 * improved error handling
 * not just check if application exists, also check if it's executable
 * move detection of system bashrc from Make to Configure
+* add APP_NAME variable (set it globally and use it in all messages,
+  previously the name was hardcoded, that's more portable)
+* rename xVERSION variable to APP_VERSION
+* rename CODENAME variable to APP_CODENAME
+* add CFG_VERSION variable
 
 === Make 1.0.1 ===
 
