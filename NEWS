@@ -117,6 +117,13 @@ Overview of changes in v9.0 "Hotride"
     string resembling an executable, the complete path will be added to
     the command line.
 
+* New configuration options
+  - use_gitcfg: only change GIT settings if this is set
+  - use_keybindingscfg: only change readline Keybindings if this is set
+  - tarxz: ls color setting for .tar.xz files (default: coldblue)
+  - history_timeformat: setting for changing HISTTIMEFORMAT, prepend time and
+    date to entries in bash's history (default: none)
+
 * New git aliases
   - ls alias to git (prettified version of log)
   - lsb alias to git (sort branches (local + remote) by last activity)

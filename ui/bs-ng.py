@@ -126,6 +126,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("pwd_len", "Advanced", "pwdlength", "int", None)
 		WidgetHandler.InitWidget("timeout", "Advanced", "timeout", "int", None)
 		WidgetHandler.InitWidget("history_control", "Advanced", "history_control", "combo", dicts.history_types)
+		WidgetHandler.InitWidget("history_timeformat", "Advanced", "history_timeformat", "text", None)
 		WidgetHandler.InitWidget("dirchar", "Advanced", "directory_indicator", "text", None)
 		WidgetHandler.InitWidget("tabrotate", "Advanced", "tab_rotation", "bool", None)
 		WidgetHandler.InitWidget("enable_lscd", "Advanced", "use_lscd", "bool", None)
@@ -136,13 +137,6 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("dd_noerror", "Advanced", "dd_noerror", "bool", None)
 		WidgetHandler.InitWidget("restore_pwd", "Advanced", "restore_directory", "bool", None)
 		WidgetHandler.InitWidget("debug_verbose", "Advanced", "debug_verbose", "bool", None)
-
-		self.reset_history = gtkbuilder.get_object("reset_history")
-
-		def do_reset_history(widget, data=None):
-			os.remove(os.path.expanduser("~/.bash_history"))
-
-		self.reset_history.connect("clicked", do_reset_history)
 
 		####################### Readline stuff #############################################
 		WidgetHandler.InitWidget("readline", "Readline", "use_readlinecfg", "bool", None)
@@ -178,6 +172,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("globasciiranges", "Shopt", "globasciiranges", "bool", None)
 
 		######################## GIT Stuff #################################################
+		WidgetHandler.InitWidget("use_gitcfg", "Git", "use_gitcfg", "bool", None)
 		WidgetHandler.InitWidget("git_user", "Git", "git_user_name", "text", None)
 		WidgetHandler.InitWidget("git_mail", "Git", "git_user_mail", "text", None)
 		WidgetHandler.InitWidget("git_editor", "Git", "git_editor", "text", None)

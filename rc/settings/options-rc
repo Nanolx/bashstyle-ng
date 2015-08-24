@@ -9,6 +9,9 @@
 #							#
 #########################################################
 
+HISTTIMEFORMAT="$(ini_get history_timeformat) "
+dbg_msg $"BashStyle-NG Setting:" $"HISTTIMEFORMAT" "$HISTTIMEFORMAT"
+
 HISTCONTROL=$(ini_get history_control)
 dbg_msg $"BashStyle-NG Setting:" $"HISTCONTROL" "$HISTCONTROL"
 
@@ -25,7 +28,7 @@ FCEDIT=$(ini_get fcedit)
 dbg_msg $"BashStyle-NG Setting:" $"FCEDIT" "$FCEDIT"
 
 if [[ $(grep -w TMOUT /etc/profile.d/*msec.sh 2>/dev/null) != "" ]]; then
-	ERR_MSG+="\n * /etc/profile.d/msec.sh prevents setting TMOUT!"
+	echo -e "\n * /etc/profile.d/msec.sh prevents setting TMOUT!"
 else	TMOUT=$(ini_get timeout)
 	dbg_msg $"BashStyle-NG Setting:" $"TMOUT" "$TMOUT"
 fi

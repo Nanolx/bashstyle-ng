@@ -65,7 +65,6 @@ keybindings = {
 	"backward_word",
 	"forward_word",
 	"overwrite_mode"
-
 }
 
 class KeyTree(object):
@@ -76,6 +75,7 @@ class KeyTree(object):
 			self.factorydefault = fdc
 
 	def InitTree(self):
+		use_keys = gtkbuilder.get_object("use_keybindingscfg")
 		reset = gtkbuilder.get_object("reset_key")
 		store = gtkbuilder.get_object("treeviewstore")
 		tree = gtkbuilder.get_object("treeview")
@@ -119,6 +119,13 @@ class KeyTree(object):
 					model[iter][2], model[iter][3])
 
 		tree.get_selection().connect("changed", on_changed)
+
+		use_keys.set_active(self.config["Keybindings"].as_bool("use_keybindingscfg"))
+
+		def on_use_keys(widget):
+			self.config["Keybindings"]["use_keybindingscfg"] = widget.get_active()
+
+		use_keys.connect("toggled", on_use_keys)
 
 		def on_reset(data):
 			sel = tree.get_selection()

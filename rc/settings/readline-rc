@@ -10,7 +10,7 @@
 #########################################################
 
 if [[ -e $HOME/.inputrc && ( ! -w $HOME/.inputrc || ! -r $HOME/.inputrc ) ]]; then
-	ERR_MSG+="\n * $HOME/.inputrc is not accessible! -- adjust permissions."
+	echo -e "\n * $HOME/.inputrc is not accessible! -- adjust permissions."
 elif [[ ! -e $HOME/.inputrc.bs-ng.* ]]; then
 
 export RC_FILE=$HOME/.inputrc.bs-ng.$(date +%I-%M-%S)

@@ -41,8 +41,6 @@ export BSNG_LOGFILE=$HOME/.bashstyle.log
 dbg_log rm -f $BSNG_LOGFILE
 dbg_log touch $BSNG_LOGFILE
 
-dbg_log source $BSNG_RC_DIR/styles/null-rc
-
 dbg_msg $"BashStyle-NG Starting"
 dbg_msg $"BashStyle-NG Bash Major Version:" $(echo ${BASH_VERSINFO[0]})
 dbg_msg $"BashStyle-NG Bash Minor Version:" $(echo ${BASH_VERSINFO[1]})
@@ -55,7 +53,7 @@ dbg_msg $"BashStyle-NG Logfile:" $BSNG_LOGFILE
 if [[ $(ini_get use_readlinecfg) == "True" ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
 	dbg_log source $BSNG_RC_DIR/settings/readline-rc
-	dbg_log bind -f ${HOME}/.inputrc
+	bind -f ${HOME}/.inputrc
 fi
 
 if [[ $(ini_get use_vimcfg) == "True" ]]; then
@@ -68,12 +66,6 @@ if [[ $(ini_get use_nanocfg) == "True" ]]; then
 	dbg_log source $BSNG_RC_DIR/settings/nano-rc
 fi
 
-if [[ $(ini_get use_bashstyle) == False ]]; then
-	dbg_msg $"BashStyle-NG: Exiting"
-else
-	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
-fi
-
 if [[ $(ini_get enable_colors) == "True" ]]; then
 	dbg_log source $BSNG_RC_DIR/settings/color-rc
 fi
@@ -83,9 +75,19 @@ if [[ $(ini_get use_lscolors) == "True" && $(ini_get enable_colors) == "True" ]]
 	dbg_log source $BSNG_RC_DIR/settings/ls-rc
 fi
 
-dbg_log source $BSNG_RC_DIR/settings/git-rc
+if [[ $(ini_get use_gitcfg) == "True" ]]; then
+	dbg_log source $BSNG_RC_DIR/settings/git-rc
+fi
+
+if [[ $(ini_get use_keybindingscfg == True) ]]; then
+	dbg_log source $BSNG_RC_DIR/settings/keybindings-rc
+	bind -f ${HOME}/.keybindings
+fi
 
 if [[ $(ini_get use_bashstyle) == "True" ]]; then
+
+	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
+	dbg_log source $BSNG_RC_DIR/styles/null-rc
 
 	if [[ $(lsb_release -is) == Debian ]]; then
 	#	if [[ ${1} == -r ]]; then
@@ -136,14 +138,14 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	use_custom_prompt=$(ini_get use_custom_prompt)
 
 	if [[ $use_custom_prompt == "True" ]]; then \
-		dbg_msg $"BashStyle-NG Setting:" $"Style Custom"
+		dbg_msg $"BashStyle-NG Setting:" $"Custom Prompt"
 		dbg_log source $BSNG_RC_DIR/styles/custom-rc
 	elif [[ -e $BSNG_RC_DIR/styles/${pstyle}-rc ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"Style" $pstyle
+		dbg_msg $"BashStyle-NG Setting:" $pstyle $"Prompt"
 		dbg_log source $BSNG_RC_DIR/styles/${pstyle}-rc
 	else
-		dbg_msg $"BashStyle-NG Setting:" $"Style Fallback"
-		dbg_log source $BSNG_RC_DIR/styles/fallback-rc
+		dbg_msg $"BashStyle-NG Setting:" $"Fallback Prompt"
+		dbg_log export PS1="\u@\h\w: "
 	fi
 
 	dbg_msg $"BashStyle-NG Setting:" $"PS2 PS3 PS4"
@@ -176,10 +178,6 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 
 	[[ $USER_BIRTHDAY != $(date +%m-%d) && -e ${HOME}/.bday ]] && rm -f ${HOME}/.bday
 
-fi
-
-if [[ $(ini_get use_readline == True) ]]; then
-	dbg_log source $BSNG_RC_DIR/settings/keybindings-rc
 fi
 
 function lscd() {
@@ -227,11 +225,5 @@ function reload () {
 	source @PROFILEDIR@/bashstyle.sh
 
 }
-
-
-if [[ $ERR_MSG != "" ]]; then
-	echo -e "${eyellow}\n\nImportant informations:"
-	echo -e "${eorange}${ERR_MSG}\n"
-fi
 
 dbg_finalize

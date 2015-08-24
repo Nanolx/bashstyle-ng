@@ -10,7 +10,7 @@
 #########################################################
 
 if [[ -e $HOME/.nanorc && ( ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ) ]]; then
-	ERR_MSG+="\n * $HOME/.nanorc is not fully acccessible! -- adjust permissions."
+	echo -e "\n * $HOME/.nanorc is not fully acccessible! -- adjust permissions."
 elif [[ ! -e $HOME/.nanorc.bs-ng.* ]]; then
 
 	export RC_FILE=$HOME/.nanorc.bs-ng.$(date +%I-%M-%S)
