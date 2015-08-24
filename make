@@ -21,14 +21,14 @@ done
 
 help_message () {
 
-	echo -e "\n${GREEN}BashStyle-NG ${MAGENTA}v${xVERSION}${WHITE} / ${YELLOW}(Make 1.0) ${CYAN}help
+	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}(Make 1.0) ${CYAN}help
 	\n${WHITE}Rules:"
 	echo -e "${ORANGE}help${WHITE} *|${GREEN} Display this help message\
 	\n${ORANGE}pot${WHITE} *|${GREEN} Generate .pot files\
 	\n${ORANGE}po${WHITE} *|${GREEN} Update .po files\
 	\n${ORANGE}build${WHITE} *|${GREEN} Build necessary files\
-	\n${ORANGE}install${WHITE} *|${GREEN} Install BashStyle-NG\
-	\n${ORANGE}remove${WHITE} *|${GREEN} Remove BashStyle-NG\
+	\n${ORANGE}install${WHITE} *|${GREEN} Install ${APP_NAME}\
+	\n${ORANGE}remove${WHITE} *|${GREEN} Remove ${APP_NAME}\
 	\n${ORANGE}clean${WHITE} *|${GREEN} Clean build directory\
 	\n${ORANGE}changelog${WHITE} *|${GREEN} Generate ChangeLog" | column -t -s \*
 	echo
@@ -57,15 +57,15 @@ while [[ ${xcount} -lt ${pcount} ]]; do
 	case ${1} in
 		pot )		generate_pot ;;
 		po )		update_po;;
-		build )		echo -e "\n${GREEN}Building BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}\n"
+		build )		echo -e "\n${GREEN}Building ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 				build && touch .make/build_done && echo ;;
 		install )	if [[ -e .make/build_done ]]; then
-					echo -e "\n${GREEN}Installing BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}\n"
+					echo -e "\n${GREEN}Installing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 					installdirs_create && install_bsng && post_install
 				else 	echo -e "\n${RED}You need to run 'make' first!\n"
 					exit 1
 				fi ;;
-		remove ) 	echo -e "\n${GREEN}Removing BashStyle-NG${YELLOW} v${xVERSION} ${CYAN}${CODENAME}\n"
+		remove ) 	echo -e "\n${GREEN}Removing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 				remove_bsng ;;
 		* )		help_message ;;
 	esac
