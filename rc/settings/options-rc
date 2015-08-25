@@ -9,77 +9,68 @@
 #							#
 #########################################################
 
-HISTTIMEFORMAT="$(ini_get history_timeformat) "
 dbg_msg $"BashStyle-NG Setting:" $"HISTTIMEFORMAT" "$HISTTIMEFORMAT"
+dbg_log export HISTTIMEFORMAT="$(ini_get history_timeformat) "
 
-HISTCONTROL=$(ini_get history_control)
 dbg_msg $"BashStyle-NG Setting:" $"HISTCONTROL" "$HISTCONTROL"
+dbg_log export HISTCONTROL=$(ini_get history_control)
 
-HISTIGNORE="$(ini_get history_ignore)"
 dbg_msg $"BashStyle-NG Setting:" $"HISTIGNORE" "$HISTIGNORE"
+dbg_log export HISTIGNORE="$(ini_get history_ignore)"
 
-FIGNORE="$(ini_get completion_ignore)"
 dbg_msg $"BashStyle-NG Setting:" $"FIGNORE" "$FIGNORE"
+dbg_log export FIGNORE="$(ini_get completion_ignore)"
 
-CDPATH=$(ini_get cdpath)
 dbg_msg $"BashStyle-NG Setting:" $"CDPATH" "$CDPATH"
+dbg_log export CDPATH=$(ini_get cdpath)
 
-FCEDIT=$(ini_get fcedit)
 dbg_msg $"BashStyle-NG Setting:" $"FCEDIT" "$FCEDIT"
+dbg_log export FCEDIT=$(ini_get fcedit)
 
 if [[ $(grep -w TMOUT /etc/profile.d/*msec.sh 2>/dev/null) != "" ]]; then
 	echo -e "\n * /etc/profile.d/msec.sh prevents setting TMOUT!"
-else	TMOUT=$(ini_get timeout)
+else
 	dbg_msg $"BashStyle-NG Setting:" $"TMOUT" "$TMOUT"
+	export TMOUT=$(ini_get timeout)
 fi
 
-HISTSIZE=$(ini_get history_size)
 dbg_msg $"BashStyle-NG Setting:" $"HISTSIZE" "$HISTSIZE"
+dbg_log export HISTSIZE=$(ini_get history_size)
 
-HISTFILESIZE=$(ini_get history_size)
 dbg_msg $"BashStyle-NG Setting:" $"HISTFILESIZE" "$HISTFILESIZE"
+dbg_log export HISTFILESIZE=$(ini_get history_size)
 
 if [[ $(ini_get path) != "" ]]; then
-	PATH="$(ini_get path)"
 	dbg_msg $"BashStyle-NG Setting:" $"PATH" "$PATH"
+	PATH="$(ini_get path)"
 fi
 
-if [[ $(ini_get colored_grep) == True && $enabcol == True ]]; then \
+if [[ $(ini_get restore_directory) == True ]]; then
+	dbg_log trap 'printf %s "$PWD" > ${HOME}/.lastpwd' EXIT
+	if [[ -d "$(cat ${HOME}/.lastpwd 2>/dev/null)" ]]; then
+		dbg_log cd "$(cat ${HOME}/.lastpwd)"
+	fi
+fi
+
+if [[ $(ini_get colored_grep) == True && ${enabcol} == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"On"
 	alias grep="grep --color=auto"
 	GREP_COLOR=$(ini_get grep_color);
 else	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"Off"
 fi
 
-export debug_verbose=$(ini_get debug_verbose)
+[[ $(ini_get dd_noerror) == True ]] && export DD_OPTS="conv=noerror"
 
-if [[ $(ini_get restore_directory) == True ]]; then
-	dbg_log trap 'printf %s "$PWD" > $HOME/.lastpwd' EXIT
-	if [[ -e $HOME/.lastpwd && -d "$(cat $HOME/.lastpwd)" ]]; then
-		dbg_log cd "$(cat $HOME/.lastpwd)"
-	fi
-fi
-
-if [[ $(ini_get use_treecd) == True ]]; then
-	alias cd=treecd
-fi
+[[ $(ini_get use_treecd) == True ]] && dbg_log alias cd=treecd
 
 if [[ $(ini_get use_lscd) == True ]]; then
-	alias cd=lscd
-	export LSCD_OPTS=$(ini_get lscd_opts)
-	if [[ $(ini_get enable_colors) != True ]]; then
-		LSCD_OPTS+=" --color=no"
-	fi
+	dbg_log alias cd=lscd
+	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
+	[[ ${enabcol} != True ]] && dbg_log export LSCD_OPTS+=" --color=no"
 fi
 
-if [[ $(ini_get dd_noerror) == True ]]; then
-	export DD_OPTS="conv=noerror"
-fi
+dbg_log export USER_BIRTHDAY=$(ini_get user_birthday)
 
-export USER_BIRTHDAY=$(ini_get user_birthday)
-
-export pwdmaxlen=$(ini_get pwdlength)
-export trunc_symbol=$(ini_get pwdcut)
-export dirchar=$(ini_get directory_indicator)
-
-dbg_log export HISTCONTROL HISTIGNORE FIGNORE CDPATH FCEDIT TMOUT HISTSIZE HISTFILESIZE PATH GREP_COLOR
+dbg_log export pwdmaxlen=$(ini_get pwdlength)
+dbg_log export trunc_symbol=$(ini_get pwdcut)
+dbg_log export dirchar=$(ini_get directory_indicator)

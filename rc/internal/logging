@@ -13,43 +13,23 @@ verbose=$(ini_get debug_verbose)
 
 dbg_msg ()
 {
-	if [[ ! $BSNG_RC_GEN ]]; then
-		if [[ $verbose == True ]]; then
-			echo -e "$@" | tee -a $BSNG_LOGFILE
-		else	echo -e "$@" >> $BSNG_LOGFILE
-		fi
+	if [[ ${verbose} == True ]]; then
+		echo -e "$@" | tee -a ${BSNG_LOGFILE}
+	else	echo -e "$@" >> ${BSNG_LOGFILE}
 	fi
-
 }
 
 dbg_log ()
 {
-
-	"$@" > >(tee -a $BSNG_LOGFILE) 2>&1
-
+	"$@" > >(tee -a ${BSNG_LOGFILE}) 2>&1
 }
 
 dbg_finalize()
 {
-
-	sed '$!N; /^\(.*\)\n\1$/!P; D' -i $BSNG_LOGFILE
-
+	sed '$!N; /^\(.*\)\n\1$/!P; D' -i ${BSNG_LOGFILE}
 }
 
 dbg_view ()
 {
-
-	cat $BSNG_LOGFILE | less
-
-}
-
-dbg_verbosity ()
-{
-
-	if [[ $1 == "True" ]]; then
-		ini_set debug_verbose True
-	elif [[ $1 == "False" ]]; then
-		ini_set debug_verbose False
-	fi
-
+	cat ${BSNG_LOGFILE} | less
 }

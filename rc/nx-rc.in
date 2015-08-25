@@ -14,12 +14,10 @@ TEXTDOMAIN="nx-rc"
 
 export BSNG_PREFIX=@PREFIX@
 export BSNG_DATA_DIR=@DATADIR@
-export BSNG_RC_DIR=$BSNG_DATA_DIR/bashstyle-ng/rc
-export BSNG_BIN_DIR=$BSNG_RC_DIR/bin
-export BSNG_LOCKFILE=$HOME/.bashstyle.lock
+export BSNG_RC_DIR=${BSNG_DATA_DIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2015"
-INI_VERSION=9
+INI_VERSION=11
 
 if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 	if [[ -f /etc/bs-ng_vendor.ini && $(grep ini_version /etc/bs-ng_vendor.ini) == *${INI_VERSION} ]]; then
@@ -27,17 +25,12 @@ if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 	else
 		cp ${BSNG_DATA_DIR}/bashstyle-ng/bs-ng.ini ${HOME}/.bs-ng.ini
 	fi
-elif [[ $(grep Separator ${HOME}/.bs-ng.ini) ]]; then
-	sed -e '/^\[Separator\]$/,$d' -i $HOME/.bs-ng.ini
 fi
 
-ERR_MSG=""
+source ${BSNG_RC_DIR}/internal/misc
+source ${BSNG_RC_DIR}/internal/logging
 
-for RC in internal/misc internal/logging; do
-	source $BSNG_RC_DIR/$RC
-done
-
-export BSNG_LOGFILE=$HOME/.bashstyle.log
+export BSNG_LOGFILE=${HOME}/.bashstyle.log
 dbg_log rm -f $BSNG_LOGFILE
 dbg_log touch $BSNG_LOGFILE
 
@@ -45,49 +38,46 @@ dbg_msg $"BashStyle-NG Starting"
 dbg_msg $"BashStyle-NG Bash Major Version:" $(echo ${BASH_VERSINFO[0]})
 dbg_msg $"BashStyle-NG Bash Minor Version:" $(echo ${BASH_VERSINFO[1]})
 dbg_msg $"BashStyle-NG Bash Patch Level:" $(echo ${BASH_VERSINFO[2]})
-dbg_msg $"BashStyle-NG Version:" $BSNG_VERSION
-dbg_msg $"BashStyle-NG Prefix:" $BSNG_PREFIX
+dbg_msg $"BashStyle-NG Version:" ${BSNG_VERSION}
+dbg_msg $"BashStyle-NG Prefix:" ${BSNG_PREFIX}
 dbg_msg $"BashStyle-NG Debugging: Enabled"
-dbg_msg $"BashStyle-NG Logfile:" $BSNG_LOGFILE
+dbg_msg $"BashStyle-NG Logfile:" ${BSNG_LOGFILE}
 
-if [[ $(ini_get use_readlinecfg) == "True" ]]; then
-	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
-	dbg_log source $BSNG_RC_DIR/settings/readline-rc
-	bind -f ${HOME}/.inputrc
-fi
+dbg_log shopt -s checkwinsize
 
-if [[ $(ini_get use_vimcfg) == "True" ]]; then
-	dbg_msg $"BashStyle-NG Loading:" $"VimCFG"
-	dbg_log source $BSNG_RC_DIR/settings/vim-rc
-fi
+[[ $(ini_get use_readlinecfg) == True ]] && \
+	dbg_log source ${BSNG_RC_DIR}/settings/readline-rc
 
-if [[ $(ini_get use_nanocfg) == "True" ]]; then
-	dbg_msg $"BashStyle-NG Loading:" $"NanoCFG"
-	dbg_log source $BSNG_RC_DIR/settings/nano-rc
-fi
+[[ $(ini_get use_vimcfg) == True ]] && \
+	dbg_log source ${BSNG_RC_DIR}/settings/vim-rc
 
-if [[ $(ini_get enable_colors) == "True" ]]; then
-	dbg_log source $BSNG_RC_DIR/settings/color-rc
-fi
+[[ $(ini_get use_nanocfg) == True ]] && \
+	dbg_log source ${BSNG_RC_DIR}/settings/nano-rc
 
-if [[ $(ini_get use_lscolors) == "True" && $(ini_get enable_colors) == "True" ]]; then
-	dbg_msg $"BashStyle-NG Loading:" $"LSCOLORS"
-	dbg_log source $BSNG_RC_DIR/settings/ls-rc
-fi
+[[ $(ini_get enable_colors) == True ]] && \
+	dbg_log source ${BSNG_RC_DIR}/settings/color-rc
 
-if [[ $(ini_get use_gitcfg) == "True" ]]; then
-	dbg_log source $BSNG_RC_DIR/settings/git-rc
-fi
+[[ $(ini_get use_lscolors) == True && ${enabcol} == True ]] && \
+	dbg_log source ${BSNG_RC_DIR}/settings/ls-rc
 
-if [[ $(ini_get use_keybindingscfg == True) ]]; then
-	dbg_log source $BSNG_RC_DIR/settings/keybindings-rc
-	bind -f ${HOME}/.keybindings
-fi
+[[ $(ini_get use_gitcfg) == True ]] && \
+	dbg_log source ${BSNG_RC_DIR}/settings/git-rc
 
-if [[ $(ini_get use_bashstyle) == "True" ]]; then
+[[ $(ini_get use_keybindingscfg == True) ]] && \
+	dbg_log source ${BSNG_RC_DIR}/settings/keybindings-rc
+
+[[ $(ini_get colored_man) == True ]] && \
+	dbg_log source ${BSNG_RC_DIR}/settings/man-rc
+
+dbg_msg $"BashStyle-NG Setting:"  $"Shell Options"
+dbg_log source ${BSNG_RC_DIR}/settings/shopt-rc
+
+dbg_log source ${BSNG_RC_DIR}/settings/alias-rc
+
+if [[ $(ini_get use_bashstyle) == True ]]; then
 
 	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
-	dbg_log source $BSNG_RC_DIR/styles/null-rc
+	dbg_log source ${BSNG_RC_DIR}/styles/null-rc
 
 	if [[ $(lsb_release -is) == Debian ]]; then
 	#	if [[ ${1} == -r ]]; then
@@ -105,44 +95,41 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	#	fi
 	fi
 
-	if [[ -f /etc/bash.bashrc ]]; then
-		BASHRC=/etc/bash.bashrc
-	else	BASHRC=/etc/bashrc
-	fi
-
-	dbg_log source $BSNG_RC_DIR/settings/alias-rc
-
 	dbg_msg $"BashStyle-NG Setting:" $"ps2 ps3 ps4 char" $(ini_get ps234)
 	ps234char=$(ini_get ps234)
 
-	if [[ $(ini_get colored_man) == "True" ]]; then
-		dbg_log source $BSNG_RC_DIR/settings/man-rc
-	fi
+	if [[ $(ini_get random_style) == True ]]; then
+		dbg_msg $"BashStyle-NG Setting:" $"Random Prompt"
 
-	dbg_log source $BSNG_RC_DIR/settings/shopt-rc
+		number=$(random -r 11)
+		case ${number} in
+			0 ) pstyle=separator ;;
+			1 ) pstyle=vector ;;
+			2 ) pstyle=clock ;;
+			3 ) pstyle=clock-ad ;;
+			4 ) pstyle=elite ;;
+			5 ) pstyle=poweruser ;;
+			6 ) pstyle=dirks ;;
+			7 ) pstyle=dot_prompt ;;
+			8 ) pstyle=sepa_ng ;;
+			9 ) pstyle=quirk ;;
+			10 ) pstyle=sputnik ;;
+			11 ) pstyle=ayoli ;;
+		esac
 
-	shopt -s checkwinsize
-
-	if [[ -e $HOME/.bashstyle.custom ]]; then \
-		dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
-		dbg_log source $HOME/.bashstyle.custom
-	fi
-
-	if [[ $(ini_get random_style) == "True" ]]; then \
-		dbg_msg $"BashStyle-NG Setting:" $"Style Random"
-		dbg_log source $BSNG_RC_DIR/settings/random-rc
+		dbg_msg $"BashStyle-NG Setting:" ${pstyle} $"randomly choosen"
 	else
 		pstyle=$(ini_get prompt_style)
 	fi
 
 	use_custom_prompt=$(ini_get use_custom_prompt)
 
-	if [[ $use_custom_prompt == "True" ]]; then \
+	if [[ $use_custom_prompt == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"Custom Prompt"
-		dbg_log source $BSNG_RC_DIR/styles/custom-rc
-	elif [[ -e $BSNG_RC_DIR/styles/${pstyle}-rc ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $pstyle $"Prompt"
-		dbg_log source $BSNG_RC_DIR/styles/${pstyle}-rc
+		dbg_log source ${BSNG_RC_DIR}/styles/custom-rc
+	elif [[ -e ${BSNG_RC_DIR}/styles/${pstyle}-rc ]]; then
+		dbg_msg $"BashStyle-NG Setting:" ${pstyle} $"Prompt"
+		dbg_log source ${BSNG_RC_DIR}/styles/${pstyle}-rc
 	else
 		dbg_msg $"BashStyle-NG Setting:" $"Fallback Prompt"
 		dbg_log export PS1="\u@\h\w: "
@@ -154,34 +141,32 @@ if [[ $(ini_get use_bashstyle) == "True" ]]; then
 	PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
 	if [[ $(ini_get colorshell) == True && ${enabcol} == True ]]; then
-		source $BSNG_RC_DIR/settings/colorshell
+		source ${BSNG_RC_DIR}/settings/colorshell
 	fi
-
-	if [[ $(ini_get tab_rotation) == "True" ]]; then \
-		dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"On"
-		dbg_log bind 'TAB:menu-complete'
-		dbg_log complete -d -X '.[a-zA-Z0-9]*' cd
-	else	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"Off"
-	fi
-
-	dbg_log source $BSNG_RC_DIR/settings/options-rc
-
-	WelcomeMessage=$(ini_get welcome_message)
-
-	if [[ $USER_BIRTHDAY == $(date +%m-%d) && ! -e ~/.bday ]]; then
-		cat $BSNG_RC_DIR/internal/birthday
-		touch ~/.bday
-	elif [[ $WelcomeMessage != "" ]]; then \
-		dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
-		dbg_log $WelcomeMessage
-	fi
-
-	[[ $USER_BIRTHDAY != $(date +%m-%d) && -e ${HOME}/.bday ]] && rm -f ${HOME}/.bday
 
 fi
 
-function lscd() {
+dbg_log source ${BSNG_RC_DIR}/settings/options-rc
 
+WelcomeMessage=$(ini_get welcome_message)
+
+if [[ ${USER_BIRTHDAY} == $(date +%m-%d) && ! -e ~/.bday ]]; then
+	cat ${BSNG_RC_DIR}/internal/birthday
+	touch ~/.bday
+elif [[ ${WelcomeMessage} != "" ]]; then
+	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
+	dbg_log ${WelcomeMessage}
+fi
+
+[[ ${USER_BIRTHDAY} != $(date +%m-%d) && -e ${HOME}/.bday ]] && \
+	rm -f ${HOME}/.bday
+
+if [[ -e ${HOME}/.bashstyle.custom ]]; then
+	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
+	dbg_log source ${HOME}/.bashstyle.custom
+fi
+
+function lscd() {
 	OLD_PWD=${PWD}
 	clear
 
@@ -198,7 +183,6 @@ function lscd() {
 		builtin cd "${1}" &>/dev/null
 	fi
 
-
 	if [[ ${OLD_PWD} != ${PWD} ]]; then
 		echo -e "\n${epink}content:\n"
 		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
@@ -207,15 +191,15 @@ function lscd() {
 		fi
 	fi
 
-	echo "$PWD" > $HOME/.lastpwd
+	echo "$PWD" > ${HOME}/.lastpwd
 }
 
 function treecd () {
 	builtin cd "${@}" &>/dev/null
 
 	echo -e "${epink}content:"
-	tree -L 1 $TREE_OPTS
-	echo "$PWD" > $HOME/.lastpwd
+	tree -L 1 ${TREE_OPTS}
+	echo "$PWD" > ${HOME}/.lastpwd
 }
 
 function reload () {

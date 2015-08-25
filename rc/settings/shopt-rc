@@ -9,49 +9,49 @@
 #							#
 #########################################################
 
-if [[ $(ini_get cdspell) == True ]]; then \
+if [[ $(ini_get cdspell) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"cdspell" $"On"
 	dbg_log shopt -s cdspell
 else	dbg_msg $"BashStyle-NG Setting:" $"cdspell" $"Off"
 	dbg_log shopt -u cdspell
 fi
 
-if [[ $(ini_get cdable_vars) == True ]]; then \
+if [[ $(ini_get cdable_vars) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"cdable_vars" $"On"
 	dbg_log shopt -s cdable_vars
 else	dbg_msg $"BashStyle-NG Setting:" $"cdable_vars" $"Off"
 	dbg_log shopt -u cdable_vars
 fi
 
-if [[ $(ini_get checkhash) == True ]]; then \
+if [[ $(ini_get checkhash) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"checkhash" $"On"
 	dbg_log shopt -s checkhash
 else	dbg_msg $"BashStyle-NG Setting:" $"checkhash" $"Off"
 	dbg_log shopt -u checkhash
 fi
 
-if [[ $(ini_get cmdhist) == True ]]; then \
+if [[ $(ini_get cmdhist) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"cmdhist" $"On"
 	dbg_log shopt -s cmdhist
 else	dbg_msg $"BashStyle-NG Setting:" $"cmdhist" $"Off"
 	dbg_log shopt -u cmdhist
 fi
 
-if [[ $(ini_get force_fignore) == True ]]; then \
+if [[ $(ini_get force_fignore) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"force_fignore" $"On"
 	dbg_log shopt -s force_fignore
 else	dbg_msg $"BashStyle-NG Setting:" $"force_fignore" $"Off"
 	dbg_log shopt -u force_fignore
 fi
 
-if [[ $(ini_get histreedit) == True ]]; then \
+if [[ $(ini_get histreedit) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"histreedit" $"On"
 	dbg_log shopt -s histreedit
 else	dbg_msg $"BashStyle-NG Setting:" $"histreedit" $"Off"
 	dbg_log shopt -u histreedit
 fi
 
-if [[ $(ini_get no_empty_cmd_completion) == True ]]; then \
+if [[ $(ini_get no_empty_cmd_completion) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"no_empty_cmd_completion" $"On"
 	dbg_log shopt -s no_empty_cmd_completion
 else	dbg_msg $"BashStyle-NG Setting:" $"no_empty_cmd_completion" $"Off"
@@ -95,7 +95,6 @@ if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 	else	dbg_msg $"BashStyle-NG Setting:" $"dirspell" $"Off"
 		dbg_log shopt -u dirspell
 	fi
-else	dbg_msg $"BashStyle-NG Message: Bash is not 4.x -- disabling new shopts"
 fi
 
 # Stuff new in Bash 4.3
@@ -112,5 +111,4 @@ if [[ ${BASH_VERSINFO[0]}${BASH_VERSINFO[1]} -ge "43" ]]; then
 	else	dbg_msg $"BashStyle-NG Setting:" $"globasciiranges" $"Off"
 		dbg_log shopt -u globasciiranges
 	fi
-else	dbg_msg $"BashStyle-NG Message: Bash is not 4.3+ -- disabling new shopts"
 fi

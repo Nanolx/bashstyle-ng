@@ -12,25 +12,23 @@
 enabcol=True
 
 dbg_msg $"BashStyle-NG Setting:" $"Colors" $"On"
-
 dbg_msg $"BashStyle-NG Setting:" $"Color-Style" $(ini_get color_style)
 
 colstyle=$(ini_get color_style)
 
-if [[ $colstyle == bright ]]; then \
+if [[ $colstyle == bright ]]; then
 	style="01"
-elif [[ $colstyle == normal ]]; then \
+elif [[ $colstyle == normal ]]; then
 	style="0"
-elif [[ $colstyle == inverted ]]; then \
+elif [[ $colstyle == inverted ]]; then
 	style="7"
-elif [[ $colstyle == dimmed ]]; then \
+elif [[ $colstyle == dimmed ]]; then
 	style="02"
-elif [[ $colstyle == underlined ]]; then \
+elif [[ $colstyle == underlined ]]; then
 	style="04"
 fi
 
 if [[ $TERM != *xterm* ]]; then
-
 	black="\[\033[${style};30m\]"
 	red="\[\033[${style};31m\]"
 	green="\[\033[${style};32m\]"
@@ -74,9 +72,7 @@ if [[ $TERM != *xterm* ]]; then
 	epurple=$emagenta
 	epink=$emagenta
 	ecream=$emagenta
-
 else
-
 	black="\[\033[${style};38;5;0m\]"
 	red="\[\033[${style};38;5;1m\]"
 	green="\[\033[${style};38;5;2m\]"
@@ -120,7 +116,6 @@ else
 	epurple="\033[${style};38;5;604m"
 	epink="\033[${style};38;5;213m"
 	ecream="\033[${style};38;5;5344m"
-
 fi
 
 eval usercolor=$(ini_get color_user)
@@ -133,4 +128,4 @@ eval sepacolor=$(ini_get color_separator)
 eval upcolor=$(ini_get color_uptime)
 eval pscolor=$(ini_get color_ps234)
 
-dbg_log export enabcol black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream eblack ered egreen eyellow eblue emagenta ecyan ewhite ecoldblue esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher eorange epurple epink ecream
+dbg_log export enabcol colstyle black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream eblack ered egreen eyellow eblue emagenta ecyan ewhite ecoldblue esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher eorange epurple epink ecream

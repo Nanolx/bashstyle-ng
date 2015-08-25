@@ -9,8 +9,7 @@
 #							#
 #########################################################
 
-if [[ $enabcol == True ]]; then
-
+if [[ ${enabcol} == True ]]; then
 	if [[ -f ${BSNG_DATA_DIR}/bashstyle-ng/termcap/bar/$(ini_get termcap_bar).termcap ]]; then
 		dbg_msg $"BashStyle-NG Setting: Termcap (bar)" $(ini_get termcap_bar)
 		dbg_log source ${BSNG_DATA_DIR}/bashstyle-ng/termcap/bar/$(ini_get termcap_bar).termcap
