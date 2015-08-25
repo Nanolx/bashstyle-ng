@@ -74,6 +74,11 @@ dbg_log source ${BSNG_RC_DIR}/settings/shopt-rc
 
 dbg_log source ${BSNG_RC_DIR}/settings/alias-rc
 
+if [[ -e ${HOME}/.bashstyle.custom ]]; then
+	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
+	dbg_log source ${HOME}/.bashstyle.custom
+fi
+
 if [[ $(ini_get use_bashstyle) == True ]]; then
 
 	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
@@ -160,11 +165,6 @@ fi
 
 [[ ${USER_BIRTHDAY} != $(date +%m-%d) && -e ${HOME}/.bday ]] && \
 	rm -f ${HOME}/.bday
-
-if [[ -e ${HOME}/.bashstyle.custom ]]; then
-	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
-	dbg_log source ${HOME}/.bashstyle.custom
-fi
 
 function lscd() {
 	OLD_PWD=${PWD}
