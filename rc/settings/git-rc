@@ -9,51 +9,62 @@
 #							#
 #########################################################
 
+dbg_msg $"BashStyle-NG Setting:" $"GIT Options"
+
 if [[ $(ini_get git_user_name) != "" ]]; then
-	git config --global user.name "$(ini_get git_user_name)"
+	dbg_msg $"BashStyle-NG Setting:" $"GIT user name"
+	dbg_log git config --global user.name "$(ini_get git_user_name)"
 fi
 
 if [[ $(ini_get git_user_mail) != "" ]]; then
-	git config --global user.email "$(ini_get git_user_mail)"
+	dbg_msg $"BashStyle-NG Setting:" $"GIT user mail adress"
+	dbg_log git config --global user.email "$(ini_get git_user_mail)"
 fi
 
 if [[ $(ini_get git_signkey) != "" ]]; then
-	git config --global user.signingkey "$(ini_get git_signkey)"
+	dbg_msg $"BashStyle-NG Setting:" $"GIT default singing key"
+	dbg_log git config --global user.signingkey "$(ini_get git_signkey)"
 fi
 
 COLOR_OPTS=( branch diff interactive pager status )
 
 if [[ $(ini_get git_color) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" $"GIT colors" $"On"
 	for opt in ${COLOR_OPTS[@]}; do
-		git config --global color.$opt true
+		dbg_log git config --global color.${opt} true
 	done
-else 	for opt in ${COLOR_OPTS[@]}; do
-		git config --global color.$opt false
+else
+	dbg_msg $"BashStyle-NG Setting:" $"GIT colors" $"Off"
+	for opt in ${COLOR_OPTS[@]}; do
+		dbg_log git config --global color.${opt} false
 	done
 fi
 
 if [[ $(ini_get git_editor) != "" ]]; then
-	git config --global core.editor "$(ini_get git_editor)"
+	dbg_msg $"BashStyle-NG Setting:" $"GIT editor"
+	dbg_log git config --global core.editor "$(ini_get git_editor)"
 fi
 
 if [[ $(ini_get git_aliases) == True ]]; then
-	git config --global alias.co checkout
-	git config --global alias.up pull
-	git config --global alias.re "reset --hard HEAD"
-	git config --global alias.ma "checkout master"
-	git config --global alias.who "shortlog -s --"
-	git config --global alias.ci commit
-	git config --global alias.ls "log --format='%Cgreen%H %Cred%ai %Creset- %s'"
-	git config --global alias.lsb "for-each-ref --sort=-committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative)  %1B[0;m%(refname:short)' refs/remotes refs/heads"
-	git config --global alias.stage "add -u"
-
-else	git config --global --unset alias.co
-	git config --global --unset alias.up
-	git config --global --unset alias.re
-	git config --global --unset alias.ma
-	git config --global --unset alias.who
-	git config --global --unset alias.ci
-	git config --global --unset alias.ls
-	git config --global --unset alias.stage
-	git config --global --unset alias.lsb
+	dbg_msg $"BashStyle-NG Setting:" $"GIT aliases" $"On"
+	dbg_log git config --global alias.co checkout
+	dbg_log git config --global alias.up pull
+	dbg_log git config --global alias.re "reset --hard HEAD"
+	dbg_log git config --global alias.ma "checkout master"
+	dbg_log git config --global alias.who "shortlog -s --"
+	dbg_log git config --global alias.ci commit
+	dbg_log git config --global alias.ls "log --format='%Cgreen%H %Cred%ai %Creset- %s'"
+	dbg_log git config --global alias.lsb "for-each-ref --sort=-committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative)  %1B[0;m%(refname:short)' refs/remotes refs/heads"
+	dbg_log git config --global alias.stage "add -u"
+else
+	dbg_msg $"BashStyle-NG Setting:" $"GIT aliases" $"Off"
+	dbg_log git config --global --unset alias.co
+	dbg_log git config --global --unset alias.up
+	dbg_log git config --global --unset alias.re
+	dbg_log git config --global --unset alias.ma
+	dbg_log git config --global --unset alias.who
+	dbg_log git config --global --unset alias.ci
+	dbg_log git config --global --unset alias.ls
+	dbg_log git config --global --unset alias.stage
+	dbg_log git config --global --unset alias.lsb
 fi

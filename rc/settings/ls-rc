@@ -9,19 +9,7 @@
 #                                                       #
 #########################################################
 
-colstyle=$(ini_get color_style)
-
-if [[ $colstyle == bright ]]; then \
-	style="01"
-elif [[ $colstyle == normal ]]; then \
-	style="0"
-elif [[ $colstyle == inverted ]]; then \
-	style="7"
-elif [[ $colstyle == dimmed ]]; then \
-	style="02"
-elif [[ $colstyle == underlined ]]; then \
-	style="04"
-fi
+dbg_msg $"BashStyle-NG Setting:" $"LSCOLORS"
 
 lblack="${style};30"
 lred="${style};31"
@@ -33,7 +21,6 @@ lcyan="${style};36"
 lwhite="${style};37"
 
 if [[ $TERM != *xterm* ]]; then
-
 	lcoldblue=$lblue
 	lsmoothblue=$lblue
 	liceblue=$lblue
@@ -47,9 +34,7 @@ if [[ $TERM != *xterm* ]]; then
 	lpurple=$lmagenta
 	lpink=$lmagenta
 	lcream=$lmagenta
-
 else
-
 	lcoldblue="${style};38;5;33"
 	lsmoothblue="${style};38;5;111"
 	liceblue="${style};38;5;45"
@@ -63,11 +48,9 @@ else
 	lpurple="${style};38;5;604"
 	lpink="${style};38;5;213"
 	lcream="${style};38;5;5344"
-
 fi
 
-export lblack lred lgreen lyellow lblue lmagenta lcyan lwhite lcoldblue lsmoothblue liceblue lturqoise
-export lsmoothgreen lwinered lbrown lsilver locher lorange lpurple lpink lcream
+export lblack lred lgreen lyellow lblue lmagenta lcyan lwhite lcoldblue lsmoothblue liceblue lturqoise lsmoothgreen lwinered lbrown lsilver locher lorange lpurple lpink lcream
 
 eval _exec=$(ini_get exec)
 eval _gen=$(ini_get generic)
@@ -95,4 +78,3 @@ dbg_log export LS_COLORS="ex=$_exec:*=$_gen:*.log=$_log:*.deb=$_deb:*.rpm=$_rpm:
 $_custom"
 
 dbg_msg $"LS_COLORS Setting: LS_COLORS" "$LS_COLORS"
-dbg_msg $"LS_COLORS Loading: BashStyle-NG"

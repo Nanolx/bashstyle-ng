@@ -10,7 +10,6 @@
 #########################################################
 
 keybindings_setter () {
-
 	if [[ "${1}" != "" ]]; then
 		MOD=${1/:*}
 		KEY=${1/*:}
@@ -21,19 +20,18 @@ keybindings_setter () {
 		esac
 
 		if [[ ${MOD} == e ]]; then
+			dbg_msg "$ReadlineCFG Setting:" $"${ACT}" $"e-${KEY}"
 			bind "\\e${KEY}":self-insert
 			echo -E \"\\e${KEY}\":${ACT} >> $RC_FILE
 		elif [[ ${MOD} == C ]]; then
+			dbg_msg "$ReadlineCFG Setting:" $"${ACT}" $"C-${KEY}"
 			bind "\\C-${KEY}":self-insert
 			echo -E \"\\C-${KEY}\":${ACT} >> $RC_FILE
 		fi
 	fi
-
 }
 
-if [[ -e $HOME/.keybindings && ( ! -w $HOME/.keybindings || ! -r $HOME/.keybindings ) ]]; then
-	echo -e "\n * $HOME/.keybindings is not accessible! -- adjust permissions"
-elif [[ ! -e $HOME/.keybindings.bs-ng.* ]]; then
+if [[ ! -e $HOME/.keybindings.bs-ng.* ]]; then
 
 	export RC_FILE=$HOME/.keybindings.bs-ng.$(date +%I-%M-%S)
 	dbg_msg $"ReadlineCFG Loading:" $"Keybindings"
@@ -50,6 +48,14 @@ elif [[ ! -e $HOME/.keybindings.bs-ng.* ]]; then
 	done
 
 	mv ${RC_FILE} ${HOME}/.keybindings
+	bind -f ${HOME}/.keybindings
 	unset RC_FILE
 
+fi
+
+if [[ $(ini_get tab_rotation) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"On"
+	dbg_log bind 'TAB:menu-complete'
+	dbg_log complete -d -X '.[a-zA-Z0-9]*' cd
+else	dbg_msg $"BashStyle-NG Setting:" $"Tab-Rotation" $"Off"
 fi

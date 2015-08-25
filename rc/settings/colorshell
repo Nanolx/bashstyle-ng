@@ -10,41 +10,33 @@
 #							#
 #########################################################
 
+colorshell_revert=$(ini_get colorshell_revert)
+
 if [[ ! ${PROMPT_COMMAND} ]]; then
+	PROMPT_COMMAND () {
+		cmd_text_colour='\[`tput setaf $((RANDOM%7))`\]'
 
-PROMPT_COMMAND () {
-	cmd_text_colour='\[`tput setaf $((RANDOM%7))`\]'
+		shopt -s promptvars
 
-	shopt -s promptvars
+		PS1="${PS1}${cmd_text_colour}"
+		PS2="${PS2}${cmd_text_colour}"
+		PS3="${PS3}${cmd_text_colour}"
+		PS4="${PS4}${cmd_text_colour}"
 
-	PS1="${PS1}${cmd_text_colour}"
-	PS2="${PS2}${cmd_text_colour}"
-	PS3="${PS3}${cmd_text_colour}"
-	PS4="${PS4}${cmd_text_colour}"
-
-	if [[ $(ini_get colorshell_revert) == True ]]; then
-		trap 'echo -ne "\e[0m"' DEBUG
-	fi
-
-	PRE_PROMPT_COMMAND
-
-}
-
+		[[ ${colorshell_revert} == True ]] && trap 'echo -ne "\e[0m"' DEBUG
+		PRE_PROMPT_COMMAND
+	}
 else
+	PRE_PROMPT_COMMAND () {
+		cmd_text_colour='\[`tput setaf $((RANDOM%7))`\]'
 
-PRE_PROMPT_COMMAND () {
-	cmd_text_colour='\[`tput setaf $((RANDOM%7))`\]'
+		shopt -s promptvars
 
-	shopt -s promptvars
+		PS1="${PS1}${cmd_text_colour}"
+		PS2="${PS2}${cmd_text_colour}"
+		PS3="${PS3}${cmd_text_colour}"
+		PS4="${PS4}${cmd_text_colour}"
 
-	PS1="${PS1}${cmd_text_colour}"
-	PS2="${PS2}${cmd_text_colour}"
-	PS3="${PS3}${cmd_text_colour}"
-	PS4="${PS4}${cmd_text_colour}"
-
-	if [[ $(ini_get colorshell_revert) == True ]]; then
-		trap 'echo -ne "\e[0m"' DEBUG
-	fi
-}
-
+		[[ ${colorshell_revert} == True ]] && trap 'echo -ne "\e[0m"' DEBUG
+	}
 fi

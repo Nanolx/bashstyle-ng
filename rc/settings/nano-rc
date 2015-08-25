@@ -9,11 +9,10 @@
 #							#
 #########################################################
 
-if [[ -e $HOME/.nanorc && ( ! -w $HOME/.nanorc || ! -r $HOME/.nanorc ) ]]; then
-	echo -e "\n * $HOME/.nanorc is not fully acccessible! -- adjust permissions."
-elif [[ ! -e $HOME/.nanorc.bs-ng.* ]]; then
+if [[ ! -e $HOME/.nanorc.bs-ng.* ]]; then
 
-	export RC_FILE=$HOME/.nanorc.bs-ng.$(date +%I-%M-%S)
+	dbg_msg $"BashStyle-NG Loading:" $"NanoCFG"
+	export RC_FILE=${HOME}/.nanorc.bs-ng.$(date +%I-%M-%S)
 
 	if [[ $(ini_get auto_indent) == True ]]; then
 		dbg_msg $"NanoCFG Setting:" $"Auto-Indention" $"On"
@@ -97,18 +96,13 @@ elif [[ ! -e $HOME/.nanorc.bs-ng.* ]]; then
 
 	if [[ $(ini_get syntax_highlight) == True ]]; then
 		dbg_msg $"NanoCFG Setting:" $"Colors" $"On"
-		COLOR_FILES="$(ls /usr/share/nano/*.nanorc)"
-		for file in $COLOR_FILES; \
+		for file in /usr/share/nano/*.nanorc; \
 			do rc_add "include \"$file\""; \
 		done
 	else	dbg_msg $"NanoCFG Setting:" $"Colors" $"Off"
 	fi
 
-	dbg_msg $"NanoCFG Loading:" $"BashStyle-NG"
-
-	mv $RC_FILE $HOME/.nanorc
+	mv ${RC_FILE} $HOME/.nanorc
 	unset RC_FILE
 
-else
-	echo -n #nothing to do, just make lintian shut-up because of missing else
 fi

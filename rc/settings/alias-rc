@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ $(ini_get colored_ls) == True && $enabcol == True ]]; then \
+if [[ $(ini_get colored_ls) == True && ${enabcol} == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Colored ls" $"On"
 	dbg_log alias ls="ls -CF --color=auto --group-directories-first"
 else
@@ -17,47 +17,47 @@ else
 	dbg_log alias ls="ls -CF --color=no --group-directories-first"
 fi
 
-if [[ $(ini_get alias_one) != "" ]]; then \
+if [[ $(ini_get alias_one) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_one)"
 	dbg_log alias "$(ini_get alias_one)"
 fi
 
-if [[ $(ini_get alias_two) != "" ]]; then \
+if [[ $(ini_get alias_two) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_two)"
 	dbg_log alias "$(ini_get alias_two)"
 fi
 
-if [[ $(ini_get alias_three) != "" ]]; then \
+if [[ $(ini_get alias_three) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_three)"
 	dbg_log alias "$(ini_get alias_three)"
 fi
 
-if [[ $(ini_get alias_four) != "" ]]; then \
+if [[ $(ini_get alias_four) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_four)"
 	dbg_log alias "$(ini_get alias_four)"
 fi
 
-if [[ $(ini_get alias_five) != "" ]]; then \
+if [[ $(ini_get alias_five) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_five)"
 	dbg_log alias "$(ini_get alias_five)"
 fi
 
-if [[ $(ini_get alias_six) != "" ]]; then \
+if [[ $(ini_get alias_six) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_six)"
 	dbg_log alias "$(ini_get alias_six)"
 fi
 
-if [[ $(ini_get alias_seven) != "" ]]; then \
+if [[ $(ini_get alias_seven) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_seven)"
 	dbg_log alias "$(ini_get alias_seven)"
 fi
 
-if [[ $(ini_get alias_eight) != "" ]]; then \
+if [[ $(ini_get alias_eight) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_eight)"
 	dbg_log alias "$(ini_get alias_eight)"
 fi
 
-if [[ $(ini_get alias_nine) != "" ]]; then \
+if [[ $(ini_get alias_nine) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Alias" "$(ini_get alias_nine)"
 	dbg_log alias "$(ini_get alias_nine)"
 fi

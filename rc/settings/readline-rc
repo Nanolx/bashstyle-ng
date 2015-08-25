@@ -9,124 +9,121 @@
 #							#
 #########################################################
 
-if [[ -e $HOME/.inputrc && ( ! -w $HOME/.inputrc || ! -r $HOME/.inputrc ) ]]; then
-	echo -e "\n * $HOME/.inputrc is not accessible! -- adjust permissions."
-elif [[ ! -e $HOME/.inputrc.bs-ng.* ]]; then
+if [[ ! -e $HOME/.inputrc.bs-ng.* ]]; then
 
-export RC_FILE=$HOME/.inputrc.bs-ng.$(date +%I-%M-%S)
+	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
+	export RC_FILE=${HOME}/.inputrc.bs-ng.$(date +%I-%M-%S)
+	dbg_msg $"ReadlineCFG Setting:" $"Bellstyle" $(ini_get bellstyle)
 
-dbg_msg $"ReadlineCFG Setting:" $"Bellstyle" $(ini_get bellstyle)
+	if [[ $(ini_get bellstyle) == audible ]]; then
+		rc_add "set bell-style audible"
+	elif [[ $(ini_get bellstyle) == visible ]]; then
+		rc_add "set bell-style visible"
+	elif [[ $(ini_get bellstyle) == none ]]; then
+		rc_add "set bell-style none"
+	fi
 
-if [[ $(ini_get bellstyle) == audible ]]; then
-	rc_add "set bell-style audible"
-elif [[ $(ini_get bellstyle) == visible ]]; then
-	rc_add "set bell-style visible"
-elif [[ $(ini_get bellstyle) == none ]]; then
-	rc_add "set bell-style none"
-fi
+	if [[ $(ini_get completion) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"Off"
+		rc_add "set disable-completion off"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"On"
+		rc_add "set disable-completion on"
+	fi
 
-if [[ $(ini_get completion) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"Off"
-	rc_add "set disable-completion off"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"On"
-	rc_add "set disable-completion on"
-fi
+	if [[ $(ini_get scroll_horizontal) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"On"
+		rc_add "set horizontal-scroll-mode on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"Off"
+		rc_add "set horizontal-scroll-mode off"
+	fi
 
-if [[ $(ini_get scroll_horizontal) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"On"
-	rc_add "set horizontal-scroll-mode on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"Off"
-	rc_add "set horizontal-scroll-mode off"
-fi
+	if [[ $(ini_get ambiguous_show) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"On"
+		rc_add "set show-all-if-ambiguous on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"Off"
+		rc_add "set show-all-if-ambiguous off"
+	fi
 
-if [[ $(ini_get ambiguous_show) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"On"
-	rc_add "set show-all-if-ambiguous on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"Off"
-	rc_add "set show-all-if-ambiguous off"
-fi
+	if [[ $(ini_get complete_hidden) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"On"
+		rc_add "set match-hidden-files on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"Off"
+		rc_add "set match-hidden-files off"
+	fi
 
-if [[ $(ini_get complete_hidden) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"On"
-	rc_add "set match-hidden-files on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"Off"
-	rc_add "set match-hidden-files off"
-fi
+	if [[ $(ini_get ignore_case) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"On"
+		rc_add "set completition-ignore-case on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"Off"
+		rc_add "set completition-ignore-case off"
+	fi
 
-if [[ $(ini_get ignore_case) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"On"
-	rc_add "set completition-ignore-case on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"Off"
-	rc_add "set completition-ignore-case off"
-fi
+	if [[ $(ini_get editing_mode) == emacs ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Emacs"
+		rc_add "set editing-mode emacs"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Vi"
+		rc_add "set editing-mode vi"
+	fi
 
-if [[ $(ini_get editing_mode) == emacs ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Emacs"
-	rc_add "set editing-mode emacs"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Vi"
-	rc_add "set editing-mode vi"
-fi
+	if [[ $(ini_get visible_stats) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"On"
+		rc_add "set visible-stats on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"Off"
+		rc_add "set visible-stats off"
+	fi
 
-if [[ $(ini_get visible_stats) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"On"
-	rc_add "set visible-stats on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"Off"
-	rc_add "set visible-stats off"
-fi
+	if [[ $(ini_get complete_horizontal) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"On"
+		rc_add "set print-completions-horizontally on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"Off"
+		rc_add "set print-completions-horizontally off"
+	fi
 
-if [[ $(ini_get complete_horizontal) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"On"
-	rc_add "set print-completions-horizontally on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"Off"
-	rc_add "set print-completions-horizontally off"
-fi
+	if [[ $(ini_get mark_directories) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"On"
+		rc_add "set mark-directories on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"Off"
+		rc_add "set mark-directories off"
+	fi
 
-if [[ $(ini_get mark_directories) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"On"
-	rc_add "set mark-directories on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"Off"
-	rc_add "set mark-directories off"
-fi
+	if [[ $(ini_get mark_symbolic_directories) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"On"
+		rc_add "set mark-symlinked-directories on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"Off"
+		rc_add "set mark-symlinked-directories off"
+	fi
 
-if [[ $(ini_get mark_symbolic_directories) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"On"
-	rc_add "set mark-symlinked-directories on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"Off"
-	rc_add "set mark-symlinked-directories off"
-fi
+	if [[ $(ini_get mark_modified) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"On"
+		rc_add "set mark-modified-lines on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"Off"
+		rc_add "set mark-modified-lines off"
+	fi
 
-if [[ $(ini_get mark_modified) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"On"
-	rc_add "set mark-modified-lines on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"Off"
-	rc_add "set mark-modified-lines off"
-fi
+	if [[ $(ini_get show_editmode) == True ]]; then
+		dbg_msg $"ReadlineCFG Setting:" $"Show Editing Mode" $"On"
+		rc_add "set show-mode-in-prompt on"
+	else
+		dbg_msg $"ReadlineCFG Setting:" $"Show Editing Mode" $"Off"
+		rc_add "set show-mode-in-prompt off"
+	fi
 
-if [[ $(ini_get show_editmode) == True ]]; then
-	dbg_msg $"ReadlineCFG Setting:" $"Show Editing Mode" $"On"
-	rc_add "set show-mode-in-prompt on"
-else
-	dbg_msg $"ReadlineCFG Setting:" $"Show Editing Mode" $"Off"
-	rc_add "set show-mode-in-prompt off"
-fi
+	dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(ini_get query_items)
+	rc_add "set completion-query-items $(ini_get query_items)"
 
-dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(ini_get query_items)
-rc_add "set completion-query-items $(ini_get query_items)"
-
-mv $RC_FILE $HOME/.inputrc
-unset RC_FILE
-
-dbg_msg $"ReadlineCFG Loading:" $"BashStyle-NG"
+	mv ${RC_FILE} ${HOME}/.inputrc
+	bind -f ${HOME}/.inputrc
+	unset RC_FILE
 
 fi
