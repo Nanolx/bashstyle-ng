@@ -129,7 +129,7 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 
 	use_custom_prompt=$(ini_get use_custom_prompt)
 
-	if [[ $use_custom_prompt == True ]]; then
+	if [[ ${use_custom_prompt} == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"Custom Prompt"
 		dbg_log source ${BSNG_RC_DIR}/styles/custom-rc
 	elif [[ -e ${BSNG_RC_DIR}/styles/${pstyle}-rc ]]; then
@@ -191,7 +191,7 @@ function lscd() {
 		fi
 	fi
 
-	echo "$PWD" > ${HOME}/.lastpwd
+	echo "${PWD}" > ${HOME}/.lastpwd
 }
 
 function treecd () {
@@ -199,7 +199,7 @@ function treecd () {
 
 	echo -e "${epink}content:"
 	tree -L 1 ${TREE_OPTS}
-	echo "$PWD" > ${HOME}/.lastpwd
+	echo "${PWD}" > ${HOME}/.lastpwd
 }
 
 function reload () {
