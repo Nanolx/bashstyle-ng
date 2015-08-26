@@ -9,11 +9,8 @@
 #							#
 #########################################################
 
-case $1 in
-
-	--python | -p )
-		echo "@PYTHON@"
-	;;
+case ${1} in
+	--python | -p ) echo "@PYTHON@";;
 
 	* )
 		cd @DATADIR@/bashstyle-ng/
@@ -23,6 +20,6 @@ case $1 in
 		export BSNG_DATADIR="@DATADIR@"
 		export PYTHONPATH="$PYTHONPATH:@DATADIR@/bashstyle-ng/ui/"
 
-		@PYTHON@ $PWD/ui/bs-ng.py $@
+		@PYTHON@ ${PWD}/ui/bs-ng.py ${@}
 	;;
 esac
