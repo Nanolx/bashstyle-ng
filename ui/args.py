@@ -25,8 +25,8 @@ if FAILED:
     sys.exit(1)
 
 class CmdArgs(object):
-	parser = optparse.OptionParser("bashstyle <option> [value]\
-					\n\nBashStyle-NG (c) 2007 - 2014 Christopher Bratusek\
+	parser = optparse.OptionParser("bashstyle <option>\
+					\n\nBashStyle-NG © 2007 - 2015 Christopher Bratusek\
 					\nLicensed under the GNU GENERAL PUBLIC LICENSE v3")
 
 	parser.add_option("-v", "--version", dest="version",
