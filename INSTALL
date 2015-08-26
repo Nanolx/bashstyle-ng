@@ -2,32 +2,25 @@ How to install BashStyle-NG
 
 I.  Check the dependencies:
 
-./configure
-
-(see documentation/chapter00.html for more infos)
+	$ ./configure
+	See ./configure --help for more informations
 
 II.  Generate the translation files:
 
-./make build
+	$ ./make build
+	See ./make --help for more informations
 
 III. Install BashStyle-NG:
 
-sudo ./make install
--or-
-su -c "./make install"
+	# ./make install
 
 IV. Uninstall BashStyle-NG:
 
-sudo ./make remove
--or-
-su -c "./make remove"
+	# ./make remove
 
 Happy Hacking!
 
 How to generate the a .deb package:
 
-sudo apt-get install fakeroot dpkg-dev
-dpkg-buildpackage -rfakeroot
-
-If dpkg-buildpackage fails due to unmet dependencies,
-then install them and start again.
+	# apt-get install fakeroot dpkg-dev
+	$ dpkg-buildpackage -rfakeroot
