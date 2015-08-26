@@ -8,9 +8,8 @@
 #							#
 #########################################################
 
-if [[ $PATH != *games* && -d /usr/games/ ]]; then
-	PATH="$PATH:/usr/games/:/usr/local/games/"
-fi
+[[ ${PATH} != *games* && -d /usr/games/ ]] && \
+	PATH="${PATH}:/usr/games/:/usr/local/games/"
 
-export PATH="@PREFIX@/share/bashstyle-ng/rc/functions/:$PATH:."
-. @PREFIX@/share/bashstyle-ng/rc/nx-rc
+export PATH="@DATADIR@/bashstyle-ng/rc/functions/:${PATH}:."
+source @DATADIR@/bashstyle-ng/rc/nx-rc
