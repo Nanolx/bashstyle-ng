@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'sys', 'undobuffer', 'widgethandler', 'i18n', 'dicts', 'prompts' ]
+MODULES = [ 'sys', 'undobuffer', 'widgethandler', 'dicts', 'prompts' ]
 
 FAILED = []
 
@@ -34,8 +34,6 @@ class PromptBuilder(object):
 	def __init__(self, config):
 		######################## load translations & widgethandler #########################
 		gtkbuilder = widgethandler.gtkbuilder
-		lang = i18n.Gettext()
-		lang.SetLang()
 
 		self.prompt_command = gtkbuilder.get_object("prompt_command")
 

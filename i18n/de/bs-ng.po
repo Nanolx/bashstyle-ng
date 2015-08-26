@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 19:04+0200\n"
-"PO-Revision-Date: 2015-08-26 20:32+0200\n"
+"POT-Creation-Date: 2015-08-26 21:30+0200\n"
+"PO-Revision-Date: 2015-08-26 21:32+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -20,9 +20,84 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.3\n"
 
-#: ui/bashstyle9.ui.h:1
+#: ui/iconbook.py:43
+msgid "General Style"
+msgstr "Stil Optionen"
+
+#: ui/iconbook.py:44
+msgid "Aliases"
+msgstr "Aliase"
+
+#: ui/iconbook.py:45 ui/bashstyle9.ui.h:469
+msgid "Advanced"
+msgstr "Erweitert"
+
+#: ui/iconbook.py:46 ui/bashstyle9.ui.h:561
+msgid "Readline"
+msgstr "Readline"
+
+#: ui/iconbook.py:47
+msgid "Vi IMproved"
+msgstr "Vi IMproved"
+
+#: ui/iconbook.py:48
+msgid "GNU Nano"
+msgstr "GNU Nano"
+
+#: ui/iconbook.py:49
+msgid "LS colors"
+msgstr "LS Farben"
+
+#: ui/iconbook.py:50
+msgid "Custom Prompt Builder"
+msgstr "Prompt Baukasten"
+
+#: ui/iconbook.py:51
+msgid "Shell Options"
+msgstr "Shell Optionen"
+
+#: ui/iconbook.py:52 ui/bashstyle9.ui.h:734
+msgid "GIT"
+msgstr "GIT"
+
+#: ui/iconbook.py:53 ui/bashstyle9.ui.h:1
 msgid "About BashStyle-NG"
 msgstr "Über BashStyle-NG"
+
+#: ui/iconbook.py:54 ui/bashstyle9.ui.h:772
+msgid "Keybindings"
+msgstr "Tastenkürzel"
+
+#: ui/lockfile.py:50
+msgid "Lockfile does exist and bashstyle-ng is already running."
+msgstr "Sperrdatei existiert und bashstyle-ng läuft bereits."
+
+#: ui/lockfile.py:51
+#, python-format
+msgid "bashstyle-ng is running as process %s"
+msgstr "bashstyle-ng läuft als Prozess %s"
+
+#: ui/lockfile.py:54
+msgid "Lockfile does exist but the process with that pid is not"
+msgstr "Sperrdatei existiert, aber der Prozess mit dieser ID ist nicht"
+
+#: ui/lockfile.py:55
+#, python-format
+msgid "bashstyle, removing lockfile of old process: %s"
+msgstr "bashstyle, lösche Sperrdatei des alten Prozesses: %s"
+
+#: ui/lockfile.py:58
+msgid "Lockfile does exist but the process with that pid is no"
+msgstr "Sperrdatei existiert, aber der Prozess mit dieser ID ist nicht"
+
+#: ui/lockfile.py:59
+#, python-format
+msgid "longer running, removing lockfile of old process: %s"
+msgstr "mehr aktiv, lösche Sperrdatei des alten Prozesses: %s"
+
+#: ui/lockfile.py:62
+msgid "Lockfile does not exist"
+msgstr "Sperrdatei existiert nicht"
 
 #: ui/bashstyle9.ui.h:2
 msgid ""
@@ -1588,10 +1663,6 @@ msgstr ""
 "Nutze 'treecd' anstelle von 'cd'. 'treecd' zeigt den\n"
 "Verzeichnisbaum nach dem Wechseln an."
 
-#: ui/bashstyle9.ui.h:469
-msgid "Advanced"
-msgstr "Erweitert"
-
 #: ui/bashstyle9.ui.h:470
 msgid "Scroll horizontally"
 msgstr "Horizontal scrollen"
@@ -1858,10 +1929,6 @@ msgstr ""
 #: ui/bashstyle9.ui.h:560
 msgid "Choose editing mode"
 msgstr "Editiermodus:"
-
-#: ui/bashstyle9.ui.h:561
-msgid "Readline"
-msgstr "Readline"
 
 #: ui/bashstyle9.ui.h:562
 msgid "Use VimCFG"
@@ -2433,10 +2500,6 @@ msgstr "Werkzeugkasten aufrufen"
 msgid "Custom"
 msgstr "Eigenes"
 
-#: ui/bashstyle9.ui.h:734
-msgid "GIT"
-msgstr "GIT"
-
 #: ui/bashstyle9.ui.h:735
 msgid ""
 "Explanation of GIT aliases\n"
@@ -2568,10 +2631,6 @@ msgstr "Benutze globasciiranges"
 #: ui/bashstyle9.ui.h:771
 msgid "Shopts"
 msgstr "Shopts"
-
-#: ui/bashstyle9.ui.h:772
-msgid "Keybindings"
-msgstr "Tastenkürzel"
 
 #~ msgid "Documentation"
 #~ msgstr "Dokumentation"

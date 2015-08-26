@@ -40,18 +40,18 @@ iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
 		  "bs-ng-custom", "bs-ng-info" ]
 
 iconview_labels = {
-	"bs-ng-style" : "General Style",
-	"bs-ng-alias" : "Aliases",
-	"bs-ng-advanced" : "Advanced",
-	"bs-ng-readline" : "Readline",
-	"bs-ng-vim" : "Vi IMproved",
-	"bs-ng-nano" : "GNU Nano",
-	"bs-ng-ls" : "LS colors",
-	"bs-ng-custom" : "Custom Prompt Builder",
-	"bs-ng-shopts" : "Shell Options",
-	"bs-ng-git" : "GIT",
-	"bs-ng-info" : "About BashStyle-NG",
-	"bs-ng-keys" : "Keybindings"
+	"bs-ng-style" : _("General Style"),
+	"bs-ng-alias" : _("Aliases"),
+	"bs-ng-advanced" : _("Advanced"),
+	"bs-ng-readline" : _("Readline"),
+	"bs-ng-vim" : _("Vi IMproved"),
+	"bs-ng-nano" : _("GNU Nano"),
+	"bs-ng-ls" : _("LS colors"),
+	"bs-ng-custom" : _("Custom Prompt Builder"),
+	"bs-ng-shopts" : _("Shell Options"),
+	"bs-ng-git" : _("GIT"),
+	"bs-ng-info" : _("About BashStyle-NG"),
+	"bs-ng-keys" : _("Keybindings")
 }
 
 notebook_pages = {

@@ -10,8 +10,12 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'os.path', 'sys', 'locale', 'gettext', 'string', 'shutil',
-            'optparse', 'subprocess', 'undobuffer', 'i18n', 'misc',
+import gettext
+lang = gettext.translation('bs-ng', languages=['de'])
+lang.install(names=['_'])
+
+MODULES = [ 'os', 'os.path', 'sys', 'string', 'shutil',
+            'optparse', 'subprocess', 'undobuffer', 'misc',
 	    'lockfile', 'config', 'widgethandler', 'dicts', 'prompts',
 	    'promptbuilder', 'args' , 'iconbook', 'keybindings' ]
 
@@ -55,8 +59,6 @@ class BashStyleNG(object):
 
 		######################## load translations & widgethandler #########################
 		gtkbuilder = widgethandler.gtkbuilder
-		lang = i18n.Gettext()
-		lang.SetLang()
 
 		WidgetHandler = widgethandler.WidgetHandler(config.cfo, config.udc, config.fdc)
 

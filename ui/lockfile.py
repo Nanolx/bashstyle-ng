@@ -47,19 +47,19 @@ class LockFile(object):
 					xpid = subprocess.getoutput("pgrep -l bashstyle")
 					gpid = xpid.split()
 				if not xpid == "" and gpid[1] == "bashstyle":
-					print("Lockfile does exist and bashstyle-ng is already running.")
-					print("bashstyle-ng is running as process %s" % oldpid)
+					print(_("Lockfile does exist and bashstyle-ng is already running."))
+					print(_("bashstyle-ng is running as process %s" % oldpid))
 					sys.exit(1)
 				else:
-					print("Lockfile does exist but the process with that pid is not")
-					print("bashstyle-ng, removing lockfile of old process: %s" % oldpid)
+					print(_("Lockfile does exist but the process with that pid is not"))
+					print(_("bashstyle, removing lockfile of old process: %s" % oldpid))
 					os.remove(lockfile)
 			else:
-				print("Lockfile does exist but the process with that pid is no")
-				print("longer running, removing lockfile of old process: %s" % oldpid)
+				print(_("Lockfile does exist but the process with that pid is no"))
+				print(_("longer running, removing lockfile of old process: %s" % oldpid))
 				os.remove(lockfile)
 		else:
-			print("Lockfile does not exist")
+			print(_("Lockfile does not exist"))
 
 	def Write(self):
 		if not os.access(lockfile, os.F_OK):
