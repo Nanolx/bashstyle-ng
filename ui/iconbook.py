@@ -56,18 +56,18 @@ iconview_labels = {
 
 notebook_pages = {
 
-	"General Style" : 1,
-	"Aliases" : 2,
-	"Advanced" : 3,
-	"Readline" : 4,
-	"Vi IMproved" : 5,
-	"GNU Nano" : 6,
-	"LS colors" : 7,
-	"Custom Prompt Builder" : 8,
-	"Shell Options" : 10,
-	"GIT" : 9,
-	"About BashStyle-NG" : 0,
-	"Keybindings" : 11
+	_("General Style") : 1,
+	_("Aliases") : 2,
+	_("Advanced") : 3,
+	_("Readline") : 4,
+	_("Vi IMproved") : 5,
+	_("GNU Nano") : 6,
+	_("LS colors") : 7,
+	_("Custom Prompt Builder") : 8,
+	_("Shell Options") : 10,
+	_("GIT") : 9,
+	_("About BashStyle-NG") : 0,
+	_("Keybindings") : 11
 }
 
 gtkbuilder = widgethandler.gtkbuilder
