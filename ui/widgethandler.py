@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'os', 'misc', 'sys' ]
+MODULES = [ 'os', 'sys' ]
 
 FAILED = []
 
@@ -43,6 +43,13 @@ class WidgetHandler(object):
 			self.userdefault = udc
 			self.factorydefault = fdc
 
+		def SwapDictionary(self, original_dict):
+		    try:
+			    iteritems = original_dict.iteritems
+		    except AttributeError:
+			    iteritems = original_dict.items
+		    return dict([(v, k) for (k, v) in iteritems()])
+
 		def InitWidget(self, widget, group, setting, type, dict):
 
 			def LoadWidget():
@@ -57,7 +64,7 @@ class WidgetHandler(object):
 				elif type == "bool":
 					object.set_active(self.config["%s" % group].as_bool("%s" % setting))
 				elif type == "combo":
-					object.set_active(misc.SwapDictionary(dict)[self.config["%s" % group]["%s" % setting]])
+					object.set_active(self.SwapDictionary(dict)[self.config["%s" % group]["%s" % setting]])
 
 			def ConnectSignals():
 				if type == "text":
