@@ -52,7 +52,7 @@ class BashStyleNG(object):
 		######################## handle ConfigObj ##########################################
 		config.InitConfig()
 		config.LoadConfig()
-		config.UpdateConfig()
+		config.CheckConfig()
 
 		######################## cd into $HOME #############################################
 		os.chdir(os.getenv("HOME"))
