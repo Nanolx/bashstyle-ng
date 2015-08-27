@@ -62,11 +62,13 @@ class Config(object):
 	def CheckConfig(self):
 		try:
 			if self.cfo.as_int("ini_version") < app_ini_version:
-				print(_("CheckConfig: your ini is at version %s, but %s is available, updating." % (self.cfo.as_int("ini_version"), app_ini_version)))
+				print(_("CheckConfig: your ini is at version {}, but {} is available, updating.").format(self.cfo.as_int("ini_version"), app_ini_version))
 				self.UpdateConfig()
 			elif self.cfo.as_int("ini_version") > app_ini_version:
-				print(_("CheckConfig: your ini version is at %s, but %s is the highest known. Resetting due to error." % (self.cfo.as_int("ini_version"), app_ini_version)))
+				print(_("CheckConfig: your ini version is at {}, but {} is the highest known. Resetting due to error.").format(self.cfo.as_int("ini_version"), app_ini_version))
 				self.ResetConfig()
+			else:
+				print(_("CheckConfig: configuration up-to-date."))
 		except KeyError:
 			print(_("CheckConfig: something is wrong with your configuration, restoring defaults."))
 			ResetConfig()
