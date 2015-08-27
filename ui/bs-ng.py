@@ -33,7 +33,7 @@ except ImportError:
 	FAILED.append("Gtk (from gi.repository)")
 
 if FAILED:
-    print("The following modules failed to import: %s" % (" ".join(FAILED)))
+    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
     sys.exit(1)
 
 PREFIX = os.getenv('BSNG_UI_PREFIX')
