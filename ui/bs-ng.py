@@ -10,17 +10,9 @@
 #							#
 #########################################################
 
-import gettext, locale
-
-languages=['de']
-lc, encoding = locale.getdefaultlocale()
-
-if not lc is None:
-	lang = gettext.translation('bs-ng', languages=[lc[:2]], fallback=True)
-	lang.install(names=['_'])
-else:
-	lang = gettext.translation('bs-ng', fallback=True)
-	lang.install(names=['_'])
+import gettext
+lang = gettext.translation('bs-ng', fallback=True)
+lang.install(names=['_'])
 
 MODULES = [ 'os', 'os.path', 'sys', 'string', 'shutil',
             'optparse', 'subprocess', 'undobuffer', 'misc',
