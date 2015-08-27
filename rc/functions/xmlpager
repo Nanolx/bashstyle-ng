@@ -1,0 +1,27 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+case ${1} in
+
+	-h | --help )
+		bsng-help -a "hackerb9" -e "" -h "http://www.commandlinefu.com/"\
+			-l "GNU GPL v3" -n "xmlpager" -s "pager for xml files with highlighted text"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "none:|--"
+	;;
+
+	*)
+		xmlindent "${@}" | \
+			awk '{gsub(">",">'`tput bold; tput setf 4`'"); gsub("<","'`tput sgr0`'<"); print;} END {print "'`tput sgr0`'"}' | \
+			less -r
+	;;
+
+esac
