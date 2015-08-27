@@ -31,7 +31,7 @@ except ImportError:
 	FAILED.append("GdkPixbuf (from gi.repository)")
 
 if FAILED:
-    print("The following modules failed to import: %s" % (" ".join(FAILED)))
+    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
     sys.exit(1)
 
 iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
@@ -118,12 +118,12 @@ class IconBook(object):
 		def iconview_activated(widget, item):
 				model = widget.get_model()
 				notebook.set_current_page(notebook_pages[model[item][1]])
-				if model[item][1] == "Keybindings" :
+				if model[item][1] == _("Keybindings") :
 					reset_key.set_visible(1)
 					use_keys_button.set_visible(1)
-				if model[item][1] == "About BashStyle-NG" :
+				if model[item][1] == _("About BashStyle-NG") :
 					self.ShowAboutDialog()
-				if model[item][1] != "About BashStyle-NG" :
+				if model[item][1] != _("About BashStyle-NG") :
 					back.set_visible(1)
 					main_label.set_visible(0)
 
