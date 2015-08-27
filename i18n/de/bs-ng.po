@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 18:33+0200\n"
-"PO-Revision-Date: 2015-08-27 18:31+0200\n"
+"POT-Creation-Date: 2015-08-27 19:08+0200\n"
+"PO-Revision-Date: 2015-08-27 19:09+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -26,6 +26,90 @@ msgstr ""
 #, python-format
 msgid "The following modules failed to import: %s"
 msgstr "Folgende Module konnten nicht geladen werden: %s"
+
+#: ui/config.py:47
+msgid "LoadConfig: vendor configuration up-to-date, using it's values."
+msgstr "LoadConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
+
+#: ui/config.py:50
+msgid "LoadConfig: vendor configuration oudated, using factory defaults!"
+msgstr ""
+"LoadConfig: Distributions-Konfiguration veraltet, benutze Programm-Standard!"
+
+#: ui/config.py:53
+msgid "LoadConfig: no vendor configuration found, using factory defaults."
+msgstr ""
+"LoadConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
+"Standard."
+
+#: ui/config.py:65
+msgid "CheckConfig: your ini is at version {}, but {} is available, updating."
+msgstr ""
+"CheckConfig: deine ini ist auf Version {}, aber {} ist verfügbar, "
+"aktualisiere."
+
+#: ui/config.py:68
+msgid ""
+"CheckConfig: your ini version is at {}, but {} is the highest known. "
+"Resetting due to error."
+msgstr ""
+"CheckConfig: deine ini ist auf Version {}, aber {} ist die höchste bekannte. "
+"Setze aufgrund eines Fehlers zurück."
+
+#: ui/config.py:71
+msgid "CheckConfig: configuration up-to-date."
+msgstr "CheckConfig: Konfiguration ist aktuell."
+
+#: ui/config.py:73
+msgid ""
+"CheckConfig: something is wrong with your configuration, restoring defaults."
+msgstr ""
+"CheckConfig: etwas ist falsch mit deiner Konfiguration, stelle Standard "
+"wieder her."
+
+#: ui/config.py:80
+msgid "RestoreConfig: vendor configuration up-to-date, using it's values."
+msgstr ""
+"RestoreConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
+
+#: ui/config.py:83
+msgid "RestoreConfig: vendor configuration oudated, using factory defaults!"
+msgstr ""
+"RestoreConfig: Distributions-Konfiguration veraltet, benutze Programm-"
+"Standard!"
+
+#: ui/config.py:86
+msgid "RestoreConfig: no vendor configuration found, using factory defaults."
+msgstr ""
+"RestoreConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
+"Standard."
+
+#: ui/config.py:99
+msgid "UpdateConfig: vendor configuration up-to-date, copying as user-default."
+msgstr ""
+"UpdateConfig: Distributions-Konfiguration ist aktuell, nutze als Benutzer-"
+"Standard."
+
+#: ui/config.py:102
+msgid ""
+"UpdateConfig: vendor configuration outdated, using factory defaults instead!"
+msgstr ""
+"UpdateConfig: Distributions-Konfiguration veraltet, nutze Programm-Standard!"
+
+#: ui/config.py:105
+msgid ""
+"UpdateConfig: no vendor configuration found, using factory defaults instead."
+msgstr ""
+"UpdateConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
+"Standard."
+
+#: ui/config.py:109
+msgid "UpdateConfig: merging values."
+msgstr "UpdateConfig: kombiniere Werte."
+
+#: ui/config.py:117
+msgid "writing configuration."
+msgstr "schreibe Konfiguration."
 
 #: ui/iconbook.py:43 ui/iconbook.py:59
 msgid "General Style"
@@ -1486,13 +1570,12 @@ msgid "Path"
 msgstr "Pfad"
 
 #: ui/bashstyle9.ui.h:408
-#, python-brace-format
 msgid ""
 "path\n"
 "\n"
 "a colon separated list of directories where\n"
 "executables are stored. Note: if you change\n"
-"it first add the content of your original ${PATH}\n"
+"it first add the content of your original $PATH\n"
 "here (else you'll get unwanted results)."
 msgstr ""
 "path\n"
