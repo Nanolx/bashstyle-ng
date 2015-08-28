@@ -51,7 +51,7 @@ case ${1} in
 
 	internalip)
 		LANG=C /sbin/ifconfig ${2} | grep 'inet addr:' | \
-		cut -d: -f2 | gawk '{ print $1}'
+			cut -d: -f2 | gawk '{ print $1}'
 	;;
 
 	usedram)
@@ -145,9 +145,9 @@ $(dmidecode -q)\n"
 		fi )
 	;;
 
-	load1)	echo $(LANG=C uptime | gawk '{print substr($8,0,4)}') ;;
-	load5)	echo $(LANG=C uptime | gawk '{print substr($9,0,4)}') ;;
-	load15)	echo $(LANG=C uptime | gawk '{print substr($10,0,4)}') ;;
+	load1)	LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $1}' ;;
+	load5)	LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $2}' ;;
+	load15)	LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $3}' ;;
 
 	tty)
 		TTY=$(tty)
