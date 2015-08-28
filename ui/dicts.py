@@ -10,17 +10,6 @@
 #							#
 #########################################################
 
-groups = {
-	  "style" : "0",
-	  "alias" : "1",
-	  "advanced" : "2",
-	  "readline" : "3",
-	  "vim" : "5",
-	  "nano" : "6",
-	  "ls" : "7",
-	  "custom" : "8",
-	 }
-
 color_styles = {
 		 0 : "normal",
 		 1 : "bright",

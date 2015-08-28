@@ -25,15 +25,15 @@ if FAILED:
     sys.exit(1)
 
 class CmdArgs(object):
-	parser = optparse.OptionParser("bashstyle <option>\
+	parser = optparse.OptionParser(_("bashstyle <option>\
 					\n\nBashStyle-NG © 2007 - 2015 Christopher Bratusek\
-					\nLicensed under the GNU GENERAL PUBLIC LICENSE v3")
+					\nLicensed under the GNU GENERAL PUBLIC LICENSE v3"))
 
 	parser.add_option("-v", "--version", dest="version",
-			  action="store_true", default=False, help="print version and exit")
+			  action="store_true", default=False, help=_("print version and exit"))
 
 	parser.add_option("-p", "--prefix", dest="prefix",
-			  action="store_true", default=False, help="print prefix and exit")
+			  action="store_true", default=False, help=_("print prefix and exit"))
 
 	(options, args) = parser.parse_args()
 

@@ -23,7 +23,7 @@ for module in MODULES:
 try:
 	from gi.repository import Gtk
 except ImportError:
-	FAILED.append("Gtk (from gi.repository)")
+	FAILED.append(_("Gtk (from gi.repository)"))
 
 if FAILED:
     print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
