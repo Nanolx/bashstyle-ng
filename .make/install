@@ -11,14 +11,15 @@
 
 post_install () {
 
-	if [[ ! $DISABLE_POSTINSTALL ]]; then
+	if [[ ! ${DISABLE_POSTINSTALL} ]]; then
 		echo -e "\t${WHITE}+ ${MAGENTA} post-installation tasks"
-		gtk-update-icon-cache -f $PREFIX/share/icons/hicolor 2>/dev/null
+		gtk-update-icon-cache -f ${DATADIR}/icons/hicolor 2>/dev/null
 		if [[ $(grep "bashstyle.sh" ${BASHFILE}) == "" ]]; then
 			echo "source ${PROFILEDIR}/bashstyle.sh" | sed -e 's,//,/,g' >> ${BASHFILE}
 		fi
-		echo -e "\n${CYAN}Thanks for choosing BashStyle-NG!\n"
 	fi
+
+	echo -e "\n${CYAN}Thanks for using ${APP_NAME}!\n"
 
 }
 
@@ -36,7 +37,7 @@ installdirs_create ()
 	echo -e "\t${WHITE}+ ${MAGENTA} directories"
 	mkdir -p ${DESTDIR}/${DATADIR}
 	for directory in ${DATADIR_LIST[@]}; do
-		mkdir -p ${DESTDIR}/${DATADIR}/$directory
+		mkdir -p ${DESTDIR}/${DATADIR}/${directory}
 	done
 
 	mkdir -p ${DESTDIR}/${LOCALEDIR}
@@ -63,7 +64,7 @@ inst ()
 	FILE=${1/:*}
 	DEST=${1/*:}
 
-	echo -e "\t${WHITE}  * ${SMOOTHBLUE}[$2/$3]${WHITE} ${FILE}"
+	echo -e "\t${WHITE}  * ${SMOOTHBLUE}[${2}/${3}]${WHITE} ${FILE}"
 	install -m${MODE} ${FILE} ${DESTDIR}${DEST}
 
 	unset FILE DEST
@@ -75,27 +76,27 @@ install_bsng () {
 	DATA_NUM=0
 	for num in ${#DATA_FILES[@]} ${#LOCALE_FILES[@]} \
 	${#PC_FILES[@]} ${#ICON_FILES[@]} ${#PROFILE_FILES[@]}; do
-		DATA_NUM=$(($DATA_NUM+$num))
+		DATA_NUM=$((${DATA_NUM}+${num}))
 	done
 	local CUR_NUM=1
 
 	echo -e "\t${WHITE}+ ${MAGENTA} data files"
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} \
 	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]}; do
-		inst data "$file" $CUR_NUM $DATA_NUM
-		local CUR_NUM=$(($CUR_NUM+1))
+		inst data ${file} ${CUR_NUM} ${DATA_NUM}
+		local CUR_NUM=$((${CUR_NUM}+1))
 	done
 
 	BIN_NUM=0
 	for num in ${#BIN_FILES[@]}; do
-		BIN_NUM=$(($BIN_NUM+$num))
+		BIN_NUM=$((${BIN_NUM}+${num}))
 	done
 	local CUR_NUM=1
 
 	echo -e "\t${WHITE}+ ${MAGENTA} executable files"
 	for file in ${BIN_FILES[@]}; do
-		inst bin "$file" $CUR_NUM $BIN_NUM
-		local CUR_NUM=$(($CUR_NUM+1))
+		inst bin ${file} ${CUR_NUM} ${BIN_NUM}
+		local CUR_NUM=$((${CUR_NUM}+1))
 	done
 
 }
@@ -104,7 +105,7 @@ remove_bsng () {
 
 	echo -e "\t${WHITE}+ ${WHITE} all files"
 	for file in ${REMOVE_FILES[@]}; do
-		rm -rf "$file"
+		rm -rf ${file}
 	done
 	post_remove
 

@@ -19,7 +19,10 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     data/vim/colors/*:${DATADIR}/vim/colors
 	     data/*.ini:${DATADIR} )
 
-LOCALE_FILES=( i18n/de/*.mo:${LOCALEDIR}/de/LC_MESSAGES )
+for lang in ${APP_LANGUAGES}; do
+	LOCALE_REMOVE=( ${LOCALE_REMOVE[@]} ${LOCALEDIR}/${lang}/{bs-ng,nx-rc}.mo)
+	LOCALE_FILES=( i18n/${lang}/*.mo_${LOCALEDIR}/${lang}/LC_MESSAGES )
+done
 
 BIN_FILES=( data/bashstyle:${BINDIR}
 	    rc/functions/*:${DATADIR}/rc/functions )
@@ -30,7 +33,7 @@ ICON_FILES=( data/icons/*.png:${ICONDIR} )
 
 PC_FILES=( data/bashstyle-ng.pc:${PCDIR} )
 
-REMOVE_FILES=( ${LOCALEDIR}/{de,es,it,ru}/{bs-ng,nx-rc}.mo
+REMOVE_FILES=( ${LOCALE_REMOVE[@]}
 	       ${BINDIR}/bashstyle
 	       ${ICONDIR}/bs-ng*.png
 	       ${PCDIR}/bashstyle-ng.pc

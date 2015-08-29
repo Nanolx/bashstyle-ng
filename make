@@ -11,6 +11,7 @@
 
 CF_MODULES=( base color )
 MK_MODULES=( build clean install )
+MK_VERSION=1.0.2
 
 for mod in ${CF_MODULES[@]}; do
 	source .configure/${mod}
@@ -21,17 +22,16 @@ done
 
 help_message () {
 
-	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}(Make 1.0) ${CYAN}help
+	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}(Make ${MK_VERSION}) ${CYAN}help
 	\n${WHITE}Rules:"
-	echo -e "${ORANGE}help${WHITE} *|${GREEN} Display this help message\
-	\n${ORANGE}pot${WHITE} *|${GREEN} Generate .pot files\
-	\n${ORANGE}po${WHITE} *|${GREEN} Update .po files\
-	\n${ORANGE}build${WHITE} *|${GREEN} Build necessary files\
-	\n${ORANGE}install${WHITE} *|${GREEN} Install ${APP_NAME}\
-	\n${ORANGE}remove${WHITE} *|${GREEN} Remove ${APP_NAME}\
-	\n${ORANGE}clean${WHITE} *|${GREEN} Clean build directory\
-	\n${ORANGE}changelog${WHITE} *|${GREEN} Generate ChangeLog" | column -t -s \*
-	echo
+
+	echo -e "	${ORANGE}help${WHITE} *|${GREEN} Display this help message
+	${ORANGE}pot${WHITE} *|${GREEN} Generate .pot files
+	${ORANGE}po${WHITE} *|${GREEN} Update .po files
+	${ORANGE}build${WHITE} *|${GREEN} Build necessary files
+	${ORANGE}install${WHITE} *|${GREEN} Install ${APP_NAME}
+	${ORANGE}remove${WHITE} *|${GREEN} Remove ${APP_NAME}
+	${ORANGE}clean${WHITE} *|${GREEN} Clean build directory" | column -t -s \*
 	tput sgr0
 
 }
@@ -44,7 +44,7 @@ case ${1} in
 esac
 
 if [[ ! -e .configure/results ]]; then
-	echo -e "\n${RED}You need to run configure first!\n"
+	echo -e "\n${RED}You need to run ./configure first!\n"
 	exit 1
 else	source .configure/results
 	source .make/files
@@ -62,7 +62,7 @@ while [[ ${xcount} -lt ${pcount} ]]; do
 		install )	if [[ -e .make/build_done ]]; then
 					echo -e "\n${GREEN}Installing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 					installdirs_create && install_bsng && post_install
-				else 	echo -e "\n${RED}You need to run 'make' first!\n"
+				else 	echo -e "\n${RED}You need to run './make build' first!\n"
 					exit 1
 				fi ;;
 		remove ) 	echo -e "\n${GREEN}Removing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"

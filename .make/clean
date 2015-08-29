@@ -21,8 +21,8 @@ clean () {
 	local CUR_NUM=1
 
 	for file in ${CLEAN_FILES[@]}; do
-		echo -e "\t${WHITE}  * ${SILVER}[$CUR_NUM/$CL_NUM]${CYAN} ${file}"
-		local CUR_NUM=$(($CUR_NUM+1))
+		echo -e "\t${WHITE}  * ${SILVER}[${CUR_NUM}/${CL_NUM}]${CYAN} ${file}"
+		local CUR_NUM=$((${CUR_NUM}+1))
 		rm -f "${file}"
 	done
 	echo
