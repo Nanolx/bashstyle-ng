@@ -21,7 +21,7 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 
 for lang in ${APP_LANGUAGES}; do
 	LOCALE_REMOVE=( ${LOCALE_REMOVE[@]} ${LOCALEDIR}/${lang}/{bs-ng,nx-rc}.mo)
-	LOCALE_FILES=( i18n/${lang}/*.mo_${LOCALEDIR}/${lang}/LC_MESSAGES )
+	LOCALE_FILES=( i18n/${lang}/*.mo:${LOCALEDIR}/${lang}/LC_MESSAGES )
 done
 
 BIN_FILES=( data/bashstyle:${BINDIR}

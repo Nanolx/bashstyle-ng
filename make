@@ -53,25 +53,37 @@ fi
 xcount=0
 pcount=$#
 
-while [[ ${xcount} -lt ${pcount} ]]; do
-	case ${1} in
-		pot )		generate_pot ;;
-		po )		update_po;;
-		build )		echo -e "\n${GREEN}Building ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
-				build && touch .make/build_done && echo ;;
-		install )	if [[ -e .make/build_done ]]; then
-					echo -e "\n${GREEN}Installing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
-					installdirs_create && install_bsng && post_install
-				else 	echo -e "\n${RED}You need to run './make build' first!\n"
-					exit 1
-				fi ;;
-		remove ) 	echo -e "\n${GREEN}Removing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
-				remove_bsng ;;
-		* )		help_message ;;
-	esac
-	shift
-	xcount=$(($xcount+1))
-done
+if [[ ${pcount} -eq 0 ]]; then
+	help_message
+else
+	while [[ ${xcount} -lt ${pcount} ]]; do
+		case ${1} in
+			pot )		generate_pot ;;
+			po )		update_po;;
+			build )		echo -e "\n${GREEN}Building ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+					build && touch .make/build_done && echo ;;
+			install )	if [[ -e .make/build_done ]]; then
+						echo -e "\n${GREEN}Installing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+						if [[ ${EUID} != 0 ]]; then
+							echo -e "\n${RED}You need to be root to install ${APP_NAME}\n"
+						else
+							installdirs_create && install_bsng && post_install
+						fi
+					else 	echo -e "\n${RED}You need to run './make build' first!\n"
+						exit 1
+					fi ;;
+			remove ) 	if [[ ${EUID} != 0 ]]; then
+						echo -e "\n${RED}You need to be root to remove ${APP_NAME}\n"
+					else
+						echo -e "\n${GREEN}Removing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+						remove_bsng
+					fi ;;
+			* )		help_message ;;
+		esac
+		shift
+		xcount=$(($xcount+1))
+	done
+fi
 
 unset xcount pcount
 tput sgr0
