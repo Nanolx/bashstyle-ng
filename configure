@@ -14,7 +14,7 @@ shopt -s extglob
 MODULES=( base color messages checks substitute depends )
 
 for mod in ${MODULES[@]}; do
-	source ${PWD}/.configure/$mod
+	source ${PWD}/.configure/${mod}
 done
 
 rm -f ${PWD}/.configure/results
