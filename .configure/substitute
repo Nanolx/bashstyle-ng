@@ -21,11 +21,11 @@ copy_in_files () {
 
 substitute_values () {
 
-	sed -e "s>@VERSION@>$APP_VERSION>g" \
-		-e "s>@PREFIX@>$PREFIX>g" \
-		-e "s>@DATADIR@>$DATADIR>g" \
-		-e "s>@PYTHON@>$PYTHON>g" \
-		-e "s>@PROFILEDIR@>$PROFILEDIR>g" -i ${IN_FILES[@]}
+	sed -e "s>@VERSION@>${APP_VERSION}>g" \
+		-e "s>@PREFIX@>${PREFIX}>g" \
+		-e "s>@DATADIR@>${DATADIR}>g" \
+		-e "s>@PYTHON@>${PYTHON}>g" \
+		-e "s>@PROFILEDIR@>${PROFILEDIR}>g" -i ${IN_FILES[@]}
 	sed -e "s>//>/>g" -i ${IN_FILES[@]}
 
 }

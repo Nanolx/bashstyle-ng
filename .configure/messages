@@ -11,8 +11,8 @@
 
 section_message () {
 
-	if [[ ${QUIET} != "true" ]]; then
-		case $1 in
+	if [[ ${QUIET} != true ]]; then
+		case ${1} in
 			APP )		echo -e "\n${RED}< Required ${WHITE}Applications" ;;
 			OPT_APP )	echo -e "\n${MAGENTA}< Optional ${WHITE}Applications" ;;
 			SBINAPP )	echo -e "\n${RED}< Required ${WHITE}SuperUser Applications" ;;
@@ -39,10 +39,10 @@ start_message () {
 
 ok_message () {
 
-	if [[ ${QUIET} != "true" ]]; then
-		if [[ $2 != "" ]]; then
-			echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} OK${SILVER} ( $2 )"
-		else	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${GREEN} OK"
+	if [[ ${QUIET} != true ]]; then
+		if [[ ${2} != "" ]]; then
+			echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK${SILVER} ( ${2} )"
+		else	echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK"
 		fi
 	fi
 	tput sgr0
@@ -50,9 +50,9 @@ ok_message () {
 
 fail_message () {
 
-	case $1 in
-		m )	echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !MISSING!" ;;
-		o )	echo -e "${WHITE}\t+ ${CYAN}$2${MAGENTA} >${RED} !OLDER THAN $3!" ;;
+	case ${1} in
+		m )	echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !MISSING!" ;;
+		o )	echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !OLDER THAN $3!" ;;
 		p )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !MISSING!" ;;
 		p- )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !OLDER THAN 2.7.0!" ;;
 		p+ )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS 3.5 OR ABOVE!" ;;
@@ -63,8 +63,8 @@ fail_message () {
 
 warn_message () {
 
-	echo -e "${WHITE}\t+ ${CYAN}$1${MAGENTA} >${YELLOW} Not Available\
-		\n\t  > ${WHITE}$2"
+	echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${YELLOW} Not Available\
+		\n\t  > ${WHITE}${2}"
 	tput sgr0
 
 }
@@ -99,6 +99,7 @@ help_message () {
 
 	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}(Configure ${CFG_VERSION}) ${CYAN}help
 	\n${WHITE}Options:"
+
 	echo -e "${ORANGE}--help${WHITE} *|${GREEN} Display this help message\
 	\n${ORANGE}--mode=<mode>${WHITE} *|${GREEN} user (do checks) or maintainer (skip checks)\
 	\n${ORANGE}--prefix=<prefix>${WHITE} *|${GREEN} Change installation prefix (default: /usr)\
@@ -111,7 +112,7 @@ help_message () {
 	\n${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)\
 	\n${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks (for package-maintainers)\
 	\n${ORANGE}--quiet${WHITE} *|${GREEN} Only display warnings, failures and results\
-	\n${ORANGE}--bashrc=<bashrc>${WHITE} *|${GREEN} Path to system bashrc (default: /etc/bashrc or /etc/bash.bashrc)"| column -t -s \*
+	\n${ORANGE}--bashrc=<bashrc>${WHITE} *|${GREEN} Path to system bashrc (default: /etc/bashrc or /etc/bash.bashrc)" | column -t -s \*
 	tput sgr0
 
 }

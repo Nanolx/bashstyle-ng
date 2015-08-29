@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-trap "kill -s TERM $TOP_PID" TERM
+trap "kill -s TERM ${TOP_PID}" TERM
 export TOP_PID=$$
 
 check () {
@@ -36,148 +36,148 @@ check_helper () {
 
 check_apps () {
 
-OPT=$1
-shift
+	OPT=${1}
+	shift
 
-for ARG in "$@"; do
-	APP="${ARG/:*}"
-	DESC="${ARG/*:}"
-	DEP_RETURN=$(check $APP)
-	if [[ $DEP_RETURN == *found* ]]; then
-		ok_message $APP
-	elif [[ $DEP_RETURN != *found* && $OPT == true ]]; then
-		warn_message $APP "$DESC"
-		MISSING+=" $APP"
-	else 	fail_message m $APP
-		kill -s TERM $TOP_PID
-	fi
-done
+	for ARG in "${@}"; do
+		APP="${ARG/:*}"
+		DESC="${ARG/*:}"
+		DEP_RETURN=$(check ${APP})
+		if [[ ${DEP_RETURN} == *found* ]]; then
+			ok_message ${APP}
+		elif [[ ${DEP_RETURN} != *found* && ${OPT} == true ]]; then
+			warn_message ${APP} "${DESC}"
+			MISSING+=" ${APP}"
+		else 	fail_message m ${APP}
+			kill -s TERM ${TOP_PID}
+		fi
+	done
 
 }
 
 check_libs () {
 
-OPT=$1
-shift
+	OPT=${1}
+	shift
 
-for ARG in "$@"; do
+	for ARG in "${@}"; do
 
-	LIB=$(gawk -F \: '{print $1}' <(echo $ARG))
-	VERSION=$(gawk -F \: '{print $2}' <(echo $ARG))
-	PC_FILE=$(gawk -F \: '{print $3}' <(echo $ARG))
-	DESC=$(gawk -F \: '{print $4}' <(echo $ARG))
+		LIB=$(gawk -F \: '{print $1}' <(echo ${ARG}))
+		VERSION=$(gawk -F \: '{print $2}' <(echo ${ARG}))
+		PC_FILE=$(gawk -F \: '{print $3}' <(echo ${ARG}))
+		DESC=$(gawk -F \: '{print $4}' <(echo ${ARG}))
 
-	pkg-config --exists $PC_FILE
-	EXIST_RETURN=$?
+		pkg-config --exists ${PC_FILE}
+		EXIST_RETURN=$?
 
-	pkg-config --atleast-version=$VERSION $PC_FILE
-	DEP_RETURN=$?
+		pkg-config --atleast-version=${VERSION} ${PC_FILE}
+		DEP_RETURN=$?
 
-	if [[ $EXIST_RETURN != 0 && ! $OPT == "true" ]]; then
-		fail_message m $LIB
-		kill -s TERM $TOP_PID
-	elif [[ $DEP_RETURN == 0 ]]; then
-		ok_message $LIB ${VERSION}+
-	elif [[ $EXIST_RETURN != 0 && $OPT == "true" ]]; then
-		warn_message $LIB "$DESC"
-		MISSING+=" $LIB"
-	else	fail_message o $LIB $VERSION
-		kill -s TERM $TOP_PID
-	fi
+		if [[ ${EXIST_RETURN} != 0 && ! ${OPT} == true ]]; then
+			fail_message m $LIB
+			kill -s TERM ${TOP_PID}
+		elif [[ ${DEP_RETURN} == 0 ]]; then
+			ok_message $LIB ${VERSION}+
+		elif [[ ${EXIST_RETURN} != 0 && ${OPT} == true ]]; then
+			warn_message $LIB "${DESC}"
+			MISSING+=" $LIB"
+		else	fail_message o $LIB ${VERSION}
+			kill -s TERM ${TOP_PID}
+		fi
 
-done
+	done
 
 }
 
 check_gir () {
 
-OPT=$1
-shift
+	OPT=${1}
+	shift
 
-for ARG in "$@"; do
+	for ARG in "${@}"; do
 
-	GIR=$(gawk -F \: '{print $1}' <(echo $ARG))
-	VERSION=$(gawk -F \: '{print $2}' <(echo $ARG))
-	TYPE_LIB=$(gawk -F \: '{print $3}' <(echo $ARG))
-	DESC=$(gawk -F \: '{print $4}' <(echo $ARG))
-	FILE=$(basename ${GIRPATH}/$TYPE_LIB* .typelib 2>/dev/null)
+		GIR=$(gawk -F \: '{print $1}' <(echo ${ARG}))
+		VERSION=$(gawk -F \: '{print $2}' <(echo ${ARG}))
+		TYPE_LIB=$(gawk -F \: '{print $3}' <(echo ${ARG}))
+		DESC=$(gawk -F \: '{print $4}' <(echo ${ARG}))
+		FILE=$(basename ${GIRPATH}/$TYPE_LIB* .typelib 2>/dev/null)
 
-	if [[ $FILE != ".typelib" ]]; then
-		EXIST_RETURN=0
-		XVER=$(gawk -F \- '{print $2}' <(echo $FILE))
-		DEP_RETURN=$(echo "$XVER >= $VERSION" | bc)
-	fi
+		if [[ $FILE != ".typelib" ]]; then
+			EXIST_RETURN=0
+			XVER=$(gawk -F \- '{print $2}' <(echo $FILE))
+			DEP_RETURN=$(echo "$XVER >= ${VERSION}" | bc)
+		fi
 
-	if [[ $EXIST_RETURN != 0 && ! $OPT == "true" ]]; then
-		fail_message m $GIR
-		kill -s TERM $TOP_PID
-	elif [[ $DEP_RETURN == 1 ]]; then
-		ok_message $GIR ${VERSION}+
-	elif [[ $EXIST_RETURN != 0 && $OPT == "true" ]]; then
-		warn_message $GIR "$DESC"
-		MISSING+=" $GIR"
-	else	fail_message o $GIR $VERSION
-		kill -s TERM $TOP_PID
-	fi
+		if [[ ${EXIST_RETURN} != 0 && ! ${OPT} == true ]]; then
+			fail_message m ${GIR}
+			kill -s TERM ${TOP_PID}
+		elif [[ ${DEP_RETURN} == 1 ]]; then
+			ok_message ${GIR} ${VERSION}+
+		elif [[ ${EXIST_RETURN} != 0 && ${OPT} == true ]]; then
+			warn_message ${GIR} "${DESC}"
+			MISSING+=" ${GIR}"
+		else	fail_message o ${GIR} ${VERSION}
+			kill -s TERM ${TOP_PID}
+		fi
 
-done
+	done
 
 }
 
 check_python () {
 
-section_message PY
+	section_message PY
 
-if [[ ! -x $PYTHON ]]; then
-	fail_message p
-	kill -s TERM $TOP_PID
-else
-	PYMINVER=270
-	PYMAXVER=350
-	PYVER=$($PYTHON --version 2>&1 | gawk '{ gsub(/\./,""); gsub(/\+/,""); gsub(/rc.*/,""); print $2 }')
-	if [[ $PYVER -lt $PYMINVER ]]; then
-		fail_message p-
-		kill -s TERM $TOP_PID
-	elif [[ $PYVER -gt $PYMAXVER ]]; then
-		fail_message p+
-		kill -s TERM $TOP_PID
+	if [[ ! -x ${PYTHON} ]]; then
+		fail_message p
+		kill -s TERM ${TOP_PID}
 	else
-		ok_message Python
+		PYMINVER=270
+		PYMAXVER=350
+		PYVER=$(${PYTHON} --version 2>&1 | gawk '{ gsub(/\./,""); gsub(/\+/,""); gsub(/rc.*/,""); print $2 }')
+		if [[ ${PYVER} -lt ${PYMINVER} ]]; then
+			fail_message p-
+			kill -s TERM ${TOP_PID}
+		elif [[ ${PYVER} -gt ${PYMAXVER} ]]; then
+			fail_message p+
+			kill -s TERM ${TOP_PID}
+		else
+			ok_message Python
+		fi
 	fi
-fi
 
 }
 
 check_pymods () {
 
-OPT=$1
-shift
+	OPT=${1}
+	shift
 
-for ARG in "$@"; do
+	for ARG in "${@}"; do
 
-	MOD=$(gawk -F \: '{print $1}' <(echo $ARG))
-	SMOD=$(gawk -F \: '{print $2}' <(echo $ARG))
-	DESC=$(gawk -F \: '{print $3}' <(echo $ARG))
+		MOD=$(gawk -F \: '{print $1}' <(echo ${ARG}))
+		SMOD=$(gawk -F \: '{print $2}' <(echo ${ARG}))
+		DESC=$(gawk -F \: '{print $3}' <(echo ${ARG}))
 
-	if [[ $SMOD != "" ]]; then
-		DEP="$SMOD ($MOD)"
-		${PYTHON} -c "from $MOD import $SMOD" 2>/dev/null
-	else
-		DEP="$MOD"
-		${PYTHON} -c "import imp
-imp.find_module('$MOD')" 2>/dev/null
-	fi
+		if [[ ${SMOD} ]]; then
+			DEP="${SMOD} (${MOD})"
+			${PYTHON} -c "from ${MOD} import ${SMOD}" 2>/dev/null
+		else
+			DEP="${MOD}"
+			${PYTHON} -c "import imp
+imp.find_module('${MOD}')" 2>/dev/null
+		fi
 
-	DEP_RETURN=$?
-	if [[ $DEP_RETURN == 0 ]]; then
-		ok_message "$DEP"
-	elif [[ $DEP_RETURN != 0 && $OPT == "true" ]]; then
-		warn_message $DEP "${DESC}"
-		MISSING+=" $DEP"
-	else 	fail_message m $DEP
-		kill -s TERM $TOP_PID
-	fi
+		DEP_RETURN=$?
+		if [[ ${DEP_RETURN} == 0 ]]; then
+			ok_message "${DEP}"
+		elif [[ ${DEP_RETURN} != 0 && ${OPT} == true ]]; then
+			warn_message ${DEP} "${DESC}"
+			MISSING+=" ${DEP}"
+		else 	fail_message m ${DEP}
+			kill -s TERM ${TOP_PID}
+		fi
 
-done
+	done
 
 }

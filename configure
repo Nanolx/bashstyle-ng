@@ -21,7 +21,7 @@ rm -f ${PWD}/.configure/results
 
 xcount=0
 while [[ ${xcount} -lt $# ]]; do
-	case $1 in
+	case ${1} in
 		--mode=* )		MODE="${1/*=}" ;;
 		--prefix=* )		PREFIX="${1/*=}" ;;
 		--pcdir=* )		PCDIR="${1/*=}" ;;
@@ -38,11 +38,11 @@ while [[ ${xcount} -lt $# ]]; do
 						${PWD}/.configure/results ;;
 	esac
 	shift
-	xcount=$(($xcount+1))
+	xcount=$((${xcount}+1))
 done
 unset xcount
 
-if [[ ! $BASHFILE ]]; then
+if [[ ! ${BASHFILE} ]]; then
 	BASHFILE_AUTO=true
 	if [[ -e /etc/bash.bashrc ]]; then
 		BASHFILE=/etc/bash.bashrc

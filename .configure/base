@@ -12,9 +12,9 @@
 APP_NAME="BashStyle-NG"
 APP_VERSION=8.99
 APP_CODENAME="Hotride"
+APP_LANGUAGES="de"
 
-CFG_VERSION="4.3.1"
-ERR_MSG=""
+CFG_VERSION="4.3.2"
 
 if [[ -d "/usr/lib/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib/girepository-1.0/"
@@ -32,23 +32,25 @@ PCDIR="${PREFIX}/share/pkgconfig/"
 DATADIR="${PREFIX}/share/"
 PROFILEDIR="/etc/"
 
+for lang in ${APP_LANGUAGES[@]}; do
+	LC_MESSAGES_DIRS="${LC_MESSAGES_DIRS} ${lang}/LC_MESSAGES/"
+done
+
 export OLDPATH=${PATH}
 export PATH="${PATH}:/sbin:/usr/sbin:/usr/local/sbin"
 
 export_result ()
 {
 
-	echo -e "MODE=\"${MODE}\"\
-\nPREFIX=\"${PREFIX}\"\
+	echo -e "PREFIX=\"${PREFIX}\"\
 \nDATADIR=\"${DATADIR}/bashstyle-ng/\"\
-\nDATADIR_LIST=( ui rc/{,functions,internal,settings,styles} termcap/{bar,body} vim/{,colors} )\
+\nDATADIR_LIST=( ui rc/{functions,internal,settings,styles} termcap/{bar,body} vim/{colors} )\
 \nPROFILEDIR=\"${PROFILEDIR}/\"\
 \nBINDIR=\"${BINDIR}\"\
 \nLOCALEDIR=\"${DATADIR}/locale/\"\
-\nLOCALEDIR_LIST=( de/LC_MESSAGES/ )\
+\nLOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )\
 \nICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"\
 \nPCDIR=\"${PCDIR}/\"\
-\nBASHFILE=\"${BASHFILE}\"\
-\nMISSING=( ${MISSING} )" | sed -e 's,\/\/,\/,g' >> ${PWD}/.configure/results
+\nBASHFILE=\"${BASHFILE}\"" | sed -e 's,\/\/,\/,g' >> ${PWD}/.configure/results
 
 }
