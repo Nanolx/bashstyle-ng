@@ -100,19 +100,19 @@ help_message () {
 	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}(Configure ${CFG_VERSION}) ${CYAN}help
 	\n${WHITE}Options:"
 
-	echo -e "${ORANGE}--help${WHITE} *|${GREEN} Display this help message\
-	\n${ORANGE}--mode=<mode>${WHITE} *|${GREEN} user (do checks) or maintainer (skip checks)\
-	\n${ORANGE}--prefix=<prefix>${WHITE} *|${GREEN} Change installation prefix (default: /usr)\
-	\n${ORANGE}--bindir=<bindir>${WHITE} *|${GREEN} Change binary path (default: /usr/bin)\
-	\n${ORANGE}--docdir=<docdir>${WHITE} *|${GREEN} Change doc path (default: /usr/share/doc/)\
-	\n${ORANGE}--datadir=<datadir>${WHITE} *|${GREEN} Change data path (default: /usr/share/)\
-	\n${ORANGE}--pcdir=<pcdir>${WHITE} *|${GREEN} Change pkg-config path (default: /usr/share/pkgconfig)\
-	\n${ORANGE}--profiledir=<profiledir>${WHITE} *|${GREEN} Change profile path (default: /etc/)\
-	\n${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)\
-	\n${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)\
-	\n${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks (for package-maintainers)\
-	\n${ORANGE}--quiet${WHITE} *|${GREEN} Only display warnings, failures and results\
-	\n${ORANGE}--bashrc=<bashrc>${WHITE} *|${GREEN} Path to system bashrc (default: /etc/bashrc or /etc/bash.bashrc)" | column -t -s \*
+	echo -e "	${ORANGE}--help${WHITE} *|${GREEN} Display this help message
+	${ORANGE}--mode=<mode>${WHITE} *|${GREEN} user (do checks) or maintainer (skip checks)
+	${ORANGE}--prefix=<prefix>${WHITE} *|${GREEN} Change installation prefix (default: /usr)
+	${ORANGE}--bindir=<bindir>${WHITE} *|${GREEN} Change binary path (default: /usr/bin)
+	${ORANGE}--docdir=<docdir>${WHITE} *|${GREEN} Change doc path (default: /usr/share/doc/)
+	${ORANGE}--datadir=<datadir>${WHITE} *|${GREEN} Change data path (default: /usr/share/)
+	${ORANGE}--pcdir=<pcdir>${WHITE} *|${GREEN} Change pkg-config path (default: /usr/share/pkgconfig)
+	${ORANGE}--profiledir=<profiledir>${WHITE} *|${GREEN} Change profile path (default: /etc/)
+	${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)
+	${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)
+	${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks (for package-maintainers)
+	${ORANGE}--quiet${WHITE} *|${GREEN} Only display warnings, failures and results
+	${ORANGE}--bashrc=<bashrc>${WHITE} *|${GREEN} Path to system bashrc (default: /etc/bashrc or /etc/bash.bashrc)" | column -t -s \*
 	tput sgr0
 
 }
