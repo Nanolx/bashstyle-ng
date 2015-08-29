@@ -42,15 +42,16 @@ export PATH="${PATH}:/sbin:/usr/sbin:/usr/local/sbin"
 export_result ()
 {
 
-	echo -e "PREFIX=\"${PREFIX}\"\
-\nDATADIR=\"${DATADIR}/bashstyle-ng/\"\
-\nDATADIR_LIST=( ui rc/{functions,internal,settings,styles} termcap/{bar,body} vim/{colors} )\
-\nPROFILEDIR=\"${PROFILEDIR}/\"\
-\nBINDIR=\"${BINDIR}\"\
-\nLOCALEDIR=\"${DATADIR}/locale/\"\
-\nLOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )\
-\nICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"\
-\nPCDIR=\"${PCDIR}/\"\
-\nBASHFILE=\"${BASHFILE}\"" | sed -e 's,\/\/,\/,g' >> ${PWD}/.configure/results
+	echo -e "PREFIX=\"${PREFIX}\"
+DATADIR=\"${DATADIR}/bashstyle-ng/\"
+DATADIR_LIST=( ui rc/{functions,internal,settings,styles} termcap/{bar,body} vim/{colors} )
+PROFILEDIR=\"${PROFILEDIR}/\"
+BINDIR=\"${BINDIR}\"
+LOCALEDIR=\"${DATADIR}/locale/\"
+LOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )
+ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"
+PCDIR=\"${PCDIR}/\"
+BASHFILE=\"${BASHFILE}\"
+APP_LANGUAGES=\"${APP_LANGUAGES}\"" | sed -e 's,\/\/,\/,g' >> ${PWD}/.configure/results
 
 }
