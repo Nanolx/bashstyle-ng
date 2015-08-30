@@ -15,9 +15,9 @@ generate_pot () {
 
 	echo -e "\t${WHITE}+ ${MAGENTA} translation templates"
 	echo -e "\t${WHITE}  * ${SMOOTHBLUE}[1/2]${WHITE} bs-ng.pot"
-	intltool-extract --type=gettext/glade ui/bashstyle9.ui >/dev/null
+	intltool-extract --type=gettext/glade ui/bashstyle.ui >/dev/null
 	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bs-ng.pot \
-		ui/*.py ui/bashstyle9.ui.h >/dev/null
+		ui/*.py ui/bashstyle.ui.h >/dev/null
 
 	echo -e "\t${WHITE}  * ${SMOOTHBLUE}[2/2]${WHITE} nx-rc.pot"
 	xgettext -o i18n/nx-rc.pot -L shell rc/nx-rc rc/settings/*-rc >/dev/null
