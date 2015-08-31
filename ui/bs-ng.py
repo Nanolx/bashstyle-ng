@@ -10,14 +10,15 @@
 #							#
 #########################################################
 
-import gettext
+import gettext, os
 lang = gettext.translation('bs-ng', fallback=True)
 lang.install(names=['_'])
 
-MODULES = [ 'os', 'os.path', 'sys', 'string', 'shutil',
-            'optparse', 'subprocess', 'undobuffer', 'misc',
-	    'lockfile', 'config', 'widgethandler', 'dicts', 'prompts',
-	    'promptbuilder', 'args' , 'iconbook', 'keybindings' ]
+print(_("\nBashStyle-NG version %s starting" % os.getenv('BSNG_UI_VERSION')))
+
+MODULES = [ 'os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
+            'undobuffer', 'misc', 'lockfile', 'config', 'widgethandler', 'args',
+            'dicts', 'prompts', 'promptbuilder', 'iconbook', 'keybindings' ]
 
 FAILED = []
 
