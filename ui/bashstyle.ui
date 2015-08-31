@@ -128,12 +128,6 @@ The Undobuffer Pythonmodule is licensed under the:
       </row>
     </data>
   </object>
-  <object class="GtkImage" id="cpb.icon.toolbox">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="pixel_size">15</property>
-    <property name="icon_name">bs-ng-toolbox</property>
-  </object>
   <object class="GtkListStore" id="cpb.liststore.style">
     <columns>
       <!-- column-name item -->
@@ -218,18 +212,6 @@ The Undobuffer Pythonmodule is licensed under the:
         <col id="0" translatable="yes">PS2 PS3 PS4</col>
       </row>
     </data>
-  </object>
-  <object class="GtkImage" id="icon.back">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">gtk-go-back</property>
-    <property name="icon_size">2</property>
-  </object>
-  <object class="GtkImage" id="icon.reset_key">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">gtk-delete</property>
-    <property name="icon_size">2</property>
   </object>
   <object class="GtkListStore" id="iconviewstore">
     <columns>
@@ -1351,7 +1333,6 @@ The Undobuffer Pythonmodule is licensed under the:
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="image">icon.back</property>
                 <property name="relief">none</property>
               </object>
               <packing>
@@ -1366,7 +1347,6 @@ The Undobuffer Pythonmodule is licensed under the:
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="image">icon.reset_key</property>
                 <property name="relief">none</property>
               </object>
               <packing>
@@ -6898,7 +6878,6 @@ the file's directory</property>
                         <property name="receives_default">True</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
-                        <property name="image">cpb.icon.toolbox</property>
                       </object>
                       <packing>
                         <property name="top_attach">1</property>
