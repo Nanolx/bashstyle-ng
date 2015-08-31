@@ -121,9 +121,11 @@ class KeyTree(object):
 		tree.get_selection().connect("changed", on_changed)
 
 		use_keys.set_active(self.config["Keybindings"].as_bool("use_keybindingscfg"))
+		tree.set_sensitive(use_keys.get_active())
 
 		def on_use_keys(widget):
 			self.config["Keybindings"]["use_keybindingscfg"] = widget.get_active()
+			tree.set_sensitive(widget.get_active())
 
 		use_keys.connect("toggled", on_use_keys)
 
