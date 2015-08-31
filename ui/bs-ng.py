@@ -14,10 +14,13 @@ import gettext, os
 lang = gettext.translation('bs-ng', fallback=True)
 lang.install(names=['_'])
 
+import args
+args.CmdArgs()
+
 print(_("\nBashStyle-NG version %s starting" % os.getenv('BSNG_UI_VERSION')))
 
 MODULES = [ 'os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
-            'undobuffer', 'misc', 'lockfile', 'config', 'widgethandler', 'args',
+            'undobuffer', 'misc', 'lockfile', 'config', 'widgethandler',
             'dicts', 'prompts', 'promptbuilder', 'iconbook', 'keybindings' ]
 
 FAILED = []
@@ -37,11 +40,6 @@ if FAILED:
     print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
     sys.exit(1)
 
-PREFIX = os.getenv('BSNG_UI_PREFIX')
-DATDIR = os.getenv('BSNG_DATADIR')
-
-args.CmdArgs()
-
 lock = lockfile.LockFile()
 config = config.Config()
 
@@ -60,7 +58,6 @@ class BashStyleNG(object):
 
 		######################## load translations & widgethandler #########################
 		gtkbuilder = widgethandler.gtkbuilder
-
 		WidgetHandler = widgethandler.WidgetHandler(config.cfo, config.udc, config.fdc)
 
 		####################### Style Options ##############################################
