@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.6"/>
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="can_focus">False</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -30,10 +30,7 @@ The Undobuffer Pythonmodule is licensed under the:
 	GNU LESSER GENERAL PUBLIC LICENSE V3</property>
     <property name="authors">Christopher Bratusek</property>
     <property name="documenters">Christopher Bratusek</property>
-    <property name="translator_credits" translatable="yes">de_DE: Christopher Bratusek
-it_IT: Alin Hantig
-ru_RU: Alexander Lushpai
-es_ES: Kenny Meyer</property>
+    <property name="translator_credits" translatable="yes">de_DE: Christopher Bratusek</property>
     <property name="artists">Oxygen Icon Devs</property>
     <property name="logo_icon_name">bs-ng</property>
     <property name="license_type">custom</property>
@@ -225,13 +222,13 @@ es_ES: Kenny Meyer</property>
   <object class="GtkImage" id="icon.back">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-go-back</property>
+    <property name="icon_name">gtk-go-back</property>
     <property name="icon_size">2</property>
   </object>
   <object class="GtkImage" id="icon.reset_key">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-delete</property>
+    <property name="icon_name">gtk-delete</property>
     <property name="icon_size">2</property>
   </object>
   <object class="GtkListStore" id="iconviewstore">
@@ -2056,8 +2053,8 @@ several prompt styles use separators between
 items, here you can choose what to use as
 separator.</property>
                                         <property name="invisible_char">●</property>
-                                        <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                        <property name="secondary_icon_stock">gtk-delete</property>
+                                        <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_name">gtk-delete</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -2099,8 +2096,8 @@ separator.</property>
 this character will be used once for PS2, twice
 for PS3 and three times for PS4.</property>
                                         <property name="invisible_char">●</property>
-                                        <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                        <property name="secondary_icon_stock">gtk-delete</property>
+                                        <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_name">gtk-delete</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -2141,8 +2138,8 @@ most prompt styles display the current directory.
 They allow to cut it, if it exceeds pwdlength, this
 is the indicator for a cut directory.</property>
                                         <property name="invisible_char">●</property>
-                                        <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                        <property name="secondary_icon_stock">gtk-delete</property>
+                                        <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_name">gtk-delete</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -2592,8 +2589,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2613,8 +2610,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2634,8 +2631,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2655,8 +2652,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2676,8 +2673,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2697,8 +2694,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2718,8 +2715,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2739,8 +2736,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2760,8 +2757,8 @@ a=echo hello world
 
 Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
-                    <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_stock">gtk-delete</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -2844,8 +2841,8 @@ Now executing "a" will do "echo hello world"</property>
 maximum lines of bash history.</property>
                                 <property name="invisible_char">•</property>
                                 <property name="text" translatable="yes">0</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                                 <property name="adjustment">advanced.adjustment.history_size</property>
                               </object>
                               <packing>
@@ -2894,8 +2891,8 @@ maximum lines of bash history.</property>
 a colon separated list of commands not to log
 in the bash history.</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -2999,8 +2996,8 @@ Ignore Both: Ignore duplicates and Ignore
 a colon separated list of commands not to log
 in the bash history.</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3095,8 +3092,8 @@ you can directly go to ${HOME}/Desktop using:
 
 cd Desktop</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3139,8 +3136,8 @@ cd Desktop</property>
 a colon separated list of files to ignore from
 filename completion.</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3185,8 +3182,8 @@ after x seconds of inactivity bash will log you out
 automatically. 0 to disable.</property>
                                 <property name="invisible_char">•</property>
                                 <property name="text" translatable="yes">0</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                                 <property name="adjustment">advanced.adjustment.timeout</property>
                                 <property name="climb_rate">0.01</property>
                               </object>
@@ -3233,8 +3230,8 @@ automatically. 0 to disable.</property>
 
 set the editor for the internal fc command.</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3278,8 +3275,8 @@ set the editor for the internal fc command.</property>
 some command to run on session start. Most
 commonly this will be something like "fortune".</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3323,8 +3320,8 @@ executables are stored. Note: if you change
 it first add the content of your original $PATH
 here (else you'll get unwanted results).</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3394,8 +3391,8 @@ normally directories are represented by / - eg.:
 / by something else (only for displaying in the
 prompt).</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3550,8 +3547,8 @@ user birthday in MM-DD format. Example 12-06
 for 6th of December. You will be presented with
 some surprise when starting bash that day.</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -3591,8 +3588,8 @@ some surprise when starting bash that day.</property>
 
 extra ls options for lscd. All ls options work.</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -4019,8 +4016,8 @@ exceeds this value the shell will ask
 the user whether to display all.</property>
                                 <property name="invisible_char">•</property>
                                 <property name="text" translatable="yes">0</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                                 <property name="adjustment">readline.adjustment.query_items</property>
                               </object>
                               <packing>
@@ -4722,8 +4719,8 @@ line, instead of remembered column</property>
 length (in spaces) for tabstops</property>
                                 <property name="invisible_char">●</property>
                                 <property name="text" translatable="yes">0</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                                 <property name="adjustment">vim.adjustment.tabstop</property>
                               </object>
                               <packing>
@@ -4772,8 +4769,8 @@ when wraping long lines, this is the
 column where they are wrapped at</property>
                                 <property name="invisible_char">●</property>
                                 <property name="text" translatable="yes">0</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                                 <property name="adjustment">vim.adjustment.autowrap</property>
                               </object>
                               <packing>
@@ -5044,8 +5041,8 @@ format the ruler to your needs, eg.:
 
 vimdoc.sourceforge.net/htmldoc/options.html</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -5584,8 +5581,8 @@ the file's directory</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
-                                <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_stock">gtk-delete</property>
+                                <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                <property name="secondary_icon_name">gtk-delete</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -6619,7 +6616,6 @@ the file's directory</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
-                                <property name="use_stock">True</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -6634,7 +6630,6 @@ the file's directory</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
-                                <property name="use_stock">True</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -6649,7 +6644,6 @@ the file's directory</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
-                                <property name="use_stock">True</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -6762,7 +6756,6 @@ the file's directory</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
-                                <property name="use_stock">True</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -6777,7 +6770,6 @@ the file's directory</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
-                                <property name="use_stock">True</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -6792,7 +6784,6 @@ the file's directory</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="relief">none</property>
-                                <property name="use_stock">True</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -7077,8 +7068,8 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
-                            <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_stock">gtk-delete</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -7131,8 +7122,8 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
-                            <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_stock">gtk-delete</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -7169,8 +7160,8 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
-                            <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_stock">gtk-delete</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -7207,8 +7198,8 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
-                            <property name="primary_icon_stock">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_stock">gtk-delete</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
