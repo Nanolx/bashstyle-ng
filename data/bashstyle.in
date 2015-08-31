@@ -10,9 +10,10 @@
 #########################################################
 
 case ${1} in
-	--python | -p ) echo "@PYTHON@";;
+	--python | -p ) echo "@PYTHON@" ;;
 
 	* )
+		export NO_AT_BRIDGE=1
 		cd @DATADIR@/bashstyle-ng/
 
 		export BSNG_UI_PREFIX="@PREFIX@"
