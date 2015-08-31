@@ -29,7 +29,6 @@ if FAILED:
     print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
     sys.exit(1)
 
-PREFIX = os.getenv('BSNG_UI_PREFIX')
 DATADIR = os.getenv('BSNG_DATADIR')
 blacklist = ['\'', '\"']
 gtkbuilder = Gtk.Builder()
