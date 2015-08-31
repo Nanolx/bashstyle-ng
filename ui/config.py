@@ -24,7 +24,6 @@ if FAILED:
     print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
     sys.exit(1)
 
-PREFIX = os.getenv('BSNG_UI_PREFIX')
 DATADIR = os.getenv('BSNG_DATADIR')
 USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
 USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
@@ -77,19 +76,21 @@ class Config(object):
 		if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
 			vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
 			if vendor_ini.as_int("ini_version") == app_ini_version:
-				print(_("RestoreConfig: vendor configuration up-to-date, using it's values."))
+				print(_("ResetConfig: vendor configuration up-to-date, using it's values."))
 				shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS)
 			else:
-				print(_("RestoreConfig: vendor configuration oudated, using factory defaults!"))
+				print(_("ResetConfig: vendor configuration oudated, using factory defaults!"))
 				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
 		else:
-			print(_("RestoreConfig: no vendor configuration found, using factory defaults."))
+			print(_("ResetConfig: no vendor configuration found, using factory defaults."))
 			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
 
 	def BackupConfig(self):
+		print(_("BackupConfig: backing up configuration to %s." % USER_DEFAULTS_SAVE))
 		shutil.copy(USER_DEFAULTS, USER_DEFAULTS_SAVE)
 
 	def RestoreConfig(self):
+		print(_("RestoreConfig: restoring configuration from %s" % USER_DEFAULTS_SAVE))
 		shutil.copy(USER_DEFAULTS_SAVE, USER_DEFAULTS)
 
 	def UpdateConfig(self):
