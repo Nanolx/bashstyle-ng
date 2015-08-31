@@ -69,8 +69,6 @@ es_ES: Kenny Meyer</property>
           <object class="GtkSeparator" id="aboutdialog.separator">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">50</property>
-            <property name="margin_right">50</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -227,16 +225,12 @@ es_ES: Kenny Meyer</property>
   <object class="GtkImage" id="icon.back">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="xalign">0</property>
-    <property name="yalign">0</property>
     <property name="stock">gtk-go-back</property>
     <property name="icon_size">2</property>
   </object>
   <object class="GtkImage" id="icon.reset_key">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="xalign">0</property>
-    <property name="yalign">0</property>
     <property name="stock">gtk-delete</property>
     <property name="icon_size">2</property>
   </object>
@@ -1059,7 +1053,6 @@ es_ES: Kenny Meyer</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">toolbox.liststore.countfiles</property>
-                    <property name="tearoff_title">Files Amount</property>
                     <child>
                       <object class="GtkCellRendererText" id="toolbox.cellrenderer.countfiles"/>
                       <attributes>
@@ -1104,7 +1097,6 @@ es_ES: Kenny Meyer</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">toolbox.liststore.load</property>
-                    <property name="tearoff_title">Load Average</property>
                     <child>
                       <object class="GtkCellRendererText" id="toolbox.cellrenderer.showload"/>
                       <attributes>
@@ -1149,7 +1141,6 @@ es_ES: Kenny Meyer</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">toolbox.liststore.memory</property>
-                    <property name="tearoff_title">Display Memory:</property>
                     <child>
                       <object class="GtkCellRendererText" id="toolbox.cellrenderer.showmem"/>
                       <attributes>
@@ -1181,7 +1172,6 @@ es_ES: Kenny Meyer</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">toolbox.liststore.space</property>
-                    <property name="tearoff_title">Display Diskspace</property>
                     <child>
                       <object class="GtkCellRendererText" id="toolbox.cellrenderer.showspace"/>
                       <attributes>
@@ -1348,7 +1338,6 @@ es_ES: Kenny Meyer</property>
                 <property name="label" translatable="yes">Choose a category:</property>
                 <property name="ellipsize">start</property>
                 <property name="lines">1</property>
-                <property name="xalign">0</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
@@ -1395,7 +1384,6 @@ es_ES: Kenny Meyer</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="xalign">0</property>
                 <property name="draw_indicator">True</property>
               </object>
               <packing>
@@ -1493,7 +1481,6 @@ es_ES: Kenny Meyer</property>
 This will enable fancy colorful prompts, else they
 will be monochrome. This setting also effects 
 other color settings.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -1515,7 +1502,6 @@ other color settings.</property>
 Checking this will enable BashStyle-NG, that
 means that all options (except for categories
 vim, nano and readline) will take effect.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -1593,7 +1579,6 @@ vim, nano and readline) will take effect.</property>
 Color the output of the ls command, else it will 
 fallback to distribution default (usually 
 monochrome).</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -1629,7 +1614,6 @@ choose the way colors are drawn.</property>
                                         <property name="can_focus">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="model">style.liststore.color_style</property>
-                                        <property name="tearoff_title">Change Color Style</property>
                                         <property name="has_frame">False</property>
                                         <child>
                                           <object class="GtkCellRendererText" id="style.cellrenderer.color_style"/>
@@ -1663,7 +1647,6 @@ choose the way colors are drawn.</property>
 
 This will highlight keywords when reading 
 manpages for easier readiblity.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -1684,7 +1667,6 @@ manpages for easier readiblity.</property>
 
 changes the default text color (randomly after 
 each command)</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -1704,7 +1686,6 @@ each command)</property>
                                     <property name="tooltip_text" translatable="yes">colored_grep
 
 this will highlight search results in grep output.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -1741,7 +1722,6 @@ terminfos for manpages. </property>
                                         <property name="can_focus">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="model">style.liststore.terminfo_bar</property>
-                                        <property name="tearoff_title">Terminfo for Manpages</property>
                                         <child>
                                           <object class="GtkCellRendererText" id="style.cellrenderer.terminfo"/>
                                           <attributes>
@@ -1820,7 +1800,6 @@ terminfos for manpages. </property>
 Reset the text color to normal when executing
 a command line (only the command itself will be 
 colored differently)</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -1857,7 +1836,6 @@ in grep output.</property>
                                         <property name="can_focus">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="model">style.liststore.grep_colour</property>
-                                        <property name="tearoff_title">Choose Grep Color</property>
                                         <child>
                                           <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour"/>
                                           <attributes>
@@ -1947,7 +1925,6 @@ in grep output.</property>
 
 choose a part of the prompt to re-color.</property>
                                     <property name="model">style.liststore.color_of</property>
-                                    <property name="tearoff_title">Choose Color to Change:</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="style.cellrenderer.color_of"/>
                                       <attributes>
@@ -1971,7 +1948,6 @@ choose a part of the prompt to re-color.</property>
 
 choose the color for the part to recolor.</property>
                                     <property name="model">style.liststore.color_to</property>
-                                    <property name="tearoff_title">Change Color to</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="style.cellrenderer.color_to"/>
                                       <attributes>
@@ -1997,7 +1973,6 @@ choose the color for the part to recolor.</property>
 
 choose a random promptstyle each time you
 start a new session.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -2033,7 +2008,6 @@ choose a prompt style.</property>
                                         <property name="can_focus">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="model">style.liststore.prompt_style</property>
-                                        <property name="tearoff_title">Choose Style</property>
                                         <child>
                                           <object class="GtkCellRendererText" id="style.cellrenderer.prompt_style"/>
                                           <attributes>
@@ -2311,7 +2285,6 @@ both: show free / used RAM in MB</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="model">advanced.liststore.memory</property>
-                                        <property name="tearoff_title">Select Memory Option:</property>
                                         <child>
                                           <object class="GtkCellRendererText" id="advanced.cellrenderer.show_mem"/>
                                           <attributes>
@@ -2344,7 +2317,6 @@ both: show free / used RAM in MB</property>
 
 Applies to "separator" style only. Show the
 number of files in the current directory.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -2365,7 +2337,6 @@ number of files in the current directory.</property>
 
 Applies to "separator" style only. Display the
 computer's uptime.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -2386,7 +2357,6 @@ computer's uptime.</property>
 
 Applies to "separator" style only. Show the size
 of all files in the current directory.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -2407,7 +2377,6 @@ of all files in the current directory.</property>
 
 Applies to "separator" style only. Display the
 current tty.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -2427,7 +2396,6 @@ current tty.</property>
 
 Applies to "separator" style only. Show the
 number of running processes.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -2447,7 +2415,6 @@ number of running processes.</property>
 
 Applies to "separator" style only. Display the
 battery load using acpi.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -2467,7 +2434,6 @@ battery load using acpi.</property>
 
 Applies to "separator" style only. Display the
 system load.</property>
-                                    <property name="xalign">0</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -2981,7 +2947,6 @@ Ignore Both: Ignore duplicates and Ignore
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="model">advanced.liststore.history_control</property>
-                                <property name="tearoff_title">History Control Type</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="advanced.cellrenderer.history_control1"/>
                                   <attributes>
@@ -3389,7 +3354,6 @@ here (else you'll get unwanted results).</property>
 when doing completion using [TAB] instead of
 display a list of possible completions, "rotate"
 between matches pressing [TAB] multiple times.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3509,7 +3473,6 @@ prompt).</property>
 
 Use "lscd" instead of "cd". lscd displays lists
 all files in the current directory when cd-ing.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3531,7 +3494,6 @@ all files in the current directory when cd-ing.</property>
 normally "dd" abort on any occuring error. This
 will prevent dd from aborting, it will just report
 the read error and continue.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3553,7 +3515,6 @@ the read error and continue.</property>
 display full output from NX-RC (the BashStyle-NG
 startup script). Only recommended if you're
 getting an error message on session start.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3657,7 +3618,6 @@ extra ls options for lscd. All ls options work.</property>
                             <property name="tooltip_text" translatable="yes">lscd_mkdir
 
 let lscd create a directory if it does not exist.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3678,7 +3638,6 @@ let lscd create a directory if it does not exist.</property>
 
 remember the directory you last cd-ed into and
 restore it in a new session.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3699,7 +3658,6 @@ restore it in a new session.</property>
 
 Use "treecd" instead of "cd". treecd displays lists
 the directory tree in the current directory when cd-ing.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3786,7 +3744,6 @@ longer than the terminals width will
 not break the line, rather will readline
 scroll horizontally, so you can type
 everything in one line</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3806,7 +3763,6 @@ everything in one line</property>
 
 when modifying a history entry, a *
 will be prepended to the line</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3840,7 +3796,6 @@ will be prepended to the line</property>
 
 show the editing mode (vim or emacs)
 at the start of the prompt</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3865,8 +3820,6 @@ at the start of the prompt</property>
                   <object class="GtkSeparator" id="readline.separator.1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">3</property>
@@ -3916,7 +3869,6 @@ at the start of the prompt</property>
 when doing file/pathname completion
 append a / to all symbolic linked
 directories</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3939,7 +3891,6 @@ directories</property>
 
 when doing file/pathname completion
 append a / to each directory.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3964,7 +3915,6 @@ append a / to each directory.</property>
 
 do horizontal completion rather than
 vertical (default)</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -3987,7 +3937,6 @@ vertical (default)</property>
 
 when doing completion ignore the
 case of file/pathname or commands</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4010,7 +3959,6 @@ case of file/pathname or commands</property>
 
 when doing file/pathname or command
 completion also include hidden files</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4035,7 +3983,6 @@ When completion is unsure rather and
 if the number of completions is less
 than query_items don't tell the user
 how many matches exist, just show them.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4106,7 +4053,6 @@ the user whether to display all.</property>
 when doing file/pathname or command
 completion append stats to entries,
 @ for links, * for executables ...</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4135,8 +4081,6 @@ completion append stats to entries,
                   <object class="GtkSeparator" id="readline.separator.2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -4187,7 +4131,6 @@ This option lets BashStyle-NG create
 an inputrc according to below values
 and the choices in the Keybindings
 configurator.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4209,7 +4152,6 @@ configurator.</property>
 Enable file/pathname, command,
 etc. completion (press TAB on an
 incomplete file/pathname).</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4253,7 +4195,6 @@ Visible: flash the terminal</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="model">readline.liststore.bellstyle</property>
-                                <property name="tearoff_title">Change Bellstyle:</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="readline.cellrenderer.bellstyle"/>
                                   <attributes>
@@ -4304,7 +4245,6 @@ or emacs (default) like.</property>
                                 <property name="can_focus">False</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                 <property name="model">readline.liststore.editmode</property>
-                                <property name="tearoff_title">Choose Editing Mode</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="readline.cellrenderer.editmode"/>
                                   <attributes>
@@ -4396,7 +4336,6 @@ or emacs (default) like.</property>
 
 enabling will this create a vimrc with
 below configuration</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4416,7 +4355,6 @@ below configuration</property>
 
 create a backup ($filename~) when
 saving a file</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4439,8 +4377,6 @@ saving a file</property>
                   <object class="GtkSeparator" id="vim.separator.1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -4487,7 +4423,6 @@ saving a file</property>
                             <property name="tooltip_text" translatable="yes">ignore_case
 
 when searching ignore the case</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4507,7 +4442,6 @@ when searching ignore the case</property>
 
 when searching smartly decide
 whether to ignore case or not</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4530,7 +4464,6 @@ whether to ignore case or not</property>
 don't wait for the search pattern
 to be complete, immediately start
 the search</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4552,7 +4485,6 @@ the search</property>
 
 when searching highlight all matches
 in the file</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4617,7 +4549,6 @@ in the file</property>
 when moving the cursor to a bracket,
 highlight the corresponding opening
 or closing bracket</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4644,7 +4575,6 @@ commands only when fully written,
 this will change the behaviour, so
 that you can see your command while
 typing it in</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4666,7 +4596,6 @@ typing it in</property>
 
 auto-indent the file according to it's
 type.</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4689,7 +4618,6 @@ type.</property>
 when saving a file remember your
 last position in the file and restore it
 when you open it again</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4709,7 +4637,6 @@ when you open it again</property>
 
 enable colored syntax highlighting,
 for better readability</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4732,7 +4659,6 @@ for better readability</property>
 set this when your terminal has a
 dark background - it will change vims
 colors for better readibilty</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4757,7 +4683,6 @@ colors for better readibilty</property>
 when opening a new file and restoring
 last position, jump to the start of the
 line, instead of remembered column</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4881,7 +4806,6 @@ column where they are wrapped at</property>
 wrap what you type a autowrap
 position rather than having endless
 lines</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4910,8 +4834,6 @@ lines</property>
                   <object class="GtkSeparator" id="vim.separator.2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">3</property>
@@ -4924,8 +4846,6 @@ lines</property>
                   <object class="GtkSeparator" id="vim.separator.3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">5</property>
@@ -4972,7 +4892,6 @@ lines</property>
                             <property name="tooltip_text" translatable="yes">show_lineno
 
 display line numbers at the left</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -4991,7 +4910,6 @@ display line numbers at the left</property>
                             <property name="tooltip_text" translatable="yes">autosave
 
 autosave files</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5013,7 +4931,6 @@ autosave files</property>
 
 highlight the current line (it will be
 underlined)</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5035,7 +4952,6 @@ underlined)</property>
 
 highlight the current column (there
 will be a vertical line of underlines)</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5160,7 +5076,6 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
 
 display a customizable ruler at the
 bottom of the editor</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5184,7 +5099,6 @@ bottom of the editor</property>
 
 when opening a file, let vim cd into
 the file's directory</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5266,7 +5180,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5284,7 +5197,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5302,7 +5214,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5322,7 +5233,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5374,7 +5284,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5390,7 +5299,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5408,7 +5316,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5426,7 +5333,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5486,7 +5392,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5502,7 +5407,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5522,7 +5426,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5540,7 +5443,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -5567,8 +5469,6 @@ the file's directory</property>
                   <object class="GtkSeparator" id="nano.separator.1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">3</property>
@@ -5581,8 +5481,6 @@ the file's directory</property>
                   <object class="GtkSeparator" id="nano.separator.2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -5616,8 +5514,6 @@ the file's directory</property>
                   <object class="GtkSeparator" id="ls_colors.separator.1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -5658,7 +5554,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -6022,8 +5917,6 @@ the file's directory</property>
                   <object class="GtkSeparator" id="ls_colors.separator.2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">3</property>
@@ -6341,8 +6234,6 @@ the file's directory</property>
                   <object class="GtkSeparator" id="ls_colors.separator.3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">5</property>
@@ -6712,7 +6603,6 @@ the file's directory</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="relief">none</property>
-                                <property name="xalign">0</property>
                                 <property name="draw_indicator">True</property>
                                 <property name="group">place_p_c</property>
                               </object>
@@ -6810,8 +6700,6 @@ the file's directory</property>
                   <object class="GtkSeparator" id="cpb.separator.1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">3</property>
@@ -6858,7 +6746,6 @@ the file's directory</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="relief">none</property>
-                                <property name="xalign">0</property>
                                 <property name="active">True</property>
                                 <property name="draw_indicator">True</property>
                               </object>
@@ -6955,8 +6842,6 @@ the file's directory</property>
                   <object class="GtkSeparator" id="cpb.separator.2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">100</property>
-                    <property name="margin_right">100</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -6983,7 +6868,6 @@ the file's directory</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -7163,7 +7047,6 @@ lsb = show branches by last activity</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -7218,7 +7101,6 @@ lsb = show branches by last activity</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -7346,7 +7228,6 @@ lsb = show branches by last activity</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -7420,7 +7301,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7440,7 +7320,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7458,7 +7337,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7478,7 +7356,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7496,7 +7373,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7516,7 +7392,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7534,7 +7409,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7552,7 +7426,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7616,7 +7489,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7632,7 +7504,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7650,7 +7521,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7668,7 +7538,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7739,7 +7608,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -7755,7 +7623,6 @@ lsb = show branches by last activity</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
