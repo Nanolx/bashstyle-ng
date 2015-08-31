@@ -35,6 +35,9 @@ class CmdArgs(object):
 	parser.add_option("-p", "--prefix", dest="prefix",
 			  action="store_true", default=False, help=_("print prefix and exit"))
 
+	parser.add_option("-P", "--python", dest="python",
+			  action="store_true", default=False, help=_("print used Python interpreter and exit"))
+
 	(options, args) = parser.parse_args()
 
 	if options.version:
