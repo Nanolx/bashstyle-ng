@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-31 17:44+0200\n"
-"PO-Revision-Date: 2015-08-31 17:44+0200\n"
+"POT-Creation-Date: 2015-08-31 21:37+0200\n"
+"PO-Revision-Date: 2015-08-31 21:38+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.3\n"
 
-#: ui/args.py:24 ui/bs-ng.py:37 ui/config.py:24 ui/iconbook.py:34
+#: ui/args.py:24 ui/bs-ng.py:40 ui/config.py:24 ui/iconbook.py:34
 #: ui/keybindings.py:34 ui/lockfile.py:24 ui/promptbuilder.py:29
 #: ui/widgethandler.py:29
 #, python-format
@@ -47,7 +47,11 @@ msgstr "Version anzeigen und beenden"
 msgid "print prefix and exit"
 msgstr "Präfix anzeigen und beenden"
 
-#: ui/bs-ng.py:17
+#: ui/args.py:39
+msgid "print used Python interpreter and exit"
+msgstr "Python-Interpreter anzeigen und beenden"
+
+#: ui/bs-ng.py:20
 #, python-format
 msgid ""
 "\n"
@@ -56,28 +60,28 @@ msgstr ""
 "\n"
 "BashStyle-NG Version %s startet"
 
-#: ui/config.py:47
+#: ui/config.py:46
 msgid "LoadConfig: vendor configuration up-to-date, using it's values."
 msgstr "LoadConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
 
-#: ui/config.py:50
+#: ui/config.py:49
 msgid "LoadConfig: vendor configuration oudated, using factory defaults!"
 msgstr ""
 "LoadConfig: Distributions-Konfiguration veraltet, benutze Programm-Standard!"
 
-#: ui/config.py:53
+#: ui/config.py:52
 msgid "LoadConfig: no vendor configuration found, using factory defaults."
 msgstr ""
 "LoadConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
 "Standard."
 
-#: ui/config.py:65
+#: ui/config.py:64
 msgid "CheckConfig: your ini is at version {}, but {} is available, updating."
 msgstr ""
 "CheckConfig: deine ini ist auf Version {}, aber {} ist verfügbar, "
 "aktualisiere."
 
-#: ui/config.py:68
+#: ui/config.py:67
 msgid ""
 "CheckConfig: your ini version is at {}, but {} is the highest known. "
 "Resetting due to error."
@@ -85,58 +89,66 @@ msgstr ""
 "CheckConfig: deine ini ist auf Version {}, aber {} ist die höchste bekannte. "
 "Setze aufgrund eines Fehlers zurück."
 
-#: ui/config.py:71
+#: ui/config.py:70
 msgid "CheckConfig: configuration up-to-date."
 msgstr "CheckConfig: Konfiguration ist aktuell."
 
-#: ui/config.py:73
+#: ui/config.py:72
 msgid ""
 "CheckConfig: something is wrong with your configuration, restoring defaults."
 msgstr ""
 "CheckConfig: etwas ist falsch mit deiner Konfiguration, stelle Standard "
 "wieder her."
 
-#: ui/config.py:80
-msgid "RestoreConfig: vendor configuration up-to-date, using it's values."
-msgstr ""
-"RestoreConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
+#: ui/config.py:79
+msgid "ResetConfig: vendor configuration up-to-date, using it's values."
+msgstr "ResetConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
 
-#: ui/config.py:83
-msgid "RestoreConfig: vendor configuration oudated, using factory defaults!"
+#: ui/config.py:82
+msgid "ResetConfig: vendor configuration oudated, using factory defaults!"
 msgstr ""
-"RestoreConfig: Distributions-Konfiguration veraltet, benutze Programm-"
-"Standard!"
+"ResetConfig: Distributions-Konfiguration veraltet, benutze Programm-Standard!"
 
-#: ui/config.py:86
-msgid "RestoreConfig: no vendor configuration found, using factory defaults."
+#: ui/config.py:85
+msgid "ResetConfig: no vendor configuration found, using factory defaults."
 msgstr ""
-"RestoreConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
+"ResetConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
 "Standard."
 
-#: ui/config.py:99
+#: ui/config.py:89
+#, python-format
+msgid "BackupConfig: backing up configuration to %s."
+msgstr "BackupConfig: sichere Konfiguration nach %s."
+
+#: ui/config.py:93
+#, python-format
+msgid "RestoreConfig: restoring configuration from %s"
+msgstr "RestoreConfig: spiele Sicherung von %s ein"
+
+#: ui/config.py:100
 msgid "UpdateConfig: vendor configuration up-to-date, copying as user-default."
 msgstr ""
 "UpdateConfig: Distributions-Konfiguration ist aktuell, nutze als Benutzer-"
 "Standard."
 
-#: ui/config.py:102
+#: ui/config.py:103
 msgid ""
 "UpdateConfig: vendor configuration outdated, using factory defaults instead!"
 msgstr ""
 "UpdateConfig: Distributions-Konfiguration veraltet, nutze Programm-Standard!"
 
-#: ui/config.py:105
+#: ui/config.py:106
 msgid ""
 "UpdateConfig: no vendor configuration found, using factory defaults instead."
 msgstr ""
 "UpdateConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
 "Standard."
 
-#: ui/config.py:109
+#: ui/config.py:110
 msgid "UpdateConfig: merging values."
 msgstr "UpdateConfig: kombiniere Werte."
 
-#: ui/config.py:117
+#: ui/config.py:118
 msgid "writing configuration."
 msgstr "schreibe Konfiguration."
 
