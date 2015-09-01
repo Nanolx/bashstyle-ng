@@ -50,6 +50,7 @@ BINDIR=\"${BINDIR}\"
 LOCALEDIR=\"${DATADIR}/locale/\"
 LOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )
 ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"
+DESKTOPDIR=\"${DATADIR}/applications/\"
 PCDIR=\"${PCDIR}/\"
 BASHFILE=\"${BASHFILE}\"
 APP_LANGUAGES=\"${APP_LANGUAGES}\"" | sed -e 's,\/\/,\/,g' >> ${PWD}/.configure/results

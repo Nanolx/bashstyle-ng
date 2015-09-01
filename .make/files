@@ -17,7 +17,8 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     data/termcap/bar/*:${DATADIR}/termcap/bar
 	     data/termcap/body/*:${DATADIR}/termcap/body
 	     data/vim/colors/*:${DATADIR}/vim/colors
-	     data/*.ini:${DATADIR} )
+	     data/*.ini:${DATADIR}
+	     data/*.desktop:${DESKTOPDIR} )
 
 for lang in ${APP_LANGUAGES}; do
 	LOCALE_REMOVE=( ${LOCALE_REMOVE[@]} ${LOCALEDIR}/${lang}/{bs-ng,nx-rc}.mo)
