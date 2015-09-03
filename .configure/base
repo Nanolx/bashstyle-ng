@@ -14,7 +14,7 @@ APP_VERSION=8.99
 APP_CODENAME="Hotride"
 APP_LANGUAGES="de"
 
-CFG_VERSION="4.3.2"
+CFG_VERSION="4.3.3"
 
 if [[ -d "/usr/lib/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib/girepository-1.0/"
@@ -25,7 +25,7 @@ fi
 PREFIX="/usr"
 MODE=user
 QUIET=false
-PYTHON=$(which python3 || which python)
+PYTHON=$(which python3 || which python2 || which python)
 
 BINDIR="${PREFIX}/bin"
 PCDIR="${PREFIX}/share/pkgconfig/"
@@ -53,6 +53,6 @@ ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"
 DESKTOPDIR=\"${DATADIR}/applications/\"
 PCDIR=\"${PCDIR}/\"
 BASHFILE=\"${BASHFILE}\"
-APP_LANGUAGES=\"${APP_LANGUAGES}\"" | sed -e 's,\/\/,\/,g' >> ${PWD}/.configure/results
+APP_LANGUAGES=\"${APP_LANGUAGES}\"" | sed -e 's,//,/,g' >> ${PWD}/.configure/results
 
 }

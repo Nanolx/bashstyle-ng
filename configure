@@ -22,7 +22,6 @@ rm -f ${PWD}/.configure/results
 xcount=0
 while [[ ${xcount} -lt $# ]]; do
 	case ${1} in
-		--mode=* )		MODE="${1/*=}" ;;
 		--prefix=* )		PREFIX="${1/*=}" ;;
 		--pcdir=* )		PCDIR="${1/*=}" ;;
 		--profiledir=* )	PROFILEDIR="${1/*}" ;;
@@ -42,29 +41,22 @@ while [[ ${xcount} -lt $# ]]; do
 done
 unset xcount
 
-if [[ ! ${BASHFILE} ]]; then
-	BASHFILE_AUTO=true
-	if [[ -e /etc/bash.bashrc ]]; then
-		BASHFILE=/etc/bash.bashrc
-	else
-		BASHFILE=/etc/bashrc
-	fi
-fi
-
 if [[ ${MODE} == help ]]; then
 	help_message
-elif [[ ${GIRPATH} == "" ]]; then
-	echo -e "*** GIRPATH not detected ***\
-		\nconfigure --girpath=<girpath> to specify where to look for\
-gobject-introspection files\n"
-	exit 1
-elif [[ ${MODE} == maintainer ]]; then
-	maintainer_message
-	copy_in_files
-	substitute_values
-	end_message
-	export_result
-elif [[ ${MODE} == user ]]; then
+else
+	if [[ ${GIRPATH} == "" ]]; then
+		missing_girpath_message ; exit 1
+	fi
+
+	if [[ ! ${BASHFILE} ]]; then
+		BASHFILE_AUTO=true
+		if [[ -e /etc/bash.bashrc ]]; then
+			BASHFILE=/etc/bash.bashrc
+		else
+			BASHFILE=/etc/bashrc
+		fi
+	fi
+
 	start_message
 	check_helper
 	copy_in_files
