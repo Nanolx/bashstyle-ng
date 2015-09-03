@@ -1,0 +1,34 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+make_build () {
+	check_configure && 
+	build_message && 
+	build &&
+	touch ${PWD}/.make/build_done
+}
+
+make_install () {
+	check_configure &&
+	check_built &&
+	check_root "install" &&
+	install_message && 
+	installdirs_create &&
+	install_bsng && 
+	post_install
+}
+
+make_remove () {
+	check_configure &&
+	check_root "remove" &&
+	remove_message && 
+	remove_bsng
+}

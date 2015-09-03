@@ -1,0 +1,30 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+check_configure () {
+	if [[ ! -e .configure/results ]]; then
+		run_configure_message ; exit 1
+	else	source ${PWD}/.configure/results
+		source ${PWD}/.make/files
+	fi
+}
+
+check_built () {
+	if [[ ! -e ${PWD}/.make/build_done ]]; then
+		run_make_build_message ; exit 1
+	fi
+}
+
+check_root () {
+	if [[ ${EUID} != 0 ]]; then
+		check_root_message ; exit 1
+	fi
+}

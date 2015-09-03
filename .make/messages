@@ -1,0 +1,50 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2015 Christopher Bratusek		#
+#							#
+#########################################################
+
+help_message () {
+
+	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}(Make ${MK_VERSION}) ${CYAN}help
+	\n${WHITE}Rules:"
+
+	echo -e "	${ORANGE}help${WHITE} *|${GREEN} Display this help message
+	${ORANGE}pot${WHITE} *|${GREEN} Generate .pot files
+	${ORANGE}po${WHITE} *|${GREEN} Update .po files
+	${ORANGE}build${WHITE} *|${GREEN} Build necessary files
+	${ORANGE}install${WHITE} *|${GREEN} Install ${APP_NAME}
+	${ORANGE}remove${WHITE} *|${GREEN} Remove ${APP_NAME}
+	${ORANGE}clean${WHITE} *|${GREEN} Clean build directory" | column -t -s \*
+	tput sgr0
+
+}
+
+run_configure_message () {
+	echo -e "\n${RED}You need to run ./configure first!\n"
+}
+
+run_make_build_message () {
+	echo -e "\n${RED}You need to run './make build' first!\n"
+}
+
+check_root_message () {
+	echo -e "\n${RED}You need to be root to ${1} ${APP_NAME}\n"
+}
+
+build_message () {
+	echo -e "\n${BLUE}Building ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+}
+
+install_message () {
+	echo -e "\n${GREEN}Installing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+}
+
+remove_message () {
+	echo -e "\n${Red}Removing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+}
