@@ -12,10 +12,10 @@
 clean () {
 
 	echo -e "\n${SMOOTHBLUE} cleaning up\n"
-	CLEAN_FILES=( data/bashstyle data/bashstyle-ng.pc ui/bashstyle?.ui.h
+	CLEAN_FILES=( data/bashstyle data/bashstyle-ng.pc ui/bashstyle.ui.h
 			data/bashstyle.sh rc/nx-rc i18n/??/*.mo i18n/*.pot
-			.configure/results .make/build_done ui/#bashstyle?.ui#
-			ui/bashstyle?.ui~ )
+			.configure/results .make/build_done ui/#bashstyle.ui#
+			ui/bashstyle.ui~ )
 
 	CL_NUM=${#CLEAN_FILES[@]}
 	local CUR_NUM=1
