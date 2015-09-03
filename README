@@ -72,6 +72,27 @@ BashStyle-NG
         random file, also has history, multiple executions support and more)
       - and several more (see /usr/share/bashstyle-ng/rc/functions/ for all)
 
+=== Installation ===
+
+Installation of BashStyle-NG is straight-forward. Configure and Make are
+Bash scripts aswell, so no other tools needed for build. For a full list
+of options see
+
+* ./configure --help
+* ./make --help
+
+1)	Check dependencies:	./configure
+2)	Build translations:	./make build
+3)	Install BashStyle-NG:	sudo ./make install
+
+Alternatively you can build a package for Debian-based distributions via
+
+1)	apt-get install fakeroot dpkg-dev
+2)	dpkg-buildpackage -rfakeroot
+
+If there are missing dependencies either Configure or dpkg-buildpackage will
+tell you. Optional dependencies are marked as recommended for Debian packages.
+
 === Program Icons ===
 
 BashStyle-NG uses Oxygen icons by default (supplied), but if the icons exist
