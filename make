@@ -11,7 +11,7 @@
 
 CF_MODULES=( base color )
 MK_MODULES=( build clean install )
-MK_VERSION=1.0.2
+MK_VERSION=1.0.3
 
 for mod in ${CF_MODULES[@]}; do
 	source .configure/${mod}
@@ -36,19 +36,47 @@ help_message () {
 
 }
 
-case ${1} in
-	clean )		clean && exit 0;;
-	distclean )	clean && exit 0;;
-	changelog )	.make/changelog && exit 0 ;;
-	help )		help_message && exit 0 ;;
-esac
+check_configure () {
+	if [[ ! -e .configure/results ]]; then
+		echo -e "\n${RED}You need to run ./configure first!\n"
+		exit 1
+	else	source ${PWD}/.configure/results
+		source ${PWD}/.make/files
+	fi
+}
 
-if [[ ! -e .configure/results ]]; then
-	echo -e "\n${RED}You need to run ./configure first!\n"
-	exit 1
-else	source .configure/results
-	source .make/files
-fi
+check_built () {
+	if [[ ! -e ${PWD}/.make/build_done ]]; then
+		echo -e "\n${RED}You need to run './make build' first!\n"
+		exit 1
+	fi
+}
+
+check_root () {
+	if [[ ${EUID} != 0 ]]; then
+		echo -e "\n${RED}You need to be root to ${1} ${APP_NAME}\n"
+		exit 1
+	fi
+}
+
+make_build () {
+	check_configure && 
+		echo -e "\n${Blue}Building ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n" && 
+		build && touch .make/build_done
+}
+
+make_install () {
+	check_configure && check_built && check_root "install" &&
+		echo -e "\n${GREEN}Installing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n" && 
+		installdirs_create && install_bsng && 
+		post_install
+}
+
+make_remove () {
+	check_configure && check_root "remove" && \
+		echo -e "\n${Red}Removing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n" && \
+		remove_bsng
+}
 
 xcount=0
 pcount=$#
@@ -58,26 +86,12 @@ if [[ ${pcount} -eq 0 ]]; then
 else
 	while [[ ${xcount} -lt ${pcount} ]]; do
 		case ${1} in
+			clean )		clean ;;
 			pot )		generate_pot ;;
-			po )		update_po;;
-			build )		echo -e "\n${GREEN}Building ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
-					build && touch .make/build_done && echo ;;
-			install )	if [[ -e .make/build_done ]]; then
-						echo -e "\n${GREEN}Installing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
-						if [[ ${EUID} != 0 ]]; then
-							echo -e "\n${RED}You need to be root to install ${APP_NAME}\n"
-						else
-							installdirs_create && install_bsng && post_install
-						fi
-					else 	echo -e "\n${RED}You need to run './make build' first!\n"
-						exit 1
-					fi ;;
-			remove ) 	if [[ ${EUID} != 0 ]]; then
-						echo -e "\n${RED}You need to be root to remove ${APP_NAME}\n"
-					else
-						echo -e "\n${GREEN}Removing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
-						remove_bsng
-					fi ;;
+			po )		update_po ;;
+			build )		make_build ;;
+			install )	make_install ;;
+			remove )	make_remove ;;
 			* )		help_message ;;
 		esac
 		shift
