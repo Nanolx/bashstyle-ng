@@ -9,9 +9,6 @@
 #							#
 #########################################################
 
-trap "kill -s TERM ${TOP_PID}" TERM
-export TOP_PID=$$
-
 check () {
 	for dir in ${PATH//:/ }; do
 		[[ -x ${dir}/${1} ]] && (echo found && continue 2)
@@ -24,7 +21,7 @@ check_helper () {
 	[[ ${OPT_APPS[@]} ]] && (section_message OPT_APP && check_apps "true" "${OPT_APPS[@]}")
 	[[ ${SAPPS[@]} ]] && (section_message SBINAPP && check_apps "false" "${SAPPS[@]}")
 	[[ ${OPT_SAPPS[@]} ]] && (section_message OPT_SBINAPP && check_apps "true" "${OPT_SAPPS[@]}")
-	check_python
+	[[ ${PYMODS[@]} ]] && check_python
 	[[ ${PYMODS[@]} ]] && (section_message PYMOD && check_pymods "false" "${PYMODS[@]}")
 	[[ ${OPT_PYMODS[@]} ]] && (section_message OPT_PYMOD && check_pymods "true" "${OPT_PYMODS[@]}")
 	[[ ${LIBS[@]} ]] && (section_message LIB && check_libs "false" "${LIBS[@]}")
@@ -135,10 +132,10 @@ check_python () {
 		PYMINVER=270
 		PYMAXVER=350
 		PYVER=$(${PYTHON} --version 2>&1 | gawk '{ gsub(/\./,""); gsub(/\+/,""); gsub(/rc.*/,""); print $2 }')
-		if [[ ${PYVER} -lt ${PYMINVER} ]]; then
+		if [[ ${PYVER:0:3} -lt ${PYMINVER} ]]; then
 			fail_message p-
 			kill -s TERM ${TOP_PID}
-		elif [[ ${PYVER} -gt ${PYMAXVER} ]]; then
+		elif [[ ${PYVER:0:3} -gt ${PYMAXVER} ]]; then
 			fail_message p+
 			kill -s TERM ${TOP_PID}
 		else

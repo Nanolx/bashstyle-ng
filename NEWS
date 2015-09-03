@@ -98,6 +98,13 @@ Overview of changes in v9.0 "Hotride"
 	Bash session after program run to make readline configuration apply)
 * #184 (make):
 	fix desktop file not beeing installed
+* #185 (configure):
+	properly check for python version (was confused by version longer than
+	four digits, for example 2.7.10 which translated to 2710)
+* #186 (configure):
+	properly exit configure if a dependency was not met in all cases
+	(for example did not exit when the found python interpreter's
+	version did exceed the maximum version or was below the minimum)
 
 === Wizard-Merge ===
 
@@ -214,7 +221,7 @@ The following shell functions have been removed
   - options now have a tooltip with a description on it's meaning (work in progress)
   - removed "Reset Bash History" button
 
-=== Configure 4.3.2 ===
+=== Configure 4.3.3 ===
 
 * minor code improvements
 * output message changes
