@@ -3,7 +3,7 @@
 export DH_VERBOSE = 1
 
 %:
-	dh $@ --no-cat
+	dh $@ --no-cat --with python2
 
 override_dh_auto_configure:
 	dh_auto_configure -- --no-postinstall
