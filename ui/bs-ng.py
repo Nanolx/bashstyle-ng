@@ -20,7 +20,7 @@ args.CmdArgs()
 print(_("\nBashStyle-NG version %s starting" % os.getenv('BSNG_UI_VERSION')))
 
 MODULES = [ 'os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
-            'undobuffer', 'misc', 'lockfile', 'config', 'widgethandler',
+            'undobuffer', 'lockfile', 'config', 'widgethandler',
             'dicts', 'prompts', 'promptbuilder', 'iconbook', 'keybindings' ]
 
 FAILED = []
