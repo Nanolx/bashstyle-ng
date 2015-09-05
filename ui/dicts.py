@@ -148,6 +148,13 @@ vim_colors = {
 	      12 : "fruit",
 	      13 : "relaxedgreen",
 	      14 : "tango",
+	      15 : "molokai",
+	      16 : "vividchalk",
+	      17 : "meta5",
+	      18 : "woju",
+	      19 : "lightning",
+	      20 : "papercolor",
+	      21 : "solarized",
 	     }
 
 ls_colors = {
