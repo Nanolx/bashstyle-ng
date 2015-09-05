@@ -96,7 +96,7 @@ prompt_styles = {
 		  0 : "separator",
 		  1 : "vector",
 		  2 : "clock",
-		  3 : "clock-ad",
+		  3 : "equinox",
 		  4 : "elite",
 		  5 : "poweruser",
 		  6 : "dirks",

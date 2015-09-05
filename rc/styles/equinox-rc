@@ -105,7 +105,7 @@ $sepacolor┌─( $usercolor\u $fontcolor@ $hostcolor\h \
 $sepacolor)─\${fill}─( $wdircolor\$(_newPWD)\
 $sepacolor )────┘\n\
 $sepacolor└─($upcolor uptime: \$(systemkit uptime)\
-$fontcolor :$CLOCK_AD_1_COLOR\$(CLOCK_AD_1)$fontcolor \$$sepacolor )·>$fontcolor "
+$fontcolor :$EQUINOX_1_COLOR\$(EQUINOX_1)$fontcolor \$$sepacolor )·>$fontcolor "
 
 else
 
@@ -184,6 +184,6 @@ PROMPT_COMMAND=pre_prompt
 
 PS1="\[\033[\${prompt_line};0H\]\n\
 ┌─( \u @ \h )─\${fill}─( \$(_newPWD) \
-)────┘\n└─( uptime: \$(systemkit uptime) :\$(CLOCK_AD_1) \$ )·> "
+)────┘\n└─( uptime: \$(systemkit uptime) :\$(EQUINOX_1) \$ )·> "
 
 fi

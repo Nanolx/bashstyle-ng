@@ -26,7 +26,7 @@ PRE_PROMPT_COMMAND"""
 
 floating_clock_ps=r"""[ \u @ \h : \$(truncpwd) ] """
 
-clock_advanced_pc=r"""host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")
+equinox_pc=r"""host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")
 dirchar=$(ini_get directory_indicator)
 trunc_symbol=$(ini_get pwdcut)
 trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
@@ -80,7 +80,7 @@ while [ $i -ge 4 ]; do
 done
 let prompt_line=${LINES}-1"""
 
-clock_advanced_ps=r"""\[\\033[\${prompt_line};0H\]\┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\└─( uptime: \$(systemkit uptime) : $ )·> """
+equinox_ps=r"""\[\\033[\${prompt_line};0H\]\┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\└─( uptime: \$(systemkit uptime) : $ )·> """
 
 elite_ps=r"""\┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(systemkit uptime) ]\└─[ $ : \$(truncpwd) ]·> """
 
