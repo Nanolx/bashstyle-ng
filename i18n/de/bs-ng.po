@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-31 21:37+0200\n"
-"PO-Revision-Date: 2015-08-31 21:38+0200\n"
+"POT-Creation-Date: 2015-09-05 19:52+0200\n"
+"PO-Revision-Date: 2015-09-05 19:54+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.3\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: ui/args.py:24 ui/bs-ng.py:40 ui/config.py:24 ui/iconbook.py:34
 #: ui/keybindings.py:34 ui/lockfile.py:24 ui/promptbuilder.py:29
@@ -90,67 +90,77 @@ msgstr ""
 "Setze aufgrund eines Fehlers zurück."
 
 #: ui/config.py:70
-msgid "CheckConfig: configuration up-to-date."
-msgstr "CheckConfig: Konfiguration ist aktuell."
+msgid "CheckConfig: User configuration up-to-date."
+msgstr "CheckConfig: Benutzer-Konfiguration ist aktuell."
 
-#: ui/config.py:72
+#: ui/config.py:73
 msgid ""
-"CheckConfig: something is wrong with your configuration, restoring defaults."
+"CheckConfig: something is wrong with User configuration, restoring defaults."
 msgstr ""
-"CheckConfig: etwas ist falsch mit deiner Konfiguration, stelle Standard "
-"wieder her."
+"CheckConfig: etwas ist falsch mit der Benutzer-Konfiguration, stelle "
+"Standard wieder her."
 
-#: ui/config.py:79
+#: ui/config.py:80
 msgid "ResetConfig: vendor configuration up-to-date, using it's values."
 msgstr "ResetConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
 
-#: ui/config.py:82
+#: ui/config.py:83
 msgid "ResetConfig: vendor configuration oudated, using factory defaults!"
 msgstr ""
 "ResetConfig: Distributions-Konfiguration veraltet, benutze Programm-Standard!"
 
-#: ui/config.py:85
+#: ui/config.py:86
 msgid "ResetConfig: no vendor configuration found, using factory defaults."
 msgstr ""
 "ResetConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
 "Standard."
 
-#: ui/config.py:89
+#: ui/config.py:90
 #, python-format
 msgid "BackupConfig: backing up configuration to %s."
 msgstr "BackupConfig: sichere Konfiguration nach %s."
 
-#: ui/config.py:93
+#: ui/config.py:94
 #, python-format
 msgid "RestoreConfig: restoring configuration from %s"
 msgstr "RestoreConfig: spiele Sicherung von %s ein"
 
-#: ui/config.py:100
+#: ui/config.py:101
 msgid "UpdateConfig: vendor configuration up-to-date, copying as user-default."
 msgstr ""
 "UpdateConfig: Distributions-Konfiguration ist aktuell, nutze als Benutzer-"
 "Standard."
 
-#: ui/config.py:103
+#: ui/config.py:104
 msgid ""
 "UpdateConfig: vendor configuration outdated, using factory defaults instead!"
 msgstr ""
 "UpdateConfig: Distributions-Konfiguration veraltet, nutze Programm-Standard!"
 
-#: ui/config.py:106
+#: ui/config.py:107
 msgid ""
 "UpdateConfig: no vendor configuration found, using factory defaults instead."
 msgstr ""
 "UpdateConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
 "Standard."
 
-#: ui/config.py:110
+#: ui/config.py:111
 msgid "UpdateConfig: merging values."
 msgstr "UpdateConfig: kombiniere Werte."
 
-#: ui/config.py:118
-msgid "writing configuration."
-msgstr "schreibe Konfiguration."
+#: ui/config.py:119
+msgid "WriteConfig: saving configuration."
+msgstr "WriteConfig: speichere Konfiguration."
+
+#: ui/config.py:123
+msgid "FixUpConfig: checking for outdated values."
+msgstr "FixUpConfig: überprüfe auf veraltete Werte."
+
+#: ui/config.py:125
+msgid "FixUpConfig: updating prompt_style for name change clock-ad >> equinox."
+msgstr ""
+"FixUpConfig: aktualisiere prompt_style aufgrund Namensänderung clock-ad >> "
+"equinox."
 
 #: ui/iconbook.py:26 ui/keybindings.py:26 ui/promptbuilder.py:26
 #: ui/widgethandler.py:26
@@ -169,11 +179,11 @@ msgstr "Stil Optionen"
 msgid "Aliases"
 msgstr "Aliase"
 
-#: ui/iconbook.py:45 ui/iconbook.py:61 ui/bashstyle.ui.h:466
+#: ui/iconbook.py:45 ui/iconbook.py:61 ui/bashstyle.ui.h:474
 msgid "Advanced"
 msgstr "Erweitert"
 
-#: ui/iconbook.py:46 ui/iconbook.py:62 ui/bashstyle.ui.h:558
+#: ui/iconbook.py:46 ui/iconbook.py:62 ui/bashstyle.ui.h:566
 msgid "Readline"
 msgstr "Readline"
 
@@ -197,7 +207,7 @@ msgstr "Prompt Baukasten"
 msgid "Shell Options"
 msgstr "Shell Optionen"
 
-#: ui/iconbook.py:52 ui/iconbook.py:68 ui/bashstyle.ui.h:731
+#: ui/iconbook.py:52 ui/iconbook.py:68 ui/bashstyle.ui.h:739
 msgid "GIT"
 msgstr "GIT"
 
@@ -206,7 +216,7 @@ msgstr "GIT"
 msgid "About BashStyle-NG"
 msgstr "Über BashStyle-NG"
 
-#: ui/iconbook.py:54 ui/iconbook.py:70 ui/iconbook.py:121 ui/bashstyle.ui.h:769
+#: ui/iconbook.py:54 ui/iconbook.py:70 ui/iconbook.py:121 ui/bashstyle.ui.h:777
 msgid "Keybindings"
 msgstr "Tastenkürzel"
 
@@ -338,8 +348,8 @@ msgid "Floating Clock"
 msgstr "Hängende Uhr"
 
 #: ui/bashstyle.ui.h:29
-msgid "Clock Advanced"
-msgstr "Erweiterte Uhr"
+msgid "Equinox"
+msgstr "Equinox"
 
 #: ui/bashstyle.ui.h:30
 msgid "Elite"
@@ -538,294 +548,326 @@ msgid "Change Color to:"
 msgstr "Farbe ändern in:"
 
 #: ui/bashstyle.ui.h:79
+msgid "Clock Advanced"
+msgstr "Erweiterte Uhr"
+
+#: ui/bashstyle.ui.h:80
 msgid "black-white"
 msgstr "schwarz-weiß"
 
-#: ui/bashstyle.ui.h:80
+#: ui/bashstyle.ui.h:81
 msgid "white-yellow"
 msgstr "weiß-gelb"
 
-#: ui/bashstyle.ui.h:81
+#: ui/bashstyle.ui.h:82
 msgid "yellow-blue"
 msgstr "gelb-blau"
 
-#: ui/bashstyle.ui.h:82
+#: ui/bashstyle.ui.h:83
 msgid "blueish"
 msgstr "bläulich"
 
-#: ui/bashstyle.ui.h:83
+#: ui/bashstyle.ui.h:84
 msgid "blue-magenta"
 msgstr "blau-magenta"
 
-#: ui/bashstyle.ui.h:84
+#: ui/bashstyle.ui.h:85
 msgid "magenta-cyan"
 msgstr "magenta-cyan"
 
-#: ui/bashstyle.ui.h:85
+#: ui/bashstyle.ui.h:86
 msgid "mostlike"
 msgstr "Mostlike"
 
-#: ui/bashstyle.ui.h:86
+#: ui/bashstyle.ui.h:87
 msgid "yellow-green"
 msgstr "gelb-grün"
 
-#: ui/bashstyle.ui.h:87
+#: ui/bashstyle.ui.h:88
 msgid "Display Batteryload:"
 msgstr "Akkustand anzeigen:"
 
-#: ui/bashstyle.ui.h:88
+#: ui/bashstyle.ui.h:89
 msgid "Via ACPI"
 msgstr "Via ACPI"
 
-#: ui/bashstyle.ui.h:89
+#: ui/bashstyle.ui.h:90
 msgid "Via APM"
 msgstr "Via APM"
 
-#: ui/bashstyle.ui.h:90
+#: ui/bashstyle.ui.h:91
 msgid "Files Amount:"
 msgstr "Dateienanzahl:"
 
-#: ui/bashstyle.ui.h:91
+#: ui/bashstyle.ui.h:92
 msgid "Include Hidden Files"
 msgstr " Verst. Dateien einbeziehen"
 
-#: ui/bashstyle.ui.h:92
+#: ui/bashstyle.ui.h:93
 msgid "Exclude Hidden Files"
 msgstr "Verst. Dateien ausschließen"
 
-#: ui/bashstyle.ui.h:93
+#: ui/bashstyle.ui.h:94
 msgid "Load Average:"
 msgstr "Durchschnittslast:"
 
-#: ui/bashstyle.ui.h:94
+#: ui/bashstyle.ui.h:95
 msgid "for 1 minute"
 msgstr "für 1 Minute"
 
-#: ui/bashstyle.ui.h:95
+#: ui/bashstyle.ui.h:96
 msgid "for 10 minutes"
 msgstr "für 10 Minuten"
 
-#: ui/bashstyle.ui.h:96
+#: ui/bashstyle.ui.h:97
 msgid "for 15 minutes"
 msgstr "für 15 Minuten"
 
-#: ui/bashstyle.ui.h:97
+#: ui/bashstyle.ui.h:98
 msgid "Display Memory:"
 msgstr "Arbeitsspeicher anzeigen:"
 
-#: ui/bashstyle.ui.h:98
+#: ui/bashstyle.ui.h:99
 msgid "Used Memory [MB]"
 msgstr "Benutzter Arbeitsspeicher [MB]"
 
-#: ui/bashstyle.ui.h:99
+#: ui/bashstyle.ui.h:100
 msgid "Free Memory [MB]"
 msgstr "Freier Arbeitsspeicher [MB]"
 
-#: ui/bashstyle.ui.h:101
+#: ui/bashstyle.ui.h:102
 msgid "Used Memory [%]"
 msgstr "Benutzter Arbeitsspeicher [%]"
 
-#: ui/bashstyle.ui.h:103
+#: ui/bashstyle.ui.h:104
 msgid "Free Memory [%]"
 msgstr "Freier Arbeitsspeicher [%]"
 
-#: ui/bashstyle.ui.h:104
+#: ui/bashstyle.ui.h:105
 msgid "Display Diskspace:"
 msgstr "Speicherplatz anzeigen:"
 
-#: ui/bashstyle.ui.h:105
+#: ui/bashstyle.ui.h:106
 msgid "Used Space [MB]"
 msgstr "Benutzter Speicher [MB]"
 
-#: ui/bashstyle.ui.h:106
+#: ui/bashstyle.ui.h:107
 msgid "Free Space [MB]"
 msgstr "Freier Speicher [MB]"
 
-#: ui/bashstyle.ui.h:108
+#: ui/bashstyle.ui.h:109
 msgid "Used Space [%]"
 msgstr "Benutzter Speicher [%]"
 
-#: ui/bashstyle.ui.h:110
+#: ui/bashstyle.ui.h:111
 msgid "Free Space [%]"
 msgstr "Freier Speicher [%]"
 
-#: ui/bashstyle.ui.h:111
+#: ui/bashstyle.ui.h:112
 msgid "BashStyle-NG Toolbox"
 msgstr "BashStyle-NG Werkzeugkasten"
 
-#: ui/bashstyle.ui.h:112
+#: ui/bashstyle.ui.h:113
 msgid "Standard Stuff"
 msgstr "Standard Zeug"
 
-#: ui/bashstyle.ui.h:113
+#: ui/bashstyle.ui.h:114
 msgid "Full Hostname"
 msgstr "Voller Hostname"
 
-#: ui/bashstyle.ui.h:114
+#: ui/bashstyle.ui.h:115
 msgid "$ (# if root)"
 msgstr "$ (# wenn root)"
 
-#: ui/bashstyle.ui.h:115
+#: ui/bashstyle.ui.h:116
 msgid "Full Workdir"
 msgstr "Volles Verzeichnis"
 
-#: ui/bashstyle.ui.h:116
+#: ui/bashstyle.ui.h:117
 msgid "Base Workdir"
 msgstr "Basis Verzeichnis"
 
-#: ui/bashstyle.ui.h:117
+#: ui/bashstyle.ui.h:118
 msgid "Effective User ID"
 msgstr "Effektive Benutzer Nr"
 
-#: ui/bashstyle.ui.h:118
+#: ui/bashstyle.ui.h:119
 msgid "Background Processes"
 msgstr "Hintergrund Prozesse"
 
-#: ui/bashstyle.ui.h:119
+#: ui/bashstyle.ui.h:120
 msgid "Command Number [History]"
 msgstr "Befehlsnummer [Verlauf]"
 
-#: ui/bashstyle.ui.h:120
+#: ui/bashstyle.ui.h:121
 msgid "Command Number [Session]"
 msgstr "Befehlsnummer [Sitzung]"
 
-#: ui/bashstyle.ui.h:121
+#: ui/bashstyle.ui.h:122
 msgid "Bash's Process ID"
 msgstr "Bashs Prozess Nr"
 
-#: ui/bashstyle.ui.h:122
+#: ui/bashstyle.ui.h:123
 msgid "Shell Level"
 msgstr "Shell-Stufe"
 
-#: ui/bashstyle.ui.h:123
+#: ui/bashstyle.ui.h:124
 msgid "Time since Bash started"
 msgstr "Zeit seit Bash startete"
 
-#: ui/bashstyle.ui.h:124
+#: ui/bashstyle.ui.h:125
 msgid "BS-NG Stuff"
 msgstr "BashStyle-NG Zeug"
 
-#: ui/bashstyle.ui.h:125
+#: ui/bashstyle.ui.h:126
 msgid "Trunced Workdir"
 msgstr "Verk. Verzeichnis"
 
-#: ui/bashstyle.ui.h:126
+#: ui/bashstyle.ui.h:127
 msgid "Files Size"
 msgstr "Dateien Größe"
 
-#: ui/bashstyle.ui.h:127
+#: ui/bashstyle.ui.h:128
 msgid "Number of Processes"
 msgstr "Anzahl der Prozesse"
 
-#: ui/bashstyle.ui.h:128
+#: ui/bashstyle.ui.h:129
 msgid "CPU Load"
 msgstr "Prozessorlast"
 
-#: ui/bashstyle.ui.h:129
+#: ui/bashstyle.ui.h:130
 msgid "Current TTY"
 msgstr "Aktuelles TTY"
 
-#: ui/bashstyle.ui.h:130
+#: ui/bashstyle.ui.h:131
 msgid "Show Battery Load"
 msgstr "Akkustand anzeigen"
 
-#: ui/bashstyle.ui.h:131
+#: ui/bashstyle.ui.h:132
 msgid "Close"
 msgstr "Schließen"
 
-#: ui/bashstyle.ui.h:132
+#: ui/bashstyle.ui.h:133
 msgid "Default"
 msgstr "Standard"
 
-#: ui/bashstyle.ui.h:133
+#: ui/bashstyle.ui.h:134
 msgid "Adaryn"
 msgstr "Adaryn"
 
-#: ui/bashstyle.ui.h:134
+#: ui/bashstyle.ui.h:135
 msgid "Advantage"
 msgstr "Advantage"
 
-#: ui/bashstyle.ui.h:135
+#: ui/bashstyle.ui.h:136
 msgid "Desert"
 msgstr "Desert"
 
-#: ui/bashstyle.ui.h:136
+#: ui/bashstyle.ui.h:137
 msgid "Gobo"
 msgstr "Gobo"
 
-#: ui/bashstyle.ui.h:137
+#: ui/bashstyle.ui.h:138
 msgid "Impact"
 msgstr "Impact"
 
-#: ui/bashstyle.ui.h:138
+#: ui/bashstyle.ui.h:139
 msgid "Nightshade"
 msgstr "Nightshade"
 
-#: ui/bashstyle.ui.h:139
+#: ui/bashstyle.ui.h:140
 msgid "Nightwish"
 msgstr "Nightwish"
 
-#: ui/bashstyle.ui.h:140
+#: ui/bashstyle.ui.h:141
 msgid "Wombat"
 msgstr "Wombat"
 
-#: ui/bashstyle.ui.h:141
+#: ui/bashstyle.ui.h:142
 msgid "Asu 1 Dark"
 msgstr "Asu 1 Dark"
 
-#: ui/bashstyle.ui.h:142
+#: ui/bashstyle.ui.h:143
 msgid "Candy Code"
 msgstr "Candy Code"
 
-#: ui/bashstyle.ui.h:143
+#: ui/bashstyle.ui.h:144
 msgid "DW Orange"
 msgstr "DW Orange"
 
-#: ui/bashstyle.ui.h:144
+#: ui/bashstyle.ui.h:145
 msgid "Fruit"
 msgstr "Fruit"
 
-#: ui/bashstyle.ui.h:145
+#: ui/bashstyle.ui.h:146
 msgid "Relaxed Green"
 msgstr "entspanntes Grün"
 
-#: ui/bashstyle.ui.h:146
+#: ui/bashstyle.ui.h:147
 msgid "Tango"
 msgstr "Tango"
 
-#: ui/bashstyle.ui.h:147
+#: ui/bashstyle.ui.h:148
+msgid "Molokai"
+msgstr "Molokai"
+
+#: ui/bashstyle.ui.h:149
+msgid "Vivid Chalk"
+msgstr "Vivid Chalk"
+
+#: ui/bashstyle.ui.h:150
+msgid "Meta 5"
+msgstr "Meta 5"
+
+#: ui/bashstyle.ui.h:151
+msgid "Woju"
+msgstr "Woju"
+
+#: ui/bashstyle.ui.h:152
+msgid "Lightning"
+msgstr "Lightning"
+
+#: ui/bashstyle.ui.h:153
+msgid "Paper Color"
+msgstr "Paper Color"
+
+#: ui/bashstyle.ui.h:154
+msgid "Solarized"
+msgstr "Solarized"
+
+#: ui/bashstyle.ui.h:155
 msgid "BashStyle-NG"
 msgstr "BashStyle-NG"
 
-#: ui/bashstyle.ui.h:148
+#: ui/bashstyle.ui.h:156
 msgid "Choose a category:"
 msgstr "Kategorie auswählen:"
 
-#: ui/bashstyle.ui.h:149
+#: ui/bashstyle.ui.h:157
 msgid "Back"
 msgstr "Zurück"
 
-#: ui/bashstyle.ui.h:150
+#: ui/bashstyle.ui.h:158
 msgid "Reset Keybinding"
 msgstr "Tastenkürzel zurücksetzen"
 
-#: ui/bashstyle.ui.h:151
+#: ui/bashstyle.ui.h:159
 msgid "Customize Keybindings"
 msgstr "Tastenkürzel anpassen"
 
-#: ui/bashstyle.ui.h:152
+#: ui/bashstyle.ui.h:160
 msgid "IconView"
 msgstr "IconView"
 
-#: ui/bashstyle.ui.h:153
+#: ui/bashstyle.ui.h:161
 msgid "Basic"
 msgstr "Basis"
 
-#: ui/bashstyle.ui.h:154
+#: ui/bashstyle.ui.h:162
 msgid "Colored Prompts"
 msgstr "Farbige Prompts"
 
-#: ui/bashstyle.ui.h:155
+#: ui/bashstyle.ui.h:163
 msgid ""
 "enable_colors\n"
 "\n"
@@ -839,11 +881,11 @@ msgstr ""
 "bleiben diese monochrom. Diese Einstellung wirkt\n"
 "sich auch auf andere Farbeinstellungen aus."
 
-#: ui/bashstyle.ui.h:160
+#: ui/bashstyle.ui.h:168
 msgid "Use BashStyle-NG"
 msgstr "Benutze BashStyle-NG"
 
-#: ui/bashstyle.ui.h:161
+#: ui/bashstyle.ui.h:169
 msgid ""
 "use_bashstyle\n"
 "\n"
@@ -856,15 +898,15 @@ msgstr ""
 "Wenn aktiv gesetzt, wird BashStyle-NG den Prompt\n"
 "der Bash verwalten."
 
-#: ui/bashstyle.ui.h:166
+#: ui/bashstyle.ui.h:174
 msgid "Colors"
 msgstr "Farben"
 
-#: ui/bashstyle.ui.h:167
+#: ui/bashstyle.ui.h:175
 msgid "Colored ls output"
 msgstr "Farbige ls Ausgabe"
 
-#: ui/bashstyle.ui.h:168
+#: ui/bashstyle.ui.h:176
 msgid ""
 "colored_ls\n"
 "\n"
@@ -878,7 +920,7 @@ msgstr ""
 "wird der Distributions-Standard verwendet (meist\n"
 "monochrom)."
 
-#: ui/bashstyle.ui.h:173
+#: ui/bashstyle.ui.h:181
 msgid ""
 "color_style\n"
 "\n"
@@ -888,15 +930,15 @@ msgstr ""
 "\n"
 "Die Art wie Farben gezeichnet werden."
 
-#: ui/bashstyle.ui.h:176
+#: ui/bashstyle.ui.h:184
 msgid "Choose Color Style"
 msgstr "Farbstil auswählen"
 
-#: ui/bashstyle.ui.h:177
+#: ui/bashstyle.ui.h:185
 msgid "Colored manpages"
 msgstr "Farbige Hilfeseiten"
 
-#: ui/bashstyle.ui.h:178
+#: ui/bashstyle.ui.h:186
 msgid ""
 "colored_man\n"
 "\n"
@@ -908,11 +950,11 @@ msgstr ""
 "Wenn aktiv, werden Schlagworte in Hilfeseiten\n"
 "für bessere Lesbarkeit farbig hervorgehoben."
 
-#: ui/bashstyle.ui.h:182
+#: ui/bashstyle.ui.h:190
 msgid "Randomly colored text"
 msgstr "Zufällige Textfarbe"
 
-#: ui/bashstyle.ui.h:183
+#: ui/bashstyle.ui.h:191
 msgid ""
 "colorshell\n"
 "\n"
@@ -923,11 +965,11 @@ msgstr ""
 "\n"
 "Ändert nach jedem Kommando die Textfarbe."
 
-#: ui/bashstyle.ui.h:187
+#: ui/bashstyle.ui.h:195
 msgid "Colored grep output"
 msgstr "Farbige grep Ausgabe"
 
-#: ui/bashstyle.ui.h:188
+#: ui/bashstyle.ui.h:196
 msgid ""
 "colored_grep\n"
 "\n"
@@ -937,7 +979,7 @@ msgstr ""
 "\n"
 "dies hebt Treffer in der grep-Ausgabe farbig hervor."
 
-#: ui/bashstyle.ui.h:191
+#: ui/bashstyle.ui.h:199
 msgid ""
 "man_style\n"
 "\n"
@@ -948,19 +990,19 @@ msgstr ""
 "\n"
 "erlaubt die Änderung der Färbung der Hilfeseiten."
 
-#: ui/bashstyle.ui.h:195
+#: ui/bashstyle.ui.h:203
 msgid "Color for manpage infobar"
 msgstr "Farbe für manpage Infoleiste"
 
-#: ui/bashstyle.ui.h:196
+#: ui/bashstyle.ui.h:204
 msgid "Color for manpage body text"
 msgstr "Farbe für manpage Text"
 
-#: ui/bashstyle.ui.h:197
+#: ui/bashstyle.ui.h:205
 msgid "Normal text color for output"
 msgstr "Standardfarbe für Textausgabe"
 
-#: ui/bashstyle.ui.h:198
+#: ui/bashstyle.ui.h:206
 msgid ""
 "colorshell_reset\n"
 "\n"
@@ -974,7 +1016,7 @@ msgstr ""
 "ein Kommando ausgeführt wurde (nur die Eingabe\n"
 "selbst wird zufällig gefärbt)"
 
-#: ui/bashstyle.ui.h:203
+#: ui/bashstyle.ui.h:211
 msgid ""
 "grep_color\n"
 "\n"
@@ -986,15 +1028,15 @@ msgstr ""
 "Farbe mit der Treffer in der grep-Ausgabe\n"
 "hervorgehoben werden."
 
-#: ui/bashstyle.ui.h:207
+#: ui/bashstyle.ui.h:215
 msgid "Choose grep color"
 msgstr "Grepfarbe auswählen:"
 
-#: ui/bashstyle.ui.h:208
+#: ui/bashstyle.ui.h:216
 msgid "Style"
 msgstr "Stil"
 
-#: ui/bashstyle.ui.h:209
+#: ui/bashstyle.ui.h:217
 msgid ""
 "---\n"
 "\n"
@@ -1004,7 +1046,7 @@ msgstr ""
 "\n"
 "Einen Teil des Prompts neu einfärben."
 
-#: ui/bashstyle.ui.h:212
+#: ui/bashstyle.ui.h:220
 msgid ""
 "---\n"
 "\n"
@@ -1014,11 +1056,11 @@ msgstr ""
 "\n"
 "die Farbe in der dieser Teil eingefärbt wird."
 
-#: ui/bashstyle.ui.h:215
+#: ui/bashstyle.ui.h:223
 msgid "Use random style"
 msgstr "Benutze einen zufälligen Stil"
 
-#: ui/bashstyle.ui.h:216
+#: ui/bashstyle.ui.h:224
 msgid ""
 "random_style\n"
 "\n"
@@ -1030,7 +1072,7 @@ msgstr ""
 "bei jedem Start der Bash zufällig einen anderen\n"
 "Prompt-Stil auswählen."
 
-#: ui/bashstyle.ui.h:220
+#: ui/bashstyle.ui.h:228
 msgid ""
 "prompt_style\n"
 "\n"
@@ -1040,11 +1082,11 @@ msgstr ""
 "\n"
 "Einen Prompt-Stil auswählen."
 
-#: ui/bashstyle.ui.h:223
+#: ui/bashstyle.ui.h:231
 msgid "Choose Promptstyle"
 msgstr "Promptstil auswählen:"
 
-#: ui/bashstyle.ui.h:224
+#: ui/bashstyle.ui.h:232
 msgid ""
 "separator\n"
 "\n"
@@ -1057,11 +1099,11 @@ msgstr ""
 "Einige Prompt-Stile nutzen Trennzeichen zwischen\n"
 "Sektionen, hier kann dieses geändert werden."
 
-#: ui/bashstyle.ui.h:229
+#: ui/bashstyle.ui.h:237
 msgid "PS2 PS3 and PS4"
 msgstr "PS2 PS3 und PS4"
 
-#: ui/bashstyle.ui.h:230
+#: ui/bashstyle.ui.h:238
 msgid ""
 "ps234\n"
 "\n"
@@ -1073,11 +1115,11 @@ msgstr ""
 "dieses Zeichen wird einfach für PS2, doppelt\n"
 "für PS3 und dreifach für PS4 verwendet."
 
-#: ui/bashstyle.ui.h:234
+#: ui/bashstyle.ui.h:242
 msgid "PWD cut char"
 msgstr "PWD Schnittzeichen"
 
-#: ui/bashstyle.ui.h:235
+#: ui/bashstyle.ui.h:243
 msgid ""
 "pwdcut\n"
 "\n"
@@ -1092,11 +1134,11 @@ msgstr ""
 "pwdlength. Dieses Zeichen führt ein gekürztes\n"
 "Verzeichnis an."
 
-#: ui/bashstyle.ui.h:240
+#: ui/bashstyle.ui.h:248
 msgid "Maximum PWD length"
 msgstr "Maximale PWD-Länge"
 
-#: ui/bashstyle.ui.h:241
+#: ui/bashstyle.ui.h:249
 msgid ""
 "pwdlength\n"
 "\n"
@@ -1108,11 +1150,11 @@ msgstr ""
 "die maximale Anzeigelänge für das aktuelle\n"
 "Verzeichnis (Anzeige in Prompt-Stilen)."
 
-#: ui/bashstyle.ui.h:245
+#: ui/bashstyle.ui.h:253
 msgid "9"
 msgstr "9"
 
-#: ui/bashstyle.ui.h:246
+#: ui/bashstyle.ui.h:254
 msgid ""
 "mem\n"
 "\n"
@@ -1130,15 +1172,15 @@ msgstr ""
 "benutzt: benutzen RAM in MB anzeigen\n"
 "beides: freien und benutzen RAM in MB anzeigen"
 
-#: ui/bashstyle.ui.h:253
+#: ui/bashstyle.ui.h:261
 msgid "Display memory"
 msgstr "Arbeitsspeicher anzeigen:"
 
-#: ui/bashstyle.ui.h:254
+#: ui/bashstyle.ui.h:262
 msgid "Display number of files"
 msgstr "Dateienanzahl anzeigen"
 
-#: ui/bashstyle.ui.h:255
+#: ui/bashstyle.ui.h:263
 msgid ""
 "files_amount\n"
 "\n"
@@ -1152,11 +1194,11 @@ msgstr ""
 "Zeigt die Anzahl der Dateien im aktuellen\n"
 "Verzeichnis an."
 
-#: ui/bashstyle.ui.h:259
+#: ui/bashstyle.ui.h:267
 msgid "Display uptime"
 msgstr "Laufzeit anzeigen"
 
-#: ui/bashstyle.ui.h:260
+#: ui/bashstyle.ui.h:268
 msgid ""
 "uptime\n"
 "\n"
@@ -1169,11 +1211,11 @@ msgstr ""
 "\n"
 "Zeigt die Zeit seit Start des Computers an."
 
-#: ui/bashstyle.ui.h:264
+#: ui/bashstyle.ui.h:272
 msgid "Display size of files"
 msgstr "Dateiengröße anzeigen"
 
-#: ui/bashstyle.ui.h:265
+#: ui/bashstyle.ui.h:273
 msgid ""
 "files_size\n"
 "\n"
@@ -1187,11 +1229,11 @@ msgstr ""
 "Zeigt die Größe aller Dateien im aktuellen\n"
 "Verzeichnis an."
 
-#: ui/bashstyle.ui.h:269
+#: ui/bashstyle.ui.h:277
 msgid "Display number of the tty"
 msgstr "TTY-Nummer anzeigen"
 
-#: ui/bashstyle.ui.h:270
+#: ui/bashstyle.ui.h:278
 msgid ""
 "tty\n"
 "\n"
@@ -1204,11 +1246,11 @@ msgstr ""
 "\n"
 "Zeigt das aktuelle Terminal-Gerät an."
 
-#: ui/bashstyle.ui.h:274
+#: ui/bashstyle.ui.h:282
 msgid "Display number of running jobs"
 msgstr "Prozessanzahl anzeigen"
 
-#: ui/bashstyle.ui.h:275
+#: ui/bashstyle.ui.h:283
 msgid ""
 "processes\n"
 "\n"
@@ -1221,11 +1263,11 @@ msgstr ""
 "\n"
 "Zeigt die Zahl der laufenden Prozesse an."
 
-#: ui/bashstyle.ui.h:279
+#: ui/bashstyle.ui.h:287
 msgid "Display battery load"
 msgstr "Akkustand anzeigen"
 
-#: ui/bashstyle.ui.h:280
+#: ui/bashstyle.ui.h:288
 msgid ""
 "battery_load\n"
 "\n"
@@ -1238,11 +1280,11 @@ msgstr ""
 "\n"
 "Zeigt den Akkustand an."
 
-#: ui/bashstyle.ui.h:284
+#: ui/bashstyle.ui.h:292
 msgid "Display system load"
 msgstr "Systemlast anzeigen"
 
-#: ui/bashstyle.ui.h:285
+#: ui/bashstyle.ui.h:293
 msgid ""
 "load\n"
 "\n"
@@ -1255,43 +1297,43 @@ msgstr ""
 "\n"
 "Zeigt die aktuelle Systemlast an."
 
-#: ui/bashstyle.ui.h:289
+#: ui/bashstyle.ui.h:297
 msgid "Alias #1"
 msgstr "Alias #1"
 
-#: ui/bashstyle.ui.h:290
+#: ui/bashstyle.ui.h:298
 msgid "Alias #2"
 msgstr "Alias #2"
 
-#: ui/bashstyle.ui.h:291
+#: ui/bashstyle.ui.h:299
 msgid "Alias #3"
 msgstr "Alias #3"
 
-#: ui/bashstyle.ui.h:292
+#: ui/bashstyle.ui.h:300
 msgid "Alias #4"
 msgstr "Alias #4"
 
-#: ui/bashstyle.ui.h:293
+#: ui/bashstyle.ui.h:301
 msgid "Alias #5"
 msgstr "Alias #5"
 
-#: ui/bashstyle.ui.h:294
+#: ui/bashstyle.ui.h:302
 msgid "Alias #6"
 msgstr "Alias #6"
 
-#: ui/bashstyle.ui.h:295
+#: ui/bashstyle.ui.h:303
 msgid "Alias #7"
 msgstr "Alias #7"
 
-#: ui/bashstyle.ui.h:296
+#: ui/bashstyle.ui.h:304
 msgid "Alias #8"
 msgstr "Alias #8"
 
-#: ui/bashstyle.ui.h:297
+#: ui/bashstyle.ui.h:305
 msgid "Alias #9"
 msgstr "Alias #9"
 
-#: ui/bashstyle.ui.h:298
+#: ui/bashstyle.ui.h:306
 msgid ""
 "alias_one\n"
 "\n"
@@ -1308,7 +1350,7 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:304
+#: ui/bashstyle.ui.h:312
 msgid ""
 "alias_two\n"
 "\n"
@@ -1325,7 +1367,7 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:310
+#: ui/bashstyle.ui.h:318
 msgid ""
 "alias_three\n"
 "\n"
@@ -1342,7 +1384,7 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:316
+#: ui/bashstyle.ui.h:324
 msgid ""
 "alias_four\n"
 "\n"
@@ -1359,7 +1401,7 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:322
+#: ui/bashstyle.ui.h:330
 msgid ""
 "alias_five\n"
 "\n"
@@ -1376,7 +1418,7 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:328
+#: ui/bashstyle.ui.h:336
 msgid ""
 "alias_six\n"
 "\n"
@@ -1393,7 +1435,7 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:334
+#: ui/bashstyle.ui.h:342
 msgid ""
 "alias_seven\n"
 "\n"
@@ -1410,7 +1452,7 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:340
+#: ui/bashstyle.ui.h:348
 msgid ""
 "alias_eight\n"
 "\n"
@@ -1427,7 +1469,7 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:346
+#: ui/bashstyle.ui.h:354
 msgid ""
 "alias_nine\n"
 "\n"
@@ -1444,19 +1486,19 @@ msgstr ""
 "\n"
 "Nun \"a\" ausführen, um \"echo hello world\" auszuführen"
 
-#: ui/bashstyle.ui.h:352
+#: ui/bashstyle.ui.h:360
 msgid "Alias"
 msgstr "Alias"
 
-#: ui/bashstyle.ui.h:353
+#: ui/bashstyle.ui.h:361
 msgid "History"
 msgstr "Verlauf"
 
-#: ui/bashstyle.ui.h:354
+#: ui/bashstyle.ui.h:362
 msgid "History Size"
 msgstr "Verlaufs-Größe"
 
-#: ui/bashstyle.ui.h:355
+#: ui/bashstyle.ui.h:363
 msgid ""
 "history_size\n"
 "\n"
@@ -1466,15 +1508,15 @@ msgstr ""
 "\n"
 "Anzahl der Zeilen der Bash-Historie."
 
-#: ui/bashstyle.ui.h:358
+#: ui/bashstyle.ui.h:366
 msgid "0"
 msgstr "0"
 
-#: ui/bashstyle.ui.h:359
+#: ui/bashstyle.ui.h:367
 msgid "History Blacklist"
 msgstr "Verlaufs-Ausnahmen"
 
-#: ui/bashstyle.ui.h:360
+#: ui/bashstyle.ui.h:368
 msgid ""
 "history_ignore\n"
 "\n"
@@ -1486,7 +1528,7 @@ msgstr ""
 "eine Semikolon-getrennte Liste aller nicht in die\n"
 "Bash-Historie einzutragenden Kommands."
 
-#: ui/bashstyle.ui.h:364
+#: ui/bashstyle.ui.h:372
 msgid ""
 "history_control\n"
 "\n"
@@ -1509,23 +1551,23 @@ msgstr ""
 "\tLeerzeichen ignorieren.\n"
 "Beides ignorieren: Duplikate und Leerzeichen ignorieren."
 
-#: ui/bashstyle.ui.h:374
+#: ui/bashstyle.ui.h:382
 msgid "Choose historycontrol type"
 msgstr "Verlaufseinstellung:"
 
-#: ui/bashstyle.ui.h:375
+#: ui/bashstyle.ui.h:383
 msgid "History Timeformat"
 msgstr "Verlaufs-Zeitstempel"
 
-#: ui/bashstyle.ui.h:376
+#: ui/bashstyle.ui.h:384
 msgid "Misc"
 msgstr "Divers"
 
-#: ui/bashstyle.ui.h:377
+#: ui/bashstyle.ui.h:385
 msgid "Change CDPATH"
 msgstr "CDPATH ändern"
 
-#: ui/bashstyle.ui.h:378
+#: ui/bashstyle.ui.h:386
 #, python-brace-format
 msgid ""
 "cdpath\n"
@@ -1543,11 +1585,11 @@ msgstr ""
 "hinzufügen, um mittels 'cd Desktop' nach\n"
 "${HOME}/Desktop zu wechseln."
 
-#: ui/bashstyle.ui.h:385
+#: ui/bashstyle.ui.h:393
 msgid "Change Completion Blacklist"
 msgstr "Komplettierungs-Ausnahmen"
 
-#: ui/bashstyle.ui.h:386
+#: ui/bashstyle.ui.h:394
 msgid ""
 "completion_ignore\n"
 "\n"
@@ -1560,11 +1602,11 @@ msgstr ""
 "Namens-Komplettierung zu ignorierenden\n"
 "Dateinamen."
 
-#: ui/bashstyle.ui.h:390
+#: ui/bashstyle.ui.h:398
 msgid "Set Timeout (in seconds)"
 msgstr "Timeout setzen (in Sekunden)"
 
-#: ui/bashstyle.ui.h:391
+#: ui/bashstyle.ui.h:399
 msgid ""
 "timeout\n"
 "\n"
@@ -1576,11 +1618,11 @@ msgstr ""
 "automatische Beendigung der Sitzung nach x Sekunden,\n"
 "0 um die Funktion zu deaktivieren."
 
-#: ui/bashstyle.ui.h:395
+#: ui/bashstyle.ui.h:403
 msgid "Change editor for fc"
 msgstr "Editor für fc ändern"
 
-#: ui/bashstyle.ui.h:396
+#: ui/bashstyle.ui.h:404
 msgid ""
 "fcedit\n"
 "\n"
@@ -1590,11 +1632,11 @@ msgstr ""
 "\n"
 "Editor für das interne fc-Kommando"
 
-#: ui/bashstyle.ui.h:399
+#: ui/bashstyle.ui.h:407
 msgid "Welcome Message"
 msgstr "Willkommens-Nachricht"
 
-#: ui/bashstyle.ui.h:400
+#: ui/bashstyle.ui.h:408
 msgid ""
 "welcome_message\n"
 "\n"
@@ -1606,11 +1648,11 @@ msgstr ""
 "ein Kommando automatisch beim Start jeder\n"
 "Sitzung ausführen, traditionell etwas wie 'fortune'."
 
-#: ui/bashstyle.ui.h:404
+#: ui/bashstyle.ui.h:412
 msgid "Path"
 msgstr "Pfad"
 
-#: ui/bashstyle.ui.h:405
+#: ui/bashstyle.ui.h:413
 msgid ""
 "path\n"
 "\n"
@@ -1625,11 +1667,11 @@ msgstr ""
 "mit ausführbaren Kommandos. Zunächst den Originalwert\n"
 "einfügen um etwaige Probleme zu vermeiden."
 
-#: ui/bashstyle.ui.h:411
+#: ui/bashstyle.ui.h:419
 msgid "Enable Tab-Rotation"
 msgstr "Tab-Rotation aktivieren"
 
-#: ui/bashstyle.ui.h:412
+#: ui/bashstyle.ui.h:420
 msgid ""
 "tab_rotation\n"
 "\n"
@@ -1642,11 +1684,11 @@ msgstr ""
 "während der Komplettierung mittes [TAB] zwischen\n"
 "den möglichen Vervollständigungen rotieren."
 
-#: ui/bashstyle.ui.h:417
+#: ui/bashstyle.ui.h:425
 msgid "Directory Indicator"
 msgstr "Verzeichnis Indikator"
 
-#: ui/bashstyle.ui.h:418
+#: ui/bashstyle.ui.h:426
 msgid ""
 "directory_indicator\n"
 "\n"
@@ -1661,15 +1703,15 @@ msgstr ""
 "/ gekennzeichnet. Für Prompts kann dies durch ein\n"
 "beliebiges Zeichen ersetzt werden (nur Darstellung)."
 
-#: ui/bashstyle.ui.h:424
+#: ui/bashstyle.ui.h:432
 msgid "Extras"
 msgstr "Extras"
 
-#: ui/bashstyle.ui.h:425
+#: ui/bashstyle.ui.h:433
 msgid "Use lscd in favour of cd"
 msgstr "lscd anstelle von cd verwenden"
 
-#: ui/bashstyle.ui.h:426
+#: ui/bashstyle.ui.h:434
 msgid ""
 "use_lscd\n"
 "\n"
@@ -1681,11 +1723,11 @@ msgstr ""
 "Nutze 'lscd' anstelle von 'cd'. lscd zeigt den\n"
 "Inhalt des Verzeichnisses nach dem Wechsel an."
 
-#: ui/bashstyle.ui.h:430
+#: ui/bashstyle.ui.h:438
 msgid "Let 'dd' continue on error"
 msgstr "'dd' bei Fehler nicht anhalten"
 
-#: ui/bashstyle.ui.h:431
+#: ui/bashstyle.ui.h:439
 msgid ""
 "dd_noerror\n"
 "\n"
@@ -1699,11 +1741,11 @@ msgstr ""
 "Diese Option verhindert dies und 'dd' teilt den Fehler\n"
 "nur mit, fährt aber mit der Arbeit fort."
 
-#: ui/bashstyle.ui.h:436
+#: ui/bashstyle.ui.h:444
 msgid "Verbose output on start"
 msgstr "Gesprächig beim Start"
 
-#: ui/bashstyle.ui.h:437
+#: ui/bashstyle.ui.h:445
 msgid ""
 "debug_verbose\n"
 "\n"
@@ -1717,11 +1759,11 @@ msgstr ""
 "Kernskript). Nur empfohlen, wenn es beim Start\n"
 "Fehler gibt, zu deren Erkennung und Behebung."
 
-#: ui/bashstyle.ui.h:442
+#: ui/bashstyle.ui.h:450
 msgid "User birthday (MM-DD)"
 msgstr "Geburtstag (MM-TT)"
 
-#: ui/bashstyle.ui.h:443
+#: ui/bashstyle.ui.h:451
 msgid ""
 "user_birthday\n"
 "\n"
@@ -1735,11 +1777,11 @@ msgstr ""
 "den Nikolaustag. Es wird eine kleine Überraschung\n"
 "beim ersten Shell-Start an diesem Tag angezeigt."
 
-#: ui/bashstyle.ui.h:448
+#: ui/bashstyle.ui.h:456
 msgid "lscd options"
 msgstr "lscd Optionen"
 
-#: ui/bashstyle.ui.h:449
+#: ui/bashstyle.ui.h:457
 msgid ""
 "lscd_options\n"
 "\n"
@@ -1749,11 +1791,11 @@ msgstr ""
 "\n"
 "zusätzliche ls-Optionen für 'lscd'."
 
-#: ui/bashstyle.ui.h:452
+#: ui/bashstyle.ui.h:460
 msgid "lscd: mkdir non-existent directory"
 msgstr "lscd: erstelle nicht-existentes Verzeichnis"
 
-#: ui/bashstyle.ui.h:453
+#: ui/bashstyle.ui.h:461
 msgid ""
 "lscd_mkdir\n"
 "\n"
@@ -1764,11 +1806,11 @@ msgstr ""
 "lässt 'lscd' ein Verzeichnis erstellen, wenn es\n"
 "nicht existiert."
 
-#: ui/bashstyle.ui.h:456
+#: ui/bashstyle.ui.h:464
 msgid "Restore directory in new shell"
 msgstr "Letztes Verzeichnis wiederherstellen"
 
-#: ui/bashstyle.ui.h:457
+#: ui/bashstyle.ui.h:465
 msgid ""
 "restore_directory\n"
 "\n"
@@ -1780,11 +1822,11 @@ msgstr ""
 "das letzte Verzeichnis vor dem Beenden der Bash\n"
 "merken und in der nächsten Sitzung wiederherstellen."
 
-#: ui/bashstyle.ui.h:461
+#: ui/bashstyle.ui.h:469
 msgid "Use treecd in favour of cd"
 msgstr "treecd anstelle von cd verwenden"
 
-#: ui/bashstyle.ui.h:462
+#: ui/bashstyle.ui.h:470
 msgid ""
 "use_treecd\n"
 "\n"
@@ -1796,11 +1838,11 @@ msgstr ""
 "Nutze 'treecd' anstelle von 'cd'. 'treecd' zeigt den\n"
 "Verzeichnisbaum nach dem Wechseln an."
 
-#: ui/bashstyle.ui.h:467
+#: ui/bashstyle.ui.h:475
 msgid "Scroll horizontally"
 msgstr "Horizontal scrollen"
 
-#: ui/bashstyle.ui.h:468
+#: ui/bashstyle.ui.h:476
 msgid ""
 "scroll_horizontal\n"
 "\n"
@@ -1816,11 +1858,11 @@ msgstr ""
 "als das Terminal sind, nicht mehr umgebrochen,\n"
 "sondern horizontal gerollt."
 
-#: ui/bashstyle.ui.h:475
+#: ui/bashstyle.ui.h:483
 msgid "Mark modified history lines"
 msgstr "Modifizierte Verläufe markieren"
 
-#: ui/bashstyle.ui.h:476
+#: ui/bashstyle.ui.h:484
 msgid ""
 "mark_modified\n"
 "\n"
@@ -1832,11 +1874,11 @@ msgstr ""
 "wenn eine Zeile der Bash-Historie geändert wird,\n"
 "wird dieser ein * vorangestellt."
 
-#: ui/bashstyle.ui.h:480
+#: ui/bashstyle.ui.h:488
 msgid "Show Edit Mode in Prompt"
 msgstr "Zeige Editier-Modus im Prompt"
 
-#: ui/bashstyle.ui.h:481
+#: ui/bashstyle.ui.h:489
 msgid ""
 "show_editmode\n"
 "\n"
@@ -1848,15 +1890,15 @@ msgstr ""
 "Editier-Modus (vim oder emacs) beim\n"
 "Start anzeigen."
 
-#: ui/bashstyle.ui.h:485
+#: ui/bashstyle.ui.h:493
 msgid "Completion"
 msgstr "Komplettierung"
 
-#: ui/bashstyle.ui.h:486
+#: ui/bashstyle.ui.h:494
 msgid "Mark symbolic directories"
 msgstr "Symbolische Ordner markieren"
 
-#: ui/bashstyle.ui.h:487
+#: ui/bashstyle.ui.h:495
 msgid ""
 "mark_symbolic_directories\n"
 "\n"
@@ -1869,11 +1911,11 @@ msgstr ""
 "Während der Komplettierung verlinkten\n"
 "Verzeichnissen ein / anhängen."
 
-#: ui/bashstyle.ui.h:492
+#: ui/bashstyle.ui.h:500
 msgid "Mark directories"
 msgstr "Ordner markieren"
 
-#: ui/bashstyle.ui.h:493
+#: ui/bashstyle.ui.h:501
 msgid ""
 "mark_directories\n"
 "\n"
@@ -1885,11 +1927,11 @@ msgstr ""
 "während der Komplettierung allen\n"
 "Verzeichnissen ein / anhängen."
 
-#: ui/bashstyle.ui.h:497
+#: ui/bashstyle.ui.h:505
 msgid "Horizontal completion"
 msgstr "Horizontale Komplettierung"
 
-#: ui/bashstyle.ui.h:498
+#: ui/bashstyle.ui.h:506
 msgid ""
 "complete_horizontal\n"
 "\n"
@@ -1901,11 +1943,11 @@ msgstr ""
 "horizontale Anordnung der Komplettierungs-\n"
 "Liste, anstatt vertikal."
 
-#: ui/bashstyle.ui.h:502
+#: ui/bashstyle.ui.h:510
 msgid "Ignore case"
 msgstr "Groß/Klein ignorieren"
 
-#: ui/bashstyle.ui.h:503
+#: ui/bashstyle.ui.h:511
 msgid ""
 "ignore_case\n"
 "\n"
@@ -1917,11 +1959,11 @@ msgstr ""
 "während der Komplettierung Versalien\n"
 "ignorieren."
 
-#: ui/bashstyle.ui.h:507
+#: ui/bashstyle.ui.h:515
 msgid "Match hidden files"
 msgstr "Verst. Dateien einbeziehen"
 
-#: ui/bashstyle.ui.h:508
+#: ui/bashstyle.ui.h:516
 msgid ""
 "complete_hidden\n"
 "\n"
@@ -1933,11 +1975,11 @@ msgstr ""
 "während der Komplettierung versteckte\n"
 "Elemente einbeziehen."
 
-#: ui/bashstyle.ui.h:512
+#: ui/bashstyle.ui.h:520
 msgid "Show matches if ambiguous"
 msgstr "Anzeigen wenn unsicher"
 
-#: ui/bashstyle.ui.h:513
+#: ui/bashstyle.ui.h:521
 msgid ""
 "ambiguous_show\n"
 "\n"
@@ -1952,11 +1994,11 @@ msgstr ""
 "Zahl der Elemente weniger als query_items, dem\n"
 "Nutzer direkt alle Elemente anzeigen."
 
-#: ui/bashstyle.ui.h:519
+#: ui/bashstyle.ui.h:527
 msgid "Completion query items"
 msgstr "Komplettierungs-Elemente"
 
-#: ui/bashstyle.ui.h:520
+#: ui/bashstyle.ui.h:528
 msgid ""
 "query_items\n"
 "\n"
@@ -1970,11 +2012,11 @@ msgstr ""
 "der Komplettierung diesen Wert, wird der Nutzer\n"
 "zunächst gefragt, ob diese angezeigt werden sollen."
 
-#: ui/bashstyle.ui.h:525
+#: ui/bashstyle.ui.h:533
 msgid "Show stats"
 msgstr "Typen anzeigen"
 
-#: ui/bashstyle.ui.h:526
+#: ui/bashstyle.ui.h:534
 msgid ""
 "visible_stats\n"
 "\n"
@@ -1988,11 +2030,11 @@ msgstr ""
 "@ an Verknüpfungen und * an ausführbare Dateien\n"
 "anhängen."
 
-#: ui/bashstyle.ui.h:531
+#: ui/bashstyle.ui.h:539
 msgid "Use ReadlineCFG"
 msgstr "Benutze ReadlineCFG"
 
-#: ui/bashstyle.ui.h:532
+#: ui/bashstyle.ui.h:540
 msgid ""
 "use_readlinecfg\n"
 "\n"
@@ -2006,11 +2048,11 @@ msgstr ""
 "diese Option lässt BashStyle-NG eine inputrc\n"
 "anhand der nachfolgenden Optionen erstellen."
 
-#: ui/bashstyle.ui.h:538
+#: ui/bashstyle.ui.h:546
 msgid "Enable completion"
 msgstr "Komplettierung aktivieren"
 
-#: ui/bashstyle.ui.h:539
+#: ui/bashstyle.ui.h:547
 msgid ""
 "completion\n"
 "\n"
@@ -2023,7 +2065,7 @@ msgstr ""
 "aktiviert die Komplettierung von Dateinamen und\n"
 "-Pfaden durch das drücken von [TAB]."
 
-#: ui/bashstyle.ui.h:544
+#: ui/bashstyle.ui.h:552
 msgid ""
 "bellstyle\n"
 "\n"
@@ -2043,11 +2085,11 @@ msgstr ""
 "Piep: mittels System-Lautsprecher piepen\n"
 "Sichtbar: Bildschirm kurz flackern lassen."
 
-#: ui/bashstyle.ui.h:552
+#: ui/bashstyle.ui.h:560
 msgid "Choose bellstyle"
 msgstr "Glockenstil auswählen:"
 
-#: ui/bashstyle.ui.h:553
+#: ui/bashstyle.ui.h:561
 msgid ""
 "editing_mode\n"
 "\n"
@@ -2059,15 +2101,15 @@ msgstr ""
 "Editier-Modus für readline, entweder vim\n"
 "oder emacs (Standard)."
 
-#: ui/bashstyle.ui.h:557
+#: ui/bashstyle.ui.h:565
 msgid "Choose editing mode"
 msgstr "Editiermodus:"
 
-#: ui/bashstyle.ui.h:559
+#: ui/bashstyle.ui.h:567
 msgid "Use VimCFG"
 msgstr "Benutze VimCFG"
 
-#: ui/bashstyle.ui.h:560
+#: ui/bashstyle.ui.h:568
 msgid ""
 "use_vimcfg\n"
 "\n"
@@ -2080,11 +2122,11 @@ msgstr ""
 "Konfigurationsdatei anhand der nachfolgende\n"
 "Optionen erstellen."
 
-#: ui/bashstyle.ui.h:564
+#: ui/bashstyle.ui.h:572
 msgid "Backup files"
 msgstr "Sicherungskopien erstellen"
 
-#: ui/bashstyle.ui.h:565
+#: ui/bashstyle.ui.h:573
 msgid ""
 "vim_backup\n"
 "\n"
@@ -2096,15 +2138,15 @@ msgstr ""
 "erstelle eine Sicherungsdatei ($dateiname~)\n"
 "beim Speichern einer Datei."
 
-#: ui/bashstyle.ui.h:569
+#: ui/bashstyle.ui.h:577
 msgid "Search"
 msgstr "Suche"
 
-#: ui/bashstyle.ui.h:570
+#: ui/bashstyle.ui.h:578
 msgid "Match case-insensitivley"
 msgstr "Suche ignoriert Groß/Klein"
 
-#: ui/bashstyle.ui.h:571
+#: ui/bashstyle.ui.h:579
 msgid ""
 "ignore_case\n"
 "\n"
@@ -2114,11 +2156,11 @@ msgstr ""
 "\n"
 "Versalien während der Suche ignorieren."
 
-#: ui/bashstyle.ui.h:574
+#: ui/bashstyle.ui.h:582
 msgid "Match case smartly"
 msgstr "Groß/Klein klug unterscheiden"
 
-#: ui/bashstyle.ui.h:575
+#: ui/bashstyle.ui.h:583
 msgid ""
 "smart_case\n"
 "\n"
@@ -2130,11 +2172,11 @@ msgstr ""
 "automatisch entscheide, ob Versalien während\n"
 "der Suche ignoriert werden oder nicht."
 
-#: ui/bashstyle.ui.h:579
+#: ui/bashstyle.ui.h:587
 msgid "Enable incremental search"
 msgstr "Inkrementell suchen"
 
-#: ui/bashstyle.ui.h:580
+#: ui/bashstyle.ui.h:588
 msgid ""
 "incremental_search\n"
 "\n"
@@ -2148,11 +2190,11 @@ msgstr ""
 "warten, sondern inkrementell während dessen\n"
 "Eingabe die Suche starten."
 
-#: ui/bashstyle.ui.h:585
+#: ui/bashstyle.ui.h:593
 msgid "Highlight matches"
 msgstr "Passendes hervorheben"
 
-#: ui/bashstyle.ui.h:586
+#: ui/bashstyle.ui.h:594
 msgid ""
 "highlight_matches\n"
 "\n"
@@ -2163,15 +2205,15 @@ msgstr ""
 "\n"
 "die Suche hebt alle Treffer farbig hervor."
 
-#: ui/bashstyle.ui.h:590
+#: ui/bashstyle.ui.h:598
 msgid "Editing"
 msgstr "Bearbeitung"
 
-#: ui/bashstyle.ui.h:591
+#: ui/bashstyle.ui.h:599
 msgid "Highlight matching brackets"
 msgstr "Klammern hervorheben"
 
-#: ui/bashstyle.ui.h:592
+#: ui/bashstyle.ui.h:600
 msgid ""
 "highlight_brackets\n"
 "\n"
@@ -2184,11 +2226,11 @@ msgstr ""
 "wenn der Cursor auf einer Klammer steht,\n"
 "deren Gegenstück farbig hervorheben."
 
-#: ui/bashstyle.ui.h:597
+#: ui/bashstyle.ui.h:605
 msgid "Display (partial) command"
 msgstr "(partiellen) Befehl anzeigen"
 
-#: ui/bashstyle.ui.h:598
+#: ui/bashstyle.ui.h:606
 msgid ""
 "show_command\n"
 "\n"
@@ -2204,11 +2246,11 @@ msgstr ""
 "Kommandos an, diese Option zeigt auch die\n"
 "unvollständige Eingabe an, so sieht man, was man tippt."
 
-#: ui/bashstyle.ui.h:605
+#: ui/bashstyle.ui.h:613
 msgid "Enable filetype indention"
 msgstr "Benutze Autoeinrückung"
 
-#: ui/bashstyle.ui.h:606
+#: ui/bashstyle.ui.h:614
 msgid ""
 "filetype_indent\n"
 "\n"
@@ -2220,11 +2262,11 @@ msgstr ""
 "automatische Einrückung anhand des\n"
 "Dateityps."
 
-#: ui/bashstyle.ui.h:610
+#: ui/bashstyle.ui.h:618
 msgid "Jump back to last position"
 msgstr "Zu letzter Position springen"
 
-#: ui/bashstyle.ui.h:611
+#: ui/bashstyle.ui.h:619
 msgid ""
 "jump_back\n"
 "\n"
@@ -2238,11 +2280,11 @@ msgstr ""
 "Datei merken und beim erneuten Öffnen dorthin\n"
 "springen."
 
-#: ui/bashstyle.ui.h:616
+#: ui/bashstyle.ui.h:624
 msgid "Enable syntax highlighting"
 msgstr "Benutze Syntax Hervorhebung"
 
-#: ui/bashstyle.ui.h:617
+#: ui/bashstyle.ui.h:625
 msgid ""
 "syntax_hilight\n"
 "\n"
@@ -2254,11 +2296,11 @@ msgstr ""
 "farbige Syntax-Hervorhebung für vereinfachte\n"
 "Navigation in der Datei."
 
-#: ui/bashstyle.ui.h:621
+#: ui/bashstyle.ui.h:629
 msgid "Bash has dark background"
 msgstr "Bash hat dunklen Hintergrund"
 
-#: ui/bashstyle.ui.h:622
+#: ui/bashstyle.ui.h:630
 msgid ""
 "dark_background\n"
 "\n"
@@ -2271,11 +2313,11 @@ msgstr ""
 "wenn das Terminal einen dunklen Hintergrund hat,\n"
 "diese Option aktivieren, um vim dem anzupassen."
 
-#: ui/bashstyle.ui.h:627
+#: ui/bashstyle.ui.h:635
 msgid "Jump to start of line"
 msgstr "Zum Zeilenanfang springen"
 
-#: ui/bashstyle.ui.h:628
+#: ui/bashstyle.ui.h:636
 msgid ""
 "start_line\n"
 "\n"
@@ -2289,11 +2331,11 @@ msgstr ""
 "aktiv ist, an den Zeilenanfang, nicht die gemerkte\n"
 "Spalte springen."
 
-#: ui/bashstyle.ui.h:633
+#: ui/bashstyle.ui.h:641
 msgid "tabstop length"
 msgstr "Tabulator-Länge"
 
-#: ui/bashstyle.ui.h:634
+#: ui/bashstyle.ui.h:642
 msgid ""
 "tab_length\n"
 "\n"
@@ -2303,11 +2345,11 @@ msgstr ""
 "\n"
 "Länge eines Tabulators in Leerzeichen."
 
-#: ui/bashstyle.ui.h:637
+#: ui/bashstyle.ui.h:645
 msgid "autowrap position"
 msgstr "Umbruchspalte"
 
-#: ui/bashstyle.ui.h:638
+#: ui/bashstyle.ui.h:646
 msgid ""
 "wrap_length\n"
 "\n"
@@ -2319,11 +2361,11 @@ msgstr ""
 "maximale Länge einer Zeile bevor diese umgebrochen\n"
 "wird, wenn wrap_line aktiv ist."
 
-#: ui/bashstyle.ui.h:642
+#: ui/bashstyle.ui.h:650
 msgid "Wrap long lines"
 msgstr "Lange Zeilen umbrechen"
 
-#: ui/bashstyle.ui.h:643
+#: ui/bashstyle.ui.h:651
 msgid ""
 "wrap_line\n"
 "\n"
@@ -2336,11 +2378,11 @@ msgstr ""
 "lange Zeilen umbrechen, anstatt endlos\n"
 "horizontal zu rollen."
 
-#: ui/bashstyle.ui.h:648
+#: ui/bashstyle.ui.h:656
 msgid "Display line numbers"
 msgstr "Zeilennummern anzeigen"
 
-#: ui/bashstyle.ui.h:649
+#: ui/bashstyle.ui.h:657
 msgid ""
 "show_lineno\n"
 "\n"
@@ -2350,11 +2392,11 @@ msgstr ""
 "\n"
 "Anzeige der Zeilennummer zur Linken."
 
-#: ui/bashstyle.ui.h:652
+#: ui/bashstyle.ui.h:660
 msgid "Autosave files"
 msgstr "Autospeichern"
 
-#: ui/bashstyle.ui.h:653
+#: ui/bashstyle.ui.h:661
 msgid ""
 "autosave\n"
 "\n"
@@ -2364,11 +2406,11 @@ msgstr ""
 "\n"
 "Autospeichern"
 
-#: ui/bashstyle.ui.h:656
+#: ui/bashstyle.ui.h:664
 msgid "Highlight current line"
 msgstr "Aktuelle Zeile hervorheben"
 
-#: ui/bashstyle.ui.h:657
+#: ui/bashstyle.ui.h:665
 msgid ""
 "highlight_line\n"
 "\n"
@@ -2379,11 +2421,11 @@ msgstr ""
 "\n"
 "aktuelle Zeile hervorheben (wird unterstrichen)."
 
-#: ui/bashstyle.ui.h:661
+#: ui/bashstyle.ui.h:669
 msgid "Highlight current column"
 msgstr "Aktuelle Spalte hervorheben"
 
-#: ui/bashstyle.ui.h:662
+#: ui/bashstyle.ui.h:670
 msgid ""
 "highlight_column\n"
 "\n"
@@ -2395,7 +2437,7 @@ msgstr ""
 "aktuelle Spalte hervorheben (vertikale Säule\n"
 "von Unterstrichen)"
 
-#: ui/bashstyle.ui.h:666
+#: ui/bashstyle.ui.h:674
 msgid ""
 "colorscheme\n"
 "\n"
@@ -2405,15 +2447,15 @@ msgstr ""
 "\n"
 "Farbschema auswählen"
 
-#: ui/bashstyle.ui.h:669
+#: ui/bashstyle.ui.h:677
 msgid "Choose colorscheme"
 msgstr "Farbschema auswählen:"
 
-#: ui/bashstyle.ui.h:670
+#: ui/bashstyle.ui.h:678
 msgid "rulerformat"
 msgstr "Linealformat"
 
-#: ui/bashstyle.ui.h:672
+#: ui/bashstyle.ui.h:680
 msgid ""
 "rulerformat\n"
 "\n"
@@ -2429,11 +2471,11 @@ msgstr ""
 "\n"
 "vimdoc.sourceforge.net/htmldoc/options.html"
 
-#: ui/bashstyle.ui.h:678
+#: ui/bashstyle.ui.h:686
 msgid "Display the ruler"
 msgstr "Lineal anzeigen"
 
-#: ui/bashstyle.ui.h:679
+#: ui/bashstyle.ui.h:687
 msgid ""
 "ruler\n"
 "\n"
@@ -2445,11 +2487,11 @@ msgstr ""
 "ein anpassbares Lineal am unteren Ende\n"
 "des Editors anzeigen."
 
-#: ui/bashstyle.ui.h:683
+#: ui/bashstyle.ui.h:691
 msgid "Go into file's directory"
 msgstr "Ins Datei-Verzeichnis wechseln"
 
-#: ui/bashstyle.ui.h:684
+#: ui/bashstyle.ui.h:692
 msgid ""
 "chdir\n"
 "\n"
@@ -2461,179 +2503,179 @@ msgstr ""
 "beim Öffnen einer Datei vim in deren Verzeichnis\n"
 "wechseln lassen."
 
-#: ui/bashstyle.ui.h:688
+#: ui/bashstyle.ui.h:696
 msgid "Vim"
 msgstr "Vim"
 
-#: ui/bashstyle.ui.h:689
+#: ui/bashstyle.ui.h:697
 msgid "Display position of cursor"
 msgstr "Zeigerposition anzeigen"
 
-#: ui/bashstyle.ui.h:690
+#: ui/bashstyle.ui.h:698
 msgid "Use search-string history"
 msgstr "Such-Historie verwenden"
 
-#: ui/bashstyle.ui.h:691
+#: ui/bashstyle.ui.h:699
 msgid "Use NanoCFG"
 msgstr "Benutze NanoCFG"
 
-#: ui/bashstyle.ui.h:692
+#: ui/bashstyle.ui.h:700
 msgid "Use bold text"
 msgstr "Benutze fetten Text"
 
-#: ui/bashstyle.ui.h:693
+#: ui/bashstyle.ui.h:701
 msgid "Have more space for editing"
 msgstr "Mehr Platz zum editieren"
 
-#: ui/bashstyle.ui.h:694
+#: ui/bashstyle.ui.h:702
 msgid "Rebind delete keys"
 msgstr "Entfernen-Taste neusetzen"
 
-#: ui/bashstyle.ui.h:695
+#: ui/bashstyle.ui.h:703
 msgid "Rebind keypad"
 msgstr "Ziffernblock neusetzen"
 
-#: ui/bashstyle.ui.h:696
+#: ui/bashstyle.ui.h:704
 msgid "Enable auto-indention"
 msgstr "Benutze Autoeinrückung"
 
-#: ui/bashstyle.ui.h:697
+#: ui/bashstyle.ui.h:705
 msgid "Search case-sensitivley"
 msgstr "Suche unterscheidet Groß/Klein"
 
-#: ui/bashstyle.ui.h:698
+#: ui/bashstyle.ui.h:706
 msgid "Hide shortcuts"
 msgstr "Kürzel verstecken"
 
-#: ui/bashstyle.ui.h:699
+#: ui/bashstyle.ui.h:707
 msgid "Nano"
 msgstr "Nano"
 
-#: ui/bashstyle.ui.h:700
+#: ui/bashstyle.ui.h:708
 msgid "<b>Basic</b>"
 msgstr "<b>Einfach</b>"
 
-#: ui/bashstyle.ui.h:701
+#: ui/bashstyle.ui.h:709
 msgid "Customize  LS Colors"
 msgstr "LS Farben anpassen"
 
-#: ui/bashstyle.ui.h:702
+#: ui/bashstyle.ui.h:710
 msgid "Custom:"
 msgstr "Eigenes:"
 
-#: ui/bashstyle.ui.h:703
+#: ui/bashstyle.ui.h:711
 msgid "Common"
 msgstr "Standard"
 
-#: ui/bashstyle.ui.h:704
+#: ui/bashstyle.ui.h:712
 msgid "Executable Files:"
 msgstr "Ausführbare Dateien:"
 
-#: ui/bashstyle.ui.h:705
+#: ui/bashstyle.ui.h:713
 msgid "Generic Files:"
 msgstr "Allgemein:"
 
-#: ui/bashstyle.ui.h:706
+#: ui/bashstyle.ui.h:714
 msgid "Log Files:"
 msgstr "Logdateien:"
 
-#: ui/bashstyle.ui.h:707
+#: ui/bashstyle.ui.h:715
 msgid "Debian Packages:"
 msgstr "Debian Pakete:"
 
-#: ui/bashstyle.ui.h:708
+#: ui/bashstyle.ui.h:716
 msgid "RedHat Packages:"
 msgstr "RedHat Pakete:"
 
-#: ui/bashstyle.ui.h:709
+#: ui/bashstyle.ui.h:717
 msgid "Directories:"
 msgstr "Verzeichnisse:"
 
-#: ui/bashstyle.ui.h:710
+#: ui/bashstyle.ui.h:718
 msgid "Media"
 msgstr "Medien"
 
-#: ui/bashstyle.ui.h:711
+#: ui/bashstyle.ui.h:719
 msgid "JPEG Images:"
 msgstr "JPEG Bilder:"
 
-#: ui/bashstyle.ui.h:712
+#: ui/bashstyle.ui.h:720
 msgid "PNG Images:"
 msgstr "PNG Bilder:"
 
-#: ui/bashstyle.ui.h:713
+#: ui/bashstyle.ui.h:721
 msgid "GIF Images:"
 msgstr "GIF Bilder:"
 
-#: ui/bashstyle.ui.h:714
+#: ui/bashstyle.ui.h:722
 msgid "MP3 Audio:"
 msgstr "MP3 Audio:"
 
-#: ui/bashstyle.ui.h:715
+#: ui/bashstyle.ui.h:723
 msgid "OGG Vorbis Audio:"
 msgstr "OGG Vorbis Audio:"
 
-#: ui/bashstyle.ui.h:716
+#: ui/bashstyle.ui.h:724
 msgid "FLAC Audio:"
 msgstr "FLAC Audio:"
 
-#: ui/bashstyle.ui.h:717
+#: ui/bashstyle.ui.h:725
 msgid "Archives"
 msgstr "Archive"
 
-#: ui/bashstyle.ui.h:718
+#: ui/bashstyle.ui.h:726
 msgid "TAR Archive:"
 msgstr "TAR Archiv:"
 
-#: ui/bashstyle.ui.h:719
+#: ui/bashstyle.ui.h:727
 msgid "GZiped TAR Archive:"
 msgstr "GZip TAR Archiv:"
 
-#: ui/bashstyle.ui.h:720
+#: ui/bashstyle.ui.h:728
 msgid "BZiped TAR Archive:"
 msgstr "BZip TAR Archiv:"
 
-#: ui/bashstyle.ui.h:721
+#: ui/bashstyle.ui.h:729
 msgid "RAR Archive:"
 msgstr "RAR Archiv:"
 
-#: ui/bashstyle.ui.h:722
+#: ui/bashstyle.ui.h:730
 msgid "ZIP Archive:"
 msgstr "ZIP Archiv:"
 
-#: ui/bashstyle.ui.h:723
+#: ui/bashstyle.ui.h:731
 msgid "LS Colors"
 msgstr "LS Farben"
 
-#: ui/bashstyle.ui.h:724
+#: ui/bashstyle.ui.h:732
 msgid "PS1"
 msgstr "PS1"
 
-#: ui/bashstyle.ui.h:725
+#: ui/bashstyle.ui.h:733
 msgid "Place in PS1"
 msgstr "in PS1 platzieren"
 
-#: ui/bashstyle.ui.h:726
+#: ui/bashstyle.ui.h:734
 msgid "COMMAND"
 msgstr "COMMAND"
 
-#: ui/bashstyle.ui.h:727
+#: ui/bashstyle.ui.h:735
 msgid "Place in P_C"
 msgstr "in P_C platzieren"
 
-#: ui/bashstyle.ui.h:728
+#: ui/bashstyle.ui.h:736
 msgid "Use a custom prompt"
 msgstr "Eigenen Prompt benutzen"
 
-#: ui/bashstyle.ui.h:729
+#: ui/bashstyle.ui.h:737
 msgid "Show Toolbox"
 msgstr "Werkzeugkasten aufrufen"
 
-#: ui/bashstyle.ui.h:730
+#: ui/bashstyle.ui.h:738
 msgid "Custom"
 msgstr "Eigenes"
 
-#: ui/bashstyle.ui.h:732
+#: ui/bashstyle.ui.h:740
 msgid ""
 "Explanation of GIT aliases\n"
 "\n"
@@ -2649,7 +2691,7 @@ msgstr ""
 "re = zurücksetzen auf HEAD\n"
 "ma = master auschecken"
 
-#: ui/bashstyle.ui.h:738
+#: ui/bashstyle.ui.h:746
 msgid ""
 "\n"
 "who = no of commits per contributor\n"
@@ -2665,103 +2707,103 @@ msgstr ""
 "stage = stage Änderung an überwachten Dateien\n"
 "lsb = Zweige nach Aktivität anzeigen"
 
-#: ui/bashstyle.ui.h:744
+#: ui/bashstyle.ui.h:752
 msgid "GIT aliases"
 msgstr "GIT aliases"
 
-#: ui/bashstyle.ui.h:745
+#: ui/bashstyle.ui.h:753
 msgid "Default GIT signing key"
 msgstr "Standard GIT Signatur-Schlüssel"
 
-#: ui/bashstyle.ui.h:746
+#: ui/bashstyle.ui.h:754
 msgid "Colorize GIT output"
 msgstr "Farbige GIT Ausgabe"
 
-#: ui/bashstyle.ui.h:747
+#: ui/bashstyle.ui.h:755
 msgid "Editor for GIT"
 msgstr "Editor für GIT"
 
-#: ui/bashstyle.ui.h:748
+#: ui/bashstyle.ui.h:756
 msgid "GIT mail address"
 msgstr "GIT E-Mail-Adresse"
 
-#: ui/bashstyle.ui.h:749
+#: ui/bashstyle.ui.h:757
 msgid "GIT user name"
 msgstr "GIT Benutzername"
 
-#: ui/bashstyle.ui.h:750
+#: ui/bashstyle.ui.h:758
 msgid "Configurate GIT"
 msgstr "GIT konfigurieren"
 
-#: ui/bashstyle.ui.h:751
+#: ui/bashstyle.ui.h:759
 msgid "3.x | Shopts"
 msgstr "3.x | Shopts"
 
-#: ui/bashstyle.ui.h:752
+#: ui/bashstyle.ui.h:760
 msgid "Enable no empty cmd comp."
 msgstr "Benutze no empty cmd comp."
 
-#: ui/bashstyle.ui.h:753
+#: ui/bashstyle.ui.h:761
 msgid "Enable histreedit"
 msgstr "Benutze histreedit"
 
-#: ui/bashstyle.ui.h:754
+#: ui/bashstyle.ui.h:762
 msgid "Enable force fignore"
 msgstr "Benutze force fignore"
 
-#: ui/bashstyle.ui.h:755
+#: ui/bashstyle.ui.h:763
 msgid "Enable cmdhist"
 msgstr "Benutze cmdhist"
 
-#: ui/bashstyle.ui.h:756
+#: ui/bashstyle.ui.h:764
 msgid "Enable checkhash"
 msgstr "Benutze checkhash"
 
-#: ui/bashstyle.ui.h:757
+#: ui/bashstyle.ui.h:765
 msgid "Enable cdable vars"
 msgstr "Benutze cdable vars"
 
-#: ui/bashstyle.ui.h:758
+#: ui/bashstyle.ui.h:766
 msgid "Enable cd-spell"
 msgstr "Benutze cd-spell"
 
-#: ui/bashstyle.ui.h:759
+#: ui/bashstyle.ui.h:767
 msgid "Enable histappend"
 msgstr "Benutze histappend"
 
-#: ui/bashstyle.ui.h:760
+#: ui/bashstyle.ui.h:768
 msgid "4.x"
 msgstr "4.x"
 
-#: ui/bashstyle.ui.h:761
+#: ui/bashstyle.ui.h:769
 msgid "Enable autocd"
 msgstr "Benutze autocd"
 
-#: ui/bashstyle.ui.h:762
+#: ui/bashstyle.ui.h:770
 msgid "Enable globstar"
 msgstr "Benutze globstar"
 
-#: ui/bashstyle.ui.h:763
+#: ui/bashstyle.ui.h:771
 msgid "Enable dirspell"
 msgstr "Benutze dirspell"
 
-#: ui/bashstyle.ui.h:764
+#: ui/bashstyle.ui.h:772
 msgid "Enable checkjobs"
 msgstr "Benutze checkjobs"
 
-#: ui/bashstyle.ui.h:765
+#: ui/bashstyle.ui.h:773
 msgid "4.3"
 msgstr "4.3"
 
-#: ui/bashstyle.ui.h:766
+#: ui/bashstyle.ui.h:774
 msgid "Enable direxpand"
 msgstr "Benutze direxpand"
 
-#: ui/bashstyle.ui.h:767
+#: ui/bashstyle.ui.h:775
 msgid "Enable globasciiranges"
 msgstr "Benutze globasciiranges"
 
-#: ui/bashstyle.ui.h:768
+#: ui/bashstyle.ui.h:776
 msgid "Shopts"
 msgstr "Shopts"
 
