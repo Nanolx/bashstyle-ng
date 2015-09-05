@@ -191,12 +191,45 @@ if [[ ! -e $HOME/.vimrc.bs-ng.* ]]; then
 	rc_add "set tabstop=$(ini_get tab_length)"
 	rc_add "set softtabstop=$(ini_get tab_length)"
 
+	if [[ $(ini_get expandtab) == True ]]; then
+		dbg_msg $"VimCFG Setting:" $"Expand Tab" $"On"
+		rc_add "set expandtab"
+	else
+		dbg_msg $"VimCFG Setting:" $"Expand Tab" $"Off"
+		rc_add "set noexpandtab"
+	fi
+
 	if [[ $(ini_get chdir) == True ]]; then
 		dbg_msg $"VimCFG Setting:" $"Auto chdir" $"On"
 		rc_add "set autochdir"
 	else
 		dbg_msg $"VimCFG Setting:" $"Auto chdir" $"Off"
 		rc_add "set noautochdir"
+	fi
+
+	if [[ $(ini_get foldenable) == True ]]; then
+		dbg_msg $"VimCFG Setting:" $"Fold Enable" $"On"
+		rc_add "set foldenable"
+
+		dbg_msg $"VimCFG Setting:" $"Fold Level" $(ini_get foldlevelstart)
+		rc_add "set foldlevelstart=$(ini_get foldlevelstart)"
+
+		dbg_msg $"VimCFG Setting:" $"Fold Maximum Nest" $(ini_get foldnestmax)
+		rc_add "set foldnestmax=$(ini_get foldnestmax)"
+
+		dbg_msg $"VimCFG Setting:" $"Fold Method" $(ini_get foldmethod)
+		rc_add "set foldmethod=$(ini_get foldmethod)"
+	else
+		dbg_msg $"VimCFG Setting:" $"Fold Enable" $"Off"
+		rc_add "set nofoldenable"
+	fi
+
+	if [[ $(ini_get wildmenu) == True ]]; then
+		dbg_msg $"VimCFG Setting:" $"Wildmenu" $"On"
+		rc_add "set wildmenu"
+	else
+		dbg_msg $"VimCFG Setting:" $"Wildmenu" $"Off"
+		rc_add "set nowildmenu"
 	fi
 
 	rc_add "if filereadable(\"~/.vimrc.custom\")"

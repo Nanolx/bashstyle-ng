@@ -1241,80 +1241,6 @@ The Undobuffer Pythonmodule is licensed under the:
     <property name="upper">100</property>
     <property name="step_increment">1</property>
   </object>
-  <object class="GtkListStore" id="vim.liststore.colorscheme">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Default</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Adaryn</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Advantage</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Desert</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Gobo</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Impact</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nightshade</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nightwish</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Wombat</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Asu 1 Dark</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Candy Code</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">DW Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Fruit</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Relaxed Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Tango</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Molokai</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vivid Chalk</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Meta 5</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Woju</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Lightning</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Paper Color</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Solarized</col>
-      </row>
-    </data>
-  </object>
   <object class="GtkWindow" id="bashstyle">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -4290,841 +4216,1062 @@ or emacs (default) like.</property>
               </packing>
             </child>
             <child>
-              <object class="GtkTable" id="vim.table">
+              <object class="GtkScrolledWindow" id="scrolledwindow2">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="valign">center</property>
-                <property name="n_rows">7</property>
+                <property name="can_focus">True</property>
+                <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkBox" id="vim.box.basic">
+                  <object class="GtkViewport" id="viewport2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkLabel" id="vim.label.basic">
+                      <object class="GtkTable" id="vim.table">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_top">3</property>
-                        <property name="label" translatable="yes">Basic</property>
-                        <property name="angle">90</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkTable" id="vim.table.basic">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_columns">2</property>
-                        <property name="column_spacing">15</property>
+                        <property name="valign">center</property>
+                        <property name="n_rows">9</property>
                         <child>
-                          <object class="GtkCheckButton" id="use_vimcfg">
-                            <property name="label" translatable="yes">Use VimCFG</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
+                          <object class="GtkBox" id="vim.box.basic">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">use_vimcfg
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="vim.label.basic">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">3</property>
+                                <property name="label" translatable="yes">Basic</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkTable" id="vim.table.basic">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">15</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="use_vimcfg">
+                                    <property name="label" translatable="yes">Use VimCFG</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">use_vimcfg
 
 enabling will this create a vimrc with
 below configuration</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="x_options"/>
-                            <property name="y_options">GTK_EXPAND</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_backup">
-                            <property name="label" translatable="yes">Backup files</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">vim_backup
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="x_options"/>
+                                    <property name="y_options">GTK_EXPAND</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_backup">
+                                    <property name="label" translatable="yes">Backup files</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">vim_backup
 
 create a backup ($filename~) when
 saving a file</property>
-                            <property name="draw_indicator">True</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options">GTK_EXPAND</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="vim.separator.1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options">GTK_EXPAND</property>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
+                            <property name="x_padding">100</property>
+                            <property name="y_padding">5</property>
                           </packing>
                         </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkSeparator" id="vim.separator.1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_padding">100</property>
-                    <property name="y_padding">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox" id="vim.box.search">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkLabel" id="vim.label.search">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Search</property>
-                        <property name="angle">90</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkTable" id="vim.table.search">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_rows">2</property>
-                        <property name="n_columns">2</property>
-                        <property name="column_spacing">15</property>
                         <child>
-                          <object class="GtkCheckButton" id="vim_icase">
-                            <property name="label" translatable="yes">Match case-insensitivley</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
+                          <object class="GtkBox" id="vim.box.search">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">ignore_case
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="vim.label.search">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Search</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkTable" id="vim.table.search">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="n_rows">2</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">15</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_icase">
+                                    <property name="label" translatable="yes">Match case-insensitivley</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">ignore_case
 
 when searching ignore the case</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_scase">
-                            <property name="label" translatable="yes">Match case smartly</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">smart_case
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_scase">
+                                    <property name="label" translatable="yes">Match case smartly</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">smart_case
 
 when searching smartly decide
 whether to ignore case or not</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_isearch">
-                            <property name="label" translatable="yes">Enable incremental search</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">incremental_search
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_isearch">
+                                    <property name="label" translatable="yes">Enable incremental search</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">incremental_search
 
 don't wait for the search pattern
 to be complete, immediately start
 the search</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options">GTK_EXPAND</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_hilight">
-                            <property name="label" translatable="yes">Highlight matches</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">highlight_matches
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options">GTK_EXPAND</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_hilight">
+                                    <property name="label" translatable="yes">Highlight matches</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">highlight_matches
 
 when searching highlight all matches
 in the file</property>
-                            <property name="draw_indicator">True</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
                           </packing>
                         </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox" id="vim.box.editing">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkLabel" id="vim.label.editing">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Editing</property>
-                        <property name="angle">90</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkTable" id="vim.table.editing">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_rows">5</property>
-                        <property name="n_columns">2</property>
-                        <property name="column_spacing">15</property>
                         <child>
-                          <object class="GtkCheckButton" id="vim_match">
-                            <property name="label" translatable="yes">Highlight matching brackets</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
+                          <object class="GtkBox" id="vim.box.editing">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">highlight_brackets
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="vim.label.editing">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Editing</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkTable" id="vim.table.editing">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="n_rows">6</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">15</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_match">
+                                    <property name="label" translatable="yes">Highlight matching brackets</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">highlight_brackets
 
 when moving the cursor to a bracket,
 highlight the corresponding opening
 or closing bracket</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_cmd">
-                            <property name="label" translatable="yes">Display (partial) command</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">show_command
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_cmd">
+                                    <property name="label" translatable="yes">Display (partial) command</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">show_command
 
 by default vim only shows typed-in
 commands only when fully written,
 this will change the behaviour, so
 that you can see your command while
 typing it in</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_indent">
-                            <property name="label" translatable="yes">Enable filetype indention</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">filetype_indent
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_indent">
+                                    <property name="label" translatable="yes">Enable filetype indention</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">filetype_indent
 
 auto-indent the file according to it's
 type.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_jump">
-                            <property name="label" translatable="yes">Jump back to last position</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">jump_back
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_jump">
+                                    <property name="label" translatable="yes">Jump back to last position</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">jump_back
 
 when saving a file remember your
 last position in the file and restore it
 when you open it again</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_syntax">
-                            <property name="label" translatable="yes">Enable syntax highlighting</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">syntax_hilight
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_syntax">
+                                    <property name="label" translatable="yes">Enable syntax highlighting</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">syntax_hilight
 
 enable colored syntax highlighting,
 for better readability</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_bg">
-                            <property name="label" translatable="yes">Bash has dark background</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">dark_background
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_bg">
+                                    <property name="label" translatable="yes">Bash has dark background</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">dark_background
 
 set this when your terminal has a
 dark background - it will change vims
 colors for better readibilty</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_sline">
-                            <property name="label" translatable="yes">Jump to start of line</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">start_line
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_sline">
+                                    <property name="label" translatable="yes">Jump to start of line</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">start_line
 
 when opening a new file and restoring
 last position, jump to the start of the
 line, instead of remembered column</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkVBox" id="vim.box.tabstop">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="vim.label.tabstop">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">tabstop length</property>
-                                <property name="justify">right</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSpinButton" id="vim_tabstop">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="tooltip_text" translatable="yes">tab_length
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="vim.box.tabstop">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="vim.label.tabstop">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">tabstop length</property>
+                                        <property name="justify">right</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="vim_tabstop">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip_text" translatable="yes">tab_length
 
 length (in spaces) for tabstops</property>
-                                <property name="invisible_char">●</property>
-                                <property name="text" translatable="yes">0</property>
-                                <property name="primary_icon_name">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_name">gtk-delete</property>
-                                <property name="adjustment">vim.adjustment.tabstop</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="top_attach">4</property>
-                            <property name="bottom_attach">5</property>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
-                            <property name="y_padding">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkVBox" id="vim.box.autowrap">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="vim.label.autowrap">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">autowrap position</property>
-                                <property name="justify">right</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSpinButton" id="vim_autowrap">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="tooltip_text" translatable="yes">wrap_length
+                                        <property name="invisible_char">●</property>
+                                        <property name="text" translatable="yes">0</property>
+                                        <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_name">gtk-delete</property>
+                                        <property name="adjustment">vim.adjustment.tabstop</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">4</property>
+                                    <property name="bottom_attach">5</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                    <property name="y_padding">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="vim.box.autowrap">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="vim.label.autowrap">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">autowrap position</property>
+                                        <property name="justify">right</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="vim_autowrap">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip_text" translatable="yes">wrap_length
 
 when wraping long lines, this is the
 column where they are wrapped at</property>
-                                <property name="invisible_char">●</property>
-                                <property name="text" translatable="yes">0</property>
-                                <property name="primary_icon_name">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_name">gtk-delete</property>
-                                <property name="adjustment">vim.adjustment.autowrap</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">4</property>
-                            <property name="bottom_attach">5</property>
-                            <property name="x_options"/>
-                            <property name="y_options"/>
-                            <property name="y_padding">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_wrap">
-                            <property name="label" translatable="yes">Wrap long lines</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">wrap_line
+                                        <property name="invisible_char">●</property>
+                                        <property name="text" translatable="yes">0</property>
+                                        <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_name">gtk-delete</property>
+                                        <property name="adjustment">vim.adjustment.autowrap</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">4</property>
+                                    <property name="bottom_attach">5</property>
+                                    <property name="x_options"/>
+                                    <property name="y_options"/>
+                                    <property name="y_padding">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_wrap">
+                                    <property name="label" translatable="yes">Wrap long lines</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">wrap_line
 
 wrap what you type a autowrap
 position rather than having endless
 lines</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSeparator" id="vim.separator.2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="x_padding">100</property>
-                    <property name="y_padding">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSeparator" id="vim.separator.3">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
-                    <property name="x_padding">100</property>
-                    <property name="y_padding">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox" id="vim.box.misc">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkLabel" id="vim.label.misc">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Misc</property>
-                        <property name="angle">90</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkTable" id="vim.table.misc">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="n_rows">4</property>
-                        <property name="n_columns">2</property>
-                        <property name="column_spacing">15</property>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_number">
-                            <property name="label" translatable="yes">Display line numbers</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">show_lineno
-
-display line numbers at the left</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_save">
-                            <property name="label" translatable="yes">Autosave files</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">autosave
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_expandtab">
+                                    <property name="label" translatable="yes">Expand tab to spaces</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">5</property>
+                                    <property name="bottom_attach">6</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_save">
+                                    <property name="label" translatable="yes">Autosave files</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">autosave
 
 autosave files</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_hiline">
-                            <property name="label" translatable="yes">Highlight current line</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">highlight_line
-
-highlight the current line (it will be
-underlined)</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_hicol">
-                            <property name="label" translatable="yes">Highlight current column</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">highlight_column
-
-highlight the current column (there
-will be a vertical line of underlines)</property>
-                            <property name="draw_indicator">True</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">5</property>
+                                    <property name="bottom_attach">6</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vim.box.colorscheme">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
+                          <object class="GtkSeparator" id="vim.separator.2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="vim.label.colorscheme">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">colorscheme
-
-choose a colorscheme</property>
-                                <property name="label" translatable="yes">Choose colorscheme</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkComboBox" id="vim_colorscheme">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="model">vim.liststore.colorscheme</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="vim.cellrenderer.colorscheme"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
                           </object>
                           <packing>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
+                            <property name="x_padding">100</property>
+                            <property name="y_padding">5</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkVBox" id="vim.box.rulerformat">
-                            <property name="width_request">220</property>
-                            <property name="height_request">44</property>
+                          <object class="GtkSeparator" id="vim.separator.3">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="top_attach">5</property>
+                            <property name="bottom_attach">6</property>
+                            <property name="x_padding">100</property>
+                            <property name="y_padding">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="vim.separator.4">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="top_attach">7</property>
+                            <property name="bottom_attach">8</property>
+                            <property name="x_padding">100</property>
+                            <property name="y_padding">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="box10">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="spacing">6</property>
                             <child>
-                              <object class="GtkLabel" id="vim.label.rulerformat">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
+                              <object class="GtkLabel" id="vim.label.misc1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">rulerformat</property>
-                                <property name="justify">right</property>
+                                <property name="label" translatable="yes">Folding</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
-                                <property name="fill">False</property>
+                                <property name="fill">True</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry" id="vim_rulerformat">
-                                <property name="width_request">220</property>
-                                <property name="height_request">26</property>
+                              <object class="GtkGrid" id="grid5">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="tooltip_text" translatable="yes">rulerformat
+                                <property name="can_focus">False</property>
+                                <property name="halign">center</property>
+                                <property name="row_spacing">3</property>
+                                <property name="column_spacing">3</property>
+                                <property name="row_homogeneous">True</property>
+                                <property name="column_homogeneous">True</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_foldenable">
+                                    <property name="label" translatable="yes">Enable folding large code</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox" id="box15">
+                                    <property name="width_request">220</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel" id="label3">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Code level to start folding at</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="vim_foldlevelstart">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="text" translatable="yes">0</property>
+                                        <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_name">gtk-delete</property>
+                                        <property name="adjustment">vim_foldlevelstart.adjustment</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox" id="box16">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel" id="label4">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Maximum nested foldings</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="vim_foldnestmax">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="text" translatable="yes">0</property>
+                                        <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_name">gtk-delete</property>
+                                        <property name="adjustment">vim_foldnestmax.adjustment</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox" id="box17">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel" id="label5">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">By default fold based upon</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="vim_foldmethod">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="model">vim_foldmethod.liststore</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="top_attach">6</property>
+                            <property name="bottom_attach">7</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="vim.box.misc">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="vim.label.misc">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Misc</property>
+                                <property name="angle">90</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkTable" id="vim.table.misc">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_top">2</property>
+                                <property name="n_rows">4</property>
+                                <property name="n_columns">2</property>
+                                <property name="column_spacing">15</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_number">
+                                    <property name="label" translatable="yes">Display line numbers</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">show_lineno
+
+display line numbers at the left</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_hiline">
+                                    <property name="label" translatable="yes">Highlight current line</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">highlight_line
+
+highlight the current line (it will be
+underlined)</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_hicol">
+                                    <property name="label" translatable="yes">Highlight current column</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">highlight_column
+
+highlight the current column (there
+will be a vertical line of underlines)</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_cd">
+                                    <property name="label" translatable="yes">Go into file's directory</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">chdir
+
+when opening a file, let vim cd into
+the file's directory</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_wildmenu">
+                                    <property name="label" translatable="yes">Display possible completions</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="vim_ruler">
+                                    <property name="label" translatable="yes">Display the ruler</property>
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">26</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">ruler
+
+display a customizable ruler at the
+bottom of the editor</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="vim.box.rulerformat">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="vim.label.rulerformat">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">rulerformat</property>
+                                        <property name="justify">right</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="vim_rulerformat">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip_text" translatable="yes">rulerformat
 
 format the ruler to your needs, eg.:
 %45(%t\ %y\ %c\ %l\/%L\ %p%%%)
 
 vimdoc.sourceforge.net/htmldoc/options.html</property>
-                                <property name="invisible_char">●</property>
-                                <property name="primary_icon_name">gtk-revert-to-saved</property>
-                                <property name="secondary_icon_name">gtk-delete</property>
+                                        <property name="invisible_char">●</property>
+                                        <property name="primary_icon_name">gtk-revert-to-saved</property>
+                                        <property name="secondary_icon_name">gtk-delete</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                    <property name="y_padding">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVBox" id="vim.box.colorscheme">
+                                    <property name="width_request">220</property>
+                                    <property name="height_request">44</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="vim.label.colorscheme">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="tooltip_text" translatable="yes">colorscheme
+
+choose a colorscheme</property>
+                                        <property name="label" translatable="yes">Choose colorscheme</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBox" id="vim_colorscheme">
+                                        <property name="width_request">220</property>
+                                        <property name="height_request">26</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="model">vim.liststore.colorscheme</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="vim.cellrenderer.colorscheme"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_EXPAND</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
                               </object>
                               <packing>
-                                <property name="expand">False</property>
+                                <property name="expand">True</property>
                                 <property name="fill">False</property>
-                                <property name="position">2</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                            <property name="y_padding">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_ruler">
-                            <property name="label" translatable="yes">Display the ruler</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">ruler
-
-display a customizable ruler at the
-bottom of the editor</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="vim_cd">
-                            <property name="label" translatable="yes">Go into file's directory</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">chdir
-
-when opening a file, let vim cd into
-the file's directory</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options"/>
+                            <property name="top_attach">8</property>
+                            <property name="bottom_attach">9</property>
                           </packing>
                         </child>
                       </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
                   </object>
-                  <packing>
-                    <property name="top_attach">6</property>
-                    <property name="bottom_attach">7</property>
-                  </packing>
                 </child>
               </object>
               <packing>
                 <property name="position">5</property>
-                <property name="tab_fill">False</property>
               </packing>
             </child>
             <child type="tab">
@@ -7697,5 +7844,115 @@ lsb = show branches by last activity</property>
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkListStore" id="vim.liststore.colorscheme">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Default</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Adaryn</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Advantage</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Desert</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Gobo</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Impact</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nightshade</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nightwish</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Wombat</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Asu 1 Dark</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Candy Code</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">DW Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Fruit</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Relaxed Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Tango</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Molokai</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vivid Chalk</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Meta 5</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Woju</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Lightning</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Paper Color</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Solarized</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="vim_foldlevelstart.adjustment">
+    <property name="upper">99</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkListStore" id="vim_foldmethod.liststore">
+    <columns>
+      <!-- column-name Title -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Indent</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Marker</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Manuell</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Expression</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Syntax</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Diff</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="vim_foldnestmax.adjustment">
+    <property name="upper">99</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
   </object>
 </interface>

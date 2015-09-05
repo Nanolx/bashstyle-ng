@@ -157,6 +157,15 @@ vim_colors = {
 	      21 : "solarized",
 	     }
 
+vim_foldmethods = {
+	       0 : "indent",
+	       1 : "marker",
+	       2 : "manual",
+	       3 : "expr",
+	       4 : "syntax",
+	       5 : "diff",
+	}
+
 ls_colors = {
 	      0 : "$lblack",
 	      1 : "$lred",

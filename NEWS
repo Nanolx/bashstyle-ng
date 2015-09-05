@@ -21,6 +21,17 @@ Overview of changes in v9.1 "Dial T for TNT"
  - Paper Color
  - Solarized
 
+* New Vim options:
+ - expandtabs:	   convert a [TAB] into [SPACE]s
+ - wildmenu:	   show possible command completions above vim command line and
+		   cycle through using [TAB], very similar to Bash/Readline
+ - foldenable:	   enable folding of large code blocks
+ - foldlevelstart: at what level of code to start folding (0 for immediate
+		   folding, 99 for no folding)
+ - foldestmax:	   maximum level of nested foldings
+ - foldmethod:	   method to determine when to fold either indet (default),
+		   marker, manual, expression, syntax or diff
+
 === Translations ===
 
 * updated German translation

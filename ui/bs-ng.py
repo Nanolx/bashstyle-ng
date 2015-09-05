@@ -186,6 +186,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("vim_jump", "Vim", "jump_back", "bool", None)
 		WidgetHandler.InitWidget("vim_sline", "Vim", "start_line", "bool", None)
 		WidgetHandler.InitWidget("vim_tabstop", "Vim", "tab_length", "int", None)
+		WidgetHandler.InitWidget("vim_expandtab", "Vim", "expandtab", "bool", None)
 		WidgetHandler.InitWidget("vim_autowrap", "Vim", "wrap_length", "int", None)
 		WidgetHandler.InitWidget("vim_wrap", "Vim", "wrap_line", "bool", None)
 		WidgetHandler.InitWidget("vim_cd", "Vim", "chdir", "bool", None)
@@ -205,6 +206,11 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("vim_ruler", "Vim", "ruler", "bool", None)
 		WidgetHandler.InitWidget("vim_rulerformat", "Vim", "rulerformat", "text", None)
 		WidgetHandler.InitWidget("vim_colorscheme", "Vim", "colorscheme", "combo", dicts.vim_colors)
+		WidgetHandler.InitWidget("vim_wildmenu", "Vim", "wildmenu", "bool", None)
+		WidgetHandler.InitWidget("vim_foldenable", "Vim", "foldenable", "bool", None)
+		WidgetHandler.InitWidget("vim_foldlevelstart", "Vim", "foldlevelstart", "int", None)
+		WidgetHandler.InitWidget("vim_foldnestmax", "Vim", "foldnestmax", "int", None)
+		WidgetHandler.InitWidget("vim_foldmethod", "Vim", "foldmethod", "combo", dicts.vim_foldmethods)
 
 		######################## NanoCFG Stuff #############################################
 		WidgetHandler.InitWidget("use_nanocfg", "Nano", "use_nanocfg", "bool", None)
