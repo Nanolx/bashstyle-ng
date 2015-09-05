@@ -189,7 +189,7 @@ if [[ ! -e $HOME/.vimrc.bs-ng.* ]]; then
 
 	dbg_msg $"VimCFG Setting:" $"Tab-width" $(ini_get tab_length)
 	rc_add "set tabstop=$(ini_get tab_length)"
-	rc_add "set shiftwidth=$(ini_get tab_length)"
+	rc_add "set softtabstop=$(ini_get tab_length)"
 
 	if [[ $(ini_get chdir) == True ]]; then
 		dbg_msg $"VimCFG Setting:" $"Auto chdir" $"On"
