@@ -67,9 +67,10 @@ class Config(object):
 				print(_("CheckConfig: your ini version is at {}, but {} is the highest known. Resetting due to error.").format(self.cfo.as_int("ini_version"), app_ini_version))
 				self.ResetConfig()
 			else:
-				print(_("CheckConfig: configuration up-to-date."))
+				print(_("CheckConfig: User configuration up-to-date."))
+			self.FixUpConfig()
 		except KeyError:
-			print(_("CheckConfig: something is wrong with your configuration, restoring defaults."))
+			print(_("CheckConfig: something is wrong with User configuration, restoring defaults."))
 			ResetConfig()
 
 	def ResetConfig(self):
@@ -115,8 +116,14 @@ class Config(object):
 		self.cfo.reload()
 
 	def WriteConfig(self):
-		print(_("writing configuration."))
+		print(_("WriteConfig: saving configuration."))
 		self.cfo.write()
+
+	def FixUpConfig(self):
+		print(_("FixUpConfig: checking for outdated values."))
+		if self.cfo["Style"]["prompt_style"] == "clock-ad":
+			print(_("FixUpConfig: updating prompt_style for name change clock-ad >> equinox."))
+			self.SetUserConfig("Style", "prompt_style", "equinox")
 
 	def GetUserConfig(self, group, setting):
 		print(self.cfo["%s" % group]["%s" % setting])
