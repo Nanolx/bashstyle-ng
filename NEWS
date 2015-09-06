@@ -37,6 +37,25 @@ Overview of changes in v9.1 "Dial T for TNT"
  - foldmethod:	   method to determine when to fold either indet (default),
 		   marker, manual, expression, syntax or diff
 
+=== Nano ===
+
+* New Nano options:
+ - enable_mouse:   enable full mouse support (copy, select ...)
+ - no_wrap:	   disable wrapping of long lines
+ - log_position:   remember position in file when exiting and restore when
+		   opening the file again
+ - tab_size:	   column-width of [TAB]s
+ - tab_to_spaces:  convert a [TAB]  into [SPACE]s
+ - set_uicolors:   master option to enable the following options
+	- function_color_fg:	text color for function descriptions
+	- function_color_bg:	background color for function descriptions
+	- key_color_fg:		text color for key bindings in help
+	- key_color_bg:		background color for key bindings in help
+	- status_color_fg:	text color for status messages
+	- status_color_bg:	background color for status messages
+	- title_color_fg:	text color for titlebar
+	- title_color_bg:	background color for titlebar
+
 === Translations ===
 
 * updated German translation

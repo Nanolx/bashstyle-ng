@@ -166,6 +166,17 @@ vim_foldmethods = {
 	       5 : "diff",
 	}
 
+nano_colors = {
+              0 : "white",
+              1 : "black",
+              2 : "red",
+              3 : "blue",
+              4 : "green",
+              5 : "yellow",
+              6 : "magenta",
+              7 : "cyan",
+}
+
 ls_colors = {
 	      0 : "$lblack",
 	      1 : "$lred",
