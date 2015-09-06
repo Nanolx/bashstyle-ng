@@ -1241,6 +1241,116 @@ The Undobuffer Pythonmodule is licensed under the:
     <property name="upper">100</property>
     <property name="step_increment">1</property>
   </object>
+  <object class="GtkListStore" id="vim.liststore.colorscheme">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Default</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Adaryn</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Advantage</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Desert</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Gobo</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Impact</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nightshade</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nightwish</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Wombat</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Asu 1 Dark</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Candy Code</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">DW Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Fruit</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Relaxed Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Tango</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Molokai</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Vivid Chalk</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Meta 5</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Woju</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Lightning</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Paper Color</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Solarized</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="vim_foldlevelstart.adjustment">
+    <property name="upper">99</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkListStore" id="vim_foldmethod.liststore">
+    <columns>
+      <!-- column-name Title -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Indent</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Marker</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Manuell</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Expression</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Syntax</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Diff</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="vim_foldnestmax.adjustment">
+    <property name="upper">99</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkWindow" id="bashstyle">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -2107,10 +2217,10 @@ the maximum length for the current directory
 (as displayed in the prompt styles).</property>
                                         <property name="invisible_char">•</property>
                                         <property name="text" translatable="yes">9</property>
-                                        <property name="adjustment">advanced.adjustment.pwd_len</property>
-                                        <property name="value">9</property>
                                         <property name="primary_icon_name">gtk-revert-to-saved</property>
                                         <property name="secondary_icon_name">gtk-delete</property>
+                                        <property name="adjustment">advanced.adjustment.pwd_len</property>
+                                        <property name="value">9</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -3534,7 +3644,7 @@ extra ls options for lscd. All ls options work.</property>
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="lscd_mkdir">
-                            <property name="label" translatable="yes">lscd: mkdir non-existent directory</property>
+                            <property name="label" translatable="yes">lscd: create directory</property>
                             <property name="width_request">220</property>
                             <property name="height_request">26</property>
                             <property name="visible">True</property>
@@ -7846,115 +7956,5 @@ lsb = show branches by last activity</property>
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkListStore" id="vim.liststore.colorscheme">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Default</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Adaryn</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Advantage</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Desert</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Gobo</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Impact</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nightshade</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Nightwish</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Wombat</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Asu 1 Dark</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Candy Code</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">DW Orange</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Fruit</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Relaxed Green</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Tango</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Molokai</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Vivid Chalk</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Meta 5</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Woju</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Lightning</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Paper Color</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Solarized</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkAdjustment" id="vim_foldlevelstart.adjustment">
-    <property name="upper">99</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkListStore" id="vim_foldmethod.liststore">
-    <columns>
-      <!-- column-name Title -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Indent</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Marker</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Manuell</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Expression</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Syntax</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Diff</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkAdjustment" id="vim_foldnestmax.adjustment">
-    <property name="upper">99</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
   </object>
 </interface>
