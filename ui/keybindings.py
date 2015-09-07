@@ -26,6 +26,11 @@ except ImportError:
 	FAILED.append(_("Gtk (from gi.repository)"))
 
 try:
+	from gi.repository import GObject
+except ImportError:
+	FAILED.append(_("GObject (from gi.repository)"))
+
+try:
 	from gi.repository.GdkPixbuf import Pixbuf
 except ImportError:
 	FAILED.append(_("GdkPixbuf (from gi.repository)"))
@@ -64,8 +69,27 @@ keybindings = {
 	"forward_char",
 	"backward_word",
 	"forward_word",
-	"overwrite_mode"
+	"overwrite_mode",
+	"menu_complete"
 }
+
+class CellRendererClickablePixbuf(Gtk.CellRendererPixbuf):
+	__gsignals__ = {
+		'clicked': (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
+		(GObject.TYPE_STRING,))
+	}
+
+	def __init__(self):
+		Gtk.CellRendererPixbuf.__init__(self)
+		self.set_property('mode', Gtk.CellRendererMode(1))
+
+	def do_activate(self, event, widget, path, background_area, cell_area, flags):
+		if (event
+			and cell_area.x <= event.x <= cell_area.x + cell_area.width
+			and cell_area.y <= event.y <= cell_area.y + cell_area.height):
+			self.emit('clicked', path)
+
+GObject.type_register(CellRendererClickablePixbuf)
 
 class KeyTree(object):
 
@@ -76,47 +100,66 @@ class KeyTree(object):
 
 	def InitTree(self):
 		use_keys = gtkbuilder.get_object("use_keybindingscfg")
-		reset = gtkbuilder.get_object("reset_key")
 		store = gtkbuilder.get_object("treeviewstore")
 		tree = gtkbuilder.get_object("treeview")
 
 		render_binding = Gtk.CellRendererText()
-		column_binding = Gtk.TreeViewColumn("Binding", render_binding, text=0)
+		column_binding = Gtk.TreeViewColumn(_("Binding"), render_binding, text=0)
 		tree.append_column(column_binding)
+
+		render_revert_user = CellRendererClickablePixbuf()
+		render_revert_user.set_property("icon-name", "gtk-revert-to-saved")
+		column_revert_user = Gtk.TreeViewColumn(_("Revert"), render_revert_user, icon_name=1)
+		tree.append_column(column_revert_user)
+
+		render_revert_factory = CellRendererClickablePixbuf()
+		render_revert_factory.set_property("icon-name", "gtk-delete")
+		column_revert_factory = Gtk.TreeViewColumn(_("Default"), render_revert_factory, icon_name=2)
+		tree.append_column(column_revert_factory)
 
 		render_alt = Gtk.CellRendererToggle()
 		render_alt.set_property("radio", True)
-		column_alt = Gtk.TreeViewColumn("Alt", render_alt, active=1)
+		column_alt = Gtk.TreeViewColumn(_("Alt"), render_alt, active=3)
 		tree.append_column(column_alt)
 
 		render_ctrl = Gtk.CellRendererToggle()
 		render_ctrl.set_property("radio", True)
-		column_ctrl = Gtk.TreeViewColumn("Ctrl", render_ctrl, active=2)
+		column_ctrl = Gtk.TreeViewColumn(_("Ctrl"), render_ctrl, active=4)
 		tree.append_column(column_ctrl)
 
-		def on_cell_toggled(widget, path, column, concurrent_column):
-			store[path][column] = not store[path][column]
-			store[path][concurrent_column] = not store[path][concurrent_column]
+		render_nmod = Gtk.CellRendererToggle()
+		render_nmod.set_property("radio", True)
+		column_nmod = Gtk.TreeViewColumn(_("None"), render_nmod, active=5)
+		tree.append_column(column_nmod)
 
-		render_ctrl.connect("toggled", on_cell_toggled, 2, 1)
-		render_alt.connect("toggled", on_cell_toggled, 1, 2)
+		def on_cell_toggled(widget, path, alt, ctrl, nmod):
+			store[path][3] = alt
+			store[path][4] = ctrl
+			store[path][5] = nmod
+
+		render_alt.connect("toggled", on_cell_toggled, True, False, False)
+		render_ctrl.connect("toggled", on_cell_toggled, False, True, False)
+		render_nmod.connect("toggled", on_cell_toggled, False, False, True)
 
 		render_key = Gtk.CellRendererText()
 		render_key.set_property("editable", True)
-		column_key = Gtk.TreeViewColumn("Key", render_key, text=3)
+		column_key = Gtk.TreeViewColumn(_("Key"), render_key, text=6)
 		tree.append_column(column_key)
 
 		def text_edited(widget, path, text):
-			store[path][3] = text
-			self.change_setting(store[path][0].replace("-", "_"), store[path][1],
-					store[path][2], store[path][3])
+			store[path][6] = text
+			if text == "":
+				on_cell_toggled(widget, path, False, False, False)
+			else:
+				self.change_setting(store[path][0].replace("-", "_"), store[path][3],
+					store[path][4], store[path][5], store[path][6])
 
 		render_key.connect("edited", text_edited)
 
 		def on_changed(selection):
 			(model, iter) = selection.get_selected()
-			self.change_setting(model[iter][0].replace("-", "_"), model[iter][1],
-					model[iter][2], model[iter][3])
+			self.change_setting(model[iter][0].replace("-", "_"), model[iter][3],
+					model[iter][4], model[iter][5], model[iter][6])
 
 		tree.get_selection().connect("changed", on_changed)
 
@@ -129,29 +172,41 @@ class KeyTree(object):
 
 		use_keys.connect("toggled", on_use_keys)
 
-		def on_reset(data):
+		def on_reset(widget, path, config):
 			sel = tree.get_selection()
 			(model, iter) = sel.get_selected()
 			setting = model[iter][0].replace("-", "_")
-			self.config["Keybindings"][setting] = self.factorydefault["Keybindings"][setting]
+			if config == "user":
+				self.config["Keybindings"][setting] = self.userdefault["Keybindings"][setting]
+			else:
+				self.config["Keybindings"][setting] = self.factorydefault["Keybindings"][setting]
 			if self.config["Keybindings"][setting] == "":
 				alt = False
 				ctrl = False
+				nmod = False
 				boundkey = ""
 			else:
 				modifier = self.config["Keybindings"][setting].split(":")[0]
 				if modifier == "e":
 					alt = True
 					ctrl = False
+					nmod = False
 				elif modifier == "C":
 					alt = False
 					ctrl = True
+					nmod = False
+				elif modifier == "X":
+					alt = False
+					ctrl = False
+					nmod = True
 				boundkey = self.config["Keybindings"][setting].split(":")[1]
-			model[iter][1] = alt
-			model[iter][2] = ctrl
-			model[iter][3] = boundkey
+			model[iter][3] = alt
+			model[iter][4] = ctrl
+			model[iter][5] = nmod
+			model[iter][6] = boundkey
 
-		reset.connect("clicked", on_reset)
+		render_revert_user.connect("clicked", on_reset, "user")
+		render_revert_factory.connect("clicked", on_reset, "factory")
 
 		self.populate(keybindings, store)
 
@@ -172,15 +227,22 @@ class KeyTree(object):
 			if modifier == "e":
 				alt = True
 				ctrl = False
+				nmod = False
 			elif modifier == "C":
 				alt = False
 				ctrl = True
+				nmod = False
+			elif modifier == "X":
+				alt = False
+				ctrl = False
+				nmod = True
 			else:
 				alt = False
 				ctrl = False
-			store.append([label, alt, ctrl, boundkey])
+				nmod = False
+			store.append([label, "gtk-revert-to-saved", "gtk-delete", alt, ctrl, nmod, boundkey])
 
-	def change_setting(self, setting, alt, ctrl, key):
+	def change_setting(self, setting, alt, ctrl, nmod, key):
 		if key == "":
 			self.config["Keybindings"][setting] = ""
 		else:
@@ -188,5 +250,7 @@ class KeyTree(object):
 				self.config["Keybindings"][setting] = "e:" + key
 			elif ctrl == True:
 				self.config["Keybindings"][setting] = "C:" + key
+			elif nmod == True:
+				self.config["Keybindings"][setting] = "X:" + key
 			else:
 				self.config["Keybindings"][setting] = ""

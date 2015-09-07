@@ -1262,9 +1262,15 @@ The Undobuffer Pythonmodule is licensed under the:
     <columns>
       <!-- column-name Binding -->
       <column type="gchararray"/>
+      <!-- column-name Icon -->
+      <column type="gchararray"/>
+      <!-- column-name Icon2 -->
+      <column type="gchararray"/>
       <!-- column-name Alt -->
       <column type="gboolean"/>
       <!-- column-name Ctrl -->
+      <column type="gboolean"/>
+      <!-- column-name None -->
       <column type="gboolean"/>
       <!-- column-name Key -->
       <column type="gchararray"/>
@@ -1465,49 +1471,6 @@ The Undobuffer Pythonmodule is licensed under the:
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="reset_key">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="relief">none</property>
-                <child>
-                  <object class="GtkBox" id="box29">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkImage" id="image2">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">gtk-revert-to-saved</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="label16">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Reset Keybindings</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkCheckButton" id="use_keybindingscfg">
                 <property name="label" translatable="yes">Customize Keybindings</property>
                 <property name="visible">True</property>
@@ -1518,7 +1481,7 @@ The Undobuffer Pythonmodule is licensed under the:
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">3</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -3230,30 +3193,6 @@ here (else you'll get unwanted results).</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkCheckButton" id="tabrotate">
-                            <property name="label" translatable="yes">Enable Tab-Rotation</property>
-                            <property name="width_request">220</property>
-                            <property name="height_request">26</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">tab_rotation
-
-when doing completion using [TAB] instead of
-display a list of possible completions, "rotate"
-between matches pressing [TAB] multiple times.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_EXPAND</property>
-                            <property name="y_options">GTK_EXPAND</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkVBox" id="advanced.box.dirchar">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -3297,6 +3236,9 @@ prompt).</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_EXPAND</property>
                           </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                       </object>
                       <packing>

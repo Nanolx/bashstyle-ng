@@ -5,6 +5,11 @@ Overview of changes in v9.1 "Dial T for TNT"
 * #187 (vim-rc):
 	set softtabstop instead of shiftwidth for setting tab length
 
+=== Widgets ===
+
+* added CellRendererClickablePixbuf from Tryton (http://www.tryton.org/),
+  with minor updates to be GTK+3 compatible
+
 === User Interface ===
 
 * added missing revert-to-default icons for PWD Length Spinbutton
@@ -16,6 +21,20 @@ Overview of changes in v9.1 "Dial T for TNT"
 
 * Renamed "Clock Advanced" Prompt to "Equinox" (the name change is handled
   internally, the config updated automatically, no user interaction required)
+
+=== Keybindings ===
+
+* add 'Revert' column: revert setting to last saved user value
+* add 'Default' column: revert setting to vendor or factory default
+* removed 'Reset Keybindings' button (no longer needed with clickable Pixbuf)
+* add 'None' column: allow keybindings without modificator (only useful for
+  keys like TAB for example to bind menu-complete to it)
+
+* removed Advanced > Tab Rotation, added menu-complete to Keybindings instead.
+ - if you want to re-enable this feature set menu-complete in Keybindings to TAB
+   with no modificator checked
+
+* made TreeViewColumn headers translatable
 
 === Vim ===
 

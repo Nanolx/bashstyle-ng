@@ -128,7 +128,6 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("history_control", "Advanced", "history_control", "combo", dicts.history_types)
 		WidgetHandler.InitWidget("history_timeformat", "Advanced", "history_timeformat", "text", None)
 		WidgetHandler.InitWidget("dirchar", "Advanced", "directory_indicator", "text", None)
-		WidgetHandler.InitWidget("tabrotate", "Advanced", "tab_rotation", "bool", None)
 		WidgetHandler.InitWidget("enable_lscd", "Advanced", "use_lscd", "bool", None)
 		WidgetHandler.InitWidget("enable_treecd", "Advanced", "use_treecd", "bool", None)
 		WidgetHandler.InitWidget("lscd_mkdir", "Advanced", "lscd_mkdir", "bool", None)

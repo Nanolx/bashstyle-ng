@@ -97,15 +97,11 @@ class IconBook(object):
 		use_keys_button = gtkbuilder.get_object("use_keybindingscfg")
 		use_keys_button.set_visible(0)
 
-		reset_key = gtkbuilder.get_object("reset_key")
-		reset_key.set_visible(0)
-
 		def back_clicked(data):
 			notebook.set_current_page(0)
-			reset_key.set_visible(0)
 			use_keys_button.set_visible(0)
 			back.set_visible(0)
-			main_label.set_visible(1)
+			main_label.set_text(_("Choose a Category:"))
 
 		back = gtkbuilder.get_object("back")
 		back.connect("clicked", back_clicked)
@@ -118,13 +114,13 @@ class IconBook(object):
 		def iconview_activated(widget, item):
 				model = widget.get_model()
 				notebook.set_current_page(notebook_pages[model[item][1]])
-				if model[item][1] == _("Keybindings") :
-					reset_key.set_visible(1)
-					use_keys_button.set_visible(1)
-				if model[item][1] == _("About BashStyle-NG") :
-					self.ShowAboutDialog()
-				if model[item][1] != _("About BashStyle-NG") :
+				if model[item][1] != _("About BashStyle-NG"):
 					back.set_visible(1)
-					main_label.set_visible(0)
+					main_label.set_text(_("Category: ") + _(model[item][1]))
+
+					if model[item][1] == _("Keybindings"):
+						use_keys_button.set_visible(1)
+				else:
+					self.ShowAboutDialog()
 
 		iconview.connect("item-activated", iconview_activated)
