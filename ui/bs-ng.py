@@ -153,6 +153,8 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("bellstyle", "Readline", "bellstyle", "combo", dicts.bell_styles)
 		WidgetHandler.InitWidget("editmode", "Readline", "editing_mode", "combo", dicts.edit_modes)
 		WidgetHandler.InitWidget("show_editmode", "Readline", "show_editmode", "bool", None)
+		WidgetHandler.InitWidget("cstats", "Readline", "colored_stats", "bool", None)
+		WidgetHandler.InitWidget("skipcomptext", "Readline", "skip_completed_text", "bool", None)
 
 		######################## Shopt Stuff ###############################################
 		WidgetHandler.InitWidget("histappend", "Shopt", "histappend", "bool", None)

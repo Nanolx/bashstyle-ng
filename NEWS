@@ -36,6 +36,15 @@ Overview of changes in v9.1 "Dial T for TNT"
 
 * made TreeViewColumn headers translatable
 
+=== Readline ===
+
+* New Readline options:
+ - colored-stats:	if visible-stats is true, color them using LS_COLORS
+ - skip-completed-text:	when completing, don't duplicate text after cursor.
+			example: if you have type: '$ sh' and then do completion
+			'$ /bin/b[TAB]sh' it will end up '$ /bin/bash' when this
+			setting is On, '$ /bin/bashsh' when this setting is Off
+
 === Vim ===
 
 * New color schemes provided:

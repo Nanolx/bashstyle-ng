@@ -31,7 +31,7 @@ USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
 
-app_ini_version = 14
+app_ini_version = 15
 
 class Config(object):
 	def InitConfig(self):
@@ -61,10 +61,10 @@ class Config(object):
 	def CheckConfig(self):
 		try:
 			if self.cfo.as_int("ini_version") < app_ini_version:
-				print(_("CheckConfig: your ini is at version {}, but {} is available, updating.").format(self.cfo.as_int("ini_version"), app_ini_version))
+				print(_("CheckConfig: User ini is at version {}, but {} is available, updating.").format(self.cfo.as_int("ini_version"), app_ini_version))
 				self.UpdateConfig()
 			elif self.cfo.as_int("ini_version") > app_ini_version:
-				print(_("CheckConfig: your ini version is at {}, but {} is the highest known. Resetting due to error.").format(self.cfo.as_int("ini_version"), app_ini_version))
+				print(_("CheckConfig: User ini version is at {}, but {} is the highest known. Resetting due to error.").format(self.cfo.as_int("ini_version"), app_ini_version))
 				self.ResetConfig()
 			else:
 				print(_("CheckConfig: User configuration up-to-date."))
