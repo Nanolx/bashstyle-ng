@@ -13,7 +13,7 @@ Overview of changes in v9.1 "Dial T for TNT"
 === User Interface ===
 
 * added missing revert-to-default icons for PWD Length Spinbutton
-* show icons again on the "Back" and "Reset Keybindings" buttons
+* show icons again on the "Back" button
 * major restructuring and updating of widgets in all categories [WIP]
 * minor string changes
 
@@ -21,6 +21,18 @@ Overview of changes in v9.1 "Dial T for TNT"
 
 * Renamed "Clock Advanced" Prompt to "Equinox" (the name change is handled
   internally, the config updated automatically, no user interaction required)
+
+=== Bash Settings ===
+
+* add GLOBIGNORE: everything to ignore from globbing. Default value: empty.
+ ++ if you set it to ".:.." issueing '$ ls .*' will not include '.' and '..'
+
+* add dotglob:		include hidden files (with leading dot) by default during
+			pathname expansion
+* add extglob:		enable extending globbing with regular expression like
+			extensions (see: http://mywiki.wooledge.org/glob#extglob)
+* add nocaseglob:	ignore case during globbing
+* add nocasematch:	case insensitive matching for 'case' and '[[' commands
 
 === Keybindings ===
 

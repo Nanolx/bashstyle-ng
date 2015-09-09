@@ -9,23 +9,23 @@
 #							#
 #########################################################
 
-dbg_msg $"BashStyle-NG Setting:" $"HISTTIMEFORMAT" "$HISTTIMEFORMAT"
 dbg_log export HISTTIMEFORMAT="$(ini_get history_timeformat) "
+dbg_msg $"BashStyle-NG Setting:" $"HISTTIMEFORMAT" "$HISTTIMEFORMAT"
 
-dbg_msg $"BashStyle-NG Setting:" $"HISTCONTROL" "$HISTCONTROL"
 dbg_log export HISTCONTROL=$(ini_get history_control)
+dbg_msg $"BashStyle-NG Setting:" $"HISTCONTROL" "$HISTCONTROL"
 
-dbg_msg $"BashStyle-NG Setting:" $"HISTIGNORE" "$HISTIGNORE"
 dbg_log export HISTIGNORE="$(ini_get history_ignore)"
+dbg_msg $"BashStyle-NG Setting:" $"HISTIGNORE" "$HISTIGNORE"
 
-dbg_msg $"BashStyle-NG Setting:" $"FIGNORE" "$FIGNORE"
 dbg_log export FIGNORE="$(ini_get completion_ignore)"
+dbg_msg $"BashStyle-NG Setting:" $"FIGNORE" "$FIGNORE"
 
-dbg_msg $"BashStyle-NG Setting:" $"CDPATH" "$CDPATH"
 dbg_log export CDPATH=$(ini_get cdpath)
+dbg_msg $"BashStyle-NG Setting:" $"CDPATH" "$CDPATH"
 
-dbg_msg $"BashStyle-NG Setting:" $"FCEDIT" "$FCEDIT"
 dbg_log export FCEDIT=$(ini_get fcedit)
+dbg_msg $"BashStyle-NG Setting:" $"FCEDIT" "$FCEDIT"
 
 if [[ $(grep -w TMOUT /etc/profile.d/*msec.sh 2>/dev/null) != "" ]]; then
 	echo -e "\n * /etc/profile.d/msec.sh prevents setting TMOUT!"
@@ -34,11 +34,11 @@ else
 	export TMOUT=$(ini_get timeout)
 fi
 
-dbg_msg $"BashStyle-NG Setting:" $"HISTSIZE" "$HISTSIZE"
 dbg_log export HISTSIZE=$(ini_get history_size)
+dbg_msg $"BashStyle-NG Setting:" $"HISTSIZE" "$HISTSIZE"
 
-dbg_msg $"BashStyle-NG Setting:" $"HISTFILESIZE" "$HISTFILESIZE"
 dbg_log export HISTFILESIZE=$(ini_get history_size)
+dbg_msg $"BashStyle-NG Setting:" $"HISTFILESIZE" "$HISTFILESIZE"
 
 if [[ $(ini_get path) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"PATH" "$PATH"
@@ -46,7 +46,7 @@ if [[ $(ini_get path) != "" ]]; then
 fi
 
 if [[ $(ini_get restore_directory) == True ]]; then
-	dbg_log trap 'printf %s "$PWD" > ${HOME}/.lastpwd' EXIT
+	dbg_log trap 'printf %s "${PWD}" > ${HOME}/.lastpwd' EXIT
 	if [[ -d "$(cat ${HOME}/.lastpwd 2>/dev/null)" ]]; then
 		dbg_log cd "$(cat ${HOME}/.lastpwd)"
 	fi
@@ -74,3 +74,6 @@ dbg_log export USER_BIRTHDAY=$(ini_get user_birthday)
 dbg_log export pwdmaxlen=$(ini_get pwdlength)
 dbg_log export trunc_symbol=$(ini_get pwdcut)
 dbg_log export dirchar=$(ini_get directory_indicator)
+
+dbg_log export GLOBIGNORE=$(ini_get globignore)
+dbg_msg $"BashStyle-NG Setting:" $"GLOBIGNORE" "$GLOBIGNORE"

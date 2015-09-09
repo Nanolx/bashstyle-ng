@@ -58,11 +58,39 @@ else	dbg_msg $"BashStyle-NG Setting:" $"no_empty_cmd_completion" $"Off"
 	dbg_log shopt -u no_empty_cmd_completion
 fi
 
-if [[ $HISTCONTROL != erasedups && $(ini_get histappend) == True ]]; then
+if [[ ${HISTCONTROL} != erasedups && $(ini_get histappend) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"histappend" $"On"
 	dbg_log shopt -s histappend
 else	dbg_msg $"BashStyle-NG Setting:" $"histappend" $"Off"
 	dbg_log shopt -u histappend
+fi
+
+if [[ $(ini_get dotglob) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" $"dotglob" $"On"
+	dbg_log shopt -s dotglob
+else	dbg_msg $"BashStyle-NG Setting:" $"dotglob" $"Off"
+	dbg_log shopt -u dotglob
+fi
+
+if [[ $(ini_get extglob) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" $"extglob" $"On"
+	dbg_log shopt -s extglob
+else	dbg_msg $"BashStyle-NG Setting:" $"extglob" $"Off"
+	dbg_log shopt -u extglob
+fi
+
+if [[ $(ini_get nocaseglob) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" $"nocaseglob" $"On"
+	dbg_log shopt -s nocaseglob
+else	dbg_msg $"BashStyle-NG Setting:" $"nocaseglob" $"Off"
+	dbg_log shopt -u nocaseglob
+fi
+
+if [[ $(ini_get nocasematch) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" $"nocasematch" $"On"
+	dbg_log shopt -s nocasematch
+else	dbg_msg $"BashStyle-NG Setting:" $"nocasematch" $"Off"
+	dbg_log shopt -u nocasematch
 fi
 
 # Stuff new in Bash 4.0

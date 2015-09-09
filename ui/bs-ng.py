@@ -136,6 +136,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("dd_noerror", "Advanced", "dd_noerror", "bool", None)
 		WidgetHandler.InitWidget("restore_pwd", "Advanced", "restore_directory", "bool", None)
 		WidgetHandler.InitWidget("debug_verbose", "Advanced", "debug_verbose", "bool", None)
+		WidgetHandler.InitWidget("globignore", "Advanced", "glob_ignore", "text", None)
 
 		####################### Readline stuff #############################################
 		WidgetHandler.InitWidget("readline", "Readline", "use_readlinecfg", "bool", None)
@@ -171,6 +172,10 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("dirspell", "Shopt", "dirspell", "bool", None)
 		WidgetHandler.InitWidget("direxpand", "Shopt", "direxpand", "bool", None)
 		WidgetHandler.InitWidget("globasciiranges", "Shopt", "globasciiranges", "bool", None)
+		WidgetHandler.InitWidget("dotglob", "Shopt", "dotglob", "bool", None)
+		WidgetHandler.InitWidget("extglob", "Shopt", "extglob", "bool", None)
+		WidgetHandler.InitWidget("nocaseglob", "Shopt", "nocaseglob", "bool", None)
+		WidgetHandler.InitWidget("nocasematch", "Shopt", "nocasematch", "bool", None)
 
 		######################## GIT Stuff #################################################
 		WidgetHandler.InitWidget("use_gitcfg", "Git", "use_gitcfg", "bool", None)
