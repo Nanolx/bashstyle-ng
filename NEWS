@@ -12,8 +12,16 @@ Overview of changes in v9.1 "Dial T for TNT"
 
 === User Interface ===
 
-* majorly revised the Custom Prompt Builder (both UI and Code)
+* majorly revised the Custom Prompt Builder (both UI and Code):
+ - unified functions in python code where possible
+ - removed "Place in (...)" buttons
+ - only one "Empty", "Undo" and "Redo" button each for both TextViews
+   (it is now auto-detected which one of both is the currently active one)
+ - use monospaced font in the input fields
+ - add scrollbars to the Custom Prompt Builder (prevents window from getting
+   immensively huge when inserting large prompts like Equinox)
 
+* show what category the user is currently in, in the header
 * added missing revert-to-default icons for PWD Length Spinbutton
 * show icon on the "Back", "Empty", "Undo" and "Redo" buttons again
 * major restructuring and updating of widgets in all categories [WIP]

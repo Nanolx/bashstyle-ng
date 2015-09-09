@@ -101,7 +101,7 @@ class KeyTree(object):
 	def InitTree(self):
 		use_keys = gtkbuilder.get_object("use_keybindingscfg")
 		store = gtkbuilder.get_object("treeviewstore")
-		tree = gtkbuilder.get_object("treeview")
+		tree = gtkbuilder.get_object("keybindings.treeview")
 
 		render_binding = Gtk.CellRendererText()
 		column_binding = Gtk.TreeViewColumn(_("Binding"), render_binding, text=0)
