@@ -35,20 +35,13 @@ class PromptBuilder(object):
 		######################## load translations & widgethandler #########################
 		gtkbuilder = widgethandler.gtkbuilder
 
+		######################## GtkTextView ###############################################
+
 		self.prompt_command = gtkbuilder.get_object("prompt_command")
 
 		self.prompt_command_buffer = undobuffer.UndoableBuffer()
 		self.prompt_command.set_buffer(self.prompt_command_buffer)
 		self.prompt_command_buffer.set_text("%s" % config["Custom"]["command"])
-
-		def set_prompt_command(widget, data=None):
-			start = widget.get_start_iter()
-			end = widget.get_end_iter()
-			config["Custom"]["command"] = widget.get_text(start, end, False)
-
-		self.prompt_command_buffer.connect("changed", set_prompt_command)
-
-		self.active_buffer = "P_C"
 
 		self.custom_prompt = gtkbuilder.get_object("custom_prompt")
 
@@ -56,32 +49,23 @@ class PromptBuilder(object):
 		self.custom_prompt.set_buffer(self.custom_prompt_buffer)
 		self.custom_prompt_buffer.set_text("%s" % config["Custom"]["prompt"])
 
-		def set_custom_prompt(widget, data=None):
+		def set_custom_prompt(widget, setting):
 			start = widget.get_start_iter()
 			end = widget.get_end_iter()
-			config["Custom"]["prompt"] = widget.get_text(start, end, False)
+			config["Custom"]["{}".format(setting)] = widget.get_text(start, end, False)
 
-		self.custom_prompt_buffer.connect("changed", set_custom_prompt)
+		self.prompt_command_buffer.connect("changed", set_custom_prompt, "command")
+		self.custom_prompt_buffer.connect("changed", set_custom_prompt, "prompt")
 
-		###
+		self.active_buffer = "P_C"
 
-		self.place_p_c = gtkbuilder.get_object("place_p_c")
+		def set_active_buffer(widget, data, buffer):
+			self.active_buffer = buffer
 
-		def do_place_p_c(widget, data=None):
-			self.prompt_command.set_sensitive(1)
-			self.custom_prompt.set_sensitive(0)
-			self.active_buffer = "P_C"
+		self.prompt_command.connect("focus-in-event", set_active_buffer, "P_C")
+		self.custom_prompt.connect("focus-in-event", set_active_buffer, "PS1")
 
-		self.place_p_c.connect("clicked", do_place_p_c)
-
-		self.place_ps1 = gtkbuilder.get_object("place_ps1")
-
-		def do_place_ps1(widget, data=None):
-			self.prompt_command.set_sensitive(0)
-			self.custom_prompt.set_sensitive(1)
-			self.active_buffer = "PS1"
-
-		self.place_ps1.connect("clicked", do_place_ps1)
+		######################## Helper Functions ##########################################
 
 		def prompt_add(widget, text):
 			if self.active_buffer == "P_C":
@@ -100,49 +84,35 @@ class PromptBuilder(object):
 			elif self.active_buffer == "PS1":
 				self.custom_prompt_buffer.set_text(text)
 
-		###
+		######################## GtkButtons ################################################
 
-		self.empty_pc = gtkbuilder.get_object("empty_pc")
+		self.empty = gtkbuilder.get_object("cpb_empty")
+		self.undo = gtkbuilder.get_object("cpb_undo")
+		self.redo = gtkbuilder.get_object("cpb_redo")
 
-		def do_empty_pc(widget, data=None):
-			self.prompt_command_buffer.set_text("")
+		def do_empty(widget, data=None):
+			if self.active_buffer == "P_C":
+				self.prompt_command_buffer.set_text("")
+			elif self.active_buffer == "PS1":
+				self.custom_prompt_buffer.set_text("")
 
-		self.empty_pc.connect("clicked", do_empty_pc)
+		def do_undo(widget, data=None):
+			if self.active_buffer == "P_C":
+				self.prompt_command_buffer.undo()
+			elif self.active_buffer == "PS1":
+				self.custom_prompt_buffer.undo()
 
-		self.undo_pc = gtkbuilder.get_object("undo_pc")
+		def do_redo(widget, data=None):
+			if self.active_buffer == "P_C":
+				self.prompt_command_buffer.redo()
+			elif self.active_buffer == "PS1":
+				self.custom_prompt_buffer.redo()
 
-		def do_undo_pc(widget, data=None):
-			self.prompt_command_buffer.undo()
+		self.empty.connect("clicked", do_empty)
+		self.undo.connect("clicked", do_undo)
+		self.redo.connect("clicked", do_redo)
 
-		self.undo_pc.connect("clicked", do_undo_pc)
-
-		self.redo_pc = gtkbuilder.get_object("redo_pc")
-
-		def do_redo_pc(widget, data=None):
-			self.prompt_command_buffer.redo()
-
-		self.redo_pc.connect("clicked", do_redo_pc)
-
-		self.empty_ps1 = gtkbuilder.get_object("empty_ps1")
-
-		def do_empty_ps1(widget, data=None):
-			self.custom_prompt_buffer.set_text("")
-
-		self.empty_ps1.connect("clicked", do_empty_ps1)
-
-		self.undo_ps1 = gtkbuilder.get_object("undo_ps1")
-
-		def do_undo_ps1(widget, data=None):
-			self.custom_prompt_buffer.undo()
-
-		self.undo_ps1.connect("clicked", do_undo_ps1)
-
-		self.redo_ps1 = gtkbuilder.get_object("redo_ps1")
-
-		def do_redo_ps1(widget, data=None):
-			self.custom_prompt_buffer.redo()
-
-		self.redo_ps1.connect("clicked", do_redo_ps1)
+		######################## Toolbox ###################################################
 
 		self.show_toolbox = gtkbuilder.get_object("show_toolbox")
 
@@ -155,7 +125,8 @@ class PromptBuilder(object):
 
 		self.show_toolbox.connect("clicked", do_show_toolbox)
 
-		######
+		######################## Toolbox Buttons ###########################################
+
 		def load_toolbutton(object, text):
 			widget = gtkbuilder.get_object("%s" % object)
 			widget.connect("clicked", prompt_add, text)
@@ -183,7 +154,7 @@ class PromptBuilder(object):
 		load_toolbutton("showseconds", "\\$SECONDS)")
 		load_toolbutton("showbatteryload", "\\$(systemkit battery)")
 
-		###
+		######################## Toolbox Comboboxes ########################################
 
 		def load_toolcombo(object, dict):
 			widget = gtkbuilder.get_object("%s" % object)
@@ -195,6 +166,8 @@ class PromptBuilder(object):
 		load_toolcombo("countfiles", dicts.counters)
 		load_toolcombo("showload", dicts.load_getters)
 		load_toolcombo("insert_color", dicts.symbolic_colors)
+
+		######################## Default Styles ############################################
 
 		self.insert_prompt = gtkbuilder.get_object("insert_prompt")
 		self.insert_prompt.set_active(0)
