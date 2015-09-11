@@ -34,6 +34,12 @@ else
 	export TMOUT=$(ini_get timeout)
 fi
 
+_sync_history() {
+	builtin history -a
+	builtin history -c
+	builtin history -r
+}
+
 dbg_log export HISTSIZE=$(ini_get history_size)
 dbg_msg $"BashStyle-NG Setting:" $"HISTSIZE" "$HISTSIZE"
 
@@ -52,7 +58,7 @@ if [[ $(ini_get restore_directory) == True ]]; then
 	fi
 fi
 
-if [[ $(ini_get colored_grep) == True && ${enabcol} == True ]]; then
+if [[ $(ini_get colored_grep) == True && ${enable_colors} == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"On"
 	alias grep="grep --color=auto"
 	GREP_COLOR=$(ini_get grep_color);
@@ -66,7 +72,7 @@ fi
 if [[ $(ini_get use_lscd) == True ]]; then
 	dbg_log alias cd=lscd
 	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
-	[[ ${enabcol} != True ]] && dbg_log export LSCD_OPTS+=" --color=no"
+	[[ ${enable_colors} != True ]] && dbg_log export LSCD_OPTS+=" --color=no"
 fi
 
 dbg_log export USER_BIRTHDAY=$(ini_get user_birthday)
@@ -77,3 +83,19 @@ dbg_log export dirchar=$(ini_get directory_indicator)
 
 dbg_log export GLOBIGNORE=$(ini_get globignore)
 dbg_msg $"BashStyle-NG Setting:" $"GLOBIGNORE" "$GLOBIGNORE"
+
+colorshell_revert=$(ini_get colorshell_revert)
+
+_colorshell() {
+	cmd_text_colour='\[`tput setaf $((RANDOM%7))`\]'
+
+	shopt -s promptvars
+
+	PS1="${PS1}${cmd_text_colour}"
+	PS2="${PS2}${cmd_text_colour}"
+	PS3="${PS3}${cmd_text_colour}"
+	PS4="${PS4}${cmd_text_colour}"
+
+	[[ ${colorshell_revert} == True ]] && trap 'echo -ne "\e[0m"' DEBUG
+
+}

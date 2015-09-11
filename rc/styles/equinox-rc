@@ -18,7 +18,7 @@ k=6
 l=8
 m=10
 
-if [[ $enabcol == "True" ]]; then
+if [[ $enable_colors == "True" ]]; then
 
 esepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 edatecolor=$(echo $datecolor | sed -e 's/\\\[//g' -e 's/\\\]//g')

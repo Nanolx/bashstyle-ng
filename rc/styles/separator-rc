@@ -12,7 +12,7 @@
 sepa=$(ini_get separator)
 export pstyle_supported=True
 
-if [[ $enabcol == "True" ]]; then
+if [[ $enable_colors == "True" ]]; then
 
 	PS1="\n$usercolor\u$fontcolor @$hostcolor \h$sepacolor $sepa $datecolor\d$sepacolor $sepa $timecolor\t$sepacolor $sepa $wdircolor\$(truncpwd)"
 	[[ $(ini_get files_amount) == "True" ]] && PS1+=" files: \$(systemkit countvisiblefiles)"

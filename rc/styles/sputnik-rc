@@ -11,7 +11,7 @@
 
 export pstyle_supported=True
 
-if [[ $enabcol ==  true ]]; then
+if [[ $enable_colors ==  true ]]; then
 
 PS1="\n$pscolor♦$sepacolor♦($usercolor \u$fontcolor @$hostcolor \h $fontcolor: Space on /: $pscolor\$(systemkit usedspace /)$fontcolor used of$pscolor \$(systemkit totalspace /)$sepacolor )♦♦($wdircolor \$(truncpwd)$sepacolor )♦$pscolor♦\n\
 $pscolor♦$sepacolor♦($timecolor \$(date +%H:%M)$sepacolor →$datecolor \$(date \"+%a, %d %b %y\")$sepacolor : uptime :$upcolor \$(systemkit uptime)$sepacolor :$usercolor \$$sepacolor )♦$pscolor♦$fontcolor "

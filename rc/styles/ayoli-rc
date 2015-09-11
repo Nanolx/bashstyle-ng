@@ -39,7 +39,7 @@ PRE_PROMPT_COMMAND
 
 PROMPT_COMMAND=pre_prompt
 
-if [[ $enabcol == "True" ]]; then
+if [[ $enable_colors == "True" ]]; then
 
         PS1="$sepacolor┌─($usercolor \u$fontcolor @ $hostcolor\h\
 $datecolor \$(date \"+%a, %d %b %y\")$sepacolor )─\${fill}─($wdircolor \$newPWD \

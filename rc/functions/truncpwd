@@ -25,7 +25,7 @@ case ${1} in
 		[[ ! ${trunc_symbol} ]] && trunc_symbol="«"
 		[[ ! ${trunc_length} ]] && trunc_length=25
 
-		if [[ ${enabcol} == "True" && ${pstyle_supported} == "True" ]];  then
+		if [[ ${enable_colors} == "True" && ${pstyle_supported} == "True" ]];  then
 			if [[ $pwdmaxlen != 0 && ${#PWD} -gt $pwdmaxlen ]]; then
 				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
 				xPWD="$newpscolor${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"

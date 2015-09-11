@@ -39,6 +39,10 @@ Overview of changes in v9.1 "Dial T for TNT"
 * add GLOBIGNORE: everything to ignore from globbing. Default value: empty.
  ++ if you set it to ".:.." issueing '$ ls .*' will not include '.' and '..'
 
+* add History Sync: sync history between simultaneously running sessions.
+ ++ commands from other sessions become available to history upon immediately,
+ ++ to bash after reloading prompt ([ENTER])
+
 * add dotglob:		include hidden files (with leading dot) by default during
 			pathname expansion
 * add extglob:		enable extending globbing with regular expression like

@@ -134,6 +134,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("restore_pwd", "Advanced", "restore_directory", "bool", None)
 		WidgetHandler.InitWidget("debug_verbose", "Advanced", "debug_verbose", "bool", None)
 		WidgetHandler.InitWidget("globignore", "Advanced", "glob_ignore", "text", None)
+		WidgetHandler.InitWidget("history_sync", "Advanced", "history_sync", "bool", None)
 
 		####################### Readline stuff #############################################
 		WidgetHandler.InitWidget("readline", "Readline", "use_readlinecfg", "bool", None)

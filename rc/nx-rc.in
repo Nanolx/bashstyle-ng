@@ -17,7 +17,7 @@ export BSNG_DATA_DIR=@DATADIR@
 export BSNG_RC_DIR=${BSNG_DATA_DIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2015"
-INI_VERSION=11
+INI_VERSION=17
 
 if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 	if [[ -f /etc/bs-ng_vendor.ini && $(grep ini_version /etc/bs-ng_vendor.ini) == *${INI_VERSION} ]]; then
@@ -57,7 +57,7 @@ dbg_log shopt -s checkwinsize
 [[ $(ini_get enable_colors) == True ]] && \
 	dbg_log source ${BSNG_RC_DIR}/settings/color-rc
 
-[[ $(ini_get use_lscolors) == True && ${enabcol} == True ]] && \
+[[ $(ini_get use_lscolors) == True && ${enable_colors} == True ]] && \
 	dbg_log source ${BSNG_RC_DIR}/settings/ls-rc
 
 [[ $(ini_get use_gitcfg) == True ]] && \
@@ -146,13 +146,59 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	PS3="$pscolor $ps234char$ps234char$fontcolor "
 	PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
-	if [[ $(ini_get colorshell) == True && ${enabcol} == True ]]; then
-		source ${BSNG_RC_DIR}/settings/colorshell
-	fi
-
 fi
 
 dbg_log source ${BSNG_RC_DIR}/settings/options-rc
+
+[[ ! ${PROMPT_COMMAND} ]] && USE_PROMPT_COMMAND=True
+
+if [[ $(ini_get colorshell) && ${enable_colors} == True ]]; then
+	USE_COLORSHELL=True
+fi
+
+if [[ $(ini_get history_sync) == True && ${USE_COLORSHELL} == True ]]; then
+	if [[ ${USE_PROMPT_COMMAND} ]]; then
+		PROMPT_COMMAND () {
+			_colorshell
+			_sync_history
+			}
+	else
+		PRE_PROMPT_COMMAND () {
+			_colorshell
+			_sync_history
+			}
+	fi
+	
+	history () {
+		_sync_history
+		builtin history
+	}
+elif [[ ${USE_COLORSHELL} == True ]]; then
+	if [[ ${USE_PROMPT_COMMAND} ]]; then
+		PROMPT_COMMAND () {
+			_colorshell
+			}
+	else
+		PRE_PROMPT_COMMAND () {
+			_colorshell
+			}
+	fi
+elif [[ $(ini_get history_sync) ]]; then
+	if [[ ${USE_PROMPT_COMMAND} ]]; then
+		PROMPT_COMMAND () {
+			_sync_history
+			}
+	else
+		PRE_PROMPT_COMMAND () {
+			_sync_history
+			}
+	fi
+
+	history () {
+		_sync_history
+		builtin history
+	}
+fi
 
 WelcomeMessage=$(ini_get welcome_message)
 

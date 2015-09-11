@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-enabcol=True
+enable_colors=True
 
 dbg_msg $"BashStyle-NG Setting:" $"Colors" $"On"
 dbg_msg $"BashStyle-NG Setting:" $"Color-Style" $(ini_get color_style)
@@ -128,4 +128,4 @@ eval sepacolor=$(ini_get color_separator)
 eval upcolor=$(ini_get color_uptime)
 eval pscolor=$(ini_get color_ps234)
 
-dbg_log export enabcol colstyle black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream eblack ered egreen eyellow eblue emagenta ecyan ewhite ecoldblue esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher eorange epurple epink ecream
+dbg_log export enable_colors colstyle black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream eblack ered egreen eyellow eblue emagenta ecyan ewhite ecoldblue esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher eorange epurple epink ecream

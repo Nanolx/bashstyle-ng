@@ -45,7 +45,7 @@ PRE_PROMPT_COMMAND
 
 PROMPT_COMMAND=prompt_command
 
-if [[ $enabcol == "True" ]]; then
+if [[ $enable_colors == "True" ]]; then
 
 PS1="\n\
 $sepacolor[ $timecolor\$(date +%T) $fontcolor-$datecolor \$(date +%D) $sepacolor]\

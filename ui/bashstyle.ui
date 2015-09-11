@@ -2537,65 +2537,7 @@ Now executing "a" will do "echo hello world"</property>
                   <packing>
                     <property name="left_attach">0</property>
                     <property name="top_attach">0</property>
-                    <property name="height">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSeparator" id="separator11">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">4</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">4</property>
-                    <property name="width">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.extras">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Extras</property>
-                    <property name="angle">90</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">5</property>
                     <property name="height">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSeparator" id="separator12">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">4</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">10</property>
-                    <property name="width">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.misc">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Misc</property>
-                    <property name="angle">90</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">11</property>
-                    <property name="height">8</property>
                   </packing>
                 </child>
                 <child>
@@ -2626,36 +2568,6 @@ in the bash history.</property>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="top_attach">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.lable.history_blacklist">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">History Blacklist</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="history_blacklist">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">history_ignore
-
-a colon separated list of commands not to log
-in the bash history.</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -2698,6 +2610,436 @@ Ignore Both: Ignore duplicates and Ignore
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkEntry" id="globignore">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">19</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.globignore">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Globbing Blacklist</property>
+                    <property name="angle">0.02</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">18</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="path">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">path
+
+a colon separated list of directories where
+executables are stored. Note: if you change
+it first add the content of your original $PATH
+here (else you'll get unwanted results).</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">17</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.path ">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Path</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">16</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="fcedit">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">fcedit
+
+set the editor for the internal fc command.</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">15</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.fcedit">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">Change editor for fc</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">14</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="completion_blacklist">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">completion_ignore
+
+a colon separated list of files to ignore from
+filename completion.</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">13</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.completion_blacklist">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">Change Completion Blacklist</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">12</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="dirchar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">directory_indicator
+
+normally directories are represented by / - eg.:
+/home/test - this option lets you exchange the
+/ by something else (only for displaying in the
+prompt).</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">19</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.dirchar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Directory Indicator</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">18</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="welcome">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">welcome_message
+
+some command to run on session start. Most
+commonly this will be something like "fortune".</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">17</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.welcome">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Welcome Message</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">16</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="timeout">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">timeout
+
+after x seconds of inactivity bash will log you out
+automatically. 0 to disable.</property>
+                    <property name="invisible_char">•</property>
+                    <property name="text" translatable="yes">0</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                    <property name="adjustment">advanced.adjustment.timeout</property>
+                    <property name="climb_rate">0.01</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">15</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.timeout">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">Set Timeout (in seconds)</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">14</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="cdpath">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">cdpath
+
+a colon separated list of directorys cd can
+directly go to. Example add ${HOME} to it, so
+you can directly go to ${HOME}/Desktop using:
+
+cd Desktop</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">13</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.cdpath">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">Change CDPATH</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">12</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.misc">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Misc</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">12</property>
+                    <property name="height">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparator" id="separator12">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">4</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">11</property>
+                    <property name="width">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="lscd_options">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">lscd_options
+
+extra ls options for lscd. All ls options work.</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="birthday">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">user_birthday
+
+user birthday in MM-DD format. Example 12-06
+for 6th of December. You will be presented with
+some surprise when starting bash that day.</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.birthday">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">User birthday (MM-DD)</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="debug_verbose">
+                    <property name="label" translatable="yes">Verbose output on start</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">debug_verbose
+
+display full output from NX-RC (the BashStyle-NG
+startup script). Only recommended if you're
+getting an error message on session start.</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="restore_pwd">
+                    <property name="label" translatable="yes">Restore directory in new shell</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">restore_directory
+
+remember the directory you last cd-ed into and
+restore it in a new session.</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="lscd_mkdir">
+                    <property name="label" translatable="yes">lscd: create directory</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">lscd_mkdir
+
+let lscd create a directory if it does not exist.</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.lscd">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">lscd options</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="dd_noerror">
+                    <property name="label" translatable="yes">Let 'dd' continue on error</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">dd_noerror
+
+normally "dd" abort on any occuring error. This
+will prevent dd from aborting, it will just report
+the read error and continue.</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="enable_treecd">
+                    <property name="label" translatable="yes">Use treecd in favour of cd</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">use_treecd
+
+Use "treecd" instead of "cd". treecd displays lists
+the directory tree in the current directory when cd-ing.</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="enable_lscd">
+                    <property name="label" translatable="yes">Use lscd in favour of cd</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="tooltip_text" translatable="yes">use_lscd
+
+Use "lscd" instead of "cd". lscd displays lists
+all files in the current directory when cd-ing.</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkLabel" id="advanced.lable.histroy_size">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -2727,405 +3069,79 @@ maximum lines of bash history.</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="enable_lscd">
-                    <property name="label" translatable="yes">Use lscd in favour of cd</property>
+                  <object class="GtkLabel" id="advanced.lable.history_blacklist">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
+                    <property name="can_focus">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">use_lscd
-
-Use "lscd" instead of "cd". lscd displays lists
-all files in the current directory when cd-ing.</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="label" translatable="yes">History Blacklist</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="top_attach">5</property>
+                    <property name="top_attach">2</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="lscd_mkdir">
-                    <property name="label" translatable="yes">lscd: create directory</property>
+                  <object class="GtkEntry" id="history_blacklist">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">lscd_mkdir
+                    <property name="tooltip_text" translatable="yes">history_ignore
 
-let lscd create a directory if it does not exist.</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="enable_treecd">
-                    <property name="label" translatable="yes">Use treecd in favour of cd</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">use_treecd
-
-Use "treecd" instead of "cd". treecd displays lists
-the directory tree in the current directory when cd-ing.</property>
-                    <property name="draw_indicator">True</property>
+a colon separated list of commands not to log
+in the bash history.</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.extras">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Extras</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
                     <property name="top_attach">6</property>
+                    <property name="height">5</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="restore_pwd">
-                    <property name="label" translatable="yes">Restore directory in new shell</property>
+                  <object class="GtkSeparator" id="separator11">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">restore_directory
-
-remember the directory you last cd-ed into and
-restore it in a new session.</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">4</property>
                   </object>
                   <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">6</property>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">5</property>
+                    <property name="width">3</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="dd_noerror">
-                    <property name="label" translatable="yes">Let 'dd' continue on error</property>
+                  <object class="GtkCheckButton" id="history_sync">
+                    <property name="label" translatable="yes">Sync History (Multisession)</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">dd_noerror
-
-normally "dd" abort on any occuring error. This
-will prevent dd from aborting, it will just report
-the read error and continue.</property>
                     <property name="draw_indicator">True</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="top_attach">7</property>
+                    <property name="top_attach">4</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="debug_verbose">
-                    <property name="label" translatable="yes">Verbose output on start</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">debug_verbose
-
-display full output from NX-RC (the BashStyle-NG
-startup script). Only recommended if you're
-getting an error message on session start.</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">7</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.lscd">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">lscd options</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">8</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.birthday">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">User birthday (MM-DD)</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">8</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="lscd_options">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">lscd_options
-
-extra ls options for lscd. All ls options work.</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">9</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="birthday">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">user_birthday
-
-user birthday in MM-DD format. Example 12-06
-for 6th of December. You will be presented with
-some surprise when starting bash that day.</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">9</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.cdpath">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">Change CDPATH</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">11</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.completion_blacklist">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">Change Completion Blacklist</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">11</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="cdpath">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">cdpath
-
-a colon separated list of directorys cd can
-directly go to. Example add ${HOME} to it, so
-you can directly go to ${HOME}/Desktop using:
-
-cd Desktop</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">12</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="completion_blacklist">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">completion_ignore
-
-a colon separated list of files to ignore from
-filename completion.</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">12</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.fcedit">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">Change editor for fc</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">13</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="fcedit">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">fcedit
-
-set the editor for the internal fc command.</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">14</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.path ">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Path</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">15</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="path">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">path
-
-a colon separated list of directories where
-executables are stored. Note: if you change
-it first add the content of your original $PATH
-here (else you'll get unwanted results).</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">16</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.timeout">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">Set Timeout (in seconds)</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">13</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSpinButton" id="timeout">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">timeout
-
-after x seconds of inactivity bash will log you out
-automatically. 0 to disable.</property>
-                    <property name="invisible_char">•</property>
-                    <property name="text" translatable="yes">0</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                    <property name="adjustment">advanced.adjustment.timeout</property>
-                    <property name="climb_rate">0.01</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">14</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.welcome">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Welcome Message</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">15</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="welcome">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">welcome_message
-
-some command to run on session start. Most
-commonly this will be something like "fortune".</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">16</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.dirchar">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Directory Indicator</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">17</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="dirchar">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">directory_indicator
-
-normally directories are represented by / - eg.:
-/home/test - this option lets you exchange the
-/ by something else (only for displaying in the
-prompt).</property>
-                    <property name="invisible_char">●</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">18</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="advanced.label.globignore">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Globbing Blacklist</property>
-                    <property name="angle">0.02</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">17</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="globignore">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="primary_icon_name">gtk-revert-to-saved</property>
-                    <property name="secondary_icon_name">gtk-delete</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">18</property>
-                  </packing>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
