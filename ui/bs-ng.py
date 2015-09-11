@@ -17,7 +17,7 @@ lang.install(names=['_'])
 import args
 args.CmdArgs()
 
-print(_("\nBashStyle-NG version %s starting" % os.getenv('BSNG_UI_VERSION')))
+print(_("\nBashStyle-NG Version %s starting" % os.getenv('BSNG_UI_VERSION')))
 
 MODULES = [ 'os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
             'undobuffer', 'lockfile', 'config', 'widgethandler',
@@ -52,9 +52,6 @@ class BashStyleNG(object):
 		config.InitConfig()
 		config.LoadConfig()
 		config.CheckConfig()
-
-		######################## cd into $HOME #############################################
-		os.chdir(os.getenv("HOME"))
 
 		######################## load translations & widgethandler #########################
 		gtkbuilder = widgethandler.gtkbuilder
@@ -273,7 +270,7 @@ class BashStyleNG(object):
 
 		######################## Custom Prompt Builder #####################################
 		WidgetHandler.InitWidget("use_custom_prompt", "Custom", "use_custom_prompt", "bool", None)
-		promptbuilder.PromptBuilder(config.cfo)
+		promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
 
 		######################## Load the Main-Window ######################################
 		self.bashstyle = gtkbuilder.get_object("bashstyle")

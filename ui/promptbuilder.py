@@ -31,7 +31,7 @@ if FAILED:
 
 class PromptBuilder(object):
 
-	def __init__(self, config):
+	def __init__(self, config, userconfig, factoryconfig):
 		######################## load translations & widgethandler #########################
 		gtkbuilder = widgethandler.gtkbuilder
 
@@ -89,28 +89,44 @@ class PromptBuilder(object):
 		self.empty = gtkbuilder.get_object("cpb_empty")
 		self.undo = gtkbuilder.get_object("cpb_undo")
 		self.redo = gtkbuilder.get_object("cpb_redo")
+		self.reset = gtkbuilder.get_object("cpb_reset")
+		self.factory = gtkbuilder.get_object("cpb_factory")
 
-		def do_empty(widget, data=None):
+		def do_empty(widget):
 			if self.active_buffer == "P_C":
 				self.prompt_command_buffer.set_text("")
 			elif self.active_buffer == "PS1":
 				self.custom_prompt_buffer.set_text("")
 
-		def do_undo(widget, data=None):
+		def do_undo(widget):
 			if self.active_buffer == "P_C":
 				self.prompt_command_buffer.undo()
 			elif self.active_buffer == "PS1":
 				self.custom_prompt_buffer.undo()
 
-		def do_redo(widget, data=None):
+		def do_redo(widget):
 			if self.active_buffer == "P_C":
 				self.prompt_command_buffer.redo()
 			elif self.active_buffer == "PS1":
 				self.custom_prompt_buffer.redo()
 
+		def do_reset(widget):
+			if self.active_buffer == "P_C":
+				self.prompt_command_buffer.set_text("%s" % userconfig["Custom"]["command"])
+			elif self.active_buffer == "PS1":
+				self.custom_prompt_buffer.set_text("%s" % userconfig["Custom"]["prompt"])
+
+		def do_revert(widget):
+			if self.active_buffer == "P_C":
+				self.prompt_command_buffer.set_text("%s" % factoryconfig["Custom"]["command"])
+			elif self.active_buffer == "PS1":
+				self.custom_prompt_buffer.set_text("%s" % factoryconfig["Custom"]["prompt"])
+
 		self.empty.connect("clicked", do_empty)
 		self.undo.connect("clicked", do_undo)
 		self.redo.connect("clicked", do_redo)
+		self.reset.connect("clicked", do_reset)
+		self.factory.connect("clicked", do_revert)
 
 		######################## Toolbox ###################################################
 
