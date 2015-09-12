@@ -183,7 +183,7 @@ elif [[ ${USE_COLORSHELL} == True ]]; then
 			_colorshell
 			}
 	fi
-elif [[ $(ini_get history_sync) ]]; then
+elif [[ $(ini_get history_sync) == True ]]; then
 	if [[ ${USE_PROMPT_COMMAND} ]]; then
 		PROMPT_COMMAND () {
 			_sync_history
