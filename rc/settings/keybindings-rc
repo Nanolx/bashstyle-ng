@@ -45,7 +45,10 @@ if [[ ! -e $HOME/.keybindings.bs-ng.* ]]; then
 		possible_hostname_completions possible_username_completions \
 		possible_variable_completions kill_line unix_line_discard \
 		beginning_of_line end_of_line clear_screen history_search_forward \
-		history_search_backward complete_path menu_complete; do
+		history_search_backward complete_path menu_complete alias_expand_line \
+		backward_char backward_word backward_delete_char delete_char \
+		copy_backward_word copy_forward_word forward_char forward_word \
+		overwrite_mode ; do
 
 			keybindings_setter $(ini_get $key) ${key//_/-}
 
