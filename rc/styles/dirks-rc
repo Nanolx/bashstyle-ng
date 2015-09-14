@@ -9,18 +9,18 @@
 #							#
 #########################################################
 
-export pstyle_supported=True
+export truncpwd_supported=True
 
-if [[ $enable_colors == "True" ]]; then
+if [[ ${enable_colors} == True ]]; then
 
 PS1="\n\
-$pscolor┌─$sepacolor[ $wdircolor\$(truncpwd)$DIRKS_1_COLOR\$(DIRKS_1) $sepacolor]\n\
-$pscolor└─$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\H $fontcolor/ $pscolor\$(systemkit tty) $sepacolor( $timecolor\t $sepacolor) $pscolor$SHLVL$DIRKS_2_COLOR\$(DIRKS_2) $sepacolor]$pscolor·>$fontcolor "
+${pscolor}┌─${sepacolor}[ ${wdircolor}\$(truncpwd)${DIRKS_1_COLOR} \$(DIRKS_1) ${sepacolor}]\n\
+${pscolor}└─${sepacolor}[ ${usercolor}\u ${fontcolor}@ ${hostcolor}\H ${fontcolor}/ ${pscolor}\$(systemkit tty) ${sepacolor}( ${timecolor}\t ${sepacolor}) ${pscolor}${SHLVL}${DIRKS_2_COLOR} \$(DIRKS_2) ${sepacolor}]${pscolor}·>${fontcolor} "
 
 else
 
 PS1="\n\
-┌─[ \$(truncpwd)\$(DIRKS_1) ]\n\
-└─[ \u @ \H / \$(systemkit tty) ( \t ) $SHLVL\$(DIRKS_2) ]·> "
+┌─[ \$(truncpwd) \$(DIRKS_1) ]\n\
+└─[ \u @ \H / \$(systemkit tty) ( \t ) ${SHLVL} \$(DIRKS_2) ]·> "
 
 fi

@@ -15,12 +15,12 @@ custom_command=$(ini_get command)
 if [[ ${use_custom_prompt} == True && ${custom_prompt} != "" ]]; then
 	if [[ ${custom_command} != "" ]]; then
 		echo -E "function pre_prompt { " > ${HOME}/.custom_prompt
-		echo -E "$custom_command" >> ${HOME}/.custom_prompt
+		echo -E "${custom_command}" >> ${HOME}/.custom_prompt
 		echo -E "}" >> ${HOME}/.custom_prompt
 		echo -e "PROMPT_COMMAND=pre_prompt \n" >> ${HOME}/.custom_prompt
-		echo -E PS1=\"$custom_prompt\" >> ${HOME}/.custom_prompt
+		echo -E PS1=\"${custom_prompt}\" >> ${HOME}/.custom_prompt
 	else
-		echo -E PS1=\"$custom_prompt\" > ${HOME}/.custom_prompt
+		echo -E PS1=\"${custom_prompt}\" > ${HOME}/.custom_prompt
 	fi
 	source ${HOME}/.custom_prompt
 fi

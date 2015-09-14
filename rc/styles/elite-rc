@@ -9,15 +9,15 @@
 #							#
 #########################################################
 
-if [[ $enable_colors == "True" ]]; then
+if [[ ${enable_colors} == True ]]; then
 
 PS1="\n\
-$pscolor┌─$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\h$sepacolor ]$pscolor─\
-$sepacolor[$pscolor job #\# $sepacolor]$pscolor─$sepacolor[$fontcolor \$(systemkit tty)$sepacolor ]\
-$pscolor─$sepacolor[ $timecolor\$(date +%H:%M:%S)\
-$fontcolor : $datecolor\$(date +%m/%d/%y)$fontcolor :$upcolor \$(systemkit uptime)$sepacolor ]\n\
-$pscolor└─$sepacolor[ $usercolor\$$pscolor : $wdircolor\$(truncpwd)$ELITE_1_COLOR\$(ELITE_1)$sepacolor ]\
-$pscolor·>$fontcolor "
+${pscolor}┌─${sepacolor}[ ${usercolor}\u ${fontcolor}@ ${hostcolor}\h${sepacolor} ]${pscolor}─\
+${sepacolor}[${pscolor} job #\# ${sepacolor}]${pscolor}─${sepacolor}[${fontcolor} \$(systemkit tty)${sepacolor} ]\
+${pscolor}─${sepacolor}[ ${timecolor}\$(date +%H:%M:%S)\
+${fontcolor} : ${datecolor}\$(date +%m/%d/%y)${fontcolor} :${upcolor} \$(systemkit uptime)${sepacolor} ]\n\
+${pscolor}└─${sepacolor}[ ${usercolor}\$${pscolor} : ${wdircolor}\$(truncpwd)${ELITE_1_COLOR}\$(ELITE_1)${sepacolor} ]\
+${pscolor}·>${fontcolor} "
 
 else
 

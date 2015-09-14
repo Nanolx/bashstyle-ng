@@ -17,29 +17,26 @@ case ${1} in
 	;;
 
 	* )
-		newsepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-		newwdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-		newpscolor=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
 
 		[[ ! ${dirchar} ]] && dirchar="/"
 		[[ ! ${trunc_symbol} ]] && trunc_symbol="«"
 		[[ ! ${trunc_length} ]] && trunc_length=25
 
-		if [[ ${enable_colors} == "True" && ${pstyle_supported} == "True" ]];  then
-			if [[ $pwdmaxlen != 0 && ${#PWD} -gt $pwdmaxlen ]]; then
-				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
-				xPWD="$newpscolor${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
-				newPWD="${xPWD//\//$newsepacolor$dirchar$newwdircolor}"
+		if [[ ${enable_colors} == True && ${truncpwd_supported} == True ]];  then
+			if [[ ${pwdmaxlen} != 0 && ${#PWD} -gt ${pwdmaxlen} ]]; then
+				pwdoffset=$(( ${#PWD} - ${pwdmaxlen} ))
+				xPWD="${epscolor}${trunc_symbol}${PWD:${pwdoffset}:${pwdmaxlen}}"
+				newPWD="${xPWD//\//${esepacolor}${dirchar}${ewdircolor}}"
 			else
-				newPWD="${PWD//\//$newsepacolor$dirchar$newwdircolor}"
+				newPWD="${PWD//\//${esepacolor}${dirchar}${ewdircolor}}"
 			fi
 		else
-			if [[ $pwdmaxlen != 0 && ${#PWD} -gt $pwdmaxlen ]]; then
-				pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
-				xPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
-				newPWD="${xPWD//\//$dirchar}"
+			if [[ ${pwdmaxlen} != 0 && ${#PWD} -gt ${pwdmaxlen} ]]; then
+				pwdoffset=$(( ${#PWD} - ${pwdmaxlen} ))
+				xPWD="${trunc_symbol}${PWD:${pwdoffset}:${pwdmaxlen}}"
+				newPWD="${xPWD//\//${dirchar}}"
 			else
-				newPWD="${PWD//\//$dirchar}"
+				newPWD="${PWD//\//${dirchar}}"
 			fi
 		fi
 

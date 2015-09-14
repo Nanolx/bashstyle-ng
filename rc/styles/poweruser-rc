@@ -12,49 +12,49 @@
 function prompt_command
 {
 
-local one=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\1/" -e "s/ //g")
-local five=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\).*/\2/" -e "s/ //g")
-local diff1_5=$(echo -e "scale = scale ($one) \nx=$one - $five\n if (x>0) {print \"up\"} else {print \"down\"}\n print x \nquit \n" | bc)
-loaddiff="$(echo -n "${one}${diff1_5}" | sed -e 's/down\-/down/g')"
+	local one=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\1/" -e "s/ //g")
+	local five=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\).*/\2/" -e "s/ //g")
+	local diff1_5=$(echo -e "scale = scale ($one) \nx=$one - $five\n if (x>0) {print \"up\"} else {print \"down\"}\n print x \nquit \n" | bc)
+	loaddiff="$(echo -n "${one}${diff1_5}" | sed -e 's/down\-/down/g')"
 
-let files=$(ls -l | grep "^-" | wc -l | tr -d " ")
-let hiddenfiles=$(ls -l -d .* | grep "^-" | wc -l | tr -d " ")
-let executables=$(ls -l | grep ^-..x | wc -l | tr -d " ")
-let directories=$(ls -l | grep "^d" | wc -l | tr -d " ")
-let hiddendirectories=$(ls -l -d .* | grep "^d" | wc -l | tr -d " ")-2
-let linktemp=$(ls -l | grep "^l" | wc -l | tr -d " ")
-if [ "$linktemp" -eq "0" ]
-then
-    links=""
-else
-    links=" ${linktemp}l"
-fi
-unset linktemp
-let devicetemp=$(ls -l | grep "^[bc]" | wc -l | tr -d " ")
-if [ "$devicetemp" -eq "0" ]
-then
-    devices=""
-else
-    devices=" ${devicetemp}bc"
-fi
-unset devicetemp
+	let files=$(ls -l | grep "^-" | wc -l | tr -d " ")
+	let hiddenfiles=$(ls -l -d .* | grep "^-" | wc -l | tr -d " ")
+	let executables=$(ls -l | grep ^-..x | wc -l | tr -d " ")
+	let directories=$(ls -l | grep "^d" | wc -l | tr -d " ")
+	let hiddendirectories=$(ls -l -d .* | grep "^d" | wc -l | tr -d " ")-2
+	let linktemp=$(ls -l | grep "^l" | wc -l | tr -d " ")
+	if [ "$linktemp" -eq "0" ]
+	then
+	    links=""
+	else
+	    links=" ${linktemp}l"
+	fi
+	unset linktemp
+	let devicetemp=$(ls -l | grep "^[bc]" | wc -l | tr -d " ")
+	if [ "$devicetemp" -eq "0" ]
+	then
+	    devices=""
+	else
+	    devices=" ${devicetemp}bc"
+	fi
+	unset devicetemp
 
-PRE_PROMPT_COMMAND
+	PRE_PROMPT_COMMAND
 
 }
 
 PROMPT_COMMAND=prompt_command
 
-if [[ $enable_colors == "True" ]]; then
+if [[ ${enable_colors} == True ]]; then
 
 PS1="\n\
-$sepacolor[ $timecolor\$(date +%T) $fontcolor-$datecolor \$(date +%D) $sepacolor]\
-$sepacolor[ $usercolor\u $fontcolor@ $hostcolor\h $sepacolor]\
-$sepacolor[ $wdircolor\${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize) \
+${sepacolor}[ ${timecolor}\$(date +%T) ${fontcolor}-${datecolor} \$(date +%D) ${sepacolor}]\
+${sepacolor}[ ${usercolor}\u ${fontcolor}@ ${hostcolor}\h ${sepacolor}]\
+${sepacolor}[ ${wdircolor}\${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize) \
 \${directories}.\${hiddendirectories}d\${links}\${devices}\
-$sepacolor ][ $upcolor\${loaddiff}$sepacolor ][ \
-$pscolor\$(ps ax | wc -l | sed -e \"s: ::g\")proc $sepacolor]\
-\n$sepacolor[ $wdircolor\$(truncpwd)$POW_1_COLOR\$(POW_1) $sepacolor]$fontcolor \$ "
+${sepacolor} ][ ${upcolor}\${loaddiff}${sepacolor} ][ \
+${pscolor}\$(ps ax | wc -l | sed -e \"s: ::g\")proc ${sepacolor}]\
+\n${sepacolor}[ ${wdircolor}\$(truncpwd)${POW_1_COLOR}\$(POW_1) ${sepacolor}]${fontcolor} \$ "
 
 else
 

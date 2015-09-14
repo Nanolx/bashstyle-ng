@@ -9,11 +9,11 @@
 #							#
 #########################################################
 
-export pstyle_supported=True
+export truncpwd_supported=True
 
-if [[ $enable_colors == "True" ]]; then
+if [[ ${enable_colors} == True ]]; then
 
-PS1="\n$pscolor.:$sepacolor[ $usercolor\u$pscolor @ $hostcolor\h$sepacolor ]$pscolor:. .:$sepacolor[ $wdircolor\$(truncpwd)$sepacolor ]$pscolor:.\n.:$sepacolor[·>$fontcolor "
+PS1="\n${pscolor}.:${sepacolor}[ ${usercolor}\u${pscolor} @ ${hostcolor}\h${sepacolor} ]${pscolor}:. .:${sepacolor}[ ${wdircolor}\$(truncpwd)${sepacolor} ]${pscolor}:.\n.:${sepacolor}[·>${fontcolor} "
 
 else
 

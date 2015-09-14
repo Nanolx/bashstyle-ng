@@ -9,10 +9,10 @@
 #							#
 #########################################################
 
-if [[ $enable_colors == "True" ]]; then
+if [[ ${enable_colors} == True ]]; then
 
-PS1="\n$sepacolor⊏⁅ $usercolor\u$pscolor ⁑ $hostcolor\h $sepacolor⁆⁅ $datecolor\d $pscolor⁑ $timecolor\t$pscolor ⁑ $upcolor\$(systemkit uptime)$sepacolor ⁆⊐
-⊏⁅$wdircolor \$(truncpwd)$SEPA_NG_1_COLOR\$(SEPA_NG_1) $sepacolor⁆⊐≻$fontcolor "
+PS1="\n${sepacolor}⊏⁅ ${usercolor}\u${pscolor} ⁑ ${hostcolor}\h ${sepacolor}⁆⁅ ${datecolor}\d ${pscolor}⁑ ${timecolor}\t${pscolor} ⁑ ${upcolor}\$(systemkit uptime)${sepacolor} ⁆⊐
+⊏⁅${wdircolor} \$(truncpwd)${SEPA_NG_1_COLOR}\$(SEPA_NG_1) ${sepacolor}⁆⊐≻${fontcolor} "
 
 else
 

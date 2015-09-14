@@ -9,23 +9,23 @@
 #							#
 #########################################################
 
-host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
+host=$(echo -n ${HOSTNAME} | sed -e "s/[\.].*//")
 dirchar=$(ini_get directory_indicator)
 trunc_symbol=$(ini_get pwdcut)
-trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
+trunc_length=$(($(echo ${trunc_symbol} | wc -m)-1))
 j=4
 k=6
 l=8
 m=10
 
-if [[ $enable_colors == "True" ]]; then
+if [[ ${enable_colors} == True ]]; then
 
-esepacolor=$(echo $sepacolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-edatecolor=$(echo $datecolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-etimecolor=$(echo $timecolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-efontcolor=$(echo $fontcolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-epscolor=$(echo $pscolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
-ewdircolor=$(echo $wdircolor | sed -e 's/\\\[//g' -e 's/\\\]//g')
+{esepacolor}=$(echo ${sepacolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
+{edatecolor}=$(echo ${datecolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
+{etimecolor}=$(echo ${timecolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
+{efontcolor}=$(echo ${fontcolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
+{epscolor}=$(echo ${pscolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
+{ewdircolor}=$(echo ${wdircolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
 
 function pre_prompt {
 
@@ -35,22 +35,22 @@ function pre_prompt {
 
 newPWD="${PWD}"
 
-let promptsize=$(echo -n "--( $(whoami) @ $host )--( ${PWD} )-----" | wc -c | tr -d " ")
+let promptsize=$(echo -n "--( $(whoami) @ ${host} )--( ${PWD} )-----" | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
 fill=""
-while [ "$fillsize" -gt "0" ]
+while [ "${fillsize}" -gt "0" ]
 do
     fill="${fill}─"
 	let fillsize=${fillsize}-1
 done
-if [ "$fillsize" -lt "0" ]
+if [ "${fillsize}" -lt "0" ]
 then
     let cutt=${trunc_length}-${fillsize}
     xPWD="${trunc_symbol}${PWD:${cutt}}"
-    newPWD="${xPWD//\//$esepacolor$dirchar$ewdircolor}"
+    newPWD="${xPWD//\//${esepacolor}${dirchar}${ewdircolor}}"
 else
-    newPWD="${PWD//\//$esepacolor$dirchar$ewdircolor}"
+    newPWD="${PWD//\//${esepacolor}${dirchar}${ewdircolor}}"
 fi
 
 PRE_PROMPT_COMMAND
@@ -60,39 +60,39 @@ _newPWD () {
 }
 
 echo -en "\033[2;$((${COLUMNS}-29))H"
-echo -en "$esepacolor($etimecolor $(date +%H:%M)$esepacolor :$edatecolor $(date '+%a, %d %b %y')$esepacolor )────┐"
+echo -en "${esepacolor}(${etimecolor} $(date +%H:%M)${esepacolor} :${edatecolor} $(date '+%a, %d %b %y')${esepacolor} )────┐"
 echo -en "\033[2;${COLUMNS}H"
 
 i=${LINES}
 
-while [ $i -ge 4 ]
+while [ ${i} -ge 4 ]
 do
-	case $i in
-		$j )
-			echo -en "\033[$j;$((${COLUMNS}-29))H"
-			echo -en "$esepacolor($efontcolor system-load: $(systemkit load1)$esepacolor )────────┤"
-			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+	case ${i} in
+		${j} )
+			echo -en "\033[${j};$((${COLUMNS}-29))H"
+			echo -en "${esepacolor}(${efontcolor} system-load: $(systemkit load1)${esepacolor} )────────┤"
+			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
 		;;
-		$k )
-			echo -en "\033[$k;$((${COLUMNS}-29))H"
-			echo -en "$esepacolor($efontcolor cpu-load: $(systemkit cpuload)$esepacolor )────────────┤"
-			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+		${k} )
+			echo -en "\033[${k};$((${COLUMNS}-29))H"
+			echo -en "${esepacolor}(${efontcolor} cpu-load: $(systemkit cpuload)${esepacolor} )────────────┤"
+			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
 		;;
-		$l )
-			echo -en "\033[$l;$((${COLUMNS}-29))H"
-			echo -en "$esepacolor($efontcolor ram: $esepacolor$(systemkit usedram)mb$efontcolor / $esepacolor$(systemkit freeram)mb )─────┤"
-			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+		${l} )
+			echo -en "\033[${l};$((${COLUMNS}-29))H"
+			echo -en "${esepacolor}(${efontcolor} ram: ${esepacolor}$(systemkit usedram)mb${efontcolor} / ${esepacolor}$(systemkit freeram)mb )─────┤"
+			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
 		;;
-		$m )
-			echo -en "\033[$m;$((${COLUMNS}-29))H"
-			echo -en "$esepacolor($efontcolor processes:$epscolor $(systemkit processes) $esepacolor)──────────┤"
-			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+		${m} )
+			echo -en "\033[${m};$((${COLUMNS}-29))H"
+			echo -en "${esepacolor}(${efontcolor} processes:${epscolor} $(systemkit processes) ${esepacolor})──────────┤"
+			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
 		;;
 		* )
-			echo -en "\033[$(($i-1));${COLUMNS}H$esepacolor│"
+			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
 		;;
 	esac
-	let i=$i-1
+	let i=${i}-1
 done
 
 let prompt_line=${LINES}-1
@@ -101,11 +101,11 @@ let prompt_line=${LINES}-1
 PROMPT_COMMAND=pre_prompt
 
 PS1="\[\033[\${prompt_line};0H\]\n\
-$sepacolor┌─( $usercolor\u $fontcolor@ $hostcolor\h \
-$sepacolor)─\${fill}─( $wdircolor\$(_newPWD)\
-$sepacolor )────┘\n\
-$sepacolor└─($upcolor uptime: \$(systemkit uptime)\
-$fontcolor :$EQUINOX_1_COLOR\$(EQUINOX_1)$fontcolor \$$sepacolor )·>$fontcolor "
+${sepacolor}┌─( ${usercolor}\u ${fontcolor}@ ${hostcolor}\h \
+${sepacolor})─\${fill}─( ${wdircolor}\$(_newPWD)\
+${sepacolor} )────┘\n\
+${sepacolor}└─(${upcolor} uptime: \$(systemkit uptime)\
+${fontcolor} :${EQUINOX_1_COLOR}\$(EQUINOX_1)${fontcolor} \$ ${sepacolor})·>${fontcolor} "
 
 else
 
@@ -117,28 +117,28 @@ function pre_prompt {
 
 newPWD="${PWD}"
 
-let promptsize=$(echo -n "--( $(whoami) @ $host )---( ${PWD} )-----" | wc -c | tr -d " ")
+let promptsize=$(echo -n "--( $(whoami) @ ${host} )---( ${PWD} )-----" | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
 fill=""
-while [ "$fillsize" -gt "0" ]
+while [ "${fillsize}" -gt "0" ]
 do
     fill="${fill}─"
 	let fillsize=${fillsize}-1
 done
-if [ "$fillsize" -lt "0" ]
+if [ "${fillsize}" -lt "0" ]
 then
     let cutt=${trunc_length}-${fillsize}
     xPWD="${trunc_symbol}$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")"
-    newPWD="${xPWD//\//$dirchar}"
+    newPWD="${xPWD//\//${dirchar}}"
 else
-    newPWD="${PWD//\//$dirchar}"
+    newPWD="${PWD//\//${dirchar}}"
 fi
 
 PRE_PROMPT_COMMAND
 
 _newPWD () {
-        echo -e $newPWD
+        echo -e ${newPWD}
 }
 
 echo -en "\033[2;$((${COLUMNS}-29))H"
@@ -147,34 +147,34 @@ echo -en "\033[2;${COLUMNS}H"
 
 i=${LINES}
 
-while [ $i -ge 4 ]
+while [ ${i} -ge 4 ]
 do
-	case $i in
-		$j )
-			echo -en "\033[$j;$((${COLUMNS}-29))H"
+	case ${i} in
+		${j} )
+			echo -en "\033[${j};$((${COLUMNS}-29))H"
 			echo -en "( system-load: $(systemkit load1) )────────┤"
-			echo -en "\033[$(($i-1));${COLUMNS}H│"
+			echo -en "\033[$((${i}-1));${COLUMNS}H│"
 		;;
-		$k )
-			echo -en "\033[$k;$((${COLUMNS}-29))H"
+		${k} )
+			echo -en "\033[${k};$((${COLUMNS}-29))H"
 			echo -en "( cpu-load: $(systemkit cpuload) )────────────┤"
-			echo -en "\033[$(($i-1));${COLUMNS}H│"
+			echo -en "\033[$((${i}-1));${COLUMNS}H│"
 		;;
-		$l )
-			echo -en "\033[$l;$((${COLUMNS}-29))H"
+		${l} )
+			echo -en "\033[${l};$((${COLUMNS}-29))H"
 			echo -en "( ram: $(systemkit usedram)mb / $(systemkit freeram)mb )─────┤"
-			echo -en "\033[$(($i-1));${COLUMNS}H│"
+			echo -en "\033[$((${i}-1));${COLUMNS}H│"
 		;;
-		$m )
-			echo -en "\033[$m;$((${COLUMNS}-29))H"
-			echo -en "( processes:$epscolor $(systemkit processes) )──────────┤"
-			echo -en "\033[$(($i-1));${COLUMNS}H│"
+		${m} )
+			echo -en "\033[${m};$((${COLUMNS}-29))H"
+			echo -en "( processes:${epscolor} $(systemkit processes) )──────────┤"
+			echo -en "\033[$((${i}-1));${COLUMNS}H│"
 		;;
 		* )
-			echo -en "\033[$(($i-1));${COLUMNS}H│"
+			echo -en "\033[$((${i}-1));${COLUMNS}H│"
 		;;
 	esac
-	let i=$i-1
+	let i=${i}-1
 done
 
 let prompt_line=${LINES}-1
