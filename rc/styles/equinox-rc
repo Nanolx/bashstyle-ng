@@ -17,6 +17,29 @@ j=4
 k=6
 l=8
 m=10
+n=12
+
+# make the prompt properly re-draw when pressing [Return]
+bind 'RETURN: "\C-l\C-j"'
+
+# remember last run command
+remember_command () {
+    [ -n "$COMP_LINE" ] && return
+    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
+    lastcommand=${BASH_COMMAND}
+    if [ ${#lastcommand} -gt 21 ]; then
+	lastcommand=${lastcommand:0:21}
+    elif [ ${#lastcommand} -lt 21 ]; then
+	x=$((21-${#lastcommand}))
+	while [ ${x} -gt 0 ]; do
+	    lastcommand="${lastcommand} "
+	    x=$((${x}-1))
+	done
+    fi
+}
+
+# remember last exit status and command
+trap 'lastexit=$?;remember_command' DEBUG
 
 if [[ ${enable_colors} == True ]]; then
 
@@ -44,6 +67,7 @@ do
     fill="${fill}─"
 	let fillsize=${fillsize}-1
 done
+
 if [ "${fillsize}" -lt "0" ]
 then
     let cutt=${trunc_length}-${fillsize}
@@ -61,35 +85,39 @@ _newPWD () {
 
 echo -en "\033[2;$((${COLUMNS}-29))H"
 echo -en "${esepacolor}(${etimecolor} $(date +%H:%M)${esepacolor} :${edatecolor} $(date '+%a, %d %b %y')${esepacolor} )────┐"
-echo -en "\033[2;${COLUMNS}H"
+echo -en "\033[3;${COLUMNS}H${esepacolor}│"
 
 i=${LINES}
 
-while [ ${i} -ge 4 ]
+[[ ${i} -ge 22 ]] && while [ ${i} -ge 4 ]
 do
 	case ${i} in
 		${j} )
 			echo -en "\033[${j};$((${COLUMNS}-29))H"
 			echo -en "${esepacolor}(${efontcolor} system-load: $(systemkit load1)${esepacolor} )────────┤"
-			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
 		;;
 		${k} )
 			echo -en "\033[${k};$((${COLUMNS}-29))H"
 			echo -en "${esepacolor}(${efontcolor} cpu-load: $(systemkit cpuload)${esepacolor} )────────────┤"
-			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
 		;;
 		${l} )
 			echo -en "\033[${l};$((${COLUMNS}-29))H"
 			echo -en "${esepacolor}(${efontcolor} ram: ${esepacolor}$(systemkit usedram)mb${efontcolor} / ${esepacolor}$(systemkit freeram)mb )─────┤"
-			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
 		;;
 		${m} )
 			echo -en "\033[${m};$((${COLUMNS}-29))H"
 			echo -en "${esepacolor}(${efontcolor} processes:${epscolor} $(systemkit processes) ${esepacolor})──────────┤"
-			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
+		;;
+		${n} )
+			echo -en "\033[${n};$((${COLUMNS}-29))H"
+			if [ ${lastexit} -eq 0 ]; then
+				echo -en "${esepacolor}( ${egreen}✔: ${lastcommand} ${esepacolor})─┤"
+			else
+				echo -en "${esepacolor}( ${ered}✘: ${lastcommand} ${esepacolor})─┤"
+			fi
 		;;
 		* )
-			echo -en "\033[$((${i}-1));${COLUMNS}H${esepacolor}│"
+			echo -en "\033[$((${i}));${COLUMNS}H${esepacolor}│"
 		;;
 	esac
 	let i=${i}-1
@@ -143,9 +171,7 @@ _newPWD () {
 
 echo -en "\033[2;$((${COLUMNS}-29))H"
 echo -en "( $(date +%H:%M) : $(date '+%a, %d %b %y') )────┐"
-echo -en "\033[2;${COLUMNS}H"
-
-i=${LINES}
+echo -en "\033[3;${COLUMNS}H│"
 
 while [ ${i} -ge 4 ]
 do
@@ -153,25 +179,29 @@ do
 		${j} )
 			echo -en "\033[${j};$((${COLUMNS}-29))H"
 			echo -en "( system-load: $(systemkit load1) )────────┤"
-			echo -en "\033[$((${i}-1));${COLUMNS}H│"
 		;;
 		${k} )
 			echo -en "\033[${k};$((${COLUMNS}-29))H"
 			echo -en "( cpu-load: $(systemkit cpuload) )────────────┤"
-			echo -en "\033[$((${i}-1));${COLUMNS}H│"
 		;;
 		${l} )
 			echo -en "\033[${l};$((${COLUMNS}-29))H"
 			echo -en "( ram: $(systemkit usedram)mb / $(systemkit freeram)mb )─────┤"
-			echo -en "\033[$((${i}-1));${COLUMNS}H│"
 		;;
 		${m} )
 			echo -en "\033[${m};$((${COLUMNS}-29))H"
 			echo -en "( processes:${epscolor} $(systemkit processes) )──────────┤"
-			echo -en "\033[$((${i}-1));${COLUMNS}H│"
+		;;
+		${n} )
+			echo -en "\033[${n};$((${COLUMNS}-29))H"
+			if [ ${lastexit} -eq 0 ]; then
+				echo -en "( ✔: ${lastcommand} )─┤"
+			else
+				echo -en "( ✘: ${lastcommand} )─┤"
+			fi
 		;;
 		* )
-			echo -en "\033[$((${i}-1));${COLUMNS}H│"
+			echo -en "\033[$((${i}));${COLUMNS}H│"
 		;;
 	esac
 	let i=${i}-1

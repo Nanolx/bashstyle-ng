@@ -35,6 +35,12 @@ Overview of changes in v9.1 "Dial T for TNT"
 
 * Renamed "Clock Advanced" Prompt to "Equinox" (the name change is handled
   internally, the config updated automatically, no user interaction required)
+* re-bind RETURN to C-l\C-j when Equinox is the active style. The Style is now
+  properly re-drawn after command execution (no more overlapping "arms")
+* record executed command and it's exist status in Equinox and display as:
+	( ✔: some command )─┤	-- for a successfully executed command
+	( ✘: some command )─┤	-- for a non-successfully executed command
+* simplify Equinox code a little bit
 
 === Bash Settings ===
 
