@@ -31,16 +31,40 @@ Overview of changes in v9.1 "Dial T for TNT"
 * major restructuring and updating of widgets in all categories
 * minor string changes
 
+=== General ===
+
+* add trap_add function. It allows adding multiple commands to a trap one after
+  another by grabbing the previous trapped functions and re-building the trap
+  (by Richard Hansen https://stackoverflow.com/a/7287873)
+
+* record executed command and it's exist status. This will be available using
+  ${lastcommand} (full length),  ${lastcommandprintable} (truncated to max. 25
+  characters or filled with spaces to reach 25 characters, for prompts) and
+  ${lastexit} variables. This is not recorded for:
+  - completion
+  - trap
+  - PROMPT_COMMAND
+
+  for not overriding the useful info with useless, aswell as for:
+
+  - echo ${lastcommand}
+  - echo ${lastexit}
+
+  so users are able to grab the values in all cases.
+
+* make colorshell a trap rather than embedding it in PROMPT_COMMAND
+
 === Styles ===
 
 * Renamed "Clock Advanced" Prompt to "Equinox" (the name change is handled
   internally, the config updated automatically, no user interaction required)
 * re-bind RETURN to C-l\C-j when Equinox is the active style. The Style is now
   properly re-drawn after command execution (no more overlapping "arms")
-* record executed command and it's exist status in Equinox and display as:
+* include ${lastexit} and ${lastcommand} as follows in Equinox:
 	( ✔: some command )─┤	-- for a successfully executed command
 	( ✘: some command )─┤	-- for a non-successfully executed command
 * simplify Equinox code a little bit
+* don't draw arms in Equinox if the terminal height is less than 16 lines
 
 === Bash Settings ===
 

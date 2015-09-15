@@ -34,7 +34,7 @@ else
 	export TMOUT=$(ini_get timeout)
 fi
 
-_sync_history() {
+_synchistory () {
 	builtin history -a
 	builtin history -c
 	builtin history -r
@@ -86,7 +86,7 @@ dbg_msg $"BashStyle-NG Setting:" $"GLOBIGNORE" "$GLOBIGNORE"
 
 colorshell_revert=$(ini_get colorshell_revert)
 
-_colorshell() {
+_colorshell () {
 	cmd_text_colour='\[`tput setaf $((RANDOM%7))`\]'
 
 	shopt -s promptvars

@@ -150,55 +150,63 @@ fi
 
 dbg_log source ${BSNG_RC_DIR}/settings/options-rc
 
-[[ ! ${PROMPT_COMMAND} ]] && USE_PROMPT_COMMAND=True
+# by Richard Hansen https://stackoverflow.com/a/7287873
+
+log () { printf '%s\n' "$*"; }
+error () { log "ERROR: $*" >&2; }
+fatal () { error "$@"; exit 1; }
+
+trap_add () {
+    trap_add_cmd=$1; shift || fatal "${FUNCNAME} usage error"
+    for trap_add_name in "$@"; do
+        trap -- "$(
+            extract_trap_cmd() { printf '%s\n' "$3"; }
+            eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
+            printf '%s\n' "${trap_add_cmd}"
+        )" "${trap_add_name}" \
+            || fatal "unable to add to trap ${trap_add_name}"
+    done
+}
+
+declare -f -t trap_add
+
+# do trapping stuff
 
 if [[ $(ini_get colorshell) && ${enable_colors} == True ]]; then
-	USE_COLORSHELL=True
+	trap_add '_colorshell' DEBUG
 fi
 
-if [[ $(ini_get history_sync) == True && ${USE_COLORSHELL} == True ]]; then
-	if [[ ${USE_PROMPT_COMMAND} ]]; then
-		PROMPT_COMMAND () {
-			_colorshell
-			_sync_history
-			}
-	else
-		PRE_PROMPT_COMMAND () {
-			_colorshell
-			_sync_history
-			}
-	fi
-	
-	history () {
-		_sync_history
-		builtin history
-	}
-elif [[ ${USE_COLORSHELL} == True ]]; then
-	if [[ ${USE_PROMPT_COMMAND} ]]; then
-		PROMPT_COMMAND () {
-			_colorshell
-			}
-	else
-		PRE_PROMPT_COMMAND () {
-			_colorshell
-			}
-	fi
-elif [[ $(ini_get history_sync) == True ]]; then
-	if [[ ${USE_PROMPT_COMMAND} ]]; then
-		PROMPT_COMMAND () {
-			_sync_history
-			}
-	else
-		PRE_PROMPT_COMMAND () {
-			_sync_history
-			}
-	fi
+if [[ $(ini_get history_sync) == True ]]; then
+	trap_add '_synchistory' DEBUG
 
 	history () {
 		_sync_history
 		builtin history
 	}
 fi
+
+# remember last exit status and command
+remember_command () {
+    [ -n "$COMP_LINE" ] && return
+    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
+    [ "$BASH_COMMAND" = "trap *" ] && return
+    [[ "$BASH_COMMAND" == *lastcommand* ]] && return
+    [[ "$BASH_COMMAND" == *lastexit* ]] && return
+    lastcommand=${BASH_COMMAND}
+    lastcommandprintable=${BASH_COMMAND}
+    if [ ${#lastcommandprintable} -gt 21 ]; then
+	lastcommandprintable=${lastcommandprintable:0:21}
+    elif [ ${#lastcommandprintable} -lt 21 ]; then
+	x=$((21-${#lastcommandprintable}))
+	while [ ${x} -gt 0 ]; do
+	    lastcommandprintable="${lastcommandprintable} "
+	    x=$((${x}-1))
+	done
+    fi
+    lastexit=$?
+}
+
+trap_add 'remember_command' DEBUG
 
 WelcomeMessage=$(ini_get welcome_message)
 

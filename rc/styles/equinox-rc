@@ -22,25 +22,6 @@ n=12
 # make the prompt properly re-draw when pressing [Return]
 bind 'RETURN: "\C-l\C-j"'
 
-# remember last run command
-remember_command () {
-    [ -n "$COMP_LINE" ] && return
-    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
-    lastcommand=${BASH_COMMAND}
-    if [ ${#lastcommand} -gt 21 ]; then
-	lastcommand=${lastcommand:0:21}
-    elif [ ${#lastcommand} -lt 21 ]; then
-	x=$((21-${#lastcommand}))
-	while [ ${x} -gt 0 ]; do
-	    lastcommand="${lastcommand} "
-	    x=$((${x}-1))
-	done
-    fi
-}
-
-# remember last exit status and command
-trap 'lastexit=$?;remember_command' DEBUG
-
 if [[ ${enable_colors} == True ]]; then
 
 esepacolor=$(echo ${sepacolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
@@ -89,7 +70,7 @@ echo -en "\033[3;${COLUMNS}H${esepacolor}│"
 
 i=${LINES}
 
-[[ ${i} -ge 22 ]] && while [ ${i} -ge 4 ]
+[[ ${i} -ge 16 ]] && while [ ${i} -ge 4 ]
 do
 	case ${i} in
 		${j} )
@@ -111,9 +92,9 @@ do
 		${n} )
 			echo -en "\033[${n};$((${COLUMNS}-29))H"
 			if [ ${lastexit} -eq 0 ]; then
-				echo -en "${esepacolor}( ${egreen}✔: ${lastcommand} ${esepacolor})─┤"
+				echo -en "${esepacolor}( ${egreen}✔: ${lastcommandprintable} ${esepacolor})─┤"
 			else
-				echo -en "${esepacolor}( ${ered}✘: ${lastcommand} ${esepacolor})─┤"
+				echo -en "${esepacolor}( ${ered}✘: ${lastcommandprintable} ${esepacolor})─┤"
 			fi
 		;;
 		* )
@@ -154,6 +135,7 @@ do
     fill="${fill}─"
 	let fillsize=${fillsize}-1
 done
+
 if [ "${fillsize}" -lt "0" ]
 then
     let cutt=${trunc_length}-${fillsize}
@@ -173,7 +155,7 @@ echo -en "\033[2;$((${COLUMNS}-29))H"
 echo -en "( $(date +%H:%M) : $(date '+%a, %d %b %y') )────┐"
 echo -en "\033[3;${COLUMNS}H│"
 
-while [ ${i} -ge 4 ]
+[[ ${i} -ge 16 ]] && while [ ${i} -ge 4 ]
 do
 	case ${i} in
 		${j} )
@@ -195,9 +177,9 @@ do
 		${n} )
 			echo -en "\033[${n};$((${COLUMNS}-29))H"
 			if [ ${lastexit} -eq 0 ]; then
-				echo -en "( ✔: ${lastcommand} )─┤"
+				echo -en "( ✔: ${lastcommandprintable} )─┤"
 			else
-				echo -en "( ✘: ${lastcommand} )─┤"
+				echo -en "( ✘: ${lastcommandprintable} )─┤"
 			fi
 		;;
 		* )
