@@ -4976,7 +4976,7 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
               </packing>
             </child>
             <child>
-              <object class="GtkGrid" id="ls.grid">
+              <object class="GtkGrid" id="ls_colors.grid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="column_spacing">15</property>
@@ -5215,375 +5215,7 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
                   <packing>
                     <property name="left_attach">0</property>
                     <property name="top_attach">3</property>
-                    <property name="height">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.jpeg">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">JPEG Images:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">8</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.png">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">PNG Images:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">8</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.gif">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">GIF Images:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">8</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_gif">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.gif"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">9</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.flac">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">FLAC Audio:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">10</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_flac">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.flac"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">11</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_ogg">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.ogg"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">11</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_mp3">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.mp3"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">11</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.ogg">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">OGG Vorbis Audio:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">10</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.mp3">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">MP3 Audio:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">10</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_png">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.png"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">9</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_jpeg">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.jpeg"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">9</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.media">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Media</property>
-                    <property name="angle">90</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">8</property>
-                    <property name="height">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.tar">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">TAR Archive:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">13</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_tar">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.tar"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">14</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.tar1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">TAR Archive:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">15</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_tarxz">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.tar1"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">16</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.archives">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Archives</property>
-                    <property name="angle">90</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">13</property>
-                    <property name="height">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.tgz">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">GZiped TAR Archive:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">13</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_targz">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.tgz"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">14</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.zip">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">ZIP Archive:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">15</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_zip">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.zip"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">16</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.tbz">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">BZiped TAR Archive:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">13</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_tarbz2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.tbz"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">14</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="ls_colors.label.rar">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">RAR Archive:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">15</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="ls_rar">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">ls_colors.liststore.choice</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.rar"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">3</property>
-                    <property name="top_attach">16</property>
+                    <property name="height">8</property>
                   </packing>
                 </child>
                 <child>
@@ -5600,16 +5232,187 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSeparator" id="separator23">
+                  <object class="GtkComboBox" id="ls_rar">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">4</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.rar"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">20</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.rar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">RAR Archive:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">19</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_zip">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.zip"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">20</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.zip">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">ZIP Archive:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">19</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_targz">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.tgz"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">18</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.tgz">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">GZiped TAR Archive:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">17</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_tarbz2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.tbz"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">18</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.tbz">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">BZiped TAR Archive:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">17</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_tarxz">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.tar1"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">20</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.tar1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">TAR Archive:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">19</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_tar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.tar"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">18</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.tar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">TAR Archive:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">17</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.archives">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Archives</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
-                    <property name="top_attach">7</property>
-                    <property name="width">4</property>
+                    <property name="top_attach">17</property>
+                    <property name="height">4</property>
                   </packing>
                 </child>
                 <child>
@@ -5621,8 +5424,365 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
-                    <property name="top_attach">12</property>
+                    <property name="top_attach">16</property>
                     <property name="width">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_mp3">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.mp3"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">15</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.mp3">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">MP3 Audio:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">14</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_jpeg">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.jpeg"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">13</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.jpeg">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">JPEG Images:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">12</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_ogg">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.ogg"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">15</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.ogg">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">OGG Vorbis Audio:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">14</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_png">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.png"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">13</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.png">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">PNG Images:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">12</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_flac">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.flac"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">15</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.flac">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">FLAC Audio:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">14</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_gif">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.gif"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">13</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.gif">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">GIF Images:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">12</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.media">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Media</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">12</property>
+                    <property name="height">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparator" id="separator23">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">4</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">11</property>
+                    <property name="width">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.link">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Links:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.pipe">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Pipes:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.socket">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Sockets:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.blockdev">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Block Devices:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.chardev">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Character Devices:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.empty">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_link">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.link"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_pipe">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.pipe"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_socket">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.socket"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_blockdev">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.blockdev"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="ls_chardev">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">ls_colors.liststore.choice</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="ls_colors.cellrenderer.chardev"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="ls_colors.label.empty2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">10</property>
                   </packing>
                 </child>
               </object>

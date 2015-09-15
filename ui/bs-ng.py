@@ -264,6 +264,11 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("ls_tarbz2", "LSColors", "tarbz2", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_zip", "LSColors", "zip", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_rar", "LSColors", "rar", "combo", dicts.ls_colors)
+		WidgetHandler.InitWidget("ls_link", "LSColors", "link", "combo", dicts.ls_colors)
+		WidgetHandler.InitWidget("ls_socket", "LSColors", "socket", "combo", dicts.ls_colors)
+		WidgetHandler.InitWidget("ls_pipe", "LSColors", "pipe", "combo", dicts.ls_colors)
+		WidgetHandler.InitWidget("ls_blockdev", "LSColors", "blockdev", "combo", dicts.ls_colors)
+		WidgetHandler.InitWidget("ls_chardev", "LSColors", "chardev", "combo", dicts.ls_colors)
 
 		######################## Keybindings ###############################################
 		keytree = keybindings.KeyTree(config.cfo, config.udc, config.fdc)

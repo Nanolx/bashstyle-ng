@@ -6,6 +6,8 @@ Overview of changes in v9.1 "Dial T for TNT"
 	set softtabstop instead of shiftwidth for setting tab length
 * #188 (keybindings-rc):
 	some of the keybindings set from UI didn't take effect
+* #189 (colorshell):
+	option colorshell_reset did not work
 
 === Widgets ===
 
@@ -145,6 +147,17 @@ Overview of changes in v9.1 "Dial T for TNT"
 	- status_color_bg:	background color for status messages
 	- title_color_fg:	text color for titlebar
 	- title_color_bg:	background color for titlebar
+
+=== LS Colors ===
+
+* code simplification
+* set ls-color for '*' (fallback) first
+* add ls-color options for:
+ - symbolic links
+ - sockets
+ - pipes
+ - block devices
+ - character devices
 
 === Translations ===
 

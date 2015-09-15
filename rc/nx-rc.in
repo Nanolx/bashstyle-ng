@@ -17,7 +17,7 @@ export BSNG_DATA_DIR=@DATADIR@
 export BSNG_RC_DIR=${BSNG_DATA_DIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2015"
-INI_VERSION=17
+INI_VERSION=18
 
 source ${BSNG_RC_DIR}/internal/misc
 source ${BSNG_RC_DIR}/internal/logging
@@ -173,10 +173,38 @@ declare -f -t trap_add
 # do trapping stuff
 
 if [[ $(ini_get colorshell) && ${enable_colors} == True ]]; then
+
+	_colorshell () {
+		cmd_text_colour='\[`tput setaf $((RANDOM%7))`\]'
+
+		shopt -s promptvars
+
+		PS1="${PS1}${cmd_text_colour}"
+		PS2="${PS2}${cmd_text_colour}"
+		PS3="${PS3}${cmd_text_colour}"
+		PS4="${PS4}${cmd_text_colour}"
+
+	}
 	trap_add '_colorshell' DEBUG
+
+	if [[ $(ini_get colorshell_reset) == True ]]; then
+
+	_colorshell_reset () {
+		echo -ne "\e[0m"
+	}
+
+		trap_add '_colorshell_reset' DEBUG
+	fi
 fi
 
 if [[ $(ini_get history_sync) == True ]]; then
+
+	_synchistory () {
+		builtin history -a
+		builtin history -c
+		builtin history -r
+	}
+
 	trap_add '_synchistory' DEBUG
 
 	history () {
