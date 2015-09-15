@@ -19,20 +19,20 @@ export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2015"
 INI_VERSION=17
 
+source ${BSNG_RC_DIR}/internal/misc
+source ${BSNG_RC_DIR}/internal/logging
+
 if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
-	if [[ -f /etc/bs-ng_vendor.ini && $(grep ini_version /etc/bs-ng_vendor.ini) == *${INI_VERSION} ]]; then
+	if [[ -f /etc/bs-ng_vendor.ini && $(ini_get ini_version) == ${INI_VERSION} ]]; then
 		cp /etc/bs-ng_vendor.ini ${HOME}/.bs-ng.ini
 	else
 		cp ${BSNG_DATA_DIR}/bashstyle-ng/bs-ng.ini ${HOME}/.bs-ng.ini
 	fi
 fi
 
-source ${BSNG_RC_DIR}/internal/misc
-source ${BSNG_RC_DIR}/internal/logging
-
 export BSNG_LOGFILE=${HOME}/.bashstyle.log
-dbg_log rm -f $BSNG_LOGFILE
-dbg_log touch $BSNG_LOGFILE
+dbg_log rm -f ${BSNG_LOGFILE}
+dbg_log touch ${BSNG_LOGFILE}
 
 dbg_msg $"BashStyle-NG Starting"
 dbg_msg $"BashStyle-NG Bash Major Version:" $(echo ${BASH_VERSINFO[0]})
