@@ -1456,6 +1456,8 @@ The Undobuffer Pythonmodule is licensed under the:
                       <object class="GtkGrid" id="style.grid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                         <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkLabel" id="style.label.basic1">
@@ -1523,7 +1525,7 @@ other color settings.</property>
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">2</property>
-                            <property name="height">8</property>
+                            <property name="height">18</property>
                           </packing>
                         </child>
                         <child>
@@ -1764,6 +1766,105 @@ in grep output.</property>
                           </packing>
                         </child>
                         <child>
+                          <object class="GtkLabel" id="label7">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Date</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">10</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label8">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Time</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">10</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label9">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Username</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label10">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Hostname</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label11">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Workdir</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">14</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label12">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Uptime</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">14</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label13">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Separators</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">16</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label15">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Text</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">18</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label16">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for Subprompts</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">16</property>
+                          </packing>
+                        </child>
+                        <child>
                           <object class="GtkSeparator" id="separator4">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -1772,50 +1873,8 @@ in grep output.</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">10</property>
+                            <property name="top_attach">20</property>
                             <property name="width">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="color_of">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">---
-
-choose a part of the prompt to re-color.</property>
-                            <property name="model">style.liststore.color_of</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="style.cellrenderer.color_of"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">11</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="color_to">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">---
-
-choose the color for the part to recolor.</property>
-                            <property name="model">style.liststore.color_to</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="style.cellrenderer.color_to"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">11</property>
                           </packing>
                         </child>
                         <child>
@@ -1830,8 +1889,8 @@ choose the color for the part to recolor.</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">11</property>
-                            <property name="height">7</property>
+                            <property name="top_attach">21</property>
+                            <property name="height">6</property>
                           </packing>
                         </child>
                         <child>
@@ -1845,25 +1904,7 @@ choose a prompt style.</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">12</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="prompt_style">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="model">style.liststore.prompt_style</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="style.cellrenderer.prompt_style"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">13</property>
+                            <property name="top_attach">21</property>
                           </packing>
                         </child>
                         <child>
@@ -1881,8 +1922,26 @@ start a new session.</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">12</property>
+                            <property name="top_attach">21</property>
                             <property name="height">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="prompt_style">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.prompt_style</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.prompt_style"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">22</property>
                           </packing>
                         </child>
                         <child>
@@ -1894,19 +1953,7 @@ start a new session.</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">14</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.ps234">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">PS2 PS3 and PS4</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">14</property>
+                            <property name="top_attach">23</property>
                           </packing>
                         </child>
                         <child>
@@ -1925,25 +1972,7 @@ separator.</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">15</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="ps234">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">ps234
-
-this character will be used once for PS2, twice
-for PS3 and three times for PS4.</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">15</property>
+                            <property name="top_attach">24</property>
                           </packing>
                         </child>
                         <child>
@@ -1954,18 +1983,7 @@ for PS3 and three times for PS4.</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">16</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.pwd_len">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Maximum PWD length</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">16</property>
+                            <property name="top_attach">25</property>
                           </packing>
                         </child>
                         <child>
@@ -1983,7 +2001,48 @@ is the indicator for a cut directory.</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">17</property>
+                            <property name="top_attach">26</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.ps234">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">PS2 PS3 and PS4</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">23</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="ps234">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">ps234
+
+this character will be used once for PS2, twice
+for PS3 and three times for PS4.</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">24</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.pwd_len">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Maximum PWD length</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">25</property>
                           </packing>
                         </child>
                         <child>
@@ -2003,7 +2062,7 @@ the maximum length for the current directory
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">17</property>
+                            <property name="top_attach">26</property>
                           </packing>
                         </child>
                         <child>
@@ -2015,7 +2074,7 @@ the maximum length for the current directory
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">18</property>
+                            <property name="top_attach">27</property>
                             <property name="width">3</property>
                           </packing>
                         </child>
@@ -2031,7 +2090,7 @@ the maximum length for the current directory
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">19</property>
+                            <property name="top_attach">28</property>
                             <property name="height">5</property>
                           </packing>
                         </child>
@@ -2050,7 +2109,7 @@ number of files in the current directory.</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">19</property>
+                            <property name="top_attach">28</property>
                           </packing>
                         </child>
                         <child>
@@ -2068,7 +2127,7 @@ computer's uptime.</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">19</property>
+                            <property name="top_attach">28</property>
                           </packing>
                         </child>
                         <child>
@@ -2086,7 +2145,7 @@ of all files in the current directory.</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">20</property>
+                            <property name="top_attach">29</property>
                           </packing>
                         </child>
                         <child>
@@ -2104,24 +2163,7 @@ current tty.</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">20</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_processes">
-                            <property name="label" translatable="yes">Display number of running jobs</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">processes
-
-Applies to "separator" style only. Show the
-number of running processes.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">21</property>
+                            <property name="top_attach">29</property>
                           </packing>
                         </child>
                         <child>
@@ -2138,25 +2180,7 @@ system load.</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">21</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_battery">
-                            <property name="label" translatable="yes">Display battery load</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">battery_load
-
-Applies to "separator" style only. Display the
-battery load using acpi.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">22</property>
-                            <property name="height">2</property>
+                            <property name="top_attach">30</property>
                           </packing>
                         </child>
                         <child>
@@ -2174,7 +2198,7 @@ both: show free / used RAM in MB</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">22</property>
+                            <property name="top_attach">31</property>
                           </packing>
                         </child>
                         <child>
@@ -2191,8 +2215,211 @@ both: show free / used RAM in MB</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">23</property>
+                            <property name="top_attach">32</property>
                           </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_processes">
+                            <property name="label" translatable="yes">Display number of running jobs</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">processes
+
+Applies to "separator" style only. Show the
+number of running processes.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">30</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_battery">
+                            <property name="label" translatable="yes">Display battery load</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">battery_load
+
+Applies to "separator" style only. Display the
+battery load using acpi.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">31</property>
+                            <property name="height">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_date">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour1"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">11</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_time">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour2"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">11</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_user">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour3"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_host">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour4"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_uptime">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour5"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">15</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_wdir">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour6"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">15</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_separator">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour7"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">17</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_ps234">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour8"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">17</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_font">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour9"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">19</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <placeholder/>
@@ -2523,6 +2750,8 @@ Now executing "a" will do "echo hello world"</property>
               <object class="GtkGrid" id="advanced.grid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="column_spacing">15</property>
                 <child>
                   <object class="GtkLabel" id="advanced.label.history">
@@ -3163,6 +3392,8 @@ in the bash history.</property>
               <object class="GtkGrid" id="readline.grid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="column_spacing">15</property>
                 <child>
                   <object class="GtkLabel" id="readline.label.basic">
@@ -3621,6 +3852,8 @@ incomplete file/pathname).</property>
                       <object class="GtkGrid" id="vim.grid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                         <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkCheckButton" id="use_vimcfg">
@@ -4373,6 +4606,8 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
                       <object class="GtkGrid" id="nano.grid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
                         <property name="column_spacing">15</property>
                         <child>
                           <object class="GtkLabel" id="nano.label.basic">
@@ -4979,6 +5214,8 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
               <object class="GtkGrid" id="ls_colors.grid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="column_spacing">15</property>
                 <child>
                   <object class="GtkCheckButton" id="use_lscolors">
@@ -6267,6 +6504,8 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
               <object class="GtkGrid" id="git.grid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="column_spacing">15</property>
                 <child>
                   <object class="GtkCheckButton" id="use_gitcfg">
@@ -6488,6 +6727,8 @@ lsb = show branches by last activity</property>
               <object class="GtkGrid" id="shopt.grid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="column_spacing">15</property>
                 <child>
                   <object class="GtkCheckButton" id="histappend">

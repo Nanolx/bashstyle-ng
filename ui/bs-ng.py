@@ -79,24 +79,15 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("show_load", "Style", "load", "bool", None)
 		WidgetHandler.InitWidget("show_battery", "Style", "battery_load", "bool", None)
 		WidgetHandler.InitWidget("show_mem", "Style", "mem", "combo", dicts.memory_types)
-
-		# special combobox not (yet) handled by widgethandler.py
-		self.color_of = gtkbuilder.get_object("color_of")
-		self.color_to = gtkbuilder.get_object("color_to")
-
-		self.color_of.set_active(0)
-		self.color_to.set_active(0)
-
-		def change_color(widget, data=None):
-			color_set = self.color_of.get_active()
-			color_is = self.color_to.get_active()
-			if color_set != 0 and color_is != 0:
-				config.cfo["Style"][dicts.color_keys[color_set]] = dicts.colors[color_is]
-				self.color_to.set_active(0)
-				self.color_of.set_active(0)
-
-		self.color_of.connect("changed", change_color)
-		self.color_to.connect("changed", change_color)
+		WidgetHandler.InitWidget("color_date", "Style", "color_date", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_font", "Style", "color_font", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_host", "Style", "color_host", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_ps234", "Style", "color_ps234", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_separator", "Style", "color_separator", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_time", "Style", "color_time", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_uptime", "Style", "color_uptime", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_user", "Style", "color_user", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_wdir", "Style", "color_wdir", "combo", dicts.colors)
 
 		####################### Aliases ####################################################
 		WidgetHandler.InitWidget("alias1", "Alias", "alias_one", "text", None)
