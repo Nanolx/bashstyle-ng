@@ -56,31 +56,37 @@ case ${1} in
 
 	usedram)
 		temp=$(top -bn1 | gawk '/Mem :/{print "(" $4 "-" $6 ") /1024"}' | bc)
-		if [[ $temp -lt 1000 ]]; then
-			echo 0$temp
+		if [[ $temp -lt 10 ]]; then
+			echo 000$temp
 		elif [[ $temp -lt 100 ]]; then
 			echo 00$temp
+		elif [[ $temp -lt 1000 ]]; then
+			echo 0$temp
 		else	echo $temp
 		fi
 	;;
 
 	freeram)
 		temp=$(top -bn1 | gawk '/Mem :/{print $6 "/1024"}' | bc)
-		if [[ $temp -lt 1000 ]]; then
-			echo 0$temp
+		if [[ $temp -lt 10 ]]; then
+			echo 000$temp
 		elif [[ $temp -lt 100 ]]; then
 			echo 00$temp
+		elif [[ $temp -lt 1000 ]]; then
+			echo 0$temp
 		else	echo $temp
 		fi
 	;;
 
 	totalram)
 		temp=$(top -bn1 | gawk '/Mem :/{print $4 "/1024"}' | bc)
-		if [[ $total -lt 1000 ]]; then
-			echo 0$total
-		elif [[ $total -lt 100 ]]; then
-			echo 00$total
-		else	echo $total
+		if [[ $temp -lt 10 ]]; then
+			echo 000$temp
+		elif [[ $temp -lt 100 ]]; then
+			echo 00$temp
+		elif [[ $temp -lt 1000 ]]; then
+			echo 0$temp
+		else	echo $temp
 		fi
 	;;
 
