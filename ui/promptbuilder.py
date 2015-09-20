@@ -67,22 +67,20 @@ class PromptBuilder(object):
 
 		######################## Helper Functions ##########################################
 
-		def prompt_add(widget, text):
+		def prompt_add(widget, text_p_c, text_ps1):
 			if self.active_buffer == "P_C":
-				self.prompt_command_buffer.insert_at_cursor(text)
+				self.prompt_command_buffer.insert_at_cursor(text_p_c)
 			elif self.active_buffer == "PS1":
-				self.custom_prompt_buffer.insert_at_cursor(text)
+				self.custom_prompt_buffer.insert_at_cursor(text_ps1)
 
-		def prompt_add_combo(widget, dict):
+		def prompt_add_combo(widget, dict_p_c, dict_ps1):
 			if widget.get_active() != 0:
-				text = dict[widget.get_active()]
+				if self.active_buffer == "P_C":
+					text = dict_p_c[widget.get_active()]
+				elif self.active_buffer == "PS1":
+					text = dict_ps1[widget.get_active()]
 				prompt_add(widget, text)
-
-		def prompt_set(text):
-			if self.active_buffer == "P_C":
-				self.prompt_command_buffer.set_text(text)
-			elif self.active_buffer == "PS1":
-				self.custom_prompt_buffer.set_text(text)
+				widget.set_active(0)
 
 		######################## GtkButtons ################################################
 
@@ -111,16 +109,12 @@ class PromptBuilder(object):
 				self.custom_prompt_buffer.redo()
 
 		def do_reset(widget):
-			if self.active_buffer == "P_C":
-				self.prompt_command_buffer.set_text("%s" % userconfig["Custom"]["command"])
-			elif self.active_buffer == "PS1":
-				self.custom_prompt_buffer.set_text("%s" % userconfig["Custom"]["prompt"])
+			self.prompt_command_buffer.set_text("%s" % userconfig["Custom"]["command"])
+			self.custom_prompt_buffer.set_text("%s" % userconfig["Custom"]["prompt"])
 
 		def do_revert(widget):
-			if self.active_buffer == "P_C":
-				self.prompt_command_buffer.set_text("%s" % factoryconfig["Custom"]["command"])
-			elif self.active_buffer == "PS1":
-				self.custom_prompt_buffer.set_text("%s" % factoryconfig["Custom"]["prompt"])
+			self.prompt_command_buffer.set_text("%s" % factoryconfig["Custom"]["command"])
+			self.custom_prompt_buffer.set_text("%s" % factoryconfig["Custom"]["prompt"])
 
 		self.empty.connect("clicked", do_empty)
 		self.undo.connect("clicked", do_undo)
@@ -143,45 +137,45 @@ class PromptBuilder(object):
 
 		######################## Toolbox Buttons ###########################################
 
-		def load_toolbutton(object, text):
+		def load_toolbutton(object, text_p_c, text_ps1):
 			widget = gtkbuilder.get_object("%s" % object)
-			widget.connect("clicked", prompt_add, text)
+			widget.connect("clicked", prompt_add, text_p_c, text_ps1)
 
-		load_toolbutton("username", "\\u")
-		load_toolbutton("hostname", "\\h")
-		load_toolbutton("fhostname", "\\H")
-		load_toolbutton("time", "\\t")
-		load_toolbutton("date", "\\d")
-		load_toolbutton("sign", "\\$")
-		load_toolbutton("fworkdir", "\\w")
-		load_toolbutton("workdir", "\\W")
-		load_toolbutton("euid", "$EUID")
-		load_toolbutton("jobs", "\\j")
-		load_toolbutton("bang", "\\!")
-		load_toolbutton("number", "\\#")
-		load_toolbutton("pid", "$BASHPID")
-		load_toolbutton("shlvl", "$SHLVL")
-		load_toolbutton("truncpwd", "\\$(truncpwd)")
-		load_toolbutton("showsize", "\\$(systemkit dirsize)")
-		load_toolbutton("countprocesses", "\\$(systemkit processes)")
-		load_toolbutton("showuptime", "\\$(systemkit uptime)")
-		load_toolbutton("showtty", "\\$(systemkit tty)")
-		load_toolbutton("showcpuload", "\\$(systemkit cpuload)")
-		load_toolbutton("showseconds", "\\$SECONDS)")
-		load_toolbutton("showbatteryload", "\\$(systemkit battery)")
+		load_toolbutton("username", "${USER}", "\\u")
+		load_toolbutton("hostname", "${HOSTNAME/.*}", "\\h")
+		load_toolbutton("fhostname", "${HOSTNAME}", "\\H")
+		load_toolbutton("time", "$(date +%H:%M:%S)", "\\t")
+		load_toolbutton("date", "$(date date +%d.%m.%Y)", "\\d")
+		load_toolbutton("sign", "", "\\$")
+		load_toolbutton("fworkdir", "${PWD}", "\\w")
+		load_toolbutton("workdir", "${PWD/*\/}", "\\W")
+		load_toolbutton("euid", "${EUID}", "${EUID}")
+		load_toolbutton("jobs", "$(jobs -pr)", "\\j")
+		load_toolbutton("bang", "", "\\!")
+		load_toolbutton("number", "", "\\#")
+		load_toolbutton("pid", "${BAHSPID}", "${BASHPID}")
+		load_toolbutton("shlvl", "${SHLVL}", "${SHLVL}")
+		load_toolbutton("truncpwd", "$(truncpwd)", "\\$(truncpwd)")
+		load_toolbutton("showsize", "$(systemkit dirsize)", "\\$(systemkit dirsize)")
+		load_toolbutton("countprocesses", "$(systemkit processes)", "\\$(systemkit processes)")
+		load_toolbutton("showuptime", "$(systemkit uptime)", "\\$(systemkit uptime)")
+		load_toolbutton("showtty", "$(systemkit tty)", "\\$(systemkit tty)")
+		load_toolbutton("showcpuload", "$(systemkit cpuload)", "\\$(systemkit cpuload)")
+		load_toolbutton("showseconds", "${SECONDS}", "${SECONDS}")
+		load_toolbutton("showbatteryload", "$(systemkit battery)", "\\$(systemkit battery)")
 
 		######################## Toolbox Comboboxes ########################################
 
-		def load_toolcombo(object, dict):
+		def load_toolcombo(object, dict_p_c, dict_ps1):
 			widget = gtkbuilder.get_object("%s" % object)
 			widget.set_active(0)
-			widget.connect("changed", prompt_add_combo, dict)
+			widget.connect("changed", prompt_add_combo, dict_p_c, dict_ps1)
 
-		load_toolcombo("showmem", dicts.memory_getters)
-		load_toolcombo("showspace", dicts.space_getters)
-		load_toolcombo("countfiles", dicts.counters)
-		load_toolcombo("showload", dicts.load_getters)
-		load_toolcombo("insert_color", dicts.symbolic_colors)
+		load_toolcombo("showmem", dicts.memory_getters_p_c, dicts.memory_getters_ps1)
+		load_toolcombo("showspace", dicts.space_getters_p_c, dicts.space_getters_ps1)
+		load_toolcombo("countfiles", dicts.counters_p_c, dicts.counters_ps1)
+		load_toolcombo("showload", dicts.load_getters_p_c, dicts.load_getters_ps1)
+		load_toolcombo("insert_color", dicts.symbolic_colors_p_c, dicts.symbolic_colors_ps1)
 
 		######################## Default Styles ############################################
 

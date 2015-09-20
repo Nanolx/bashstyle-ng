@@ -26,6 +26,10 @@ Overview of changes in v9.1 "Dial T for TNT"
    immensively huge when inserting large prompts like Equinox)
  - add "Reset" button: reset to last saved user configuration
  - add "Factory" button: reset to vendor or factory configuration
+ - when inserting functions or variables into PROMPT_COMMAND or PS1 the output
+   will be modified so that it conforms with where it's been added, example:
+   - ${eusercolor} for PROMPT_COMMAND and ${usercolor} for ${PS1} or
+   - $(systemkit usedram%) for PROMPT_COMMAND and \$(systemkit usedram%) for PS1
 
 * restructure prompt color settings
  ++ before: two combined combo boxes (not optimal from usability view)

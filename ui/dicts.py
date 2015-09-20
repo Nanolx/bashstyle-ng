@@ -56,18 +56,6 @@ grep_colors = {
 	       20 : "01;38;5;5344",
 	      }
 
-color_keys = {
-	      1 : "color_user",
-	      2 : "color_host",
-	      3 : "color_date",
-	      4 : "color_time",
-	      5 : "color_wdir",
-	      6 : "color_font",
-	      7 : "color_separator",
-	      8 : "color_uptime",
-	      9 : "color_ps234",
-	     }
-
 colors = {
 	   0 : "$black",
 	   1 : "$red",
@@ -201,39 +189,79 @@ ls_colors = {
 	     20 : "$lcream",
 	    }
 
-counters = {
+
+##### Custom Prompt Builder #####
+
+counters_p_c = {
 	    1 : "\\$(systemkit countoverallfiles)",
 	    2 : "\\$(systemkit countvisiblefiles)",
 	   }
 
-load_getters = {
+counters_ps1 = {
+	    1 : "\\$(systemkit countoverallfiles)",
+	    2 : "\\$(systemkit countvisiblefiles)",
+	   }
+
+load_getters_p_c = {
+		1 : "$(systemkit load1)",
+		2 : "$(systemkit load5)",
+		3 : "$(systemkit load15)",
+	       }
+
+load_getters_ps1 = {
 		1 : "\\$(systemkit load1)",
 		2 : "\\$(systemkit load5)",
 		3 : "\\$(systemkit load15)",
 	       }
 
-memory_getters = {
+memory_getters_p_c = {
+		  1 : "$(systemkit usedram)",
+		  2 : "$(systemkit freeram)",
+		  3 : "$(systemkit usedram%)",
+		  4 : "$(systemkit freeram%)",
+		 }
+
+memory_getters_ps1 = {
 		  1 : "\\$(systemkit usedram)",
 		  2 : "\\$(systemkit freeram)",
 		  3 : "\\$(systemkit usedram%)",
 		  4 : "\\$(systemkit freeram%)",
 		 }
 
-space_getters = {
+space_getters_p_c = {
+		  1 : "$(systemkit usedspace <device>)",
+		  2 : "$(systemkit freespace <device>)",
+		  3 : "$(systemkit usedspace% <device>)",
+		  4 : "$(systemkit freespace% <device>)",
+		 }
+
+space_getters_ps1 = {
 		  1 : "\\$(systemkit usedspace <device>)",
 		  2 : "\\$(systemkit freespace <device>)",
 		  3 : "\\$(systemkit usedspace% <device>)",
 		  4 : "\\$(systemkit freespace% <device>)",
 		 }
 
-symbolic_colors = {
-		   1 : "$usercolor",
-		   2 : "$hostcolor",
-		   3 : "$datecolor",
-		   4 : "$timecolor",
-		   5 : "$wdircolor",
-		   6 : "$fontcolor",
-		   7 : "$sepacolor",
-		   8 : "$upcolor",
-		   9 : "$pscolor",
+symbolic_colors_p_c = {
+		   1 : "${eusercolor}",
+		   2 : "${ehostcolor}",
+		   3 : "${edatecolor}",
+		   4 : "${etimecolor}",
+		   5 : "${ewdircolor}",
+		   6 : "${efontcolor}",
+		   7 : "${esepacolor}",
+		   8 : "${eupcolor}",
+		   9 : "${epscolor}",
+		  }
+
+symbolic_colors_ps1 = {
+		   1 : "${usercolor}",
+		   2 : "${hostcolor}",
+		   3 : "${datecolor}",
+		   4 : "${timecolor}",
+		   5 : "${wdircolor}",
+		   6 : "${fontcolor}",
+		   7 : "${sepacolor}",
+		   8 : "${upcolor}",
+		   9 : "${pscolor}",
 		  }
