@@ -38,6 +38,9 @@ Overview of changes in v9.1 "Dial T for TNT"
  ++ before: two combined combo boxes (not optimal from usability view)
  ++ after : a separate combo box for each color setting
 
+* re-arrange some settings in 'Advanced' category. Rename 'Extra' sub-section
+  into 'BashStyle-NG', 'Misc' sub-section into 'Bash Builtin'.
+
 * re-align widget groups for the better looks
 * show what category the user is currently in, in the header
 * added missing revert-to-default icons for PWD Length Spinbutton
@@ -68,6 +71,10 @@ Overview of changes in v9.1 "Dial T for TNT"
   so users are able to grab the values in all cases. Add all three to the
   Custom Prompt Builder.
 
+* rename lscd_mkdir config into customcd_mkdir and make it apply for both lscd
+  and treecd
+* add treecd_opts config (similar to lscd_opts)
+* improve treecd (make it internally work like lscd)
 * make colorshell a trap rather than embedding it in PROMPT_COMMAND
 * remove PRE_PROMPT_COMMAND
 

@@ -17,7 +17,7 @@ export BSNG_DATA_DIR=@DATADIR@
 export BSNG_RC_DIR=${BSNG_DATA_DIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2015"
-INI_VERSION=18
+INI_VERSION=19
 
 source ${BSNG_RC_DIR}/internal/misc
 source ${BSNG_RC_DIR}/internal/logging
@@ -245,7 +245,7 @@ function lscd() {
 		builtin cd "${*}" &>/dev/null
 	elif [[ ! "${1}" ]]; then
 		builtin cd
-	elif [[ $(ini_get lscd_mkdir) == True ]]; then
+	elif [[ $(ini_get customcd_mkdir) == True ]]; then
 		mkdir -p "${1}"
 		builtin cd "${1}" &>/dev/null
 	fi
@@ -262,10 +262,30 @@ function lscd() {
 }
 
 function treecd () {
-	builtin cd "${@}" &>/dev/null
+	OLD_PWD=${PWD}
+	clear
 
-	echo -e "${epink}content:"
-	tree -L 1 ${TREE_OPTS}
+	if [[ -f "${1}" ]]; then
+		builtin cd "${1%/*}" &>/dev/null
+	elif [[ -d "${1}" ]]; then
+		builtin cd "${1}" &>/dev/null
+	elif [[ "${1}" == -*   ]]; then
+		builtin cd "${*}" &>/dev/null
+	elif [[ ! "${1}" ]]; then
+		builtin cd
+	elif [[ $(ini_get customcd_mkdir) == True ]]; then
+		mkdir -p "${1}"
+		builtin cd "${1}" &>/dev/null
+	fi
+
+	if [[ ${OLD_PWD} != ${PWD} ]]; then
+		echo -e "\n${epink}content:\n"
+		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
+			tree -L ${TREECD_OPTS}
+		else	echo -e "${ecream}-- empty --\n"
+		fi
+	fi
+
 	echo "${PWD}" > ${HOME}/.lastpwd
 }
 
