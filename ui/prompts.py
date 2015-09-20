@@ -20,9 +20,7 @@ floating_clock_pc=r"""let prompt_x=$(tput cols)-29
 tput sc
 tput cup 0 ${prompt_x}
 echo -n \"[ $(date '+%a, %d %b %y') :: $(date +%T) ]\"
-tput rc
-
-PRE_PROMPT_COMMAND"""
+tput rc"
 
 floating_clock_ps=r"""[ \u @ \h : \$(truncpwd) ] """
 
@@ -46,8 +44,6 @@ if [ \"$fillsize\" -lt \"0\" ]; then
 	newPWD=\"${xPWD//\//$dirchar}\"
 else	newPWD=\"${PWD//\//$dirchar}\"
 fi
-
-PRE_PROMPT_COMMAND
 
 _newPWD () {
 	echo -e $newPWD
@@ -112,9 +108,7 @@ devices=\"\"
 else
 devices=\" ${devicetemp}bc\"
 fi
-unset devicetemp
-
-PRE_PROMPT_COMMAND"""
+unset devicetemp"
 
 poweruser_ps=r"""\[ \$(date +%T) - \$(date +%D) ]
 [ \u @ \h ]\ [ \${files}.\${hiddenfiles}-\${executables}x \$(show_size)
@@ -150,9 +144,7 @@ if [ \"$fillsize\" -lt \"0\" ]
 then
     let cutt=3-${fillsize}
     newPWD=\"...$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")\"
-fi
-
-PRE_PROMPT_COMMAND"""
+fi"
 
 ayoli_ps=r"""┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD
 )─<└─( \$(date \"+%H:%M\") \$ )─> """
