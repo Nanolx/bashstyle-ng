@@ -8,8 +8,6 @@
 #							#
 #########################################################
 
-[[ ${PATH} != *games* && -d /usr/games/ ]] && \
-	PATH="${PATH}:/usr/games/:/usr/local/games/"
-
-export PATH="@DATADIR@/bashstyle-ng/rc/functions/:${PATH}:."
-source @DATADIR@/bashstyle-ng/rc/nx-rc
+if [ ! $(grep "nx-rc" ${HOME}/.bashrc) >/dev/null 2>&1 ]; then
+    echo -e "\nsource @DATADIR@/bashstyle-ng/rc/nx-rc" >> ${HOME}/.bashrc
+fi

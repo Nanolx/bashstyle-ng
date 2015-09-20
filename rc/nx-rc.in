@@ -84,22 +84,6 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
 	dbg_log source ${BSNG_RC_DIR}/styles/null-rc
 
-	if [[ $(lsb_release -is) == Debian ]]; then
-	#	if [[ ${1} == -r ]]; then
-	#		START_LINE=$(sed -n '/^\#if \[ "$color_prompt" = yes/=' ~/.bashrc)
-	#		if [[ ${START_LINE} ]]; then
-	#			END_LINE=$((${START_LINE}+14))
-	#			sed -e "${START_LINE},${END_LINE}s/^\#//" -i ~/.bashrc
-	#		fi
-	#	else
-			START_LINE=$(sed -n '/^if \[ "$color_prompt" = yes/=' ~/.bashrc)
-			if [[ ${START_LINE} ]]; then
-				END_LINE=$((${START_LINE}+14))
-				sed -e "${START_LINE},${END_LINE}s/^/\#/" -i ~/.bashrc
-			fi
-	#	fi
-	fi
-
 	dbg_msg $"BashStyle-NG Setting:" $"ps2 ps3 ps4 char" $(ini_get ps234)
 	ps234char=$(ini_get ps234)
 
@@ -292,5 +276,11 @@ function reload () {
 	source @PROFILEDIR@/bashstyle.sh
 
 }
+
+[[ ${PATH} != *games* && -d /usr/games/ ]] && \
+	PATH="${PATH}:/usr/games/:/usr/local/games/"
+
+[[ ${PATH} != *bashstyle-ng/rc* ]] && \
+	export PATH="@DATADIR@/bashstyle-ng/rc/functions/:${PATH}:."
 
 dbg_finalize
