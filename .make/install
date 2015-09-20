@@ -15,7 +15,7 @@ post_install () {
 		echo -e "\t${WHITE}+ ${MAGENTA} post-installation tasks"
 		gtk-update-icon-cache -f ${DATADIR}/icons/hicolor 2>/dev/null
 		if [[ $(grep "bashstyle.sh" ${BASHFILE}) == "" ]]; then
-			echo "source ${PROFILEDIR}/bashstyle.sh" | sed -e 's,//,/,g' >> ${BASHFILE}
+			echo -e "\nsource ${PROFILEDIR}/bashstyle.sh" | sed -e 's,//,/,g' >> ${BASHFILE}
 		fi
 	fi
 

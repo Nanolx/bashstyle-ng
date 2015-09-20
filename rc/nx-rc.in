@@ -278,7 +278,7 @@ function reload () {
 }
 
 [[ ${PATH} != *games* && -d /usr/games/ ]] && \
-	PATH="${PATH}:/usr/games/:/usr/local/games/"
+	export PATH="${PATH}:/usr/games/:/usr/local/games/"
 
 [[ ${PATH} != *bashstyle-ng/rc* ]] && \
 	export PATH="@DATADIR@/bashstyle-ng/rc/functions/:${PATH}:."
