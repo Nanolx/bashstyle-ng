@@ -59,9 +59,11 @@ Overview of changes in v9.1 "Dial T for TNT"
   for not overriding the useful info with useless, aswell as for:
 
   - echo ${lastcommand}
+  - echo ${lastcommandprintable}
   - echo ${lastexit}
 
-  so users are able to grab the values in all cases.
+  so users are able to grab the values in all cases. Add all three to the
+  Custom Prompt Builder.
 
 * make colorshell a trap rather than embedding it in PROMPT_COMMAND
 

@@ -163,6 +163,9 @@ class PromptBuilder(object):
 		load_toolbutton("showcpuload", "$(systemkit cpuload)", "\\$(systemkit cpuload)")
 		load_toolbutton("showseconds", "${SECONDS}", "${SECONDS}")
 		load_toolbutton("showbatteryload", "$(systemkit battery)", "\\$(systemkit battery)")
+		load_toolbutton("showexit", "${lastexit}", "${lastexit}")
+		load_toolbutton("showlastcmd", "${lastcommand}", "${lastcommand}")
+		load_toolbutton("showlastcmd_cut", "${lastcommandprintable}", "${lastcommandprintable}")
 
 		######################## Toolbox Comboboxes ########################################
 

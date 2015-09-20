@@ -1107,48 +1107,6 @@ The Undobuffer Pythonmodule is licensed under the:
           </packing>
         </child>
         <child>
-          <object class="GtkComboBox" id="showspace">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="model">toolbox.liststore.space</property>
-            <child>
-              <object class="GtkCellRendererText" id="toolbox.cellrenderer.showspace"/>
-              <attributes>
-                <attribute name="text">0</attribute>
-              </attributes>
-            </child>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">9</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator" id="toolbox.separator.2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_top">5</property>
-            <property name="margin_bottom">5</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">10</property>
-            <property name="width">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="toolbox.close">
-            <property name="label" translatable="yes">Close</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">11</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkLabel" id="toolbox.label.bsng">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -1161,7 +1119,85 @@ The Undobuffer Pythonmodule is licensed under the:
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">6</property>
-            <property name="height">4</property>
+            <property name="height">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="toolbox.close">
+            <property name="label" translatable="yes">Close</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">3</property>
+            <property name="top_attach">12</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="toolbox.separator.2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">5</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">11</property>
+            <property name="width">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="showspace">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="model">toolbox.liststore.space</property>
+            <child>
+              <object class="GtkCellRendererText" id="toolbox.cellrenderer.showspace"/>
+              <attributes>
+                <attribute name="text">0</attribute>
+              </attributes>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">3</property>
+            <property name="top_attach">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="showexit">
+            <property name="label" translatable="yes">Show Exit Value</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="showlastcmd">
+            <property name="label" translatable="yes">Show Last Command</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">10</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="showlastcmd_cut">
+            <property name="label" translatable="yes">Show Last Command (cut)</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">10</property>
           </packing>
         </child>
         <child>
