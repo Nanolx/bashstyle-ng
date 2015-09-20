@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-host=$(echo -n ${HOSTNAME} | sed -e "s/[\.].*//")
+host=${HOSTNAME/.*}
 dirchar=$(ini_get directory_indicator)
 trunc_symbol=$(ini_get pwdcut)
 trunc_length=$(($(echo ${trunc_symbol} | wc -m)-1))
@@ -23,13 +23,6 @@ n=12
 bind 'RETURN: "\C-l\C-j"'
 
 if [[ ${enable_colors} == True ]]; then
-
-esepacolor=$(echo ${sepacolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
-edatecolor=$(echo ${datecolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
-etimecolor=$(echo ${timecolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
-efontcolor=$(echo ${fontcolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
-epscolor=$(echo ${pscolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
-ewdircolor=$(echo ${wdircolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
 
 function pre_prompt {
 

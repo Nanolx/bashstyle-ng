@@ -18,10 +18,6 @@ case ${1} in
 
 	* )
 
-		esepacolor=$(echo ${sepacolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
-		ewdircolor=$(echo ${wdircolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
-		epscolor=$(echo ${pscolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')
-
 		[[ ! ${dirchar} ]] && dirchar="/"
 		[[ ! ${trunc_symbol} ]] && trunc_symbol="«"
 		[[ ! ${trunc_length} ]] && trunc_length=25

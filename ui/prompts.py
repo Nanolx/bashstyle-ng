@@ -20,7 +20,7 @@ floating_clock_pc=r"""let prompt_x=$(tput cols)-29
 tput sc
 tput cup 0 ${prompt_x}
 echo -n \"[ $(date '+%a, %d %b %y') :: $(date +%T) ]\"
-tput rc"
+tput rc"""
 
 floating_clock_ps=r"""[ \u @ \h : \$(truncpwd) ] """
 
@@ -29,7 +29,7 @@ dirchar=$(ini_get directory_indicator)
 trunc_symbol=$(ini_get pwdcut)
 trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
 
-j=4 k=6 l=8 m=10 newPWD=\"${PWD}\" fill=\"\"
+j=4 k=6 l=8 m=10 n=12 newPWD=\"${PWD}\" fill=\"\"
 
 let promptsize=$(echo -n \"--( $(whoami) @ $host )---(${PWD})-----\" | wc -c | tr -d \" \")
 let fillsize=${COLUMNS}-${promptsize}
@@ -51,28 +51,41 @@ _newPWD () {
 
 echo -en \"\\033[2;$((${COLUMNS}-29))H\"
 echo -en \"( $(date +%H:%M) : $(date '+%a, %d %b %y') )────┐\"
-echo -en \"\\033[2;${COLUMNS}H\"
+echo -en \"\\033[3;${COLUMNS}H│\"
 i=${LINES}
 
-while [ $i -ge 4 ]; do
-   if [[ $i == $j ]]; then
-	echo -en \"\\033[$j;$((${COLUMNS}-29))H\"
-	echo -en \"( system-load: $(systemkit load1) )────────\"
-   fi
-   if [[ $i == $k ]]; then
-	echo -en \"\\033[$k;$((${COLUMNS}-29))H\"
-	echo -en \"( cpu-load: $(systemkit cpuload) )────────────\"
-   fi
-   if [[ $i == $l ]]; then
-	echo -en \"\\033[$l;$((${COLUMNS}-29))H\"
-	echo -en \"( ram: $(systemkit usedram)mb / $(systemkit freeram)mb )─────\"
-   fi
-   if [[ $i == $m ]]; then
-	echo -en \"\\033[$m;$((${COLUMNS}-29))H\"
-	echo -en \"( processes: $(systemkit processes) )──────────\"
-   fi
-   echo -en \"\\033[$(($i-1));${COLUMNS}H│\"
-   let i=$i-1
+[[ ${i} -ge 16 ]] && while [ ${i} -ge 4 ]
+do
+	case ${i} in
+		${j} )
+			echo -en \"\\033[${j};$((${COLUMNS}-29))H\"
+			echo -en \"( system-load: $(systemkit load1) )────────┤\"
+		;;
+		${k} )
+			echo -en \"\\033[${k};$((${COLUMNS}-29))H\"
+			echo -en \"( cpu-load: $(systemkit cpuload) )────────────┤\"
+		;;
+		${l} )
+			echo -en \"\\033[${l};$((${COLUMNS}-29))H\"
+			echo -en \"( ram: $(systemkit usedram)mb / $(systemkit freeram)mb )─────┤\"
+		;;
+		${m} )
+			echo -en \"\\033[${m};$((${COLUMNS}-29))H\"
+			echo -en \"( processes:${epscolor} $(systemkit processes) )──────────┤\"
+		;;
+		${n} )
+			echo -en \"\\033[${n};$((${COLUMNS}-29))H\"
+			if [ ${lastexit} -eq 0 ]; then
+				echo -en \"( ✔: ${lastcommandprintable} )─┤\"
+			else
+				echo -en \"( ✘: ${lastcommandprintable} )─┤\"
+			fi
+		;;
+		* )
+			echo -en \"\\033[$((${i}));${COLUMNS}H│\"
+		;;
+	esac
+	let i=${i}-1
 done
 let prompt_line=${LINES}-1"""
 
@@ -108,7 +121,7 @@ devices=\"\"
 else
 devices=\" ${devicetemp}bc\"
 fi
-unset devicetemp"
+unset devicetemp"""
 
 poweruser_ps=r"""\[ \$(date +%T) - \$(date +%D) ]
 [ \u @ \h ]\ [ \${files}.\${hiddenfiles}-\${executables}x \$(show_size)
@@ -144,7 +157,7 @@ if [ \"$fillsize\" -lt \"0\" ]
 then
     let cutt=3-${fillsize}
     newPWD=\"...$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")\"
-fi"
+fi"""
 
 ayoli_ps=r"""┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD
 )─<└─( \$(date \"+%H:%M\") \$ )─> """
