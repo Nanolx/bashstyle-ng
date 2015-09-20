@@ -128,4 +128,12 @@ eval sepacolor=$(ini_get color_separator)
 eval upcolor=$(ini_get color_uptime)
 eval pscolor=$(ini_get color_ps234)
 
-dbg_log export enable_colors colstyle black red green yellow blue magenta cyan white coldblue smoothblue iceblue turqoise smoothgreen winered brown silver ocher orange purple pink cream eblack ered egreen eyellow eblue emagenta ecyan ewhite ecoldblue esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher eorange epurple epink ecream
+eusercolor=$(echo ${usercolor}| sed -e 's/\\\[//g;s/\\\]//g')
+ehostcolor=$(echo ${hostcolor} | sed -e 's/\\\[//g;s/\\\]//g')
+edatecolor=$(echo ${datecolor} | sed -e 's/\\\[//g;s/\\\]//g')
+etimecolor=$(echo ${timecolor} | sed -e 's/\\\[//g;s/\\\]//g')
+ewdircolor=$(echo ${wdircolor} | sed -e 's/\\\[//g;s/\\\]//g')
+efontcolor=$(echo ${fontcolor} | sed -e 's/\\\[//g;s/\\\]//g')
+esepacolor=$(echo ${sepacolor} | sed -e 's/\\\[//g;s/\\\]//g')
+eupcolor=$(echo ${upcolor} | sed -e 's/\\\[//g;s/\\\]//g')
+epscolor=$(echo ${pscolor} | sed -e 's/\\\[//g;s/\\\]//g')
