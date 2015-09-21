@@ -66,19 +66,13 @@ notebook_pages = {
 	_("Custom Prompt Builder") : 8,
 	_("Shell Options") : 10,
 	_("GIT") : 9,
-	_("About BashStyle-NG") : 0,
+	_("About BashStyle-NG") : 12,
 	_("Keybindings") : 11
 }
 
 gtkbuilder = widgethandler.gtkbuilder
 
 class IconBook(object):
-
-	def ShowAboutDialog(self):
-		aboutdialog = gtkbuilder.get_object("aboutdialog")
-		aboutdialog.show_all()
-		aboutdialog.connect("response", lambda w, e: w.hide() or True)
-		aboutdialog.connect("delete-event", lambda w, e: w.hide() or True)
 
 	def InitIconBook(self):
 
@@ -91,6 +85,7 @@ class IconBook(object):
 
 		notebook = gtkbuilder.get_object("notebook")
 		notebook.set_current_page(0)
+		notebook.set_show_tabs(False)
 
 		main_label = gtkbuilder.get_object("main.label")
 
@@ -112,15 +107,11 @@ class IconBook(object):
 			liststore.append([pixbuf, iconview_labels[icon]])
 
 		def iconview_activated(widget, item):
-				model = widget.get_model()
-				notebook.set_current_page(notebook_pages[model[item][1]])
-				if model[item][1] != _("About BashStyle-NG"):
-					back.set_visible(1)
-					main_label.set_text(_("Category: ") + _(model[item][1]))
-
-					if model[item][1] == _("Keybindings"):
-						use_keys_button.set_visible(1)
-				else:
-					self.ShowAboutDialog()
+			model = widget.get_model()
+			notebook.set_current_page(notebook_pages[model[item][1]])
+			back.set_visible(1)
+			main_label.set_text(_("Category: ") + _(model[item][1]))
+			if model[item][1] == _("Keybindings"):
+				use_keys_button.set_visible(1)
 
 		iconview.connect("item-activated", iconview_activated)

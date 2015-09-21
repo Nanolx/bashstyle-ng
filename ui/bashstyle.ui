@@ -2,80 +2,6 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.6"/>
-  <object class="GtkAboutDialog" id="aboutdialog">
-    <property name="can_focus">False</property>
-    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-    <property name="border_width">5</property>
-    <property name="title" translatable="yes">About BashStyle-NG</property>
-    <property name="resizable">False</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="icon_name">bs-ng</property>
-    <property name="type_hint">normal</property>
-    <property name="program_name">BashStyle-NG</property>
-    <property name="version">9.1</property>
-    <property name="copyright" translatable="yes">
-(c) 2007 - 2015 Christopher Bratusek</property>
-    <property name="comments" translatable="yes">
-BashStyle-NG lets you make more out of your terminal!</property>
-    <property name="website">http://www.nanolx.org/nanolx/bashstyle-ng/</property>
-    <property name="website_label" translatable="yes">BashStyle-NG @ Nanolx.org</property>
-    <property name="license" translatable="yes">BashStyle-NG is licensed under the:
-	GNU GENERAL PUBLIC LICENSE V3
-
-The Oxygen Icons are licensed under the:
-	GNU LESSER GENERAL PUBLIC LICENSE V3
-
-The Undobuffer Pythonmodule is licensed under the:
-	GNU LESSER GENERAL PUBLIC LICENSE V3</property>
-    <property name="authors">Christopher Bratusek</property>
-    <property name="documenters">Christopher Bratusek</property>
-    <property name="translator_credits" translatable="yes">de_DE: Christopher Bratusek</property>
-    <property name="artists">Oxygen Icon Devs</property>
-    <property name="logo_icon_name">bs-ng</property>
-    <property name="license_type">custom</property>
-    <child internal-child="vbox">
-      <object class="GtkBox" id="aboutdialog-vbox">
-        <property name="can_focus">False</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="aboutdialog-action_area">
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkLinkButton" id="report_bugs">
-                <property name="label" translatable="yes">Report Bugs</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="uri">https://github.com/Nanolx/bashstyle-ng/issues</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">3</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator" id="aboutdialog.separator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
   <object class="GtkAdjustment" id="advanced.adjustment.history_size">
     <property name="upper">1000000</property>
     <property name="step_increment">1</property>
@@ -1459,7 +1385,6 @@ The Undobuffer Pythonmodule is licensed under the:
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="show_tabs">False</property>
             <property name="show_border">False</property>
             <property name="scrollable">True</property>
             <child>
@@ -6576,6 +6501,7 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
               <object class="GtkLabel" id="cpb.label">
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Custom</property>
+                <property name="ellipsize">start</property>
               </object>
               <packing>
                 <property name="position">8</property>
@@ -7168,6 +7094,236 @@ lsb = show branches by last activity</property>
               </object>
               <packing>
                 <property name="position">11</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="about.grid">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="row_homogeneous">True</property>
+                <property name="column_homogeneous">True</property>
+                <child>
+                  <object class="GtkImage" id="about.image">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixel_size">48</property>
+                    <property name="icon_name">bs-ng</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                    <property name="height">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="about.shortdesc">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">9</property>
+                    <property name="label" translatable="yes">BashStyle-NG lets you make more out of your terminal!</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">2</property>
+                    <property name="width">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="about.bug-label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">Report Bugs</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLinkButton" id="about.bug-link">
+                    <property name="label" translatable="yes">GitHub Issue Tracker</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">start</property>
+                    <property name="relief">none</property>
+                    <property name="uri">https://github.com/Nanolx/bashstyle-ng/issues</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="about.license-label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">License</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="about.home-label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">Homepage</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLinkButton" id="about.license-link">
+                    <property name="label" translatable="yes">GNU GPL v3+</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">start</property>
+                    <property name="relief">none</property>
+                    <property name="uri">https://github.com/Nanolx/bashstyle-ng/blob/master/COPYING</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLinkButton" id="about.home-link">
+                    <property name="label" translatable="yes">Nanolx.org</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">start</property>
+                    <property name="relief">none</property>
+                    <property name="uri">http://nanolx.org/nanolx/bashstyle-ng</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparator" id="separator2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">9</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">5</property>
+                    <property name="width">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparator" id="separator25">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">9</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">3</property>
+                    <property name="width">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="about.copyright">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">(c) 2007 - 2015 Christopher Roy Bratusek &lt;nano@jpberlin.de&gt;</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">4</property>
+                    <property name="width">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="about.i18n-label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">Translations</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLinkButton" id="about.i18n-link">
+                    <property name="label" translatable="yes">Transifex</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">start</property>
+                    <property name="relief">none</property>
+                    <property name="uri">https://www.transifex.com/projects/p/bs-ng/</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="position">12</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="about.label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">About</property>
+              </object>
+              <packing>
+                <property name="position">12</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
