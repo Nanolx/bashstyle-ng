@@ -85,7 +85,6 @@ class IconBook(object):
 
 		notebook = gtkbuilder.get_object("notebook")
 		notebook.set_current_page(0)
-		notebook.set_show_tabs(False)
 
 		main_label = gtkbuilder.get_object("main.label")
 
