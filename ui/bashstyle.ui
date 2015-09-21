@@ -6658,6 +6658,7 @@ vimdoc.sourceforge.net/htmldoc/options.html</property>
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">Explanation of GIT aliases
 
 co = checkout
@@ -6668,23 +6669,7 @@ ma = checkout master</property>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="top_attach">7</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="label2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">
-who = no of commits per contributor
-ci = commit
-ls  = prettified log
-stage = stage changes to tracked files
-lsb = show branches by last activity</property>
-                    <property name="angle">0.080000000000000002</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">7</property>
+                    <property name="width">2</property>
                   </packing>
                 </child>
                 <child>
@@ -6714,7 +6699,26 @@ lsb = show branches by last activity</property>
                   <packing>
                     <property name="left_attach">0</property>
                     <property name="top_attach">0</property>
-                    <property name="height">8</property>
+                    <property name="height">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">
+who = no of commits per contributor
+ci = commit
+ls  = prettified log
+stage = stage changes to tracked files
+lsb = show branches by last activity</property>
+                    <property name="angle">0.080000000000000002</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">8</property>
+                    <property name="width">2</property>
                   </packing>
                 </child>
               </object>
