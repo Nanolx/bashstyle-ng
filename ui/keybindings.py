@@ -72,7 +72,9 @@ keybindings = {
 	"overwrite_mode",
 	"menu_complete",
         "menu_complete_backward",
-        "rerun_root"
+        "rerun_root",
+        "backward_kill_line",
+        "list_keys"
 }
 
 class CellRendererClickablePixbuf(Gtk.CellRendererPixbuf):
