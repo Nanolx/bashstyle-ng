@@ -10,8 +10,8 @@
 #########################################################
 
 CF_MODULES=( base color )
-MK_MODULES=( build clean install messages checks actions )
-MK_VERSION=1.0.3
+MK_MODULES=( build install messages checks actions )
+MK_VERSION=1.0.4
 
 for mod in ${CF_MODULES[@]}; do
 	source .configure/${mod}
@@ -28,7 +28,7 @@ if [[ ${pcount} -eq 0 ]]; then
 else
 	while [[ ${xcount} -lt ${pcount} ]]; do
 		case ${1} in
-			clean )		clean ;;
+			clean )		make_clean ;;
 			pot )		generate_pot ;;
 			po )		update_po ;;
 			build )		make_build ;;

@@ -12,14 +12,15 @@
 post_install () {
 
 	if [[ ! ${DISABLE_POSTINSTALL} ]]; then
-		echo -e "\t${WHITE}+ ${MAGENTA} post-installation tasks"
+		post_install_message
 		gtk-update-icon-cache -f ${DATADIR}/icons/hicolor 2>/dev/null
+
 		if [[ $(grep "bashstyle.sh" ${BASHFILE}) == "" ]]; then
 			echo -e "\nsource ${PROFILEDIR}/bashstyle.sh" | sed -e 's,//,/,g' >> ${BASHFILE}
 		fi
 	fi
 
-	echo -e "\n${CYAN}Thanks for using ${APP_NAME}!\n"
+	thanks_message
 
 }
 
@@ -34,7 +35,7 @@ post_remove () {
 installdirs_create ()
 {
 
-	echo -e "\t${WHITE}+ ${MAGENTA} directories"
+	echo -e "\t${WHITE}+${MAGENTA} directories"
 	mkdir -p ${DESTDIR}/${DATADIR}
 	for directory in ${DATADIR_LIST[@]}; do
 		mkdir -p ${DESTDIR}/${DATADIR}/${directory}
@@ -55,7 +56,7 @@ installdirs_create ()
 inst ()
 {
 
-	case $1 in
+	case ${1} in
 		data )	MODE=644 ;;
 		bin )	MODE=755 ;;
 	esac
@@ -64,49 +65,31 @@ inst ()
 	FILE=${1/:*}
 	DEST=${1/*:}
 
-	echo -e "\t${WHITE}  * ${SMOOTHBLUE}[${2}/${3}]${WHITE} ${FILE}"
 	install -m${MODE} ${FILE} ${DESTDIR}${DEST}
-
 	unset FILE DEST
 
 }
 
 install_bsng () {
 
-	DATA_NUM=0
-	for num in ${#DATA_FILES[@]} ${#LOCALE_FILES[@]} \
-	${#PC_FILES[@]} ${#ICON_FILES[@]} ${#PROFILE_FILES[@]}; do
-		DATA_NUM=$((${DATA_NUM}+${num}))
-	done
-	local CUR_NUM=1
-
-	echo -e "\t${WHITE}+ ${MAGENTA} data files"
+	echo -e "\t${WHITE}+${YELLOW} data files"
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} \
 	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]}; do
-		inst data ${file} ${CUR_NUM} ${DATA_NUM}
-		local CUR_NUM=$((${CUR_NUM}+1))
+		inst data ${file}
 	done
 
-	BIN_NUM=0
-	for num in ${#BIN_FILES[@]}; do
-		BIN_NUM=$((${BIN_NUM}+${num}))
-	done
-	local CUR_NUM=1
-
-	echo -e "\t${WHITE}+ ${MAGENTA} executable files"
+	echo -e "\t${WHITE}+${GREEN} executable files"
 	for file in ${BIN_FILES[@]}; do
-		inst bin ${file} ${CUR_NUM} ${BIN_NUM}
-		local CUR_NUM=$((${CUR_NUM}+1))
+		inst bin ${file}
 	done
 
 }
 
 remove_bsng () {
 
-	echo -e "\t${WHITE}+ ${WHITE} all files"
+	echo -e "\t${WHITE}+${RED} all files"
 	for file in ${REMOVE_FILES[@]}; do
 		rm -rf ${file}
 	done
-	post_remove
 
 }

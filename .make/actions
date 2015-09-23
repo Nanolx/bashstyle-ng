@@ -12,7 +12,7 @@
 make_build () {
 	check_configure && 
 	build_message && 
-	build &&
+	generate_mo &&
 	touch ${PWD}/.make/build_done
 }
 
@@ -30,5 +30,13 @@ make_remove () {
 	check_configure &&
 	check_root "remove" &&
 	remove_message && 
-	remove_bsng
+	remove_bsng &&
+	post_remove
+}
+
+make_clean () {
+	clean_message
+	for file in ${CLEAN_FILES[@]}; do
+		rm -f "${file}"
+	done
 }

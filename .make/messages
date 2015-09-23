@@ -42,9 +42,21 @@ build_message () {
 }
 
 install_message () {
-	echo -e "\n${GREEN}Installing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+	echo -e "\n${GREEN}Installing ${BLUE}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 }
 
 remove_message () {
-	echo -e "\n${Red}Removing ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+	echo -e "\n${Red}Removing ${BLUE}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+}
+
+clean_message () {
+	echo -e "\n${Red}Cleaning Up ${BLUE}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+}
+
+post_install_message () {
+	echo -e "\t${WHITE}+${BLUE} post-installation tasks"
+}
+
+thanks_message () {
+	echo -e "\n${CYAN}Thanks for using ${APP_NAME}!\n"
 }

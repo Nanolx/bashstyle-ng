@@ -25,6 +25,6 @@ check_built () {
 
 check_root () {
 	if [[ ${EUID} != 0 ]]; then
-		check_root_message ; exit 1
+		check_root_message "${1}" ; exit 1
 	fi
 }
