@@ -13,7 +13,6 @@ check_configure () {
 	if [[ ! -e .configure/results ]]; then
 		run_configure_message ; exit 1
 	else	source ${PWD}/.configure/results
-		source ${PWD}/.make/files
 	fi
 }
 

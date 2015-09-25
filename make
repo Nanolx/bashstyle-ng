@@ -10,7 +10,7 @@
 #########################################################
 
 CF_MODULES=( base color )
-MK_MODULES=( build install messages checks actions )
+MK_MODULES=( files build install messages checks actions )
 MK_VERSION=1.0.4
 
 for mod in ${CF_MODULES[@]}; do
