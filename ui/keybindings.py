@@ -71,10 +71,10 @@ keybindings = {
 	"forward_word",
 	"overwrite_mode",
 	"menu_complete",
-        "menu_complete_backward",
-        "rerun_root",
-        "backward_kill_line",
-        "list_keys"
+	"menu_complete_backward",
+	"rerun_root",
+	"backward_kill_line",
+	"list_keys"
 }
 
 class CellRendererClickablePixbuf(Gtk.CellRendererPixbuf):
@@ -106,6 +106,7 @@ class KeyTree(object):
 		use_keys = gtkbuilder.get_object("use_keybindingscfg")
 		store = gtkbuilder.get_object("treeviewstore")
 		tree = gtkbuilder.get_object("keybindings.treeview")
+		tree.set_grid_lines(1)
 
 		render_binding = Gtk.CellRendererText()
 		column_binding = Gtk.TreeViewColumn(_("Binding"), render_binding, text=0)
