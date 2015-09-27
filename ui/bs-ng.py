@@ -78,7 +78,7 @@ class BashStyleNG(object):
 					rc_new.write(line)
 			rc.close
 			if OnOff == True:
-				rc_new.write("source " + os.getenv('BSNG_DATADIR') + "bashstyle-ng/rc/nx-rc")
+				rc_new.write("\nsource " + os.getenv('BSNG_DATADIR') + "bashstyle-ng/rc/nx-rc")
 			rc_new.close
 			shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))
 			popup.hide()
