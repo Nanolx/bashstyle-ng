@@ -14,10 +14,6 @@ post_install () {
 	if [[ ! ${DISABLE_POSTINSTALL} ]]; then
 		post_install_message
 		gtk-update-icon-cache -f ${DATADIR}/icons/hicolor 2>/dev/null
-
-		if [[ $(grep "bashstyle.sh" ${BASHFILE}) == "" ]]; then
-			echo -e "\nsource ${PROFILEDIR}/bashstyle.sh" | sed -e 's,//,/,g' >> ${BASHFILE}
-		fi
 	fi
 
 	thanks_message
@@ -26,9 +22,7 @@ post_install () {
 
 post_remove () {
 
-	if [[ $(grep "bashstyle.sh" ${BASHFILE}) != "" ]]; then
-		sed -e '/bashstyle.sh/d' -i ${BASHFILE}
-	fi
+	echo -n
 
 }
 
@@ -47,7 +41,6 @@ installdirs_create ()
 	done
 
 	mkdir -p ${DESTDIR}/${BINDIR}
-	mkdir -p ${DESTDIR}/${PROFILEDIR}
 	mkdir -p ${DESTDIR}/${ICONDIR}
 	mkdir -p ${DESTDIR}/${PCDIR}
 
@@ -74,7 +67,7 @@ install_bsng () {
 
 	echo -e "\t${WHITE}+${YELLOW} data files"
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} \
-	${PC_FILES[@]} ${ICON_FILES[@]} ${PROFILE_FILES[@]}; do
+		${PC_FILES[@]} ${ICON_FILES[@]}; do
 		inst data ${file}
 	done
 

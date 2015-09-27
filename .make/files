@@ -28,8 +28,6 @@ done
 BIN_FILES=( data/bashstyle:${BINDIR}
 	    rc/functions/*:${DATADIR}/rc/functions )
 
-PROFILE_FILES=( data/bashstyle.sh:${PROFILEDIR} )
-
 ICON_FILES=( data/icons/*.png:${ICONDIR} )
 
 PC_FILES=( data/bashstyle-ng.pc:${PCDIR} )
@@ -38,5 +36,4 @@ REMOVE_FILES=( ${LOCALE_REMOVE[@]}
 	       ${BINDIR}/bashstyle
 	       ${ICONDIR}/bs-ng*.png
 	       ${PCDIR}/bashstyle-ng.pc
-	       ${PROFILEDIR}/bashstyle.sh
 	       ${DATADIR} )

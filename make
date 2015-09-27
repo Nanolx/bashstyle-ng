@@ -11,7 +11,7 @@
 
 CF_MODULES=( base color )
 MK_MODULES=( build install messages checks actions )
-MK_VERSION=1.0.4
+MK_VERSION=1.0.5
 
 for mod in ${CF_MODULES[@]}; do
 	source .configure/${mod}
