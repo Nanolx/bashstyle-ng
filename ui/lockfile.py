@@ -46,7 +46,7 @@ class LockFile(object):
 				else:
 					xpid = subprocess.getoutput("pgrep -l bashstyle")
 					gpid = xpid.split()
-				if not xpid == "" and gpid[1] == "bashstyle":
+				if gpid[1] == "bashstyle":
 					print(_("Lockfile does exist and bashstyle-ng is already running."))
 					print(_("bashstyle-ng is running as process %s" % oldpid))
 					sys.exit(1)
