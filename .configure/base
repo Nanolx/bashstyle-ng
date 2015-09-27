@@ -14,7 +14,7 @@ APP_VERSION=9.2
 APP_CODENAME="Galvanize"
 APP_LANGUAGES="de"
 
-CFG_VERSION="4.3.4"
+CFG_VERSION="4.3.5"
 
 if [[ -d "/usr/lib/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib/girepository-1.0/"
@@ -28,7 +28,6 @@ PYTHON=$(which python3 || which python2 || which python)
 BINDIR="${PREFIX}/bin"
 PCDIR="${PREFIX}/share/pkgconfig/"
 DATADIR="${PREFIX}/share/"
-PROFILEDIR="/etc/"
 
 PYMINVER_P="2.7.0"
 PYMAXVER_P="3.5.0"
@@ -49,7 +48,6 @@ export_result ()
 	echo -e "PREFIX=\"${PREFIX}\"
 DATADIR=\"${DATADIR}/bashstyle-ng/\"
 DATADIR_LIST=( ui rc/{functions,internal,settings,styles} termcap/{bar,body} vim/colors )
-PROFILEDIR=\"${PROFILEDIR}/\"
 BINDIR=\"${BINDIR}\"
 LOCALEDIR=\"${DATADIR}/locale/\"
 LOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )

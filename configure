@@ -25,7 +25,6 @@ while [[ ${xcount} -lt $# ]]; do
 	case ${1} in
 		--prefix=* )		PREFIX="${1/*=}" ;;
 		--pcdir=* )		PCDIR="${1/*=}" ;;
-		--profiledir=* )	PROFILEDIR="${1/*}" ;;
 		--bindir=* )		BINDIR="${1/*=}" ;;
 		--girpath=* )		GIRPATH="${1/*=}" ;;
 		--datadir=* )		DATADIR="${1/*=}" ;;
@@ -46,15 +45,6 @@ if [[ ${MODE} == help ]]; then
 else
 	if [[ ${GIRPATH} == "" ]]; then
 		missing_girpath_message ; exit 1
-	fi
-
-	if [[ ! ${BASHFILE} ]]; then
-		BASHFILE_AUTO=true
-		if [[ -e /etc/bash.bashrc ]]; then
-			BASHFILE=/etc/bash.bashrc
-		else
-			BASHFILE=/etc/bashrc
-		fi
 	fi
 
 	start_message

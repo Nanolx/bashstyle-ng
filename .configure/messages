@@ -82,10 +82,6 @@ end_message () {
 		echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
 	else	echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
 	fi
-	if [[ ${BASHFILE_AUTO} ]]; then
-		echo -e "${YELLOW}System Bashrc\t\t${WHITE}>${MAGENTA} ${BASHFILE} ${RED}(auto detect)"
-	else	echo -e "${YELLOW}System Bashrc\t\t${WHITE}>${MAGENTA} ${BASHFILE} ${GREEN}(user set)"
-	fi
 	echo
 	tput sgr0
 
@@ -102,7 +98,6 @@ help_message () {
 	${ORANGE}--docdir=<docdir>${WHITE} *|${GREEN} Change doc path (default: /usr/share/doc/)
 	${ORANGE}--datadir=<datadir>${WHITE} *|${GREEN} Change data path (default: /usr/share/)
 	${ORANGE}--pcdir=<pcdir>${WHITE} *|${GREEN} Change pkg-config path (default: /usr/share/pkgconfig)
-	${ORANGE}--profiledir=<profiledir>${WHITE} *|${GREEN} Change profile path (default: /etc/)
 	${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look G-I typelibs (default: /usr/lib/girepository-1.0/)
 	${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)
 	${ORANGE}--bashrc=<bashrc>${WHITE} *|${GREEN} Path to system bashrc (default: /etc/bashrc or /etc/bash.bashrc)
