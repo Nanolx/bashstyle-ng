@@ -2,18 +2,37 @@ Overview of changes in v9.2 "Galvanize"
 
 === General ===
 
+* StartUp mechanism changes:
+++ before BashStyle-NG embedded into /etc/bash.bashrc or /etc/bashrc to add
+   a startup entry to ${HOME}/.bashrc
+++ now if ${HOME}/.bashrc does not contain a startup entry for BashStyle-NG
+   the user is presented a popup window upon UI start asking whether to add
+   the entry or telling the user how to do it manually.
+
 * PS2 / PS3 / PS4 changes:
-++ before there's been an option for PS234. Setting this to ">" would result in:
-+++ PS2=">" / PS3=">>" / PS4=">>>"
-++ now there's an option for each (including a color option each)
+++ before there's been an option for PS234. Setting this to ">" resulted in:
+   PS2=">"
+   PS3=">>"
+   PS4=">>>"
+++ now there's an separate option for each (including a color option each)
+++ furthermore PS2 / PS3 / PS4 export does now honor enable_colors setting
 
 === Configure 4.3.4 ===
 
+4.3.5:
+- remove system bashrc detection
+- remove --profieldir switch
+
+4.3.4:
 - remove --quiet switch
 - globally define PYMAXVER and PYMINVER (python minimum and maximum versions)
 - globally define PYAMXVER_P and PYMINVER_P (printable python minimum and
   maximum python versions for configure messages)
 - remove unused variable
+
+=== Make 1.0.5 ===
+
+- update for no longer installed profiledir and profile script
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
