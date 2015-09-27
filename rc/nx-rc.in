@@ -84,14 +84,25 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
 	dbg_log source ${BSNG_RC_DIR}/styles/null-rc
 
-	dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
-	PS2="$ps2color $(ini_get ps2)$fontcolor "
+	if [[ ${enable_colors} == True ]]; then
+		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
+		PS2="$ps2color $(ini_get ps2)$fontcolor "
 
-	dbg_msg $"BashStyle-NG Setting:" $"PS3" $(ini_get ps3)
-	PS3="$ps3color $(ini_get ps3)$fontcolor "
+		dbg_msg $"BashStyle-NG Setting:" $"PS3" $(ini_get ps3)
+		PS3="$ps3color $(ini_get ps3)$fontcolor "
 
-	dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
-	PS4="$ps4color $(ini_get ps4)$fontcolor "
+		dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
+		PS4="$ps4color $(ini_get ps4)$fontcolor "
+	else
+		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
+		PS2="$(ini_get ps2) "
+
+		dbg_msg $"BashStyle-NG Setting:" $"PS3" $(ini_get ps3)
+		PS3="$(ini_get ps3) "
+
+		dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
+		PS4="$(ini_get ps4) "
+	fi
 
 	if [[ $(ini_get random_style) == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"Random Prompt"
