@@ -1487,7 +1487,7 @@ other color settings.</property>
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">2</property>
-                            <property name="height">18</property>
+                            <property name="height">20</property>
                           </packing>
                         </child>
                         <child>
@@ -1819,400 +1819,11 @@ in grep output.</property>
                           <object class="GtkLabel" id="label16">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Color for Subprompts</property>
+                            <property name="label" translatable="yes">Color for Misc. Elements</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
                             <property name="top_attach">16</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator" id="separator4">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">20</property>
-                            <property name="width">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="style.label.style">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Style</property>
-                            <property name="angle">90</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">21</property>
-                            <property name="height">6</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="style.label.prompt_style">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">prompt_style
-
-choose a prompt style.</property>
-                            <property name="label" translatable="yes">Choose Promptstyle</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">21</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="random_style">
-                            <property name="label" translatable="yes">Use random style</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">random_style
-
-choose a random promptstyle each time you
-start a new session.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">21</property>
-                            <property name="height">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="prompt_style">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="model">style.liststore.prompt_style</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="style.cellrenderer.prompt_style"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">22</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.separator">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">Separator</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">23</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="separator">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">separator
-
-several prompt styles use separators between
-items, here you can choose what to use as
-separator.</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">24</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.pwd_cutter">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">PWD cut char</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">25</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="pwd_cutter">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">pwdcut
-
-most prompt styles display the current directory.
-They allow to cut it, if it exceeds pwdlength, this
-is the indicator for a cut directory.</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">26</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.ps234">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">PS2 PS3 and PS4</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">23</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="ps234">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">ps234
-
-this character will be used once for PS2, twice
-for PS3 and three times for PS4.</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">24</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.pwd_len">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Maximum PWD length</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">25</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="pwd_len">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">pwdlength
-
-the maximum length for the current directory
-(as displayed in the prompt styles).</property>
-                            <property name="invisible_char">•</property>
-                            <property name="text" translatable="yes">9</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                            <property name="adjustment">advanced.adjustment.pwd_len</property>
-                            <property name="value">9</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">26</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator" id="separator5">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">27</property>
-                            <property name="width">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="style.label.separator">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Separator</property>
-                            <property name="angle">90</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">28</property>
-                            <property name="height">5</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_files_amount">
-                            <property name="label" translatable="yes">Display number of files</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">files_amount
-
-Applies to "separator" style only. Show the
-number of files in the current directory.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">28</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_uptime">
-                            <property name="label" translatable="yes">Display uptime</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">uptime
-
-Applies to "separator" style only. Display the
-computer's uptime.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">28</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_file_size">
-                            <property name="label" translatable="yes">Display size of files</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">files_size
-
-Applies to "separator" style only. Show the size
-of all files in the current directory.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">29</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_tty">
-                            <property name="label" translatable="yes">Display number of the tty</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">tty
-
-Applies to "separator" style only. Display the
-current tty.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">29</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_load">
-                            <property name="label" translatable="yes">Display system load</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">load
-
-Applies to "separator" style only. Display the
-system load.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">30</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.show_mem">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">mem
-
-Applies to "separator" style only.
-
-free: show free RAM in MB
-used: show used RAM in MB
-both: show free / used RAM in MB</property>
-                            <property name="label" translatable="yes">Display memory</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">31</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="show_mem">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">advanced.liststore.memory</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="advanced.cellrenderer.show_mem"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">32</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_processes">
-                            <property name="label" translatable="yes">Display number of running jobs</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">processes
-
-Applies to "separator" style only. Show the
-number of running processes.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">30</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="show_battery">
-                            <property name="label" translatable="yes">Display battery load</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">battery_load
-
-Applies to "separator" style only. Display the
-battery load using acpi.</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">31</property>
-                            <property name="height">2</property>
                           </packing>
                         </child>
                         <child>
@@ -2342,7 +1953,7 @@ battery load using acpi.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkComboBox" id="color_ps234">
+                          <object class="GtkComboBox" id="color_ps">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -2378,10 +1989,540 @@ battery load using acpi.</property>
                           </packing>
                         </child>
                         <child>
-                          <placeholder/>
+                          <object class="GtkCheckButton" id="show_battery">
+                            <property name="label" translatable="yes">Display battery load</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">battery_load
+
+Applies to "separator" style only. Display the
+battery load using acpi.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">35</property>
+                            <property name="height">2</property>
+                          </packing>
                         </child>
                         <child>
-                          <placeholder/>
+                          <object class="GtkComboBox" id="show_mem">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">advanced.liststore.memory</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="advanced.cellrenderer.show_mem"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">36</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.show_mem">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">mem
+
+Applies to "separator" style only.
+
+free: show free RAM in MB
+used: show used RAM in MB
+both: show free / used RAM in MB</property>
+                            <property name="label" translatable="yes">Display memory</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">35</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_load">
+                            <property name="label" translatable="yes">Display system load</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">load
+
+Applies to "separator" style only. Display the
+system load.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">34</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_tty">
+                            <property name="label" translatable="yes">Display number of the tty</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">tty
+
+Applies to "separator" style only. Display the
+current tty.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">33</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_uptime">
+                            <property name="label" translatable="yes">Display uptime</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">uptime
+
+Applies to "separator" style only. Display the
+computer's uptime.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">32</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_processes">
+                            <property name="label" translatable="yes">Display number of running jobs</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">processes
+
+Applies to "separator" style only. Show the
+number of running processes.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">34</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_file_size">
+                            <property name="label" translatable="yes">Display size of files</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">files_size
+
+Applies to "separator" style only. Show the size
+of all files in the current directory.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">33</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_files_amount">
+                            <property name="label" translatable="yes">Display number of files</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">files_amount
+
+Applies to "separator" style only. Show the
+number of files in the current directory.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">32</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="style.label.separator">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Separator</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">32</property>
+                            <property name="height">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator5">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">31</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="pwd_cutter">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">pwdcut
+
+most prompt styles display the current directory.
+They allow to cut it, if it exceeds pwdlength, this
+is the indicator for a cut directory.</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">30</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSpinButton" id="pwd_len">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">pwdlength
+
+the maximum length for the current directory
+(as displayed in the prompt styles).</property>
+                            <property name="invisible_char">•</property>
+                            <property name="text" translatable="yes">9</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                            <property name="adjustment">advanced.adjustment.pwd_len</property>
+                            <property name="value">9</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">30</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.pwd_len">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Maximum PWD length</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">29</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.pwd_cutter">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">PWD cut char</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">29</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="separator">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">separator
+
+several prompt styles use separators between
+items, here you can choose what to use as
+separator.</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">28</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.separator">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">Separator</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">27</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="ps2">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">ps234
+
+this character will be used once for PS2, twice
+for PS3 and three times for PS4.</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">26</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.ps2">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">PS2</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">25</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.ps4">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">PS3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">25</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.ps3">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">PS4</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">27</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="ps3">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">ps234
+
+this character will be used once for PS2, twice
+for PS3 and three times for PS4.</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">26</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="ps4">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">ps234
+
+this character will be used once for PS2, twice
+for PS3 and three times for PS4.</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">28</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="prompt_style">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.prompt_style</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.prompt_style"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">24</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="style.label.prompt_style">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">prompt_style
+
+choose a prompt style.</property>
+                            <property name="label" translatable="yes">Choose Promptstyle</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">23</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="random_style">
+                            <property name="label" translatable="yes">Use random style</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="tooltip_text" translatable="yes">random_style
+
+choose a random promptstyle each time you
+start a new session.</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">23</property>
+                            <property name="height">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="style.label.style">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Style</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">23</property>
+                            <property name="height">8</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator4">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">22</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label14">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for PS2</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">18</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label17">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for PS3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">20</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label18">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Color for PS4</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">20</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_ps3">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour10"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">21</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_ps2">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour11"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">19</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_ps4">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour12"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">21</property>
+                          </packing>
                         </child>
                         <child>
                           <placeholder/>

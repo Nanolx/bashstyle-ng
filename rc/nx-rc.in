@@ -17,7 +17,7 @@ export BSNG_DATA_DIR=@DATADIR@
 export BSNG_RC_DIR=${BSNG_DATA_DIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2015"
-INI_VERSION=21
+INI_VERSION=22
 
 source ${BSNG_RC_DIR}/internal/misc
 source ${BSNG_RC_DIR}/internal/logging
@@ -84,8 +84,14 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
 	dbg_log source ${BSNG_RC_DIR}/styles/null-rc
 
-	dbg_msg $"BashStyle-NG Setting:" $"ps2 ps3 ps4 char" $(ini_get ps234)
-	ps234char=$(ini_get ps234)
+	dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
+	PS2="$ps2color $(ini_get ps2)$fontcolor "
+
+	dbg_msg $"BashStyle-NG Setting:" $"PS3" $(ini_get ps3)
+	PS3="$ps3color $(ini_get ps3)$fontcolor "
+
+	dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
+	PS4="$ps4color $(ini_get ps4)$fontcolor "
 
 	if [[ $(ini_get random_style) == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"Random Prompt"
@@ -124,11 +130,6 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"Fallback Prompt"
 		dbg_log export PS1="\u@\h\w: "
 	fi
-
-	dbg_msg $"BashStyle-NG Setting:" $"PS2 PS3 PS4"
-	PS2="$pscolor $ps234char$fontcolor "
-	PS3="$pscolor $ps234char$ps234char$fontcolor "
-	PS4="$pscolor $ps234char$ps234char$ps234char$fontcolor "
 
 fi
 
