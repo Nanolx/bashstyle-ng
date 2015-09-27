@@ -129,8 +129,6 @@ check_python () {
 		fail_message p
 		kill -s TERM ${TOP_PID}
 	else
-		PYMINVER=270
-		PYMAXVER=350
 		PYVER=$(${PYTHON} --version 2>&1 | gawk '{ gsub(/\./,""); gsub(/\+/,""); gsub(/rc.*/,""); print $2 }')
 		if [[ ${PYVER:0:3} -lt ${PYMINVER} ]]; then
 			fail_message p-
