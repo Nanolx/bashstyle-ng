@@ -6,8 +6,11 @@ Overview of changes in v9.2 "Galvanize"
 ++ before BashStyle-NG embedded into /etc/bash.bashrc or /etc/bashrc to add
    a startup entry to ${HOME}/.bashrc
 ++ now if ${HOME}/.bashrc does not contain a startup entry for BashStyle-NG
-   the user is presented a popup window upon UI start asking whether to add
-   the entry or telling the user how to do it manually.
+   the user is presented a tab page upon UI start asking whether to add
+   the entry or telling the user how to do it manually. Also works when the
+   startup entry for BashStyle-NG is commented out, or if the entry is from
+   a previous installation of BashStyle-NG that had a different installation
+   prefix.
 
 * PS2 / PS3 / PS4 changes:
 ++ before there's been an option for PS234. Setting this to ">" resulted in:

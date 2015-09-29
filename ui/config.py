@@ -142,3 +142,26 @@ class Config(object):
 
 	def GetFactoryConfig(self, group, setting):
 		print(self.fdc["%s" % group]["%s" % setting])
+
+	def CheckBashStyle(self):
+		rc = open(os.path.expanduser("~/.bashrc"), "r")
+		content = rc.readlines()
+		found = False
+		for line in content:
+			if line.startswith("source " + os.getenv('BSNG_DATADIR') + "bashstyle-ng/rc/nx-rc", 0) == True:
+				found = True
+		rc.close
+		return found
+
+	def EnableBashStyle(self, OnOff):
+		rc = open(os.path.expanduser("~/.bashrc"), "r")
+		rc_new = open(os.path.expanduser("~/.bashrc.new"), "w")
+		content = rc.readlines()
+		for line in content:
+			if line.find("bashstyle-ng/rc/nx-rc") == -1:
+				rc_new.write(line)
+		rc.close
+		if OnOff == True:
+			rc_new.write("\nsource " + os.getenv('BSNG_DATADIR') + "bashstyle-ng/rc/nx-rc")
+		rc_new.close
+		shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))

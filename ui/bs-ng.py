@@ -57,41 +57,6 @@ class BashStyleNG(object):
 		gtkbuilder = widgethandler.gtkbuilder
 		WidgetHandler = widgethandler.WidgetHandler(config.cfo, config.udc, config.fdc)
 
-		######################## BashStyle-NG autostart stuff ##############################
-
-		def check_bashstyle():
-			rc = open(os.path.expanduser("~/.bashrc"), "r")
-			content = rc.readlines()
-			found = False
-			for line in content:
-				if line.find("bashstyle-ng/rc/nx-rc") != -1:
-					found = True
-			rc.close
-			return found
-
-		def set_bashstyle(widget, OnOff):
-			rc = open(os.path.expanduser("~/.bashrc"), "r")
-			rc_new = open(os.path.expanduser("~/.bashrc.new"), "w")
-			content = rc.readlines()
-			for line in content:
-				if line.find("bashstyle-ng/rc/nx-rc") == -1:
-					rc_new.write(line)
-			rc.close
-			if OnOff == True:
-				rc_new.write("\nsource " + os.getenv('BSNG_DATADIR') + "bashstyle-ng/rc/nx-rc")
-			rc_new.close
-			shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))
-			popup.hide()
-
-		if check_bashstyle() == False:
-			popup = gtkbuilder.get_object("popup")
-			popup_enable = gtkbuilder.get_object("popup.enable")
-			popup_cancel = gtkbuilder.get_object("popup.cancel")
-			popup_enable.connect("clicked", set_bashstyle, True)
-			popup_cancel.connect("clicked", lambda w: popup.hide() or True)
-			popup.connect("delete-event", lambda w: w.hide() or True)
-			popup.show_all()
-
 		####################### Style Options ##############################################
 		WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "bool", None)
 		WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)

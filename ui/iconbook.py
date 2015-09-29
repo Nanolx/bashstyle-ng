@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'sys', 'widgethandler', 'subprocess' ]
+MODULES = [ 'sys', 'widgethandler', 'subprocess', 'config' ]
 
 FAILED = []
 
@@ -67,7 +67,8 @@ notebook_pages = {
 	_("Shell Options") : 10,
 	_("GIT") : 9,
 	_("About BashStyle-NG") : 12,
-	_("Keybindings") : 11
+	_("Keybindings") : 11,
+	_("BashStyle-NG StartUp") : 13
 }
 
 gtkbuilder = widgethandler.gtkbuilder
@@ -114,3 +115,22 @@ class IconBook(object):
 				use_keys_button.set_visible(1)
 
 		iconview.connect("item-activated", iconview_activated)
+
+		if config.Config.CheckBashStyle(self) == False:
+			startup_enable = gtkbuilder.get_object("startup.enable")
+			startup_cancel = gtkbuilder.get_object("startup.cancel")
+
+			def setBashStyle(data):
+				config.Config.EnableBashStyle(self, True)
+				notebook.set_current_page(0)
+				main_label.set_text(_("Choose a Category:"))
+
+			def abortBashStyle(data):
+				notebook.set_current_page(0)
+				main_label.set_text(_("Choose a Category:"))
+
+			startup_enable.connect("clicked", setBashStyle)
+			startup_cancel.connect("clicked", abortBashStyle)
+
+			notebook.set_current_page(13)
+			main_label.set_text(_("Category: ") + _("BashStyle-NG StartUp"))
