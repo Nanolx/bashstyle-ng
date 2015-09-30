@@ -252,6 +252,9 @@ symbolic_colors_p_c = {
 		   7 : "${esepacolor}",
 		   8 : "${eupcolor}",
 		   9 : "${epscolor}",
+		  10 : "${eps2color}",
+		  11 : "${eps3color}",
+		  12 : "${eps4color}",
 		  }
 
 symbolic_colors_ps1 = {
@@ -264,4 +267,7 @@ symbolic_colors_ps1 = {
 		   7 : "${sepacolor}",
 		   8 : "${upcolor}",
 		   9 : "${pscolor}",
+		  10 : "${ps2color}",
+		  11 : "${ps3color}",
+		  12 : "${ps4color}",
 		  }

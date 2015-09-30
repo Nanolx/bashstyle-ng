@@ -75,11 +75,7 @@ class PromptBuilder(object):
 
 		def prompt_add_combo(widget, dict_p_c, dict_ps1):
 			if widget.get_active() != 0:
-				if self.active_buffer == "P_C":
-					text = dict_p_c[widget.get_active()]
-				elif self.active_buffer == "PS1":
-					text = dict_ps1[widget.get_active()]
-				prompt_add(widget, text)
+				prompt_add(widget, dict_p_c[widget.get_active()], dict_ps1[widget.get_active()])
 				widget.set_active(0)
 
 		######################## GtkButtons ################################################
