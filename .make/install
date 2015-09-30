@@ -13,7 +13,7 @@ post_install () {
 
 	if [[ ! ${DISABLE_POSTINSTALL} ]]; then
 		post_install_message
-		gtk-update-icon-cache -f ${DATADIR}/icons/hicolor 2>/dev/null
+		gtk-update-icon-cache -q -f ${PREFIX}/share/icons/hicolor
 	fi
 
 	thanks_message
