@@ -202,22 +202,16 @@ if [[ $(ini_get history_sync) == True ]]; then
 		mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
-	if [[ ${HISTCONTROL} == erasedups ]]; then
-		_synchistory () {
-			builtin history -a
-			builtin history -c
-			builtin history -r
-			_erasehistorydups
-		}
-	else
-		_synchistory () {
-			builtin history -a
-			builtin history -c
-			builtin history -r
-		}
-	fi
+	_synchistory () {
+		builtin history -a
+		builtin history -c
+		builtin history -r
+		builtin history -w
+	}
 
 	trap_add '_synchistory' DEBUG
+
+	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
 
 	history () {
 		_synchistory
