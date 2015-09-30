@@ -74,6 +74,7 @@ notebook_pages = {
 }
 
 gtkbuilder = widgethandler.gtkbuilder
+USER_DEFAULTS_SAVE = config.USER_DEFAULTS_SAVE
 config = config.Config()
 lock = lockfile.LockFile()
 
@@ -123,6 +124,7 @@ class IconBook(object):
 		backup_config = gtkbuilder.get_object("config.backup")
 		restore_config = gtkbuilder.get_object("config.restore")
 		reset_config = gtkbuilder.get_object("config.reset")
+		delete_config = gtkbuilder.get_object("config.delete")
 		versionlabel_user = gtkbuilder.get_object("config.label_user.desc")
 		versionlabel_userbackup = gtkbuilder.get_object("config.label_userbackup.desc")
 		versionlabel_vendor = gtkbuilder.get_object("config.label_vendor.desc")
@@ -131,6 +133,7 @@ class IconBook(object):
 		def backup_configAction(data):
 			config.BackupConfig()
 			restore_configPossible()
+			delete_configPossible()
 
 		def restore_configPossible():
 			if config.UserSaveConfigExists():
@@ -158,12 +161,24 @@ class IconBook(object):
 			python = sys.executable
 			os.execl(python, python, * sys.argv)
 
+		def delete_configPossible():
+			delete_config.set_sensitive(config.UserSaveConfigExists())
+
+		def delete_configAction(data):
+			if os.access(USER_DEFAULTS_SAVE, os.F_OK):
+				print(_("BackupConfig: deleting user backup %s" % USER_DEFAULTS_SAVE))
+				os.remove(USER_DEFAULTS_SAVE)
+			restore_configPossible()
+			delete_configPossible()
+
+		delete_configPossible()
+
 		backup_config.connect("clicked", backup_configAction)
 		restore_config.connect("clicked", restore_configAction)
 		reset_config.connect("clicked", reset_configAction)
+		delete_config.connect("clicked", delete_configAction)
 
 		versionlabel_user.set_text("%s" % config.UserConfigVersion())
-		versionlabel_userbackup.set_text("%s" % config.UserSaveConfigVersion())
 		versionlabel_vendor.set_text("%s" % config.VendorConfigVersion())
 		versionlabel_factory.set_text("%s" % config.FactoryConfigVersion())
 
