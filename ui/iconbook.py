@@ -37,7 +37,7 @@ if FAILED:
 iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
 		  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
 		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-keys",
-		  "bs-ng-custom",  "bs-ng-toolbox", "bs-ng-info" ]
+		  "bs-ng-custom",  "bs-ng-config", "bs-ng-info" ]
 
 iconview_labels = {
 	"bs-ng-style" : _("General Style"),
@@ -52,7 +52,7 @@ iconview_labels = {
 	"bs-ng-git" : _("GIT"),
 	"bs-ng-info" : _("About BashStyle-NG"),
 	"bs-ng-keys" : _("Keybindings"),
-	"bs-ng-toolbox" : _("Configuration"),
+	"bs-ng-config" : _("Configuration"),
 }
 
 notebook_pages = {
