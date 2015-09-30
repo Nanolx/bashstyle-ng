@@ -12,48 +12,63 @@ Overview of changes in v9.2 "Galvanize"
 === General ===
 
 * Configuration file handling changes:
-++ additionally to factory and vendor (/etc/bs-ng_vendor.ini) configuration
-   BashStyle-NG now also checks for user backup (${HOME}/.bs-ng.ini.save)
-   configuration when resetting configuration
-++ before using user backup or vendor configuration in any way do a dry-load
-   to ensure the files are in proper shape, if they contain errors skip them
-++ when the configuration file can't be loaded due errors, let BashStyle-NG
-   auto-reset the configuration using user backup (if it exists) > vendor
-   configuration (if it exists) > factory configuration (in that order)
-   This prevents BashStyle-NG from crashing if there's something wrong with the
-   user configuration file
-++ added new Category "Configuration" which allows to Backup, Restore (from user
-   backup configuration), delete Backup configuration or Reset (reset from vendor
-   (if it exists) or factory configuration) the configuration, also shows version
-   of user, user backup, vendor and factory configuration files (None for vendor
-   and user backup if they don't exist), icon for this category: bs-ng-config
-++ after configuration is restored from backup, vendor or factory configuration,
-   the application is restarted
++ Additionally to factory and vendor (/etc/bs-ng_vendor.ini) configuration
+  BashStyle-NG now also checks for user backup (${HOME}/.bs-ng.ini.save)
+  configuration when resetting configuration
++ Before using user backup or vendor configuration in any way do a dry-load
+  to ensure the files are in proper shape, if they contain errors skip them
++ When the configuration file can't be loaded due errors, let BashStyle-NG
+  auto-reset the configuration using
+  .
+  user backup (if it exists) > vendor configuration (if it exists) >
+  factory configuration (in that order)
+  .
+  This prevents BashStyle-NG from crashing if there's something wrong with the
+  user configuration file
++ Added new Category "Configuration" which allows to:
+  .
+  - Backup
+  - Restore (from user backup configuration)
+  - delete Backup configuration
+  - Reset (reset from vendor or factory configuration) the configuration
+  .
+  also shows version of user, user backup, vendor and factory configuration
+  files (None for vendor and user backup if they don't exist)
++ icon name for this category in UI: bs-ng-config
++ after configuration is restored or reset the application is restarted
 
 * StartUp mechanism changes:
-++ before BashStyle-NG embedded into /etc/bash.bashrc or /etc/bashrc to add
-   a startup entry to ${HOME}/.bashrc
-++ now if ${HOME}/.bashrc does not contain a startup entry for BashStyle-NG
-   the user is presented a tab page upon UI start asking whether to add
-   the entry or telling the user how to do it manually. Also works when the
-   startup entry for BashStyle-NG is commented out, or if the entry is from
-   a previous installation of BashStyle-NG that had a different installation
-   prefix.
++ Before BashStyle-NG embedded into /etc/bash.bashrc or /etc/bashrc to add
+  a startup entry to ${HOME}/.bashrc
+  .
+  Now if ${HOME}/.bashrc does not contain a startup entry for BashStyle-NG
+  the user is presented a tab page upon UI start asking whether to add
+  the entry
+  .
+  Also works when the startup entry for BashStyle-NG is commented out, or if
+  the entry is from a previous installation of BashStyle-NG that had a different
+  installation prefix.
 
 * PS2 / PS3 / PS4 changes:
-++ before there's been an option for PS234. Setting this to ">" resulted in:
-   PS2=">"
-   PS3=">>"
-   PS4=">>>"
-++ now there's an separate option for each (including a color option each)
-++ furthermore PS2 / PS3 / PS4 export does now honor enable_colors setting
++ Before there's been an option for PS234. Setting this to ">" resulted in:
+  .
+  PS2=">"
+  PS3=">>"
+  PS4=">>>"
+  .
+  Now there's an separate option for each (including a color option each)
++ additionally PS2 / PS3 / PS4 export does now honor enable_colors setting
 
 * History Sync changes:
-++ BashStyle-NG 9.1 introduced a custom history sync functionality, which turned
-   out not to properly operate when the History Control Type was set to "Erase
-   Duplicates" this is now worked around by a custom _erasehistorydups function,
-   please note that this might slow down Bash a bit if you have a huge history
-++ fixed a typo that prevented history to properly call _synchistory
++ BashStyle-NG 9.1 introduced a custom history sync functionality (for syncing
+  history over simultaneously running sessions), which turned out not to properly
+  operate when the History Control Type was set to "Erase Duplicates"
+  .
+  This is now worked around by a custom _erasehistorydups function, which does
+  the clean-up where Bash fails due to the custom history handling functions.
+  .
+  please note that this might slow down Bash a bit if you have a huge history
++ fixed a typo that prevented history to properly call _synchistory
 
 === Configure ===
 
