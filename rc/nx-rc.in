@@ -195,16 +195,32 @@ fi
 
 if [[ $(ini_get history_sync) == True ]]; then
 
-	_synchistory () {
-		builtin history -a
-		builtin history -c
-		builtin history -r
+	_erasehistorydups () {
+		sed '$!N;s/\n/HISTDILIMITER/' ${HISTFILE} | \
+			tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
+			tac | sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
+		mv ${HISTFILE}.tmp ${HISTFILE}
 	}
+
+	if [[ ${HISTCONTROL} == erasedups ]]; then
+		_synchistory () {
+			builtin history -a
+			builtin history -c
+			builtin history -r
+			_erasehistorydups
+		}
+	else
+		_synchistory () {
+			builtin history -a
+			builtin history -c
+			builtin history -r
+		}
+	fi
 
 	trap_add '_synchistory' DEBUG
 
 	history () {
-		_sync_history
+		_synchistory
 		builtin history
 	}
 fi

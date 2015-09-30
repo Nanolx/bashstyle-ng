@@ -48,6 +48,13 @@ Overview of changes in v9.2 "Galvanize"
 ++ now there's an separate option for each (including a color option each)
 ++ furthermore PS2 / PS3 / PS4 export does now honor enable_colors setting
 
+* History Sync changes:
+++ BashStyle-NG 9.1 introduced a custom history sync functionality, which turned
+   out not to properly operate when the History Control Type was set to "Erase
+   Duplicates" this is now worked around by a custom _erasehistorydups function,
+   please note that this might slow down Bash a bit if you have a huge history
+++ fixed a typo that prevented history to properly call _synchistory
+
 === Configure ===
 
 4.3.5:
