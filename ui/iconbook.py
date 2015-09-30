@@ -128,12 +128,21 @@ class IconBook(object):
 		versionlabel_vendor = gtkbuilder.get_object("config.label_vendor.desc")
 		versionlabel_factory = gtkbuilder.get_object("config.label_factory.desc")
 
-		restore_config.set_sensitive(config.UserSaveConfigExists())
-
 		def backup_configAction(data):
 			config.BackupConfig()
+			restore_configPossible()
+
+		def restore_configPossible():
+			if config.UserSaveConfigExists():
+				if config.UserSaveConfigVersion() == config.FactoryConfigVersion():
+					restore_config.set_sensitive(True)
+				else:
+					restore_config.set_sensitive(False)
+			else:
+				restore_config.set_sensitive(False)
 			versionlabel_userbackup.set_text("%s" % config.UserSaveConfigVersion())
-			restore_config.set_sensitive(config.UserSaveConfigExists())
+
+		restore_configPossible()
 
 		def restore_configAction(data):
 			config.RestoreConfig()
