@@ -101,8 +101,12 @@ class Config(object):
 
 	def RestoreConfig(self):
 		if self.UserSaveConfigExists():
-			print(_("RestoreConfig: restoring configuration from %s." % USER_DEFAULTS_SAVE))
-			shutil.copy(USER_DEFAULTS_SAVE, USER_DEFAULTS)
+			backup_ini = configobj.ConfigObj(infile=USER_DEFAULTS_SAVE,default_encoding="utf8")
+			if backup_ini.as_int("ini_version") == app_ini_version:
+				print(_("RestoreConfig: restoring configuration from %s." % USER_DEFAULTS_SAVE))
+				shutil.copy(USER_DEFAULTS_SAVE, USER_DEFAULTS)
+			else:
+				print(_("RestoreConfig: not restoring configuration as it's outdated."))
 		else:
 			print(_("RestoreConfig: no backup configuration exists."))
 
