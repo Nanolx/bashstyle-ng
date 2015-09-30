@@ -36,11 +36,18 @@ app_ini_version = 22
 class Config(object):
 	def InitConfig(self):
 		if not os.access(USER_DEFAULTS, os.F_OK):
-			RestoreConfig()
+			self.ResetConfig(True)
 
 	def LoadConfig(self):
-		self.cfo = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
-		if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
+		try:
+			self.cfo = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
+		except:
+			print(_("LoadConfig: something is wrong with User configuration, restoring defaults."))
+			self.ResetConfig(True)
+			self.cfo = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
+
+		self.udc = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
+		if self.VendorConfigExists():
 			vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
 			if vendor_ini.as_int("ini_version") == app_ini_version:
 				print(_("LoadConfig: vendor configuration up-to-date, using it's values."))
@@ -51,7 +58,6 @@ class Config(object):
 		else:
 			print(_("LoadConfig: no vendor configuration found, using factory defaults."))
 			self.fdc = configobj.ConfigObj(infile=FACTORY_DEFAULTS,default_encoding="utf8")
-		self.udc = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
 
 	def ReloadConfig(self):
 		self.cfo.reload()
@@ -59,40 +65,46 @@ class Config(object):
 		self.fdc.reload()
 
 	def CheckConfig(self):
-		try:
-			if self.cfo.as_int("ini_version") < app_ini_version:
-				print(_("CheckConfig: User ini is at version {}, but {} is available, updating.").format(self.cfo.as_int("ini_version"), app_ini_version))
-				self.UpdateConfig()
-			elif self.cfo.as_int("ini_version") > app_ini_version:
-				print(_("CheckConfig: User ini version is at {}, but {} is the highest known. Resetting due to error.").format(self.cfo.as_int("ini_version"), app_ini_version))
-				self.ResetConfig()
-			else:
-				print(_("CheckConfig: User configuration up-to-date."))
-			self.FixUpConfig()
-		except KeyError:
-			print(_("CheckConfig: something is wrong with User configuration, restoring defaults."))
-			ResetConfig()
+		if self.cfo.as_int("ini_version") < app_ini_version:
+			print(_("CheckConfig: User ini is at version {}, but {} is available, updating.").format(self.cfo.as_int("ini_version"), app_ini_version))
+			self.UpdateConfig()
+		elif self.cfo.as_int("ini_version") > app_ini_version:
+			print(_("CheckConfig: User ini version is at {}, but {} is the highest known. Resetting due to error.").format(self.cfo.as_int("ini_version"), app_ini_version))
+			self.ResetConfig(True)
+		else:
+			print(_("CheckConfig: User configuration up-to-date."))
+		self.FixUpConfig()
 
-	def ResetConfig(self):
-		if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
+	def ResetConfig(self, userbackup):
+		restore_from=FACTORY_DEFAULTS
+		restore_string=_("ResetConfig: no up-to-date backup or vendor configuration found, using factory defaults.")
+
+		if self.VendorConfigExists():
 			vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
 			if vendor_ini.as_int("ini_version") == app_ini_version:
-				print(_("ResetConfig: vendor configuration up-to-date, using it's values."))
-				shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS)
-			else:
-				print(_("ResetConfig: vendor configuration oudated, using factory defaults!"))
-				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
-		else:
-			print(_("ResetConfig: no vendor configuration found, using factory defaults."))
-			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS)
+				restore_from=VENDOR_DEFAULTS
+				restore_string=_("ResetConfig: vendor configuration up-to-date, using it's values.")
+
+		if userbackup:
+			if self.UserSaveConfigExists():
+				backup_ini = configobj.ConfigObj(infile=USER_DEFAULTS_SAVE,default_encoding="utf8")
+				if backup_ini.as_int("ini_version") == app_ini_version:
+					restore_from=USER_DEFAULTS_SAVE
+					restore_string=_("ResetConfig: backup configuration up-to-date, using it's values.")
+
+		print(restore_string)
+		shutil.copy(restore_from, USER_DEFAULTS)
 
 	def BackupConfig(self):
 		print(_("BackupConfig: backing up configuration to %s." % USER_DEFAULTS_SAVE))
 		shutil.copy(USER_DEFAULTS, USER_DEFAULTS_SAVE)
 
 	def RestoreConfig(self):
-		print(_("RestoreConfig: restoring configuration from %s" % USER_DEFAULTS_SAVE))
-		shutil.copy(USER_DEFAULTS_SAVE, USER_DEFAULTS)
+		if self.UserSaveConfigExists():
+			print(_("RestoreConfig: restoring configuration from %s." % USER_DEFAULTS_SAVE))
+			shutil.copy(USER_DEFAULTS_SAVE, USER_DEFAULTS)
+		else:
+			print(_("RestoreConfig: no backup configuration exists."))
 
 	def UpdateConfig(self):
 		if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
@@ -142,6 +154,49 @@ class Config(object):
 
 	def GetFactoryConfig(self, group, setting):
 		print(self.fdc["%s" % group]["%s" % setting])
+
+	def UserSaveConfigExists(self):
+		if os.access(USER_DEFAULTS_SAVE, os.F_OK):
+			try:
+				backup_ini = configobj.ConfigObj(infile=USER_DEFAULTS_SAVE,default_encoding="utf8")
+				return True
+			except:
+				print(_("UserSaveConfigExists: backup configuration can't be loaded due errors."))
+				return False
+		else:
+			return False
+
+	def VendorConfigExists(self):
+		if os.access(VENDOR_DEFAULTS, os.F_OK):
+			try:
+				vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
+				return True
+			except:
+				print(_("VendorConfigExists: vendor configuration can't be loaded due errors."))
+				return False
+		else:
+			return False
+
+	def UserConfigVersion(self):
+		user_ini = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
+		return user_ini.as_int("ini_version")
+
+	def UserSaveConfigVersion(self):
+		if self.UserSaveConfigExists():
+			backup_ini = configobj.ConfigObj(infile=USER_DEFAULTS_SAVE,default_encoding="utf8")
+			return backup_ini.as_int("ini_version")
+		else:
+			return "None"
+
+	def VendorConfigVersion(self):
+		if self.VendorConfigExists():
+			vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
+			return vendor_ini.as_int("ini_version")
+		else:
+			return "None"
+
+	def FactoryConfigVersion(self):
+		return app_ini_version
 
 	def CheckBashStyle(self):
 		rc = open(os.path.expanduser("~/.bashrc"), "r")

@@ -10,7 +10,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'sys', 'widgethandler', 'subprocess', 'config' ]
+MODULES = [ 'sys', 'os', 'widgethandler', 'subprocess', 'config', 'lockfile' ]
 
 FAILED = []
 
@@ -37,7 +37,7 @@ if FAILED:
 iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
 		  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
 		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-keys",
-		  "bs-ng-custom", "bs-ng-info" ]
+		  "bs-ng-custom",  "bs-ng-toolbox", "bs-ng-info" ]
 
 iconview_labels = {
 	"bs-ng-style" : _("General Style"),
@@ -51,7 +51,8 @@ iconview_labels = {
 	"bs-ng-shopts" : _("Shell Options"),
 	"bs-ng-git" : _("GIT"),
 	"bs-ng-info" : _("About BashStyle-NG"),
-	"bs-ng-keys" : _("Keybindings")
+	"bs-ng-keys" : _("Keybindings"),
+	"bs-ng-toolbox" : _("Configuration"),
 }
 
 notebook_pages = {
@@ -68,10 +69,13 @@ notebook_pages = {
 	_("GIT") : 9,
 	_("About BashStyle-NG") : 12,
 	_("Keybindings") : 11,
-	_("BashStyle-NG StartUp") : 13
+	_("BashStyle-NG StartUp") : 13,
+	_("Configuration") : 14,
 }
 
 gtkbuilder = widgethandler.gtkbuilder
+config = config.Config()
+lock = lockfile.LockFile()
 
 class IconBook(object):
 
@@ -116,12 +120,49 @@ class IconBook(object):
 
 		iconview.connect("item-activated", iconview_activated)
 
-		if config.Config.CheckBashStyle(self) == False:
+		backup_config = gtkbuilder.get_object("config.backup")
+		restore_config = gtkbuilder.get_object("config.restore")
+		reset_config = gtkbuilder.get_object("config.reset")
+		versionlabel_user = gtkbuilder.get_object("config.label_user.desc")
+		versionlabel_userbackup = gtkbuilder.get_object("config.label_userbackup.desc")
+		versionlabel_vendor = gtkbuilder.get_object("config.label_vendor.desc")
+		versionlabel_factory = gtkbuilder.get_object("config.label_factory.desc")
+
+		restore_config.set_sensitive(config.UserSaveConfigExists())
+
+		def backup_configAction(data):
+			config.BackupConfig()
+			restore_config.set_sensitive(config.UserSaveConfigExists())
+
+		def restore_configAction(data):
+			config.RestoreConfig()
+			lock.Remove()
+			print(_("RestoreConfig: relaunching BashStyle-NG"))
+			python = sys.executable
+			os.execl(python, python, * sys.argv)
+
+		def reset_configAction(data):
+			config.ResetConfig(False)
+			lock.Remove()
+			print(_("ResetConfig: relaunching BashStyle-NG"))
+			python = sys.executable
+			os.execl(python, python, * sys.argv)
+
+		backup_config.connect("clicked", backup_configAction)
+		restore_config.connect("clicked", restore_configAction)
+		reset_config.connect("clicked", reset_configAction)
+
+		versionlabel_user.set_text("%s" % config.UserConfigVersion())
+		versionlabel_userbackup.set_text("%s" % config.UserSaveConfigVersion())
+		versionlabel_vendor.set_text("%s" % config.VendorConfigVersion())
+		versionlabel_factory.set_text("%s" % config.FactoryConfigVersion())
+
+		if config.CheckBashStyle() == False:
 			startup_enable = gtkbuilder.get_object("startup.enable")
 			startup_cancel = gtkbuilder.get_object("startup.cancel")
 
 			def setBashStyle(data):
-				config.Config.EnableBashStyle(self, True)
+				config.EnableBashStyle(True)
 				notebook.set_current_page(0)
 				main_label.set_text(_("Choose a Category:"))
 
