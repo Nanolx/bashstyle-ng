@@ -132,6 +132,7 @@ class IconBook(object):
 
 		def backup_configAction(data):
 			config.BackupConfig()
+			versionlabel_userbackup.set_text("%s" % config.UserSaveConfigVersion())
 			restore_config.set_sensitive(config.UserSaveConfigExists())
 
 		def restore_configAction(data):
