@@ -123,16 +123,16 @@ if [[ ! -e $HOME/.nanorc.bs-ng.* ]]; then
 
 	if [[ $(ini_get tab_to_spaces) == True ]]; then
 		dbg_msg $"NanoCFG Setting:" $"Tab to spaces" $"On"
-		rc_add "set tabtospaces"
+		rc_add "set tabstospaces"
 	else
 		dbg_msg $"NanoCFG Setting:" $"Tab to spaces" $"Off"
-		rc_add "unset tabtospaces"
+		rc_add "unset tabstospaces"
 	fi
 
 	if [[ $(ini_get set_uicolors) == True ]]; then
 		for uipart in function key status title; do
 			dbg_msg $"NanoCFG Setting:" $"UI Color" ${uipart} ":" $(ini_get ${uipart}_color_fg,${uipart}_color_bg)
-			rc_add "set ${uipart}color $(ini_get ${uipart}_color_fg,${uipart}_color_bg)"
+			rc_add "set ${uipart}color $(ini_get ${uipart}_color_fg),$(ini_get ${uipart}_color_bg)"
 		done
 	fi
 
