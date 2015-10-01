@@ -213,10 +213,6 @@ if [[ $(ini_get history_sync) == True ]]; then
 
 	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
 
-	history () {
-		_synchistory
-		builtin history
-	}
 fi
 
 # remember last exit status and command
