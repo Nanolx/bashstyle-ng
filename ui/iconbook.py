@@ -129,6 +129,10 @@ class IconBook(object):
 		versionlabel_userbackup = gtkbuilder.get_object("config.label_userbackup.desc")
 		versionlabel_vendor = gtkbuilder.get_object("config.label_vendor.desc")
 		versionlabel_factory = gtkbuilder.get_object("config.label_factory.desc")
+		edit_bashrc = gtkbuilder.get_object("config.edit_bashrc")
+		edit_bashstylecustom = gtkbuilder.get_object("config.edit_bashstylecustom")
+		edit_vimrccustom = gtkbuilder.get_object("config.edit_vimrccustom")
+		edit_inputrccustom = gtkbuilder.get_object("config.edit_inputrccustom")
 
 		def backup_configAction(data):
 			config.BackupConfig()
@@ -181,6 +185,14 @@ class IconBook(object):
 		versionlabel_user.set_text("%s" % config.UserConfigVersion())
 		versionlabel_vendor.set_text("%s" % config.VendorConfigVersion())
 		versionlabel_factory.set_text("%s" % config.FactoryConfigVersion())
+
+		def openFile(data, file):
+			subprocess.Popen(["xdg-open", "%s" %file])
+
+		edit_bashrc.connect("clicked", openFile, os.getenv('HOME') + "/.bashrc")
+		edit_bashstylecustom.connect("clicked", openFile, os.getenv('HOME') + "/.bashstyle.custom")
+		edit_vimrccustom.connect("clicked", openFile, os.getenv('HOME') + "/.vimrc.custom")
+		edit_inputrccustom.connect("clicked", openFile, os.getenv('HOME') + "/.inputrc.custom")
 
 		if config.CheckBashStyle() == False:
 			startup_enable = gtkbuilder.get_object("startup.enable")

@@ -31,6 +31,12 @@ Overview of changes in v9.2 "Galvanize"
   - Restore (from user backup configuration)
   - delete Backup configuration
   - Reset (reset from vendor or factory configuration) the configuration
+  - Edit various configuration files (uses xdg-open to open files), namely
+    - .bashrc
+    - .bashstyle.custom (bashrc-extension always loaded after BashStyle-NG,
+      thus can use BashStyle-NG variables and functions reliably)
+    - .vimrc.custom (vimrc extension that is not managed by BashStyle-NG)
+    - .inputrc.custom (inputrc extension that is not managed by BashStyle-NG)
   .
   also shows version of user, user backup, vendor and factory configuration
   files (None for vendor and user backup if they don't exist)

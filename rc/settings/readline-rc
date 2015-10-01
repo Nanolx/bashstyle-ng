@@ -132,6 +132,8 @@ if [[ ! -e $HOME/.inputrc.bs-ng.* ]]; then
 	dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(ini_get query_items)
 	rc_add "set completion-query-items $(ini_get query_items)"
 
+	rc_add "\$include ${HOME}/.inputrc.custom"
+
 	mv ${RC_FILE} ${HOME}/.inputrc
 	bind -f ${HOME}/.inputrc
 	unset RC_FILE
