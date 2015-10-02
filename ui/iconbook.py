@@ -121,19 +121,6 @@ class IconBook(object):
 
 		iconview.connect("item-activated", iconview_activated)
 
-		backup_config = gtkbuilder.get_object("config.backup")
-		restore_config = gtkbuilder.get_object("config.restore")
-		reset_config = gtkbuilder.get_object("config.reset")
-		delete_config = gtkbuilder.get_object("config.delete")
-		versionlabel_user = gtkbuilder.get_object("config.label_user.desc")
-		versionlabel_userbackup = gtkbuilder.get_object("config.label_userbackup.desc")
-		versionlabel_vendor = gtkbuilder.get_object("config.label_vendor.desc")
-		versionlabel_factory = gtkbuilder.get_object("config.label_factory.desc")
-		edit_bashrc = gtkbuilder.get_object("config.edit_bashrc")
-		edit_bashstylecustom = gtkbuilder.get_object("config.edit_bashstylecustom")
-		edit_vimrccustom = gtkbuilder.get_object("config.edit_vimrccustom")
-		edit_inputrccustom = gtkbuilder.get_object("config.edit_inputrccustom")
-
 		def backup_configAction(data):
 			config.BackupConfig()
 			restore_configPossible()
@@ -148,8 +135,6 @@ class IconBook(object):
 			else:
 				restore_config.set_sensitive(False)
 			versionlabel_userbackup.set_text("%s" % config.UserSaveConfigVersion())
-
-		restore_configPossible()
 
 		def restore_configAction(data):
 			config.RestoreConfig()
@@ -175,29 +160,37 @@ class IconBook(object):
 			restore_configPossible()
 			delete_configPossible()
 
-		delete_configPossible()
-
-		backup_config.connect("clicked", backup_configAction)
-		restore_config.connect("clicked", restore_configAction)
-		reset_config.connect("clicked", reset_configAction)
-		delete_config.connect("clicked", delete_configAction)
-
-		versionlabel_user.set_text("%s" % config.UserConfigVersion())
-		versionlabel_vendor.set_text("%s" % config.VendorConfigVersion())
-		versionlabel_factory.set_text("%s" % config.FactoryConfigVersion())
-
 		def openFile(data, file):
 			subprocess.Popen(["xdg-open", "%s" %file])
 
-		edit_bashrc.connect("clicked", openFile, os.getenv('HOME') + "/.bashrc")
-		edit_bashstylecustom.connect("clicked", openFile, os.getenv('HOME') + "/.bashstyle.custom")
-		edit_vimrccustom.connect("clicked", openFile, os.getenv('HOME') + "/.vimrc.custom")
-		edit_inputrccustom.connect("clicked", openFile, os.getenv('HOME') + "/.inputrc.custom")
+		def load_button(widget, action, extraarg=None):
+			widget = gtkbuilder.get_object("%s" % widget)
+			widget.connect("clicked", action, extraarg)
+			return widget
+
+		load_button("config.backup", backup_configAction)
+		load_button("config.reset", reset_configAction)
+		load_button("config.edit_bashrc", openFile, os.getenv('HOME') + "/.bashrc")
+		load_button("config.edit_bashstylecustom", openFile, os.getenv('HOME') + "/.bashstyle.custom")
+		load_button("config.edit_vimrccustom", openFile, os.getenv('HOME') + "/.vimrc.custom")
+		load_button("config.edit_inputrccustom", openFile, os.getenv('HOME') + "/.inputrc.custom")
+		restore_config = load_button("config.restore", restore_configAction)
+		delete_config = load_button("config.delete", delete_configAction)
+
+		def load_label(widget, action):
+			widget = gtkbuilder.get_object("%s" % widget)
+			widget.set_text("%s" % action)
+			return widget
+
+		load_label("config.label_user.desc", config.UserConfigVersion())
+		load_label("config.label_vendor.desc", config.VendorConfigVersion())
+		load_label("config.label_factory.desc", config.FactoryConfigVersion())
+		versionlabel_userbackup = load_label("config.label_userbackup.desc", config.UserSaveConfigVersion())
+
+		restore_configPossible()
+		delete_configPossible()
 
 		if config.CheckBashStyle() == False:
-			startup_enable = gtkbuilder.get_object("startup.enable")
-			startup_cancel = gtkbuilder.get_object("startup.cancel")
-
 			def setBashStyle(data):
 				config.EnableBashStyle(True)
 				notebook.set_current_page(0)
@@ -207,8 +200,8 @@ class IconBook(object):
 				notebook.set_current_page(0)
 				main_label.set_text(_("Choose a Category:"))
 
-			startup_enable.connect("clicked", setBashStyle)
-			startup_cancel.connect("clicked", abortBashStyle)
+			load_button("startup.enable", setBashStyle)
+			load_button("startup.cancel", abortBashStyle)
 
 			notebook.set_current_page(13)
 			main_label.set_text(_("Category: ") + _("BashStyle-NG StartUp"))
