@@ -1453,11 +1453,6 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">use_bashstyle
-
-Checking this will enable BashStyle-NG, that
-means that all options (except for categories
-vim, nano and readline) will take effect.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1473,11 +1468,6 @@ vim, nano and readline) will take effect.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">enable_colors
-
-This will enable fancy colorful prompts, else they
-will be monochrome. This setting also effects 
-other color settings.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1509,11 +1499,6 @@ other color settings.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colored_ls
-
-Color the output of the ls command, else it will 
-fallback to distribution default (usually 
-monochrome).</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1527,9 +1512,6 @@ monochrome).</property>
                           <object class="GtkLabel" id="style.label.color_style">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">color_style
-
-choose the way colors are drawn.</property>
                             <property name="label" translatable="yes">Choose Color Style</property>
                           </object>
                           <packing>
@@ -1576,10 +1558,6 @@ choose the way colors are drawn.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colored_man
-
-This will highlight keywords when reading 
-manpages for easier readiblity.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1592,10 +1570,6 @@ manpages for easier readiblity.</property>
                           <object class="GtkLabel" id="style.label.terminfo">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">man_style
-
-this allows to choose different, colored
-terminfos for manpages. </property>
                             <property name="label" translatable="yes">Color for manpage infobar</property>
                           </object>
                           <packing>
@@ -1625,10 +1599,6 @@ terminfos for manpages. </property>
                           <object class="GtkLabel" id="style.label.terminfo1">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">man_style
-
-this allows to choose different, colored
-terminfos for manpages. </property>
                             <property name="label" translatable="yes">Color for manpage body text</property>
                           </object>
                           <packing>
@@ -1660,10 +1630,6 @@ terminfos for manpages. </property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colorshell
-
-changes the default text color (randomly after 
-each command)</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1679,11 +1645,6 @@ each command)</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colorshell_reset
-
-Reset the text color to normal when executing
-a command line (only the command itself will be 
-colored differently)</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1699,9 +1660,6 @@ colored differently)</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">colored_grep
-
-this will highlight search results in grep output.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -1715,10 +1673,6 @@ this will highlight search results in grep output.</property>
                           <object class="GtkLabel" id="style.label.grep_colour">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">grep_color
-
-choose the color search results are highlighted
-in grep output.</property>
                             <property name="label" translatable="yes">Choose grep color</property>
                           </object>
                           <packing>
@@ -2011,10 +1965,6 @@ in grep output.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">battery_load
-
-Applies to "separator" style only. Display the
-battery load using acpi.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2045,13 +1995,6 @@ battery load using acpi.</property>
                           <object class="GtkLabel" id="advanced.label.show_mem">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">mem
-
-Applies to "separator" style only.
-
-free: show free RAM in MB
-used: show used RAM in MB
-both: show free / used RAM in MB</property>
                             <property name="label" translatable="yes">Display memory</property>
                           </object>
                           <packing>
@@ -2065,10 +2008,6 @@ both: show free / used RAM in MB</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">load
-
-Applies to "separator" style only. Display the
-system load.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2084,10 +2023,6 @@ system load.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">tty
-
-Applies to "separator" style only. Display the
-current tty.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2103,10 +2038,6 @@ current tty.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">uptime
-
-Applies to "separator" style only. Display the
-computer's uptime.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2121,10 +2052,6 @@ computer's uptime.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">processes
-
-Applies to "separator" style only. Show the
-number of running processes.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2140,10 +2067,6 @@ number of running processes.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">files_size
-
-Applies to "separator" style only. Show the size
-of all files in the current directory.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2159,10 +2082,6 @@ of all files in the current directory.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">files_amount
-
-Applies to "separator" style only. Show the
-number of files in the current directory.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2204,11 +2123,6 @@ number of files in the current directory.</property>
                           <object class="GtkEntry" id="pwd_cutter">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">pwdcut
-
-most prompt styles display the current directory.
-They allow to cut it, if it exceeds pwdlength, this
-is the indicator for a cut directory.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -2222,10 +2136,6 @@ is the indicator for a cut directory.</property>
                           <object class="GtkSpinButton" id="pwd_len">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">pwdlength
-
-the maximum length for the current directory
-(as displayed in the prompt styles).</property>
                             <property name="invisible_char">•</property>
                             <property name="text" translatable="yes">9</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
@@ -2265,11 +2175,6 @@ the maximum length for the current directory
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">separator
-
-several prompt styles use separators between
-items, here you can choose what to use as
-separator.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -2296,10 +2201,6 @@ separator.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">ps234
-
-this character will be used once for PS2, twice
-for PS3 and three times for PS4.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -2350,10 +2251,6 @@ for PS3 and three times for PS4.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">ps234
-
-this character will be used once for PS2, twice
-for PS3 and three times for PS4.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -2368,10 +2265,6 @@ for PS3 and three times for PS4.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">ps234
-
-this character will be used once for PS2, twice
-for PS3 and three times for PS4.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -2403,9 +2296,6 @@ for PS3 and three times for PS4.</property>
                           <object class="GtkLabel" id="style.label.prompt_style">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">prompt_style
-
-choose a prompt style.</property>
                             <property name="label" translatable="yes">Choose Promptstyle</property>
                           </object>
                           <packing>
@@ -2420,10 +2310,6 @@ choose a prompt style.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">random_style
-
-choose a random promptstyle each time you
-start a new session.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -2684,12 +2570,6 @@ start a new session.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_one
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2704,12 +2584,6 @@ Now executing "a" will do "echo hello world"</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_two
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2724,12 +2598,6 @@ Now executing "a" will do "echo hello world"</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_three
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2744,12 +2612,6 @@ Now executing "a" will do "echo hello world"</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_four
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2764,12 +2626,6 @@ Now executing "a" will do "echo hello world"</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_five
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2784,12 +2640,6 @@ Now executing "a" will do "echo hello world"</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_six
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2804,12 +2654,6 @@ Now executing "a" will do "echo hello world"</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_seven
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2824,12 +2668,6 @@ Now executing "a" will do "echo hello world"</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_eight
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2844,12 +2682,6 @@ Now executing "a" will do "echo hello world"</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">alias_nine
-
-define an alias. Example:
-a=echo hello world
-
-Now executing "a" will do "echo hello world"</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
                     <property name="secondary_icon_name">gtk-delete</property>
@@ -2923,10 +2755,6 @@ Now executing "a" will do "echo hello world"</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">history_ignore
-
-a colon separated list of commands not to log
-in the bash history.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -2940,16 +2768,6 @@ in the bash history.</property>
                           <object class="GtkLabel" id="advanced.label.history_control">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">history_control
-
-Erase duplicates: only leave the newest entry
-         if a command is executed multiple times
-Ignore duplicates: only leave the oldest entry
-         if a command is executed multiple times
-Ignore Space: ignore all commands with
-         leading space
-Ignore Both: Ignore duplicates and Ignore
-         Space together</property>
                             <property name="label" translatable="yes">Choose historycontrol type</property>
                           </object>
                           <packing>
@@ -2982,10 +2800,6 @@ Ignore Both: Ignore duplicates and Ignore
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">restore_directory
-
-remember the directory you last cd-ed into and
-restore it in a new session.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3001,9 +2815,6 @@ restore it in a new session.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">customcd_mkdir
-
-let lscd or treecd create a directory if it does not exist.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3019,10 +2830,6 @@ let lscd or treecd create a directory if it does not exist.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">use_treecd
-
-Use "treecd" instead of "cd". treecd displays lists
-the directory tree in the current directory when cd-ing.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3038,10 +2845,6 @@ the directory tree in the current directory when cd-ing.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">use_lscd
-
-Use "lscd" instead of "cd". lscd displays lists
-all files in the current directory when cd-ing.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3065,9 +2868,6 @@ all files in the current directory when cd-ing.</property>
                           <object class="GtkSpinButton" id="history_size">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">history_size
-
-maximum lines of bash history.</property>
                             <property name="invisible_char">•</property>
                             <property name="text" translatable="yes">0</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
@@ -3096,10 +2896,6 @@ maximum lines of bash history.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">history_ignore
-
-a colon separated list of commands not to log
-in the bash history.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3177,9 +2973,6 @@ in the bash history.</property>
                           <object class="GtkEntry" id="treecd_options">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">lscd_options
-
-extra ls options for lscd. All ls options work.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3193,9 +2986,6 @@ extra ls options for lscd. All ls options work.</property>
                           <object class="GtkEntry" id="lscd_options">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">lscd_options
-
-extra ls options for lscd. All ls options work.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3223,11 +3013,6 @@ extra ls options for lscd. All ls options work.</property>
                           <object class="GtkEntry" id="birthday">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">user_birthday
-
-user birthday in MM-DD format. Example 12-06
-for 6th of December. You will be presented with
-some surprise when starting bash that day.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3255,11 +3040,6 @@ some surprise when starting bash that day.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">dd_noerror
-
-normally "dd" abort on any occuring error. This
-will prevent dd from aborting, it will just report
-the read error and continue.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3275,11 +3055,6 @@ the read error and continue.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">debug_verbose
-
-display full output from NX-RC (the BashStyle-NG
-startup script). Only recommended if you're
-getting an error message on session start.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -3303,10 +3078,6 @@ getting an error message on session start.</property>
                           <object class="GtkEntry" id="welcome">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">welcome_message
-
-some command to run on session start. Most
-commonly this will be something like "fortune".</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3331,12 +3102,6 @@ commonly this will be something like "fortune".</property>
                           <object class="GtkEntry" id="dirchar">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">directory_indicator
-
-normally directories are represented by / - eg.:
-/home/test - this option lets you exchange the
-/ by something else (only for displaying in the
-prompt).</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3378,12 +3143,6 @@ prompt).</property>
                           <object class="GtkEntry" id="path">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">path
-
-a colon separated list of directories where
-executables are stored. Note: if you change
-it first add the content of your original $PATH
-here (else you'll get unwanted results).</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3420,10 +3179,6 @@ here (else you'll get unwanted results).</property>
                           <object class="GtkSpinButton" id="timeout">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">timeout
-
-after x seconds of inactivity bash will log you out
-automatically. 0 to disable.</property>
                             <property name="invisible_char">•</property>
                             <property name="text" translatable="yes">0</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
@@ -3453,9 +3208,6 @@ automatically. 0 to disable.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">fcedit
-
-set the editor for the internal fc command.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3482,10 +3234,6 @@ set the editor for the internal fc command.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">completion_ignore
-
-a colon separated list of files to ignore from
-filename completion.</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3500,13 +3248,6 @@ filename completion.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="tooltip_text" translatable="yes">cdpath
-
-a colon separated list of directorys cd can
-directly go to. Example add ${HOME} to it, so
-you can directly go to ${HOME}/Desktop using:
-
-cd Desktop</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3599,12 +3340,6 @@ cd Desktop</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">use_readlinecfg
-
-This option lets BashStyle-NG create
-an inputrc according to below values
-and the choices in the Keybindings
-configurator.</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3617,14 +3352,6 @@ configurator.</property>
                   <object class="GtkLabel" id="readline.lable.bellstyle">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">bellstyle
-
-the readline bell informs you of (more
-or less) important things on the shell.
-
-None: disable readline bell
-Audible: beep the system speaker
-Visible: flash the terminal</property>
                     <property name="label" translatable="yes">Choose bellstyle</property>
                   </object>
                   <packing>
@@ -3636,10 +3363,6 @@ Visible: flash the terminal</property>
                   <object class="GtkLabel" id="readline.label.editmode">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">editing_mode
-
-Editing mode for readline, either vim
-or emacs (default) like.</property>
                     <property name="label" translatable="yes">Choose editing mode</property>
                   </object>
                   <packing>
@@ -3719,12 +3442,6 @@ or emacs (default) like.</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">ambiguous_show
-
-When completion is unsure rather and
-if the number of completions is less
-than query_items don't tell the user
-how many matches exist, just show them.</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3749,11 +3466,6 @@ how many matches exist, just show them.</property>
                   <object class="GtkSpinButton" id="query_items">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">query_items
-
-if the number of possible completions
-exceeds this value the shell will ask
-the user whether to display all.</property>
                     <property name="invisible_char">•</property>
                     <property name="text" translatable="yes">0</property>
                     <property name="primary_icon_name">gtk-revert-to-saved</property>
@@ -3772,10 +3484,6 @@ the user whether to display all.</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">complete_horizontal
-
-do horizontal completion rather than
-vertical (default)</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3791,10 +3499,6 @@ vertical (default)</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">complete_hidden
-
-when doing file/pathname or command
-completion also include hidden files</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3810,10 +3514,6 @@ completion also include hidden files</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">ignore_case
-
-when doing completion ignore the
-case of file/pathname or commands</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3829,11 +3529,6 @@ case of file/pathname or commands</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">mark_symbolic_directories
-
-when doing file/pathname completion
-append a / to all symbolic linked
-directories</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3849,10 +3544,6 @@ directories</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">mark_directories
-
-when doing file/pathname completion
-append a / to each directory.</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3868,11 +3559,6 @@ append a / to each directory.</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">visible_stats
-
-when doing file/pathname or command
-completion append stats to entries,
-@ for links, * for executables ...</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3931,13 +3617,6 @@ completion append stats to entries,
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">scroll_horizontal
-
-when enabling this typing commands
-longer than the terminals width will
-not break the line, rather will readline
-scroll horizontally, so you can type
-everything in one line</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3952,10 +3631,6 @@ everything in one line</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">mark_modified
-
-when modifying a history entry, a *
-will be prepended to the line</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3970,10 +3645,6 @@ will be prepended to the line</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">show_editmode
-
-show the editing mode (vim or emacs)
-at the start of the prompt</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -3989,11 +3660,6 @@ at the start of the prompt</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="tooltip_text" translatable="yes">completion
-
-Enable file/pathname, command,
-etc. completion (press TAB on an
-incomplete file/pathname).</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -4056,10 +3722,6 @@ incomplete file/pathname).</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">use_vimcfg
-
-enabling will this create a vimrc with
-below configuration</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4074,10 +3736,6 @@ below configuration</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">vim_backup
-
-create a backup ($filename~) when
-saving a file</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4092,11 +3750,6 @@ saving a file</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">jump_back
-
-when saving a file remember your
-last position in the file and restore it
-when you open it again</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4111,10 +3764,6 @@ when you open it again</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">filetype_indent
-
-auto-indent the file according to it's
-type.</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4129,13 +3778,6 @@ type.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">show_command
-
-by default vim only shows typed-in
-commands only when fully written,
-this will change the behaviour, so
-that you can see your command while
-typing it in</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4150,11 +3792,6 @@ typing it in</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">highlight_brackets
-
-when moving the cursor to a bracket,
-highlight the corresponding opening
-or closing bracket</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4169,11 +3806,6 @@ or closing bracket</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">dark_background
-
-set this when your terminal has a
-dark background - it will change vims
-colors for better readibilty</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4188,10 +3820,6 @@ colors for better readibilty</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">syntax_hilight
-
-enable colored syntax highlighting,
-for better readability</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4206,11 +3834,6 @@ for better readability</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">start_line
-
-when opening a new file and restoring
-last position, jump to the start of the
-line, instead of remembered column</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4225,11 +3848,6 @@ line, instead of remembered column</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">wrap_line
-
-wrap what you type a autowrap
-position rather than having endless
-lines</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4254,10 +3872,6 @@ lines</property>
                           <object class="GtkSpinButton" id="vim_autowrap">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">wrap_length
-
-when wraping long lines, this is the
-column where they are wrapped at</property>
                             <property name="invisible_char">●</property>
                             <property name="text" translatable="yes">0</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
@@ -4285,9 +3899,6 @@ column where they are wrapped at</property>
                           <object class="GtkSpinButton" id="vim_tabstop">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">tab_length
-
-length (in spaces) for tabstops</property>
                             <property name="invisible_char">●</property>
                             <property name="text" translatable="yes">0</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
@@ -4319,9 +3930,6 @@ length (in spaces) for tabstops</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">autosave
-
-autosave files</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4336,9 +3944,6 @@ autosave files</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">ignore_case
-
-when searching ignore the case</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4353,11 +3958,6 @@ when searching ignore the case</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">incremental_search
-
-don't wait for the search pattern
-to be complete, immediately start
-the search</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4372,10 +3972,6 @@ the search</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">smart_case
-
-when searching smartly decide
-whether to ignore case or not</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4390,10 +3986,6 @@ whether to ignore case or not</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">highlight_matches
-
-when searching highlight all matches
-in the file</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4565,9 +4157,6 @@ in the file</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">show_lineno
-
-display line numbers at the left</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4582,10 +4171,6 @@ display line numbers at the left</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">chdir
-
-when opening a file, let vim cd into
-the file's directory</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4614,10 +4199,6 @@ the file's directory</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">ruler
-
-display a customizable ruler at the
-bottom of the editor</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4632,10 +4213,6 @@ bottom of the editor</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">highlight_line
-
-highlight the current line (it will be
-underlined)</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4650,10 +4227,6 @@ underlined)</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">highlight_column
-
-highlight the current column (there
-will be a vertical line of underlines)</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -4666,9 +4239,6 @@ will be a vertical line of underlines)</property>
                           <object class="GtkLabel" id="vim.label.colorscheme">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">colorscheme
-
-choose a colorscheme</property>
                             <property name="label" translatable="yes">Choose colorscheme</property>
                           </object>
                           <packing>
@@ -4709,12 +4279,6 @@ choose a colorscheme</property>
                           <object class="GtkEntry" id="vim_rulerformat">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">rulerformat
-
-format the ruler to your needs, eg.:
-%45(%t\ %y\ %c\ %l\/%L\ %p%%%)
-
-vimdoc.sourceforge.net/htmldoc/options.html</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
