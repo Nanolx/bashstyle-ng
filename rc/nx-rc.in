@@ -215,11 +215,6 @@ if [[ $(ini_get history_sync) == True ]]; then
 		mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
-	_ignorehistoryboth () {
-		_ignorehistoryspc
-		_ignorehistorydups
-	}
-
 	_synchistory () {
 		builtin history -a
 		builtin history -c
@@ -230,9 +225,8 @@ if [[ $(ini_get history_sync) == True ]]; then
 	trap_add '_synchistory' DEBUG
 
 	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
-	[[ ${HISTCONTROl} == ignoredups ]] && trap_add '_ignorehistorydups' DEBUG
-	[[ ${HISTCONTROL} == ignorespace ]] && trap_add '_ignorehistorspc' DEBUG
-	[[ ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistoryboth' DEBUG
+	[[ ${HISTCONTROl} == ignoredups || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorydups' DEBUG
+	[[ ${HISTCONTROL} == ignorespace || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorspc' DEBUG
 
 fi
 
