@@ -68,10 +68,12 @@ Overview of changes in v9.2 "Galvanize"
 * History Sync changes:
 + BashStyle-NG 9.1 introduced a custom history sync functionality (for syncing
   history over simultaneously running sessions), which turned out not to properly
-  operate when the History Control Type was set to "Erase Duplicates"
+  operate when the History Control Type was set to "Erase Duplicates", or
+  "Ignore Duplicates"
   .
-  This is now worked around by a custom _erasehistorydups function, which does
-  the clean-up where Bash fails due to the custom history handling functions.
+  This is now worked around by _erasehistorydups respectively _ingorehistorydups
+  functions, which do the clean-up where Bash fails due to the custom history
+  handling functions.
   .
   please note that this might slow down Bash a bit if you have a huge history
 

@@ -202,6 +202,13 @@ if [[ $(ini_get history_sync) == True ]]; then
 		mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
+	_ignorehistorydups () {
+		sed '$!N;s/\n/HISTDILIMITER/' ${HISTFILE} | \
+			gawk -F'HISTDILIMITER' '!x[$2]++' | \
+			sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
+		mv ${HISTFILE}.tmp ${HISTFILE}
+	}
+
 	_synchistory () {
 		builtin history -a
 		builtin history -c
@@ -212,6 +219,7 @@ if [[ $(ini_get history_sync) == True ]]; then
 	trap_add '_synchistory' DEBUG
 
 	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
+	[[ ${HISTCONTROl} == ignoredups ]] && trap_add '_ignorehistorydups' DEBUG
 
 fi
 
