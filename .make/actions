@@ -9,6 +9,10 @@
 #							#
 #########################################################
 
+make_news () {
+	makeinfo --no-validate  --no-headers doc/news.info > NEWS
+}
+
 make_build () {
 	check_configure && 
 	build_message && 
