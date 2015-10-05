@@ -10,7 +10,11 @@
 #########################################################
 
 make_news () {
-	makeinfo --no-validate  --no-headers doc/news.info > NEWS
+	makeinfo --no-validate  --no-headers doc/news.texi > NEWS
+}
+
+make_info () {
+	makeinfo -I ${PWD}/doc/ doc/userdoc.texi -o doc/bashstyle.info
 }
 
 make_build () {

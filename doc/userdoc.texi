@@ -1,0 +1,151 @@
+@c -*- texinfo -*-
+
+@c To compile: makeinfo -I doc/ doc/userdoc.texi -o doc/bashstyle.info
+
+@setfilename bashstyle.info
+@settitle BashStyle-NG user documentation
+@footnotestyle end
+
+@ifinfo
+@dircategory Miscellaneous
+@direntry
+* bashstyle: (bashstyle).		BashStyle-NG user documentation
+@end direntry
+
+This is @cite{The user documentation}, for BashStyle-NG.
+
+Copyright 2007 - 2015 Christopher Roy Bratusek.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+@end ignore
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+@end ifinfo
+
+@titlepage
+@title bashstyle
+@subtitle Graphical UI for managing Bash and co.
+@subtitle User Documentation
+@author Christopher Roy Bratusek.
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2007 - 2015 Christopher Roy Bratusek.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+@end titlepage
+
+@node Top, Copying, (dir), (dir)
+
+@menu
+* Copying::                     Distribution conditions
+* Introduction::                Brief introduction to BashStyle-NG
+* Changelog::                   User readable list of version changes
+* Installation::                Installation instructions
+* First Start::                 First Start notes
+
+* Style Options::               Options regarding colors and prompt style
+* Aliases::                     Options for setting shell aliases
+* Advanced Options::            Advanced and non-default options for Bash
+* Shell Options::               Shell options (shopt)
+* GIT Options::                 Options for the Git DVCS
+* Readline Options::            Options for the Readline library
+* Vim Options::                 Options for the Vi improved editor
+* Nano Options::                Options for the GNU Nano editor
+* LS Colors::                   Options for colorizing ls
+* Key Bindings::                Key bindings setter for Bash/Readline
+* Custom Prompt Builder::       UI for fully customized prompt experience
+
+* Configuration Files::         Notes on various configuration files used
+
+* Shell Functions::             Extra shell functions provided by BashStyle-NG
+@end menu
+
+@node Copying, Introduction, Top, Top
+@chapter Copying
+@cindex Copying
+
+@node Introduction, Installation, Copying, Top
+@chapter Introduction
+@cindex Introduction
+
+@node Installation, Changelog, Introduction, Top
+@chapter Installation
+@cindex Installation
+
+@node Changelog, First Start, Installation, Top
+@include news.texi
+@cindex Changelog
+
+@node First Start, Style Options, Changelog, Top
+@chapter First Start
+@cindex First Start
+
+@node Style Options, Aliases, First Start, Top
+@chapter Style Options
+@cindex Style Options
+
+@node Aliases, Advanced Options, Style Options, Top
+@chapter Aliases
+@cindex Aliases
+
+@node Advanced Options, Shell Options, Aliases, Top
+@chapter Advanced Options
+@cindex Advanced Options
+
+@node Shell Options, GIT Options, Advanced Options, Top
+@chapter Shell Options
+@cindex Shell Options
+
+@node GIT Options, Readline Options, Shell Options, Top
+@chapter GIT Options
+@cindex GIT Options
+
+@node Readline Options, Vim Options, GIT Options, Top
+@chapter Readline Options
+@cindex Readline Options
+
+@node Vim Options, Nano Options, Readline Options, Top
+@chapter Vim Options
+@cindex Vim Options
+
+@node Nano Options, LS Colors, Vim Options, Top
+@chapter Nano Options
+@cindex Nano Options
+
+@node LS Colors, Key Bindings, Nano Options, Top
+@chapter LS Colors
+@cindex LS Colors
+
+@node Key Bindings, Custom Prompt Builder, LS Colors, Top
+@chapter Key Bindings
+@cindex Key Bindings
+
+@node Custom Prompt Builder, Configuration Files, Key Bindings, Top
+@chapter Custom Prompt Builder
+@cindex Custom Prompt Builder
+
+@node Configuration Files, Shell Functions, Custom Prompt Builder, Top
+@chapter Configuration Files
+@cindex Configuration Files
+
+@node Shell Functions, Top, Configuration Files, Top
+@chapter Shell Functions
+@cindex Shell Functions

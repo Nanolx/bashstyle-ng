@@ -35,6 +35,7 @@ else
 			install )	make_install ;;
 			remove )	make_remove ;;
 			news )		make_news ;;
+			info )		make_info ;;
 			* )		help_message ;;
 		esac
 		shift
