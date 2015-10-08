@@ -76,6 +76,8 @@ notice identical to this one.
 * Configuration Files::         Notes on various configuration files used
 
 * Shell Functions::             Extra shell functions provided by BashStyle-NG
+
+* User Interface Icons::        Icon names for UI
 @end menu
 
 @node Copying, Introduction, Top, Top
@@ -83,7 +85,7 @@ notice identical to this one.
 @cindex Copying
 
 @node Introduction, Installation, Copying, Top
-@chapter Introduction
+@include userdoc_introduction.texi
 @cindex Introduction
 
 @node Installation, Changelog, Introduction, Top
@@ -143,9 +145,13 @@ notice identical to this one.
 @cindex Custom Prompt Builder
 
 @node Configuration Files, Shell Functions, Custom Prompt Builder, Top
-@chapter Configuration Files
+@include userdoc_configurationfiles.texi
 @cindex Configuration Files
 
-@node Shell Functions, Top, Configuration Files, Top
+@node Shell Functions, User Interface Icons, Configuration Files, Top
 @chapter Shell Functions
 @cindex Shell Functions
+
+@node User Interface Icons, Top, Shell Functions, Top
+@include userdoc_iconnames.texi
+@cindex User Interface Icons

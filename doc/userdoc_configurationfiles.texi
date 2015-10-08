@@ -1,0 +1,129 @@
+@c -*- texinfo -*-
+
+@chapter Configuration Files
+
+While BashStyle-NG is able to auto-generate the configuration files based on
+your choices in the UI, you might want to do manual additions aswell.
+
+@heading Main Configuration Files
+@itemize @bullet
+
+@item Factory Configuration: INSTALLATION_PREFIX/share/bashstyle-ng/bs-ng.ini
+@item Vendor Configuration: /etc/bs-ng_vendor.ini
+@item User Configuration: ~/.bs-ng.ini
+@item User Backup Configuration: ~/.bs-ng.ini.save
+@end itemize 
+
+@heading Configuration File Handling
+@itemize @bullet
+
+@item Configuration Files are versioned using the @code{ini_version} parameter,
+which ensures your User or Vendor configuration is up to date.
+
+@item If no User Configuration exists, BashStyle-NG will create the default one
+using
+@itemize +
+
+@item Vendor Configuration (if it exists and has the latest @code{ini_version})
+@item Factory Configuration
+@end itemize
+
+@item If the User Configuation is outdated, BashStyle-NG will update it using
+@itemize +
+
+@item Vendor Configuration (if it exists and has the latest @code{ini_version})
+@item Factory Configuration
+@end itemize
+
+@item If the User Configuation is malformed, BashStyle-NG will try to restore it
+using
+@itemize +
+
+@item User Backup Configuration (if it exists and has the latest @code{ini_version})
+@end itemize
+
+if that is not possible, it will create the default one using
+@itemize +
+
+@item Vendor Configuration (if it exists and has the latest @code{ini_version})
+@item Factory Configuration
+@end itemize
+@end itemize
+
+@heading Additional Configuration Files
+@itemize @bullet
+
+@item ~/.inputrc.custom: custom non-managed readline settings, loaded after ~/.inputrc
+@item ~/.vimrc.custom: custom non-managed vim settings, loaded after ~/.vimrc
+@item ~/.bashstyle.custom: custom non-managed bash settings, always loaded
+after BashStyle-NG start so variables and functions provided by BashStyle-NG can
+reliably be used
+@end itemize
+
+@heading Configuration File handling in User Interface
+
+In the BashStyle-NG @code{Configuration Files} section you are able to
+@itemize @bullet
+
+@item view versions of the configuration files
+@item backup your User configuration
+@item restore User Backup configuration
+@item restore Vendor configuration (if it exists and has the lastest
+@code{ini_version}), else Factory configuration
+@item edit ~/.bashrc (uses xdg-open)
+@item edit ~/.bashstyle.custom (uses xdg-open)
+@item edit ~/.inputrc.custom (uses xdg-open)
+@item edit ~/.vimrc.custom (uses xdg-open)
+@end itemize
+
+@heading Style Hooks in ~/.bashstyle.custom
+
+Some of the provided prompt styles allow be hooked into, so that some parts
+of them can be customized. Those hooks consist of a color variable and a hook
+function and should reside in ~/.bashstyle.custom.
+
+Those are not set when the prompts are loaded in the Custom Promp Builder.
+
+The following hooks are available
+@itemize @bullet
+
+@item Separator Style
+	@itemize +
+	@item SEPA_1() / SEPA_1_COLOR
+	@item SEPA_2() / SEPA_2_COLOR
+	@end itemize
+@item Vector Style
+	@itemize +
+	@item VECTOR_1() / VECTOR_1_COLOR
+	@item VECTOR_2() / VECTOR_2_COLOR
+	@end itemize
+@item Floating Clock
+	@itemize +
+	@item CLOCK_1() / CLOCK_1_COLOR
+	@end itemize
+@item Equinox Style
+	@itemize +
+	@item EQUINOX_1() / EQUINOX_1_COLOR
+	@end itemize
+@item Elite Style
+	@itemize +
+	@item ELITE_1() / ELITE_1_COLOR
+	@end itemize
+@item Power Style
+	@itemize +
+	@item POW_1() / POW_1_COLOR
+	@end itemize
+@item Dirks Style
+	@itemize +
+	@item DIRKS_1() / DIRKS_1_COLOR
+	@item DIRKS_2() / DIRKS_2_COLOR
+	@end itemize
+@item Sepa-NG Style
+	@itemize +
+	@item SEPA_NG_1() / SEPA_NG_1_COLOR
+	@end itemize
+@item Quirk Style
+	@itemize +
+	@item QUIRK_1() / QUIRK_1_COLOR
+	@end itemize
+@end itemize

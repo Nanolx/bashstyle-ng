@@ -1,0 +1,129 @@
+@c -*- texinfo -*-
+
+@chapter Introduction
+
+BashStyle-NG is a graphical tool and toolchain for changing the behaviour
+and look'n'feel of Bash, Readline, Vim, Nano and GIT.
+
+@heading What can BashStyle-NG do for you?
+@itemize @bullet
+
+@item Bash Settings
+@itemize +
+
+@item 12 fancy pre-defined prompt styles
+@item colors are customizable
+@item random text color possible
+@item random prompt style for each session possible
+@item create your own prompt using UI
+@item customizing pre-defined ones possible
+@item alternatively monochrome prompts instead of colored
+@item colored manpages (without using most)
+@item colored output from ls and grep (matches)
+@item colors are customizable
+@item rembering last visited directory (and restore upon new session)
+@item customize bash history settings
+@item lscd: customized variant of cd, showing content of directory after cd,
+can create directories that don't exist, passing of customized ls parameters
+possible
+@item un/setting shopts (shell options) for Bash 4.3 / 4.0-4.2 / 3.2+
+@item customizable completion blacklist, timeout, welcome message and more
+@item sync history over simultaneously running sessions
+@end itemize
+
+@item Git Options
+@itemize +
+
+@item set GIT user name
+@item set GIT mail address
+@item set GIT editor for commit messages
+@item set GIT colored output
+@end itemize
+
+@item Readline Options
+@itemize +
+
+@item un/set completion
+@item un/set case sensitivity
+@item un/set horizontal completion
+@item un/set mark filetypes and folders
+@item un/set include hidden files incompletion
+@item customize almost 30 keybindings
+@end itemize
+
+@item Vi Improved Settings
+@itemize +
+
+@item un/set remember last position
+@item un/set syntax highlighting
+@item un/set auto indention
+@item un/set case sensitive search
+@item un/set incremental search
+@item un/set display line numbers
+@item un/set highlight current line/column
+@item set dark or bright background
+@item set line-wrap and tab-length
+@item set color scheme
+@item enable ruler/set ruler format
+@end itemize
+
+@item GNU Nano Settings
+@itemize +
+
+@item un/set search history
+@item un/set syntax highlighting
+@item un/set auto indention
+@item un/set case sensitive search
+@item fix backspace and numblock assignment
+@end itemize
+
+@item Extra Features and Functions
+@itemize +
+
+@item systemkit: show various system information, including cpu, system load,
+used/free/total ram and more
+@item gitkit: various companion functions for GIT, like exporting the repo (like
+'svn export'), creating tar.gz/tar.bz2/tar.xz/.zip archives from repo, getting
+active branch/action/revision/revno from repo (for PS1)
+@item math conversion functions: convasc, convbin, convdec, convhex, convoct,
+convtemp. Convert between ascii, binary, decimal, hexadecimal, octal or
+temperature units
+@item random: create random strings (for example passwords) of various types
+@item scripts for working with files: map (run a command on given files, for
+non-batch commands), batch (batch-perform actions on files), basefile (extract
+extension, filename with/without extension or filepath from full filename,
+similar to basename), randomfile (perform action on a random file, also has
+history, multiple executions support and more)
+@item see INSTALL_PREFIX/share/bashstyle-ng/rc/functions/ for all
+@end itemize
+@end itemize
+
+@heading Git repository access
+
+You can get the latest in-development version by running
+
+@itemize @bullet
+@item git clone git://github.com/Nanolx/bashstyle-ng.git
+@end itemize
+
+@heading Translations
+@itemize @bullet
+
+@item Existing Translations [Translator]
+@itemize +
+
+@item de (German) [Christopher Roy Bratusek]
+@end itemize
+
+@item Visit https://www.transifex.com/projects/p/bs-ng/ and apply for a team
+or request the creation of a new one.
+@end itemize
+
+@heading Submit Bugs for Feature Requests
+
+Visit https://github.com/Nanolx/bashstyle-ng/issues
+
+before reporting bugs please make sure that you got the latest stable
+version of BashStyle-NG. If you got an Feature Request or a new Idea for
+BashStyle-NG, then don't hesitate to post it! If you can provide patches, then
+that's even better.
