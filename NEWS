@@ -129,8 +129,10 @@ between.  For more detailed information see the or git log.
    * Make
 
         - 1.0.7
-             + build NEWS from doc/news.info
-             + build doc/bashstyle.info from doc/userdoc.texi
+             + build NEWS from doc/news.info ('./make --news')
+             + build doc/bashstyle.info from doc/userdoc.texi ('./make
+               --info')
+             + build doc/html from doc/userdoc.texi ('./make --html')
 
         - 1.0.6
              + fixed bug #191

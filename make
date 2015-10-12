@@ -36,6 +36,7 @@ else
 			remove )	make_remove ;;
 			news )		make_news ;;
 			info )		make_info ;;
+			html )		make_info_html ;;
 			* )		help_message ;;
 		esac
 		shift

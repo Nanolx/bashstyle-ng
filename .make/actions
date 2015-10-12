@@ -17,6 +17,10 @@ make_info () {
 	makeinfo -I ${PWD}/doc/ doc/userdoc.texi -o doc/bashstyle.info
 }
 
+make_info_html () {
+	makeinfo -I ${PWD}/doc/ --html doc/userdoc.texi -o doc/html
+}
+
 make_build () {
 	check_configure && 
 	build_message && 
@@ -45,11 +49,17 @@ make_remove () {
 CLEAN_FILES=( data/bashstyle data/bashstyle-ng.pc ui/bashstyle.ui.h
 		data/bashstyle.sh rc/nx-rc i18n/??/*.mo i18n/*.pot
 		.configure/results .make/build_done ui/#bashstyle.ui#
-		ui/bashstyle.ui~ )
+		ui/bashstyle.ui~ doc/bashstyle.info )
+
+CLEAN_DIRS=( doc/html )
 
 make_clean () {
 	clean_message
 	for file in ${CLEAN_FILES[@]}; do
 		rm -f "${file}"
+	done
+
+	for dir in ${CLEAN_DIRS[@]}; do
+		rm -rf "${dir}"
 	done
 }
