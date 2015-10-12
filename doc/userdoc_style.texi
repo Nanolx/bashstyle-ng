@@ -1,0 +1,282 @@
+@c -*- texinfo -*-
+
+@chapter Style Options
+
+In this category you'll find various options regarding the prompt style and colors.
+
+@heading Basic
+
+@defvr {Setting} Use BashStyle-NG
+This is the master switch that will let BashStyle-NG modify your prompts
+according to your choices in the Style and Advanced Options. Other categories
+have their own master switches and work independently.
+@end defvr
+
+@defvr {Setting} Colored Prompts
+If active the user will be presented with fancy colorful prompts, else the they
+will be monochrome. For terminals that can handle 256 (or more) colors a variety
+of different shades of blue, green, red and more are pre-defined and used. If on
+a terminal that can't handle those (eg. the Linux console) those shades are set
+to their base color (so all shades of blue become the default blue and so on),
+thus ensuring full compatibility with all terminals.
+@end defvr
+
+@defvr {Setting} Colors
+BashStyle-NG provides the following color definitons
+
+	@itemize @bullet
+	@item black
+	@item red
+	@item green
+	@item yellow
+	@item blue
+	@item magenta
+	@item cyan
+	@item white
+	@end itemize
+
+for all terminals. The following color definitions are only available on
+terminals that support 256 (or more) colors, else they are definied to the
+closest match from the above list.
+
+	@itemize @bullet
+	@item coldblue
+	@item smoothblue
+	@item iceblue
+	@item turqoise
+	@item smoothgreen
+	@item winered
+	@item brown
+	@item silver
+	@item ocher
+	@item orange
+	@item purple
+	@item pink
+	@item cream
+	@end itemize
+
+For prompt parts the following variables are declared that contain one of the
+color definitions for easier re-coloring of the prompts
+
+	@itemize @bullet
+	@item usercolor
+	@item hostcolor
+	@item datecolor
+	@item timecolor
+	@item wdircolor
+	@item fontcolor
+	@item sepacolor
+	@item upcolor
+	@item pscolor
+	@item ps2color
+	@item ps3color
+	@item ps4color
+	@end itemize
+
+All of the above definitions are available in @code{echo -e} friendly varaints
+with a prepended @code{e}, for example @var{ewhite} or @var{eiceblue}. For
+@var{LS_COLORS} compatibility they are prepended with a @code{l}, for example
+@var{lred} or @var{lorange}.
+@end defvr
+
+@heading Colors
+
+@defvr {Setting} Colored ls output
+The @code{ls} command allows for colored output according to the @var{LS_COLORS}
+environment variable. Activating this will colorify ls output, respectively
+enforcing it to be monochrome. Overrides operating system default.
+@end defvr
+
+@defvr {Setting} Choose Color Style
+Bash is capable of drawing the colors in different ways
+
+	@itemize @bullet
+	@item Normal
+	@item Bright (equals to bold)
+	@item Dimmed
+	@item Inverted
+	@item Underlined
+	@end itemize
+
+Your choice here effects a all prompt styles and most scripts provided by
+BashStyle-NG.
+@end defvr
+
+@defvr {Setting} Colored manpages
+Using the @code{less} pager it's easily possible to colorize manual pages. This
+master switch enforces man pages to be read using @code{less} and applys your
+color choices.
+@end defvr
+
+@defvr {Setting} Color for manpage infobar
+This sets the color for the manpage infobar at the bottom.
+@end defvr
+
+@defvr {Setting} Color manpage body text
+This sets the color for the manpage body text.
+@end defvr
+
+@defvr {Setting} Randomly colored text
+The user input at the prompt will be colored with a random color after every
+prompt reload.
+@end defvr
+
+@defvr {Setting} Normal text color for output
+The @code{Randomly colored text} option will not reset the color before any
+command's output is display. This can be achieved by activating this option.
+@end defvr
+
+@defvr {Setting} Colored grep output
+This master switch allows you to choose the color in which grep hilights it's
+matches found.
+@end defvr
+
+@defvr {Setting} Choose grep color
+This sets the color in which grep hilights it's matches found.
+@end defvr
+
+@defvr {Setting} Color for Date
+This sets the color for the date in prompts.
+@end defvr
+
+@defvr {Setting} Color for Time
+This sets the color for the time in prompts.
+@end defvr
+
+@defvr {Setting} Color for Username
+This sets the color for the username in prompts.
+@end defvr
+
+@defvr {Setting} Color for Hostname
+This sets the color for the hostname in prompts.
+@end defvr
+
+@defvr {Setting} Color for Workdir
+This sets the color for the current directory in prompts.
+@end defvr
+
+@defvr {Setting} Color for Uptime
+This sets the color for the machine's uptime in prompts.
+@end defvr
+
+@defvr {Setting} Color for Separators
+This sets the color for prompt parts that separate the other prompt parts from
+each other.
+@end defvr
+
+@defvr {Setting} Color for Misc. Elements
+This sets the color for misc. prompt parts, like external command output.
+@end defvr
+
+@defvr {Setting} Color for Text
+This sets the default font color for user input at the prompt.
+@end defvr
+
+@defvr {Setting} Color for PS2
+This sets the color for the PS2 sub prompt.
+@end defvr
+
+@defvr {Setting} Color for PS3
+This sets the color for the PS3 sub prompt.
+@end defvr
+
+@defvr {Setting} Color for PS4
+This sets the color for the PS4 sub prompt.
+@end defvr
+
+@heading Style
+
+@defvr {Setting} Choose Promptstyle
+This sets the prompt style for @code{PS1}, one of
+	@itemize @bullet
+
+	@item Separator
+	@item Vector
+	@item Floating Clock
+	@item Equinox
+	@item Elite
+	@item Poweruser
+	@item Dirks
+	@item Dot.Prompt
+	@item Sepa-NG
+	@item Quirk
+	@item Sputnik
+	@item Ayoli
+	@end itemize
+@end defvr
+
+@defvr {Setting} Use random style
+This sets a random prompt style for @code{PS1} from the list of available styles
+on each new Bash session.
+@end defvr
+
+@defvr {Setting} PS2
+The character(s) to use to indicate @code{PS2} (continuation prompt).
+@end defvr
+
+@defvr {Setting} PS3
+The character(s) to use to indicate @code{PS3} (prompt for @code{select} command).
+@end defvr
+
+@defvr {Setting} PS4
+The character(s) to use to indicate @code{PS4} (execution trace prompt).
+@end defvr
+
+@defvr {Setting} Separator
+The character(s) used in several prompt styles to separate different prompt parts.
+@end defvr
+
+@defvr {Setting} PWD cut char
+The character(s) used to indicate that the current working directory has been
+truncated due it's length in the @code{PS1} prompt.
+@end defvr
+
+@defvr {Setting} Maximum PWD length
+The maximum length of the current working directory before it gets truncated to
+it's length in the @code{PS1} prompt. Applies to both prompt styles and the
+@code{truncpwd} Bash script.
+@end defvr
+
+@heading Separator
+
+The following settings only apply to the @var{Separator} prompt style.
+
+@defvr {Setting} Display number of files
+Display number of visible files in the current working directory in the prompt.
+@end defvr
+
+@defvr {Setting} Display uptime
+Display the machine's uptime in the prompt.
+@end defvr
+
+@defvr {Setting} Display size of files
+Display the size of visible files in the current working directory in the prompt.
+@end defvr
+
+@defvr {Setting} Display number of the tty
+Display the terminal device in the prompt (prettified).
+@end defvr
+
+@defvr {Setting} Display number of running jobs
+Display the number of running jobs in the prompt.
+@end defvr
+
+@defvr {Setting} Display system load
+Display load average for the last five minutes in the prompt.
+@end defvr
+
+@defvr {Setting} Display battery load
+Display the battery load status using @code{ACPI} in the prompt.
+@end defvr
+
+@defvr {Setting} Display Memory
+Display the RAM status, either
+	@itemize @bullet
+
+	@item Free Memory
+	@item Used Memory
+	@item Both
+	@end itemize
+
+in the prompt.
+@end defvr

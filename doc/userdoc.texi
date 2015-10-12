@@ -98,10 +98,20 @@ notice identical to this one.
 
 @node First Start, Style Options, Changelog, Top
 @chapter First Start
+
+Upon first start of the UI (@code{bashstyle} executable) the user will be presented
+with a notice that a startup entry for BashStyle-NG has to be added to ~/.bashrc
+in order for BashStyle-NG to actually work.
+
+The user can either let the application add the entry on it's own or follow the
+instruction to do it manually.
+
+Afterwards or in future invokations of the UI this message is it shown (with the
+exception the startup entry was removed or commented out).
 @cindex First Start
 
 @node Style Options, Aliases, First Start, Top
-@chapter Style Options
+@include userdoc_style.texi
 @cindex Style Options
 
 @node Aliases, Advanced Options, Style Options, Top
