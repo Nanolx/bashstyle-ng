@@ -191,12 +191,12 @@ class IconBook(object):
 		delete_configPossible()
 
 		if config.CheckBashStyle() == False:
-			def setBashStyle(data):
+			def setBashStyle(data, atad):
 				config.EnableBashStyle(True)
 				notebook.set_current_page(0)
 				main_label.set_text(_("Choose a Category:"))
 
-			def abortBashStyle(data):
+			def abortBashStyle(data, atad):
 				notebook.set_current_page(0)
 				main_label.set_text(_("Choose a Category:"))
 
