@@ -116,6 +116,17 @@ exception the startup entry was removed or commented out).
 
 @node Aliases, Advanced Options, Style Options, Top
 @chapter Aliases
+
+Aliases allow a string to be substituted for a word when it is used as the first
+word of a simple command.
+
+For example an alias of @code{myls=ls --colors=auto --directories-first}
+will issue @code{ls --colors=auto --directories-first} every time you issue @code{myls}.
+
+In the BashStyle-NG UI you can define up to nine aliases in @code{name=prog} form.
+
+In ~/.bashrc or ~/.bashstyle.custom you can define as many as desired in
+@code{alias name=prog} form.
 @cindex Aliases
 
 @node Advanced Options, Shell Options, Aliases, Top
