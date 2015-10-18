@@ -18,6 +18,7 @@ help_message () {
 	${ORANGE}pot${WHITE} *|${GREEN} Generate .pot files
 	${ORANGE}po${WHITE} *|${GREEN} Update .po files
 	${ORANGE}info${WHITE} *|${GREEN} Generate Info documentation
+	${ORANGE}html${WHITE} *|${GREEN} Generate HTML documentation
 	${ORANGE}news${WHITE} *|${GREEN} Generate NEWS file
 	${ORANGE}build${WHITE} *|${GREEN} Build necessary files
 	${ORANGE}install${WHITE} *|${GREEN} Install ${APP_NAME}
@@ -48,11 +49,11 @@ install_message () {
 }
 
 remove_message () {
-	echo -e "\n${Red}Removing ${BLUE}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+	echo -e "\n${RED}Removing ${BLUE}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 }
 
 clean_message () {
-	echo -e "\n${Red}Cleaning Up ${BLUE}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
+	echo -e "\n${RED}Cleaning Up ${BLUE}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 }
 
 post_install_message () {
