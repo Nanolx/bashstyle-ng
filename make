@@ -34,9 +34,9 @@ else
 			build )		make_build ;;
 			install )	make_install ;;
 			remove )	make_remove ;;
-			news )		make_news ;;
-			info )		make_info ;;
-			html )		make_info_html ;;
+			news )		build_news ;;
+			info )		build_doc_info ;;
+			html )		build_doc_html ;;
 			* )		help_message ;;
 		esac
 		shift

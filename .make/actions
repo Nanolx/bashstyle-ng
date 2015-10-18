@@ -9,34 +9,12 @@
 #							#
 #########################################################
 
-make_news () {
-	echo -e "\t${WHITE}+ ${MAGENTA} NEWS file"
-	makeinfo --no-validate  --no-headers doc/news.texi > NEWS
-}
-
-make_info () {
-	echo -e "\t${WHITE}+ ${MAGENTA} Info documentation"
-	makeinfo -I ${PWD}/doc/ doc/userdoc.texi -o doc/bashstyle.info
-}
-
-make_info_html () {
-	echo -e "\t${WHITE}+ ${MAGENTA} HTML documenation"
-	makeinfo -I ${PWD}/doc/ --html doc/userdoc.texi -o doc/html
-}
-
-make_gzip_man () {
-	echo -e "\t${WHITE}+ ${MAGENTA} compressing manpages"
-	for manpage in ${MAN_FILES[@]}; do
-		gzip ${PWD}/${manpage/:*} -c > ${PWD}/${manpage/:*}.gz
-	done
-}
-
 make_build () {
 	check_configure && 
 	build_message && 
 	generate_mo &&
-	make_info_html &&
-	make_gzip_man &&
+	build_doc_html &&
+	do_gzip_man &&
 	touch ${PWD}/.make/build_done
 }
 
