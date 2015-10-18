@@ -26,6 +26,8 @@ while [[ ${xcount} -lt $# ]]; do
 		--prefix=* )		PREFIX="${1/*=}" ;;
 		--pcdir=* )		PCDIR="${1/*=}" ;;
 		--bindir=* )		BINDIR="${1/*=}" ;;
+		--docdir=* )		DOCDIR="${1/*=}" ;;
+		--mandir=* )		MANDIR="${1/*=}" ;;
 		--girpath=* )		GIRPATH="${1/*=}" ;;
 		--datadir=* )		DATADIR="${1/*=}" ;;
 		--python=* )		PYTHON="${1/*=}" ;;

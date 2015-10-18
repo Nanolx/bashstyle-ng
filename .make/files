@@ -20,6 +20,9 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     data/*.ini:${DATADIR}
 	     data/*.desktop:${DESKTOPDIR} )
 
+DOC_FILES=( doc/html/*.html:${DOCDIR} )
+MAN_FILES=( doc/bashstyle.1:${MANDIR} )
+
 for lang in ${APP_LANGUAGES}; do
 	LOCALE_REMOVE=( ${LOCALE_REMOVE[@]} ${LOCALEDIR}/${lang}/{bs-ng,nx-rc}.mo)
 	LOCALE_FILES=( i18n/${lang}/*.mo:${LOCALEDIR}/${lang}/LC_MESSAGES )
@@ -36,4 +39,5 @@ REMOVE_FILES=( ${LOCALE_REMOVE[@]}
 	       ${BINDIR}/bashstyle
 	       ${ICONDIR}/bs-ng*.png
 	       ${PCDIR}/bashstyle-ng.pc
-	       ${DATADIR} )
+	       ${DATADIR}
+	       ${DOCDIR} )

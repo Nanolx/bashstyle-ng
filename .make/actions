@@ -10,21 +10,33 @@
 #########################################################
 
 make_news () {
+	echo -e "\t${WHITE}+ ${MAGENTA} NEWS file"
 	makeinfo --no-validate  --no-headers doc/news.texi > NEWS
 }
 
 make_info () {
+	echo -e "\t${WHITE}+ ${MAGENTA} Info documentation"
 	makeinfo -I ${PWD}/doc/ doc/userdoc.texi -o doc/bashstyle.info
 }
 
 make_info_html () {
+	echo -e "\t${WHITE}+ ${MAGENTA} HTML documenation"
 	makeinfo -I ${PWD}/doc/ --html doc/userdoc.texi -o doc/html
+}
+
+make_gzip_man () {
+	echo -e "\t${WHITE}+ ${MAGENTA} compressing manpages"
+	for manpage in ${MAN_FILES[@]}; do
+		gzip ${PWD}/${manpage/:*} -c > ${PWD}/${manpage/:*}.gz
+	done
 }
 
 make_build () {
 	check_configure && 
 	build_message && 
 	generate_mo &&
+	make_info_html &&
+	make_gzip_man &&
 	touch ${PWD}/.make/build_done
 }
 
@@ -49,7 +61,7 @@ make_remove () {
 CLEAN_FILES=( data/bashstyle data/bashstyle-ng.pc ui/bashstyle.ui.h
 		data/bashstyle.sh rc/nx-rc i18n/??/*.mo i18n/*.pot
 		.configure/results .make/build_done ui/#bashstyle.ui#
-		ui/bashstyle.ui~ doc/bashstyle.info )
+		ui/bashstyle.ui~ doc/bashstyle.info doc/*.gz )
 
 CLEAN_DIRS=( doc/html )
 

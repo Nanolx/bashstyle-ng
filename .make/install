@@ -50,16 +50,20 @@ inst ()
 {
 
 	case ${1} in
-		data )	MODE=644 ;;
 		bin )	MODE=755 ;;
+		* )	MODE=644 ;;
 	esac
 
-	shift
-	FILE=${1/:*}
-	DEST=${1/*:}
+	FILE=${2/:*}
+	DEST=${2/*:}
 
-	install -m${MODE} ${FILE} ${DESTDIR}${DEST}
-	unset FILE DEST
+	if [[ ${1} == man ]]; then
+		install -m${MODE} ${FILE}.gz ${DESTDIR}${DEST}
+	else
+		install -m${MODE} ${FILE} ${DESTDIR}${DEST}
+	fi
+
+	unset TYPE FILE DEST
 
 }
 
@@ -74,6 +78,14 @@ install_bsng () {
 	echo -e "\t${WHITE}+${GREEN} executable files"
 	for file in ${BIN_FILES[@]}; do
 		inst bin ${file}
+	done
+
+	echo -e "\t${WHITE}+${CYAN} documentation and manual pages"
+	for file in ${DOC_FILES[@]}; do
+		inst doc ${file}
+	done
+	for file in ${MAN_FILES[@]}; do
+		inst man ${file}
 	done
 
 }

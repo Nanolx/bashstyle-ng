@@ -114,6 +114,12 @@ down Bash a bit if you have a huge history.
 @item Configure
 @itemize @minus
 
+@item 4.3.6
+@itemize +
+@item add @code{--docdir} switch back
+@item add @code{--mandir} switch
+@end itemize
+
 @item 4.3.5
 @itemize +
 @item remove system bashrc detection
@@ -135,11 +141,19 @@ maximum python versions for configure messages)
 @item Make
 @itemize @minus
 
+@item 1.0.8
+@itemize +
+@item compress manpages upon @code{./make build}
+@item install info and html documentation upon @code{.make install}
+@item install manpages upon @code{./make install}
+@item add a few more strings
+@end itemize
+
 @item 1.0.7
 @itemize +
-@item build NEWS from doc/news.info (@code{./make --news})
-@item build doc/bashstyle.info from doc/userdoc.texi (@code{./make --info})
-@item build doc/html from doc/userdoc.texi (@code{./make --html})
+@item build NEWS from doc/news.info (@code{./make news})
+@item build doc/bashstyle.info from doc/userdoc.texi (@code{./make info})
+@item build doc/html from doc/userdoc.texi (@code{./make html})
 @end itemize
 
 @item 1.0.6

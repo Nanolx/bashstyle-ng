@@ -111,6 +111,10 @@ between.  For more detailed information see the or git log.
 
    * Configure
 
+        - 4.3.6
+             + add '--docdir' switch back
+             + add '--mandir' switch
+
         - 4.3.5
              + remove system bashrc detection
              + remove -profiledir switch
@@ -128,11 +132,17 @@ between.  For more detailed information see the or git log.
 
    * Make
 
+        - 1.0.8
+             + compress manpages upon './make build'
+             + install info and html documentation upon '.make install'
+             + install manpages upon './make install'
+             + add a few more strings
+
         - 1.0.7
-             + build NEWS from doc/news.info ('./make --news')
+             + build NEWS from doc/news.info ('./make news')
              + build doc/bashstyle.info from doc/userdoc.texi ('./make
-               --info')
-             + build doc/html from doc/userdoc.texi ('./make --html')
+               info')
+             + build doc/html from doc/userdoc.texi ('./make html')
 
         - 1.0.6
              + fixed bug #191

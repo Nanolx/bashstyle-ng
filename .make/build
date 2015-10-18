@@ -28,14 +28,14 @@ update_po () {
 		echo -e "\n${RED}You need to run './make pot' first!\n"
 		exit 1
 	else
-		echo -e "\t${WHITE}+ ${MAGENTA} gui translations:"
+		echo -e "\t${WHITE}+ ${MAGENTA} gui translations"
 		for lang in ${APP_LANGUAGES}; do
 			echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
 			msgmerge -q -o i18n/${lang}/bs-ng.po \
 				i18n/${lang}/bs-ng.po i18n/bs-ng.pot >/dev/null
 		done
 
-		echo -e "\t${WHITE}+ ${MAGENTA} nx-rc translations:"
+		echo -e "\t${WHITE}+ ${MAGENTA} nx-rc translations"
 		for lang in ${APP_LANGUAGES}; do
 			echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
 			msgmerge -q -o i18n/${lang}/nx-rc.po \
@@ -47,14 +47,14 @@ update_po () {
 
 generate_mo () {
 
-	echo -e "\t${WHITE}+ ${MAGENTA} gui translations:"
+	echo -e "\t${WHITE}+ ${MAGENTA} gui translations"
 	for lang in ${APP_LANGUAGES}; do
 		echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
 		msgfmt --output-file=i18n/${lang}/bs-ng.mo \
 			i18n/${lang}/bs-ng.po
 	done
 
-	echo -e "\t${WHITE}+ ${MAGENTA} nx-rc translations:"
+	echo -e "\t${WHITE}+ ${MAGENTA} nx-rc translations"
 	for lang in ${APP_LANGUAGES}; do
 		echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
 		msgfmt --output-file=i18n/${lang}/nx-rc.mo \
