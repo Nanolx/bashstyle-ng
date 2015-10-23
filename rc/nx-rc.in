@@ -232,23 +232,21 @@ fi
 
 # remember last exit status and command
 remember_command () {
+    local _lastexit=$?
     [ -n "$COMP_LINE" ] && return
     [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
-    [ "$BASH_COMMAND" = "trap *" ] && return
+    [[ "$BASH_COMMAND" == trap\ * ]] && return
     [[ "$BASH_COMMAND" == *lastcommand* ]] && return
     [[ "$BASH_COMMAND" == *lastexit* ]] && return
     lastcommand=${BASH_COMMAND}
-    lastcommandprintable=${BASH_COMMAND}
+    lastcommandprintable=${BASH_COMMAND:0:21}
     if [ ${#lastcommandprintable} -gt 21 ]; then
-	lastcommandprintable=${lastcommandprintable:0:21}
-    elif [ ${#lastcommandprintable} -lt 21 ]; then
-	x=$((21-${#lastcommandprintable}))
-	while [ ${x} -gt 0 ]; do
-	    lastcommandprintable="${lastcommandprintable} "
-	    x=$((${x}-1))
-	done
+        # indicate trunctation
+	lastcommandprintable=${lastcommandprintable:0:20}'>'
+    else
+        lastcommandprintable="$(printf '%-21s' "$lastcommandprintable")"
     fi
-    lastexit=$?
+    lastexit=$_lastexit
 }
 
 trap_add 'remember_command' DEBUG
@@ -266,7 +264,7 @@ fi
 [[ ${USER_BIRTHDAY} != $(date +%m-%d) && -e ${HOME}/.bday ]] && \
 	rm -f ${HOME}/.bday
 
-function lscd() {
+lscd() {
 	OLD_PWD=${PWD}
 	clear
 
@@ -294,7 +292,7 @@ function lscd() {
 	echo "${PWD}" > ${HOME}/.lastpwd
 }
 
-function treecd () {
+treecd () {
 	OLD_PWD=${PWD}
 	clear
 
@@ -322,12 +320,11 @@ function treecd () {
 	echo "${PWD}" > ${HOME}/.lastpwd
 }
 
-function reload () {
+reload () {
 	#xk2c from commandlinefu.com
 	builtin unalias -a
-	builtin unset -f $(builtin declare -F | gawk '{print $3}')
+	builtin unset -f $(builtin compgen -A function)
 	source @PROFILEDIR@/bashstyle.sh
-
 }
 
 [[ ${PATH} != *games* && -d /usr/games/ ]] && \
