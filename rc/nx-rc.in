@@ -23,7 +23,7 @@ source ${BSNG_RC_DIR}/internal/misc
 source ${BSNG_RC_DIR}/internal/logging
 
 if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
-	if [[ -f /etc/bs-ng_vendor.ini && $(ini_get ini_version) == ${INI_VERSION} ]]; then
+	if [[ -f /etc/bs-ng_vendor.ini && $(ven_get ini_version) == ${INI_VERSION} ]]; then
 		cp /etc/bs-ng_vendor.ini ${HOME}/.bs-ng.ini
 	else
 		cp ${BSNG_DATA_DIR}/bashstyle-ng/bs-ng.ini ${HOME}/.bs-ng.ini
