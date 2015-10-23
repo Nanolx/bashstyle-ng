@@ -8,9 +8,11 @@
 # Copyright 2007 - 2015 Christopher Bratusek		#
 #							#
 #########################################################
+
 shopt -s nullglob
 bsng_inputrc=( "$HOME"/.inputrc.bs-ng.* )
 shopt -u nullglob
+
 if (( "${#bsng_inputrc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"

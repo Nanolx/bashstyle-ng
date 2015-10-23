@@ -41,7 +41,11 @@ keybindings_setter () {
 	fi
 }
 
-if [[ ! -e $HOME/.keybindings.bs-ng.* ]]; then
+shopt -s nullglob
+bsng_keybindingsrc=( "$HOME"/.keybindings.bs-ng.* )
+shopt -u nullglob
+
+if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 
 	export RC_FILE=$HOME/.keybindings.bs-ng.$(date +%I-%M-%S)
 	dbg_msg $"ReadlineCFG Loading:" $"Keybindings"
