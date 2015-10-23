@@ -23,6 +23,16 @@ between.  For more detailed information see the or git log.
           exported to external scripts, which thus always displayed
           monochrome output
 
+        - #195 (nx-rc): fixed filtering out 'trap' from 'lastcommand'
+          storing [Mingye Wang]
+
+        - #195 (nx-rc): fixup 'lastexit' value storing [Mingye Wang]
+
+        - #196 (nano) (vim) (readline) (keybindings): fixup file
+          existence checks which are intented to prevent file conflicts
+          when multiple Bash sessions are started at the same time
+          [Mingye Wang]
+
    * Configuration File Changes
         - Additionally to factory and vendor (/etc/bs-ng_vendor.ini)
           configuration BashStyle-NG now also checks for user backup
