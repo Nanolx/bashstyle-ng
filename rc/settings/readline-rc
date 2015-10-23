@@ -8,11 +8,13 @@
 # Copyright 2007 - 2015 Christopher Bratusek		#
 #							#
 #########################################################
-
-if [[ ! -e $HOME/.inputrc.bs-ng.* ]]; then
+shopt -s nullglob
+bsng_inputrc=( "$HOME"/.inputrc.bs-ng.* )
+shopt -u nullglob
+if (( "${#bsng_inputrc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" $"ReadlineCFG"
-	export RC_FILE=${HOME}/.inputrc.bs-ng.$(date +%I-%M-%S)
+	export RC_FILE="${HOME}/.inputrc.bs-ng.$(date +%I-%M-%S)"
 
 	if [[ $(ini_get editing_mode) == emacs ]]; then
 		dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Emacs"
