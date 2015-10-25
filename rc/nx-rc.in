@@ -324,7 +324,6 @@ reload () {
 	#xk2c from commandlinefu.com
 	builtin unalias -a
 	builtin unset -f $(builtin compgen -A function)
-	source @PROFILEDIR@/bashstyle.sh
 }
 
 [[ ${PATH} != *games* && -d /usr/games/ ]] && \
