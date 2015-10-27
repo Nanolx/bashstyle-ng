@@ -37,7 +37,8 @@ if FAILED:
 iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
 		  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
 		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-keys",
-		  "bs-ng-custom",  "bs-ng-config", "bs-ng-info" ]
+		  "bs-ng-custom",  "bs-ng-config", "bs-ng-doc",
+		  "bs-ng-info" ]
 
 iconview_labels = {
 	"bs-ng-style" : _("General Style"),
@@ -53,6 +54,7 @@ iconview_labels = {
 	"bs-ng-info" : _("About BashStyle-NG"),
 	"bs-ng-keys" : _("Keybindings"),
 	"bs-ng-config" : _("Configuration"),
+        "bs-ng-doc" : _("Documentation"),
 }
 
 notebook_pages = {
@@ -71,6 +73,7 @@ notebook_pages = {
 	_("Keybindings") : 11,
 	_("BashStyle-NG StartUp") : 13,
 	_("Configuration") : 14,
+	_("Documentation") : 0,
 }
 
 gtkbuilder = widgethandler.gtkbuilder
@@ -113,11 +116,15 @@ class IconBook(object):
 
 		def iconview_activated(widget, item):
 			model = widget.get_model()
-			notebook.set_current_page(notebook_pages[model[item][1]])
-			back.set_visible(1)
-			main_label.set_text(_("Category: ") + _(model[item][1]))
-			if model[item][1] == _("Keybindings"):
-				use_keys_button.set_visible(1)
+			if model[item][1] == _("Documentation"):
+				back.set_visible(0)
+				openFile(False, os.getenv('BSNG_DATADIR') + "doc/bashstyle-ng/index.html")
+			else:
+				notebook.set_current_page(notebook_pages[model[item][1]])
+				back.set_visible(1)
+				main_label.set_text(_("Category: ") + _(model[item][1]))
+				if model[item][1] == _("Keybindings"):
+					use_keys_button.set_visible(1)
 
 		iconview.connect("item-activated", iconview_activated)
 
