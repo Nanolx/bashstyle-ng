@@ -122,6 +122,11 @@ between.  For more detailed information see the or git log.
         - xmltagdelete: delete tags from xml files, see 'xmltagdelete
           --help'
 
+   * Misc.  Changes
+
+        - undobuffer: enforce Gtk version 3 to be loaded (makes a
+          startup warning shut up
+
    * Configure
 
         - 4.3.6
@@ -147,9 +152,11 @@ between.  For more detailed information see the or git log.
 
         - 1.0.8
              + compress manpages upon './make build'
-             + install info and html documentation upon '.make install'
+             + install info and html documentation upon './make install'
              + install manpages upon './make install'
              + add a few more strings
+             + build README from doc/userdoc_introduction ('./make
+               readme')
 
         - 1.0.7
              + build NEWS from doc/news.info ('./make news')

@@ -123,6 +123,13 @@ down Bash a bit if you have a huge history.
 @item xmltagdelete: delete tags from xml files, see @code{xmltagdelete --help}
 @end itemize
 
+@item Misc. Changes
+@itemize @minus
+
+@item undobuffer: enforce Gtk version 3 to be loaded (makes a startup warning
+shut up
+@end itemize
+
 @item Configure
 @itemize @minus
 
@@ -156,7 +163,7 @@ maximum python versions for configure messages)
 @item 1.0.8
 @itemize +
 @item compress manpages upon @code{./make build}
-@item install info and html documentation upon @code{.make install}
+@item install info and html documentation upon @code{./make install}
 @item install manpages upon @code{./make install}
 @item add a few more strings
 @item build README from doc/userdoc_introduction (@code{./make readme})
