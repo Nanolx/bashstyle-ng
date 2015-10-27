@@ -325,7 +325,7 @@ reload () {
 	builtin unalias -a
 	builtin unset -f $(builtin compgen -A function)
 	[[ -f /etc/bash_completion ]] && source /etc/bash_completion
-	source @DATADIR@/bashstyle-ng/rc/nx-rc
+	source ${HOME}/.bashrc
 }
 
 [[ ${PATH} != *games* && -d /usr/games/ ]] && \
