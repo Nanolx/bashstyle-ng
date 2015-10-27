@@ -15,6 +15,7 @@ make_build () {
 	generate_mo &&
 	build_doc_html &&
 	do_gzip_man &&
+	build_end_message &&
 	touch ${PWD}/.make/build_done
 }
 

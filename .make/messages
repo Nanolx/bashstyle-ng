@@ -44,6 +44,10 @@ build_message () {
 	echo -e "\n${BLUE}Building ${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 }
 
+build_end_message () {
+	echo -e "\n${WHITE}You may want to continue with 'sudo ./make install'.\n"
+}
+
 install_message () {
 	echo -e "\n${GREEN}Installing ${BLUE}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}${CODENAME}\n"
 }

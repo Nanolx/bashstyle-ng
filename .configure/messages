@@ -82,7 +82,7 @@ end_message () {
 		echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
 	else	echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
 	fi
-	echo
+	echo -e "\n\t${WHITE}You may want to continue with './make build'.\n"
 	tput sgr0
 
 }
