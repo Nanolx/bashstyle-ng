@@ -1,0 +1,162 @@
+@c -*- texinfo -*-
+
+@chapter Advanced Options
+
+In this category you'll find various advanced options regarding history, Bash
+builtin features and BashStyle-NG specific additions.
+
+@heading History
+
+@defvr {Setting} History Timeformat
+If this is set it's value will be used as a timestamp that will be prepend to
+the output of the @code{history} builtin. For a detailed list of possible values
+refer to @code{man strftime}.
+@end defvr
+
+@defvr {Setting} Historycontrol Type
+There are different ways of history controlling in Bash. This option lets you
+choose which one to use.
+
+@itemize @minus
+@item Erasedups: erase duplicated entries from history and only keep the newest one
+@item Ignoredups: erase duplicated entries from history and only keep the oldest one
+@item Ignorespace: remove any entries with a leading space from history
+@item Ignoreboth: Ignoredups and Ignorespace together
+@end itemize
+@end defvr
+
+@defvr {Setting} History Blacklist
+A colon separated list of commands to not log in the history. A good choice is
+to add @code{cd} and @code{ls} to this list, to prevent excessive history
+spamming.
+@end defvr
+
+@defvr {Setting} History Size
+This controls how many history entries are saved. 0 for infinite.
+@end defvr
+
+@defvr {Setting} Sync History (Multisession)
+This is a BashStyle-NG extension wich allows syncronized history over multiple,
+simultaneously running Bash sessions. It provides custom functions for history
+controling aswell and history blacklisting is honoured aswell.
+@end defvr
+
+@heading BashStyle-NG
+
+This Section contains settings for BashStyle-NG specific functions and features.
+
+@defvr {Setting} Use lscd in favour of cd
+@code{lscd} is a BashStyle-NG builtin function which can be used in favour of the
+@code{cd} Bash builtin. @code{lscd} displays the directory content every time you
+change the directory, while it allows for custom @code{ls} options to be used.
+
+Furthermore it features additional options for creating a directory if it does
+not exist yet, or for logging the directory currently in after each directory
+change, together with BashStyle-NG's option to restore the directory in a new
+shell you'll then start in the same directory in a newly started session as the
+one you're in the current session.
+
+Those additional options are described next.
+@end defvr
+
+@defvr {Setting} Use treecd in favour of cd
+@code{treecd} is a BashStyle-NG builtin function similar to @code{lscd}, but
+using @code{tree} instead of @code{ls} to display the directory content on each
+directory change.
+@end defvr
+
+@defvr {Setting} lscd/treecd: create directory
+When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
+controls whether a directory that does currently not exist is created and then
+changed into.
+
+Note: there's currently no permission check done for this feature, if the user
+is trying to create a directory where no permissions are granted @code{lscd} or
+@code{treecd} will spit out the usual @code{mkdir} and @code{cd} errors.
+@end defvr
+
+@defvr {Setting} Restore directory in new shell
+This option saves the last directory upon session exit. When a new session is
+started, Bash will automatically change into it.
+
+Note: if you've enabled either @code{lscd} or @code{treecd} the directory will
+be additonally saved everytime you change the directory, allowing you to start
+a new shell in your current directory immediately.
+@end defvr
+
+@defvr {Setting} lscd options
+Additional options to pass to @code{lscd} for displaying the directory content.
+All @code{ls} options are supported, see @code{ls --help} for all possibilites.
+@end defvr
+
+@defvr {Setting} treecd options
+Additional options to pass to @code{treecd} for displaying the directory content.
+All @code{tree} options are supported, see @code{tree --help} for all possibilites.
+@end defvr
+
+@defvr {Setting} Let @code{dd} continue on error
+Normally the @code{dd} utility will abort on the first occuring error. Enabling
+this will make @code{dd} displaying a warning and continuing it's work instead.
+
+This is mostly useful when dealing with damaged CDs or thelike.
+@end defvr
+
+@defvr {Setting} Verbose output on start
+BashStyle-NG does several logging upon Bash session start. If you want visible
+logging enable this option. Usually you don't need this and thus it's disabled
+by default.
+@end defvr
+
+@defvr {Setting} Welcome Message
+A command to execute upon each new Bash session. This can be any command in
+\$PATH. Usually this is something like @code{fortune}.
+@end defvr
+
+@defvr {Setting} Directory indicator
+Normally directories are indicated by @code{/}, this allows prompts to use a
+different character as directory indicator.
+
+Note: this is only a cosmetic change to prompts, where @code{/} is replaced by
+your choice made here, this has no technical impact on how your OS works.
+@end defvr
+
+@defvr {Setting} User Birthday
+User's birthday in MM-DD format. What's gonna happen that day, I wonder?
+@end defvr
+
+@heading Bash Builtin
+
+Various options for Bash builtin functions and features.
+
+@defvr {Setting} CDPATH
+A colon separted list of directories to which's subdirectories @code{cd} can
+directly change into. For example if @code{~/Desktop/myfancydir} exists and
+@code{~/Desktop} is in @code{CDPATH}, you can enter this directory from anywhere
+by issueing @code{cd myfancydir}.
+@end defvr
+
+@defvr {Setting} Completion Blacklist
+A colon separated list of matches to ignore from completion. For example if
+@code{~} is in this list, all backup files like @code{myfile~} will not be shown
+upon filename completion.
+@end defvr
+
+@defvr {Setting} Set Timeout
+Bash can automatically log you out after a given time of inactivity (in secons).
+0 to disable (default).
+@end defvr
+
+@defvr {Setting} Editor for fc
+Choose the editor for the @code{fc} Bash builtin.
+@end defvr
+
+@defvr {Setting} Globbing Blacklist
+A colon separated list of matches to ignore from globbing results. For example
+@code{ls -A} includes @code{.} and @code{..}, but if you add both to this
+blacklist, @code{ls -A} will no longer include them. Use with caution.
+@end defvr
+
+@defvr {Setting} Path
+A colon separated list of directories containing your systems executable files.
+If empty the system-wide @code{PATH} variable will be used.
+@end defvr
