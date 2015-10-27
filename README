@@ -1,178 +1,118 @@
-BashStyle-NG
+1 Introduction
+**************
 
-=== Introduction ===
+BashStyle-NG is a graphical tool and toolchain for changing the
+behaviour and look'n'feel of Bash, Readline, Vim, Nano and GIT.
 
- BashStyle-NG is a graphical tool and toolchain for changing the behaviour
- and look'n'feel of Bash, Readline, Vim, Nano and GIT.
+What can BashStyle-NG do for you?
+=================================
 
- Possibilities include:
-  Bash:
-    - 12 fancy pre-defined prompt styles
-      - colors are customizable
-      - random text color possible
-      - random prompt style for each session possible
-      - create your own prompt using UI
-        - customizing pre-defined ones possible
-      - alternatively monochrome prompts instead of colored
-    - colored manpages (without using most)
-    - colored output from ls and grep (matches)
-      - colors are customizable
-    - rembering last visited directory (and restore upon new session)
-    - customize bash history settings
-    - lscd: customized variant of cd, showing content of directory
-      after cd, can create directories that don't exist, passing of
-      customized ls parameters possible
-    - un/setting shopts (shell options) for Bash 4.3 / 4.0-4.2 / 3.2+
-    - customizable completion blacklist, timeout, welcome message and more
-    - sync history over simultaneously running sessions
-  GIT:
-    - set GIT user name
-    - set GIT mail address
-    - set GIT editor for commit messages
-    - set GIT colored output
-  Readline:
-    - un/set completion
-    - un/set case sensitivity
-    - un/set horizontal completion
-    - un/set mark filetypes and folders
-    - un/set include hidden files incompletion
-    - customize almost 30 keybindings
-  VIM:
-    - un/set remember last position
-    - un/set syntax highlighting
-    - un/set auto indention
-    - un/set case sensitive search
-    - un/set incremental search
-    - un/set display line numbers
-    - un/set highlight current line/column
-    - set dark or bright background
-    - set line-wrap and tab-length
-    - set color scheme
-    - enable ruler/set ruler format
-  Nano:
-    - un/set search history
-    - un/set syntax highlighting
-    - un/set auto indention
-    - un/set case sensitive search
-    - fix backspace and numblock assignment
-  Extras:
-    several extra functions for daily use:
-    .
-    - systemkit: show various system information, including cpu, system load,
-      used/free/total ram and more
-    - gitkit: various companion functions for GIT, like exporting the repo
-      (like 'svn export'), creating tar.gz/tar.bz2/tar.xz/.zip archives from
-      repo, getting active branch/action/revision/revno from repo (for PS1)
-    - math conversion functions: convasc, convbin, convdec, convhex, convoct,
-      convtemp. Convert between ascii, binary, decimal, hexadecimal, octal or
-      temperature units
-    - random: create random strings (for example passwords) of various types
-    - scripts for working with files: map (run a command on given files, for
-      non-batch commands), batch (batch-perform actions on files), basefile
-      (extract extension, filename with/without extension or filepath from
-      full filename, similar to basename), randomfile (perform action on a
-      random file, also has history, multiple executions support and more)
-    - and several more (see /usr/share/bashstyle-ng/rc/functions/ for all)
-  Configuration:
-    While BashStyle-NG is able to auto-generate the configuration files based
-    on your choices in the UI, you might want to do manual additions aswell.
-    .
-    Thus BashStyle-NG supports loading additional configuration files:
-    - ${HOME}/.inputrc.custom:		custom non-managed readline settings
-    - ${HOME}/.vimrc.custom:		custom non-managed vim settings
-    - ${HOME}/.bashstyle.custom:	custom non-managed bash settings,
-					always loaded after BashStyle-NG start
-					so variables and functions provided by
-					BashStyle-NG can reliably be used
-  Style Hooks:
-    Some of the provided prompt styles allow be hooked into, so that some parts
-    of them can be customized. Those hooks consist of a color variable and a hook
-    function and should reside in ${HOME}/.bashstyle.custom. The following hooks
-    are available:
-    .
-    - Separator Style:	SEPA_1() / SEPA_1_COLOR
-			SEPA_2() / SEPA_2_COLOR
-    - Vector Style:	VECTOR_1() / VECTOR_1_COLOR
-			VECTOR_2() / VECTOR_2_COLOR
-    - Floating Clock:	CLOCK_1() / CLOCK_1_COLOR
-    - Equinox Style:	EQUINOX_1() / EQUINOX_1_COLOR
-    - Elite Style:	ELITE_1() / ELITE_1_COLOR
-    - Power Style:	POW_1() / POW_1_COLOR
-    - Dirks Style:	DIRKS_1() / DIRKS_1_COLOR
-			DIRKS_2() / DIRKS_2_COLOR
-    - Sepa-NG Style:	SEPA_NG_1() / SEPA_NG_1_COLOR
-    - Quirk Style:	QUIRK_1() / QUIRK_1_COLOR
-    .
-    Those are not set when the prompts are loaded in the Custom Promp Builder.
+   * Bash Settings
 
-=== Installation ===
+        + 12 fancy pre-defined prompt styles
+        + colors are customizable
+        + random text color possible
+        + random prompt style for each session possible
+        + create your own prompt using UI
+        + customizing pre-defined ones possible
+        + alternatively monochrome prompts instead of colored
+        + colored manpages (without using most)
+        + colored output from ls and grep (matches)
+        + colors are customizable
+        + rembering last visited directory (and restore upon new
+          session)
+        + customize bash history settings
+        + lscd: customized variant of cd, showing content of directory
+          after cd, can create directories that don't exist, passing of
+          customized ls parameters possible
+        + un/setting shopts (shell options) for Bash 4.3 / 4.0-4.2 /
+          3.2+
+        + customizable completion blacklist, timeout, welcome message
+          and more
+        + sync history over simultaneously running sessions
 
-Installation of BashStyle-NG is straight-forward. Configure and Make are
-Bash scripts aswell, so no other tools needed for build. For a full list
-of options see
+   * Git Options
 
-* ./configure --help
-* ./make --help
+        + set GIT user name
+        + set GIT mail address
+        + set GIT editor for commit messages
+        + set GIT colored output
 
-1)	Check dependencies:	./configure
-2)	Build translations:	./make build
-3)	Install BashStyle-NG:	sudo ./make install
+   * Readline Options
 
-Alternatively you can build a package for Debian-based distributions via
+        + un/set completion
+        + un/set case sensitivity
+        + un/set horizontal completion
+        + un/set mark filetypes and folders
+        + un/set include hidden files incompletion
+        + customize almost 30 keybindings
 
-1)	apt-get install fakeroot dpkg-dev
-2)	dpkg-buildpackage -rfakeroot
+   * Vi Improved Settings
 
-If there are missing dependencies either Configure or dpkg-buildpackage will
-tell you. Optional dependencies are marked as recommended for Debian packages.
+        + un/set remember last position
+        + un/set syntax highlighting
+        + un/set auto indention
+        + un/set case sensitive search
+        + un/set incremental search
+        + un/set display line numbers
+        + un/set highlight current line/column
+        + set dark or bright background
+        + set line-wrap and tab-length
+        + set color scheme
+        + enable ruler/set ruler format
 
-=== Program Icons ===
+   * GNU Nano Settings
 
-BashStyle-NG uses Oxygen icons by default (supplied), but if the icons exist
-in your currently active GTK+ icon theme aswell, they will be used instead.
+        + un/set search history
+        + un/set syntax highlighting
+        + un/set auto indention
+        + un/set case sensitive search
+        + fix backspace and numblock assignment
 
-32x32 pixel icons:
-	bs-ng		Application logo
-	bs-ng-advanced	Icon for 'Advanced' category in UI
-	bs-ng-alias	Icon for 'Alias' category in UI
-	bs-ng-config	Icon for 'Configuration' category in UI
-	bs-ng-custom	Icon for 'Custom Prompt Builder' in UI
-	bs-ng-git	Icon for 'GIT' category in UI
-	bs-ng-info	Icon for 'About Dialog' in UI
-	bs-ng-keys	Icon for 'Keybindings Setter' in UI
-	bs-ng-ls	Icon for 'LS Colors' category in UI
-	bs-ng-nano	Icon for 'Nano Configuration' in UI
-	bs-ng-readline	Icon for 'Readline Configuration' in UI
-	bs-ng-shopts	Icon for 'Shell Options Configuration' in UI
-	bs-ng-style	Icon for 'Style' category in UI
-	bs-ng-toolbox	Icon for 'Custom Prompt Builder Toolbox' in UI
-	bs-ng-vim	Icon for 'VIM Configuration' in UI
+   * Extra Features and Functions
 
-=== GIT Access ===
+        + systemkit: show various system information, including cpu,
+          system load, used/free/total ram and more
+        + gitkit: various companion functions for GIT, like exporting
+          the repo (like 'svn export'), creating
+          tar.gz/tar.bz2/tar.xz/.zip archives from repo, getting active
+          branch/action/revision/revno from repo (for PS1)
+        + math conversion functions: convasc, convbin, convdec, convhex,
+          convoct, convtemp.  Convert between ascii, binary, decimal,
+          hexadecimal, octal or temperature units
+        + random: create random strings (for example passwords) of
+          various types
+        + scripts for working with files: map (run a command on given
+          files, for non-batch commands), batch (batch-perform actions
+          on files), basefile (extract extension, filename with/without
+          extension or filepath from full filename, similar to
+          basename), randomfile (perform action on a random file, also
+          has history, multiple executions support and more)
+        + see INSTALL_PREFIX/share/bashstyle-ng/rc/functions/ for all
 
-You can get the latest in-development version by running:
+Git repository access
+=====================
 
-git clone git://github.com/Nanolx/bashstyle-ng.git
+You can get the latest in-development version by running
 
-=== Translations ===
+   * git clone git://github.com/Nanolx/bashstyle-ng.git
 
-*** Current Translations: ***
+Translations
+============
 
-de (German) (Christopher Roy Bratusek)
+   * Existing Translations [Translator]
 
-*** New Translations: ***
+        + de (German) [Christopher Roy Bratusek]
 
-Visit https://www.transifex.com/projects/p/bs-ng/ and apply for a team
-or request the creation of a new one.
+   * Visit https://www.transifex.com/projects/p/bs-ng/ and apply for a
+     team or request the creation of a new one.
 
-=== Bugs ===
+Submit Bugs for Feature Requests
+================================
 
 Visit https://github.com/Nanolx/bashstyle-ng/issues
 
-before reporting bugs please make sure that you got the latest stable
-version of BashStyle-NG.
-
-=== Features Requests ===
-
-If you got an Feature Request or a new Idea for BashStyle-NG, then don't
-hesitate to post it! If you can provide patches, then that's even better.
+   before reporting bugs please make sure that you got the latest stable
+version of BashStyle-NG. If you got an Feature Request or a new Idea for
+BashStyle-NG, then don't hesitate to post it!  If you can provide
+patches, then that's even better.

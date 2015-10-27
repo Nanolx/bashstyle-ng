@@ -14,6 +14,11 @@ build_news () {
 	makeinfo --no-validate  --no-headers doc/news.texi > NEWS
 }
 
+build_readme () {
+	echo -e "\t${WHITE}+ ${MAGENTA} README file"
+	makeinfo --no-validate  --no-headers doc/userdoc_introduction.texi > README
+}
+
 build_doc_info () {
 	echo -e "\t${WHITE}+ ${MAGENTA} Info documentation"
 	makeinfo -I ${PWD}/doc/ doc/userdoc.texi -o doc/bashstyle.info

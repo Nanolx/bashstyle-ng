@@ -35,6 +35,7 @@ else
 			install )	make_install ;;
 			remove )	make_remove ;;
 			news )		build_news ;;
+			readme )	build_readme ;;
 			info )		build_doc_info ;;
 			html )		build_doc_html ;;
 			* )		help_message ;;
