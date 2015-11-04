@@ -10,25 +10,18 @@
 #########################################################
 
 post_install () {
-
 	if [[ ! ${DISABLE_POSTINSTALL} ]]; then
 		post_install_message
 		gtk-update-icon-cache -q -f ${PREFIX}/share/icons/hicolor
 	fi
-
-	thanks_message
-
 }
 
 post_remove () {
-
 	echo -n
-
 }
 
 installdirs_create ()
 {
-
 	echo -e "\t${WHITE}+${MAGENTA} directories"
 	mkdir -p ${DESTDIR}/${DATADIR}
 	for directory in ${DATADIR_LIST[@]}; do
@@ -37,18 +30,16 @@ installdirs_create ()
 
 	mkdir -p ${DESTDIR}/${LOCALEDIR}
 	for directory in ${LOCALEDIR_LIST[@]}; do
-		mkdir -p ${DESTDIR}/${LOCALEDIR}/${directory}/
+		mkdir -p ${DESTDIR}/${LOCALEDIR}/${directory}
 	done
 
 	mkdir -p ${DESTDIR}/${BINDIR}
 	mkdir -p ${DESTDIR}/${ICONDIR}
 	mkdir -p ${DESTDIR}/${PCDIR}
-
 }
 
 inst ()
 {
-
 	case ${1} in
 		bin )	MODE=755 ;;
 		* )	MODE=644 ;;
@@ -64,11 +55,9 @@ inst ()
 	fi
 
 	unset TYPE FILE DEST
-
 }
 
 install_bsng () {
-
 	echo -e "\t${WHITE}+${YELLOW} data files"
 	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} \
 		${PC_FILES[@]} ${ICON_FILES[@]}; do
@@ -87,14 +76,11 @@ install_bsng () {
 	for file in ${MAN_FILES[@]}; do
 		inst man ${file}
 	done
-
 }
 
 remove_bsng () {
-
 	echo -e "\t${WHITE}+${RED} all files"
 	for file in ${REMOVE_FILES[@]}; do
 		rm -rf ${file}
 	done
-
 }

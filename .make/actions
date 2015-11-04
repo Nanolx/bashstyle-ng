@@ -26,7 +26,8 @@ make_install () {
 	install_message && 
 	installdirs_create &&
 	install_bsng && 
-	post_install
+	post_install &&
+	thanks_message
 }
 
 make_remove () {
