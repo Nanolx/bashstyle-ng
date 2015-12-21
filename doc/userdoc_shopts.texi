@@ -1,0 +1,100 @@
+@c -*- texinfo -*-
+
+@chapter Shell Options
+
+In this category you'll find various Bash builtin options (shopts) that alter
+how Bash behaves in different cases.
+
+@heading Bash 3.x
+
+@defvr {Setting} histappend
+When saving the Bash history to $HISTFILE upon Bash exit, the new history
+entries will be appended to the existing file rather than overwriting it.
+@end defvr
+
+@defvr {Setting} cdspell
+This corrects minor errors in the spelling of a directory component in a
+@code{cd} command. The errors checked for are transposed characters, a missing
+character, and one character  too  many.
+@end defvr
+
+@defvr {Setting} cdable vars
+An argument to the cd builtin command that is not a directory is assumed to be
+the name of a variable whose value is the directory to change to.
+@end defvr
+
+@defvr {Setting} checkhash
+Lets Bash check that a command found in the hash table exists before trying to
+execute it. If a hashed command no longer exists, a normal path search is
+performed.
+@end defvr
+
+@defvr {Setting} cmdhist
+When saving History entries try to store multi-line commands in one line.
+@end defvr
+
+@defvr {Setting} force fignore
+Ignore all files from completion whichs suffixes are defined in $FIGNORE
+environment variable. This is enabled by default.
+@end defvr
+
+@defvr {Setting} histreedit
+The user is given the opportunity to re-edit a failed history substitution.
+@end defvr
+
+@defvr {Setting} no empty cmd completion
+When attempting completion on and empty command line, no completion based on the
+$PATH variable is done.
+@end defvr
+
+@defvr {Setting} dotglob
+When attempting file- or pathname completion include hidden matches (with leading
+dot).
+@end defvr
+
+@defvr {Setting} extglob
+Enable extended pattern matching features.
+@end defvr
+
+@defvr {Setting} nocaseglob
+When set file- or pathname expansion is done case insensitive.
+@end defvr
+
+@defvr {Setting} nocasematch
+When set pattern matching in @code{case} or @code{[[} conditional commands is
+done case insensitive.
+@end defvr
+
+@heading Bash 4.x
+
+@defvr {Setting} autocd
+When the given command is the name of a directory @code{cd} into it, instead
+of executing a command of the same name.
+@end defvr
+
+@defvr {Setting} dirspell
+When set bash tries to correct minor spelling mistakes on directory names.
+For example @code{cd /hoem/} will  successfully result in @code{cd /home/}.
+@end defvr
+
+@defvr {Setting} globstar
+When set the @code{**} glob will match all files, directories and subdirectories,
+the @code{**/} glob will match all directories and subdirectories, but no files.
+@end defvr
+
+@defvr {Setting} checkjobs
+Before exiting bash show the status of currently running background jobs. If there
+are any, the exit is delayed until a second attempt to prevent accidently killing
+running jobs.
+@end defvr
+
+@heading Bash 4.3
+
+@defvr {Setting} direxpand
+When set bash tries to expand pathnames from variables upon [TAB].
+@end defvr
+
+@defvr {Setting} glob ascii ranges
+When set range expressions for patterng matching behave like in the @code{C}
+locale.
+@end defvr
