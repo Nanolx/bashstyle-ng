@@ -225,7 +225,7 @@ if [[ $(ini_get history_sync) == True ]]; then
 	trap_add '_synchistory' DEBUG
 
 	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
-	[[ ${HISTCONTROl} == ignoredups || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorydups' DEBUG
+	[[ ${HISTCONTROL} == ignoredups || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorydups' DEBUG
 	[[ ${HISTCONTROL} == ignorespace || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorspc' DEBUG
 
 fi
