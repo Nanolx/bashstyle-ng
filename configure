@@ -14,11 +14,11 @@ export TOP_PID=$$
 
 MODULES=( base color messages checks substitute depends )
 
-for mod in ${MODULES[@]}; do
-	source ${PWD}/.configure/${mod}
+for mod in "${MODULES[@]}"; do
+	source "${PWD}"/.configure/"${mod}"
 done
 
-rm -f ${PWD}/.configure/results
+rm -f "${PWD}"/.configure/results
 
 xcount=0
 while [[ ${xcount} -lt $# ]]; do
@@ -34,10 +34,10 @@ while [[ ${xcount} -lt $# ]]; do
 		--help )		MODE=help ;;
 		--no-postinstall )	DISABLE_POSTINSTALL=1
 					echo "DISABLE_POSTINSTALL=1" >> \
-						${PWD}/.configure/results ;;
+						"${PWD}"/.configure/results ;;
 	esac
 	shift
-	xcount=$((${xcount}+1))
+	xcount=$((xcount+1))
 done
 unset xcount
 

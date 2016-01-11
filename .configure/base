@@ -14,7 +14,7 @@ APP_VERSION=9.2
 APP_CODENAME="Galvanize"
 APP_LANGUAGES="de"
 
-CFG_VERSION="4.3.6"
+CFG_VERSION="4.3.7"
 
 if [[ -d "/usr/lib/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib/girepository-1.0/"
@@ -37,7 +37,7 @@ PYMAXVER_P="3.5.0"
 PYMINVER=${PYMINVER_P//.}
 PYMAXVER=${PYMAXVER_P//.}
 
-for lang in ${APP_LANGUAGES[@]}; do
+for lang in "${APP_LANGUAGES[@]}"; do
 	LC_MESSAGES_DIRS="${LC_MESSAGES_DIRS} ${lang}/LC_MESSAGES/"
 done
 
@@ -58,6 +58,6 @@ LOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )
 ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"
 DESKTOPDIR=\"${DATADIR}/applications/\"
 PCDIR=\"${PCDIR}/\"
-APP_LANGUAGES=\"${APP_LANGUAGES}\"" | sed -e 's,//,/,g' >> ${PWD}/.configure/results
+APP_LANGUAGES=\"${APP_LANGUAGES}\"" | sed -e 's,//,/,g' >> "${PWD}"/.configure/results
 
 }
