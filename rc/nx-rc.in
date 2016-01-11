@@ -320,7 +320,7 @@ treecd () {
 	echo "${PWD}" > ${HOME}/.lastpwd
 }
 
-reload () {
+reload_bash () {
 	#xk2c from commandlinefu.com
 	builtin unalias -a
 	builtin unset -f $(builtin compgen -A function)
