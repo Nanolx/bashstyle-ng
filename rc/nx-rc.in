@@ -320,13 +320,15 @@ treecd () {
 	echo "${PWD}" > ${HOME}/.lastpwd
 }
 
-reload () {
-	#xk2c from commandlinefu.com
-	builtin unalias -a
-	builtin unset -f $(builtin compgen -A function)
-	[[ -f /etc/bash_completion ]] && source /etc/bash_completion
-	source ${HOME}/.bashrc
-}
+if grep -q reload= <(alias) || grep -q ^reload <(declare -f); then
+	reload () {
+		#xk2c from commandlinefu.com
+		builtin unalias -a
+		builtin unset -f $(builtin compgen -A function)
+		[[ -f /etc/bash_completion ]] && source /etc/bash_completion
+		source ${HOME}/.bashrc
+	}
+fi
 
 [[ ${PATH} != *games* && -d /usr/games/ ]] && \
 	export PATH="${PATH}:/usr/games/:/usr/local/games/"
