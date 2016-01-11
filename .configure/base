@@ -48,16 +48,16 @@ export_result ()
 {
 
 	echo -e "PREFIX=\"${PREFIX}\"
-DATADIR=\"${DATADIR}/bashstyle-ng/\"
+DATADIR=\"${DATADIR}/bashstyle-ng\"
 DATADIR_LIST=( ui rc/{functions,internal,settings,styles} termcap/{bar,body} vim/colors )
-DOCDIR=\"${DOCDIR}/bashstyle-ng/\"
-MANDIR=\"${MANDIR}/man1/\"
+DOCDIR=\"${DOCDIR}/bashstyle-ng\"
+MANDIR=\"${MANDIR}/man1\"
 BINDIR=\"${BINDIR}\"
-LOCALEDIR=\"${DATADIR}/locale/\"
+LOCALEDIR=\"${DATADIR}/locale\"
 LOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )
-ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps/\"
-DESKTOPDIR=\"${DATADIR}/applications/\"
-PCDIR=\"${PCDIR}/\"
+ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps\"
+DESKTOPDIR=\"${DATADIR}/applications\"
+PCDIR=\"${PCDIR}\"
 APP_LANGUAGES=\"${APP_LANGUAGES}\"" | sed -e 's,//,/,g' >> "${PWD}"/.configure/results
 
 }
