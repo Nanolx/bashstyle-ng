@@ -11,13 +11,13 @@
 
 CF_MODULES=( base color )
 MK_MODULES=( build install messages checks actions )
-MK_VERSION=1.0.8
+MK_VERSION=1.0.9
 
-for mod in ${CF_MODULES[@]}; do
-	source .configure/${mod}
+for mod in "${CF_MODULES[@]}"; do
+	source "${PWD}"/.configure/"${mod}"
 done
-for mod in ${MK_MODULES[@]}; do
-	source .make/${mod}
+for mod in "${MK_MODULES[@]}"; do
+	source "${PWD}"/.make/"${mod}"
 done
 
 xcount=0
@@ -41,7 +41,7 @@ else
 			* )		help_message ;;
 		esac
 		shift
-		xcount=$(($xcount+1))
+		xcount=$((xcount+1))
 	done
 fi
 

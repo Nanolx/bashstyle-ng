@@ -16,7 +16,7 @@ make_build () {
 	build_doc_html &&
 	do_gzip_man &&
 	build_end_message &&
-	touch ${PWD}/.make/build_done
+	touch "${PWD}"/.make/build_done
 }
 
 make_install () {
@@ -47,11 +47,11 @@ CLEAN_DIRS=( doc/html )
 
 make_clean () {
 	clean_message
-	for file in ${CLEAN_FILES[@]}; do
+	for file in "${CLEAN_FILES[@]}"; do
 		rm -f "${file}"
 	done
 
-	for dir in ${CLEAN_DIRS[@]}; do
+	for dir in "${CLEAN_DIRS[@]}"; do
 		rm -rf "${dir}"
 	done
 }

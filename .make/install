@@ -12,7 +12,7 @@
 post_install () {
 	if [[ ! ${DISABLE_POSTINSTALL} ]]; then
 		post_install_message
-		gtk-update-icon-cache -q -f ${PREFIX}/share/icons/hicolor
+		gtk-update-icon-cache -q -f "${PREFIX}"/share/icons/hicolor
 	fi
 }
 
@@ -23,19 +23,19 @@ post_remove () {
 installdirs_create ()
 {
 	echo -e "\t${WHITE}+${MAGENTA} directories"
-	mkdir -p ${DESTDIR}/${DATADIR}
-	for directory in ${DATADIR_LIST[@]}; do
-		mkdir -p ${DESTDIR}/${DATADIR}/${directory}
+	mkdir -p "${DESTDIR}"/"${DATADIR}"
+	for directory in "${DATADIR_LIST[@]}"; do
+		mkdir -p "${DESTDIR}"/"${DATADIR}"/"${directory}"
 	done
 
-	mkdir -p ${DESTDIR}/${LOCALEDIR}
-	for directory in ${LOCALEDIR_LIST[@]}; do
-		mkdir -p ${DESTDIR}/${LOCALEDIR}/${directory}
+	mkdir -p "${DESTDIR}"/"${LOCALEDIR}"
+	for directory in "${LOCALEDIR_LIST[@]}"; do
+		mkdir -p "${DESTDIR}"/"${LOCALEDIR}"/"${directory}"
 	done
 
-	mkdir -p ${DESTDIR}/${BINDIR}
-	mkdir -p ${DESTDIR}/${ICONDIR}
-	mkdir -p ${DESTDIR}/${PCDIR}
+	mkdir -p "${DESTDIR}"/"${BINDIR}"
+	mkdir -p "${DESTDIR}"/"${ICONDIR}"
+	mkdir -p "${DESTDIR}"/"${PCDIR}"
 }
 
 inst ()
@@ -49,9 +49,9 @@ inst ()
 	DEST=${2/*:}
 
 	if [[ ${1} == man ]]; then
-		install -m${MODE} ${FILE}.gz ${DESTDIR}${DEST}
+		install -m"${MODE}" "${FILE}".gz "${DESTDIR}""${DEST}"
 	else
-		install -m${MODE} ${FILE} ${DESTDIR}${DEST}
+		install -m"${MODE}" "${FILE}" "${DESTDIR}""${DEST}"
 	fi
 
 	unset TYPE FILE DEST
@@ -59,28 +59,28 @@ inst ()
 
 install_bsng () {
 	echo -e "\t${WHITE}+${YELLOW} data files"
-	for file in ${DATA_FILES[@]} ${LOCALE_FILES[@]} \
-		${PC_FILES[@]} ${ICON_FILES[@]}; do
-		inst data ${file}
+	for file in "${DATA_FILES[@]}" "${LOCALE_FILES[@]}" \
+		"${PC_FILES[@]}" "${ICON_FILES[@]}"; do
+		inst data "${file}"
 	done
 
 	echo -e "\t${WHITE}+${GREEN} executable files"
-	for file in ${BIN_FILES[@]}; do
-		inst bin ${file}
+	for file in "${BIN_FILES[@]}"; do
+		inst bin "${file}"
 	done
 
 	echo -e "\t${WHITE}+${CYAN} documentation and manual pages"
-	for file in ${DOC_FILES[@]}; do
-		inst doc ${file}
+	for file in "${DOC_FILES[@]}"; do
+		inst doc "${file}"
 	done
-	for file in ${MAN_FILES[@]}; do
-		inst man ${file}
+	for file in "${MAN_FILES[@]}"; do
+		inst man "${file}"
 	done
 }
 
 remove_bsng () {
 	echo -e "\t${WHITE}+${RED} all files"
-	for file in ${REMOVE_FILES[@]}; do
-		rm -rf ${file}
+	for file in "${REMOVE_FILES[@]}"; do
+		rm -rf "${file}"
 	done
 }
