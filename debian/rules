@@ -1,12 +1,13 @@
 #!/usr/bin/make -f
 
 export DH_VERBOSE = 1
+export DISABLE_POSTINSTALL = 1
 
 %:
 	dh $@ --no-cat --with python3
 
 override_dh_auto_configure:
-	dh_auto_configure -- --no-postinstall
+	dh_auto_configure
 
 override_dh_auto_build:
 	./make build

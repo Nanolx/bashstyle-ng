@@ -17,19 +17,19 @@ APP_LANGUAGES="de"
 CFG_VERSION="4.3.7"
 
 if [[ -d "/usr/lib/girepository-1.0/" ]]; then
-	export GIRPATH="/usr/lib/girepository-1.0/"
+	export GIRPATH="/usr/lib/girepository-1.0"
 elif [[ -d "/usr/lib64/girepository-1.0/" ]]; then
-	export GIRPATH="/usr/lib64/girepository-1.0/"
+	export GIRPATH="/usr/lib64/girepository-1.0"
 fi
 
 PREFIX="/usr"
 PYTHON=$(which python3 || which python2 || which python)
 
 BINDIR="${PREFIX}/bin"
-PCDIR="${PREFIX}/share/pkgconfig/"
-DATADIR="${PREFIX}/share/"
-DOCDIR="${DATADIR}/doc/"
-MANDIR="${DATADIR}/man/"
+PCDIR="${PREFIX}/share/pkgconfig"
+DATADIR="${PREFIX}/share"
+DOCDIR="${DATADIR}/doc"
+MANDIR="${DATADIR}/man"
 
 PYMINVER_P="2.7.0"
 PYMAXVER_P="3.5.0"
@@ -38,7 +38,7 @@ PYMINVER=${PYMINVER_P//.}
 PYMAXVER=${PYMAXVER_P//.}
 
 for lang in "${APP_LANGUAGES[@]}"; do
-	LC_MESSAGES_DIRS="${LC_MESSAGES_DIRS} ${lang}/LC_MESSAGES/"
+	LC_MESSAGES_DIRS="${LC_MESSAGES_DIRS} ${lang}/LC_MESSAGES"
 done
 
 export OLDPATH=${PATH}
