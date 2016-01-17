@@ -123,7 +123,7 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 			11 ) pstyle=ayoli ;;
 		esac
 
-		dbg_msg $"BashStyle-NG Setting:" ${pstyle} $"randomly choosen"
+		dbg_msg $"BashStyle-NG Setting:" ${pstyle} $"randomly chosen"
 	else
 		pstyle=$(ini_get prompt_style)
 		[[ ${pstyle} == clock-ad ]] && pstyle="equinox"

@@ -64,7 +64,7 @@ Overview of changes in v9.1 "Dial T for TNT"
   - trap
   - PROMPT_COMMAND
 
-  for not overriding the useful info with useless, aswell as for:
+  for not overriding the useful info with useless, as well as for:
 
   - echo ${lastcommand}
   - echo ${lastcommandprintable}
@@ -95,7 +95,7 @@ Overview of changes in v9.1 "Dial T for TNT"
 === Bash Settings ===
 
 * add GLOBIGNORE: everything to ignore from globbing. Default value: empty.
- ++ if you set it to ".:.." issueing '$ ls .*' will not include '.' and '..'
+ ++ if you set it to ".:.." issuing '$ ls .*' will not include '.' and '..'
 
 * add History Sync: sync history between simultaneously running sessions.
  ++ commands from other sessions become available to 'history' immediately,
@@ -305,7 +305,7 @@ Overview of changes in v9.0 "A New Wave"
 	but not applied, so it (or changes to it) took until the second new
 	Bash session after program run to make readline configuration apply)
 * #184 (make):
-	fix desktop file not beeing installed
+	fix desktop file not being installed
 * #185 (configure):
 	properly check for python version (was confused by version longer than
 	four digits, for example 2.7.10 which translated to 2710)
@@ -351,7 +351,7 @@ Overview of changes in v9.0 "A New Wave"
 
 ==== Improved Shell Functions ====
 
-* lscd: various improvements. If a file is passed as arguement to lscd,
+* lscd: various improvements. If a file is passed as argument to lscd,
   it will cd into the containing directory. New optional setting lscd_mkdir,
   if True lscd will create the directory if it does not exist (or if it's
   not a file which's directory we can cd into or not an -* cd parameter).
@@ -366,12 +366,12 @@ Overview of changes in v9.0 "A New Wave"
 ==== New Shell Functions ====
 
 * loop function: loop for a colon-divided list (eg. PATH) and return
-  the full path if the second arguement is found inside any member of
+  the full path if the second argument is found inside any member of
   the colon-divided list (similar to which, but for any provided list
   and both files and directories)
 * reload function: a clean function to reload .bashrc (x2cd)
 * quickscript function: writes all commands in history to a file.
-  starting point is the last occurence of "###" (joedhon)
+  starting point is the last occurrence of "###" (joedhon)
 * ngroups function: system default 'groups' lists all user-groups you're in
   ngroups lists all user-groups you're NOT in. (gniourf_gniourf)
 * psgrep function: find process by name (flatcap)
@@ -842,7 +842,7 @@ to try them out pass `--dirinfo-enable' to the configure script.
   + when filetype indention is enabled, also enable autoindent
   + when filetype indention is enabled, also enable smartindent
   + set linespace to 0
-  + load $HOME/.vimrc.custom if availabe (put your stuff here)
+  + load $HOME/.vimrc.custom if available (put your stuff here)
 
 * colorshell: changes the color for the shell output after each command
 
@@ -1015,7 +1015,7 @@ Overview of changes in v7.11 "I Shot The Blender"
 * mkchangelog function (generates ChangeLog from git log)
 
 === Bugfixes ===
-* #98: support spaces in arguements for all functions
+* #98: support spaces in arguments for all functions
 * #99: errornous output in showspace
 * #100: make sure to use \$ rather than $ in all styles
 * #101: correctly get (and therefore log) the bash patch-level
@@ -1055,7 +1055,7 @@ Overview of changes in v7.11 "I Shot The Blender"
 
 * listing all files in lo function
 * listing all files in lg function
-* support for multiple arguements in lm function
+* support for multiple arguments in lm function
 
 * First-run-wizard (sets up several options for functions)
 

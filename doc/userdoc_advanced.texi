@@ -36,9 +36,9 @@ This controls how many history entries are saved. 0 for infinite.
 @end defvr
 
 @defvr {Setting} Sync History (Multisession)
-This is a BashStyle-NG extension wich allows syncronized history over multiple,
+This is a BashStyle-NG extension which allows syncronized history over multiple,
 simultaneously running Bash sessions. It provides custom functions for history
-controling aswell and history blacklisting is honoured aswell.
+controlling as well and history blacklisting is honoured as well.
 @end defvr
 
 @heading BashStyle-NG
@@ -80,7 +80,7 @@ This option saves the last directory upon session exit. When a new session is
 started, Bash will automatically change into it.
 
 Note: if you've enabled either @code{lscd} or @code{treecd} the directory will
-be additonally saved everytime you change the directory, allowing you to start
+be additionally saved every time you change the directory, allowing you to start
 a new shell in your current directory immediately.
 @end defvr
 
@@ -95,7 +95,7 @@ All @code{tree} options are supported, see @code{tree --help} for all possibilit
 @end defvr
 
 @defvr {Setting} Let @code{dd} continue on error
-Normally the @code{dd} utility will abort on the first occuring error. Enabling
+Normally the @code{dd} utility will abort on the first occurring error. Enabling
 this will make @code{dd} displaying a warning and continuing it's work instead.
 
 This is mostly useful when dealing with damaged CDs or thelike.
@@ -132,7 +132,7 @@ Various options for Bash builtin functions and features.
 A colon separted list of directories to which's subdirectories @code{cd} can
 directly change into. For example if @code{~/Desktop/myfancydir} exists and
 @code{~/Desktop} is in @code{CDPATH}, you can enter this directory from anywhere
-by issueing @code{cd myfancydir}.
+by issuing @code{cd myfancydir}.
 @end defvr
 
 @defvr {Setting} Completion Blacklist

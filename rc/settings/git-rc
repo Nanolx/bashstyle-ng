@@ -17,7 +17,7 @@ if [[ $(ini_get git_user_name) != "" ]]; then
 fi
 
 if [[ $(ini_get git_user_mail) != "" ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"GIT user mail adress"
+	dbg_msg $"BashStyle-NG Setting:" $"GIT user mail address"
 	dbg_log git config --global user.email "$(ini_get git_user_mail)"
 fi
 
