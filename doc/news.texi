@@ -39,6 +39,8 @@ if no user ini exists
 
 @item #199 (reload): fixup reload to properly restore the complete environment,
 including BashStyle-NG and Bash Programmable Completion.
+
+@item #200 (dd_opts): ensure setting DD_OPTS is properly done.
 @end itemize
 
 @item Configuration File Changes
@@ -124,6 +126,12 @@ down Bash a bit if you have a huge history.
 @itemize @minus
 
 @item xmltagdelete: delete tags from xml files, see @code{xmltagdelete --help}
+@end itemize
+
+@item New Settings
+@itemize @minus
+
+@item Added option to display progressbar for @code{dd}, requires version 8.24 or newer.
 @end itemize
 
 @item Documentation

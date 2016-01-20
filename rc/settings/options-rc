@@ -59,7 +59,16 @@ if [[ $(ini_get colored_grep) == True && ${enable_colors} == True ]]; then
 else	dbg_msg $"BashStyle-NG Setting:" $"Colored grep" $"Off"
 fi
 
-[[ $(ini_get dd_noerror) == True ]] && export DD_OPTS="conv=noerror"
+[[ $(ini_get dd_noerror) == True ]] && export DD_OPTS="${DD_OPTS} conv=noerror"
+
+# status=progress is new in dd/coreutils 8.24
+[[ $(ini_get dd_progress) == True && $(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version)) -ge 824 ]] && export DD_OPTS="${DD_OPTS} status=progress"
+
+__dd () {
+	dd ${DD_OPTS} "${@}"
+}
+
+alias dd=__dd
 
 [[ $(ini_get use_treecd) == True ]] && dbg_log alias cd=treecd
 

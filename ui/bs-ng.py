@@ -128,6 +128,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("treecd_options", "Advanced", "treecd_opts", "text", None)
 		WidgetHandler.InitWidget("birthday", "Advanced", "user_birthday", "text", None)
 		WidgetHandler.InitWidget("dd_noerror", "Advanced", "dd_noerror", "bool", None)
+		WidgetHandler.InitWidget("dd_progress", "Advanced", "dd_progress", "bool", None)
 		WidgetHandler.InitWidget("restore_pwd", "Advanced", "restore_directory", "bool", None)
 		WidgetHandler.InitWidget("debug_verbose", "Advanced", "debug_verbose", "bool", None)
 		WidgetHandler.InitWidget("globignore", "Advanced", "glob_ignore", "text", None)

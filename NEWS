@@ -40,6 +40,8 @@ between.  For more detailed information see the or git log.
           environment, including BashStyle-NG and Bash Programmable
           Completion.
 
+        - #200 (dd_opts): ensure setting DD_OPTS is properly done.
+
    * Configuration File Changes
         - Additionally to factory and vendor (/etc/bs-ng_vendor.ini)
           configuration BashStyle-NG now also checks for user backup
@@ -126,6 +128,11 @@ between.  For more detailed information see the or git log.
         - xmltagdelete: delete tags from xml files, see 'xmltagdelete
           --help'
 
+   * New Settings
+
+        - Added option to display progressbar for 'dd', requires version
+          8.24 or newer.
+
    * Documentation
 
         - Add texinfo documentation describing all features of
@@ -149,6 +156,9 @@ between.  For more detailed information see the or git log.
 
    * Configure
 
+        - 4.3.7
+             + code review
+
         - 4.3.6
              + add '--docdir' switch back
              + add '--mandir' switch
@@ -169,6 +179,9 @@ between.  For more detailed information see the or git log.
              + remove unused variable
 
    * Make
+
+        - 1.0.9
+             + code review
 
         - 1.0.8
              + compress manpages upon './make build'
