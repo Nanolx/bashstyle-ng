@@ -31,7 +31,7 @@ USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
 
-app_ini_version = 22
+app_ini_version = 23
 
 class Config(object):
 	def InitConfig(self):
@@ -207,7 +207,7 @@ class Config(object):
 		content = rc.readlines()
 		found = False
 		for line in content:
-			if line.startswith("source " + os.getenv('BSNG_DATADIR') + "bashstyle-ng/rc/nx-rc", 0) == True:
+			if line.startswith("source " + os.getenv('BSNG_DATADIR') + "/bashstyle-ng/rc/nx-rc", 0) == True:
 				found = True
 		rc.close
 		return found
