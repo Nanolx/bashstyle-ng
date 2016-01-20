@@ -10,13 +10,13 @@
 #########################################################
 
 if [[ ${enable_colors} == True ]]; then
-	if [[ -f ${BSNG_DATA_DIR}/bashstyle-ng/termcap/bar/$(ini_get termcap_bar).termcap ]]; then
+	if [[ -f ${BSNG_DATADIR}/bashstyle-ng/termcap/bar/$(ini_get termcap_bar).termcap ]]; then
 		dbg_msg $"BashStyle-NG Setting: Termcap (bar)" $(ini_get termcap_bar)
-		dbg_log source ${BSNG_DATA_DIR}/bashstyle-ng/termcap/bar/$(ini_get termcap_bar).termcap
+		dbg_log source ${BSNG_DATADIR}/bashstyle-ng/termcap/bar/$(ini_get termcap_bar).termcap
 	fi
 
-	if [[ -f ${BSNG_DATA_DIR}/bashstyle-ng/termcap/body/$(ini_get termcap_body).termcap ]]; then
+	if [[ -f ${BSNG_DATADIR}/bashstyle-ng/termcap/body/$(ini_get termcap_body).termcap ]]; then
 		dbg_msg $"BashStyle-NG Setting: Termcap (body)" $(ini_get termcap_body)
-		dbg_log source ${BSNG_DATA_DIR}/bashstyle-ng/termcap/body/$(ini_get termcap_body).termcap
+		dbg_log source ${BSNG_DATADIR}/bashstyle-ng/termcap/body/$(ini_get termcap_body).termcap
 	fi
 fi
