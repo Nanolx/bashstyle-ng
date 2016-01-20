@@ -19,7 +19,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	export RC_FILE=${HOME}/.vimrc.bs-ng.$(date +%I-%M-%S)
 
 	dbg_msg $"VimCFG Setting:" $"runtimepath"
-	rc_add "set runtimepath+=${BSNG_DATA_DIR}/bashstyle-ng/vim/"
+	rc_add "set runtimepath+=${BSNG_DATADIR}/bashstyle-ng/vim/"
 
 	if [[ $(ini_get colorscheme) != "default" ]]; then
 		colorscheme=$(ini_get colorscheme)
