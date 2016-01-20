@@ -14,13 +14,13 @@ TEXTDOMAIN="nx-rc"
 
 export BSNG_PREFIX=@PREFIX@
 export BSNG_DATADIR=@DATADIR@
-export BSNG_RC_DIR=${BSNG_DATADIR}/bashstyle-ng/rc
+export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2015"
 INI_VERSION=23
 
-source ${BSNG_RC_DIR}/internal/misc
-source ${BSNG_RC_DIR}/internal/logging
+source ${BSNG_RCDIR}/internal/misc
+source ${BSNG_RCDIR}/internal/logging
 
 if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 	if [[ -f /etc/bs-ng_vendor.ini && $(ven_get ini_version) == ${INI_VERSION} ]]; then
@@ -46,33 +46,33 @@ dbg_msg $"BashStyle-NG Logfile:" ${BSNG_LOGFILE}
 dbg_log shopt -s checkwinsize
 
 [[ $(ini_get use_readlinecfg) == True ]] && \
-	dbg_log source ${BSNG_RC_DIR}/settings/readline-rc
+	dbg_log source ${BSNG_RCDIR}/settings/readline-rc
 
 [[ $(ini_get use_vimcfg) == True ]] && \
-	dbg_log source ${BSNG_RC_DIR}/settings/vim-rc
+	dbg_log source ${BSNG_RCDIR}/settings/vim-rc
 
 [[ $(ini_get use_nanocfg) == True ]] && \
-	dbg_log source ${BSNG_RC_DIR}/settings/nano-rc
+	dbg_log source ${BSNG_RCDIR}/settings/nano-rc
 
 [[ $(ini_get enable_colors) == True ]] && \
-	dbg_log source ${BSNG_RC_DIR}/settings/color-rc
+	dbg_log source ${BSNG_RCDIR}/settings/color-rc
 
 [[ $(ini_get use_lscolors) == True && ${enable_colors} == True ]] && \
-	dbg_log source ${BSNG_RC_DIR}/settings/ls-rc
+	dbg_log source ${BSNG_RCDIR}/settings/ls-rc
 
 [[ $(ini_get use_gitcfg) == True ]] && \
-	dbg_log source ${BSNG_RC_DIR}/settings/git-rc
+	dbg_log source ${BSNG_RCDIR}/settings/git-rc
 
 [[ $(ini_get use_keybindingscfg == True) ]] && \
-	dbg_log source ${BSNG_RC_DIR}/settings/keybindings-rc
+	dbg_log source ${BSNG_RCDIR}/settings/keybindings-rc
 
 [[ $(ini_get colored_man) == True ]] && \
-	dbg_log source ${BSNG_RC_DIR}/settings/man-rc
+	dbg_log source ${BSNG_RCDIR}/settings/man-rc
 
 dbg_msg $"BashStyle-NG Setting:"  $"Shell Options"
-dbg_log source ${BSNG_RC_DIR}/settings/shopt-rc
+dbg_log source ${BSNG_RCDIR}/settings/shopt-rc
 
-dbg_log source ${BSNG_RC_DIR}/settings/alias-rc
+dbg_log source ${BSNG_RCDIR}/settings/alias-rc
 
 if [[ -e ${HOME}/.bashstyle.custom ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
@@ -82,7 +82,7 @@ fi
 if [[ $(ini_get use_bashstyle) == True ]]; then
 
 	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
-	dbg_log source ${BSNG_RC_DIR}/styles/null-rc
+	dbg_log source ${BSNG_RCDIR}/styles/null-rc
 
 	if [[ ${enable_colors} == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
@@ -133,10 +133,10 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 
 	if [[ ${use_custom_prompt} == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"Custom Prompt"
-		dbg_log source ${BSNG_RC_DIR}/styles/custom-rc
-	elif [[ -e ${BSNG_RC_DIR}/styles/${pstyle}-rc ]]; then
+		dbg_log source ${BSNG_RCDIR}/styles/custom-rc
+	elif [[ -e ${BSNG_RCDIR}/styles/${pstyle}-rc ]]; then
 		dbg_msg $"BashStyle-NG Setting:" ${pstyle} $"Prompt"
-		dbg_log source ${BSNG_RC_DIR}/styles/${pstyle}-rc
+		dbg_log source ${BSNG_RCDIR}/styles/${pstyle}-rc
 	else
 		dbg_msg $"BashStyle-NG Setting:" $"Fallback Prompt"
 		dbg_log export PS1="\u@\h\w: "
@@ -144,7 +144,7 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 
 fi
 
-dbg_log source ${BSNG_RC_DIR}/settings/options-rc
+dbg_log source ${BSNG_RCDIR}/settings/options-rc
 
 # by Richard Hansen https://stackoverflow.com/a/7287873
 
@@ -254,7 +254,7 @@ trap_add 'remember_command' DEBUG
 WelcomeMessage=$(ini_get welcome_message)
 
 if [[ ${USER_BIRTHDAY} == $(date +%m-%d) && ! -e ~/.bday ]]; then
-	cat ${BSNG_RC_DIR}/internal/birthday
+	cat ${BSNG_RCDIR}/internal/birthday
 	touch ~/.bday
 elif [[ ${WelcomeMessage} != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
