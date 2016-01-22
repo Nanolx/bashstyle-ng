@@ -118,7 +118,7 @@ class IconBook(object):
 			model = widget.get_model()
 			if model[item][1] == _("Documentation"):
 				back.set_visible(0)
-				openFile(False, os.getenv('BSNG_DATADIR') + "doc/bashstyle-ng/index.html")
+				openFile(False, os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html")
 			else:
 				notebook.set_current_page(notebook_pages[model[item][1]])
 				back.set_visible(1)
