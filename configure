@@ -21,7 +21,7 @@ done
 rm -f "${PWD}"/.configure/results
 
 xcount=0
-while [[ ${xcount} -lt $# ]]; do
+while [[ ${xcount} -le $# ]]; do
 	case ${1} in
 		--prefix=* )		PREFIX="${1/*=}" ;;
 		--pcdir=* )		PCDIR="${1/*=}" ;;
@@ -32,7 +32,8 @@ while [[ ${xcount} -lt $# ]]; do
 		--datadir=* )		DATADIR="${1/*=}" ;;
 		--python=* )		PYTHON="${1/*=}" ;;
 		--help )		MODE=help ;;
-		--no-postinstall )	DISABLE_POSTINSTALL=1
+		--no-postinstall )	echo "HERE111!!!1"
+					DISABLE_POSTINSTALL=1
 					echo "DISABLE_POSTINSTALL=1" >> \
 						"${PWD}"/.configure/results ;;
 	esac
