@@ -260,6 +260,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("ls_tar", "LSColors", "tar", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_targz", "LSColors", "targz", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_tarbz2", "LSColors", "tarbz2", "combo", dicts.ls_colors)
+		WidgetHandler.InitWidget("ls_tarxz", "LSColors", "tarxz", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_zip", "LSColors", "zip", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_rar", "LSColors", "rar", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_link", "LSColors", "link", "combo", dicts.ls_colors)
