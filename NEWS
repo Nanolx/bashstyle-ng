@@ -44,6 +44,9 @@ between.  For more detailed information see the or git log.
 
         - #201 (ls_colors): setting Tar/XZ color from UI didn't work.
 
+        - #202 (configure): fixed last arguement passed to configure not
+          being honoured.
+
    * Configuration File Changes
         - Additionally to factory and vendor (/etc/bs-ng_vendor.ini)
           configuration BashStyle-NG now also checks for user backup
@@ -130,6 +133,8 @@ between.  For more detailed information see the or git log.
         - xmltagdelete: delete tags from xml files, see 'xmltagdelete
           --help'
 
+        - 2048.bash: 2048 game in Bash, see '2048.bash --help'
+
    * New Settings
 
         - Added option to display progressbar for 'dd', requires version
@@ -160,6 +165,7 @@ between.  For more detailed information see the or git log.
 
         - 4.3.7
              + code review
+             + fixed bug #202
 
         - 4.3.6
              + add '--docdir' switch back
