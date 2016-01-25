@@ -14,6 +14,7 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     rc/internal/*:${DATADIR}/rc/internal
 	     rc/settings/*:${DATADIR}/rc/settings
 	     rc/styles/*:${DATADIR}/rc/styles
+	     rc/2048/*.sh:${DATADIR}/rc/2048
 	     data/termcap/bar/*:${DATADIR}/termcap/bar
 	     data/termcap/body/*:${DATADIR}/termcap/body
 	     data/vim/colors/*:${DATADIR}/vim/colors
@@ -29,7 +30,8 @@ for lang in ${APP_LANGUAGES}; do
 done
 
 BIN_FILES=( data/bashstyle:${BINDIR}
-	    rc/functions/*:${DATADIR}/rc/functions )
+	    rc/functions/*:${DATADIR}/rc/functions
+	    rc/2048/2048:${DATADIR}/rc/2048)
 
 ICON_FILES=( data/icons/*.png:${ICONDIR} )
 
