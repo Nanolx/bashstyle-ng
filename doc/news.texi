@@ -12,8 +12,14 @@ Each release lists incompatible changes at its top.
 @heading 9.3 ``Trick or Treat''
 @itemize @bullet
 
+@item Bug Fixes
+@itemize @minus
+@item #203 (termcap): @code{yellow-green} manpage color accidently was
+@code{red-green} (choose @code{mostlike} for @code{red-green}).
+@end itemize
+
 @item UI changes
-@itemize @bullet
+@itemize @minus
 @item Make the radio buttons @code{use lscd instead of cd} and
 @code{use treecd instead of cd} exclude each other (as it's supposed to be).
 @end itemize
