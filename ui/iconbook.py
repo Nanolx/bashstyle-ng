@@ -45,7 +45,7 @@ iconview_labels = {
 	"bs-ng-alias" : _("Aliases"),
 	"bs-ng-advanced" : _("Advanced"),
 	"bs-ng-readline" : _("Readline"),
-	"bs-ng-vim" : _("Vi IMproved"),
+	"bs-ng-vim" : _("Vi improved"),
 	"bs-ng-nano" : _("GNU Nano"),
 	"bs-ng-ls" : _("LS colors"),
 	"bs-ng-custom" : _("Custom Prompt Builder"),
