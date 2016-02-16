@@ -97,7 +97,7 @@ class IconBook(object):
 
 		main_label = gtkbuilder.get_object("main.label")
 
-		use_keys_button = gtkbuilder.get_object("use_keybindingscfg")
+		use_keys_button = gtkbuilder.get_object("use_keybindings_box")
 		use_keys_button.set_visible(0)
 
 		def back_clicked(data):

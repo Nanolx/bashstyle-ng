@@ -58,7 +58,7 @@ class BashStyleNG(object):
 		WidgetHandler = widgethandler.WidgetHandler(config.cfo, config.udc, config.fdc)
 
 		####################### Style Options ##############################################
-		WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "bool", None)
+		WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "switch", None)
 		WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)
 		WidgetHandler.InitWidget("ls_color", "Style", "colored_ls", "bool", None)
 		WidgetHandler.InitWidget("manpage_color", "Style", "colored_man", "bool", None)
@@ -135,7 +135,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("history_sync", "Advanced", "history_sync", "bool", None)
 
 		####################### Readline stuff #############################################
-		WidgetHandler.InitWidget("readline", "Readline", "use_readlinecfg", "bool", None)
+		WidgetHandler.InitWidget("use_readline", "Readline", "use_readlinecfg", "switch", None)
 		WidgetHandler.InitWidget("completion", "Readline", "completion", "bool", None)
 		WidgetHandler.InitWidget("ambiguous", "Readline", "ambiguous_show", "bool", None)
 		WidgetHandler.InitWidget("match_hidden", "Readline", "complete_hidden", "bool", None)
@@ -174,7 +174,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("nocasematch", "Shopt", "nocasematch", "bool", None)
 
 		######################## GIT Stuff #################################################
-		WidgetHandler.InitWidget("use_gitcfg", "Git", "use_gitcfg", "bool", None)
+		WidgetHandler.InitWidget("use_git", "Git", "use_gitcfg", "switch", None)
 		WidgetHandler.InitWidget("git_user", "Git", "git_user_name", "text", None)
 		WidgetHandler.InitWidget("git_mail", "Git", "git_user_mail", "text", None)
 		WidgetHandler.InitWidget("git_editor", "Git", "git_editor", "text", None)
@@ -183,7 +183,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("git_aliases", "Git", "git_aliases", "bool", None)
 
 		######################## VimCFG Stuff ##############################################
-		WidgetHandler.InitWidget("use_vimcfg", "Vim", "use_vimcfg", "bool", None)
+		WidgetHandler.InitWidget("use_vim", "Vim", "use_vimcfg", "switch", None)
 		WidgetHandler.InitWidget("vim_backup", "Vim", "vim_backup", "bool", None)
 		WidgetHandler.InitWidget("vim_jump", "Vim", "jump_back", "bool", None)
 		WidgetHandler.InitWidget("vim_sline", "Vim", "start_line", "bool", None)
@@ -215,7 +215,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("vim_foldmethod", "Vim", "foldmethod", "combo", dicts.vim_foldmethods)
 
 		######################## NanoCFG Stuff #############################################
-		WidgetHandler.InitWidget("use_nanocfg", "Nano", "use_nanocfg", "bool", None)
+		WidgetHandler.InitWidget("use_nano", "Nano", "use_nanocfg", "switch", None)
 		WidgetHandler.InitWidget("nano_backup", "Nano", "nano_backup", "bool", None)
 		WidgetHandler.InitWidget("nano_const", "Nano", "show_position", "bool", None)
 		WidgetHandler.InitWidget("nano_indent", "Nano", "auto_indent", "bool", None)
@@ -243,8 +243,8 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("nano_title_bg", "Nano", "title_color_bg", "combo", dicts.nano_colors)
 
 		######################## LS Colors Stuff ###########################################
+		WidgetHandler.InitWidget("use_lscolors", "LSColors", "use_lscolors", "switch", None)
 		WidgetHandler.InitWidget("ls_custom", "LSColors", "custom", "text", None)
-		WidgetHandler.InitWidget("use_lscolors", "LSColors", "use_lscolors", "bool", None)
 		WidgetHandler.InitWidget("ls_exec", "LSColors", "exec", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_gen", "LSColors", "generic", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_log", "LSColors", "logs", "combo", dicts.ls_colors)
@@ -274,7 +274,7 @@ class BashStyleNG(object):
 		keytree.InitTree()
 
 		######################## Custom Prompt Builder #####################################
-		WidgetHandler.InitWidget("use_custom_prompt", "Custom", "use_custom_prompt", "bool", None)
+		WidgetHandler.InitWidget("use_customprompt", "Custom", "use_custom_prompt", "switch", None)
 		promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
 
 		######################## Load the Main-Window ######################################

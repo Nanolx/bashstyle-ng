@@ -103,7 +103,7 @@ class KeyTree(object):
 			self.factorydefault = fdc
 
 	def InitTree(self):
-		use_keys = gtkbuilder.get_object("use_keybindingscfg")
+		use_keys = gtkbuilder.get_object("use_keybindings")
 		store = gtkbuilder.get_object("treeviewstore")
 		tree = gtkbuilder.get_object("keybindings.treeview")
 		tree.set_grid_lines(1)
@@ -171,11 +171,11 @@ class KeyTree(object):
 		use_keys.set_active(self.config["Keybindings"].as_bool("use_keybindingscfg"))
 		tree.set_sensitive(use_keys.get_active())
 
-		def on_use_keys(widget):
+		def on_use_keys(widget, data):
 			self.config["Keybindings"]["use_keybindingscfg"] = widget.get_active()
 			tree.set_sensitive(widget.get_active())
 
-		use_keys.connect("toggled", on_use_keys)
+		use_keys.connect("notify::active", on_use_keys)
 
 		def on_reset(widget, path, config):
 			sel = tree.get_selection()
