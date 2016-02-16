@@ -50,7 +50,7 @@ iconview_labels = {
 	"bs-ng-ls" : _("LS colors"),
 	"bs-ng-custom" : _("Custom Prompt Builder"),
 	"bs-ng-shopts" : _("Shell Options"),
-	"bs-ng-git" : _("GIT"),
+	"bs-ng-git" : _("Git"),
 	"bs-ng-info" : _("About BashStyle-NG"),
 	"bs-ng-keys" : _("Keybindings"),
 	"bs-ng-config" : _("Configuration"),
