@@ -62,6 +62,8 @@ class WidgetHandler(object):
 					object.set_value(self.config["%s" % group].as_int("%s" % setting))
 				elif type == "bool":
 					object.set_active(self.config["%s" % group].as_bool("%s" % setting))
+				elif type == "switch":
+					object.set_active(self.config["%s" % group].as_bool("%s" % setting))
 				elif type == "combo":
 					object.set_active(self.SwapDictionary(dict)[self.config["%s" % group]["%s" % setting]])
 
@@ -75,6 +77,8 @@ class WidgetHandler(object):
 					object.connect("icon-press", revert_option, type, group, setting)
 				elif type == "bool":
 					object.connect("toggled", set_option, None, type, None, group, setting)
+				elif type == "switch":
+					object.connect("notify::active", set_option, type, None, group, setting)
 				elif type == "combo":
 					object.connect("changed", set_option, None, type, dict, group, setting)
 
@@ -96,6 +100,8 @@ class WidgetHandler(object):
 				elif type == "int":
 					self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
 				elif type == "bool":
+					self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_active()
+				elif type == "switch":
 					self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_active()
 				elif type == "combo":
 					self.config["%s" % widget_group]["%s" % widget_setting] =  dict[widget.get_active()]
