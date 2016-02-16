@@ -128,7 +128,7 @@ class IconBook(object):
 
 		iconview.connect("item-activated", iconview_activated)
 
-		def backup_configAction(data):
+		def backup_configAction(data, atad):
 			config.BackupConfig()
 			restore_configPossible()
 			delete_configPossible()
@@ -143,14 +143,14 @@ class IconBook(object):
 				restore_config.set_sensitive(False)
 			versionlabel_userbackup.set_text("%s" % config.UserSaveConfigVersion())
 
-		def restore_configAction(data):
+		def restore_configAction(data, atad):
 			config.RestoreConfig()
 			lock.Remove()
 			print(_("RestoreConfig: relaunching BashStyle-NG"))
 			python = sys.executable
 			os.execl(python, python, * sys.argv)
 
-		def reset_configAction(data):
+		def reset_configAction(data, atad):
 			config.ResetConfig(False)
 			lock.Remove()
 			print(_("ResetConfig: relaunching BashStyle-NG"))
@@ -160,7 +160,7 @@ class IconBook(object):
 		def delete_configPossible():
 			delete_config.set_sensitive(config.UserSaveConfigExists())
 
-		def delete_configAction(data):
+		def delete_configAction(data, atad):
 			if os.access(USER_DEFAULTS_SAVE, os.F_OK):
 				print(_("BackupConfig: deleting user backup %s" % USER_DEFAULTS_SAVE))
 				os.remove(USER_DEFAULTS_SAVE)
