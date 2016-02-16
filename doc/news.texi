@@ -20,8 +20,20 @@ Each release lists incompatible changes at its top.
 
 @item UI changes
 @itemize @minus
+@item Use @code{GtkSwitch}es instead of @code{GtkRadionButton}s for main
+switches in the UI.
+
 @item Make the radio buttons @code{use lscd instead of cd} and
-@code{use treecd instead of cd} exclude each other (as it's supposed to be).
+@code{use treecd instead of cd} exclude each other.
+@end itemize
+
+@item Misc. Changes
+@itemize @minus
+@item Updated german translation.
+
+@item Change string @code{GIT} to @code{Git} in the UI.
+
+@item @code{WidgetHandler} now supports @code{GtkSwitch}es.
 @end itemize
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
