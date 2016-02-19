@@ -43,29 +43,29 @@ export lbcyan="46"
 export lbwhite="107"
 
 # blinking text
-eval termcap_mb=$(ini_get less_blink)
-export LESS_TERMCAP_mb=$(echo -e \033[01;${termcap_mb})
+eval termcap_mb="$(ini_get less_blink)"
+export LESS_TERMCAP_mb=$(echo -e "\033[01;${termcap_mb}")
 
 # bold text
-eval termcap_md=$(ini_get less_bold)
-export LESS_TERMCAP_md=$(echo -e \033[01;${termcap_md})
+eval termcap_md="$(ini_get less_bold)"
+export LESS_TERMCAP_md=$(echo -e "\033[01;${termcap_md}")
 
 # underline text
-eval termcap_us=$(ini_get less_underline)
-export LESS_TERMCAP_us=$(echo -e \033[04;${termcap_us})
+eval termcap_us="$(ini_get less_underline)"
+export LESS_TERMCAP_us=$(echo -e "\033[04;${termcap_us}")
 
 # reverse text
-eval termcap_rs=$(ini_get less_reverse)
-export LESS_TERMCAP_mr=$(echo -e \033[07;${termcap_rs})
+eval termcap_rs="$(ini_get less_reverse)"
+export LESS_TERMCAP_mr=$(echo -e "\033[07;${termcap_rs}")
 
 # dimmed text
-eval termcap_mh=$(ini_get less_dim)
-export LESS_TERMCAP_mh=$(echo -e \033[02;${termcap_mh})
+eval termcap_mh="$(ini_get less_dim)"
+export LESS_TERMCAP_mh=$(echo -e "\033[02;${termcap_mh}")
 
 # standout-mode
-eval termcap_sof=$(ini_get less_standout_foreground)
-eval termcap_sob=$(ini_get less_standout_background)
-export LESS_TERMCAP_so=$(echo -e \033[01;${termcap_sob};${termcap_sof})
+eval termcap_sof="$(ini_get less_standout_foreground)"
+eval termcap_sob="$(ini_get less_standout_background)"
+export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
 
 # stop mode ; stop underline; stop standout
 export LESS_TERMCAP_me=$'\033[0m'
