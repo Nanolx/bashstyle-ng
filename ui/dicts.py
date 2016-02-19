@@ -18,6 +18,41 @@ color_styles = {
 		 4 : "underlined",
 		}
 
+less_foreground_colors = {
+		   0 : "$lfblack",
+		   1 : "$lfred",
+		   2 : "$lfgreen",
+		   3 : "$lfyellow",
+		   4 : "$lfblue",
+		   5 : "$lfmagenta",
+		   6 : "$lfcyan",
+		   7 : "$lfwhite",
+		   8 : "$lfcoldblue",
+		   9 : "$lfsmoothblue",
+		  10 : "$lficeblue",
+		  11 : "$lfturqoise",
+		  12 : "$lfsmoothgreen",
+		  13 : "$lfwinered",
+		  14 : "$lfbrown",
+		  15 : "$lfsilver",
+		  16 : "$lfocher",
+		  17 : "$lforange",
+		  18 : "$lfpurple",
+		  19 : "$lfpink",
+		  20 : "$lfcream",
+		}
+
+less_background_colors = {
+		   0 : "$lbblack",
+		   1 : "$lbred",
+		   2 : "$lbgreen",
+		   3 : "$lbyellow",
+		   4 : "$lbblue",
+		   5 : "$lbmagenta",
+		   6 : "$lbcyan",
+		   7 : "$lbwhite",
+}
+
 grep_colors = {
 		0 : "01;38;5;0",
 		1 : "01;38;5;1",
