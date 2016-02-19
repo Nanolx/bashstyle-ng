@@ -18,20 +18,6 @@ color_styles = {
 		 4 : "underlined",
 		}
 
-termcap_bars = {
-	      0 : "black-white",
-	      1 : "white-yellow",
-	      2 : "yellow-blue",
-	     }
-
-termcap_bodys = {
-	      0 : "blueish",
-	      1 : "blue-magenta",
-	      2 : "magenta-cyan",
-	      3 : "mostlike",
-	      4 : "yellow-green",
-	     }
-
 grep_colors = {
 		0 : "01;38;5;0",
 		1 : "01;38;5;1",

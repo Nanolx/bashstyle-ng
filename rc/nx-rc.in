@@ -66,8 +66,8 @@ dbg_log shopt -s checkwinsize
 [[ $(ini_get use_keybindingscfg == True) ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/keybindings-rc
 
-[[ $(ini_get colored_man) == True ]] && \
-	dbg_log source ${BSNG_RCDIR}/settings/man-rc
+# [[ $(ini_get colored_man) == True ]] && \
+#	dbg_log source ${BSNG_RCDIR}/settings/man-rc
 
 dbg_msg $"BashStyle-NG Setting:"  $"Shell Options"
 dbg_log source ${BSNG_RCDIR}/settings/shopt-rc
