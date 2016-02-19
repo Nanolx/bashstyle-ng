@@ -9,68 +9,72 @@
 #							#
 #########################################################
 
-# foreground colors
-export lfblack="38;5;0m"
-export lfred="38;5;1m"
-export lfgreen="38;5;2m"
-export lfyellow="38;5;3m"
-export lfblue="38;5;4m"
-export lfmagenta="38;5;129m"
-export lfcyan="38;5;6m"
-export lfwhite="38;5;999m"
-export lfcoldblue="38;5;33m"
-export lfsmoothblue="38;5;111m"
-export lficeblue="38;5;45m"
-export lfturqoise="38;5;50m"
-export lfsmoothgreen="38;5;42m"
-export lfwinered="38;5;637m"
-export lfbrown="38;5;684m"
-export lfsilver="38;5;761m"
-export lfocher="38;5;690m"
-export lforange="38;5;714m"
-export lfpurple="38;5;604m"
-export lfpink="38;5;213m"
-export lfcream="38;5;5344m"
+if [[ $(ini_get enable_colors) == True ]]; then
+	export PAGER="less"
 
-# background colors
-export lbblack="30"
-export lbred="41"
-export lbgreen="42"
-export lbyellow="43"
-export lbblue="44"
-export lbmagenta="45"
-export lbcyan="46"
-export lbwhite="107"
+	# foreground colors
+	export lfblack="38;5;0m"
+	export lfred="38;5;1m"
+	export lfgreen="38;5;2m"
+	export lfyellow="38;5;3m"
+	export lfblue="38;5;4m"
+	export lfmagenta="38;5;129m"
+	export lfcyan="38;5;6m"
+	export lfwhite="38;5;999m"
+	export lfcoldblue="38;5;33m"
+	export lfsmoothblue="38;5;111m"
+	export lficeblue="38;5;45m"
+	export lfturqoise="38;5;50m"
+	export lfsmoothgreen="38;5;42m"
+	export lfwinered="38;5;637m"
+	export lfbrown="38;5;684m"
+	export lfsilver="38;5;761m"
+	export lfocher="38;5;690m"
+	export lforange="38;5;714m"
+	export lfpurple="38;5;604m"
+	export lfpink="38;5;213m"
+	export lfcream="38;5;5344m"
 
-# blinking text
-eval termcap_mb="$(ini_get less_blink)"
-export LESS_TERMCAP_mb=$(echo -e "\033[01;${termcap_mb}")
+	# background colors
+	export lbblack="30"
+	export lbred="41"
+	export lbgreen="42"
+	export lbyellow="43"
+	export lbblue="44"
+	export lbmagenta="45"
+	export lbcyan="46"
+	export lbwhite="107"
 
-# bold text
-eval termcap_md="$(ini_get less_bold)"
-export LESS_TERMCAP_md=$(echo -e "\033[01;${termcap_md}")
+	# blinking text
+	eval termcap_mb="$(ini_get less_blink)"
+	export LESS_TERMCAP_mb=$(echo -e "\033[01;${termcap_mb}")
 
-# underline text
-eval termcap_us="$(ini_get less_underline)"
-export LESS_TERMCAP_us=$(echo -e "\033[04;${termcap_us}")
+	# bold text
+	eval termcap_md="$(ini_get less_bold)"
+	export LESS_TERMCAP_md=$(echo -e "\033[01;${termcap_md}")
 
-# reverse text
-eval termcap_rs="$(ini_get less_reverse)"
-export LESS_TERMCAP_mr=$(echo -e "\033[07;${termcap_rs}")
+	# underline text
+	eval termcap_us="$(ini_get less_underline)"
+	export LESS_TERMCAP_us=$(echo -e "\033[04;${termcap_us}")
 
-# dimmed text
-eval termcap_mh="$(ini_get less_dim)"
-export LESS_TERMCAP_mh=$(echo -e "\033[02;${termcap_mh}")
+	# reverse text
+	eval termcap_rs="$(ini_get less_reverse)"
+	export LESS_TERMCAP_mr=$(echo -e "\033[07;${termcap_rs}")
 
-# standout-mode
-eval termcap_sof="$(ini_get less_standout_foreground)"
-eval termcap_sob="$(ini_get less_standout_background)"
-export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
+	# dimmed text
+	eval termcap_mh="$(ini_get less_dim)"
+	export LESS_TERMCAP_mh=$(echo -e "\033[02;${termcap_mh}")
 
-# stop mode ; stop underline; stop standout
-export LESS_TERMCAP_me=$'\033[0m'
-export LESS_TERMCAP_se=$'\033[0m'
-export LESS_TERMCAP_ue=$'\033[0m'
+	# standout-mode
+	eval termcap_sof="$(ini_get less_standout_foreground)"
+	eval termcap_sob="$(ini_get less_standout_background)"
+	export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
 
-unset termcap_mb termcap_md termcap_md termcap_mr \
-	termcap_mh termcap_us termcap_sof termcap_sob
+	# stop mode ; stop underline; stop standout
+	export LESS_TERMCAP_me=$'\033[0m'
+	export LESS_TERMCAP_se=$'\033[0m'
+	export LESS_TERMCAP_ue=$'\033[0m'
+
+	unset termcap_mb termcap_md termcap_md termcap_mr \
+		termcap_mh termcap_us termcap_sof termcap_sob
+fi
