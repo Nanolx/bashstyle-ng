@@ -10,14 +10,21 @@ between.  For more detailed information see the or git log.
 ====================
 
    * Bug Fixes
-        - #203 (termcap): 'yellow-green' manpage color accidently was
-          'red-green' (choose 'mostlike' for 'red-green').
-
         - #204 (debian vendor config): fixed error in Debian vendor
           configuration, preventing BashStyle-NG UI from startup.
 
         - #205 (ui): fixed buttons for saving, restoring, deleting and
           reverting user configuration in UI not working.
+
+        - #206 (manpage colors): enforce environment variable 'PAGER' to
+          be 'less', else colorizing manpages might fail, if an other
+          pager is used.
+
+   * New Features
+        - New Termcap/Manpage coloring function.  'BashStyle-NG' now
+          allows you to choose the different colors for manpages from
+          the User Interface, rather than only giving you a handful of
+          pre-defined color schemes.
 
    * UI changes
         - Use 'GtkSwitch'es instead of 'GtkRadionButton's for main

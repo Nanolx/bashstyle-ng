@@ -14,14 +14,21 @@ Each release lists incompatible changes at its top.
 
 @item Bug Fixes
 @itemize @minus
-@item #203 (termcap): @code{yellow-green} manpage color accidently was
-@code{red-green} (choose @code{mostlike} for @code{red-green}).
-
 @item #204 (debian vendor config): fixed error in Debian vendor configuration,
 preventing BashStyle-NG UI from startup.
 
 @item #205 (ui): fixed buttons for saving, restoring, deleting and reverting
 user configuration in UI not working.
+
+@item #206 (manpage colors): enforce environment variable @code{PAGER} to be
+@code{less}, else colorizing manpages might fail, if an  other pager is used.
+@end itemize
+
+@item New Features
+@itemize @minus
+@item New Termcap/Manpage coloring function. @code{BashStyle-NG} now allows you
+to choose the different colors for manpages from the User Interface, rather than
+only giving you a handful of pre-defined color schemes.
 @end itemize
 
 @item UI changes
