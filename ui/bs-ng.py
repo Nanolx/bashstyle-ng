@@ -100,6 +100,16 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("alias8", "Alias", "alias_eight", "text", None)
 		WidgetHandler.InitWidget("alias9", "Alias", "alias_nine", "text", None)
 
+		####################### Termcap Colors #############################################
+		WidgetHandler.InitWidget("termcap_colors", "Termcap", "less_termcap_color", "switch", None)
+		WidgetHandler.InitWidget("termcap_mb", "Termcap", "less_blink", "combo", dicts.less_foreground_colors)
+		WidgetHandler.InitWidget("termcap_md", "Termcap", "less_bold", "combo", dicts.less_foreground_colors)
+		WidgetHandler.InitWidget("termcap_us", "Termcap", "less_underline", "combo", dicts.less_foreground_colors)
+		WidgetHandler.InitWidget("termcap_rs", "Termcap", "less_reverse", "combo", dicts.less_foreground_colors)
+		WidgetHandler.InitWidget("termcap_mh", "Termcap", "less_dim", "combo", dicts.less_foreground_colors)
+		WidgetHandler.InitWidget("termcap_sof", "Termcap", "less_standout_foreground", "combo", dicts.less_foreground_colors)
+		WidgetHandler.InitWidget("termcap_sob", "Termcap", "less_standout_background", "combo", dicts.less_background_colors)
+
 		####################### Advanced Stuff #############################################
 		WidgetHandler.InitWidget("history_blacklist", "Advanced", "history_ignore", "text", None)
 		WidgetHandler.InitWidget("separator", "Advanced", "separator", "text", None)

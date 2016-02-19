@@ -36,9 +36,9 @@ if FAILED:
 
 iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
 		  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
-		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-keys",
-		  "bs-ng-custom",  "bs-ng-config", "bs-ng-doc",
-		  "bs-ng-info" ]
+		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-man",
+                  "bs-ng-keys", "bs-ng-custom",  "bs-ng-config",
+                  "bs-ng-doc", "bs-ng-info" ]
 
 iconview_labels = {
 	"bs-ng-style" : _("General Style"),
@@ -55,6 +55,7 @@ iconview_labels = {
 	"bs-ng-keys" : _("Keybindings"),
 	"bs-ng-config" : _("Configuration"),
         "bs-ng-doc" : _("Documentation"),
+        "bs-ng-man" : _("Manpage Colors"),
 }
 
 notebook_pages = {
@@ -66,6 +67,7 @@ notebook_pages = {
 	_("Vi improved") : 5,
 	_("GNU Nano") : 6,
 	_("LS colors") : 7,
+        _("Manpage Colors") : 15,
 	_("Custom Prompt Builder") : 8,
 	_("Shell Options") : 10,
 	_("Git") : 9,

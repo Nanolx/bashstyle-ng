@@ -563,43 +563,106 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="style.liststore.terminfo_bar">
+  <object class="GtkListStore" id="style.liststore.termcap.background">
     <columns>
       <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">black-white</col>
+        <col id="0" translatable="yes">Black</col>
       </row>
       <row>
-        <col id="0" translatable="yes">white-yellow</col>
+        <col id="0" translatable="yes">Red</col>
       </row>
       <row>
-        <col id="0" translatable="yes">yellow-blue</col>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="style.liststore.terminfo_body">
+  <object class="GtkListStore" id="style.liststore.termcap.foreground">
     <columns>
       <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">blueish</col>
+        <col id="0" translatable="yes">Black</col>
       </row>
       <row>
-        <col id="0" translatable="yes">blue-magenta</col>
+        <col id="0" translatable="yes">Red</col>
       </row>
       <row>
-        <col id="0" translatable="yes">magenta-cyan</col>
+        <col id="0" translatable="yes">Green</col>
       </row>
       <row>
-        <col id="0" translatable="yes">mostlike</col>
+        <col id="0" translatable="yes">Yellow</col>
       </row>
       <row>
-        <col id="0" translatable="yes">yellow-green</col>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Coldblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Iceblue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Turqoise</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Smoothgreen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Winered</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Brown</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Silver</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Ocher</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Orange</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Purple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Pink</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cream</col>
       </row>
     </data>
   </object>
@@ -7628,6 +7691,289 @@ assuming /usr was the chosen install prefix. </property>
               </object>
               <packing>
                 <property name="position">14</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="termcap.grid">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="row_spacing">6</property>
+                <property name="column_spacing">15</property>
+                <child>
+                  <object class="GtkLabel" id="termcap.grid.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Termcap Colors</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                    <property name="height">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="termcap.blink.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for blinking text</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="termcap.bold.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for bold text</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparator" id="separator25">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">6</property>
+                    <property name="margin_bottom">6</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">1</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="termcap.underline.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for underline text</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="termcap.dim.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for dimmed text</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="termcap.standout.background.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for menubar background</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="termcap.reverse.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for reverse text</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="termcap.standout.foreground.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for menubar foreground</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="termcap_mb">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="model">style.liststore.termcap.foreground</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour13"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="termcap_md">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="model">style.liststore.termcap.foreground</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour14"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="termcap_us">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="model">style.liststore.termcap.foreground</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour15"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="termcap_rs">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="model">style.liststore.termcap.foreground</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour16"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="termcap_mh">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="model">style.liststore.termcap.foreground</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour17"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="termcap_sof">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="model">style.liststore.termcap.foreground</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour18"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="termcap_sob">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="model">style.liststore.termcap.foreground</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour19"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">9</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSwitch" id="termcap_colors">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="termcap_enable.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Customize Termcap Colors</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="position">15</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="termcap.label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Termcap</property>
+              </object>
+              <packing>
+                <property name="position">15</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
