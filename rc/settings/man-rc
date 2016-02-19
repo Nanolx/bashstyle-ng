@@ -10,6 +10,8 @@
 #########################################################
 
 if [[ ${enable_colors} == True ]]; then
+	export PAGER="less"
+
 	if [[ -f ${BSNG_DATADIR}/bashstyle-ng/termcap/bar/$(ini_get termcap_bar).termcap ]]; then
 		dbg_msg $"BashStyle-NG Setting: Termcap (bar)" $(ini_get termcap_bar)
 		dbg_log source ${BSNG_DATADIR}/bashstyle-ng/termcap/bar/$(ini_get termcap_bar).termcap
