@@ -9,6 +9,20 @@ between. For more detailed information see the or git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 9.2.2 ``Super Mystery Bash''
+@itemize @bullet
+
+@item Bug Fixes
+@itemize @minus
+@item #206 (manpage colors): enforce environment variable @code{PAGER} to be
+@code{less}, else colorizing manpages might fail, if an  other pager is used.
+
+@item #207 (trap): fix recording exit code of last command if it fails.
+@end itemize
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@end itemize
+
 @heading 9.2.1 ``In The Air''
 @itemize @bullet
 
