@@ -231,25 +231,29 @@ if [[ $(ini_get history_sync) == True ]]; then
 fi
 
 # remember last exit status and command
-remember_command () {
-    local _lastexit=$?
-    [ -n "$COMP_LINE" ] && return
-    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
-    [[ "$BASH_COMMAND" == trap\ * ]] && return
-    [[ "$BASH_COMMAND" == *lastcommand* ]] && return
-    [[ "$BASH_COMMAND" == *lastexit* ]] && return
-    lastcommand=${BASH_COMMAND}
-    lastcommandprintable=${BASH_COMMAND:0:21}
-    if [ ${#lastcommandprintable} -gt 21 ]; then
-        # indicate trunctation
-	lastcommandprintable=${lastcommandprintable:0:20}'>'
-    else
-        lastcommandprintable="$(printf '%-21s' "$lastcommandprintable")"
-    fi
-    lastexit=$_lastexit
+remember_command_debug () {
+	local _lastexit=$?
+	[ -n "$COMP_LINE" ] && return
+	[ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
+	[[ "$BASH_COMMAND" == trap\ * ]] && return
+	[[ "$BASH_COMMAND" == *lastcommand* ]] && return
+	[[ "$BASH_COMMAND" == *lastexit* ]] && return
+	lastcommand=${BASH_COMMAND}
+	lastcommandprintable=${BASH_COMMAND:0:21}
+	if [ ${#lastcommandprintable} -gt 21 ]; then
+		lastcommandprintable=${lastcommandprintable:0:20}'>'
+	else
+		lastcommandprintable="$(printf '%-21s' "$lastcommandprintable")"
+	fi
+	lastexit=${_lastexit}
 }
 
-trap_add 'remember_command' DEBUG
+remember_command_err () {
+	lastexit=$?
+}
+
+trap_add 'remember_command_debug' DEBUG
+trap_add 'remember_command_err' ERR
 
 WelcomeMessage=$(ini_get welcome_message)
 
