@@ -24,6 +24,16 @@ user configuration in UI not working.
 @code{less}, else colorizing manpages might fail, if an  other pager is used.
 
 @item #207 (trap): fix recording exit code of last command if it fails.
+
+@item #208 (startup): fix enabling @code{BashStyle-NG} in @code{$HOME/.bashrc}
+from user interface in certain cases.
+
+@item #209 (startup): add file check when enabling @code{BashStyle-NG} in
+@code{$HOME/.bashrc}, so that @code{Bash} does not run into errors on startup
+when @code{BashStyle-NG} was uninstalled, but the startup entry still exists.
+Aswell as when it was installed to a different prefix, without having adjusted
+the startup entry in @code{$HOME/.bashrc} (or re-enabled @code{BashStyle-NG}
+from the user interface (which would update the startup entry).
 @end itemize
 
 @item New Features

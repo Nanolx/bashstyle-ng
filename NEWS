@@ -23,6 +23,17 @@ between.  For more detailed information see the or git log.
         - #207 (trap): fix recording exit code of last command if it
           fails.
 
+        - #208 (startup): fix enabling 'BashStyle-NG' in '$HOME/.bashrc'
+          from user interface in certain cases.
+
+        - #209 (startup): add file check when enabling 'BashStyle-NG' in
+          '$HOME/.bashrc', so that 'Bash' does not run into errors on
+          startup when 'BashStyle-NG' was uninstalled, but the startup
+          entry still exists.  Aswell as when it was installed to a
+          different prefix, without having adjusted the startup entry in
+          '$HOME/.bashrc' (or re-enabled 'BashStyle-NG' from the user
+          interface (which would update the startup entry).
+
    * New Features
         - New Termcap/Manpage coloring function.  'BashStyle-NG' now
           allows you to choose the different colors for manpages from

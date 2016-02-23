@@ -30,6 +30,7 @@ USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
 USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
+NXRC = (DATADIR + "/bashstyle-ng/rc/nx-rc")
 
 app_ini_version = 24
 
@@ -207,7 +208,7 @@ class Config(object):
 		content = rc.readlines()
 		found = False
 		for line in content:
-			if line.startswith("source " + os.getenv('BSNG_DATADIR') + "/bashstyle-ng/rc/nx-rc", 0) == True:
+			if line.startswith("[[ -f " + NXRC + " ]]", 0) == True:
 				found = True
 		rc.close
 		return found
@@ -221,6 +222,6 @@ class Config(object):
 				rc_new.write(line)
 		rc.close
 		if OnOff == True:
-			rc_new.write("\nsource " + os.getenv('BSNG_DATADIR') + "bashstyle-ng/rc/nx-rc")
+			rc_new.write("\n[[ -f " + NXRC + " ]] && source " + NXRC)
 		rc_new.close
 		shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))
