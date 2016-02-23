@@ -6,6 +6,30 @@ between.  For more detailed information see the or git log.
 
    Each release lists incompatible changes at its top.
 
+9.2.2 "Super Mystery Bash"
+==========================
+
+   * Bug Fixes
+        - #206 (manpage colors): enforce environment variable 'PAGER' to
+          be 'less', else colorizing manpages might fail, if an other
+          pager is used.
+
+        - #207 (trap): fix recording exit code of last command if it
+          fails.
+
+        - #208 (startup): fix enabling 'BashStyle-NG' in '$HOME/.bashrc'
+          from user interface in certain cases.
+
+        - #209 (startup): add file check when enabling 'BashStyle-NG' in
+          '$HOME/.bashrc', so that 'Bash' does not run into errors on
+          startup when 'BashStyle-NG' was uninstalled, but the startup
+          entry still exists.  Aswell as when it was installed to a
+          different prefix, without having adjusted the startup entry in
+          '$HOME/.bashrc' (or re-enabled 'BashStyle-NG' from the user
+          interface (which would update the startup entry).
+
+     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 9.2.1 "In The Air"
 ==================
 
