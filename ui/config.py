@@ -95,6 +95,7 @@ class Config(object):
 
 		print(restore_string)
 		shutil.copy(restore_from, USER_DEFAULTS)
+		self.cfo.reload()
 
 	def BackupConfig(self):
 		print(_("BackupConfig: backing up configuration to %s." % USER_DEFAULTS_SAVE))

@@ -34,6 +34,11 @@ when @code{BashStyle-NG} was uninstalled, but the startup entry still exists.
 Aswell as when it was installed to a different prefix, without having adjusted
 the startup entry in @code{$HOME/.bashrc} (or re-enabled @code{BashStyle-NG}
 from the user interface (which would update the startup entry).
+
+@item #210 (configuration): when @code{ini_version} of @code{$HOME/.bs-ng.ini} is
+bigger than @code{app_ini_version}, the configuration is reset to either vendor or
+factory default configuration. When doing so the configuration was not reloaded
+by the user interface (which could potentially lead to a crash).
 @end itemize
 
 @item New Features
