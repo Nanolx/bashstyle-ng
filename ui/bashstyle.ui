@@ -1633,7 +1633,8 @@
                           <object class="GtkBox" id="use_bashstyle_box">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="orientation">vertical</property>
+                            <property name="valign">center</property>
+                            <property name="spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="use_bashstyle_label">
                                 <property name="visible">True</property>
@@ -3690,7 +3691,8 @@
                   <object class="GtkBox" id="use_readline_box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="orientation">vertical</property>
+                    <property name="valign">center</property>
+                    <property name="spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="use_readline_label">
                         <property name="visible">True</property>
@@ -4384,7 +4386,8 @@
                           <object class="GtkBox" id="use_vim_box">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="orientation">vertical</property>
+                            <property name="valign">center</property>
+                            <property name="spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="use_vim_label">
                                 <property name="visible">True</property>
@@ -5029,7 +5032,8 @@
                           <object class="GtkBox" id="use_nano_box">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="orientation">vertical</property>
+                            <property name="valign">center</property>
+                            <property name="spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="use_nano_label">
                                 <property name="visible">True</property>
@@ -5889,7 +5893,8 @@
                   <object class="GtkBox" id="use_lscolors_box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="orientation">vertical</property>
+                    <property name="valign">center</property>
+                    <property name="spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="use_lscolors_label">
                         <property name="visible">True</property>
@@ -6374,6 +6379,8 @@
                   <object class="GtkBox" id="use_customprompt_box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="valign">center</property>
+                    <property name="spacing">5</property>
                     <child>
                       <object class="GtkLabel" id="use_customprompt_label">
                         <property name="visible">True</property>
@@ -6640,6 +6647,7 @@ lsb = show branches by last activity</property>
                       <object class="GtkSwitch" id="use_git">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -7051,6 +7059,7 @@ lsb = show branches by last activity</property>
                               <object class="GtkSwitch" id="use_keybindings">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="halign">start</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -7938,6 +7947,7 @@ assuming /usr was the chosen install prefix. </property>
                   <object class="GtkSwitch" id="termcap_colors">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
