@@ -34,6 +34,12 @@ between.  For more detailed information see the or git log.
           '$HOME/.bashrc' (or re-enabled 'BashStyle-NG' from the user
           interface (which would update the startup entry).
 
+        - #210 (configuration): when 'ini_version' of '$HOME/.bs-ng.ini'
+          is bigger than 'app_ini_version', the configuration is reset
+          to either vendor or factory default configuration.  When doing
+          so the configuration was not reloaded by the user interface
+          (which could potentially lead to a crash).
+
    * New Features
         - New Termcap/Manpage coloring function.  'BashStyle-NG' now
           allows you to choose the different colors for manpages from
