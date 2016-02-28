@@ -72,6 +72,7 @@ class Config(object):
 		elif self.cfo.as_int("ini_version") > app_ini_version:
 			print(_("CheckConfig: User ini version is at {}, but {} is the highest known. Resetting due to error.").format(self.cfo.as_int("ini_version"), app_ini_version))
 			self.ResetConfig(True)
+                        self.cfo.reload()
 		else:
 			print(_("CheckConfig: User configuration up-to-date."))
 		self.FixUpConfig()
@@ -95,7 +96,6 @@ class Config(object):
 
 		print(restore_string)
 		shutil.copy(restore_from, USER_DEFAULTS)
-		self.cfo.reload()
 
 	def BackupConfig(self):
 		print(_("BackupConfig: backing up configuration to %s." % USER_DEFAULTS_SAVE))
