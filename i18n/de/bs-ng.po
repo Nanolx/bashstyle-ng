@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-19 21:36+0100\n"
+"POT-Creation-Date: 2016-02-28 15:28+0100\n"
 "PO-Revision-Date: 2016-02-19 21:38+0100\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
@@ -20,14 +20,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7\n"
 
-#: ui/args.py:24 ui/bs-ng.py:40 ui/config.py:24 ui/iconbook.py:34
-#: ui/keybindings.py:39 ui/lockfile.py:24 ui/promptbuilder.py:29
-#: ui/widgethandler.py:29
+#: ui/args.py:23 ui/bs-ng.py:39 ui/config.py:23 ui/iconbook.py:33
+#: ui/keybindings.py:38 ui/lockfile.py:23 ui/promptbuilder.py:28
+#: ui/widgethandler.py:28
 #, python-format
 msgid "The following modules failed to import: %s"
 msgstr "Folgende Module konnten nicht geladen werden: %s"
 
-#: ui/args.py:28
+#: ui/args.py:27
 msgid ""
 "bashstyle <option>\t\t\t\t\t\n"
 "\n"
@@ -39,19 +39,19 @@ msgstr ""
 "BashStyle-NG © 2007 - 2016 Christopher Bratusek\t\t\t\t\t\n"
 "Lizenziert unter der GNU GENERAL PUBLIC LICENSE v3"
 
-#: ui/args.py:33
+#: ui/args.py:32
 msgid "print version and exit"
 msgstr "Version anzeigen und beenden"
 
-#: ui/args.py:36
+#: ui/args.py:35
 msgid "print prefix and exit"
 msgstr "Präfix anzeigen und beenden"
 
-#: ui/args.py:39
+#: ui/args.py:38
 msgid "print used Python interpreter and exit"
 msgstr "Python-Interpreter anzeigen und beenden"
 
-#: ui/bs-ng.py:20
+#: ui/bs-ng.py:19
 #, python-format
 msgid ""
 "\n"
@@ -96,11 +96,11 @@ msgstr ""
 "CheckConfig: Benutzer ini ist auf Version {}, aber {} ist die höchste "
 "bekannte. Setze aufgrund eines Fehlers zurück."
 
-#: ui/config.py:75
+#: ui/config.py:76
 msgid "CheckConfig: User configuration up-to-date."
 msgstr "CheckConfig: Benutzer-Konfiguration ist aktuell."
 
-#: ui/config.py:80
+#: ui/config.py:81
 msgid ""
 "ResetConfig: no up-to-date backup or vendor configuration found, using "
 "factory defaults."
@@ -108,237 +108,237 @@ msgstr ""
 "ResetConfig: keine aktuelle Konfigurations-Sicherung oder Distributions-"
 "Konfiguration gefunden, benutze Programm-Standard."
 
-#: ui/config.py:86
+#: ui/config.py:87
 msgid "ResetConfig: vendor configuration up-to-date, using it's values."
 msgstr "ResetConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
 
-#: ui/config.py:93
+#: ui/config.py:94
 msgid "ResetConfig: backup configuration up-to-date, using it's values."
 msgstr "ResetConfig: backup configuration up-to-date, using it's values."
 
-#: ui/config.py:99
+#: ui/config.py:100
 #, python-format
 msgid "BackupConfig: backing up configuration to %s."
 msgstr "BackupConfig: sichere Konfiguration nach %s."
 
-#: ui/config.py:106
+#: ui/config.py:107
 #, python-format
 msgid "RestoreConfig: restoring configuration from %s."
 msgstr "RestoreConfig: spiele Sicherung von %s ein"
 
-#: ui/config.py:109
+#: ui/config.py:110
 msgid "RestoreConfig: not restoring configuration as it's outdated."
 msgstr ""
 "RestoreConfig: spiele Konfigurations-Sicherung nicht ein, da sie veraltet "
 "ist."
 
-#: ui/config.py:111
+#: ui/config.py:112
 msgid "RestoreConfig: no backup configuration exists."
 msgstr "RestoreConfig: es existiert keine Konfigurations-Sicherung nach %s."
 
-#: ui/config.py:117
+#: ui/config.py:118
 msgid "UpdateConfig: vendor configuration up-to-date, copying as user-default."
 msgstr ""
 "UpdateConfig: Distributions-Konfiguration ist aktuell, nutze als Benutzer-"
 "Standard."
 
-#: ui/config.py:120
+#: ui/config.py:121
 msgid ""
 "UpdateConfig: vendor configuration outdated, using factory defaults instead!"
 msgstr ""
 "UpdateConfig: Distributions-Konfiguration veraltet, nutze Programm-Standard!"
 
-#: ui/config.py:123
+#: ui/config.py:124
 msgid ""
 "UpdateConfig: no vendor configuration found, using factory defaults instead."
 msgstr ""
 "UpdateConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
 "Standard."
 
-#: ui/config.py:127
+#: ui/config.py:128
 msgid "UpdateConfig: merging values."
 msgstr "UpdateConfig: kombiniere Werte."
 
-#: ui/config.py:135
+#: ui/config.py:136
 msgid "WriteConfig: saving configuration."
 msgstr "WriteConfig: speichere Konfiguration."
 
-#: ui/config.py:139
+#: ui/config.py:140
 msgid "FixUpConfig: checking for outdated values."
 msgstr "FixUpConfig: überprüfe auf veraltete Werte."
 
-#: ui/config.py:141
+#: ui/config.py:142
 msgid "FixUpConfig: updating prompt_style for name change clock-ad >> equinox."
 msgstr ""
 "FixUpConfig: aktualisiere prompt_style aufgrund Namensänderung clock-ad >> "
 "equinox."
 
-#: ui/config.py:168
+#: ui/config.py:169
 msgid "UserSaveConfigExists: backup configuration can't be loaded due errors."
 msgstr ""
 "UserSaveConfigExists: Konfigurations-Sicherung kann aufgrund von Fehlern "
 "nicht geladen werden."
 
-#: ui/config.py:179
+#: ui/config.py:180
 msgid "VendorConfigExists: vendor configuration can't be loaded due errors."
 msgstr ""
 "VendorConfigExists: Distributions-Konfiguration kann aufgrund von Fehlern "
 "nicht geladen werden."
 
-#: ui/iconbook.py:26 ui/keybindings.py:26 ui/promptbuilder.py:26
-#: ui/widgethandler.py:26
+#: ui/iconbook.py:25 ui/keybindings.py:25 ui/promptbuilder.py:25
+#: ui/widgethandler.py:25
 msgid "Gtk (from gi.repository)"
 msgstr "Gtk (aus gi.repository)"
 
-#: ui/iconbook.py:31 ui/keybindings.py:36
+#: ui/iconbook.py:30 ui/keybindings.py:35
 msgid "GdkPixbuf (from gi.repository)"
 msgstr "GdkPixbuf (aus gi.repository)"
 
-#: ui/iconbook.py:44 ui/iconbook.py:63
+#: ui/iconbook.py:43 ui/iconbook.py:62
 msgid "General Style"
 msgstr "Stil Optionen"
 
-#: ui/iconbook.py:45 ui/iconbook.py:64
+#: ui/iconbook.py:44 ui/iconbook.py:63
 msgid "Aliases"
 msgstr "Aliase"
 
-#: ui/iconbook.py:46 ui/iconbook.py:65 ui/bashstyle.ui.h:219
+#: ui/iconbook.py:45 ui/iconbook.py:64 ui/bashstyle.ui.h:219
 msgid "Advanced"
 msgstr "Erweitert"
 
-#: ui/iconbook.py:47 ui/iconbook.py:66 ui/bashstyle.ui.h:239
+#: ui/iconbook.py:46 ui/iconbook.py:65 ui/bashstyle.ui.h:239
 msgid "Readline"
 msgstr "Readline"
 
-#: ui/iconbook.py:48 ui/iconbook.py:67
+#: ui/iconbook.py:47 ui/iconbook.py:66
 msgid "Vi improved"
 msgstr "Vi improved"
 
-#: ui/iconbook.py:49 ui/iconbook.py:68
+#: ui/iconbook.py:48 ui/iconbook.py:67
 msgid "GNU Nano"
 msgstr "GNU Nano"
 
-#: ui/iconbook.py:50 ui/iconbook.py:69
+#: ui/iconbook.py:49 ui/iconbook.py:68
 msgid "LS colors"
 msgstr "LS Farben"
 
-#: ui/iconbook.py:51 ui/iconbook.py:71
+#: ui/iconbook.py:50 ui/iconbook.py:70
 msgid "Custom Prompt Builder"
 msgstr "Prompt Baukasten"
 
-#: ui/iconbook.py:52 ui/iconbook.py:72
+#: ui/iconbook.py:51 ui/iconbook.py:71
 msgid "Shell Options"
 msgstr "Shell Optionen"
 
-#: ui/iconbook.py:53 ui/iconbook.py:73 ui/bashstyle.ui.h:353
+#: ui/iconbook.py:52 ui/iconbook.py:72 ui/bashstyle.ui.h:353
 msgid "Git"
 msgstr "Git"
 
-#: ui/iconbook.py:54 ui/iconbook.py:74
+#: ui/iconbook.py:53 ui/iconbook.py:73
 msgid "About BashStyle-NG"
 msgstr "Über BashStyle-NG"
 
-#: ui/iconbook.py:55 ui/iconbook.py:75 ui/iconbook.py:128 ui/bashstyle.ui.h:384
+#: ui/iconbook.py:54 ui/iconbook.py:74 ui/iconbook.py:127 ui/bashstyle.ui.h:384
 msgid "Keybindings"
 msgstr "Tastenkürzel"
 
-#: ui/iconbook.py:56 ui/iconbook.py:77
+#: ui/iconbook.py:55 ui/iconbook.py:76
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ui/iconbook.py:57 ui/iconbook.py:78 ui/iconbook.py:121
+#: ui/iconbook.py:56 ui/iconbook.py:77 ui/iconbook.py:120
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: ui/iconbook.py:58 ui/iconbook.py:70 ui/bashstyle.ui.h:429
+#: ui/iconbook.py:57 ui/iconbook.py:69 ui/bashstyle.ui.h:429
 msgid "Manpage Colors"
 msgstr "Hilfeseiten Farben"
 
-#: ui/iconbook.py:76 ui/iconbook.py:216
+#: ui/iconbook.py:75 ui/iconbook.py:215
 msgid "BashStyle-NG StartUp"
 msgstr "BashStyle-NG StartUp"
 
-#: ui/iconbook.py:109 ui/iconbook.py:206 ui/iconbook.py:210
+#: ui/iconbook.py:108 ui/iconbook.py:205 ui/iconbook.py:209
 msgid "Choose a Category:"
 msgstr "Kategorie auswählen:"
 
-#: ui/iconbook.py:127 ui/iconbook.py:216
+#: ui/iconbook.py:126 ui/iconbook.py:215
 msgid "Category: "
 msgstr "Kategorie: "
 
-#: ui/iconbook.py:151
+#: ui/iconbook.py:150
 msgid "RestoreConfig: relaunching BashStyle-NG"
 msgstr "RestoreConfig: Neu-Start von BashStyle-NG"
 
-#: ui/iconbook.py:158
+#: ui/iconbook.py:157
 msgid "ResetConfig: relaunching BashStyle-NG"
 msgstr "ResetConfig: Neu-Start von BashStyle-NG"
 
-#: ui/iconbook.py:167
+#: ui/iconbook.py:166
 #, python-format
 msgid "BackupConfig: deleting user backup %s"
 msgstr "BackupConfig: entferne Sicherung %s"
 
-#: ui/keybindings.py:31
+#: ui/keybindings.py:30
 msgid "GObject (from gi.repository)"
 msgstr "GObject (aus gi.repository)"
 
-#: ui/keybindings.py:112
+#: ui/keybindings.py:111
 msgid "Binding"
 msgstr "Tastenkürzel"
 
-#: ui/keybindings.py:117
+#: ui/keybindings.py:116
 msgid "Revert"
 msgstr "Benutzer"
 
-#: ui/keybindings.py:122 ui/bashstyle.ui.h:115
+#: ui/keybindings.py:121 ui/bashstyle.ui.h:115
 msgid "Default"
 msgstr "Standard"
 
-#: ui/keybindings.py:127
+#: ui/keybindings.py:126
 msgid "Alt"
 msgstr "Alt"
 
-#: ui/keybindings.py:132
+#: ui/keybindings.py:131
 msgid "Ctrl"
 msgstr "Strg"
 
-#: ui/keybindings.py:137 ui/bashstyle.ui.h:8
+#: ui/keybindings.py:136 ui/bashstyle.ui.h:8
 msgid "None"
 msgstr "Nichts"
 
-#: ui/keybindings.py:151
+#: ui/keybindings.py:150
 msgid "Key"
 msgstr "Taste"
 
-#: ui/lockfile.py:50
+#: ui/lockfile.py:49
 msgid "Lockfile does exist and bashstyle-ng is already running."
 msgstr "Sperrdatei existiert und bashstyle-ng läuft bereits."
 
-#: ui/lockfile.py:51
+#: ui/lockfile.py:50
 #, python-format
 msgid "bashstyle-ng is running as process %s"
 msgstr "bashstyle-ng läuft als Prozess %s"
 
-#: ui/lockfile.py:54
+#: ui/lockfile.py:53
 msgid "Lockfile does exist but the process with that pid is not"
 msgstr "Sperrdatei existiert, aber der Prozess mit dieser ID ist nicht"
 
-#: ui/lockfile.py:55
+#: ui/lockfile.py:54
 #, python-format
 msgid "bashstyle, removing lockfile of old process: %s"
 msgstr "bashstyle, lösche Sperrdatei des alten Prozesses: %s"
 
-#: ui/lockfile.py:58
+#: ui/lockfile.py:57
 msgid "Lockfile does exist but the process with that pid is no"
 msgstr "Sperrdatei existiert, aber der Prozess mit dieser ID ist nicht"
 
-#: ui/lockfile.py:59
+#: ui/lockfile.py:58
 #, python-format
 msgid "longer running, removing lockfile of old process: %s"
 msgstr "mehr aktiv, lösche Sperrdatei des alten Prozesses: %s"
 
-#: ui/lockfile.py:62
+#: ui/lockfile.py:61
 msgid "Lockfile does not exist"
 msgstr "Sperrdatei existiert nicht"
 
