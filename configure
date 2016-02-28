@@ -32,8 +32,7 @@ while [[ ${xcount} -le $# ]]; do
 		--datadir=* )		DATADIR="${1/*=}" ;;
 		--python=* )		PYTHON="${1/*=}" ;;
 		--help )		MODE=help ;;
-		--no-postinstall )	echo "HERE111!!!1"
-					DISABLE_POSTINSTALL=1
+		--no-postinstall )	DISABLE_POSTINSTALL=1
 					echo "DISABLE_POSTINSTALL=1" >> \
 						"${PWD}"/.configure/results ;;
 	esac
