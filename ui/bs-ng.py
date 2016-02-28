@@ -179,7 +179,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("nocaseglob", "Shopt", "nocaseglob", "bool", None)
 		WidgetHandler.InitWidget("nocasematch", "Shopt", "nocasematch", "bool", None)
 
-		######################## GIT Stuff #################################################
+		######################## Git Stuff #################################################
 		WidgetHandler.InitWidget("use_git", "Git", "use_gitcfg", "switch", None)
 		WidgetHandler.InitWidget("git_user", "Git", "git_user_name", "text", None)
 		WidgetHandler.InitWidget("git_mail", "Git", "git_user_mail", "text", None)
