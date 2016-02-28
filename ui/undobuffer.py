@@ -1,4 +1,3 @@
-#!/usr/bin/env bashstyle --python
 # -*- coding:utf-8 -*-
 
 """ gtk textbuffer with undo functionality """
