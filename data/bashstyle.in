@@ -10,17 +10,19 @@
 #########################################################
 
 case ${1} in
-	--python | -p ) echo "@PYTHON@" ;;
+	--python | -p ) shift
+			echo "@PYTHON@"
+			[[ "${@}" ]] && @PYTHON@ "${@}"
+	;;
 
 	* )
 		export NO_AT_BRIDGE=1
-		cd @DATADIR@/bashstyle-ng/
 
 		export BSNG_UI_PREFIX="@PREFIX@"
 		export BSNG_UI_VERSION="@VERSION@"
 		export BSNG_DATADIR="@DATADIR@"
-		export PYTHONPATH="$PYTHONPATH:@DATADIR@/bashstyle-ng/ui/"
+		export PYTHONPATH="${PYTHONPATH}:@DATADIR@/bashstyle-ng/ui"
 
-		@PYTHON@ ${PWD}/ui/bs-ng.py ${@}
+		@PYTHON@ @DATADIR@/bashstyle-ng/ui/bs-ng.py "${@}"
 	;;
 esac
