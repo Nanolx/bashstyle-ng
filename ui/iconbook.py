@@ -36,8 +36,8 @@ if FAILED:
 iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
 		  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
 		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-man",
-                  "bs-ng-keys", "bs-ng-custom",  "bs-ng-config",
-                  "bs-ng-doc", "bs-ng-info" ]
+		  "bs-ng-keys", "bs-ng-custom",  "bs-ng-config",
+		  "bs-ng-doc", "bs-ng-info" ]
 
 iconview_labels = {
 	"bs-ng-style" : _("General Style"),
@@ -53,8 +53,8 @@ iconview_labels = {
 	"bs-ng-info" : _("About BashStyle-NG"),
 	"bs-ng-keys" : _("Keybindings"),
 	"bs-ng-config" : _("Configuration"),
-        "bs-ng-doc" : _("Documentation"),
-        "bs-ng-man" : _("Manpage Colors"),
+	"bs-ng-doc" : _("Documentation"),
+	"bs-ng-man" : _("Manpage Colors"),
 }
 
 notebook_pages = {
@@ -66,7 +66,7 @@ notebook_pages = {
 	_("Vi improved") : 5,
 	_("GNU Nano") : 6,
 	_("LS colors") : 7,
-        _("Manpage Colors") : 15,
+	_("Manpage Colors") : 15,
 	_("Custom Prompt Builder") : 8,
 	_("Shell Options") : 10,
 	_("Git") : 9,
@@ -98,12 +98,8 @@ class IconBook(object):
 
 		main_label = gtkbuilder.get_object("main.label")
 
-		use_keys_button = gtkbuilder.get_object("use_keybindings_box")
-		use_keys_button.set_visible(0)
-
 		def back_clicked(data):
 			notebook.set_current_page(0)
-			use_keys_button.set_visible(0)
 			back.set_visible(0)
 			main_label.set_text(_("Choose a Category:"))
 
@@ -124,8 +120,6 @@ class IconBook(object):
 				notebook.set_current_page(notebook_pages[model[item][1]])
 				back.set_visible(1)
 				main_label.set_text(_("Category: ") + _(model[item][1]))
-				if model[item][1] == _("Keybindings"):
-					use_keys_button.set_visible(1)
 
 		iconview.connect("item-activated", iconview_activated)
 
