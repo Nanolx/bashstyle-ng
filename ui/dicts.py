@@ -210,6 +210,45 @@ ls_colors = {
 	    }
 
 
+##### Keybindings #####
+
+keybindings = {
+	"undo",
+	"upcase_word",
+	"capitalize_word",
+	"downcase_word",
+	"transpose_words",
+	"transpose_chars",
+	"unix_word_rubout",
+	"kill_word",
+	"possible_filename_completions",
+	"possible_hostname_completions",
+	"possible_username_completions",
+	"possible_variable_completions",
+	"kill_line",
+	"unix_line_discard",
+	"beginning_of_line",
+	"end_of_line",
+	"clear_screen",
+	"history_search_forward",
+	"history_search_backward",
+	"complete_path",
+	"alias_expand_line",
+	"backward_char",
+	"backward_delete_char",
+	"delete_char",
+	"forward_char",
+	"backward_word",
+	"forward_word",
+	"overwrite_mode",
+	"menu_complete",
+	"menu_complete_backward",
+	"rerun_root",
+	"backward_kill_line",
+	"list_keys"
+}
+
+
 ##### IconView Stuff #####
 
 iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
