@@ -210,6 +210,52 @@ ls_colors = {
 	    }
 
 
+##### IconView Stuff #####
+
+iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
+		  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
+		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-man",
+		  "bs-ng-keys", "bs-ng-custom",  "bs-ng-config",
+		  "bs-ng-doc", "bs-ng-info" ]
+
+iconview_labels = {
+	"bs-ng-style" : _("General Style"),
+	"bs-ng-alias" : _("Aliases"),
+	"bs-ng-advanced" : _("Advanced"),
+	"bs-ng-readline" : _("Readline"),
+	"bs-ng-vim" : _("Vi improved"),
+	"bs-ng-nano" : _("GNU Nano"),
+	"bs-ng-ls" : _("LS colors"),
+	"bs-ng-custom" : _("Custom Prompt Builder"),
+	"bs-ng-shopts" : _("Shell Options"),
+	"bs-ng-git" : _("Git"),
+	"bs-ng-info" : _("About BashStyle-NG"),
+	"bs-ng-keys" : _("Keybindings"),
+	"bs-ng-config" : _("Configuration"),
+	"bs-ng-doc" : _("Documentation"),
+	"bs-ng-man" : _("Manpage Colors"),
+}
+
+notebook_pages = {
+
+	_("General Style") : 1,
+	_("Aliases") : 2,
+	_("Advanced") : 3,
+	_("Readline") : 4,
+	_("Vi improved") : 5,
+	_("GNU Nano") : 6,
+	_("LS colors") : 7,
+	_("Manpage Colors") : 15,
+	_("Custom Prompt Builder") : 8,
+	_("Shell Options") : 10,
+	_("Git") : 9,
+	_("About BashStyle-NG") : 12,
+	_("Keybindings") : 11,
+	_("BashStyle-NG StartUp") : 13,
+	_("Configuration") : 14,
+	_("Documentation") : 0,
+}
+
 ##### Custom Prompt Builder #####
 
 counters_p_c = {

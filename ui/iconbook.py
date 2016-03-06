@@ -9,7 +9,8 @@
 #							#
 #########################################################
 
-MODULES = [ 'sys', 'os', 'widgethandler', 'subprocess', 'config', 'lockfile' ]
+MODULES = [ 'sys', 'os', 'widgethandler', 'subprocess',
+            'config', 'lockfile', 'dicts' ]
 
 FAILED = []
 
@@ -32,50 +33,6 @@ except ImportError:
 if FAILED:
     print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
     sys.exit(1)
-
-iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
-		  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
-		  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-man",
-		  "bs-ng-keys", "bs-ng-custom",  "bs-ng-config",
-		  "bs-ng-doc", "bs-ng-info" ]
-
-iconview_labels = {
-	"bs-ng-style" : _("General Style"),
-	"bs-ng-alias" : _("Aliases"),
-	"bs-ng-advanced" : _("Advanced"),
-	"bs-ng-readline" : _("Readline"),
-	"bs-ng-vim" : _("Vi improved"),
-	"bs-ng-nano" : _("GNU Nano"),
-	"bs-ng-ls" : _("LS colors"),
-	"bs-ng-custom" : _("Custom Prompt Builder"),
-	"bs-ng-shopts" : _("Shell Options"),
-	"bs-ng-git" : _("Git"),
-	"bs-ng-info" : _("About BashStyle-NG"),
-	"bs-ng-keys" : _("Keybindings"),
-	"bs-ng-config" : _("Configuration"),
-	"bs-ng-doc" : _("Documentation"),
-	"bs-ng-man" : _("Manpage Colors"),
-}
-
-notebook_pages = {
-
-	_("General Style") : 1,
-	_("Aliases") : 2,
-	_("Advanced") : 3,
-	_("Readline") : 4,
-	_("Vi improved") : 5,
-	_("GNU Nano") : 6,
-	_("LS colors") : 7,
-	_("Manpage Colors") : 15,
-	_("Custom Prompt Builder") : 8,
-	_("Shell Options") : 10,
-	_("Git") : 9,
-	_("About BashStyle-NG") : 12,
-	_("Keybindings") : 11,
-	_("BashStyle-NG StartUp") : 13,
-	_("Configuration") : 14,
-	_("Documentation") : 0,
-}
 
 gtkbuilder = widgethandler.gtkbuilder
 USER_DEFAULTS_SAVE = config.USER_DEFAULTS_SAVE
@@ -107,9 +64,9 @@ class IconBook(object):
 		back.connect("clicked", back_clicked)
 		back.set_visible(0)
 
-		for icon in iconview_icons:
+		for icon in dicts.iconview_icons:
 			pixbuf = Gtk.IconTheme.get_default().load_icon(icon, 32, 0)
-			liststore.append([pixbuf, iconview_labels[icon]])
+			liststore.append([pixbuf, dicts.iconview_labels[icon]])
 
 		def iconview_activated(widget, item):
 			model = widget.get_model()
@@ -117,7 +74,7 @@ class IconBook(object):
 				back.set_visible(0)
 				openFile(False, os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html")
 			else:
-				notebook.set_current_page(notebook_pages[model[item][1]])
+				notebook.set_current_page(dicts.notebook_pages[model[item][1]])
 				back.set_visible(1)
 				main_label.set_text(_("Category: ") + _(model[item][1]))
 
