@@ -160,3 +160,33 @@ fi"""
 
 ayoli_ps=r"""┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD
 )─<└─( \$(date \"+%H:%M\") \$ )─> """
+
+styles_pc = {
+	      1 : empty_pc,
+	      2 : empty_pc,
+	      3 : floating_clock_pc,
+	      4 : equinox_pc,
+	      5 : empty_pc,
+	      6 : poweruser_pc,
+	      7 : empty_pc,
+	      8 : empty_pc,
+	      9 : empty_pc,
+	     10 : empty_pc,
+	     11 : empty_pc,
+	     12 : ayoli_pc,
+	    }
+
+styles_ps1 = {
+	       1 : separator_ps,
+	       2 : vector_ps,
+	       3 : floating_clock_ps,
+	       4 : equinox_ps,
+	       5 : elite_ps,
+	       6 : poweruser_ps,
+	       7 : dirks_ps,
+	       8 : dotprompt_ps,
+	       9 : sepang_ps,
+	      10 : quirk_ps,
+	      11 : sputnik_ps,
+	      12 : ayoli_ps,
+	     }

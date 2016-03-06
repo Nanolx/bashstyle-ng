@@ -180,40 +180,10 @@ class PromptBuilder(object):
 		self.insert_prompt = gtkbuilder.get_object("insert_prompt")
 		self.insert_prompt.set_active(0)
 
-		styles_pc = {
-			      1 : prompts.empty_pc,
-			      2 : prompts.empty_pc,
-			      3 : prompts.floating_clock_pc,
-			      4 : prompts.equinox_pc,
-			      5 : prompts.empty_pc,
-			      6 : prompts.poweruser_pc,
-			      7 : prompts.empty_pc,
-			      8 : prompts.empty_pc,
-			      9 : prompts.empty_pc,
-			     10 : prompts.empty_pc,
-			     11 : prompts.empty_pc,
-			     12 : prompts.ayoli_pc,
-			    }
-
-		styles_ps1 = {
-			       1 : prompts.separator_ps,
-			       2 : prompts.vector_ps,
-			       3 : prompts.floating_clock_ps,
-			       4 : prompts.equinox_ps,
-			       5 : prompts.elite_ps,
-			       6 : prompts.poweruser_ps,
-			       7 : prompts.dirks_ps,
-			       8 : prompts.dotprompt_ps,
-			       9 : prompts.sepang_ps,
-			      10 : prompts.quirk_ps,
-			      11 : prompts.sputnik_ps,
-			      12 : prompts.ayoli_ps,
-			     }
-
 		def do_insert_prompt(widget, data=None):
 			selection = widget.get_active()
 			if selection != 0:
-				self.prompt_command_buffer.set_text(styles_pc[selection])
-				self.custom_prompt_buffer.set_text(styles_ps1[selection])
+				self.prompt_command_buffer.set_text(prompts.styles_pc[selection])
+				self.custom_prompt_buffer.set_text(prompts.styles_ps1[selection])
 
 		self.insert_prompt.connect("changed", do_insert_prompt)
