@@ -164,3 +164,6 @@ class IconBook(object):
 
 			notebook.set_current_page(13)
 			main_label.set_text(_("Category: ") + _("BashStyle-NG StartUp"))
+
+		load_label("about.prefix", os.getenv('BSNG_UI_PREFIX'))
+		load_label("about.version", os.getenv('BSNG_UI_VERSION'))
