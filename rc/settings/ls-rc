@@ -51,6 +51,11 @@ else
 	lcream="${style};38;5;5344"
 fi
 
+if [[ $(ini_get dark_terminal) == True ]]; then
+	lblack=${lwhite}
+else	lwhite=${lblack}
+fi
+
 export lblack lred lgreen lyellow lblue lmagenta lcyan lwhite lcoldblue \
 	lsmoothblue liceblue lturqoise lsmoothgreen lwinered lbrown lsilver \
 	locher lorange lpurple lpink lcream lgrey

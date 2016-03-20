@@ -47,6 +47,13 @@ if [[ $(ini_get enable_colors) == True ]]; then
 	export lbgrey="47"
 	export lbwhite="107"
 
+	if [[ $(ini_get dark_terminal) == True ]]; then
+		export lfblack=${lfwhite}
+		export lbblack=${lbwhite}
+	else	export lfwhite=${lfblack}
+		export lbwhite=${lbblack}
+	fi
+
 	# blinking text
 	eval termcap_mb="$(ini_get less_blink)"
 	export LESS_TERMCAP_mb=$(echo -e "\033[01;${termcap_mb}")

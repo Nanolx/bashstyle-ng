@@ -122,6 +122,13 @@ else
 	export ecream="\033[${style};38;5;5344m"
 fi
 
+if [[ $(ini_get dark_terminal) == True ]]; then
+	export black=${white}
+	export eblack=${ewhite}
+else	export white=${black}
+	export ewhite=${eblack}
+fi
+
 eval usercolor=$(ini_get color_user)
 eval hostcolor=$(ini_get color_host)
 eval datecolor=$(ini_get color_date)

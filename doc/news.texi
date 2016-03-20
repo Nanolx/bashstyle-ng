@@ -44,8 +44,10 @@ by the user interface (which could potentially lead to a crash).
 to set whether the terminal background is dark or bright. This option is used for
 colorshell to prevent the font color being black on dark terminals, respectively
 white/grey on bright terminals in order to avoid barely readable text output.
-
-Note: this option will be used for other features in future aswell.
+.
+This option also applies to all other terminal dependant color settings in
+@code{BashStyle-NG}, where @code{white} will be @code{black} on bright terminals,
+respectively @code{black} will be @code{white} on dark terminals.
 @end itemize
 
 @item New Features
