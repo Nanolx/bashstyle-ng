@@ -18,7 +18,8 @@ lyellow="${style};33"
 lblue="${style};34"
 lmagenta="${style};35"
 lcyan="${style};36"
-lwhite="${style};37"
+lgrey="${style};37"
+lwhite="${style};97"
 
 if [[ ${TERM} != *xterm* ]]; then
 	lcoldblue=${lblue}
@@ -52,7 +53,7 @@ fi
 
 export lblack lred lgreen lyellow lblue lmagenta lcyan lwhite lcoldblue \
 	lsmoothblue liceblue lturqoise lsmoothgreen lwinered lbrown lsilver \
-	locher lorange lpurple lpink lcream
+	locher lorange lpurple lpink lcream lgrey
 
 lscolors=(exec generic logs deb rpm dirs jpeg png gif mp3 ogg flac tar targz
 tarbz2 tarxz zip rar link socket pipe blockdev chardev)
