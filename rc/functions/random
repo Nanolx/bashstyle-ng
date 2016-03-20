@@ -16,7 +16,7 @@ case ${1} in
 				-l "GNU GPL v3" -n "random" -s "print random numbers or strings" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 				-o "-s:length|print string containing all printable chars except space"\
 				-o "-0:length|print random number of given length"\
-				-o "-r:highest|print random number in range 0 and highest"\
+				-o "-r:(lowest) highest|print random number in range lowest (or 0) and highest"\
 				-o "-a:length|print string containing only mixed-case letters"\
 				-o "-l:length|print string containing only lower-case letters"\
 				-o "-u:length|print string containing only upper-case letters"\
@@ -33,7 +33,10 @@ case ${1} in
 	;;
 
 	--numericalrange | -r )
-		echo $((RANDOM%${2}))
+		if [[ ${3} ]]; then
+			echo $(shuf -i ${2}-${3} -n 1)
+		else	echo $(shuf -i 0-${2} -n 1)
+		fi
 	;;
 
 	--alpha | -a )
