@@ -40,11 +40,31 @@ between.  For more detailed information see the or git log.
           so the configuration was not reloaded by the user interface
           (which could potentially lead to a crash).
 
+        - #211 (colorshell): new option 'Dark Terminal Background'
+          allows user to set whether the terminal background is dark or
+          bright.  This option is used for colorshell to prevent the
+          font color being black on dark terminals, respectively
+          white/grey on bright terminals in order to avoid barely
+          readable text output.
+
+          Note: this option will be used for other features in future
+          aswell.
+
    * New Features
         - New Termcap/Manpage coloring function.  'BashStyle-NG' now
           allows you to choose the different colors for manpages from
           the User Interface, rather than only giving you a handful of
           pre-defined color schemes.
+
+   * Updated / Improved Features
+        - 'random' function's '--numericalrange', '-r' param previously
+          only allowed setting the 'highest' value of random range,
+          starting from zero.  Now it's possible to set the 'lowest'
+          value optionally, aswell.  Both syntaxes are supported:
+
+          'random -r 10' will give you a random number between 0 and 10
+          'random -r 5 10' will give you a random number between 5 and
+          10
 
    * UI changes
         - Use 'GtkSwitch'es instead of 'GtkRadionButton's for main
