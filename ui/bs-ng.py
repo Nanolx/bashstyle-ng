@@ -59,6 +59,7 @@ class BashStyleNG(object):
 		####################### Style Options ##############################################
 		WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "switch", None)
 		WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)
+		WidgetHandler.InitWidget("dark_terminal", "Style", "dark_terminal", "bool", None)
 		WidgetHandler.InitWidget("ls_color", "Style", "colored_ls", "bool", None)
 		WidgetHandler.InitWidget("grep_color", "Style", "colored_grep", "bool", None)
 		WidgetHandler.InitWidget("random_style", "Style", "random_style", "bool", None)
