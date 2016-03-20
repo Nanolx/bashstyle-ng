@@ -17,7 +17,7 @@ export BSNG_DATADIR=@DATADIR@
 export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2016"
-INI_VERSION=24
+INI_VERSION=25
 
 source ${BSNG_RCDIR}/internal/misc
 source ${BSNG_RCDIR}/internal/logging
@@ -171,7 +171,12 @@ declare -f -t trap_add
 if [[ $(ini_get colorshell) && ${enable_colors} == True ]]; then
 
 	_colorshell () {
-		cmd_text_colour='\[`tput setaf $((RANDOM%7))`\]'
+		# exclude black (0) on dark terminal
+		# exclude white/grey (7) on bright terminal
+		if [[ $(ini_get dark_terminal) == True ]]; then
+			cmd_text_colour='\[`tput setaf $(random -r 1 7)`\]'
+		else	cmd_text_colour='\[`tput setaf $(random -r 0 6)`\]'
+		fi
 
 		shopt -s promptvars
 
