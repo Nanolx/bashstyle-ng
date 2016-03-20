@@ -39,6 +39,13 @@ from the user interface (which would update the startup entry).
 bigger than @code{app_ini_version}, the configuration is reset to either vendor or
 factory default configuration. When doing so the configuration was not reloaded
 by the user interface (which could potentially lead to a crash).
+
+@item #211 (colorshell): new option @code{Dark Terminal Background} allows user
+to set whether the terminal background is dark or bright. This option is used for
+colorshell to prevent the font color being black on dark terminals, respectively
+white/grey on bright terminals in order to avoid barely readable text output.
+
+Note: this option will be used for other features in future aswell.
 @end itemize
 
 @item New Features
@@ -46,6 +53,17 @@ by the user interface (which could potentially lead to a crash).
 @item New Termcap/Manpage coloring function. @code{BashStyle-NG} now allows you
 to choose the different colors for manpages from the User Interface, rather than
 only giving you a handful of pre-defined color schemes.
+@end itemize
+
+@item Updated / Improved Features
+@itemize @minus
+@item @code{random} function's @code{--numericalrange}, @code{-r} param previously
+only allowed setting the @code{highest} value of random range, starting from zero.
+Now it's possible to set the @code{lowest} value optionally, aswell. Both syntaxes
+are supported:
+
+@code{random -r 10} will give you a random number between 0 and 10
+@code{random -r 5 10} will give you a random number between 5 and 10
 @end itemize
 
 @item UI changes
