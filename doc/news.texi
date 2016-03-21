@@ -48,6 +48,17 @@ white/grey on bright terminals in order to avoid barely readable text output.
 This option also applies to all other terminal dependant color settings in
 @code{BashStyle-NG}, where @code{white} will be @code{black} on bright terminals,
 respectively @code{black} will be @code{white} on dark terminals.
+
+@item #212 (readline): fixed setting @code{bell-style} readline variable.
+
+@item #213 (readline): fixed setting @code{completion-ignore-case} readline variable.
+
+@item #214 (ls colors): fixed readline not inheriting @code{LS_COLORS} set by
+@code{BashStyle-NG}. This resulted in readline functions using distribution default
+@code{LS_COLORS}, but bash functions using the user set variable.
+
+@item #215 (lastcommand): fixed lastcommand recording to generate ugly results for
+bash prompts (@code{lastcommandprintable}) by removing all newlines from the string.
 @end itemize
 
 @item New Features

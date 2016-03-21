@@ -52,6 +52,20 @@ between.  For more detailed information see the or git log.
           bright terminals, respectively 'black' will be 'white' on dark
           terminals.
 
+        - #212 (readline): fixed setting 'bell-style' readline variable.
+
+        - #213 (readline): fixed setting 'completion-ignore-case'
+          readline variable.
+
+        - #214 (ls colors): fixed readline not inheriting 'LS_COLORS'
+          set by 'BashStyle-NG'.  This resulted in readline functions
+          using distribution default 'LS_COLORS', but bash functions
+          using the user set variable.
+
+        - #215 (lastcommand): fixed lastcommand recording to generate
+          ugly results for bash prompts ('lastcommandprintable') by
+          removing all newlines from the string.
+
    * New Features
         - New Termcap/Manpage coloring function.  'BashStyle-NG' now
           allows you to choose the different colors for manpages from
