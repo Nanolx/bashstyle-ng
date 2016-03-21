@@ -72,6 +72,23 @@ between.  For more detailed information see the or git log.
           the User Interface, rather than only giving you a handful of
           pre-defined color schemes.
 
+        - New Bash 4.4 features support:
+             + 'EXECIGNORE' a colon-separated list of commands to ignore
+               from completion.  Only matched if the *complete* filename
+               matches.  For example if you want to exclude
+
+               '/usr/bin/autoreconf'
+
+               from command completion, you need to add
+
+               '*/autreconf'
+
+               to 'EXECIGNORE'.
+
+             + 'PS0' prompt and color setting.  A new prompt which is
+               displayed after completion was done and before the
+               completed command is executed.
+
    * Updated / Improved Features
         - 'random' function's '--numericalrange', '-r' param previously
           only allowed setting the 'highest' value of random range,
@@ -111,6 +128,8 @@ between.  For more detailed information see the or git log.
         - Change string 'GIT' to 'Git' in the UI and other pacles.
 
         - 'WidgetHandler' now supports 'GtkSwitch'es.
+
+        - Minor coding style changes / improvements.
 
      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

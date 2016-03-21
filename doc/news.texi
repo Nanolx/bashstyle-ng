@@ -66,6 +66,23 @@ bash prompts (@code{lastcommandprintable}) by removing all newlines from the str
 @item New Termcap/Manpage coloring function. @code{BashStyle-NG} now allows you
 to choose the different colors for manpages from the User Interface, rather than
 only giving you a handful of pre-defined color schemes.
+
+@item New Bash 4.4 features support:
+@itemize +
+@item @code{EXECIGNORE} a colon-separated list of commands to ignore from completion.
+Only matched if the *complete* filename matches. For example if you want to exclude
+
+	@code{/usr/bin/autoreconf}
+
+from command completion, you need to add
+
+	@code{*/autreconf}
+
+to @code{EXECIGNORE}.
+
+@item @code{PS0} prompt and color setting. A new prompt which is displayed after
+completion was done and before the completed command is executed.
+@end itemize
 @end itemize
 
 @item Updated / Improved Features
@@ -114,6 +131,8 @@ corresponding lintian override).
 @item Change string @code{GIT} to @code{Git} in the UI and other pacles.
 
 @item @code{WidgetHandler} now supports @code{GtkSwitch}es.
+
+@item Minor coding style changes / improvements.
 @end itemize
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
