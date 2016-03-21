@@ -21,6 +21,9 @@ dbg_msg $"BashStyle-NG Setting:" $"HISTIGNORE" "$HISTIGNORE"
 dbg_log export FIGNORE="$(ini_get completion_ignore)"
 dbg_msg $"BashStyle-NG Setting:" $"FIGNORE" "$FIGNORE"
 
+dbg_log export EXECIGNORE="$(ini_get exec_ignore)"
+dbg_msg $"BashStyle-NG Setting:" $"EXECIGNORE" "$EXECIGNORE"
+
 dbg_log export CDPATH=$(ini_get cdpath)
 dbg_msg $"BashStyle-NG Setting:" $"CDPATH" "$CDPATH"
 

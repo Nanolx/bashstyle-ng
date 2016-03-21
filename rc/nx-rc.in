@@ -17,7 +17,7 @@ export BSNG_DATADIR=@DATADIR@
 export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2016"
-INI_VERSION=26
+INI_VERSION=27
 
 source ${BSNG_RCDIR}/internal/misc
 source ${BSNG_RCDIR}/internal/logging
@@ -85,23 +85,29 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	dbg_log source ${BSNG_RCDIR}/styles/null-rc
 
 	if [[ ${enable_colors} == True ]]; then
+		dbg_msg $"BashStyle-NG Setting:" $"PS0" $(ini_get ps0)
+		PS0="${ps0color} $(ini_get ps0)${fontcolor} "
+
 		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
-		PS2="$ps2color $(ini_get ps2)$fontcolor "
+		PS2="${ps2color} $(ini_get ps2)${fontcolor} "
 
 		dbg_msg $"BashStyle-NG Setting:" $"PS3" $(ini_get ps3)
-		PS3="$ps3color $(ini_get ps3)$fontcolor "
+		PS3="${ps3color} $(ini_get ps3)${fontcolor} "
 
 		dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
-		PS4="$ps4color $(ini_get ps4)$fontcolor "
+		PS4="${ps4color} $(ini_get ps4)${fontcolor} "
 	else
+		dbg_msg $"BashStyle-NG Setting:" $"PS0" $(ini_get ps0)
+		PS0=" $(ini_get ps0) "
+
 		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
-		PS2="$(ini_get ps2) "
+		PS2=" $(ini_get ps2) "
 
 		dbg_msg $"BashStyle-NG Setting:" $"PS3" $(ini_get ps3)
-		PS3="$(ini_get ps3) "
+		PS3=" $(ini_get ps3) "
 
 		dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
-		PS4="$(ini_get ps4) "
+		PS4=" $(ini_get ps4) "
 	fi
 
 	if [[ $(ini_get random_style) == True ]]; then

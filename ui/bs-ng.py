@@ -80,6 +80,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("color_font", "Style", "color_font", "combo", dicts.colors)
 		WidgetHandler.InitWidget("color_host", "Style", "color_host", "combo", dicts.colors)
 		WidgetHandler.InitWidget("color_ps", "Style", "color_ps", "combo", dicts.colors)
+		WidgetHandler.InitWidget("color_ps0", "Style", "color_ps0", "combo", dicts.colors)
 		WidgetHandler.InitWidget("color_ps2", "Style", "color_ps2", "combo", dicts.colors)
 		WidgetHandler.InitWidget("color_ps3", "Style", "color_ps3", "combo", dicts.colors)
 		WidgetHandler.InitWidget("color_ps4", "Style", "color_ps4", "combo", dicts.colors)
@@ -113,6 +114,7 @@ class BashStyleNG(object):
 		####################### Advanced Stuff #############################################
 		WidgetHandler.InitWidget("history_blacklist", "Advanced", "history_ignore", "text", None)
 		WidgetHandler.InitWidget("separator", "Advanced", "separator", "text", None)
+		WidgetHandler.InitWidget("ps0", "Advanced", "ps0", "text", None)
 		WidgetHandler.InitWidget("ps2", "Advanced", "ps2", "text", None)
 		WidgetHandler.InitWidget("ps3", "Advanced", "ps3", "text", None)
 		WidgetHandler.InitWidget("ps4", "Advanced", "ps4", "text", None)
@@ -138,6 +140,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("dd_progress", "Advanced", "dd_progress", "bool", None)
 		WidgetHandler.InitWidget("restore_pwd", "Advanced", "restore_directory", "bool", None)
 		WidgetHandler.InitWidget("debug_verbose", "Advanced", "debug_verbose", "bool", None)
+		WidgetHandler.InitWidget("execignore", "Advanced", "exec_ignore", "text", None)
 		WidgetHandler.InitWidget("globignore", "Advanced", "glob_ignore", "text", None)
 		WidgetHandler.InitWidget("history_sync", "Advanced", "history_sync", "bool", None)
 
