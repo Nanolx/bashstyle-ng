@@ -162,6 +162,12 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("show_editmode", "Readline", "show_editmode", "bool", None)
 		WidgetHandler.InitWidget("cstats", "Readline", "colored_stats", "bool", None)
 		WidgetHandler.InitWidget("skipcomptext", "Readline", "skip_completed_text", "bool", None)
+		WidgetHandler.InitWidget("use_readline70", "Readline", "use_readline70", "switch", None)
+		WidgetHandler.InitWidget("colored_completion_prefix", "Readline", "colored_completion_prefix", "bool", None)
+		WidgetHandler.InitWidget("enable_bracketed_paste", "Readline", "enable_bracketed_paste", "bool", None)
+		WidgetHandler.InitWidget("vi_cmd_string", "Readline", "vi_cmd_mode_string", "text", None)
+		WidgetHandler.InitWidget("vi_ins_string", "Readline", "vi_ins_mode_string", "text", None)
+		WidgetHandler.InitWidget("emacs_string", "Readline", "emacs_mode_string", "text", None)
 
 		######################## Shopt Stuff ###############################################
 		WidgetHandler.InitWidget("histappend", "Shopt", "histappend", "bool", None)
