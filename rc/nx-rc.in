@@ -85,8 +85,10 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	dbg_log source ${BSNG_RCDIR}/styles/null-rc
 
 	if [[ ${enable_colors} == True ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"PS0" $(ini_get ps0)
-		PS0="${ps0color} $(ini_get ps0)${fontcolor} "
+		if [[ ${BASH_VERSINFO[0]}${BASH_VERSINFO[1]} -ge "44" ]]; then
+			dbg_msg $"BashStyle-NG Setting:" $"PS0" $(ini_get ps0)
+			PS0="${ps0color} $(ini_get ps0)${fontcolor} "
+		fi
 
 		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
 		PS2="${ps2color} $(ini_get ps2)${fontcolor} "
@@ -97,8 +99,10 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
 		PS4="${ps4color} $(ini_get ps4)${fontcolor} "
 	else
-		dbg_msg $"BashStyle-NG Setting:" $"PS0" $(ini_get ps0)
-		PS0=" $(ini_get ps0) "
+		if [[ ${BASH_VERSINFO[0]}${BASH_VERSINFO[1]} -ge "44" ]]; then
+			dbg_msg $"BashStyle-NG Setting:" $"PS0" $(ini_get ps0)
+			PS0=" $(ini_get ps0) "
+		fi
 
 		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
 		PS2=" $(ini_get ps2) "
