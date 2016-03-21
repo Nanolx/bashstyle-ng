@@ -243,8 +243,9 @@ remember_command_debug () {
 	[[ "$BASH_COMMAND" == trap\ * ]] && return
 	[[ "$BASH_COMMAND" == *lastcommand* ]] && return
 	[[ "$BASH_COMMAND" == *lastexit* ]] && return
-	lastcommand=${BASH_COMMAND}
-	lastcommandprintable=${BASH_COMMAND:0:21}
+	local X_COMMAND=${BASH_COMMAND//$'\n'}
+	lastcommand=${X_COMMAND}
+	lastcommandprintable=${X_COMMAND:0:21}
 	if [ ${#lastcommandprintable} -gt 21 ]; then
 		lastcommandprintable=${lastcommandprintable:0:20}'>'
 	else
