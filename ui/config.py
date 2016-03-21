@@ -31,7 +31,7 @@ FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
 NXRC = (DATADIR + "/bashstyle-ng/rc/nx-rc")
 
-app_ini_version = 27
+app_ini_version = 28
 
 class Config(object):
 	def InitConfig(self):
