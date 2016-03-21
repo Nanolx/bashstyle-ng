@@ -63,10 +63,10 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 
 	if [[ $(ini_get ignore_case) == True ]]; then
 		dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"On"
-		rc_add "set completition-ignore-case on"
+		rc_add "set completion-ignore-case on"
 	else
 		dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"Off"
-		rc_add "set completition-ignore-case off"
+		rc_add "set completion-ignore-case off"
 	fi
 
 	if [[ $(ini_get visible_stats) == True ]]; then
