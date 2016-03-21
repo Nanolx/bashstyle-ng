@@ -27,7 +27,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 	fi
 
 	dbg_msg $"ReadlineCFG Setting:" $"Bellstyle" $(ini_get bellstyle)
-	rc_add "set bellstyle $(ini_get bellstyle)"
+	rc_add "set bell-style $(ini_get bellstyle)"
 
 	if [[ $(ini_get completion) == True ]]; then
 		dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"Off"
