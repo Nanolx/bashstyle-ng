@@ -83,6 +83,26 @@ to @code{EXECIGNORE}.
 @item @code{PS0} prompt and color setting. A new prompt which is displayed after
 completion was done and before the completed command is executed.
 @end itemize
+
+@item New Readline 7.0 features support:
+@itemize +
+@item added Readline 7.0 master switch (enable to make use of the following).
+
+@item @code{Colored Completion Prefix} makes the matching prefix of the issued
+completion appear in a special color for all matches.
+
+@item @code{Enable Bracketed Paste} makes Bash handle multi-line pasted code
+like single-line, preventing erroneous completion or execution.
+
+@item @code{Vi Command Mode String} is an indicator printed after @code{PS1} when
+Bash is in vi command mode.
+
+@item @code{Vi Insert Mode String} is an indicator printed after @code{PS1} when
+Bash is in vi insert mode.
+
+@item @code{Emacs Mode String} is an indicator printed after @code{PS1} when Bash
+is in emacs mode.
+@end itemize
 @end itemize
 
 @item Updated / Improved Features

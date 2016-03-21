@@ -89,6 +89,27 @@ between.  For more detailed information see the or git log.
                displayed after completion was done and before the
                completed command is executed.
 
+        - New Readline 7.0 features support:
+             + added Readline 7.0 master switch (enable to make use of
+               the following).
+
+             + 'Colored Completion Prefix' makes the matching prefix of
+               the issued completion appear in a special color for all
+               matches.
+
+             + 'Enable Bracketed Paste' makes Bash handle multi-line
+               pasted code like single-line, preventing erroneous
+               completion or execution.
+
+             + 'Vi Command Mode String' is an indicator printed after
+               'PS1' when Bash is in vi command mode.
+
+             + 'Vi Insert Mode String' is an indicator printed after
+               'PS1' when Bash is in vi insert mode.
+
+             + 'Emacs Mode String' is an indicator printed after 'PS1'
+               when Bash is in emacs mode.
+
    * Updated / Improved Features
         - 'random' function's '--numericalrange', '-r' param previously
           only allowed setting the 'highest' value of random range,
