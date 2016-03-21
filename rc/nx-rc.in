@@ -45,6 +45,12 @@ dbg_msg $"BashStyle-NG Logfile:" ${BSNG_LOGFILE}
 
 dbg_log shopt -s checkwinsize
 
+[[ $(ini_get enable_colors) == True ]] && \
+	dbg_log source ${BSNG_RCDIR}/settings/color-rc
+
+[[ $(ini_get use_lscolors) == True && ${enable_colors} == True ]] && \
+	dbg_log source ${BSNG_RCDIR}/settings/ls-rc
+
 [[ $(ini_get use_readlinecfg) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/readline-rc
 
@@ -53,12 +59,6 @@ dbg_log shopt -s checkwinsize
 
 [[ $(ini_get use_nanocfg) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/nano-rc
-
-[[ $(ini_get enable_colors) == True ]] && \
-	dbg_log source ${BSNG_RCDIR}/settings/color-rc
-
-[[ $(ini_get use_lscolors) == True && ${enable_colors} == True ]] && \
-	dbg_log source ${BSNG_RCDIR}/settings/ls-rc
 
 [[ $(ini_get use_gitcfg) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/git-rc
