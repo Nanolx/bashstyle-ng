@@ -29,7 +29,7 @@ case ${1} in
 				ACTION="bisect"
 			else	ACTION="nothing"
 			fi
-			echo $ACTION
+			echo ${ACTION}
 		else	echo --
 		fi
 	;;
@@ -44,21 +44,21 @@ case ${1} in
 
 	bz2)
 		if [[ -d .git ]]; then
-			git archive master | bzip2 -9 > "$(basename $PWD)".tar.bz2
+			git archive master | bzip2 -9 > "$(basename ${PWD})".tar.bz2
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
 
 	xz)
 		if [[ -d .git ]]; then
-			git archive master | xz -9 > "$(basename $PWD)".tar.xz
+			git archive master | xz -9 > "$(basename ${PWD})".tar.xz
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
 
 	zip)
 		if [[ -d .git ]]; then
-			git archive master --format=zip > "$(basename $PWD)".zip
+			git archive master --format=zip > "$(basename ${PWD})".zip
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
@@ -74,8 +74,8 @@ case ${1} in
 	;;
 
 	export)
-		if [[ "$2" && -d .git ]]; then
-			git checkout-index --prefix="$2"/ -a
+		if [[ "${2}" && -d .git ]]; then
+			git checkout-index --prefix="${2}"/ -a
 		fi
 	;;
 

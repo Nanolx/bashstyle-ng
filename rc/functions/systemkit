@@ -17,9 +17,9 @@ case ${1} in
 			out="$(acpi -b)"
 			state="$(echo "${out}" | awk '{print $3}')"
 			case ${state} in
-				charging,)		statesign="^" ;;
+				charging,)	statesign="^" ;;
 				discharging,)	statesign="v" ;;
-				charged,)		statesign="°" ;;
+				charged,)	statesign="°" ;;
 			esac
 			echo "${statesign}${load}" )
 	;;
@@ -29,7 +29,7 @@ case ${1} in
 		t="0"
 
 		while read cpu ni; do
-			[[ $ni == *-* || $ni -le $NICE_IGNORE ]] &&	t="$t + $cpu"
+			[[ $ni == *-* || $ni -le ${NICE_IGNORE} ]] &&	t="$t + ${cpu}"
 			[[ ${cpu%%.*} -eq 0 ]] && break
 		done < <(ps -Ao "%cpu= ni="| sort -r)
 
@@ -37,11 +37,11 @@ case ${1} in
 		[[ ! "${cpu#.}x" = "${cpu}x" ]] && cpu="0${cpu}"
 		cpu=${cpu%%.*}
 
-		if [[ $cpu -gt 100 ]]; then
+		if [[ ${cpu} -gt 100 ]]; then
 			cpu=100
-		elif [[ $cpu -lt 10 ]]; then
+		elif [[ ${cpu} -lt 10 ]]; then
 			prepend=00
-		elif [[ $cpu -lt 100  ]]; then
+		elif [[ ${cpu} -lt 100  ]]; then
 			prepend=0
 		fi
 
@@ -60,37 +60,37 @@ case ${1} in
 
 	usedram)
 		temp=$(top -bn1 | gawk '/Mem :/{print "(" $4 "-" $6 ") /1024"}' | bc)
-		if [[ $temp -lt 10 ]]; then
-			echo 000$temp
-		elif [[ $temp -lt 100 ]]; then
-			echo 00$temp
-		elif [[ $temp -lt 1000 ]]; then
-			echo 0$temp
-		else	echo $temp
+		if [[ ${temp} -lt 10 ]]; then
+			echo 000${temp}
+		elif [[ ${temp} -lt 100 ]]; then
+			echo 00${temp}
+		elif [[ ${temp} -lt 1000 ]]; then
+			echo 0${temp}
+		else	echo ${temp}
 		fi
 	;;
 
 	freeram)
 		temp=$(top -bn1 | gawk '/Mem :/{print $6 "/1024"}' | bc)
-		if [[ $temp -lt 10 ]]; then
-			echo 000$temp
-		elif [[ $temp -lt 100 ]]; then
-			echo 00$temp
-		elif [[ $temp -lt 1000 ]]; then
-			echo 0$temp
-		else	echo $temp
+		if [[ ${temp} -lt 10 ]]; then
+			echo 000${temp}
+		elif [[ ${temp} -lt 100 ]]; then
+			echo 00${temp}
+		elif [[ ${temp} -lt 1000 ]]; then
+			echo 0${temp}
+		else	echo ${temp}
 		fi
 	;;
 
 	totalram)
 		temp=$(top -bn1 | gawk '/Mem :/{print $4 "/1024"}' | bc)
-		if [[ $temp -lt 10 ]]; then
-			echo 000$temp
-		elif [[ $temp -lt 100 ]]; then
-			echo 00$temp
-		elif [[ $temp -lt 1000 ]]; then
-			echo 0$temp
-		else	echo $temp
+		if [[ ${temp} -lt 10 ]]; then
+			echo 000${temp}
+		elif [[ ${temp} -lt 100 ]]; then
+			echo 00${temp}
+		elif [[ ${temp} -lt 1000 ]]; then
+			echo 0${temp}
+		else	echo ${temp}
 		fi
 	;;
 
@@ -98,15 +98,15 @@ case ${1} in
 	freeram%)	echo $(top -bn1 | gawk '/Mem :/{print "100 *" $6 "/" $4}' | bc)% ;;
 
 	dirsize)
-		TotalBytes=$(du . | awk '{print $1}')
+		${TotalBytes}=$(du . | awk '{print $1}')
 
-		if [ $TotalBytes -lt 1024 ]; then
+		if [ $${TotalBytes} -lt 1024 ]; then
 				echo ${TotalBytes} KB
-		elif [ $TotalBytes -lt 1048576 ]; then
-				echo $((TotalBytes/1024)) MB
-		elif [ $TotalBytes -lt 1073741824 ]; then
-				echo $((TotalBytes/1048576)) GB
-		else	echo $((TotalBytes/1073741824)) TB
+		elif [ $${TotalBytes} -lt 1048576 ]; then
+				echo $((${TotalBytes}/1024)) MB
+		elif [ $${TotalBytes} -lt 1073741824 ]; then
+				echo $((${TotalBytes}/1048576)) GB
+		else	echo $((${TotalBytes}/1073741824)) TB
 		fi
 	;;
 
@@ -149,7 +149,7 @@ $(lsusb -v)\n" )
 
 	bios)
 		check_opt dmidecode systemkit::bios && (
-		if [[ $EUID == 0 ]]; then 
+		if [[ ${EUID} == 0 ]]; then 
 			echo -e "SMBIOS/DMI Info:
 $(dmidecode -q)\n"
 		fi )
@@ -225,12 +225,12 @@ $(dmidecode -q)\n"
 	processes)
 		procs=$(ps ax | wc -l | awk '{print $1}')
 
-		if [[ $procs -lt 10 ]]; then
-			echo "000$procs"
-		elif [[ $procs -lt 100 ]]; then
-			echo "00$procs"
-		elif [[ $procs -lt 1000 ]]; then
-			echo "0$procs"
+		if [[ ${procs} -lt 10 ]]; then
+			echo "000${procs}"
+		elif [[ ${procs} -lt 100 ]]; then
+			echo "00${procs}"
+		elif [[ ${procs} -lt 1000 ]]; then
+			echo "0${procs}"
 		fi
 	;;
 

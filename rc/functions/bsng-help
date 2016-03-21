@@ -30,16 +30,16 @@ case ${1} in
 	*)
 		while getopts a:e:h:l:n:o:s:v:y: opts
 		do
-			case "$opts" in
-				a) AUTHOR="$OPTARG" ;;
-				e) EMAIL="$OPTARG" ;;
-				h) HOMEPAGE="$OPTARG" ;;
-				l) LICENSE="$OPTARG" ;;
-				n) NAME="$OPTARG" ;;
-				o) OPTIONS+=( "$OPTARG" ) ;;
-				s) SHORT_DESC="$OPTARG" ;;
-				v) VERSION="$OPTARG" ;;
-				y) YEAR="$OPTARG" ;;
+			case "${opts}" in
+				a) AUTHOR="${OPTARG}" ;;
+				e) EMAIL="${OPTARG}" ;;
+				h) HOMEPAGE="${OPTARG}" ;;
+				l) LICENSE="${OPTARG}" ;;
+				n) NAME="${OPTARG}" ;;
+				o) OPTIONS+=( "${OPTARG}" ) ;;
+				s) SHORT_DESC="${OPTARG}" ;;
+				v) VERSION="${OPTARG}" ;;
+				y) YEAR="${OPTARG}" ;;
 			esac
 		done
 
@@ -58,9 +58,7 @@ case ${1} in
 			OPT=${opt/:*}
 			VAL=${opt/|*}
 			VAL=${VAL/*:}
-			if [[ $VAL == "" ]]; then
-				VAL="---"
-			fi
+			[[ ${VAL} == "" ]] && VAL="---"
 			DESC=${opt/*|}
 			EX+="${eorange}${OPT} \033[25G${ewhite}(${eblue}${VAL}${ewhite})\033[65G ${egreen}${DESC}\n"
 		done

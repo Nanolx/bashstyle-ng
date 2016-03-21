@@ -20,7 +20,7 @@ case ${1} in
 	;;
 
 	* )
-		sed -e "/$USER/d;s/:.*//g" /etc/group | \
+		sed -e "/${USER}/d;s/:.*//g" /etc/group | \
 			sed -e :a -e '/$/N;s/\n/ /;ta'
 	;;
 
