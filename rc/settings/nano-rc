@@ -10,7 +10,7 @@
 #########################################################
 
 shopt -s nullglob
-bsng_nanorc=( "$HOME"/.nanorc.bs-ng.* )
+bsng_nanorc=( "${HOME}"/.nanorc.bs-ng.* )
 shopt -u nullglob
 
 if (( "${#bsng_nanorc[@]}" == 0 )); then

@@ -42,7 +42,7 @@ keybindings_setter () {
 }
 
 shopt -s nullglob
-bsng_keybindingsrc=( "$HOME"/.keybindings.bs-ng.* )
+bsng_keybindingsrc=( "${HOME}"/.keybindings.bs-ng.* )
 shopt -u nullglob
 
 if (( "${#bsng_keybindingsrc[@]}" == 0 )); then

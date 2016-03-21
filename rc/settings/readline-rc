@@ -10,7 +10,7 @@
 #########################################################
 
 shopt -s nullglob
-bsng_inputrc=( "$HOME"/.inputrc.bs-ng.* )
+bsng_inputrc=( "${HOME}"/.inputrc.bs-ng.* )
 shopt -u nullglob
 
 if (( "${#bsng_inputrc[@]}" == 0 )); then

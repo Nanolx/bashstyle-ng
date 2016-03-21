@@ -263,9 +263,9 @@ trap_add 'remember_command_err' ERR
 
 WelcomeMessage=$(ini_get welcome_message)
 
-if [[ ${USER_BIRTHDAY} == $(date +%m-%d) && ! -e ~/.bday ]]; then
+if [[ ${USER_BIRTHDAY} == $(date +%m-%d) && ! -e ${HOME}/.bday ]]; then
 	cat ${BSNG_RCDIR}/internal/birthday
-	touch ~/.bday
+	touch ${HOME}/.bday
 elif [[ ${WelcomeMessage} != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
 	dbg_log ${WelcomeMessage}

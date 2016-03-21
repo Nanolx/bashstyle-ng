@@ -13,7 +13,7 @@ assign() {
 	for opt in ${@}; do
 		var="X=\$${opt/:*}"
 		eval ${var}
-		[[ $X == "" ]] && read ${opt/:*} <<< $(echo ${opt/*:})
+		[[ ${X} == "" ]] && read ${opt/:*} <<< $(echo ${opt/*:})
 	done
 }
 
@@ -54,5 +54,5 @@ ini_add ()
 
 rc_add ()
 {
-	echo "$@" >> $RC_FILE
+	echo "${@}" >> ${RC_FILE}
 }
