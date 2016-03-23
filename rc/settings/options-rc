@@ -55,7 +55,7 @@ if [[ $(ini_get restore_directory) == True ]]; then
 	fi
 fi
 
-if [[ $(ini_get colored_grep) == True && ${enable_colors} == True ]]; then
+if [[ $(ini_get colored_grep) == True && $(ini_get enable_colors) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" Colored grep $"On"
 	alias grep="grep --color=auto"
 	GREP_COLOR=$(ini_get grep_color);

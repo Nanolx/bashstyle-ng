@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ $(ini_get colored_ls) == True && ${enable_colors} == True ]]; then
+if [[ $(ini_get colored_ls) == True && $(ini_get enable_colors) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" Colored ls $"On"
 	dbg_log alias ls="ls -CF --color=auto --group-directories-first"
 else

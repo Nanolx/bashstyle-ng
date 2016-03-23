@@ -61,7 +61,7 @@ fi
 [[ $(ini_get enable_colors) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/color-rc
 
-[[ $(ini_get use_lscolors) == True && ${enable_colors} == True ]] && \
+[[ $(ini_get use_lscolors) == True && $(ini_get enable_colors) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/ls-rc
 
 [[ $(ini_get use_readlinecfg) == True ]] && \
@@ -175,7 +175,7 @@ declare -f -t trap_add
 
 # do trapping stuff
 
-if [[ $(ini_get colorshell) && ${enable_colors} == True ]]; then
+if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 
 	_colorshell () {
 		if [[ ${OLDPS1} == "" ]]; then
@@ -343,13 +343,13 @@ treecd () {
 if [[ $(ini_get use_treecd) == True ]]; then
 	dbg_log alias cd=treecd
 	dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
-	[[ ${enable_colors} != True ]] && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
+	[[ $(ini_get enable_colors) != True ]] && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
 fi
 
 if [[ $(ini_get use_lscd) == True ]]; then
 	dbg_log alias cd=lscd
 	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
-	[[ ${enable_colors} != True ]] && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
+	[[ $(ini_get enable_colors) != True ]] && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
 fi
 
 reload_bash () {
