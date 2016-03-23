@@ -14,8 +14,8 @@ verbose=$(ini_get debug_verbose)
 dbg_msg ()
 {
 	if [[ ${verbose} == True ]]; then
-		echo -e "$@" | tee -a ${BSNG_LOGFILE}
-	else	echo -e "$@" >> ${BSNG_LOGFILE}
+		echo -E "$@" | tee -a ${BSNG_LOGFILE}
+	else	echo -E "$@" >> ${BSNG_LOGFILE}
 	fi
 }
 

@@ -66,11 +66,28 @@ between.  For more detailed information see the or git log.
           ugly results for bash prompts ('lastcommandprintable') by
           removing all newlines from the string.
 
+        - #216 (treecd): fixed user set 'treecd' options not being
+          honoured.
+
+        - #217 (lscd, treecd, grep): force switch to monochrome output
+          when user has disabled colorful prompts.
+
+        - #218 (equinox, truncpwd): fixed prompt length calculation for
+          'equinox' prompt, if 'pwdcut' ini value is not set.  Fixed
+          output string length calculation for 'truncpwd' function
+          aswell.
+
    * New Features
         - New Termcap/Manpage coloring function.  'BashStyle-NG' now
           allows you to choose the different colors for manpages from
           the User Interface, rather than only giving you a handful of
           pre-defined color schemes.
+
+        - Added option to include the current directory to the 'PATH'
+          variable.
+
+        - Added coloring options for 'lscd' and 'treecd' for different
+          'banner', 'mkdir' and 'empty' labels.
 
         - New Bash 4.4 features support:
              + 'EXECIGNORE' a colon-separated list of commands to ignore
@@ -125,6 +142,11 @@ between.  For more detailed information see the or git log.
           settings you might not see a difference here, that's not a
           bug.
 
+        - 'colorshell' does no longer pollute '$PS*'.  It does now store
+          '$PS*' once per session to 'OLDPS*' and appends it's randomly
+          choosen text color to the '$OLDPS*' variable, which is then
+          the new 'PS*' variable.
+
    * UI changes
         - Use 'GtkSwitch'es instead of 'GtkRadionButton's for main
           switches in the UI.
@@ -141,14 +163,35 @@ between.  For more detailed information see the or git log.
    * Misc.  Changes
         - Improvements to 'bashstyle' launcher script.
 
+        - Since a few version the code for setting colors has been
+          changed, so we no longer need a monochrome version of the
+          prompt styles, as color values are empty, when user has
+          disabled colorful prompts.  Preventing lots of (mostly)
+          duplicated code.
+
         - Standardize shebangs in python scripts (and remove
           corresponding lintian override).
 
         - Updated german translation.
 
+        - Don't mark setting's name and a few others as translatable
+          strings.
+
         - Change string 'GIT' to 'Git' in the UI and other pacles.
 
+        - Move last command recording to the end of 'BashStyle-NG'
+          initialization, no need to record 'BashStyle-NG's startup.
+
         - 'WidgetHandler' now supports 'GtkSwitch'es.
+
+        - Less environment pollution by 'unset'ing a lot of variables
+          which are of no use after 'BashStyle-NG' initialization.
+
+        - Simplified color setup mechanism for non/echoable prompt part
+          colors.
+
+        - Minor fix for 'dbg_msg' function, now some of the output
+          strings in '$HOME/.bashstyle.log' are more readable.
 
         - Minor coding style changes / improvements.
 
