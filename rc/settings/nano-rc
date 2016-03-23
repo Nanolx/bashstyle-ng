@@ -15,7 +15,7 @@ shopt -u nullglob
 
 if (( "${#bsng_nanorc[@]}" == 0 )); then
 
-	dbg_msg $"BashStyle-NG Loading:" $"NanoCFG"
+	dbg_msg $"BashStyle-NG Loading:" NanoCFG
 	export RC_FILE=${HOME}/.nanorc.bs-ng.$(date +%I-%M-%S)
 
 	if [[ $(ini_get auto_indent) == True ]]; then
