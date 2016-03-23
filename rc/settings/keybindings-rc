@@ -9,6 +9,8 @@
 #							#
 #########################################################
 
+dbg_msg $"BashStyle-NG Loading:" KeybindingsCFG
+
 function list-keybindings () {
 	bind -P | sed -e '/is not/d;s/can be found on/:/' | column -s : -t
 }
@@ -26,15 +28,15 @@ keybindings_setter () {
 		esac
 
 		if [[ ${MOD} == e ]]; then
-			dbg_msg $"ReadlineCFG Setting:" ${ACT} e-${KEY}
+			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" e-${KEY}
 			bind "\\e${KEY}":self-insert
 			echo -E \"\\e${KEY}\":${ACT} >> ${RC_FILE}
 		elif [[ ${MOD} == C ]]; then
-			dbg_msg $"ReadlineCFG Setting:" ${ACT} C-${KEY}
+			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" C-${KEY}
 			bind "\\C-${KEY}":self-insert
 			echo -E \"\\C-${KEY}\":${ACT} >> ${RC_FILE}
 		elif [[ ${MOD} == X ]]; then
-			dbg_msg $"ReadlineCFG Setting:" ${ACT} ${KEY}
+			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" ${KEY}
 			#bind "${KEY}":self-insert
 			echo -E ${KEY}:${ACT} >> ${RC_FILE}
 		fi
@@ -48,7 +50,7 @@ shopt -u nullglob
 if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 
 	export RC_FILE=$HOME/.keybindings.bs-ng.$(date +%I-%M-%S)
-	dbg_msg $"ReadlineCFG Loading:" $"Keybindings"
+	dbg_msg $"KeybindingsCFG Loading:" $"Keybindings"
 
 	for key in undo upcase_word capitalize_word downcase_word transpose_words \
 		transpose_chars unix_word_rubout kill_word possible_filename_completions \
