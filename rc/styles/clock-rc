@@ -9,37 +9,19 @@
 #							#
 #########################################################
 
-if [[ ${enable_colors} == True ]]; then
-
 function pre_prompt {
 let prompt_x=$(tput cols)-29
 tput sc
 tput cup 0 ${prompt_x}
-echo -en "$(echo ${sepacolor} | sed -e 's/\\\[//g' -e 's/\\\]//g')\
-[$(echo ${datecolor} | sed -e 's/\\\[//g' -e 's/\\\]//g') \
+echo -en "$(echo ${color_separator} | sed -e 's/\\\[//g' -e 's/\\\]//g')\
+[$(echo ${color_date} | sed -e 's/\\\[//g' -e 's/\\\]//g') \
 $(date '+%a, %d %b %y')\
-$(echo ${sepacolor} | sed -e 's/\\\[//g' -e 's/\\\]//g') ::\
-$(echo ${timecolor} | sed -e 's/\\\[//g' -e 's/\\\]//g') $(date +%T)\
-$(echo ${sepacolor} | sed -e 's/\\\[//g' -e 's/\\\]//g') ]"
+$(echo ${color_separator} | sed -e 's/\\\[//g' -e 's/\\\]//g') ::\
+$(echo ${color_time} | sed -e 's/\\\[//g' -e 's/\\\]//g') $(date +%T)\
+$(echo ${color_separator} | sed -e 's/\\\[//g' -e 's/\\\]//g') ]"
 tput rc
 }
 
 PROMPT_COMMAND=pre_prompt
 
-PS1="${sepacolor}[${usercolor} \u ${fontcolor}@ ${hostcolor}\h ${pscolor}: ${wdircolor}\$(truncpwd)$CLOCK_1_COLOR\$(CLOCK_1) ${sepacolor}]${fontcolor} "
-
-else
-
-function pre_prompt {
-let prompt_x=$(tput cols)-29
-tput sc
-tput cup 0 ${prompt_x}
-echo -n "[ $(date '+%a, %d %b %y') :: $(date +%T) ]"
-tput rc
-}
-
-PROMPT_COMMAND=pre_prompt
-
-PS1="[ \u @ \h : \$(truncpwd) \$(CLOCK_1) ] "
-
-fi
+PS1="${color_separator}[${color_user} \u ${color_font}@ ${color_host}\h ${color_ps}: ${color_wdir}\$(truncpwd)$CLOCK_1_COLOR\$(CLOCK_1) ${color_separator}]${color_font} "

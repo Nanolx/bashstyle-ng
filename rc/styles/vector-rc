@@ -9,16 +9,7 @@
 #							#
 #########################################################
 
-if [[ ${enable_colors} == "True" ]]; then
-
-PS1="\n${pscolor}┌${sepacolor}(${usercolor} \u${sepacolor} @ ${hostcolor}\h \
-${sepacolor})${pscolor}─${sepacolor}( ${timecolor}\$(date +%I:%M%P)${VECTOR_1_COLOR}\$(VECTOR_1)\
-${fontcolor} -:- ${datecolor}\$(date +%m)/\$(date +%d)${sepacolor} )\n\
-${pscolor}└${sepacolor}( $wdircolor\$(truncpwd) ${VECTOR_2_COLOR}\$(VECTOR_2)${sepacolor})${pscolor}·>${fontcolor} "
-
-else
-
-PS1="\n┌( \u @ \h )─( \$(date +%I:%M%P) -:- \$(date +%m)/\$(date +%d) )\$(VECTOR_1)\n\
-└( \$(truncpwd) \$(VECTOR_2))·> "
-
-fi
+PS1="\n${color_ps}┌${color_separator}(${color_user} \u${color_separator} @ ${color_host}\h \
+${color_separator})${color_ps}─${color_separator}( ${color_time}\$(date +%I:%M%P)${VECTOR_1_COLOR}\$(VECTOR_1)\
+${color_font} -:- ${color_date}\$(date +%m)/\$(date +%d)${color_separator} )\n\
+${color_ps}└${color_separator}( $color_wdir\$(truncpwd) ${VECTOR_2_COLOR}\$(VECTOR_2)${color_separator})${color_ps}·>${color_font} "

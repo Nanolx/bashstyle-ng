@@ -19,136 +19,139 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 	export RC_FILE=${HOME}/.nanorc.bs-ng.$(date +%I-%M-%S)
 
 	if [[ $(ini_get auto_indent) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Auto-Indention" $"On"
+		dbg_msg $"NanoCFG Setting:" Auto-Indention $"On"
 		rc_add "set autoindent"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Auto-Indention" $"Off"
+		dbg_msg $"NanoCFG Setting:" Auto-Indention $"Off"
 		rc_add "unset autoindent"
 	fi
 
 	if [[ $(ini_get nano_backup) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Autosave" $"On"
+		dbg_msg $"NanoCFG Setting:" Autosave $"On"
 		rc_add "set backup"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Autosave" $"Off"
+		dbg_msg $"NanoCFG Setting:" Autosave $"Off"
 		rc_add "unset backup"
 	fi
 
 	if [[ $(ini_get bold_text) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Bold-Text" $"On"
+		dbg_msg $"NanoCFG Setting:" Bold-Text $"On"
 		rc_add "set boldtext"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Bold-Text" $"Off"
+		dbg_msg $"NanoCFG Setting:" Bold-Text $"Off"
 		rc_add "unset boldtext"
 	fi
 
 	if [[ $(ini_get case_sensitive) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Case-Sensitive" $"On"
+		dbg_msg $"NanoCFG Setting:" Case-Sensitive $"On"
 		rc_add "set casesensitive"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Case-Sensitive" $"Off"
+		dbg_msg $"NanoCFG Setting:" Case-Sensitive $"Off"
 		rc_add "unset casesensitive"
 	fi
 
 	if [[ $(ini_get show_positon) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Show-Position" $"On"
+		dbg_msg $"NanoCFG Setting:" Show-Position $"On"
 		rc_add "set const"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Show-Position" $"Off"
+		dbg_msg $"NanoCFG Setting:" Show-Position $"Off"
 		rc_add "unset const"
 	fi
 
 	if [[ $(ini_get more_space) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"More-Space" $"On"
+		dbg_msg $"NanoCFG Setting:" More-Space $"On"
 		rc_add "set morespace"
 	else
-		dbg_msg $"NanoCFG Setting:" $"More-Space" $"Off"
+		dbg_msg $"NanoCFG Setting:" More-Space $"Off"
 		rc_add "unset morespace"
 	fi
 
 	if [[ $(ini_get hide_help) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"No-Help" $"On"
+		dbg_msg $"NanoCFG Setting:" No-Help $"On"
 		rc_add "set nohelp"
 	else
-		dbg_msg $"NanoCFG Setting:" $"No-Help" $"Off"
+		dbg_msg $"NanoCFG Setting:" No-Help $"Off"
 		rc_add "unset nohelp"
 	fi
 
 	if [[ $(ini_get history) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"History Log:" $"On"
+		dbg_msg $"NanoCFG Setting:" History Log: $"On"
 		rc_add "set historylog"
 	else
-		dbg_msg $"NanoCFG Setting:" $"History Log:" $"Off"
+		dbg_msg $"NanoCFG Setting:" History Log: $"Off"
 		rc_add "unset historylog"
 	fi
 
 	if [[ $(ini_get rebind_delete) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Rebind Delete:" $"On"
+		dbg_msg $"NanoCFG Setting:" Rebind Delete: $"On"
 		rc_add "set rebinddelete"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Rebind Delete:" $"Off"
+		dbg_msg $"NanoCFG Setting:" Rebind Delete: $"Off"
 		rc_add "unset rebinddelete"
 	fi
 
 	if [[ $(ini_get rebind_keypad) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Rebind Keypad:" $"On"
+		dbg_msg $"NanoCFG Setting:" Rebind Keypad: $"On"
 		rc_add "set rebindkeypad"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Rebind Keypad:" $"Off"
+		dbg_msg $"NanoCFG Setting:" Rebind Keypad: $"Off"
 		rc_add "unset rebindkeypad"
 	fi
 
 	if [[ $(ini_get enable_mouse) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Enable Mouse:" $"On"
+		dbg_msg $"NanoCFG Setting:" Enable Mouse: $"On"
 		rc_add "set mouse"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Enable Mouse:" $"Off"
+		dbg_msg $"NanoCFG Setting:" Enable Mouse: $"Off"
 		rc_add "unset mouse"
 	fi
 
 	if [[ $(ini_get no_wrap) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"No Wrap" $"On"
+		dbg_msg $"NanoCFG Setting:" No Wrap $"On"
 		rc_add "set nowrap"
 	else
-		dbg_msg $"NanoCFG Setting:" $"No Wrap" $"Off"
+		dbg_msg $"NanoCFG Setting:" No Wrap $"Off"
 		rc_add "unset nowrap"
 	fi
 
 	if [[ $(ini_get log_position) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Log Position" $"On"
+		dbg_msg $"NanoCFG Setting:" Log Position $"On"
 		rc_add "set poslog"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Log Position" $"Off"
+		dbg_msg $"NanoCFG Setting:" Log Position $"Off"
 		rc_add "unset poslog"
 	fi
 
-	dbg_msg $"NanoCFG Setting:" $"Tab Width" $(ini_get tab_size)
+	dbg_msg $"NanoCFG Setting:" Tab Width $(ini_get tab_size)
 	rc_add "set tabsize $(ini_get tab_size)"
 
 	if [[ $(ini_get tab_to_spaces) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Tab to spaces" $"On"
+		dbg_msg $"NanoCFG Setting:" Tab to spaces $"On"
 		rc_add "set tabstospaces"
 	else
-		dbg_msg $"NanoCFG Setting:" $"Tab to spaces" $"Off"
+		dbg_msg $"NanoCFG Setting:" Tab to spaces $"Off"
 		rc_add "unset tabstospaces"
 	fi
 
 	if [[ $(ini_get set_uicolors) == True ]]; then
 		for uipart in function key status title; do
-			dbg_msg $"NanoCFG Setting:" $"UI Color" ${uipart} ":" $(ini_get ${uipart}_color_fg,${uipart}_color_bg)
-			rc_add "set ${uipart}color $(ini_get ${uipart}_color_fg),$(ini_get ${uipart}_color_bg)"
+			uipart_color=$(ini_get ${uipart}_color_fg,${uipart}_color_bg)
+			dbg_msg $"NanoCFG Setting:" UI Color ${uipart}: ${uipart_color}
+			rc_add "set ${uipart}color ${uipart_color}"
 		done
+
+		unset uipart_color
 	fi
 
 	if [[ $(ini_get syntax_highlight) == True ]]; then
-		dbg_msg $"NanoCFG Setting:" $"Colors" $"On"
+		dbg_msg $"NanoCFG Setting:" Colors $"On"
 		for file in /usr/share/nano/*.nanorc; \
 			do rc_add "include \"$file\""; \
 		done
-	else	dbg_msg $"NanoCFG Setting:" $"Colors" $"Off"
+	else	dbg_msg $"NanoCFG Setting:" Colors $"Off"
 	fi
 
-	mv ${RC_FILE} $HOME/.nanorc
+	mv ${RC_FILE} ${HOME}/.nanorc
 	unset RC_FILE
 
 fi

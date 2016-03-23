@@ -26,15 +26,15 @@ keybindings_setter () {
 		esac
 
 		if [[ ${MOD} == e ]]; then
-			dbg_msg $"ReadlineCFG Setting:" $"${ACT}" $"e-${KEY}"
+			dbg_msg $"ReadlineCFG Setting:" ${ACT} e-${KEY}
 			bind "\\e${KEY}":self-insert
 			echo -E \"\\e${KEY}\":${ACT} >> ${RC_FILE}
 		elif [[ ${MOD} == C ]]; then
-			dbg_msg $"ReadlineCFG Setting:" $"${ACT}" $"C-${KEY}"
+			dbg_msg $"ReadlineCFG Setting:" ${ACT} C-${KEY}
 			bind "\\C-${KEY}":self-insert
 			echo -E \"\\C-${KEY}\":${ACT} >> ${RC_FILE}
 		elif [[ ${MOD} == X ]]; then
-			dbg_msg $"ReadlineCFG Setting:" $"${ACT}" $"${KEY}"
+			dbg_msg $"ReadlineCFG Setting:" ${ACT} ${KEY}
 			#bind "${KEY}":self-insert
 			echo -E ${KEY}:${ACT} >> ${RC_FILE}
 		fi

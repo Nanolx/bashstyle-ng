@@ -11,12 +11,4 @@
 
 export truncpwd_supported=True
 
-if [[ ${enable_colors} == True ]]; then
-
-PS1="\n${pscolor}.:${sepacolor}[ ${usercolor}\u${pscolor} @ ${hostcolor}\h${sepacolor} ]${pscolor}:. .:${sepacolor}[ ${wdircolor}\$(truncpwd)${sepacolor} ]${pscolor}:.\n.:${sepacolor}[·>${fontcolor} "
-
-else
-
-PS1="\n.:[ \u @ \h ]:. .:[ \$(truncpwd) ]:.\n.:[·> "
-
-fi
+PS1="\n${color_ps}.:${color_separator}[ ${color_user}\u${color_ps} @ ${color_host}\h${color_separator} ]${color_ps}:. .:${color_separator}[ ${color_wdir}\$(truncpwd)${color_separator} ]${color_ps}:.\n.:${color_separator}[·>${color_font} "

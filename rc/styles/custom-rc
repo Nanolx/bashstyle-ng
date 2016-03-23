@@ -24,3 +24,5 @@ if [[ ${use_custom_prompt} == True && ${custom_prompt} != "" ]]; then
 	fi
 	source ${HOME}/.custom_prompt
 fi
+
+unset custom_prompt custom_command

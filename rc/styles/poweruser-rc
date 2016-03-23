@@ -43,26 +43,11 @@ function prompt_command
 
 PROMPT_COMMAND=prompt_command
 
-if [[ ${enable_colors} == True ]]; then
-
 PS1="\n\
-${sepacolor}[ ${timecolor}\$(date +%T) ${fontcolor}-${datecolor} \$(date +%D) ${sepacolor}]\
-${sepacolor}[ ${usercolor}\u ${fontcolor}@ ${hostcolor}\h ${sepacolor}]\
-${sepacolor}[ ${wdircolor}\${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize) \
+${color_separator}[ ${color_time}\$(date +%T) ${color_font}-${color_date} \$(date +%D) ${color_separator}]\
+${color_separator}[ ${color_user}\u ${color_font}@ ${color_host}\h ${color_separator}]\
+${color_separator}[ ${color_wdir}\${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize) \
 \${directories}.\${hiddendirectories}d\${links}\${devices}\
-${sepacolor} ][ ${upcolor}\${loaddiff}${sepacolor} ][ \
-${pscolor}\$(ps ax | wc -l | sed -e \"s: ::g\")proc ${sepacolor}]\
-\n${sepacolor}[ ${wdircolor}\$(truncpwd)${POW_1_COLOR}\$(POW_1) ${sepacolor}]${fontcolor} \$ "
-
-else
-
-PS1="\n\
-[ \$(date +%T) - \$(date +%D) ]\
-[ \u @ \h ]\
-[ \${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize) \
-\${directories}.\${hiddendirectories}d\${links}\${devices}\
-][ \${loaddiff} ][ \
-\$(ps ax | wc -l | sed -e \"s: ::g\")proc ]\
-\n[ \$(truncpwd)\$(POW_1) ] \$ "
-
-fi
+${color_separator} ][ ${color_uptime}\${loaddiff}${color_separator} ][ \
+${color_ps}\$(ps ax | wc -l | sed -e \"s: ::g\")proc ${color_separator}]\
+\n${color_separator}[ ${color_wdir}\$(truncpwd)${POW_1_COLOR}\$(POW_1) ${color_separator}]${color_font} \$ "

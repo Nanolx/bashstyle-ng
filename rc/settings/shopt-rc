@@ -10,86 +10,86 @@
 #########################################################
 
 if [[ $(ini_get cdspell) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"cdspell" $"On"
+	dbg_msg $"BashStyle-NG Setting:" cdspell $"On"
 	dbg_log shopt -s cdspell
-else	dbg_msg $"BashStyle-NG Setting:" $"cdspell" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" cdspell $"Off"
 	dbg_log shopt -u cdspell
 fi
 
 if [[ $(ini_get cdable_vars) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"cdable_vars" $"On"
+	dbg_msg $"BashStyle-NG Setting:" cdable_vars $"On"
 	dbg_log shopt -s cdable_vars
-else	dbg_msg $"BashStyle-NG Setting:" $"cdable_vars" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" cdable_vars $"Off"
 	dbg_log shopt -u cdable_vars
 fi
 
 if [[ $(ini_get checkhash) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"checkhash" $"On"
+	dbg_msg $"BashStyle-NG Setting:" checkhash $"On"
 	dbg_log shopt -s checkhash
-else	dbg_msg $"BashStyle-NG Setting:" $"checkhash" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" checkhash $"Off"
 	dbg_log shopt -u checkhash
 fi
 
 if [[ $(ini_get cmdhist) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"cmdhist" $"On"
+	dbg_msg $"BashStyle-NG Setting:" cmdhist $"On"
 	dbg_log shopt -s cmdhist
-else	dbg_msg $"BashStyle-NG Setting:" $"cmdhist" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" cmdhist $"Off"
 	dbg_log shopt -u cmdhist
 fi
 
 if [[ $(ini_get force_fignore) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"force_fignore" $"On"
+	dbg_msg $"BashStyle-NG Setting:" force_fignore $"On"
 	dbg_log shopt -s force_fignore
-else	dbg_msg $"BashStyle-NG Setting:" $"force_fignore" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" force_fignore $"Off"
 	dbg_log shopt -u force_fignore
 fi
 
 if [[ $(ini_get histreedit) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"histreedit" $"On"
+	dbg_msg $"BashStyle-NG Setting:" histreedit $"On"
 	dbg_log shopt -s histreedit
-else	dbg_msg $"BashStyle-NG Setting:" $"histreedit" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" histreedit $"Off"
 	dbg_log shopt -u histreedit
 fi
 
 if [[ $(ini_get no_empty_cmd_completion) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"no_empty_cmd_completion" $"On"
+	dbg_msg $"BashStyle-NG Setting:" no_empty_cmd_completion $"On"
 	dbg_log shopt -s no_empty_cmd_completion
-else	dbg_msg $"BashStyle-NG Setting:" $"no_empty_cmd_completion" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" no_empty_cmd_completion $"Off"
 	dbg_log shopt -u no_empty_cmd_completion
 fi
 
 if [[ ${HISTCONTROL} != erasedups && $(ini_get histappend) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"histappend" $"On"
+	dbg_msg $"BashStyle-NG Setting:" histappend $"On"
 	dbg_log shopt -s histappend
-else	dbg_msg $"BashStyle-NG Setting:" $"histappend" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" histappend $"Off"
 	dbg_log shopt -u histappend
 fi
 
 if [[ $(ini_get dotglob) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"dotglob" $"On"
+	dbg_msg $"BashStyle-NG Setting:" dotglob $"On"
 	dbg_log shopt -s dotglob
-else	dbg_msg $"BashStyle-NG Setting:" $"dotglob" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" dotglob $"Off"
 	dbg_log shopt -u dotglob
 fi
 
 if [[ $(ini_get extglob) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"extglob" $"On"
+	dbg_msg $"BashStyle-NG Setting:" extglob $"On"
 	dbg_log shopt -s extglob
-else	dbg_msg $"BashStyle-NG Setting:" $"extglob" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" extglob $"Off"
 	dbg_log shopt -u extglob
 fi
 
 if [[ $(ini_get nocaseglob) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"nocaseglob" $"On"
+	dbg_msg $"BashStyle-NG Setting:" nocaseglob $"On"
 	dbg_log shopt -s nocaseglob
-else	dbg_msg $"BashStyle-NG Setting:" $"nocaseglob" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" nocaseglob $"Off"
 	dbg_log shopt -u nocaseglob
 fi
 
 if [[ $(ini_get nocasematch) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"nocasematch" $"On"
+	dbg_msg $"BashStyle-NG Setting:" nocasematch $"On"
 	dbg_log shopt -s nocasematch
-else	dbg_msg $"BashStyle-NG Setting:" $"nocasematch" $"Off"
+else	dbg_msg $"BashStyle-NG Setting:" nocasematch $"Off"
 	dbg_log shopt -u nocasematch
 fi
 
@@ -97,30 +97,30 @@ fi
 if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 
 	if [[ $(ini_get autocd) == True ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"autocd" $"On"
+		dbg_msg $"BashStyle-NG Setting:" autocd $"On"
 		dbg_log shopt -s autocd
-	else	dbg_msg $"BashStyle-NG Setting:" $"autocd" $"Off"
+	else	dbg_msg $"BashStyle-NG Setting:" autocd $"Off"
 		dbg_log shopt -u autocd
 	fi
 
 	if [[ $(ini_get checkjobs) == True ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"checkjobs" $"On"
+		dbg_msg $"BashStyle-NG Setting:" checkjobs $"On"
 		dbg_log shopt -s checkjobs
-	else	dbg_msg $"BashStyle-NG Setting:" $"checkjobs" $"Off"
+	else	dbg_msg $"BashStyle-NG Setting:" checkjobs $"Off"
 		dbg_log shopt -u checkjobs
 	fi
 
 	if [[ $(ini_get globstar) == True ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"globstar" $"On"
+		dbg_msg $"BashStyle-NG Setting:" globstar $"On"
 		dbg_log shopt -s globstar
-	else	dbg_msg $"BashStyle-NG Setting:" $"globstar" $"Off"
+	else	dbg_msg $"BashStyle-NG Setting:" globstar $"Off"
 		dbg_log shopt -u globstar
 	fi
 
 	if [[ $(ini_get dirspell) == True ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"dirspell" $"On"
+		dbg_msg $"BashStyle-NG Setting:" dirspell $"On"
 		dbg_log shopt -s dirspell
-	else	dbg_msg $"BashStyle-NG Setting:" $"dirspell" $"Off"
+	else	dbg_msg $"BashStyle-NG Setting:" dirspell $"Off"
 		dbg_log shopt -u dirspell
 	fi
 fi
@@ -128,15 +128,16 @@ fi
 # Stuff new in Bash 4.3
 if [[ ${BSNG_BASHVER} -ge 43 ]]; then
 	if [[ $(ini_get direxpand) == True ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"direxpand" $"On"
+		dbg_msg $"BashStyle-NG Setting:" direxpand $"On"
 		dbg_log shopt -s direxpand
-	else	dbg_msg $"BashStyle-NG Setting:" $"direxpand" $"Off"
+	else	dbg_msg $"BashStyle-NG Setting:" direxpand $"Off"
 		dbg_log shopt -u direxpand
 	fi
+
 	if [[ $(ini_get globasciirange) == True ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"globasciiranges" $"On"
+		dbg_msg $"BashStyle-NG Setting:" globasciiranges $"On"
 		dbg_log shopt -s globasciiranges
-	else	dbg_msg $"BashStyle-NG Setting:" $"globasciiranges" $"Off"
+	else	dbg_msg $"BashStyle-NG Setting:" globasciiranges $"Off"
 		dbg_log shopt -u globasciiranges
 	fi
 fi

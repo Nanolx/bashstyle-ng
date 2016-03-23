@@ -9,12 +9,4 @@
 #							#
 #########################################################
 
-if [[ ${enable_colors} == True ]]; then
-
-PS1="\n${sepacolor} -${pscolor}( ${usercolor}\u${sepacolor} /${hostcolor} \h${pscolor} )${sepacolor}-${pscolor}( \$(systemkit tty) )${sepacolor}-${pscolor}(${upcolor} uptime: \$(systemkit uptime)${pscolor} )${sepacolor}-${pscolor}(${timecolor} \$(date +%H:%M)${datecolor} \$(date +%d-%b-%y)${pscolor} )${sepacolor}-${pscolor}(${wdircolor} files: \$(systemkit countvisiblefiles)${sepacolor} /${wdircolor} folders: \$(systemkit countvisibledirs)${pscolor} )${sepacolor}-\n -${pscolor}<${wdircolor} \$(truncpwd)${QUIRK_1_COLOR}\$(QUIRK_1) ${pscolor}>${sepacolor}-${fontcolor} "
-
-else
-
-PS1="\n -( \u / \h )-( \$(systemkit tty) )-( uptime: \$(systemkit uptime) )-( \$(date +%H:%M) \$(date +%d-%b-%y ) )-( files: \$(systemkit countvisiblefiles) / folders: \$(systemkit countvisibledirs) )-\n -< \$(truncpwd)\$(QUIRK_1) >- "
-
-fi
+PS1="\n${color_separator} -${color_ps}( ${color_user}\u${color_separator} /${color_host} \h${color_ps} )${color_separator}-${color_ps}( \$(systemkit tty) )${color_separator}-${color_ps}(${color_uptime} uptime: \$(systemkit uptime)${color_ps} )${color_separator}-${color_ps}(${color_time} \$(date +%H:%M)${color_date} \$(date +%d-%b-%y)${color_ps} )${color_separator}-${color_ps}(${color_wdir} files: \$(systemkit countvisiblefiles)${color_separator} /${color_wdir} folders: \$(systemkit countvisibledirs)${color_ps} )${color_separator}-\n -${color_ps}<${color_wdir} \$(truncpwd)${QUIRK_1_COLOR}\$(QUIRK_1) ${color_ps}>${color_separator}-${color_font} "

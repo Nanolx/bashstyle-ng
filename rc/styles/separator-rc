@@ -12,36 +12,18 @@
 sepa=$(ini_get separator)
 export truncpwd_supported=True
 
-if [[ ${enable_colors} == True ]]; then
+PS1="\n${color_user}\u${color_font} @${color_host} \h${color_separator} ${sepa} ${color_date}\d${color_separator} ${sepa} ${color_time}\t${color_separator} ${sepa} ${color_wdir}\$(truncpwd)"
+[[ $(ini_get files_amount) == True ]] && PS1="${PS1} files: \$(systemkit countvisiblefiles)"
+[[ $(ini_get files_amount) == True && $(ini_get file_size) == True ]] && PS1="${PS1}${color_separator} /"
+[[ $(ini_get file_size) == True ]] && PS1="${PS1}${color_wdir} size: \$(systemkit dirsize)"
+[[ $(ini_get tty) == True ]] && PS1="${PS1} ${color_separator}${sepa}${color_host} tty: \$(systemkit tty)"
+[[ $(ini_get uptimes) == True ]] && PS1="${PS1} ${color_separator}${sepa}${color_uptime} uptime: \$(systemkit uptime)"
+[[ $(ini_get load) == True ]] && PS1="${PS1} ${color_separator}${sepa}${color_uptime} system load: \$(systemkit load1)"
+[[ $(ini_get processes) == True ]] && PS1="${PS1} ${color_separator}${sepa}${color_ps} processes: \$(systemkit processes)"
+[[ $(ini_get battery_load) == True ]] && PS1="${PS1} ${color_separator}${sepa}${color_ps} battery: \$(systemkit battery)"
+[[ $(ini_get mem) == free ]] && PS1="${PS1} ${color_separator}${sepa}${color_user} free mem: ${color_ps}\$(systemkit freeram)${color_user} mb"
+[[ $(ini_get mem) == used ]] && PS1="${PS1} ${color_separator}${sepa}${color_user} used mem: ${color_ps}\$(systemkit usedram)${color_user} mb"
+[[ $(ini_get mem) == both ]] && PS1="${PS1} ${color_separator}${sepa}${color_user} free${color_separator}/${color_user}used mem: ${color_ps}\$(systemkit freeram)${color_separator}/${color_ps}\$(systemkit usedram)${color_user} mb"
+PS1="${PS1}${color_separator} ${sepa}\n${color_user}$SEPA_1_COLOR\$(SEPA_1)\$ $SEPA_2_COLOR\$(SEPA_2)${color_font}-> "
 
-	PS1="\n${usercolor}\u${fontcolor} @${hostcolor} \h${sepacolor} ${sepa} ${datecolor}\d${sepacolor} ${sepa} ${timecolor}\t${sepacolor} ${sepa} ${wdircolor}\$(truncpwd)"
-	[[ $(ini_get files_amount) == True ]] && PS1+=" files: \$(systemkit countvisiblefiles)"
-	[[ $(ini_get files_amount) == True && $(ini_get file_size) == True ]] && PS1+="${sepacolor} /"
-	[[ $(ini_get file_size) == True ]] && PS1+="${wdircolor} size: \$(systemkit dirsize)"
-	[[ $(ini_get tty) == True ]] && PS1+=" ${sepacolor}${sepa}${hostcolor} tty: \$(systemkit tty)"
-	[[ $(ini_get uptimes) == True ]] && PS1+=" ${sepacolor}${sepa}${upcolor} uptime: \$(systemkit uptime)"
-	[[ $(ini_get load) == True ]] && PS1+=" ${sepacolor}${sepa}${upcolor} system load: \$(systemkit load1)"
-	[[ $(ini_get processes) == True ]] && PS1+=" ${sepacolor}${sepa}${pscolor} processes: \$(systemkit processes)"
-	[[ $(ini_get battery_load) == True ]] && PS1+=" ${sepacolor}${sepa}${pscolor} battery: \$(systemkit battery)"
-	[[ $(ini_get mem) == free ]] && PS1+=" ${sepacolor}${sepa}${usercolor} free mem: ${pscolor}\$(systemkit freeram)${usercolor} mb"
-	[[ $(ini_get mem) == used ]] && PS1+=" ${sepacolor}${sepa}${usercolor} used mem: ${pscolor}\$(systemkit usedram)${usercolor} mb"
-	[[ $(ini_get mem) == both ]] && PS1+=" ${sepacolor}${sepa}${usercolor} free${sepacolor}/${usercolor}used mem: ${pscolor}\$(systemkit freeram)${sepacolor}/${pscolor}\$(systemkit usedram)${usercolor} mb"
-	PS1+="${sepacolor} ${sepa}\n${usercolor}$SEPA_1_COLOR\$(SEPA_1)\$ $SEPA_2_COLOR\$(SEPA_2)${fontcolor}-> "
-
-else
-
-	PS1="\n\u @ \h ${sepa} \d ${sepa} \t ${sepa} \$(truncpwd)"
-	[[ $(ini_get files_amount) == True ]] && PS1+=" files: \$(systemkit countvisiblefiles)"
-	[[ $(ini_get files_amount) == True && $(ini_get file_size) == True ]] && PS1+="${sepacolor} /"
-	[[ $(ini_get file_size) == True ]] && PS1+=" size: \$(systemkit dirsize)"
-	[[ $(ini_get tty) == True ]] && PS1+=" ${sepa} tty: \$(systemkit tty)"
-	[[ $(ini_get uptimes) == True ]] && PS1+=" ${sepa} uptime: \$(systemkit uptime)"
-	[[ $(ini_get load) == True ]] && PS1+=" ${sepa} system load: \$(systemkit load1)"
-	[[ $(ini_get processes) == True ]] && PS1+=" ${sepa} processes: \$(systemkit processes)"
-	[[ $(ini_get battery_load) == True ]] && PS1+=" ${sepa} battery: \$(systemkit battery)"
-	[[ $(ini_get mem) == free ]] && PS1+=" ${sepa} free mem: \$(systemkit freeram) mb"
-	[[ $(ini_get mem) == used ]] && PS1+=" ${sepa} used mem: \$(systemkit usedram) mb"
-	[[ $(ini_get mem) == both ]] && PS1+=" ${sepa} free/used mem: \$(systemkit freeram)/\$(systemkit usedram) mb"
-	PS1+=" ${sepa}\n\$ -> "
-
-fi
+unset sepa

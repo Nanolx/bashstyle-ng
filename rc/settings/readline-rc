@@ -19,149 +19,149 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 	export RC_FILE="${HOME}/.inputrc.bs-ng.$(date +%I-%M-%S)"
 
 	if [[ $(ini_get editing_mode) == emacs ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Emacs"
+		dbg_msg $"ReadlineCFG Setting:" Editing-Mode Emacs
 		rc_add "set editing-mode emacs"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Editing-Mode Vi"
+		dbg_msg $"ReadlineCFG Setting:" Editing-Mode Vi
 		rc_add "set editing-mode vi"
 	fi
 
-	dbg_msg $"ReadlineCFG Setting:" $"Bellstyle" $(ini_get bellstyle)
+	dbg_msg $"ReadlineCFG Setting:" Bellstyle $(ini_get bellstyle)
 	rc_add "set bell-style $(ini_get bellstyle)"
 
 	if [[ $(ini_get completion) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Disable-Completion $"Off"
 		rc_add "set disable-completion off"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Disable-Completion" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Disable-Completion $"On"
 		rc_add "set disable-completion on"
 	fi
 
 	if [[ $(ini_get scroll_horizontal) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Horizontal-Scroll-Mode $"On"
 		rc_add "set horizontal-scroll-mode on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Horizontal-Scroll-Mode" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Horizontal-Scroll-Mode $"Off"
 		rc_add "set horizontal-scroll-mode off"
 	fi
 
 	if [[ $(ini_get ambiguous_show) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Show-All-If-Ambiguous $"On"
 		rc_add "set show-all-if-ambiguous on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Show-All-If-Ambiguous" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Show-All-If-Ambiguous $"Off"
 		rc_add "set show-all-if-ambiguous off"
 	fi
 
 	if [[ $(ini_get complete_hidden) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Match-Hidden-Files $"On"
 		rc_add "set match-hidden-files on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Match-Hidden-Files" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Match-Hidden-Files $"Off"
 		rc_add "set match-hidden-files off"
 	fi
 
 	if [[ $(ini_get ignore_case) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Completion-Ignore-Case $"On"
 		rc_add "set completion-ignore-case on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Completion-Ignore-Case" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Completion-Ignore-Case $"Off"
 		rc_add "set completion-ignore-case off"
 	fi
 
 	if [[ $(ini_get visible_stats) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Visible-Stats $"On"
 		rc_add "set visible-stats on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Visible-Stats" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Visible-Stats $"Off"
 		rc_add "set visible-stats off"
 	fi
 
 	if [[ $(ini_get colored_stats) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Colored-Stats" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Colored-Stats $"On"
 		rc_add "set colored-stats on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Colored-Stats" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Colored-Stats $"Off"
 		rc_add "set colored-stats off"
 	fi
 
 	if [[ $(ini_get skip_completed_text) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Skip completed text" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Skip completed text $"On"
 		rc_add "set skip-completed-text on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Skip completed text" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Skip completed text $"Off"
 		rc_add "set skip-completed-text off"
 	fi
 
 	if [[ $(ini_get complete_horizontal) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Print-Completions-Horizontally $"On"
 		rc_add "set print-completions-horizontally on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Print-Completions-Horizontally" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Print-Completions-Horizontally $"Off"
 		rc_add "set print-completions-horizontally off"
 	fi
 
 	if [[ $(ini_get mark_directories) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Mark-Directories $"On"
 		rc_add "set mark-directories on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Mark-Directories" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Mark-Directories $"Off"
 		rc_add "set mark-directories off"
 	fi
 
 	if [[ $(ini_get mark_symbolic_directories) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Mark-Symlinked-Directories $"On"
 		rc_add "set mark-symlinked-directories on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Mark-Symlinked-Directories" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Mark-Symlinked-Directories $"Off"
 		rc_add "set mark-symlinked-directories off"
 	fi
 
 	if [[ $(ini_get mark_modified) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Mark-Modified-Lines $"On"
 		rc_add "set mark-modified-lines on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Mark-Modified-Lines" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Mark-Modified-Lines $"Off"
 		rc_add "set mark-modified-lines off"
 	fi
 
 	if [[ $(ini_get show_editmode) == True ]]; then
-		dbg_msg $"ReadlineCFG Setting:" $"Show Editing Mode" $"On"
+		dbg_msg $"ReadlineCFG Setting:" Show Editing Mode $"On"
 		rc_add "set show-mode-in-prompt on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" $"Show Editing Mode" $"Off"
+		dbg_msg $"ReadlineCFG Setting:" Show Editing Mode $"Off"
 		rc_add "set show-mode-in-prompt off"
 	fi
 
-	dbg_msg $"ReadlineCFG Setting:" $"Completion-Query-Items" $(ini_get query_items)
+	dbg_msg $"ReadlineCFG Setting:" Completion-Query-Items $(ini_get query_items)
 	rc_add "set completion-query-items $(ini_get query_items)"
 
 	if [[ $(ini_get use_readline70) == True ]]; then
 		if [[ $(ini_get colored_completion_prefix) == True ]]; then
-			dbg_msg $"ReadlineCFG Setting:" $"Colored Completion Prefix" $"On"
+			dbg_msg $"ReadlineCFG Setting:" Colored Completion Prefix $"On"
 			rc_add "set colored-completion-prefix on"
 		else
-			dbg_msg $"ReadlineCFG Setting:" $"Colored Completion Prefix" $"Off"
+			dbg_msg $"ReadlineCFG Setting:" Colored Completion Prefix $"Off"
 			rc_add "set colored-completion-prefix off"
 		fi
 
 		if [[ $(ini_get enable_bracketed_paste) == True ]]; then
-			dbg_msg $"ReadlineCFG Setting:" $"Enable Bracketed Paste" $"On"
+			dbg_msg $"ReadlineCFG Setting:" Enable Bracketed Paste $"On"
 			rc_add "set enable-bracketed-paste on"
 		else
-			dbg_msg $"ReadlineCFG Setting:" $"Enable Bracketed Paste" $"Off"
+			dbg_msg $"ReadlineCFG Setting:" Enable Bracketed Paste $"Off"
 			rc_add "set enable-bracketed-paste off"
 		fi
 
 		if [[ $(ini_get show_editmode) == True ]]; then
 			if [[ $(ini_get editing_mode) == emacs ]]; then
-				dbg_msg $"ReadlineCFG Setting:" $"Emacs Mode String" $(ini_get emacs_mode_string)
+				dbg_msg $"ReadlineCFG Setting:" Emacs Mode String $(ini_get emacs_mode_string)
 				rc_add "set emacs-mode-string $(ini_get emacs_mode_string)"
 			else
-				dbg_msg $"ReadlineCFG Setting:" $"Vi Commnad Mode String" $(ini_get vi_cmd_mode_string)
+				dbg_msg $"ReadlineCFG Setting:" Vi Commnad Mode String $(ini_get vi_cmd_mode_string)
 				rc_add "set vi-cmd-mode-string $(ini_get vi_cmd_mode_string)"
 
-				dbg_msg $"ReadlineCFG Setting:" $"Vi Insert Mode String" $(ini_get vi_ins_mode_string)
+				dbg_msg $"ReadlineCFG Setting:" Vi Insert Mode String $(ini_get vi_ins_mode_string)
 				rc_add "set vi-ins-mode-string $(ini_get vi_ins_mode_string)"
 			fi
 		fi

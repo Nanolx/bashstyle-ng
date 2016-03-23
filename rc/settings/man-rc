@@ -10,42 +10,45 @@
 #########################################################
 
 if [[ $(ini_get enable_colors) == True ]]; then
+	# enforce pager to be less, else this does not work
+	# less is a hard dependency for BashStyle-NG, so it
+	# must be available, no need for an explicit check
 	export PAGER="less"
 
 	# foreground colors
-	export lfblack="38;5;0m"
-	export lfred="38;5;1m"
-	export lfgreen="38;5;2m"
-	export lfyellow="38;5;3m"
-	export lfblue="38;5;4m"
-	export lfmagenta="38;5;129m"
-	export lfcyan="38;5;6m"
-	export lfgrey="38;5;7m"
-	export lfwhite="38;5;999m"
-	export lfcoldblue="38;5;33m"
-	export lfsmoothblue="38;5;111m"
-	export lficeblue="38;5;45m"
-	export lfturqoise="38;5;50m"
-	export lfsmoothgreen="38;5;42m"
-	export lfwinered="38;5;637m"
-	export lfbrown="38;5;684m"
-	export lfsilver="38;5;761m"
-	export lfocher="38;5;690m"
-	export lforange="38;5;714m"
-	export lfpurple="38;5;604m"
-	export lfpink="38;5;213m"
-	export lfcream="38;5;5344m"
+	lfblack="38;5;0m"
+	lfred="38;5;1m"
+	lfgreen="38;5;2m"
+	lfyellow="38;5;3m"
+	lfblue="38;5;4m"
+	lfmagenta="38;5;129m"
+	lfcyan="38;5;6m"
+	lfgrey="38;5;7m"
+	lfwhite="38;5;999m"
+	lfcoldblue="38;5;33m"
+	lfsmoothblue="38;5;111m"
+	lficeblue="38;5;45m"
+	lfturqoise="38;5;50m"
+	lfsmoothgreen="38;5;42m"
+	lfwinered="38;5;637m"
+	lfbrown="38;5;684m"
+	lfsilver="38;5;761m"
+	lfocher="38;5;690m"
+	lforange="38;5;714m"
+	lfpurple="38;5;604m"
+	lfpink="38;5;213m"
+	lfcream="38;5;5344m"
 
 	# background colors
-	export lbblack="30"
-	export lbred="41"
-	export lbgreen="42"
-	export lbyellow="43"
-	export lbblue="44"
-	export lbmagenta="45"
-	export lbcyan="46"
-	export lbgrey="47"
-	export lbwhite="107"
+	lbblack="30"
+	lbred="41"
+	lbgreen="42"
+	lbyellow="43"
+	lbblue="44"
+	lbmagenta="45"
+	lbcyan="46"
+	lbgrey="47"
+	lbwhite="107"
 
 	# standout-mode
 	eval termcap_sof="$(ini_get less_standout_foreground)"
@@ -53,10 +56,10 @@ if [[ $(ini_get enable_colors) == True ]]; then
 	export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
 
 	if [[ $(ini_get dark_terminal) == True ]]; then
-		export lfblack=${lfwhite}
-		export lbblack=${lbwhite}
-	else	export lfwhite=${lfblack}
-		export lbwhite=${lbblack}
+		lfblack=${lfwhite}
+		lbblack=${lbwhite}
+	else	lfwhite=${lfblack}
+		lbwhite=${lbblack}
 	fi
 
 	# blinking text
@@ -86,4 +89,9 @@ if [[ $(ini_get enable_colors) == True ]]; then
 
 	unset termcap_mb termcap_md termcap_md termcap_mr \
 		termcap_mh termcap_us termcap_sof termcap_sob
+
+	for lfcolor in ${colors[@]}; do
+		eval unset lf${lfcolor}
+	done
+
 fi

@@ -18,7 +18,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	dbg_msg $"BashStyle-NG Loading:" $"VimCFG"
 	export RC_FILE=${HOME}/.vimrc.bs-ng.$(date +%I-%M-%S)
 
-	dbg_msg $"VimCFG Setting:" $"runtimepath"
+	dbg_msg $"VimCFG Setting:" runtimepath
 	rc_add "set runtimepath+=${BSNG_DATADIR}/bashstyle-ng/vim/"
 
 	if [[ $(ini_get colorscheme) != "default" ]]; then
@@ -28,211 +28,211 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	fi
 
 	if [[ $(ini_get syntax_hilight) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Syntax" $"On"
+		dbg_msg $"VimCFG Setting:" Syntax $"On"
 		rc_add "syntax on"
 	else
-		dbg_msg $"VimCFG Setting:" $"Syntax" $"Off"
+		dbg_msg $"VimCFG Setting:" Syntax $"Off"
 		rc_add "syntax off"
 	fi
 
 	if [[ $(ini_get dark_background) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Background dark"
+		dbg_msg $"VimCFG Setting:" Background dark
 		rc_add "set background=dark"
 	else
-		dbg_msg $"VimCFG Setting:" $"Background light"
+		dbg_msg $"VimCFG Setting:" Background light
 		rc_add "set background=light"
 	fi
 
 	if [[ $(ini_get jump_back) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Jump-Back" $"On"
+		dbg_msg $"VimCFG Setting:" Jump-Back $"On"
 		rc_add "if has(\"autocmd\")"
 		rc_add "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")"
 		rc_add "    \| exe \"normal! g'\\\"\" | endif"
 		rc_add "endif"
-	else	dbg_msg $"VimCFG Setting:" $"Jump-Back" $"Off"
+	else	dbg_msg $"VimCFG Setting:" Jump-Back $"Off"
 	fi
 
 	if [[ $(ini_get filetype_indent) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"On"
+		dbg_msg $"VimCFG Setting:" Filetype-Indention $"On"
 		rc_add "if has(\"autocmd\")"
 		rc_add "    filetype plugin indent on"
 		rc_add "endif"
-		dbg_msg $"VimCFG Setting:" $"Auto-Indent" $"On"
+		dbg_msg $"VimCFG Setting:" Auto-Indent $"On"
 		rc_add "set autoindent"
-		dbg_msg $"VimCFG Setting:" $"Smart-Indent" $"On"
+		dbg_msg $"VimCFG Setting:" Smart-Indent $"On"
 		rc_add "set smartindent"
 	else
-		dbg_msg $"VimCFG Setting:" $"Filetype-Indention" $"Off"
-		dbg_msg $"VimCFG Setting:" $"Auto-Indent" $"Off"
+		dbg_msg $"VimCFG Setting:" Filetype-Indention $"Off"
+		dbg_msg $"VimCFG Setting:" Auto-Indent $"Off"
 		rc_add "set noautoindent"
-		dbg_msg $"VimCFG Setting:" $"Smart-Indent" $"Off"
+		dbg_msg $"VimCFG Setting:" Smart-Indent $"Off"
 		rc_add "set nosmartindent"
 	fi
 
 	if [[ $(ini_get show_command) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Show-Command" $"On"
+		dbg_msg $"VimCFG Setting:" Show-Command $"On"
 		rc_add "set showcmd"
 	else
-		dbg_msg $"VimCFG Setting:" $"Show-Command" $"Off"
+		dbg_msg $"VimCFG Setting:" Show-Command $"Off"
 		rc_add "set noshowcmd"
 	fi
 
 	if [[ $(ini_get highlight_matches) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Show-Matches" $"On"
+		dbg_msg $"VimCFG Setting:" Show-Matches $"On"
 		rc_add "set showmatch"
 	else
-		dbg_msg $"VimCFG Setting:" $"Show-Matches" $"Off"
+		dbg_msg $"VimCFG Setting:" Show-Matches $"Off"
 		rc_add "set noshowmatch"
 	fi
 
 	if [[ $(ini_get ignore_case) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Ignore-Case" $"On"
+		dbg_msg $"VimCFG Setting:" Ignore-Case $"On"
 		rc_add "set ignorecase"
 	else
-		dbg_msg $"VimCFG Setting:" $"Ignore-Case" $"Off"
+		dbg_msg $"VimCFG Setting:" Ignore-Case $"Off"
 		rc_add "set noignorecase"
 	fi
 
 	if [[ $(ini_get smart_case) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Smart-Case" $"On"
+		dbg_msg $"VimCFG Setting:" Smart-Case $"On"
 		rc_add "set smartcase"
 	else
-		dbg_msg $"VimCFG Setting:" $"Smart-Case" $"Off"
+		dbg_msg $"VimCFG Setting:" Smart-Case $"Off"
 		rc_add "set nosmartcase"
 	fi
 
 	if [[ $(ini_get incremental_search) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Incremental-Search" $"On"
+		dbg_msg $"VimCFG Setting:" Incremental-Search $"On"
 		rc_add "set incsearch"
 	else
-		dbg_msg $"VimCFG Setting:" $"Incremental-Search" $"Off"
+		dbg_msg $"VimCFG Setting:" Incremental-Search $"Off"
 		rc_add "set noincsearch"
 	fi
 
 	if [[ $(ini_get highlight_brackets) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Highlight" $"On"
+		dbg_msg $"VimCFG Setting:" Highlight $"On"
 		rc_add "set hls"
 	else
-		dbg_msg $"VimCFG Setting:" $"Highlight" $"Off"
+		dbg_msg $"VimCFG Setting:" Highlight $"Off"
 		rc_add "set nohls"
 	fi
 
 	if [[ $(ini_get show_lineno) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Show-Number" $"On"
+		dbg_msg $"VimCFG Setting:" Show-Number $"On"
 		rc_add "set number"
 	else
-		dbg_msg $"VimCFG Setting:" $"Show-Number" $"Off"
+		dbg_msg $"VimCFG Setting:" Show-Number $"Off"
 		rc_add "set nonumber"
 	fi
 
 	if [[ $(ini_get autosave) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Auto-Save" $"On"
+		dbg_msg $"VimCFG Setting:" Auto-Save $"On"
 		rc_add "set autowriteall"
 	else
-		dbg_msg $"VimCFG Setting:" $"Auto-Save" $"Off"
+		dbg_msg $"VimCFG Setting:" Auto-Save $"Off"
 		rc_add "set noautowriteall"
 	fi
 
 	if [[ $(ini_get highlight_line) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Highlight-Current-Line" $"On"
+		dbg_msg $"VimCFG Setting:" Highlight-Current-Line $"On"
 		rc_add "set cursorline"
 		rc_add "hi CursorLine term=none cterm=underline ctermbg=none"
 	else
-		dbg_msg $"VimCFG Setting:" $"Highlight-Current-Line" $"Off"
+		dbg_msg $"VimCFG Setting:" Highlight-Current-Line $"Off"
 		rc_add "set nocursorline"
 	fi
 
 	if [[ $(ini_get highlight_column) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Highlight-Current-Column" $"On"
+		dbg_msg $"VimCFG Setting:" Highlight-Current-Column $"On"
 		rc_add "set cursorcolumn"
 		rc_add "hi CursorColumn term=none cterm=underline ctermbg=none"
 	else
-		dbg_msg $"VimCFG Setting:" $"Highlight-Current-Column" $"Off"
+		dbg_msg $"VimCFG Setting:" Highlight-Current-Column $"Off"
 		rc_add "set nocursorcolumn"
 	fi
 
 	if [[ $(ini_get ruler) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Show-Ruler" $"On"
+		dbg_msg $"VimCFG Setting:" Show-Ruler $"On"
 		rc_add "set ruler"
-		dbg_msg $"VimCFG Setting:" $"Ruler-Format" $(ini_get rulerformat)
+		dbg_msg $"VimCFG Setting:" Ruler-Format $(ini_get rulerformat)
 		rc_add "set rulerformat=$(ini_get rulerformat)"
 	else
-		dbg_msg $"VimCFG Setting:" $"Show-Ruler" $"Off"
+		dbg_msg $"VimCFG Setting:" Show-Ruler $"Off"
 		rc_add "set noruler"
 	fi
 
 	if [[ $(ini_get vim_backup) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Backup" $"On"
+		dbg_msg $"VimCFG Setting:" Backup $"On"
 		rc_add "set backup"
 	else
-		dbg_msg $"VimCFG Setting:" $"Backup" $"Off"
+		dbg_msg $"VimCFG Setting:" Backup $"Off"
 		rc_add "set nobackup"
 	fi
 
 	if [[ $(ini_get start_line) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Start-Of-Line" $"On"
+		dbg_msg $"VimCFG Setting:" Start-Of-Line $"On"
 		rc_add "set startofline"
 	else
-		dbg_msg $"VimCFG Setting:" $"Start-Of-Line" $"Off"
+		dbg_msg $"VimCFG Setting:" Start-Of-Line $"Off"
 		rc_add "set nostartofline"
 	fi
 
-	dbg_msg $"VimCFG Setting:" $"Linespace 0"
+	dbg_msg $"VimCFG Setting:" Linespace 0
 	rc_add "set linespace=0"
 
 	if [[ $(ini_get wrap_line) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Linewrapping" $"On"
+		dbg_msg $"VimCFG Setting:" Line-Wrapping $"On"
 		rc_add "set wrap"
-		dbg_msg $"VimCFG Setting:" $"Autowrap-length" $(ini_get wrap_length)
+		dbg_msg $"VimCFG Setting:" Autowrap-length $(ini_get wrap_length)
 		rc_add "set tw=$(ini_get wrap_length)"
 	else
-		dbg_msg $"VimCFG Setting:" $"Linewrapping" $"Off"
+		dbg_msg $"VimCFG Setting:" Line-Wrapping $"Off"
 		rc_add "set nowrap"
 		rc_add "set tw=0"
 	fi
 
-	dbg_msg $"VimCFG Setting:" $"Tab-width" $(ini_get tab_length)
+	dbg_msg $"VimCFG Setting:" Tab-width $(ini_get tab_length)
 	rc_add "set tabstop=$(ini_get tab_length)"
 	rc_add "set softtabstop=$(ini_get tab_length)"
 
 	if [[ $(ini_get expandtab) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Expand Tab" $"On"
+		dbg_msg $"VimCFG Setting:" Expand Tab $"On"
 		rc_add "set expandtab"
 	else
-		dbg_msg $"VimCFG Setting:" $"Expand Tab" $"Off"
+		dbg_msg $"VimCFG Setting:" Expand Tab $"Off"
 		rc_add "set noexpandtab"
 	fi
 
 	if [[ $(ini_get chdir) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Auto chdir" $"On"
+		dbg_msg $"VimCFG Setting:" Auto chdir $"On"
 		rc_add "set autochdir"
 	else
-		dbg_msg $"VimCFG Setting:" $"Auto chdir" $"Off"
+		dbg_msg $"VimCFG Setting:" Auto chdir $"Off"
 		rc_add "set noautochdir"
 	fi
 
 	if [[ $(ini_get foldenable) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Fold Enable" $"On"
+		dbg_msg $"VimCFG Setting:" Fold Enable $"On"
 		rc_add "set foldenable"
 
-		dbg_msg $"VimCFG Setting:" $"Fold Level" $(ini_get foldlevelstart)
+		dbg_msg $"VimCFG Setting:" Fold Level $(ini_get foldlevelstart)
 		rc_add "set foldlevelstart=$(ini_get foldlevelstart)"
 
-		dbg_msg $"VimCFG Setting:" $"Fold Maximum Nest" $(ini_get foldnestmax)
+		dbg_msg $"VimCFG Setting:" Fold Maximum Nest $(ini_get foldnestmax)
 		rc_add "set foldnestmax=$(ini_get foldnestmax)"
 
-		dbg_msg $"VimCFG Setting:" $"Fold Method" $(ini_get foldmethod)
+		dbg_msg $"VimCFG Setting:" Fold Method $(ini_get foldmethod)
 		rc_add "set foldmethod=$(ini_get foldmethod)"
 	else
-		dbg_msg $"VimCFG Setting:" $"Fold Enable" $"Off"
+		dbg_msg $"VimCFG Setting:" Fold Enable $"Off"
 		rc_add "set nofoldenable"
 	fi
 
 	if [[ $(ini_get wildmenu) == True ]]; then
-		dbg_msg $"VimCFG Setting:" $"Wildmenu" $"On"
+		dbg_msg $"VimCFG Setting:" Wildmenu $"On"
 		rc_add "set wildmenu"
 	else
-		dbg_msg $"VimCFG Setting:" $"Wildmenu" $"Off"
+		dbg_msg $"VimCFG Setting:" Wildmenu $"Off"
 		rc_add "set nowildmenu"
 	fi
 

@@ -37,13 +37,7 @@ fi
 
 PROMPT_COMMAND=pre_prompt
 
-if [[ ${enable_colors} == True ]]; then
+PS1="${color_separator}┌─(${color_user} \u${color_font} @ ${color_host}\h\
+${color_date} \$(date \"+%a, %d %b %y\")${color_separator} )─\${fill}─(${color_wdir} \${newPWD} \
+${color_separator})─<\n${color_separator}└─(${color_time} \$(date \"+%H:%M\")${color_user} \$${color_separator} )─>${color_font} "
 
-        PS1="${sepacolor}┌─(${usercolor} \u${fontcolor} @ ${hostcolor}\h\
-${datecolor} \$(date \"+%a, %d %b %y\")${sepacolor} )─\${fill}─(${wdircolor} \${newPWD} \
-${sepacolor})─<\n${sepacolor}└─(${timecolor} \$(date \"+%H:%M\")${usercolor} \$${sepacolor} )─>${fontcolor} "
-
-else    PS1="┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \${newPWD} \
-)─<\n└─( \$(date \"+%H:%M\") \$ )─> "
-
-fi

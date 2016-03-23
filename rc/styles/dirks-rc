@@ -11,16 +11,6 @@
 
 export truncpwd_supported=True
 
-if [[ ${enable_colors} == True ]]; then
-
 PS1="\n\
-${pscolor}┌─${sepacolor}[ ${wdircolor}\$(truncpwd)${DIRKS_1_COLOR} \$(DIRKS_1) ${sepacolor}]\n\
-${pscolor}└─${sepacolor}[ ${usercolor}\u ${fontcolor}@ ${hostcolor}\H ${fontcolor}/ ${pscolor}\$(systemkit tty) ${sepacolor}( ${timecolor}\t ${sepacolor}) ${pscolor}${SHLVL}${DIRKS_2_COLOR} \$(DIRKS_2) ${sepacolor}]${pscolor}·>${fontcolor} "
-
-else
-
-PS1="\n\
-┌─[ \$(truncpwd) \$(DIRKS_1) ]\n\
-└─[ \u @ \H / \$(systemkit tty) ( \t ) ${SHLVL} \$(DIRKS_2) ]·> "
-
-fi
+${color_ps}┌─${color_separator}[ ${color_wdir}\$(truncpwd)${DIRKS_1_COLOR} \$(DIRKS_1) ${color_separator}]\n\
+${color_ps}└─${color_separator}[ ${color_user}\u ${color_font}@ ${color_host}\H ${color_font}/ ${color_ps}\$(systemkit tty) ${color_separator}( ${color_time}\t ${color_separator}) ${color_ps}${SHLVL}${DIRKS_2_COLOR} \$(DIRKS_2) ${color_separator}]${color_ps}·>${color_font} "

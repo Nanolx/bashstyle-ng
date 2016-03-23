@@ -9,20 +9,10 @@
 #							#
 #########################################################
 
-if [[ ${enable_colors} == True ]]; then
-
 PS1="\n\
-${pscolor}┌─${sepacolor}[ ${usercolor}\u ${fontcolor}@ ${hostcolor}\h${sepacolor} ]${pscolor}─\
-${sepacolor}[${pscolor} job #\# ${sepacolor}]${pscolor}─${sepacolor}[${fontcolor} \$(systemkit tty)${sepacolor} ]\
-${pscolor}─${sepacolor}[ ${timecolor}\$(date +%H:%M:%S)\
-${fontcolor} : ${datecolor}\$(date +%m/%d/%y)${fontcolor} :${upcolor} \$(systemkit uptime)${sepacolor} ]\n\
-${pscolor}└─${sepacolor}[ ${usercolor}\$${pscolor} : ${wdircolor}\$(truncpwd)${ELITE_1_COLOR}\$(ELITE_1)${sepacolor} ]\
-${pscolor}·>${fontcolor} "
-
-else
-
-PS1="\n\
-┌─[ \u @ \h ]─[ job #\# ]─[ \$(systemkit tty) ]─[ \$(date +%H:%M:%S)\
-: \$(date +%m/%d/%y) : \$(systemkit uptime) ]\n└─[ \$ : \$(truncpwd)\$(ELITE_1) ]·> "
-
-fi
+${color_ps}┌─${color_separator}[ ${color_user}\u ${color_font}@ ${color_host}\h${color_separator} ]${color_ps}─\
+${color_separator}[${color_ps} job #\# ${color_separator}]${color_ps}─${color_separator}[${color_font} \$(systemkit tty)${color_separator} ]\
+${color_ps}─${color_separator}[ ${color_time}\$(date +%H:%M:%S)\
+${color_font} : ${color_date}\$(date +%m/%d/%y)${color_font} :${color_uptime} \$(systemkit uptime)${color_separator} ]\n\
+${color_ps}└─${color_separator}[ ${color_user}\$${color_ps} : ${color_wdir}\$(truncpwd)${ELITE_1_COLOR}\$(ELITE_1)${color_separator} ]\
+${color_ps}·>${color_font} "

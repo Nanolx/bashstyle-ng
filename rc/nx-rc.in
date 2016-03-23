@@ -18,7 +18,7 @@ export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2016"
 export BSNG_BASHVER=${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}
-INI_VERSION=28
+INI_VERSION=29
 
 source ${BSNG_RCDIR}/internal/misc
 source ${BSNG_RCDIR}/internal/logging
@@ -41,16 +41,22 @@ dbg_msg $"BashStyle-NG Bash Minor Version:" $(echo ${BASH_VERSINFO[1]})
 dbg_msg $"BashStyle-NG Bash Patch Level:" $(echo ${BASH_VERSINFO[2]})
 dbg_msg $"BashStyle-NG Version:" ${BSNG_VERSION}
 dbg_msg $"BashStyle-NG Prefix:" ${BSNG_PREFIX}
-dbg_msg $"BashStyle-NG Debugging: Enabled"
 dbg_msg $"BashStyle-NG Logfile:" ${BSNG_LOGFILE}
 
 dbg_log shopt -s checkwinsize
+
+if [[ $(ini_get path) != "" ]]; then
+	dbg_msg $"BashStyle-NG Setting:" PATH ${PATH}
+	PATH="$(ini_get path)"
+fi
 
 [[ ${PATH} != *games* && -d /usr/games/ ]] && \
 	export PATH="${PATH}:/usr/games/:/usr/local/games/"
 
 [[ ${PATH} != *bashstyle-ng/rc* ]] && \
-	export PATH="@DATADIR@/bashstyle-ng/rc/functions/:${PATH}:."
+	export PATH="@DATADIR@/bashstyle-ng/rc/functions/:${PATH}"
+
+[[ $(ini_get path_wd) == True ]] && export PATH="${PATH}:."
 
 [[ $(ini_get enable_colors) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/color-rc
@@ -76,7 +82,7 @@ dbg_log shopt -s checkwinsize
 [[ $(ini_get less_termcap_color) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/man-rc
 
-dbg_msg $"BashStyle-NG Setting:"  $"Shell Options"
+dbg_msg $"BashStyle-NG Setting:"  Shopts
 dbg_log source ${BSNG_RCDIR}/settings/shopt-rc
 
 dbg_log source ${BSNG_RCDIR}/settings/alias-rc
@@ -88,38 +94,22 @@ fi
 
 if [[ $(ini_get use_bashstyle) == True ]]; then
 
-	dbg_msg $"BashStyle-NG Loading:" $"BashStyle-NG"
+	dbg_msg $"BashStyle-NG Loading:" BashStyle-NG
 	dbg_log source ${BSNG_RCDIR}/styles/null-rc
 
-	if [[ ${enable_colors} == True ]]; then
-		if [[ ${BSNG_BASHVER} -ge 44 ]]; then
-			dbg_msg $"BashStyle-NG Setting:" $"PS0" $(ini_get ps0)
-			PS0="${ps0color} $(ini_get ps0)${fontcolor} "
-		fi
-
-		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
-		PS2="${ps2color} $(ini_get ps2)${fontcolor} "
-
-		dbg_msg $"BashStyle-NG Setting:" $"PS3" $(ini_get ps3)
-		PS3="${ps3color} $(ini_get ps3)${fontcolor} "
-
-		dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
-		PS4="${ps4color} $(ini_get ps4)${fontcolor} "
-	else
-		if [[ ${BSNG_BASHVER} -ge 44 ]]; then
-			dbg_msg $"BashStyle-NG Setting:" $"PS0" $(ini_get ps0)
-			PS0=" $(ini_get ps0) "
-		fi
-
-		dbg_msg $"BashStyle-NG Setting:" $"PS2" $(ini_get ps2)
-		PS2=" $(ini_get ps2) "
-
-		dbg_msg $"BashStyle-NG Setting:" $"PS3" $(ini_get ps3)
-		PS3=" $(ini_get ps3) "
-
-		dbg_msg $"BashStyle-NG Setting:" $"PS4" $(ini_get ps4)
-		PS4=" $(ini_get ps4) "
+	if [[ ${BSNG_BASHVER} -ge 44 && $(ini_get ps0) != "" ]]; then
+		dbg_msg $"BashStyle-NG Setting:" PS0 $(ini_get ps0)
+		PS0="${color_ps0} $(ini_get ps0)${color_font} "
 	fi
+
+	dbg_msg $"BashStyle-NG Setting:" PS2 $(ini_get ps2)
+	PS2="${color_ps2} $(ini_get ps2)${color_font} "
+
+	dbg_msg $"BashStyle-NG Setting:" PS3 $(ini_get ps3)
+	PS3="${color_ps3} $(ini_get ps3)${color_font} "
+
+	dbg_msg $"BashStyle-NG Setting:" PS4 $(ini_get ps4)
+	PS4="${color_ps4} $(ini_get ps4)${color_font} "
 
 	if [[ $(ini_get random_style) == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" $"Random Prompt"
@@ -149,13 +139,13 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	use_custom_prompt=$(ini_get use_custom_prompt)
 
 	if [[ ${use_custom_prompt} == True ]]; then
-		dbg_msg $"BashStyle-NG Setting:" $"Custom Prompt"
+		dbg_msg $"BashStyle-NG Setting:" $"Custom" Prompt
 		dbg_log source ${BSNG_RCDIR}/styles/custom-rc
 	elif [[ -e ${BSNG_RCDIR}/styles/${pstyle}-rc ]]; then
-		dbg_msg $"BashStyle-NG Setting:" ${pstyle} $"Prompt"
+		dbg_msg $"BashStyle-NG Setting:" ${pstyle} Prompt
 		dbg_log source ${BSNG_RCDIR}/styles/${pstyle}-rc
 	else
-		dbg_msg $"BashStyle-NG Setting:" $"Fallback Prompt"
+		dbg_msg $"BashStyle-NG Setting:" $"Fallback" Prompt
 		dbg_log export PS1="\u@\h\w: "
 	fi
 
@@ -197,7 +187,7 @@ if [[ $(ini_get colorshell) && ${enable_colors} == True ]]; then
 		fi
 
 		# exclude black (0) on dark terminal
-		# exclude white/grey (7) on bright terminal
+		# exclude white (7) on bright terminal
 		if [[ $(ini_get dark_terminal) == True ]]; then
 			randomcolor=$(random -r 1 7)
 		else	randomcolor=$(random -r 0 6)
@@ -286,21 +276,13 @@ remember_command_err () {
 	lastexit=$?
 }
 
-trap_add 'remember_command_debug' DEBUG
-trap_add 'remember_command_err' ERR
 
-WelcomeMessage=$(ini_get welcome_message)
-
-if [[ ${USER_BIRTHDAY} == $(date +%m-%d) && ! -e ${HOME}/.bday ]]; then
+if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal/birthday
-	touch ${HOME}/.bday
-elif [[ ${WelcomeMessage} != "" ]]; then
+elif [[ $(ini_get welcome_message) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
-	dbg_log ${WelcomeMessage}
+	dbg_log $(ini_get welcome_message)
 fi
-
-[[ ${USER_BIRTHDAY} != $(date +%m-%d) && -e ${HOME}/.bday ]] && \
-	rm -f ${HOME}/.bday
 
 lscd() {
 	OLD_PWD=${PWD}
@@ -320,10 +302,10 @@ lscd() {
 	fi
 
 	if [[ ${OLD_PWD} != ${PWD} ]]; then
-		echo -e "\n${epink}content:\n"
+		echo -e "\n${ccolor_banner}content:\n"
 		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
-			ls $LSCD_OPTS
-		else	echo -e "${ecream}-- empty --\n"
+			ls ${LSCD_OPTS}
+		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
 	fi
 
@@ -348,15 +330,27 @@ treecd () {
 	fi
 
 	if [[ ${OLD_PWD} != ${PWD} ]]; then
-		echo -e "\n${epink}content:\n"
+		echo -e "\n${ccolor_banner}content:\n"
 		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
 			tree -L ${TREECD_OPTS}
-		else	echo -e "${ecream}-- empty --\n"
+		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
 	fi
 
 	echo "${PWD}" > ${HOME}/.lastpwd
 }
+
+if [[ $(ini_get use_treecd) == True ]]; then
+	dbg_log alias cd=treecd
+	dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
+	[[ ${enable_colors} != True ]] && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
+fi
+
+if [[ $(ini_get use_lscd) == True ]]; then
+	dbg_log alias cd=lscd
+	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
+	[[ ${enable_colors} != True ]] && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
+fi
 
 reload_bash () {
 	#xk2c from commandlinefu.com
@@ -367,3 +361,8 @@ reload_bash () {
 }
 
 dbg_finalize
+
+trap_add 'remember_command_debug' DEBUG
+trap_add 'remember_command_err' ERR
+
+unset style
