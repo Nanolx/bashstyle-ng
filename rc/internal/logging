@@ -21,6 +21,7 @@ dbg_msg ()
 
 dbg_log ()
 {
+	dbg_msg "$@"
 	"$@" > >(tee -a ${BSNG_LOGFILE}) 2>&1
 }
 
