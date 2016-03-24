@@ -143,6 +143,10 @@ see a difference here, that's not a bug.
 @item @code{colorshell} does no longer pollute @code{PS1...4} variables. It does
 now store @code{PS1...4} once per session to @code{OLDPS1...4} and appends it's
 randomly choosen text color to the it.
+
+@item @code{equinox} prompt now shows @code{⊘} in yellow when exiting @code{git log}
+using @code{q} key, instead of @code{✘} in red. Exiting @code{git log} results in
+return code 141, but it's not an actual error, thus the new state was added.
 @end itemize
 
 @item UI changes

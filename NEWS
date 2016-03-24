@@ -152,6 +152,11 @@ between.  For more detailed information see the git log.
           does now store 'PS1...4' once per session to 'OLDPS1...4' and
           appends it's randomly choosen text color to the it.
 
+        - 'equinox' prompt now shows '⊘' in yellow when exiting 'git
+          log' using 'q' key, instead of '✘' in red.  Exiting 'git log'
+          results in return code 141, but it's not an actual error, thus
+          the new state was added.
+
    * UI changes
         - Use 'GtkSwitch'es instead of 'GtkRadionButton's for main
           switches in the UI.

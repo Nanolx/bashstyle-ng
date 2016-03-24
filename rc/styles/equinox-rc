@@ -80,6 +80,9 @@ do
 			echo -en "\033[${n};$((${COLUMNS}-29))H"
 			if [ ${lastexit} -eq 0 ]; then
 				echo -en "${ecolor_separator}( ${egreen}✔: ${lastcommandprintable} ${ecolor_separator})─┤"
+			# pressing 'q' in 'git log' results in ${lastexit} -eq 141, but it's not actually a failure (...)
+			elif [ ${lastexit} -eq 141 ]; then
+				echo -en "${ecolor_separator}( ${eyellow}⊘: ${lastcommandprintable} ${ecolor_separator})─┤"
 			else
 				echo -en "${ecolor_separator}( ${ered}✘: ${lastcommandprintable} ${ecolor_separator})─┤"
 			fi
