@@ -77,6 +77,12 @@ between.  For more detailed information see the or git log.
           output string length calculation for 'truncpwd' function
           aswell.
 
+        - #219 (debug log): the debug log now properly stores all
+          messages, run commands and their (error) output in
+          '$HOME/.bashstyle.log' after startup.  Before this fix only
+          the messages from 'BashStyle-NG' itself were stored, making
+          the dbug log rather useless.
+
    * New Features
         - New Termcap/Manpage coloring function.  'BashStyle-NG' now
           allows you to choose the different colors for manpages from

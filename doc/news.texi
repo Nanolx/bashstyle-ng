@@ -68,6 +68,11 @@ disabled colorful prompts.
 @item #218 (equinox, truncpwd): fixed prompt length calculation for @code{equinox}
 prompt, if @code{pwdcut} ini value is not set. Fixed output string length calculation
 for @code{truncpwd} function aswell.
+
+@item #219 (debug log): the debug log now properly stores all messages, run commands
+and their (error) output in @code{$HOME/.bashstyle.log} after startup. Before this fix
+only the messages from @code{BashStyle-NG} itself were stored, making the dbug log
+rather useless.
 @end itemize
 
 @item New Features
