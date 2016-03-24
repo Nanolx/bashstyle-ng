@@ -256,6 +256,7 @@ fi
 # remember last exit status and command
 remember_command_debug () {
 	local _lastexit=$?
+	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
 	[ -n "$COMP_LINE" ] && return
 	[ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
 	[[ "$BASH_COMMAND" == trap\ * ]] && return
@@ -273,7 +274,9 @@ remember_command_debug () {
 }
 
 remember_command_err () {
-	lastexit=$?
+	local _lastexit=$?
+	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
+	lastexit=${_latexit}
 }
 
 
@@ -361,8 +364,13 @@ reload_bash () {
 }
 
 dbg_finalize
+unset style
 
 trap_add 'remember_command_debug' DEBUG
 trap_add 'remember_command_err' ERR
 
-unset style
+lastcommand=""
+lastcommandprintable="                     "
+lastexit=0
+
+export BSNG_TRAP_RECORD=True
