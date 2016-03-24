@@ -3028,7 +3028,7 @@
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">6</property>
-                            <property name="height">9</property>
+                            <property name="height">12</property>
                           </packing>
                         </child>
                         <child>
@@ -3053,7 +3053,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">15</property>
+                            <property name="top_attach">18</property>
                             <property name="width">3</property>
                           </packing>
                         </child>
@@ -3120,90 +3120,48 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="birthday">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">14</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.birthday">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">User birthday (MM-DD)</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">13</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="dd_noerror">
-                            <property name="label" translatable="yes">Let 'dd' continue on error</property>
+                          <object class="GtkCheckButton" id="enable_lscd">
+                            <property name="label" translatable="yes">Use lscd in favour of cd</property>
+                            <property name="related_action">lscd_alias</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="xalign">0.5</property>
+                            <property name="xalign">0.51999998092651367</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">10</property>
+                            <property name="top_attach">6</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="advanced.label.welcome">
+                          <object class="GtkLabel" id="advanced.label.bash44">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Welcome Message</property>
+                            <property name="label" translatable="yes">4.4+</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">11</property>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">27</property>
+                            <property name="height">2</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="welcome">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">12</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.dirchar">
+                          <object class="GtkSeparator" id="separator27">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Directory Indicator</property>
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">4</property>
                           </object>
                           <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">11</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="dirchar">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">12</property>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">26</property>
+                            <property name="width">3</property>
                           </packing>
                         </child>
                         <child>
@@ -3218,131 +3176,119 @@
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
+                            <property name="top_attach">19</property>
+                            <property name="height">7</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.welcome">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Welcome Message</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">14</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="dd_progress">
+                            <property name="label" translatable="yes">Let 'dd' show progressbar</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="dd_noerror">
+                            <property name="label" translatable="yes">Let 'dd' continue on error</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.dirchar">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Directory Indicator</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">14</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="dirchar">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">15</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="welcome">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">15</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.birthday">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">User birthday (MM-DD)</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
                             <property name="top_attach">16</property>
-                            <property name="height">6</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="globignore">
+                          <object class="GtkCheckButton" id="debug_verbose">
+                            <property name="label" translatable="yes">Verbose output on start</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">21</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="path">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">21</property>
+                            <property name="top_attach">16</property>
+                            <property name="height">2</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="advanced.label.path ">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Path</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">20</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.globignore">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Globbing Blacklist</property>
-                            <property name="angle">0.02</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">20</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="timeout">
+                          <object class="GtkEntry" id="birthday">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="invisible_char">•</property>
-                            <property name="text" translatable="yes">0</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                            <property name="adjustment">advanced.adjustment.timeout</property>
-                            <property name="climb_rate">0.01</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">19</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.timeout">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">Set Timeout (in seconds)</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">18</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="fcedit">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">19</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.fcedit">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">Change editor for fc</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">18</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="completion_blacklist">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="invisible_char">●</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">17</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="cdpath">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_name">gtk-revert-to-saved</property>
                             <property name="secondary_icon_name">gtk-delete</property>
@@ -3361,7 +3307,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">16</property>
+                            <property name="top_attach">19</property>
                           </packing>
                         </child>
                         <child>
@@ -3373,83 +3319,151 @@
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">16</property>
+                            <property name="top_attach">19</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkCheckButton" id="debug_verbose">
-                            <property name="label" translatable="yes">Verbose output on start</property>
+                          <object class="GtkEntry" id="completion_blacklist">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">13</property>
-                            <property name="height">2</property>
+                            <property name="top_attach">20</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkCheckButton" id="dd_progress">
-                            <property name="label" translatable="yes">Let 'dd' show progressbar</property>
+                          <object class="GtkEntry" id="cdpath">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="xalign">0</property>
-                            <property name="draw_indicator">True</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">20</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.timeout">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">Set Timeout (in seconds)</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">21</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.fcedit">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">Change editor for fc</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">10</property>
+                            <property name="top_attach">21</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkCheckButton" id="enable_lscd">
-                            <property name="label" translatable="yes">Use lscd in favour of cd</property>
-                            <property name="related_action">lscd_alias</property>
+                          <object class="GtkSpinButton" id="timeout">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">•</property>
+                            <property name="text" translatable="yes">0</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                            <property name="adjustment">advanced.adjustment.timeout</property>
+                            <property name="climb_rate">0.01</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">22</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="fcedit">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">22</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.globignore">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Globbing Blacklist</property>
+                            <property name="angle">0.02</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">23</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.path ">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Path</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">23</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="path">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">●</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">24</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="globignore">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">24</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="path_pwd">
+                            <property name="label" translatable="yes">Include PWD in Path</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="xalign">0.51999998092651367</property>
+                            <property name="xalign">0</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">6</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator" id="separator27">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_top">4</property>
-                            <property name="margin_bottom">4</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">22</property>
-                            <property name="width">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.bash44">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">4.4+</property>
-                            <property name="angle">90</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">23</property>
-                            <property name="height">2</property>
+                            <property name="top_attach">25</property>
                           </packing>
                         </child>
                         <child>
@@ -3461,7 +3475,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">23</property>
+                            <property name="top_attach">27</property>
                           </packing>
                         </child>
                         <child>
@@ -3473,8 +3487,98 @@
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">24</property>
+                            <property name="top_attach">28</property>
                           </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label24">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">ls/treecd banner color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">10</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label25">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">ls/treecd empty color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">10</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label26">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">ls/treecd mkdir Color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_cd_banner">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour21"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">11</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_cd_empty">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour22"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">11</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="color_cd_mkdir">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">style.liststore.grep_colour</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour23"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <placeholder/>
@@ -7682,7 +7786,6 @@ lsb = show branches by last activity</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="xpad">20</property>
-                    <property name="label" translatable="yes"></property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -7695,7 +7798,6 @@ lsb = show branches by last activity</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="xpad">20</property>
-                    <property name="label" translatable="yes"></property>
                     <property name="ellipsize">end</property>
                   </object>
                   <packing>
