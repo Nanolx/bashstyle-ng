@@ -276,7 +276,7 @@ remember_command_debug () {
 remember_command_err () {
 	local _lastexit=$?
 	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
-	lastexit=${_latexit}
+	lastexit=${_lastexit}
 }
 
 
