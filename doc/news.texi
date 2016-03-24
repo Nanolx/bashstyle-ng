@@ -5,7 +5,7 @@
 @chapter News
 
 This lists user-visible changes, and which releases they occurred
-between. For more detailed information see the or git log.
+between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
@@ -23,7 +23,7 @@ user configuration in UI not working.
 @item #206 (manpage colors): enforce environment variable @code{PAGER} to be
 @code{less}, else colorizing manpages might fail, if an  other pager is used.
 
-@item #207 (trap): fix recording exit code of last command if it fails.
+@item #207 (trap): fix recording exit code of last command if it's not 0.
 
 @item #208 (startup): fix enabling @code{BashStyle-NG} in @code{$HOME/.bashrc}
 from user interface in certain cases.
@@ -31,9 +31,9 @@ from user interface in certain cases.
 @item #209 (startup): add file check when enabling @code{BashStyle-NG} in
 @code{$HOME/.bashrc}, so that @code{Bash} does not run into errors on startup
 when @code{BashStyle-NG} was uninstalled, but the startup entry still exists.
+
 Aswell as when it was installed to a different prefix, without having adjusted
-the startup entry in @code{$HOME/.bashrc} (or re-enabled @code{BashStyle-NG}
-from the user interface (which would update the startup entry).
+the startup entry in @code{$HOME/.bashrc}.
 
 @item #210 (configuration): when @code{ini_version} of @code{$HOME/.bs-ng.ini} is
 bigger than @code{app_ini_version}, the configuration is reset to either vendor or
@@ -43,7 +43,7 @@ by the user interface (which could potentially lead to a crash).
 @item #211 (colorshell): new option @code{Dark Terminal Background} allows user
 to set whether the terminal background is dark or bright. This option is used for
 colorshell to prevent the font color being black on dark terminals, respectively
-white/grey on bright terminals in order to avoid barely readable text output.
+white on bright terminals in order to avoid barely readable text output.
 
 This option also applies to all other terminal dependant color settings in
 @code{BashStyle-NG}, where @code{white} will be @code{black} on bright terminals,
@@ -57,7 +57,7 @@ respectively @code{black} will be @code{white} on dark terminals.
 @code{BashStyle-NG}. This resulted in readline functions using distribution default
 @code{LS_COLORS}, but bash functions using the user set variable.
 
-@item #215 (lastcommand): fixed lastcommand recording to generate ugly results for
+@item #215 (lastcommand): fixed last command recording to generate ugly results for
 bash prompts (@code{lastcommandprintable}) by removing all newlines from the string.
 
 @item #216 (treecd): fixed user set @code{treecd} options not being honoured.
@@ -71,7 +71,7 @@ for @code{truncpwd} function aswell.
 
 @item #219 (debug log): the debug log now properly stores all messages, run commands
 and their (error) output in @code{$HOME/.bashstyle.log} after startup. Before this fix
-only the messages from @code{BashStyle-NG} itself were stored, making the dbug log
+only the messages from @code{BashStyle-NG} itself were stored, making the debug log
 rather useless.
 @end itemize
 
@@ -93,9 +93,11 @@ Only matched if the *complete* filename matches. For example if you want to excl
 
 	@code{/usr/bin/autoreconf}
 
-from command completion, you need to add
+from command completion, you need to add something like
 
-	@code{*/autreconf}
+	@code{/usr/bin/autreconf}
+or
+	@code{*/autoreconf}
 
 to @code{EXECIGNORE}.
 
@@ -113,14 +115,14 @@ completion appear in a special color for all matches.
 @item @code{Enable Bracketed Paste} makes Bash handle multi-line pasted code
 like single-line, preventing erroneous completion or execution.
 
-@item @code{Vi Command Mode String} is an indicator printed after @code{PS1} when
-Bash is in vi command mode.
+@item @code{Vi Command Mode String} is an indicator printed before the last line
+of @code{PS1} when Bash is in vi command mode.
 
-@item @code{Vi Insert Mode String} is an indicator printed after @code{PS1} when
-Bash is in vi insert mode.
+@item @code{Vi Insert Mode String} is an indicator printed before the last line
+of @code{PS1} when Bash is in vi insert mode.
 
-@item @code{Emacs Mode String} is an indicator printed after @code{PS1} when Bash
-is in emacs mode.
+@item @code{Emacs Mode String} is an indicator printed before the last line of
+@code{PS1} when Bash is in emacs mode.
 @end itemize
 @end itemize
 
@@ -138,9 +140,9 @@ are supported:
 color settings. Note: depending on your terminal's color settings you might not
 see a difference here, that's not a bug.
 
-@item @code{colorshell} does no longer pollute @code{$PS*}. It does now store
-@code{$PS*} once per session to @code{OLDPS*} and appends it's randomly choosen text
-color to the @code{$OLDPS*} variable, which is then the new @code{PS*} variable.
+@item @code{colorshell} does no longer pollute @code{PS1...4} variables. It does
+now store @code{PS1...4} once per session to @code{OLDPS1...4} and appends it's
+randomly choosen text color to the it.
 @end itemize
 
 @item UI changes
@@ -157,7 +159,7 @@ switches in the UI.
 
 @item 4.3.8
 @itemize +
-@item code review
+@item code review.
 @item make build dependencies a separate dependency group.
 @end itemize
 @end itemize
@@ -166,18 +168,18 @@ switches in the UI.
 @itemize @minus
 @item Improvements to @code{bashstyle} launcher script.
 
-@item Since a few version the code for setting colors has been changed, so we no
-longer need a monochrome version of the prompt styles, as color values are empty,
-when user has disabled colorful prompts. Preventing lots of (mostly) duplicated code.
+@item Since a few versions the code for setting colors has been changed, so we no
+longer need a monochrome version of each prompt style, avoiding lots of (mostly)
+duplicated code.
 
-@item Standardize shebangs in python scripts (and remove
-corresponding lintian override).
+@item Standardize shebangs in python scripts (and remove corresponding lintian
+override).
 
 @item Updated german translation.
 
 @item Don't mark setting's name and a few others as translatable strings.
 
-@item Change string @code{GIT} to @code{Git} in the UI and other pacles.
+@item Changed string @code{GIT} to @code{Git} in the UI and other pacles.
 
 @item Move last command recording to the end of @code{BashStyle-NG} initialization,
 no need to record @code{BashStyle-NG}s startup.

@@ -2,7 +2,7 @@
 ******
 
 This lists user-visible changes, and which releases they occurred
-between.  For more detailed information see the or git log.
+between.  For more detailed information see the git log.
 
    Each release lists incompatible changes at its top.
 
@@ -20,8 +20,8 @@ between.  For more detailed information see the or git log.
           be 'less', else colorizing manpages might fail, if an other
           pager is used.
 
-        - #207 (trap): fix recording exit code of last command if it
-          fails.
+        - #207 (trap): fix recording exit code of last command if it's
+          not 0.
 
         - #208 (startup): fix enabling 'BashStyle-NG' in '$HOME/.bashrc'
           from user interface in certain cases.
@@ -29,10 +29,10 @@ between.  For more detailed information see the or git log.
         - #209 (startup): add file check when enabling 'BashStyle-NG' in
           '$HOME/.bashrc', so that 'Bash' does not run into errors on
           startup when 'BashStyle-NG' was uninstalled, but the startup
-          entry still exists.  Aswell as when it was installed to a
-          different prefix, without having adjusted the startup entry in
-          '$HOME/.bashrc' (or re-enabled 'BashStyle-NG' from the user
-          interface (which would update the startup entry).
+          entry still exists.
+
+          Aswell as when it was installed to a different prefix, without
+          having adjusted the startup entry in '$HOME/.bashrc'.
 
         - #210 (configuration): when 'ini_version' of '$HOME/.bs-ng.ini'
           is bigger than 'app_ini_version', the configuration is reset
@@ -43,9 +43,9 @@ between.  For more detailed information see the or git log.
         - #211 (colorshell): new option 'Dark Terminal Background'
           allows user to set whether the terminal background is dark or
           bright.  This option is used for colorshell to prevent the
-          font color being black on dark terminals, respectively
-          white/grey on bright terminals in order to avoid barely
-          readable text output.
+          font color being black on dark terminals, respectively white
+          on bright terminals in order to avoid barely readable text
+          output.
 
           This option also applies to all other terminal dependant color
           settings in 'BashStyle-NG', where 'white' will be 'black' on
@@ -62,7 +62,7 @@ between.  For more detailed information see the or git log.
           using distribution default 'LS_COLORS', but bash functions
           using the user set variable.
 
-        - #215 (lastcommand): fixed lastcommand recording to generate
+        - #215 (lastcommand): fixed last command recording to generate
           ugly results for bash prompts ('lastcommandprintable') by
           removing all newlines from the string.
 
@@ -81,7 +81,7 @@ between.  For more detailed information see the or git log.
           messages, run commands and their (error) output in
           '$HOME/.bashstyle.log' after startup.  Before this fix only
           the messages from 'BashStyle-NG' itself were stored, making
-          the dbug log rather useless.
+          the debug log rather useless.
 
    * New Features
         - New Termcap/Manpage coloring function.  'BashStyle-NG' now
@@ -102,9 +102,9 @@ between.  For more detailed information see the or git log.
 
                '/usr/bin/autoreconf'
 
-               from command completion, you need to add
+               from command completion, you need to add something like
 
-               '*/autreconf'
+               '/usr/bin/autreconf' or '*/autoreconf'
 
                to 'EXECIGNORE'.
 
@@ -124,14 +124,14 @@ between.  For more detailed information see the or git log.
                pasted code like single-line, preventing erroneous
                completion or execution.
 
-             + 'Vi Command Mode String' is an indicator printed after
-               'PS1' when Bash is in vi command mode.
+             + 'Vi Command Mode String' is an indicator printed before
+               the last line of 'PS1' when Bash is in vi command mode.
 
-             + 'Vi Insert Mode String' is an indicator printed after
-               'PS1' when Bash is in vi insert mode.
+             + 'Vi Insert Mode String' is an indicator printed before
+               the last line of 'PS1' when Bash is in vi insert mode.
 
-             + 'Emacs Mode String' is an indicator printed after 'PS1'
-               when Bash is in emacs mode.
+             + 'Emacs Mode String' is an indicator printed before the
+               last line of 'PS1' when Bash is in emacs mode.
 
    * Updated / Improved Features
         - 'random' function's '--numericalrange', '-r' param previously
@@ -148,10 +148,9 @@ between.  For more detailed information see the or git log.
           settings you might not see a difference here, that's not a
           bug.
 
-        - 'colorshell' does no longer pollute '$PS*'.  It does now store
-          '$PS*' once per session to 'OLDPS*' and appends it's randomly
-          choosen text color to the '$OLDPS*' variable, which is then
-          the new 'PS*' variable.
+        - 'colorshell' does no longer pollute 'PS1...4' variables.  It
+          does now store 'PS1...4' once per session to 'OLDPS1...4' and
+          appends it's randomly choosen text color to the it.
 
    * UI changes
         - Use 'GtkSwitch'es instead of 'GtkRadionButton's for main
@@ -163,17 +162,15 @@ between.  For more detailed information see the or git log.
    * Configure
 
         - 4.3.8
-             + code review
+             + code review.
              + make build dependencies a separate dependency group.
 
    * Misc.  Changes
         - Improvements to 'bashstyle' launcher script.
 
-        - Since a few version the code for setting colors has been
-          changed, so we no longer need a monochrome version of the
-          prompt styles, as color values are empty, when user has
-          disabled colorful prompts.  Preventing lots of (mostly)
-          duplicated code.
+        - Since a few versions the code for setting colors has been
+          changed, so we no longer need a monochrome version of each
+          prompt style, avoiding lots of (mostly) duplicated code.
 
         - Standardize shebangs in python scripts (and remove
           corresponding lintian override).
@@ -183,7 +180,7 @@ between.  For more detailed information see the or git log.
         - Don't mark setting's name and a few others as translatable
           strings.
 
-        - Change string 'GIT' to 'Git' in the UI and other pacles.
+        - Changed string 'GIT' to 'Git' in the UI and other pacles.
 
         - Move last command recording to the end of 'BashStyle-NG'
           initialization, no need to record 'BashStyle-NG's startup.
