@@ -24,9 +24,9 @@ tput rc"""
 floating_clock_ps=r"""[ \u @ \h : \$(truncpwd) ] """
 
 equinox_pc=r"""host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")
-dirchar=$(ini_get directory_indicator)
-trunc_symbol=$(ini_get pwdcut)
-trunc_length=$(($(echo $trunc_symbol | wc -m)-1))
+[[ ! ${dirchar} ]] && dirchar="/"
+[[ ! ${trunc_symbol} ]] && trunc_symbol="«"
+[[ ! ${trunc_length} ]] && trunc_length=1
 
 j=4 k=6 l=8 m=10 n=12 newPWD=\"${PWD}\" fill=\"\"
 
@@ -76,6 +76,8 @@ do
 			echo -en \"\\033[${n};$((${COLUMNS}-29))H\"
 			if [ ${lastexit} -eq 0 ]; then
 				echo -en \"( ✔: ${lastcommandprintable} )─┤\"
+			elif [ ${lastexit} -eq 141 ]; then
+				echo -en "${ecolor_separator}( ${eyellow}⊘: ${lastcommandprintable} ${ecolor_separator})─┤"
 			else
 				echo -en \"( ✘: ${lastcommandprintable} )─┤\"
 			fi
