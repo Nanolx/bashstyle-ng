@@ -245,11 +245,18 @@ if [[ $(ini_get history_sync) == True ]]; then
 		builtin history -w
 	}
 
+	_synchistory_post () {
+		builtin history -c
+		builtin history -r
+	}
+
 	trap_add '_synchistory' DEBUG
 
 	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
 	[[ ${HISTCONTROL} == ignoredups || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorydups' DEBUG
 	[[ ${HISTCONTROL} == ignorespace || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorspc' DEBUG
+
+	trap_add '_synchistory_post' DEBUG
 
 fi
 
