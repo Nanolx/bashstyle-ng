@@ -362,9 +362,6 @@ symbolic_colors_p_c = {
 		   7 : "${ecolor_separator}",
 		   8 : "${ecolor_uptime}",
 		   9 : "${ecolor_ps}",
-		  10 : "${ecolor_ps2}",
-		  11 : "${ecolor_ps3}",
-		  12 : "${ecolor_ps4}",
 		  }
 
 symbolic_colors_ps1 = {
@@ -377,7 +374,4 @@ symbolic_colors_ps1 = {
 		   7 : "${color_separator}",
 		   8 : "${color_uptime}",
 		   9 : "${color_ps}",
-		  10 : "${color_ps2}",
-		  11 : "${color_ps3}",
-		  12 : "${color_ps4}",
 		  }
