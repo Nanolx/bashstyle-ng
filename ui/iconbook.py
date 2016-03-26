@@ -68,7 +68,7 @@ class IconBook(object):
 			model = widget.get_model()
 			if model[item][1] == _("Documentation"):
 				back.set_visible(0)
-				subprocess.Popen(["xdg-open"], "%s" % os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html")
+				subprocess.Popen(["xdg-open", "%s" % os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html"])
 			elif model[item][1] == _("Start Terminal"):
 				back.set_visible(0)
 				subprocess.Popen(["x-terminal-emulator"])
