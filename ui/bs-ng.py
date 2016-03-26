@@ -295,7 +295,8 @@ class BashStyleNG(object):
 
 		######################## Custom Prompt Builder #####################################
 		WidgetHandler.InitWidget("use_customprompt", "Custom", "use_custom_prompt", "switch", None)
-		promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
+		pbuilder = promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
+		pbuilder.InitPromptBuilder()
 
 		######################## Load the Main-Window ######################################
 		self.bashstyle = gtkbuilder.get_object("bashstyle")

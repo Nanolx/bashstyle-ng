@@ -42,9 +42,9 @@ lock = lockfile.LockFile()
 class ConfigUI(object):
 
 	def __init__(self, cfo, udc, fdc):
-			self.config = cfo
-			self.userdefault = udc
-			self.factorydefault = fdc
+		self.config = cfo
+		self.userdefault = udc
+		self.factorydefault = fdc
 
 	def InitConfigUI(self):
 
@@ -114,9 +114,9 @@ class ConfigUI(object):
 class StartupUI(object):
 
 	def __init__(self, cfo, udc, fdc):
-			self.config = cfo
-			self.userdefault = udc
-			self.factorydefault = fdc
+		self.config = cfo
+		self.userdefault = udc
+		self.factorydefault = fdc
 
 	def InitStartupUI(self):
 

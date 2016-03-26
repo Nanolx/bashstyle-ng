@@ -28,11 +28,18 @@ if FAILED:
     print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
     sys.exit(1)
 
+gtkbuilder = widgethandler.gtkbuilder
+
 class PromptBuilder(object):
 
-	def __init__(self, config, userconfig, factoryconfig):
-		######################## load translations & widgethandler #########################
-		gtkbuilder = widgethandler.gtkbuilder
+	def __init__(self, cfo, udc, fdc):
+		self.config = cfo
+		self.userdefault = udc
+		self.factorydefault = fdc
+
+	def InitPromptBuilder(self):
+
+		WidgetHandler = widgethandler.WidgetHandler(self.config, self.userdefault, self.factorydefault)
 
 		######################## GtkTextView ###############################################
 
@@ -40,18 +47,18 @@ class PromptBuilder(object):
 
 		self.prompt_command_buffer = undobuffer.UndoableBuffer()
 		self.prompt_command.set_buffer(self.prompt_command_buffer)
-		self.prompt_command_buffer.set_text("%s" % config["Custom"]["command"])
+		self.prompt_command_buffer.set_text("%s" % self.config["Custom"]["command"])
 
 		self.custom_prompt = gtkbuilder.get_object("custom_prompt")
 
 		self.custom_prompt_buffer = undobuffer.UndoableBuffer()
 		self.custom_prompt.set_buffer(self.custom_prompt_buffer)
-		self.custom_prompt_buffer.set_text("%s" % config["Custom"]["prompt"])
+		self.custom_prompt_buffer.set_text("%s" % self.config["Custom"]["prompt"])
 
 		def set_custom_prompt(widget, setting):
 			start = widget.get_start_iter()
 			end = widget.get_end_iter()
-			config["Custom"]["{}".format(setting)] = widget.get_text(start, end, False)
+			self.config["Custom"]["{}".format(setting)] = widget.get_text(start, end, False)
 
 		self.prompt_command_buffer.connect("changed", set_custom_prompt, "command")
 		self.custom_prompt_buffer.connect("changed", set_custom_prompt, "prompt")
@@ -79,101 +86,84 @@ class PromptBuilder(object):
 
 		######################## GtkButtons ################################################
 
-		self.empty = gtkbuilder.get_object("cpb_empty")
-		self.undo = gtkbuilder.get_object("cpb_undo")
-		self.redo = gtkbuilder.get_object("cpb_redo")
-		self.reset = gtkbuilder.get_object("cpb_reset")
-		self.factory = gtkbuilder.get_object("cpb_factory")
-
-		def do_empty(widget):
+		def do_empty(widget, data):
 			if self.active_buffer == "P_C":
 				self.prompt_command_buffer.set_text("")
 			elif self.active_buffer == "PS1":
 				self.custom_prompt_buffer.set_text("")
 
-		def do_undo(widget):
+		def do_undo(widget, data):
 			if self.active_buffer == "P_C":
 				self.prompt_command_buffer.undo()
 			elif self.active_buffer == "PS1":
 				self.custom_prompt_buffer.undo()
 
-		def do_redo(widget):
+		def do_redo(widget, data):
 			if self.active_buffer == "P_C":
 				self.prompt_command_buffer.redo()
 			elif self.active_buffer == "PS1":
 				self.custom_prompt_buffer.redo()
 
-		def do_reset(widget):
-			self.prompt_command_buffer.set_text("%s" % userconfig["Custom"]["command"])
-			self.custom_prompt_buffer.set_text("%s" % userconfig["Custom"]["prompt"])
+		def do_reset(widget, data):
+			self.prompt_command_buffer.set_text("%s" % self.userdefault["Custom"]["command"])
+			self.custom_prompt_buffer.set_text("%s" % self.userdefault["Custom"]["prompt"])
 
-		def do_revert(widget):
-			self.prompt_command_buffer.set_text("%s" % factoryconfig["Custom"]["command"])
-			self.custom_prompt_buffer.set_text("%s" % factoryconfig["Custom"]["prompt"])
+		def do_revert(widget, data):
+			self.prompt_command_buffer.set_text("%s" % self.factorydefault["Custom"]["command"])
+			self.custom_prompt_buffer.set_text("%s" % self.factorydefault["Custom"]["prompt"])
 
-		self.empty.connect("clicked", do_empty)
-		self.undo.connect("clicked", do_undo)
-		self.redo.connect("clicked", do_redo)
-		self.reset.connect("clicked", do_reset)
-		self.factory.connect("clicked", do_revert)
+		WidgetHandler.InitWidget("cpb_empty", do_empty, None, "button", None)
+		WidgetHandler.InitWidget("cpb_undo", do_undo, None, "button", None)
+		WidgetHandler.InitWidget("cpb_redo", do_redo, None, "button", None)
+		WidgetHandler.InitWidget("cpb_reset", do_reset, None, "button", None)
+		WidgetHandler.InitWidget("cpb_factory", do_revert, None, "button", None)
 
 		######################## Toolbox ###################################################
 
-		self.show_toolbox = gtkbuilder.get_object("show_toolbox")
+		def do_show_toolbox(widget, data):
+			toolbox = gtkbuilder.get_object("Toolbox")
+			toolbox_close = gtkbuilder.get_object("toolbox.close")
+			toolbox.show_all()
+			toolbox_close.connect("clicked", lambda w: toolbox.hide() or True)
+			toolbox.connect("delete-event", lambda w, e: w.hide() or True)
 
-		def do_show_toolbox(widget, data=None):
-                        toolbox = gtkbuilder.get_object("Toolbox")
-                        toolbox_close = gtkbuilder.get_object("toolbox.close")
-                        toolbox.show_all()
-                        toolbox_close.connect("clicked", lambda w: toolbox.hide() or True)
-                        toolbox.connect("delete-event", lambda w, e: w.hide() or True)
-
-		self.show_toolbox.connect("clicked", do_show_toolbox)
+		WidgetHandler.InitWidget("show_toolbox", do_show_toolbox, None, "button", None)
 
 		######################## Toolbox Buttons ###########################################
 
-		def load_toolbutton(object, text_p_c, text_ps1):
-			widget = gtkbuilder.get_object("%s" % object)
-			widget.connect("clicked", prompt_add, text_p_c, text_ps1)
-
-		load_toolbutton("username", "${USER}", "\\u")
-		load_toolbutton("hostname", "${HOSTNAME/.*}", "\\h")
-		load_toolbutton("fhostname", "${HOSTNAME}", "\\H")
-		load_toolbutton("time", "$(date +%H:%M:%S)", "\\t")
-		load_toolbutton("date", "$(date date +%d.%m.%Y)", "\\d")
-		load_toolbutton("sign", "", "\\$")
-		load_toolbutton("fworkdir", "${PWD}", "\\w")
-		load_toolbutton("workdir", "${PWD/*\/}", "\\W")
-		load_toolbutton("euid", "${EUID}", "${EUID}")
-		load_toolbutton("jobs", "$(jobs -pr)", "\\j")
-		load_toolbutton("bang", "", "\\!")
-		load_toolbutton("number", "", "\\#")
-		load_toolbutton("pid", "${BAHSPID}", "${BASHPID}")
-		load_toolbutton("shlvl", "${SHLVL}", "${SHLVL}")
-		load_toolbutton("truncpwd", "$(truncpwd)", "\\$(truncpwd)")
-		load_toolbutton("showsize", "$(systemkit dirsize)", "\\$(systemkit dirsize)")
-		load_toolbutton("countprocesses", "$(systemkit processes)", "\\$(systemkit processes)")
-		load_toolbutton("showuptime", "$(systemkit uptime)", "\\$(systemkit uptime)")
-		load_toolbutton("showtty", "$(systemkit tty)", "\\$(systemkit tty)")
-		load_toolbutton("showcpuload", "$(systemkit cpuload)", "\\$(systemkit cpuload)")
-		load_toolbutton("showseconds", "${SECONDS}", "${SECONDS}")
-		load_toolbutton("showbatteryload", "$(systemkit battery)", "\\$(systemkit battery)")
-		load_toolbutton("showexit", "${lastexit}", "${lastexit}")
-		load_toolbutton("showlastcmd", "${lastcommand}", "${lastcommand}")
-		load_toolbutton("showlastcmd_cut", "${lastcommandprintable}", "${lastcommandprintable}")
+		WidgetHandler.InitWidget("username", "${USER}", "\\u", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("hostname", "${HOSTNAME/.*}", "\\h", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("fhostname", "${HOSTNAME}", "\\H", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("time", "$(date +%H:%M:%S)", "\\t", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("date", "$(date date +%d.%m.%Y)", "\\d", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("sign", "", "\\$", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("fworkdir", "${PWD}", "\\w", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("workdir", "${PWD/*\/}", "\\W", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("euid", "${EUID}", "${EUID}", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("jobs", "$(jobs -pr)", "\\j", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("bang", "", "\\!", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("number", "", "\\#", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("pid", "${BAHSPID}", "${BASHPID}", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("shlvl", "${SHLVL}", "${SHLVL}", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("truncpwd", "$(truncpwd)", "\\$(truncpwd)", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showsize", "$(systemkit dirsize)", "\\$(systemkit dirsize)", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("countprocesses", "$(systemkit processes)", "\\$(systemkit processes)", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showuptime", "$(systemkit uptime)", "\\$(systemkit uptime)", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showtty", "$(systemkit tty)", "\\$(systemkit tty)", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showcpuload", "$(systemkit cpuload)", "\\$(systemkit cpuload)", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showseconds", "${SECONDS}", "${SECONDS}", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showbatteryload", "$(systemkit battery)", "\\$(systemkit battery)", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showexit", "${lastexit}", "${lastexit}", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showlastcmd", "${lastcommand}", "${lastcommand}", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showlastcmd_cut", "${lastcommandprintable}", "${lastcommandprintable}", "cpb_button", prompt_add)
 
 		######################## Toolbox Comboboxes ########################################
 
-		def load_toolcombo(object, dict_p_c, dict_ps1):
-			widget = gtkbuilder.get_object("%s" % object)
-			widget.set_active(0)
-			widget.connect("changed", prompt_add_combo, dict_p_c, dict_ps1)
-
-		load_toolcombo("showmem", dicts.memory_getters_p_c, dicts.memory_getters_ps1)
-		load_toolcombo("showspace", dicts.space_getters_p_c, dicts.space_getters_ps1)
-		load_toolcombo("countfiles", dicts.counters_p_c, dicts.counters_ps1)
-		load_toolcombo("showload", dicts.load_getters_p_c, dicts.load_getters_ps1)
-		load_toolcombo("insert_color", dicts.symbolic_colors_p_c, dicts.symbolic_colors_ps1)
+		WidgetHandler.InitWidget("showmem", dicts.memory_getters_p_c, dicts.memory_getters_ps1, "cpb_combo", prompt_add_combo)
+		WidgetHandler.InitWidget("showspace", dicts.space_getters_p_c, dicts.space_getters_ps1, "cpb_combo", prompt_add_combo)
+		WidgetHandler.InitWidget("countfiles", dicts.counters_p_c, dicts.counters_ps1, "cpb_combo", prompt_add_combo)
+		WidgetHandler.InitWidget("showload", dicts.load_getters_p_c, dicts.load_getters_ps1, "cpb_combo", prompt_add_combo)
+		WidgetHandler.InitWidget("insert_color", dicts.symbolic_colors_p_c, dicts.symbolic_colors_ps1, "cpb_combo", prompt_add_combo)
 
 		######################## Default Styles ############################################
 

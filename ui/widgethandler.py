@@ -49,15 +49,30 @@ class WidgetHandler(object):
 		    return dict([(v, k) for (k, v) in iteritems()])
 
 		def InitWidget(self, widget, group, setting, type, dict):
-			# widget, group, setting, type, None for:
-			#	text boxes, spin-, radio-, and toggle-buttons,
-			#	switches
-			# widget, group, setting, type, dict for:
-			#	combo boxes
-			# widget, action, actionarg, type, None for:
-			#	normal buttons
-			# widget, None, label, type, None for:
-			#	labels
+			# known widget types:
+			#	text		GtkTextEntry
+			#	int		GtkSpinButton
+			#	bool		GtkToggleButton / GtkRadioButton
+			#	switch		GtkSwitch
+			#	combo		GtkComboBox
+			#	button		GtkButton
+			#	label		GtkLabel
+			#	cpb_button	Custom Prompt Builder GtkButton
+			#	cpb_combo	Custom Prompt Builder GtkComboBox
+
+			# required parameters:
+			#	for text, int, bool, switch:
+			#		widget, group, setting, type, None
+			#	for combo:
+			#		widget, group, setting, type, dict
+			#	for button:
+			#		widget, action, actionarg, type, None
+			#	for labels:
+			#		widget, None, label, type, None
+			#	for cpb_button:
+			#		widget, pc_text, ps1_text, type, action
+			#	for cpb_combo:
+			#		widget, pc_dict, ps1_dict, type action
 
 			def LoadWidget():
 				object = gtkbuilder.get_object("%s" % widget)
@@ -76,6 +91,8 @@ class WidgetHandler(object):
 					object.set_active(self.SwapDictionary(dict)[self.config["%s" % group]["%s" % setting]])
 				elif  type == "label":
 					object.set_label("%s" % setting)
+				elif type == "cpb_combo":
+					object.set_active(0)
 
 			def ConnectSignals():
 				if type == "text":
@@ -93,6 +110,10 @@ class WidgetHandler(object):
 					object.connect("changed", set_option, None, type, dict, group, setting)
 				elif type == "button":
 					object.connect("clicked", group, setting)
+				elif type == "cpb_button":
+					object.connect("clicked", dict, group, setting)
+				elif type == "cpb_combo":
+					object.connect("changed", dict, group, setting)
 
 			def revert_option(widget, pos, event, type, widget_group, widget_setting):
 				if type == "text" or type == "int":
