@@ -113,6 +113,11 @@ class ConfigUI(object):
 
 class StartupUI(object):
 
+	def __init__(self, cfo, udc, fdc):
+			self.config = cfo
+			self.userdefault = udc
+			self.factorydefault = fdc
+
 	def InitStartupUI(self):
 
 		if config.CheckBashStyle() == False:

@@ -316,7 +316,7 @@ class BashStyleNG(object):
 		cfgui.InitConfigUI()
 
 		######################## Load the configuration handling UI ########################
-		suui = configui.StartupUI()
+		suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
 		suui.InitStartupUI()
 
 		self.bashstyle.show
