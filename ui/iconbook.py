@@ -73,6 +73,9 @@ class IconBook(object):
 			if model[item][1] == _("Documentation"):
 				back.set_visible(0)
 				openFile(False, os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html")
+			elif model[item][1] == _("Start Terminal"):
+				back.set_visible(0)
+				subprocess.Popen(["x-terminal-emulator"])
 			else:
 				notebook.set_current_page(dicts.notebook_pages[model[item][1]])
 				back.set_visible(1)
