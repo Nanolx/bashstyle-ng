@@ -49,6 +49,15 @@ class WidgetHandler(object):
 		    return dict([(v, k) for (k, v) in iteritems()])
 
 		def InitWidget(self, widget, group, setting, type, dict):
+			# widget, group, setting, type, None for:
+			#	text boxes, spin-, radio-, and toggle-buttons,
+			#	switches
+			# widget, group, setting, type, dict for:
+			#	combo boxes
+			# widget, action, actionarg, type, None for:
+			#	normal buttons
+			# widget, None, label, type, None for:
+			#	labels
 
 			def LoadWidget():
 				object = gtkbuilder.get_object("%s" % widget)
@@ -65,6 +74,8 @@ class WidgetHandler(object):
 					object.set_active(self.config["%s" % group].as_bool("%s" % setting))
 				elif type == "combo":
 					object.set_active(self.SwapDictionary(dict)[self.config["%s" % group]["%s" % setting]])
+				elif  type == "label":
+					object.set_label("%s" % setting)
 
 			def ConnectSignals():
 				if type == "text":
@@ -80,6 +91,8 @@ class WidgetHandler(object):
 					object.connect("notify::active", set_option, type, None, group, setting)
 				elif type == "combo":
 					object.connect("changed", set_option, None, type, dict, group, setting)
+				elif type == "button":
+					object.connect("clicked", group, setting)
 
 			def revert_option(widget, pos, event, type, widget_group, widget_setting):
 				if type == "text" or type == "int":
@@ -112,3 +125,4 @@ class WidgetHandler(object):
 			object = LoadWidget()
 			LoadValue()
 			ConnectSignals()
+			return object

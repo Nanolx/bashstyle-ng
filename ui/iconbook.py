@@ -9,8 +9,7 @@
 #							#
 #########################################################
 
-MODULES = [ 'sys', 'os', 'widgethandler', 'subprocess',
-            'config', 'lockfile', 'dicts' ]
+MODULES = [ 'sys', 'os', 'widgethandler', 'subprocess', 'dicts' ]
 
 FAILED = []
 
@@ -35,9 +34,6 @@ if FAILED:
     sys.exit(1)
 
 gtkbuilder = widgethandler.gtkbuilder
-USER_DEFAULTS_SAVE = config.USER_DEFAULTS_SAVE
-config = config.Config()
-lock = lockfile.LockFile()
 
 class IconBook(object):
 
@@ -72,7 +68,7 @@ class IconBook(object):
 			model = widget.get_model()
 			if model[item][1] == _("Documentation"):
 				back.set_visible(0)
-				openFile(False, os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html")
+				subprocess.Popen(["xdg-open"], "%s" % os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html")
 			elif model[item][1] == _("Start Terminal"):
 				back.set_visible(0)
 				subprocess.Popen(["x-terminal-emulator"])
@@ -82,91 +78,3 @@ class IconBook(object):
 				main_label.set_text(_("Category: ") + _(model[item][1]))
 
 		iconview.connect("item-activated", iconview_activated)
-
-		def backup_configAction(data, atad):
-			config.BackupConfig()
-			restore_configPossible()
-			delete_configPossible()
-
-		def restore_configPossible():
-			if config.UserSaveConfigExists():
-				if config.UserSaveConfigVersion() == config.FactoryConfigVersion():
-					restore_config.set_sensitive(True)
-				else:
-					restore_config.set_sensitive(False)
-			else:
-				restore_config.set_sensitive(False)
-			versionlabel_userbackup.set_text("%s" % config.UserSaveConfigVersion())
-
-		def restore_configAction(data, atad):
-			config.RestoreConfig()
-			lock.Remove()
-			print(_("RestoreConfig: relaunching BashStyle-NG"))
-			python = sys.executable
-			os.execl(python, python, * sys.argv)
-
-		def reset_configAction(data, atad):
-			config.ResetConfig(False)
-			lock.Remove()
-			print(_("ResetConfig: relaunching BashStyle-NG"))
-			python = sys.executable
-			os.execl(python, python, * sys.argv)
-
-		def delete_configPossible():
-			delete_config.set_sensitive(config.UserSaveConfigExists())
-
-		def delete_configAction(data, atad):
-			if os.access(USER_DEFAULTS_SAVE, os.F_OK):
-				print(_("BackupConfig: deleting user backup %s" % USER_DEFAULTS_SAVE))
-				os.remove(USER_DEFAULTS_SAVE)
-			restore_configPossible()
-			delete_configPossible()
-
-		def openFile(data, file):
-			subprocess.Popen(["xdg-open", "%s" %file])
-
-		def load_button(widget, action, extraarg=None):
-			widget = gtkbuilder.get_object("%s" % widget)
-			widget.connect("clicked", action, extraarg)
-			return widget
-
-		load_button("config.backup", backup_configAction)
-		load_button("config.reset", reset_configAction)
-		load_button("config.edit_bashrc", openFile, os.getenv('HOME') + "/.bashrc")
-		load_button("config.edit_bashstylecustom", openFile, os.getenv('HOME') + "/.bashstyle.custom")
-		load_button("config.edit_vimrccustom", openFile, os.getenv('HOME') + "/.vimrc.custom")
-		load_button("config.edit_inputrccustom", openFile, os.getenv('HOME') + "/.inputrc.custom")
-		restore_config = load_button("config.restore", restore_configAction)
-		delete_config = load_button("config.delete", delete_configAction)
-
-		def load_label(widget, action):
-			widget = gtkbuilder.get_object("%s" % widget)
-			widget.set_text("%s" % action)
-			return widget
-
-		load_label("config.label_user.desc", config.UserConfigVersion())
-		load_label("config.label_vendor.desc", config.VendorConfigVersion())
-		load_label("config.label_factory.desc", config.FactoryConfigVersion())
-		versionlabel_userbackup = load_label("config.label_userbackup.desc", config.UserSaveConfigVersion())
-
-		restore_configPossible()
-		delete_configPossible()
-
-		if config.CheckBashStyle() == False:
-			def setBashStyle(data, atad):
-				config.EnableBashStyle(True)
-				notebook.set_current_page(0)
-				main_label.set_text(_("Choose a Category:"))
-
-			def abortBashStyle(data, atad):
-				notebook.set_current_page(0)
-				main_label.set_text(_("Choose a Category:"))
-
-			load_button("startup.enable", setBashStyle)
-			load_button("startup.cancel", abortBashStyle)
-
-			notebook.set_current_page(13)
-			main_label.set_text(_("Category: ") + _("BashStyle-NG StartUp"))
-
-		load_label("about.prefix", os.getenv('BSNG_UI_PREFIX'))
-		load_label("about.version", os.getenv('BSNG_UI_VERSION'))

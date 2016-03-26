@@ -19,7 +19,7 @@ args.CmdArgs()
 print(_("\nBashStyle-NG Version %s starting" % os.getenv('BSNG_UI_VERSION')))
 
 MODULES = [ 'os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
-            'undobuffer', 'lockfile', 'config', 'widgethandler',
+            'undobuffer', 'lockfile', 'config', 'widgethandler', 'configui',
             'dicts', 'prompts', 'promptbuilder', 'iconbook', 'keybindings' ]
 
 FAILED = []
@@ -310,6 +310,14 @@ class BashStyleNG(object):
 		######################## Load the IconView and Notebook ############################
 		view = iconbook.IconBook()
 		view.InitIconBook()
+
+		######################## Load the configuration handling UI ########################
+		cfgui = configui.ConfigUI(config.cfo, config.udc, config.fdc)
+		cfgui.InitConfigUI()
+
+		######################## Load the configuration handling UI ########################
+		suui = configui.StartupUI()
+		suui.InitStartupUI()
 
 		self.bashstyle.show
 
