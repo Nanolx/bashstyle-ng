@@ -204,6 +204,7 @@ if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 		PS4="${OLDPS4}${cmd_text_colour}"
 
 	}
+	dbg_msg "Add colorshell to DEBUG trap"
 	trap_add '_colorshell' DEBUG
 
 	if [[ $(ini_get colorshell_reset) == True ]]; then
@@ -212,6 +213,7 @@ if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 			echo -ne "\e[0m"
 		}
 
+		dbg_msg "Add colorshell-reset to DEBUG trap"
 		trap_add '_colorshell_reset' DEBUG
 	fi
 fi
@@ -362,10 +364,10 @@ reload_bash () {
 	source ${HOME}/.bashrc
 }
 
-dbg_finalize
 unset style
 
 if [[ $(ini_get history_sync) == True ]]; then
+	dbg_msg "Add history syncronization to DEBUG trap"
 	trap_add '_synchistory' DEBUG
 
 	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
@@ -375,11 +377,14 @@ if [[ $(ini_get history_sync) == True ]]; then
 	trap_add '_synchistory_post' DEBUG
 fi
 
+dbg_msg "Add remember command to DEBUG and ERR trap"
 trap_add 'remember_command_debug' DEBUG
 trap_add 'remember_command_err' ERR
 
 lastcommand=""
 lastcommandprintable="                     "
 lastexit=0
+
+dbg_finalize
 
 export BSNG_TRAP_RECORD=True
