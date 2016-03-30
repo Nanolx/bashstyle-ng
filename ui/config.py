@@ -218,7 +218,7 @@ class Config(object):
 		rc_new = open(os.path.expanduser("~/.bashrc.new"), "w")
 		content = rc.readlines()
 		for line in content:
-			if line.find("bashstyle-ng/rc/bashstyle-rc") == -1:
+			if line.find("bashstyle-ng/rc/") == -1:
 				rc_new.write(line)
 		rc.close
 		if OnOff == True:
