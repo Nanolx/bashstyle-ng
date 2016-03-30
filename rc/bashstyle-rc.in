@@ -134,7 +134,7 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	else
 		pstyle=$(ini_get prompt_style)
 		if [[ ${pstyle} == clock-ad ]]; then
-			dbg_msg "Clock Advanced prompt style is deprecated, changing to Equinox"
+			dbg_msg $"Clock Advanced prompt style is deprecated, changing to Equinox"
 			pstyle="equinox"
 			ini_set prompt_style equinox
 		fi
@@ -208,7 +208,7 @@ if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 		PS4="${OLDPS4}${cmd_text_colour}"
 
 	}
-	dbg_msg "Add colorshell to DEBUG trap"
+	dbg_msg $"Add colorshell to DEBUG trap"
 	trap_add '_colorshell' DEBUG
 
 	if [[ $(ini_get colorshell_reset) == True ]]; then
@@ -217,7 +217,7 @@ if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 			echo -ne "\e[0m"
 		}
 
-		dbg_msg "Add colorshell-reset to DEBUG trap"
+		dbg_msg $"Add colorshell-reset to DEBUG trap"
 		trap_add '_colorshell_reset' DEBUG
 	fi
 fi
@@ -371,7 +371,7 @@ reload_bash () {
 unset style
 
 if [[ $(ini_get history_sync) == True ]]; then
-	dbg_msg "Add history syncronization to DEBUG trap"
+	dbg_msg $"Add history syncronization to DEBUG trap"
 	trap_add '_synchistory' DEBUG
 
 	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
@@ -381,7 +381,7 @@ if [[ $(ini_get history_sync) == True ]]; then
 	trap_add '_synchistory_post' DEBUG
 fi
 
-dbg_msg "Add remember command to DEBUG and ERR trap"
+dbg_msg $"Add remember command to DEBUG and ERR trap"
 trap_add 'remember_command_debug' DEBUG
 trap_add 'remember_command_err' ERR
 
