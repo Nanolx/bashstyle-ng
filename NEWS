@@ -101,6 +101,18 @@ between.  For more detailed information see the git log.
         - #220 (ini_set): fixed setting ini values from shell.
 
    * New Features
+        - Previously updating the user configuration to a new version
+          was only possible by invoking the 'BashStyle-NG' user
+          interface.  Now the user configuration is auto-updated from
+          'bashstyle-rc' upon shell start up aswell (if needed, vendor
+          configuration is considered if up-to-date, else factory
+          configuration will be used (same behaviour as from user
+          interface)).
+
+          Manual update is possible via 'bashstyle --update', or
+          'bashstyle -u'.  If your configuration is up-to-date, nothing
+          will be changed.
+
         - New Termcap/Manpage coloring function.  'BashStyle-NG' now
           allows you to choose the different colors for manpages from
           the User Interface, rather than only giving you a handful of

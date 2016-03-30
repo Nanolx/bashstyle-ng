@@ -95,6 +95,15 @@ rather useless.
 
 @item New Features
 @itemize @minus
+@item Previously updating the user configuration to a new version was only
+possible by invoking the @code{BashStyle-NG} user interface. Now the user
+configuration is auto-updated from @code{bashstyle-rc} upon shell start up
+aswell (if needed, vendor configuration is considered if up-to-date, else
+factory configuration will be used (same behaviour as from user interface)).
+
+Manual update is possible via @code{bashstyle --update}, or @code{bashstyle -u}.
+If your configuration is up-to-date, nothing will be changed.
+
 @item New Termcap/Manpage coloring function. @code{BashStyle-NG} now allows you
 to choose the different colors for manpages from the User Interface, rather than
 only giving you a handful of pre-defined color schemes.
