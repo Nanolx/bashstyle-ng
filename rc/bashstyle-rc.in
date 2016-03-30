@@ -134,6 +134,7 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	else
 		pstyle=$(ini_get prompt_style)
 		if [[ ${pstyle} == clock-ad ]]; then
+			dbg_msg "Clock Advanced prompt style is deprecated, changing to Equinox"
 			pstyle="equinox"
 			ini_set prompt_style equinox
 		fi
