@@ -18,10 +18,14 @@ export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2016"
 export BSNG_BASHVER=${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}
+export BSNG_LOGFILE=${HOME}/.bashstyle.log
 INI_VERSION=29
 
 source ${BSNG_RCDIR}/internal/misc
 source ${BSNG_RCDIR}/internal/logging
+
+dbg_log rm -f ${BSNG_LOGFILE}
+dbg_log touch ${BSNG_LOGFILE}
 
 dbg_msg $"BashStyle-NG Starting"
 dbg_msg $"BashStyle-NG Bash Major Version:" $(echo ${BASH_VERSINFO[0]})
@@ -45,15 +49,11 @@ if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 else
 	if [[ $(ini_get ini_version) != ${INI_VERSION} ]]; then
 		dbg_msg $"user configuration is not up-to-date"
-		dbg_msg $"expected version" ${INI_VERSION} $"but got" $(ini_version)
+		dbg_msg $"expected version" ${INI_VERSION} $"but got" $(ini_get ini_version)
 		dbg_msg $"running config update helper"
 		dbg_log bashstyle --update
 	fi
 fi
-
-export BSNG_LOGFILE=${HOME}/.bashstyle.log
-dbg_log rm -f ${BSNG_LOGFILE}
-dbg_log touch ${BSNG_LOGFILE}
 
 dbg_log shopt -s checkwinsize
 
