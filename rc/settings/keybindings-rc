@@ -29,15 +29,20 @@ keybindings_setter () {
 
 		if [[ ${MOD} == e ]]; then
 			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" e-${KEY}
+			dbg_msg "\\e${KEY}":self-insert
 			bind "\\e${KEY}":self-insert
+			dbg_msg \"\\e${KEY}\":${ACT}
 			echo -E \"\\e${KEY}\":${ACT} >> ${RC_FILE}
 		elif [[ ${MOD} == C ]]; then
 			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" C-${KEY}
+			dbg_msg "\\C-${KEY}":self-insert
 			bind "\\C-${KEY}":self-insert
+			dbg_msg \"\\C-${KEY}\":${ACT}
 			echo -E \"\\C-${KEY}\":${ACT} >> ${RC_FILE}
 		elif [[ ${MOD} == X ]]; then
 			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" ${KEY}
 			#bind "${KEY}":self-insert
+			dbg_msg ${KEY}:${ACT}
 			echo -E ${KEY}:${ACT} >> ${RC_FILE}
 		fi
 	fi

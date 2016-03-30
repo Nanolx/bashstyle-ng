@@ -54,5 +54,6 @@ ini_add ()
 
 rc_add ()
 {
+	dbg_msg "$@"
 	echo "${@}" >> ${RC_FILE}
 }
