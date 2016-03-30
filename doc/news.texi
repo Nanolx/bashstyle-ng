@@ -12,6 +12,22 @@ Each release lists incompatible changes at its top.
 @heading 9.3 ``Trick or Treat''
 @itemize @bullet
 
+@item Notes
+@itemize @minus
+@item This release renamed the @code{nx-rc} to @code{bashstyle-rc}, that means,
+you'll have to re-enable @code{BashStyle-NG} in your @code{$HOME/.bashrc}. Upon
+first start @code{BashStyle-NG} will offer you to do so, on it's own.
+
+Additional notes for Git repo users:
+@itemize x
+@item This also applies to users that have used version 9.3 prior to commit 4e621c.
+
+@item Any references to @code{nx-rc} will be auto-removed when re-enabling from UI,
+as of commit 2ff6c0, if you transisted before that commit, be sure to remove
+@code{nx-rc} references from your @code{$HOME/.bashrc} manually.
+@end itemize
+@end itemize
+
 @item Bug Fixes
 @itemize @minus
 @item #204 (debian vendor config): fixed error in Debian vendor configuration,
@@ -128,6 +144,11 @@ of @code{PS1} when Bash is in vi insert mode.
 
 @item Updated / Improved Features
 @itemize @minus
+@item @code{history syncronization} improved history syncronization erasedups,
+ignoredups, ignorespace and ignoreboth implementation. Made it more robust in
+case multiple Bash sessions start up simultaneously (should throw a lot less to
+no more errors).
+
 @item @code{random} function's @code{--numericalrange}, @code{-r} param previously
 only allowed setting the @code{highest} value of random range, starting from zero.
 Now it's possible to set the @code{lowest} value optionally, aswell. Both syntaxes
@@ -170,6 +191,14 @@ switches in the UI.
 
 @item Misc. Changes
 @itemize @minus
+
+@item Translation Domain changes:
+@itemize x
+@item old: @code{bs-ng}, new: @code{bashstyle}
+
+@item old: @code{nx-rc}, new: @code{bashstyle-rc}
+@end itemize
+
 @item Improvements to @code{bashstyle} launcher script.
 
 @item Minor improvements to the Custom Prompt Builder UI.

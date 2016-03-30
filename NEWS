@@ -9,6 +9,21 @@ between.  For more detailed information see the git log.
 9.3 "Trick or Treat"
 ====================
 
+   * Notes
+        - This release renamed the 'nx-rc' to 'bashstyle-rc', that
+          means, you'll have to re-enable 'BashStyle-NG' in your
+          '$HOME/.bashrc'.  Upon first start 'BashStyle-NG' will offer
+          you to do so, on it's own.
+
+          Additional notes for Git repo users:
+             x This also applies to users that have used version 9.3
+               prior to commit 4e621c.
+
+             x Any references to 'nx-rc' will be auto-removed when
+               re-enabling from UI, as of commit 2ff6c0, if you
+               transisted before that commit, be sure to remove 'nx-rc'
+               references from your '$HOME/.bashrc' manually.
+
    * Bug Fixes
         - #204 (debian vendor config): fixed error in Debian vendor
           configuration, preventing BashStyle-NG UI from startup.
@@ -134,6 +149,12 @@ between.  For more detailed information see the git log.
                last line of 'PS1' when Bash is in emacs mode.
 
    * Updated / Improved Features
+        - 'history syncronization' improved history syncronization
+          erasedups, ignoredups, ignorespace and ignoreboth
+          implementation.  Made it more robust in case multiple Bash
+          sessions start up simultaneously (should throw a lot less to
+          no more errors).
+
         - 'random' function's '--numericalrange', '-r' param previously
           only allowed setting the 'highest' value of random range,
           starting from zero.  Now it's possible to set the 'lowest'
@@ -171,6 +192,12 @@ between.  For more detailed information see the git log.
              + make build dependencies a separate dependency group.
 
    * Misc.  Changes
+
+        - Translation Domain changes:
+             x old: 'bs-ng', new: 'bashstyle'
+
+             x old: 'nx-rc', new: 'bashstyle-rc'
+
         - Improvements to 'bashstyle' launcher script.
 
         - Minor improvements to the Custom Prompt Builder UI.
