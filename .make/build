@@ -59,7 +59,7 @@ update_po () {
 		for lang in ${APP_LANGUAGES}; do
 			echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
 			msgmerge -q -o i18n/"${lang}"/bashstyle.po \
-				i18n/"${lang}"/bashstyle.po i18n/bs-ng.pot >/dev/null
+				i18n/"${lang}"/bashstyle.po i18n/bashstyle.pot >/dev/null
 		done
 
 		echo -e "\t${WHITE}+ ${MAGENTA} bashstyle-rc translations"
