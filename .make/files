@@ -10,7 +10,7 @@
 #########################################################
 
 DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
-	     rc/nx-rc:${DATADIR}/rc
+	     rc/bashstyle-rc:${DATADIR}/rc
 	     rc/internal/*:${DATADIR}/rc/internal
 	     rc/settings/*:${DATADIR}/rc/settings
 	     rc/styles/*:${DATADIR}/rc/styles
@@ -23,7 +23,7 @@ DOC_FILES=( doc/html/*.html:${DOCDIR} )
 MAN_FILES=( doc/bashstyle.1:${MANDIR} )
 
 for lang in ${APP_LANGUAGES}; do
-	LOCALE_REMOVE=( ${LOCALE_REMOVE[@]} ${LOCALEDIR}/${lang}/{bs-ng,nx-rc}.mo)
+	LOCALE_REMOVE=( ${LOCALE_REMOVE[@]} ${LOCALEDIR}/${lang}/{bashstyle,bashstyle-rc}.mo)
 	LOCALE_FILES=( i18n/${lang}/*.mo:${LOCALEDIR}/${lang}/LC_MESSAGES )
 done
 

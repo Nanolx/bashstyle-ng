@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-26 09:25+0100\n"
+"POT-Creation-Date: 2016-03-30 09:23+0200\n"
 "PO-Revision-Date: 2016-03-26 09:26+0100\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
@@ -20,9 +20,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: ui/args.py:23 ui/bs-ng.py:39 ui/config.py:23 ui/iconbook.py:34
-#: ui/keybindings.py:38 ui/lockfile.py:23 ui/promptbuilder.py:28
-#: ui/widgethandler.py:28
+#: ui/args.py:23 ui/bs-ng.py:39 ui/config.py:23 ui/configui.py:34
+#: ui/iconbook.py:33 ui/keybindings.py:38 ui/lockfile.py:23
+#: ui/promptbuilder.py:28 ui/widgethandler.py:28
 #, python-format
 msgid "The following modules failed to import: %s"
 msgstr "Folgende Module konnten nicht geladen werden: %s"
@@ -185,6 +185,40 @@ msgstr ""
 "VendorConfigExists: Distributions-Konfiguration kann aufgrund von Fehlern "
 "nicht geladen werden."
 
+#: ui/configui.py:26 ui/iconbook.py:25 ui/keybindings.py:25
+#: ui/promptbuilder.py:25 ui/widgethandler.py:25
+msgid "Gtk (from gi.repository)"
+msgstr "Gtk (aus gi.repository)"
+
+#: ui/configui.py:31 ui/iconbook.py:30 ui/keybindings.py:35
+msgid "GdkPixbuf (from gi.repository)"
+msgstr "GdkPixbuf (aus gi.repository)"
+
+#: ui/configui.py:69
+msgid "RestoreConfig: relaunching BashStyle-NG"
+msgstr "RestoreConfig: Neu-Start von BashStyle-NG"
+
+#: ui/configui.py:76
+msgid "ResetConfig: relaunching BashStyle-NG"
+msgstr "ResetConfig: Neu-Start von BashStyle-NG"
+
+#: ui/configui.py:85
+#, python-format
+msgid "BackupConfig: deleting user backup %s"
+msgstr "BackupConfig: entferne Sicherung %s"
+
+#: ui/configui.py:127 ui/configui.py:131 ui/iconbook.py:57
+msgid "Choose a Category:"
+msgstr "Kategorie auswählen:"
+
+#: ui/configui.py:141 ui/iconbook.py:78
+msgid "Category: "
+msgstr "Kategorie: "
+
+#: ui/configui.py:141 ui/dicts.py:299
+msgid "BashStyle-NG StartUp"
+msgstr "BashStyle-NG StartUp"
+
 #: ui/dicts.py:266 ui/dicts.py:286
 msgid "General Style"
 msgstr "Stil Optionen"
@@ -237,7 +271,7 @@ msgstr "Tastenkürzel"
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ui/dicts.py:279 ui/dicts.py:301 ui/iconbook.py:73
+#: ui/dicts.py:279 ui/dicts.py:301 ui/iconbook.py:69
 msgid "Documentation"
 msgstr "Dokumentation"
 
@@ -245,43 +279,9 @@ msgstr "Dokumentation"
 msgid "Manpage Colors"
 msgstr "Hilfeseiten Farben"
 
-#: ui/dicts.py:281 ui/dicts.py:302 ui/iconbook.py:76
+#: ui/dicts.py:281 ui/dicts.py:302 ui/iconbook.py:72
 msgid "Start Terminal"
 msgstr "Terminal starten"
-
-#: ui/dicts.py:299 ui/iconbook.py:169
-msgid "BashStyle-NG StartUp"
-msgstr "BashStyle-NG StartUp"
-
-#: ui/iconbook.py:26 ui/keybindings.py:25 ui/promptbuilder.py:25
-#: ui/widgethandler.py:25
-msgid "Gtk (from gi.repository)"
-msgstr "Gtk (aus gi.repository)"
-
-#: ui/iconbook.py:31 ui/keybindings.py:35
-msgid "GdkPixbuf (from gi.repository)"
-msgstr "GdkPixbuf (aus gi.repository)"
-
-#: ui/iconbook.py:61 ui/iconbook.py:159 ui/iconbook.py:163
-msgid "Choose a Category:"
-msgstr "Kategorie auswählen:"
-
-#: ui/iconbook.py:82 ui/iconbook.py:169
-msgid "Category: "
-msgstr "Kategorie: "
-
-#: ui/iconbook.py:104
-msgid "RestoreConfig: relaunching BashStyle-NG"
-msgstr "RestoreConfig: Neu-Start von BashStyle-NG"
-
-#: ui/iconbook.py:111
-msgid "ResetConfig: relaunching BashStyle-NG"
-msgstr "ResetConfig: Neu-Start von BashStyle-NG"
-
-#: ui/iconbook.py:120
-#, python-format
-msgid "BackupConfig: deleting user backup %s"
-msgstr "BackupConfig: entferne Sicherung %s"
 
 #: ui/keybindings.py:30
 msgid "GObject (from gi.repository)"
@@ -1939,7 +1939,7 @@ msgid "About"
 msgstr "Über"
 
 #: ui/bashstyle.ui.h:413
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "BashStyle-NG is not loaded upon Shell start.\n"
 "\n"
@@ -1953,7 +1953,7 @@ msgid ""
 "\n"
 "You can add the entry manually like:\n"
 "\n"
-"        source /usr/share/bashstyle-ng/rc/nx-rc\n"
+"        source /usr/share/bashstyle-ng/rc/bashstyle-rc\n"
 "\n"
 "assuming /usr was the chosen install prefix. "
 msgstr ""

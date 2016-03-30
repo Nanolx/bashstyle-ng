@@ -10,7 +10,7 @@
 #########################################################
 
 import gettext, os
-lang = gettext.translation('bs-ng', fallback=True)
+lang = gettext.translation('bashstyle', fallback=True)
 lang.install(names=['_'])
 
 import args

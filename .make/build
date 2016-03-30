@@ -39,34 +39,34 @@ do_gzip_man () {
 generate_pot () {
 
 	echo -e "\t${WHITE}+ ${MAGENTA} translation templates"
-	echo -e "\t${WHITE}  *${YELLOW} bs-ng.pot"
+	echo -e "\t${WHITE}  *${YELLOW} bashstyle.pot"
 	intltool-extract --type=gettext/glade ui/bashstyle.ui >/dev/null
-	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bs-ng.pot \
+	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bashstyle.pot \
 		ui/*.py ui/bashstyle.ui.h >/dev/null
 
-	echo -e "\t${WHITE}  *${YELLOW} nx-rc.pot"
-	xgettext -o i18n/nx-rc.pot -L shell rc/nx-rc rc/settings/*-rc 2>/dev/null
+	echo -e "\t${WHITE}  *${YELLOW} bashstyle-rc.pot"
+	xgettext -o i18n/bashstyle-rc.pot -L shell rc/bashstyle-rc rc/settings/*-rc 2>/dev/null
 
 }
 
 update_po () {
 
-	if [[ ! -f i18n/bs-ng.pot || ! -f i18n/nx-rc.pot ]]; then
+	if [[ ! -f i18n/bashstyle.pot || ! -f i18n/bashstyle-rc.pot ]]; then
 		echo -e "\n${RED}You need to run './make pot' first!\n"
 		exit 1
 	else
 		echo -e "\t${WHITE}+ ${MAGENTA} gui translations"
 		for lang in ${APP_LANGUAGES}; do
 			echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
-			msgmerge -q -o i18n/"${lang}"/bs-ng.po \
-				i18n/"${lang}"/bs-ng.po i18n/bs-ng.pot >/dev/null
+			msgmerge -q -o i18n/"${lang}"/bashstyle.po \
+				i18n/"${lang}"/bashstyle.po i18n/bs-ng.pot >/dev/null
 		done
 
-		echo -e "\t${WHITE}+ ${MAGENTA} nx-rc translations"
+		echo -e "\t${WHITE}+ ${MAGENTA} bashstyle-rc translations"
 		for lang in ${APP_LANGUAGES}; do
 			echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
-			msgmerge -q -o i18n/"${lang}"/nx-rc.po \
-				i18n/"${lang}"/nx-rc.po i18n/nx-rc.pot >/dev/null
+			msgmerge -q -o i18n/"${lang}"/bashstyle-rc.po \
+				i18n/"${lang}"/bashstyle-rc.po i18n/bashstyle-rc.pot >/dev/null
 		done
 	fi
 
@@ -77,15 +77,15 @@ generate_mo () {
 	echo -e "\t${WHITE}+ ${MAGENTA} gui translations"
 	for lang in ${APP_LANGUAGES}; do
 		echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
-		msgfmt --output-file=i18n/"${lang}"/bs-ng.mo \
-			i18n/"${lang}"/bs-ng.po
+		msgfmt --output-file=i18n/"${lang}"/bashstyle.mo \
+			i18n/"${lang}"/bashstyle.po
 	done
 
-	echo -e "\t${WHITE}+ ${MAGENTA} nx-rc translations"
+	echo -e "\t${WHITE}+ ${MAGENTA} bashstyle-rc translations"
 	for lang in ${APP_LANGUAGES}; do
 		echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
-		msgfmt --output-file=i18n/"${lang}"/nx-rc.mo \
-			i18n/"${lang}"/nx-rc.po
+		msgfmt --output-file=i18n/"${lang}"/bashstyle-rc.mo \
+			i18n/"${lang}"/bashstyle-rc.po
 	done
 
 }

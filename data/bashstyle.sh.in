@@ -8,6 +8,6 @@
 #							#
 #########################################################
 
-if [ ! $(grep "nx-rc" ${HOME}/.bashrc) >/dev/null 2>&1 ]; then
-    echo -e "\nsource @DATADIR@/bashstyle-ng/rc/nx-rc" >> ${HOME}/.bashrc
+if [ ! $(grep "bashstyle-rc" ${HOME}/.bashrc) >/dev/null 2>&1 ]; then
+    echo -e "\nsource @DATADIR@/bashstyle-ng/rc/bashstyle-rc" >> ${HOME}/.bashrc
 fi

@@ -29,7 +29,7 @@ USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
 USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
-NXRC = (DATADIR + "/bashstyle-ng/rc/nx-rc")
+NXRC = (DATADIR + "/bashstyle-ng/rc/bashstyle-rc")
 
 app_ini_version = 29
 
@@ -218,7 +218,7 @@ class Config(object):
 		rc_new = open(os.path.expanduser("~/.bashrc.new"), "w")
 		content = rc.readlines()
 		for line in content:
-			if line.find("bashstyle-ng/rc/nx-rc") == -1:
+			if line.find("bashstyle-ng/rc/bashstyle-rc") == -1:
 				rc_new.write(line)
 		rc.close
 		if OnOff == True:
