@@ -208,9 +208,9 @@ if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 
 	if [[ $(ini_get colorshell_reset) == True ]]; then
 
-	_colorshell_reset () {
-		echo -ne "\e[0m"
-	}
+		_colorshell_reset () {
+			echo -ne "\e[0m"
+		}
 
 		trap_add '_colorshell_reset' DEBUG
 	fi
@@ -222,20 +222,20 @@ if [[ $(ini_get history_sync) == True ]]; then
 		sed '$!N;s/\n/HISTDILIMITER/' ${HISTFILE} | \
 			tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
 			tac | sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
-		mv ${HISTFILE}.tmp ${HISTFILE}
+		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
 	_ignorehistorydups () {
 		sed '$!N;s/\n/HISTDILIMITER/' ${HISTFILE} | \
 			gawk -F'HISTDILIMITER' '!x[$2]++' | \
 			sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
-		mv ${HISTFILE}.tmp ${HISTFILE}
+		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
 	_ignorehistoryspc () {
 		sed '$!N;s/\n/HISTDILIMITER/' ${HISTFILE} | \
 			sed -e '/HISTDILIMITER /d' > ${HISTFILE}.tmp
-		mv ${HISTFILE}.tmp ${HISTFILE}
+		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
 	_synchistory () {
@@ -249,14 +249,6 @@ if [[ $(ini_get history_sync) == True ]]; then
 		builtin history -c
 		builtin history -r
 	}
-
-	trap_add '_synchistory' DEBUG
-
-	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
-	[[ ${HISTCONTROL} == ignoredups || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorydups' DEBUG
-	[[ ${HISTCONTROL} == ignorespace || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorspc' DEBUG
-
-	trap_add '_synchistory_post' DEBUG
 
 fi
 
@@ -372,6 +364,16 @@ reload_bash () {
 
 dbg_finalize
 unset style
+
+if [[ $(ini_get history_sync) == True ]]; then
+	trap_add '_synchistory' DEBUG
+
+	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
+	[[ ${HISTCONTROL} == ignoredups || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorydups' DEBUG
+	[[ ${HISTCONTROL} == ignorespace || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorspc' DEBUG
+
+	trap_add '_synchistory_post' DEBUG
+fi
 
 trap_add 'remember_command_debug' DEBUG
 trap_add 'remember_command_err' ERR
