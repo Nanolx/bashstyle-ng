@@ -133,7 +133,10 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 		dbg_msg $"BashStyle-NG Setting:" ${pstyle} $"randomly chosen"
 	else
 		pstyle=$(ini_get prompt_style)
-		[[ ${pstyle} == clock-ad ]] && pstyle="equinox"
+		if [[ ${pstyle} == clock-ad ]]; then
+			pstyle="equinox"
+			ini_set prompt_style equinox
+		fi
 	fi
 
 	use_custom_prompt=$(ini_get use_custom_prompt)
