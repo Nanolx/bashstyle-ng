@@ -265,15 +265,15 @@ if [[ $(ini_get history_sync) == True ]]; then
 		builtin history -a
 		builtin history -c
 
-		[[ ${HISTCONTROL} == erasedups ]] && _erasehistorydups
-		[[ ${HISTCONTROL} == ignoredups ]] && _ignorehistorydups
-		[[ ${HISTCONTROL} == ignorespace ]] && _ignorehistorspc
-		[[ ${HISTCONTROL} == ignoreboth ]] && _ignorehistoryboth
+		case ${HISTCONTROL} in
+			erasedups )	_erasehistorydups ;;
+			ignoredups)	_ignorehistorydups ;;
+			ignorespace)	_ignorehistorspc ;;
+			ignoreboth)	_ignorehistoryboth ;;
+		esac
 
 		builtin history -r
 	}
-
-
 
 fi
 
