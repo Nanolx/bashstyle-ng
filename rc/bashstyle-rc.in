@@ -237,36 +237,43 @@ fi
 if [[ $(ini_get history_sync) == True ]]; then
 
 	_erasehistorydups () {
-		sed '$!N;s/\n/HISTDILIMITER/' ${HISTFILE} | \
+		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
 			tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
 			tac | sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
 		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
 	_ignorehistorydups () {
-		sed '$!N;s/\n/HISTDILIMITER/' ${HISTFILE} | \
+		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
 			gawk -F'HISTDILIMITER' '!x[$2]++' | \
 			sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
 		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
 	_ignorehistoryspc () {
-		sed '$!N;s/\n/HISTDILIMITER/' ${HISTFILE} | \
+		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
 			sed -e '/HISTDILIMITER /d' > ${HISTFILE}.tmp
 		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
+	}
+
+	_ignorehistoryboth () {
+		_ignorehistorydups
+		_ignorehistoryspc
 	}
 
 	_synchistory () {
 		builtin history -a
 		builtin history -c
+
+		[[ ${HISTCONTROL} == erasedups ]] && _erasehistorydups
+		[[ ${HISTCONTROL} == ignoredups ]] && _ignorehistorydups
+		[[ ${HISTCONTROL} == ignorespace ]] && _ignorehistorspc
+		[[ ${HISTCONTROL} == ignoreboth ]] && _ignorehistoryboth
+
 		builtin history -r
-		builtin history -w
 	}
 
-	_synchistory_post () {
-		builtin history -c
-		builtin history -r
-	}
+
 
 fi
 
@@ -385,12 +392,6 @@ unset style
 if [[ $(ini_get history_sync) == True ]]; then
 	dbg_msg $"Add history syncronization to DEBUG trap"
 	trap_add '_synchistory' DEBUG
-
-	[[ ${HISTCONTROL} == erasedups ]] && trap_add '_erasehistorydups' DEBUG
-	[[ ${HISTCONTROL} == ignoredups || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorydups' DEBUG
-	[[ ${HISTCONTROL} == ignorespace || ${HISTCONTROL} == ignoreboth ]] && trap_add '_ignorehistorspc' DEBUG
-
-	trap_add '_synchistory_post' DEBUG
 fi
 
 dbg_msg $"Add remember command to DEBUG and ERR trap"
