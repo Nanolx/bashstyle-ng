@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-30 13:21+0200\n"
-"PO-Revision-Date: 2016-03-30 13:17+0200\n"
+"POT-Creation-Date: 2016-04-07 21:48+0200\n"
+"PO-Revision-Date: 2016-04-07 21:42+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -98,7 +98,7 @@ msgstr "führe Hilfsprogramm zur Aktualisierung der Konfiguration aus"
 #: rc/bashstyle-rc:61 rc/bashstyle-rc:97 rc/bashstyle-rc:113
 #: rc/bashstyle-rc:117 rc/bashstyle-rc:120 rc/bashstyle-rc:123
 #: rc/bashstyle-rc:127 rc/bashstyle-rc:145 rc/bashstyle-rc:158
-#: rc/bashstyle-rc:161 rc/bashstyle-rc:164 rc/bashstyle-rc:303
+#: rc/bashstyle-rc:161 rc/bashstyle-rc:164 rc/bashstyle-rc:333
 #: rc/settings/alias-rc:13 rc/settings/alias-rc:16 rc/settings/alias-rc:21
 #: rc/settings/alias-rc:26 rc/settings/alias-rc:31 rc/settings/alias-rc:36
 #: rc/settings/alias-rc:41 rc/settings/alias-rc:46 rc/settings/alias-rc:51
@@ -113,7 +113,9 @@ msgstr "führe Hilfsprogramm zur Aktualisierung der Konfiguration aus"
 #: rc/settings/options-rc:36 rc/settings/options-rc:41
 #: rc/settings/options-rc:46 rc/settings/options-rc:49
 #: rc/settings/options-rc:59 rc/settings/options-rc:68
-#: rc/settings/options-rc:85 rc/settings/shopt-rc:13 rc/settings/shopt-rc:15
+#: rc/settings/options-rc:72 rc/settings/options-rc:76
+#: rc/settings/options-rc:84 rc/settings/options-rc:87
+#: rc/settings/options-rc:96 rc/settings/shopt-rc:13 rc/settings/shopt-rc:15
 #: rc/settings/shopt-rc:20 rc/settings/shopt-rc:22 rc/settings/shopt-rc:27
 #: rc/settings/shopt-rc:29 rc/settings/shopt-rc:34 rc/settings/shopt-rc:36
 #: rc/settings/shopt-rc:41 rc/settings/shopt-rc:43 rc/settings/shopt-rc:48
@@ -166,15 +168,15 @@ msgstr "colorshell wird der DEBUG-Trap hinzugefügt"
 msgid "Add colorshell-reset to DEBUG trap"
 msgstr "colorshell-reset wird der DEBUG-Trap hinzugefügt"
 
-#: rc/bashstyle-rc:303
+#: rc/bashstyle-rc:333
 msgid "Welcome Message"
 msgstr "Willkommensgruß"
 
-#: rc/bashstyle-rc:386
+#: rc/bashstyle-rc:416
 msgid "Add history syncronization to DEBUG trap"
 msgstr "history syncronization wird der DEBUG-Trap hinzugefügt"
 
-#: rc/bashstyle-rc:396
+#: rc/bashstyle-rc:420
 msgid "Add remember command to DEBUG and ERR trap"
 msgstr "remember command wird den DEBUG- und ERR-Traps hinzugefügt"
 
@@ -240,7 +242,7 @@ msgstr "An"
 msgid "Off"
 msgstr "Aus"
 
-#: rc/settings/git-rc:12
+#: rc/settings/git-rc:12 rc/settings/options-rc:72
 msgid "Options"
 msgstr "Optionen"
 
@@ -261,7 +263,7 @@ msgid "editor"
 msgstr "Editor"
 
 #: rc/settings/keybindings-rc:31 rc/settings/keybindings-rc:37
-#: rc/settings/keybindings-rc:43
+#: rc/settings/keybindings-rc:43 rc/settings/keybindings-rc:77
 msgid "KeybindingsCFG Setting:"
 msgstr "KeybindingsCFG Setze:"
 
@@ -272,6 +274,10 @@ msgstr "KeybindingsCFG Lade:"
 #: rc/settings/keybindings-rc:58
 msgid "Keybindings"
 msgstr "Tastenkürzel"
+
+#: rc/settings/keybindings-rc:77
+msgid "Return-Key compat"
+msgstr "Return-Key compat"
 
 #: rc/settings/ls-rc:74
 msgid "LS_COLORS Setting:"
@@ -291,7 +297,19 @@ msgstr "LS_COLORS Setze:"
 msgid "NanoCFG Setting:"
 msgstr "NanoCFG Setze:"
 
-#: rc/settings/options-rc:85
+#: rc/settings/options-rc:76
+msgid "don't abort at errors"
+msgstr "bei Fehlern nicht abbrechen"
+
+#: rc/settings/options-rc:84 rc/settings/options-rc:87
+msgid "display progressbar"
+msgstr "Fortschrittsleiste anzeigen"
+
+#: rc/settings/options-rc:87
+msgid "was requested by user, but coreutils is not 8.24 or newer"
+msgstr "vom  Benutzer gewünscht, aber coreutils ist nicht 8.24 oder neuer"
+
+#: rc/settings/options-rc:96
 msgid "Various Options"
 msgstr "Diverse Optionen"
 
