@@ -45,6 +45,13 @@ keybindings_setter () {
 			dbg_msg ${KEY}:${ACT}
 			echo -E ${KEY}:${ACT} >> ${RC_FILE}
 		fi
+
+		if [[ $(ini_get prompt_style) == equinox ]]; then
+			# make the prompt properly re-draw when pressing [Return]
+			dbg_msg $"KeybindingsCFG Setting:" Equinox $"Return-Key compat"
+			dbg_msg 'RETURN: "\C-l\C-j"'
+			echo -E 'RETURN: "\C-l\C-j"' >> ${RC_FILE}
+		fi
 	fi
 }
 
