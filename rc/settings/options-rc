@@ -69,18 +69,28 @@ else	dbg_msg $"BashStyle-NG Setting:" Colored grep $"Off"
 	alias grep="grep --color=no"
 fi
 
-[[ $(ini_get dd_noerror) == True ]] && export DD_OPTS="${DD_OPTS} conv=noerror"
+dbg_msg $"BashStyle-NG Setting:" dd $"Options"
+
+if [[ $(ini_get dd_noerror) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" dd $"don't abort at errors"
+	dbg_log export DD_OPTS="${DD_OPTS} conv=noerror"
+fi
 
 # status=progress is new in dd/coreutils 8.24
 DD_VERSION=$(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version))
 
-[[ $(ini_get dd_progress) == True && ${DD_VERSION} -ge 824 ]] && export DD_OPTS="${DD_OPTS} status=progress"
+if [[ $(ini_get dd_progress) == True && ${DD_VERSION} -ge 824 ]]; then
+	dbg_msg $"BashStyle-NG Setting:" dd $"display progressbar"
+	dbg_log export DD_OPTS="${DD_OPTS} status=progress"
+elif [[ $(ini_get dd_progress) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" dd $"display progressbar" $"was requested by user, but coreutils is not 8.24 or newer"
+fi
 
 __dd () {
 	dd ${DD_OPTS} "${@}"
 }
 
-alias dd=__dd
+dbg_log alias dd=__dd
 
 dbg_msg $"BashStyle-NG Setting:" $"Various Options"
 dbg_log export pwdmaxlen=$(ini_get pwdlength)
