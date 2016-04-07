@@ -12,9 +12,13 @@
 dbg_msg $"BashStyle-NG Setting:" Colors $"On"
 dbg_msg $"BashStyle-NG Setting:" Color-Style $(ini_get color_style)
 
-export colors=(black red green yellow blue magenta cyan grey white coldblue
-		smoothblue iceblue turqoise smoothgreen winered brown silver ocher
-		orange purple pink cream)
+colors=(black red green yellow blue magenta cyan grey white coldblue
+	smoothblue iceblue turqoise smoothgreen winered brown silver ocher
+	orange purple pink cream)
+
+ecolors=(eblack ered egreen eyellow eblue emagenta ecyan egrey ewhite ecoldblue
+	esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher
+	eorange epurple epink ecream)
 
 color_style=$(ini_get color_style)
 
@@ -144,4 +148,8 @@ for color in banner mkdir empty; do
 	eval ccolor_${color}=${temp/\$/\$e}
 done
 
-unset temp pcolors color_style
+for color in ${ecolors[@]}; do
+	export ${color}
+done
+
+unset temp colors ecolors pcolors color_style
