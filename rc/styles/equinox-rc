@@ -23,10 +23,10 @@ _equinox_counter () {
 if [[ $(ini_get equinox_systemload) == True ]]; then
 
 _equinox_counter
-_eq_sysload_pos=${counter}
+_equinox_sysload_pos=${counter}
 
 _equinox_systemload () {
-	echo -en "\033[${_eq_sysload_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_sysload_pos};$((${COLUMNS}-29))H"
 	echo -en "${ecolor_separator}(${ecolor_font} system-load: $(systemkit load1)${ecolor_separator} )────────┤"
 }
 
@@ -35,10 +35,10 @@ fi
 if [[ $(ini_get equinox_cpuload) == True ]]; then
 
 _equinox_counter
-_eq_cpuload_pos=${counter}
+_equinox_cpuload_pos=${counter}
 
 _equinox_cpuload () {
-	echo -en "\033[${_eq_cpuload_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_cpuload_pos};$((${COLUMNS}-29))H"
 	echo -en "${ecolor_separator}(${ecolor_font} cpu-load: $(systemkit cpuload)${ecolor_separator} )────────────┤"
 }
 
@@ -47,10 +47,10 @@ fi
 if [[ $(ini_get equinox_ram) == True ]]; then
 
 _equinox_counter
-_eq_ram_pos=${counter}
+_equinox_ram_pos=${counter}
 
 _equinox_ram () {
-	echo -en "\033[${_eq_ram_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_ram_pos};$((${COLUMNS}-29))H"
 	echo -en "${ecolor_separator}(${ecolor_font} ram: ${ecolor_separator}$(systemkit usedram)mb${ecolor_font} / ${ecolor_separator}$(systemkit freeram)mb )─────┤"
 }
 
@@ -59,10 +59,10 @@ fi
 if [[ $(ini_get equinox_proc) == True ]]; then
 
 _equinox_counter
-_eq_proc_pos=${counter}
+_equinox_proc_pos=${counter}
 
 _equinox_proc () {
-	echo -en "\033[${_eq_proc_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_proc_pos};$((${COLUMNS}-29))H"
 	echo -en "${ecolor_separator}(${ecolor_font} processes:${ecolor_ps} $(systemkit processes) ${ecolor_separator})──────────┤"
 }
 
@@ -71,10 +71,10 @@ fi
 if [[ $(ini_get equinox_lastcmd) == True ]]; then
 
 _equinox_counter
-_eq_lastcmd_pos=${counter}
+_equinox_lastcmd_pos=${counter}
 
 _equinox_lastcmd () {
-	echo -en "\033[${_eq_lastcmd_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_lastcmd_pos};$((${COLUMNS}-29))H"
 	if [ ${lastexit} -eq 0 ]; then
 		echo -en "${ecolor_separator}( ${egreen}${return_good}: ${lastcommandprintable} ${ecolor_separator})─┤"
 	# pressing 'q' in 'git log' results in ${lastexit} -eq 141, but it's not actually a failure (...)
@@ -129,11 +129,11 @@ i=${LINES}
 [[ ${i} -ge 16 ]] && while [ ${i} -ge 4 ]
 do
 	case ${i} in
-		${_eq_sysload_pos} )	_equinox_systemload	;;
-		${_eq_cpuload_pos} )	_equinox_cpuload	;;
-		${_eq_ram_pos} )	_equinox_ram		;;
-		${_eq_proc_pos} )	_equinox_proc		;;
-		${_eq_lastcmd_pos} )	_equinox_lastcmd	;;
+		${_equinox_sysload_pos} )	_equinox_systemload	;;
+		${_equinox_cpuload_pos} )	_equinox_cpuload	;;
+		${_equinox_ram_pos} )		_equinox_ram		;;
+		${_equinox_proc_pos} )		_equinox_proc		;;
+		${_equinox_lastcmd_pos} )	_equinox_lastcmd	;;
 		* )
 			echo -en "\033[$((${i}));${COLUMNS}H${ecolor_separator}│"
 		;;
