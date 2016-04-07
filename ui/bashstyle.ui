@@ -2483,7 +2483,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">36</property>
+                            <property name="top_attach">40</property>
                           </packing>
                         </child>
                         <child>
@@ -2501,7 +2501,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
-                            <property name="top_attach">37</property>
+                            <property name="top_attach">41</property>
                           </packing>
                         </child>
                         <child>
@@ -2513,7 +2513,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">36</property>
+                            <property name="top_attach">40</property>
                           </packing>
                         </child>
                         <child>
@@ -2527,20 +2527,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="top_attach">37</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator" id="separator26">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">35</property>
-                            <property name="width">3</property>
+                            <property name="top_attach">41</property>
                           </packing>
                         </child>
                         <child>
@@ -2555,8 +2542,134 @@
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">36</property>
+                            <property name="top_attach">40</property>
                             <property name="height">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator26">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">39</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator19">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">35</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="style.label.equinox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Equinox</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">36</property>
+                            <property name="height">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="equinox_systemload">
+                            <property name="label" translatable="yes">Display system load</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">36</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="equinox_cpuload">
+                            <property name="label" translatable="yes">Display cpu load</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">36</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="equinox_proc">
+                            <property name="label" translatable="yes">Display number of running jobs</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">37</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="equinox_ram">
+                            <property name="label" translatable="yes">Display memory</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">37</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="equinox_lastcmd">
+                            <property name="label" translatable="yes">checkbutton</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">38</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="equinox_uptime">
+                            <property name="label" translatable="yes">Display uptime</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">38</property>
                           </packing>
                         </child>
                         <child>
