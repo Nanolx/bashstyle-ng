@@ -1,0 +1,30 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2016 Christopher Bratusek		#
+#							#
+#########################################################
+
+case ${1} in
+
+	-h | --help )
+		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "showuser" -s "prompt function to display $ or user-set char, or # for root"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "none:|---"
+	;;
+
+	*)
+		if [[ ${EUID} -eq 0 ]]; then
+			echo -e "${ered}#"
+		elif [[ ${user_char} != "" ]]; then
+			echo -e "${ecolor_user}${user_char}"
+		else	echo -e "${ecolor_user}$"
+		fi
+	;;
+
+esac
