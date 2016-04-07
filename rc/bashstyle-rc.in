@@ -88,7 +88,7 @@ fi
 [[ $(ini_get use_gitcfg) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/git-rc
 
-[[ $(ini_get use_keybindingscfg == True) ]] && \
+[[ $(ini_get use_keybindingscfg) == True ]] && \
 	dbg_log source ${BSNG_RCDIR}/settings/keybindings-rc
 
 [[ $(ini_get less_termcap_color) == True ]] && \
