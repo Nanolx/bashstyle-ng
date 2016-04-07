@@ -14,5 +14,5 @@ ${color_ps}┌─${color_separator}[ ${color_user}\u ${color_font}@ ${color_host
 ${color_separator}[${color_ps} job #\# ${color_separator}]${color_ps}─${color_separator}[${color_font} \$(systemkit tty)${color_separator} ]\
 ${color_ps}─${color_separator}[ ${color_time}\$(date +%H:%M:%S)\
 ${color_font} : ${color_date}\$(date +%m/%d/%y)${color_font} :${color_uptime} \$(systemkit uptime)${color_separator} ]\n\
-${color_ps}└─${color_separator}[ ${color_user}\$${color_ps} : ${color_wdir}\$(truncpwd)${ELITE_1_COLOR}\$(ELITE_1)${color_separator} ]\
+${color_ps}└─${color_separator}[ ${color_user}\$(showuser)${color_ps} : ${color_wdir}\$(truncpwd)${ELITE_1_COLOR}\$(ELITE_1)${color_separator} ]\
 ${color_ps}·>${color_font} "

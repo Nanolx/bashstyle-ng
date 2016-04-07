@@ -39,5 +39,5 @@ PROMPT_COMMAND=pre_prompt
 
 PS1="${color_separator}┌─(${color_user} \u${color_font} @ ${color_host}\h\
 ${color_date} \$(date \"+%a, %d %b %y\")${color_separator} )─\${fill}─(${color_wdir} \${newPWD} \
-${color_separator})─<\n${color_separator}└─(${color_time} \$(date \"+%H:%M\")${color_user} \$${color_separator} )─>${color_font} "
+${color_separator})─<\n${color_separator}└─(${color_time} \$(date \"+%H:%M\")${color_user} \$(showuser)${color_separator} )─>${color_font} "
 
