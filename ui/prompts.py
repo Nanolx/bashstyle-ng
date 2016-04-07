@@ -11,7 +11,7 @@
 
 empty_pc=r""""""
 
-separator_ps=r"""\\u @ \h | \d | \\t | \\$(truncpwd)$ -> """
+separator_ps=r"""\\u @ \h | \d | \\t | \$(truncpwd) | \$(showuser) -> """
 
 vector_ps=r"""\┌( \u @ \h )─( \$(date +%I:%M%P) -:- \$(date +%m)/\$(date +%d) )\└( \$(truncpwd) )·> """
 
@@ -90,9 +90,9 @@ do
 done
 let prompt_line=${LINES}-1"""
 
-equinox_ps=r"""\[\\033[\${prompt_line};0H\]\┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\└─( uptime: \$(systemkit uptime) : $ )·> """
+equinox_ps=r"""\[\\033[\${prompt_line};0H\]\┌─( \u @ \h )─\${fill}─( \$(_newPWD) )────┘\└─( uptime: \$(systemkit uptime) : \$(showuser) )·> """
 
-elite_ps=r"""\┌─[ \u @ \h ]─[ job #\# ]─[ \$(show_tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(systemkit uptime) ]\└─[ $ : \$(truncpwd) ]·> """
+elite_ps=r"""\┌─[ \u @ \h ]─[ job #\# ]─[ \$(systemkit tty) ]─[ \$(date +%H:%M:%S): \$(date +%m/%d/%y) : \$(systemkit uptime) ]\└─[ \$(showuser) : \$(truncpwd) ]·> """
 
 poweruser_pc=r"""
 local one=$(uptime | sed -e \"s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\\1/\" -e \"s/ //g\")
@@ -125,7 +125,7 @@ fi
 unset devicetemp"""
 
 poweruser_ps=r"""\[ \$(date +%T) - \$(date +%D) ]
-[ \u @ \h ]\ [ \${files}.\${hiddenfiles}-\${executables}x \$(show_size)
+[ \u @ \h ]\ [ \${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize)
 ${directories}.\${hiddendirectories}d\${links}\${devices} ][ \${loaddiff} ][
 $(ps ax | wc -l | sed -e \\\"s: ::g\\\")proc ]\[ \$(truncpwd) ] $ """
 
@@ -135,10 +135,10 @@ dotprompt_ps=r"""\.:[ \u @ \h ]:. .:[ \$(truncpwd) ]:..:[·> """
 
 sepang_ps=r"""\⊏⁅ \u ⁑ \h ⁆⁅ \d ⁑ \\t ⁑ \$(systemkit uptime) ⁆⊐\⊏⁅ \$(truncpwd) ⁆⊐≻ """
 
-quirk_ps=r"""\ -( \u / \h )-( \$(show_tty) )-( uptime: \$(systemkit uptime) )-( \$(date +%H:%M)
-$(date +%d-%b-%y ) )-( files: \$(systemkit countvisiblefiles) / folders: \$(countvisibledirs) )-\ -< \$(truncpwd) >- """
+quirk_ps=r"""\ -( \u / \h )-( \$(systemkit tty) )-( uptime: \$(systemkit uptime) )-( \$(date +%H:%M)
+$(date +%d-%b-%y ) )-( files: \$(systemkit countvisiblefiles) / folders: \$(systemkit countvisibledirs) )-\ -< \$(truncpwd) >- """
 
-sputnik_ps=r"""\♦♦( \u @ \h : Space on /: \$(show_space --used /) used of \$(show_space --total /) )♦♦( \$(truncpwd) )♦♦\♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(systemkit uptime) \$ )♦♦ """
+sputnik_ps=r"""\♦♦( \u @ \h : Space on /: \$(systemkit usedspace /) used of \$(systemkit totalspace /) )♦♦( \$(truncpwd) )♦♦\♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(systemkit uptime) \$(showuser) )♦♦ """
 
 ayoli_pc=r"""newPWD=\"${PWD}\"
 user=\"whoami\"
