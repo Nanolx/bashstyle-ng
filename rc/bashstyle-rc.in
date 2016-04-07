@@ -284,14 +284,21 @@ if [[ ${TERM} != *xterm* ]]; then
 	return_bad="-"
 	return_other="/"
 else
-	return_good="✔"
-	return_bad="✘"
-	return_other="⊘"
-fi
+	if [[ $(ini_get return_good) != "" ]]; then
+		return_good="$(ini_get return_good)"
+	else	return_good="✔"
+	fi
 
-[[ $(ini_get return_good) != "" ]] && return_good="$(ini_get return_good)"
-[[ $(ini_get return_bad) != "" ]] && return_bad="$(ini_get return_bad)"
-[[ $(ini_get return_other) != "" ]] && return_other="$(ini_get return_other)"
+	if [[ $(ini_get return_bad) != "" ]]; then
+		return_bad="$(ini_get return_bad)"
+	else	return_bad="✘"
+	fi
+
+	if [[ $(ini_get return_other) != "" ]]; then
+		return_other="$(ini_get return_other)"
+	else	return_other="⊘"
+	fi
+fi
 
 remember_command_debug () {
 	local _lastexit=$?
