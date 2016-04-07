@@ -75,14 +75,18 @@ _equinox_lastcmd_pos=${counter}
 
 _equinox_lastcmd () {
 	echo -en "\033[${_equinox_lastcmd_pos};$((${COLUMNS}-29))H"
-	if [ ${lastexit} -eq 0 ]; then
-		echo -en "${ecolor_separator}( ${egreen}${return_good}: ${lastcommandprintable} ${ecolor_separator})─┤"
-	# pressing 'q' in 'git log' results in ${lastexit} -eq 141, but it's not actually a failure (...)
-	elif [ ${lastexit} -eq 141 ]; then
-		echo -en "${ecolor_separator}( ${eyellow}${return_other}: ${lastcommandprintable} ${ecolor_separator})─┤"
-	else
-		echo -en "${ecolor_separator}( ${ered}${return_bad}: ${lastcommandprintable} ${ecolor_separator})─┤"
-	fi
+	case ${lastexit} in
+		0)
+			echo -en "${ecolor_separator}( ${egreen}${return_good}: ${lastcommandprintable} ${ecolor_separator})─┤"
+		;;
+		141)
+			# pressing 'q' in 'git log' results in ${lastexit} -eq 141, but it's not actually a failure (...)
+			echo -en "${ecolor_separator}( ${eyellow}${return_other}: ${lastcommandprintable} ${ecolor_separator})─┤"
+		;;
+		*)
+			echo -en "${ecolor_separator}( ${ered}${return_bad}: ${lastcommandprintable} ${ecolor_separator})─┤"
+		;;
+	esac
 }
 
 fi
