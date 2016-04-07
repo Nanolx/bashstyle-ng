@@ -70,6 +70,7 @@ else	dbg_msg $"BashStyle-NG Setting:" Colored grep $"Off"
 fi
 
 dbg_msg $"BashStyle-NG Setting:" dd $"Options"
+DD_OPTS=""
 
 if [[ $(ini_get dd_noerror) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" dd $"don't abort at errors"
