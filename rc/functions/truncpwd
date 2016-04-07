@@ -22,14 +22,12 @@ case ${1} in
 		[[ ! ${trunc_symbol} ]] && trunc_symbol="«"
 		[[ ! ${trunc_length} ]] && trunc_length=1
 
-		if [[ ${truncpwd_supported} == True ]];  then
-			if [[ ${pwdmaxlen} != 0 && ${#PWD} -gt ${pwdmaxlen} ]]; then
-				pwdoffset=$(( ${#PWD} - ${pwdmaxlen} ))
-				xPWD="${ecolor_ps}${trunc_symbol}${PWD:${pwdoffset}:${pwdmaxlen}}"
-				newPWD="${xPWD//\//${ecolor_separator}${dirchar}${ecolor_wdir}}"
-			else
-				newPWD="${PWD//\//${ecolor_separator}${dirchar}${ecolor_wdir}}"
-			fi
+		if [[ ${pwdmaxlen} != 0 && ${#PWD} -gt ${pwdmaxlen} ]]; then
+			pwdoffset=$(( ${#PWD} - ${pwdmaxlen} ))
+			xPWD="${ecolor_ps}${trunc_symbol}${PWD:${pwdoffset}:${pwdmaxlen}}"
+			newPWD="${xPWD//\//${ecolor_separator}${dirchar}${ecolor_wdir}}"
+		else
+			newPWD="${PWD//\//${ecolor_separator}${dirchar}${ecolor_wdir}}"
 		fi
 
 		echo -e $newPWD
