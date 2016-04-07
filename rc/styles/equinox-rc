@@ -11,20 +11,89 @@
 
 host=${HOSTNAME/.*}
 
-# make the prompt properly re-draw when pressing [Return]
-bind 'RETURN: "\C-l\C-j"'
+counter=0
 
-function pre_prompt {
+_equinox_counter () {
+	if [[ ${counter} -eq 0 ]]; then
+		counter=4
+	else	counter=$((counter+2))
+	fi
+}
 
-local j=4
-local k=6
-local l=8
-local m=10
-local n=12
+if [[ $(ini_get equinox_systemload) == True ]]; then
+
+_equinox_counter
+_eq_sysload_pos=${counter}
+
+_equinox_systemload () {
+	echo -en "\033[${_eq_sysload_pos};$((${COLUMNS}-29))H"
+	echo -en "${ecolor_separator}(${ecolor_font} system-load: $(systemkit load1)${ecolor_separator} )────────┤"
+}
+
+fi
+
+if [[ $(ini_get equinox_cpuload) == True ]]; then
+
+_equinox_counter
+_eq_cpuload_pos=${counter}
+
+_equinox_cpuload () {
+	echo -en "\033[${_eq_cpuload_pos};$((${COLUMNS}-29))H"
+	echo -en "${ecolor_separator}(${ecolor_font} cpu-load: $(systemkit cpuload)${ecolor_separator} )────────────┤"
+}
+
+fi
+
+if [[ $(ini_get equinox_ram) == True ]]; then
+
+_equinox_counter
+_eq_ram_pos=${counter}
+
+_equinox_ram () {
+	echo -en "\033[${_eq_ram_pos};$((${COLUMNS}-29))H"
+	echo -en "${ecolor_separator}(${ecolor_font} ram: ${ecolor_separator}$(systemkit usedram)mb${ecolor_font} / ${ecolor_separator}$(systemkit freeram)mb )─────┤"
+}
+
+fi
+
+if [[ $(ini_get equinox_proc) == True ]]; then
+
+_equinox_counter
+_eq_proc_pos=${counter}
+
+_equinox_proc () {
+	echo -en "\033[${_eq_proc_pos};$((${COLUMNS}-29))H"
+	echo -en "${ecolor_separator}(${ecolor_font} processes:${ecolor_ps} $(systemkit processes) ${ecolor_separator})──────────┤"
+}
+
+fi
+
+if [[ $(ini_get equinox_lastcmd) == True ]]; then
+
+_equinox_counter
+_eq_lastcmd_pos=${counter}
+
+_equinox_lastcmd () {
+	echo -en "\033[${_eq_lastcmd_pos};$((${COLUMNS}-29))H"
+	if [ ${lastexit} -eq 0 ]; then
+		echo -en "${ecolor_separator}( ${egreen}${return_good}: ${lastcommandprintable} ${ecolor_separator})─┤"
+	# pressing 'q' in 'git log' results in ${lastexit} -eq 141, but it's not actually a failure (...)
+	elif [ ${lastexit} -eq 141 ]; then
+		echo -en "${ecolor_separator}( ${eyellow}${return_other}: ${lastcommandprintable} ${ecolor_separator})─┤"
+	else
+		echo -en "${ecolor_separator}( ${ered}${return_bad}: ${lastcommandprintable} ${ecolor_separator})─┤"
+	fi
+}
+
+fi
+
+unset counter
 
 [[ ! ${dirchar} ]] && dirchar="/"
 [[ ! ${trunc_symbol} ]] && trunc_symbol="«"
 [[ ! ${trunc_length} ]] && trunc_length=1
+
+function pre_prompt {
 
 newPWD="${PWD}"
 
@@ -48,7 +117,7 @@ else
 fi
 
 _newPWD () {
-	echo -e $newPWD
+	echo -e ${newPWD}
 }
 
 echo -en "\033[2;$((${COLUMNS}-29))H"
@@ -60,33 +129,11 @@ i=${LINES}
 [[ ${i} -ge 16 ]] && while [ ${i} -ge 4 ]
 do
 	case ${i} in
-		${j} )
-			echo -en "\033[${j};$((${COLUMNS}-29))H"
-			echo -en "${ecolor_separator}(${ecolor_font} system-load: $(systemkit load1)${ecolor_separator} )────────┤"
-		;;
-		${k} )
-			echo -en "\033[${k};$((${COLUMNS}-29))H"
-			echo -en "${ecolor_separator}(${ecolor_font} cpu-load: $(systemkit cpuload)${ecolor_separator} )────────────┤"
-		;;
-		${l} )
-			echo -en "\033[${l};$((${COLUMNS}-29))H"
-			echo -en "${ecolor_separator}(${ecolor_font} ram: ${ecolor_separator}$(systemkit usedram)mb${ecolor_font} / ${ecolor_separator}$(systemkit freeram)mb )─────┤"
-		;;
-		${m} )
-			echo -en "\033[${m};$((${COLUMNS}-29))H"
-			echo -en "${ecolor_separator}(${ecolor_font} processes:${ecolor_ps} $(systemkit processes) ${ecolor_separator})──────────┤"
-		;;
-		${n} )
-			echo -en "\033[${n};$((${COLUMNS}-29))H"
-			if [ ${lastexit} -eq 0 ]; then
-				echo -en "${ecolor_separator}( ${egreen}✔: ${lastcommandprintable} ${ecolor_separator})─┤"
-			# pressing 'q' in 'git log' results in ${lastexit} -eq 141, but it's not actually a failure (...)
-			elif [ ${lastexit} -eq 141 ]; then
-				echo -en "${ecolor_separator}( ${eyellow}⊘: ${lastcommandprintable} ${ecolor_separator})─┤"
-			else
-				echo -en "${ecolor_separator}( ${ered}✘: ${lastcommandprintable} ${ecolor_separator})─┤"
-			fi
-		;;
+		${_eq_sysload_pos} )	_equinox_systemload	;;
+		${_eq_cpuload_pos} )	_equinox_cpuload	;;
+		${_eq_ram_pos} )	_equinox_ram		;;
+		${_eq_proc_pos} )	_equinox_proc		;;
+		${_eq_lastcmd_pos} )	_equinox_lastcmd	;;
 		* )
 			echo -en "\033[$((${i}));${COLUMNS}H${ecolor_separator}│"
 		;;
@@ -99,9 +146,24 @@ let prompt_line=${LINES}-1
 
 PROMPT_COMMAND=pre_prompt
 
+if [[ $(ini_get equinox_uptime) == True ]]; then
+
 PS1="\[\033[\${prompt_line};0H\]\n\
 ${color_separator}┌─( ${color_user}\u ${color_font}@ ${color_host}\h \
 ${color_separator})─\${fill}─( ${color_wdir}\$(_newPWD)\
 ${color_separator} )────┘\n\
 ${color_separator}└─(${color_uptime} uptime: \$(systemkit uptime)\
-${color_font} :${EQUINOX_1_COLOR}\$(EQUINOX_1)${color_font} \$ ${color_separator})·>${color_font} "
+${color_font} :${EQUINOX_1_COLOR}\$(EQUINOX_1)${color_font} \$ \
+${color_separator})·>${color_font} "
+
+else
+
+PS1="\[\033[\${prompt_line};0H\]\n\
+${color_separator}┌─( ${color_user}\u ${color_font}@ ${color_host}\h \
+${color_separator})─\${fill}─( ${color_wdir}\$(_newPWD)\
+${color_separator} )────┘\n\
+${color_separator}└─(${EQUINOX_1_COLOR}\$(EQUINOX_1)${color_font} \
+\$ ${color_separator})·>${color_font} "
+
+fi
+
