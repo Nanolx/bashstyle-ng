@@ -91,6 +91,22 @@ only the messages from @code{BashStyle-NG} itself were stored, making the debug 
 rather useless.
 
 @item #220 (ini_set): fixed setting ini values from shell.
+
+@item #221 (equinox): when on linux console let display @code{+}, @code{-} and
+@code{/} for @code{lastcommand} exit code visualization instead of @code{✔},
+@code{✘} and @code{⊘}, as they won't display correctly.
+
+@item #222 (custom prompt builder): fixed a few bugs in the pre-definied prompt
+definitions for the custom prompt builder.
+
+@item #223 (keybindings): fixed that keybindings were always changed, even if
+user disabled that feature from UI.
+
+@item #224 (factory ini, debian vendor ini): enable @code{extglob} shopt by
+default. Some bash completion definitions don't work without (eg: vim's).
+
+@item #225 (dd): fixed no longer working @code{dd} when loading @code{bashstyle-rc}
+more than one time during a single bash session.
 @end itemize
 
 @item New Features
@@ -112,6 +128,32 @@ only giving you a handful of pre-defined color schemes.
 
 @item Added coloring options for @code{lscd} and @code{treecd} for different
 @code{banner}, @code{mkdir} and @code{empty} labels.
+
+@item Added options for letting user choose what to use for @code{lastcommand}
+exit code visualization. @code{return_good}, which is @code{✔}/@code{+} by default
+@code{return-bad}, which is @code{✘}/@code{-} by default and @code{return_other},
+which is @code{⊘}/@code{/} by default. This is currently only used in @code{equinox}
+prompt.
+
+@item Ability to choose what to display in @code{equinox} prompt. You can now
+enable or disable the following informations:
+@itemize x
+@item system load
+@item cpu load
+@item ram usage (pro tip: enabling this will dramatically increase the time
+required to draw the prompt)
+@item last command (and exit code)
+@item process count
+@item uptime
+@end itemize
+
+@item Added @code{showuser} function. Prompt function to either show @code{$}
+for normal users, a custom-set symbol. Always displays @code{#} for root. If
+colors are enabled color for normal-users will be @code{color_user} and red for
+root.
+
+@item Added @code{user_char} option. Set this to let @code{showuser} display
+something else than @code{$} for ordinary users.
 
 @item New Bash 4.4 features support:
 @itemize +

@@ -100,6 +100,24 @@ between.  For more detailed information see the git log.
 
         - #220 (ini_set): fixed setting ini values from shell.
 
+        - #221 (equinox): when on linux console let display '+', '-' and
+          '/' for 'lastcommand' exit code visualization instead of '✔',
+          '✘' and '⊘', as they won't display correctly.
+
+        - #222 (custom prompt builder): fixed a few bugs in the
+          pre-definied prompt definitions for the custom prompt builder.
+
+        - #223 (keybindings): fixed that keybindings were always
+          changed, even if user disabled that feature from UI.
+
+        - #224 (factory ini, debian vendor ini): enable 'extglob' shopt
+          by default.  Some bash completion definitions don't work
+          without (eg: vim's).
+
+        - #225 (dd): fixed no longer working 'dd' when loading
+          'bashstyle-rc' more than one time during a single bash
+          session.
+
    * New Features
         - Previously updating the user configuration to a new version
           was only possible by invoking the 'BashStyle-NG' user
@@ -123,6 +141,30 @@ between.  For more detailed information see the git log.
 
         - Added coloring options for 'lscd' and 'treecd' for different
           'banner', 'mkdir' and 'empty' labels.
+
+        - Added options for letting user choose what to use for
+          'lastcommand' exit code visualization.  'return_good', which
+          is '✔'/'+' by default 'return-bad', which is '✘'/'-' by
+          default and 'return_other', which is '⊘'/'/' by default.  This
+          is currently only used in 'equinox' prompt.
+
+        - Ability to choose what to display in 'equinox' prompt.  You
+          can now enable or disable the following informations:
+             x system load
+             x cpu load
+             x ram usage (pro tip: enabling this will dramatically
+               increase the time required to draw the prompt)
+             x last command (and exit code)
+             x process count
+             x uptime
+
+        - Added 'showuser' function.  Prompt function to either show '$'
+          for normal users, a custom-set symbol.  Always displays '#'
+          for root.  If colors are enabled color for normal-users will
+          be 'color_user' and red for root.
+
+        - Added 'user_char' option.  Set this to let 'showuser' display
+          something else than '$' for ordinary users.
 
         - New Bash 4.4 features support:
              + 'EXECIGNORE' a colon-separated list of commands to ignore
