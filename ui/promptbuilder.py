@@ -156,6 +156,7 @@ class PromptBuilder(object):
 		WidgetHandler.InitWidget("showexit", "${lastexit}", "${lastexit}", "cpb_button", prompt_add)
 		WidgetHandler.InitWidget("showlastcmd", "${lastcommand}", "${lastcommand}", "cpb_button", prompt_add)
 		WidgetHandler.InitWidget("showlastcmd_cut", "${lastcommandprintable}", "${lastcommandprintable}", "cpb_button", prompt_add)
+		WidgetHandler.InitWidget("showuser", "${showuser}", "\\$(showuser)", "cpb_button", prompt_add)
 
 		######################## Toolbox Comboboxes ########################################
 
