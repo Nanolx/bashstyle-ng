@@ -5,7 +5,7 @@
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3		#
 #							#
-# Copyright 2007 - 2016 Christopher Bratusek		#
+# Copyright 2007 - 2017 Christopher Bratusek		#
 #							#
 #########################################################
 
@@ -25,7 +25,7 @@ if FAILED:
 
 class CmdArgs(object):
 	parser = optparse.OptionParser(_("bashstyle <option>\
-					\n\nBashStyle-NG © 2007 - 2016 Christopher Bratusek\
+					\n\nBashStyle-NG © 2007 - 2017 Christopher Bratusek\
 					\nLicensed under the GNU GENERAL PUBLIC LICENSE v3"))
 
 	parser.add_option("-v", "--version", dest="version",
