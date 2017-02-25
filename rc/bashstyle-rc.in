@@ -240,20 +240,17 @@ if [[ $(ini_get history_sync) == True ]]; then
 		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
 			tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
 			tac | sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
-		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
 	_ignorehistorydups () {
 		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
 			gawk -F'HISTDILIMITER' '!x[$2]++' | \
 			sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
-		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
 	_ignorehistoryspc () {
 		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
 			sed -e '/HISTDILIMITER /d' > ${HISTFILE}.tmp
-		[[ -f ${HISTFILE}.tmp ]] && mv ${HISTFILE}.tmp ${HISTFILE}
 	}
 
 	_ignorehistoryboth () {
@@ -272,7 +269,10 @@ if [[ $(ini_get history_sync) == True ]]; then
 			ignoreboth)	_ignorehistoryboth ;;
 		esac
 
-		builtin history -r
+		if [[ -f ${HISTFILE}.tmp ]]; then
+			mv ${HISTFILE}.tmp ${HISTFILE} &>/dev/null && \
+			builtin history -r
+		fi
 	}
 
 fi
