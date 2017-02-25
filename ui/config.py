@@ -29,7 +29,7 @@ USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
 USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
-NXRC = (DATADIR + "/bashstyle-ng/rc/bashstyle-rc")
+BASHSTYLERC = (DATADIR + "/bashstyle-ng/rc/bashstyle-rc")
 
 app_ini_version = 31
 
@@ -68,6 +68,7 @@ class Config(object):
 		if self.cfo.as_int("ini_version") < app_ini_version:
 			print(_("CheckConfig: User ini is at version {}, but {} is available, updating.").format(self.cfo.as_int("ini_version"), app_ini_version))
 			self.UpdateConfig()
+			self.cfo.reload()
 		elif self.cfo.as_int("ini_version") > app_ini_version:
 			print(_("CheckConfig: User ini version is at {}, but {} is the highest known. Resetting due to error.").format(self.cfo.as_int("ini_version"), app_ini_version))
 			self.ResetConfig(True)
@@ -78,20 +79,20 @@ class Config(object):
 
 	def ResetConfig(self, userbackup):
 		restore_from=FACTORY_DEFAULTS
-		restore_string=_("ResetConfig: no up-to-date backup or vendor configuration found, using factory defaults.")
+		restore_string=_("ResetConfig: reset to factory configuration.")
 
 		if self.VendorConfigExists():
 			vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
 			if vendor_ini.as_int("ini_version") == app_ini_version:
 				restore_from=VENDOR_DEFAULTS
-				restore_string=_("ResetConfig: vendor configuration up-to-date, using it's values.")
+				restore_string=_("ResetConfig: reset to vendor configuration.")
 
 		if userbackup:
 			if self.UserSaveConfigExists():
 				backup_ini = configobj.ConfigObj(infile=USER_DEFAULTS_SAVE,default_encoding="utf8")
 				if backup_ini.as_int("ini_version") == app_ini_version:
 					restore_from=USER_DEFAULTS_SAVE
-					restore_string=_("ResetConfig: backup configuration up-to-date, using it's values.")
+					restore_string=_("ResetConfig: reset to user backup configuration.")
 
 		print(restore_string)
 		shutil.copy(restore_from, USER_DEFAULTS)
@@ -130,7 +131,6 @@ class Config(object):
 		new["ini_version"] = app_ini_version
 		new.write()
 		shutil.move(USER_DEFAULTS_NEW, USER_DEFAULTS)
-		self.cfo.reload()
 
 	def WriteConfig(self):
 		print(_("WriteConfig: saving configuration."))
@@ -208,7 +208,7 @@ class Config(object):
 		content = rc.readlines()
 		found = False
 		for line in content:
-			if line.startswith("[[ -f " + NXRC + " ]]", 0) == True:
+			if line.startswith("[[ -f " + BASHSTYLERC + " ]]", 0) == True:
 				found = True
 		rc.close
 		return found
@@ -222,6 +222,6 @@ class Config(object):
 				rc_new.write(line)
 		rc.close
 		if OnOff == True:
-			rc_new.write("\n[[ -f " + NXRC + " ]] && source " + NXRC)
+			rc_new.write("\n[[ -f " + BASHSTYLERC + " ]] && source " + BASHSTYLERC)
 		rc_new.close
 		shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))

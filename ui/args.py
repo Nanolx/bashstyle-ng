@@ -35,11 +35,23 @@ class CmdArgs(object):
 			  action="store_true", default=False, help=_("print installation prefix and exit"))
 
 	parser.add_option("-P", "--python", dest="python",
-			  action="store_true", default=False, help=_("print used Python interpreter; \
-if additional args are given they will be passed to the used Python interpreter."))
+			  action="store_true", default=False, help=_("print used Python interpreter;\
+ if additional args are given they will be passed to the used Python interpreter."))
 
 	parser.add_option("-d", "--doc", dest="doc",
 			  action="store_true", default=False, help=_("open HTML documentation and exit"))
+
+	parser.add_option("-u", "--update", dest="update",
+			  action="store_true", default=False, help=_("update user configuration and exit"))
+
+	parser.add_option("-b", "--backup", dest="backup",
+			  action="store_true", default=False, help=_("backup user configuration and exit"))
+
+	parser.add_option("-r", "--restore", dest="restore",
+			  action="store_true", default=False, help=_("restore user configuration backup and exit"))
+
+	parser.add_option("-R", "--reset", dest="reset",
+			  action="store_true", default=False, help=_("reset user configuration and exit"))
 
 	(options, args) = parser.parse_args()
 

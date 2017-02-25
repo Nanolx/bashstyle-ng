@@ -33,13 +33,34 @@ aapt.
 
 @item Misc. Changes
 @itemize @minus
+@item Minor improvements to the bashstyle launcher script.
+@itemize x
+@item minor code changes.
+
 @item Add @code{-d}, @code{--doc} command line arg to bashstyle, which opens
 the HTML documentation using @code{xdg-open}.
 
-@item Minor improvements to the bashstyle launcher script.
-
 @item Improve description of the @code{-P}, @code{--python} command line arg
 of the bashstyle launcher script.
+@end itemize
+
+@item More versatile @code{config-update-helper}.
+@itemize x
+@item Add backup, restore and reset actions to @code{config-update-helper}.
+
+@item Add @code{-b}, @code{--backup} command line arg to bashstyle, which will
+backup the user configuration.
+
+@item Add @code{-r}, @code{--restore} command line arg to bashstyle, which will
+restore a previously backed up user configuration.
+
+@item Add @code{-R}, @code{--reset} command line arg to bashstyle, which will
+reset the user configuration to vendor values (if vendor configuration exists
+and is up to date) or factory values.
+
+@item @code{-u}, @code{--update} command line arg of bashstyle was not mentioned
+in @code{-h}, @code{--help} message.
+@end itemize
 
 @item Update german translation.
 @end itemize

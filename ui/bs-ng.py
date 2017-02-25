@@ -328,7 +328,7 @@ class BashStyleNG(object):
 		cfgui = configui.ConfigUI(config.cfo, config.udc, config.fdc)
 		cfgui.InitConfigUI()
 
-		######################## Load the configuration handling UI ########################
+		######################## Load the first start information UI #######################
 		suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
 		suui.InitStartupUI()
 

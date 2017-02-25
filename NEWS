@@ -25,13 +25,33 @@ between.  For more detailed information see the git log.
           using aapt.
 
    * Misc.  Changes
-        - Add '-d', '--doc' command line arg to bashstyle, which opens
-          the HTML documentation using 'xdg-open'.
-
         - Minor improvements to the bashstyle launcher script.
+             x minor code changes.
 
-        - Improve description of the '-P', '--python' command line arg
-          of the bashstyle launcher script.
+             x Add '-d', '--doc' command line arg to bashstyle, which
+               opens the HTML documentation using 'xdg-open'.
+
+             x Improve description of the '-P', '--python' command line
+               arg of the bashstyle launcher script.
+
+        - More versatile 'config-update-helper'.
+             x Add backup, restore and reset actions to
+               'config-update-helper'.
+
+             x Add '-b', '--backup' command line arg to bashstyle, which
+               will backup the user configuration.
+
+             x Add '-r', '--restore' command line arg to bashstyle,
+               which will restore a previously backed up user
+               configuration.
+
+             x Add '-R', '--reset' command line arg to bashstyle, which
+               will reset the user configuration to vendor values (if
+               vendor configuration exists and is up to date) or factory
+               values.
+
+             x '-u', '--update' command line arg of bashstyle was not
+               mentioned in '-h', '--help' message.
 
         - Update german translation.
 
