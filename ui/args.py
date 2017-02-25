@@ -37,12 +37,15 @@ class CmdArgs(object):
 	parser.add_option("-P", "--python", dest="python",
 			  action="store_true", default=False, help=_("print used Python interpreter and exit"))
 
+	parser.add_option("-d", "--doc", dest="doc",
+			  action="store_true", default=False, help=_("open HTML documentation and exit"))
+
 	(options, args) = parser.parse_args()
 
 	if options.version:
-		print("%s" % os.getenv('BSNG_UI_VERSION'))
+		print("%s" % os.getenv('BSNG_VERSION'))
 		sys.exit(0)
 
 	if options.prefix:
-		print("%s" % os.getenv('BSNG_UI_PREFIX'))
+		print("%s" % os.getenv('BSNG_PREFIX'))
 		sys.exit(0)

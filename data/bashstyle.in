@@ -11,23 +11,29 @@
 
 export NO_AT_BRIDGE=1
 
-export BSNG_UI_PREFIX="@PREFIX@"
-export BSNG_UI_VERSION="@VERSION@"
+export BSNG_PREFIX="@PREFIX@"
+export BSNG_VERSION="@VERSION@"
 export BSNG_DATADIR="@DATADIR@"
-export PYTHONPATH="${PYTHONPATH}:@DATADIR@/bashstyle-ng/ui"
+
+export PYTHON="@PYTHON@"
+export PYTHONPATH="${PYTHONPATH}:${BSNG_DATADIR}/bashstyle-ng/ui"
 
 case ${1} in
 	--python | -P )
 		shift
-		echo "@PYTHON@"
-		[[ "${@}" ]] && @PYTHON@ "${@}"
+		echo ${PYTHON}
+		[[ "${@}" ]] && ${PYTHON} "${@}"
+	;;
+
+	--doc | -d )
+		xdg-open "${BSNG_DATADIR}/doc/bashstyle-ng/index.html"
 	;;
 
 	--update | -u )
-		@PYTHON@ @DATADIR@/bashstyle-ng/ui/config-update-helper.py
+		@PYTHON@ "${BSNG_DATADIR}/bashstyle-ng/ui/config-update-helper.py"
 	;;
 
 	* )
-		@PYTHON@ @DATADIR@/bashstyle-ng/ui/bs-ng.py "${@}"
+		@PYTHON@ "${BSNG_DATADIR}/bashstyle-ng/ui/bs-ng.py" "${@}"
 	;;
 esac
