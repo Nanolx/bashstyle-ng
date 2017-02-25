@@ -17,9 +17,10 @@ export BSNG_DATADIR="@DATADIR@"
 export PYTHONPATH="${PYTHONPATH}:@DATADIR@/bashstyle-ng/ui"
 
 case ${1} in
-	--python | -p ) shift
-			echo "@PYTHON@"
-			[[ "${@}" ]] && @PYTHON@ "${@}"
+	--python | -P )
+		shift
+		echo "@PYTHON@"
+		[[ "${@}" ]] && @PYTHON@ "${@}"
 	;;
 
 	--update | -u )
