@@ -32,10 +32,11 @@ class CmdArgs(object):
 			  action="store_true", default=False, help=_("print version and exit"))
 
 	parser.add_option("-p", "--prefix", dest="prefix",
-			  action="store_true", default=False, help=_("print prefix and exit"))
+			  action="store_true", default=False, help=_("print installation prefix and exit"))
 
 	parser.add_option("-P", "--python", dest="python",
-			  action="store_true", default=False, help=_("print used Python interpreter and exit"))
+			  action="store_true", default=False, help=_("print used Python interpreter; \
+if additional args are given they will be passed to the used Python interpreter."))
 
 	parser.add_option("-d", "--doc", dest="doc",
 			  action="store_true", default=False, help=_("open HTML documentation and exit"))
