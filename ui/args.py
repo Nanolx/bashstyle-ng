@@ -26,7 +26,8 @@ if FAILED:
 class CmdArgs(object):
 	parser = optparse.OptionParser(_("bashstyle <option>\
 					\n\nBashStyle-NG © 2007 - 2017 Christopher Bratusek\
-					\nLicensed under the GNU GENERAL PUBLIC LICENSE v3"))
+					\n\nBashStyle-NG let's you do more with Bash & Co.\
+					\n\nLicensed under the GNU GENERAL PUBLIC LICENSE v3"))
 
 	parser.add_option("-v", "--version", dest="version",
 			  action="store_true", default=False, help=_("print version and exit"))

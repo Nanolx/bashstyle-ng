@@ -24,8 +24,8 @@ class ConfigUpdateHelper(object):
 
 		parser = optparse.OptionParser(_("config-update-helper <option>\
 				\n\nBashStyle-NG © 2007 - 2017 Christopher Bratusek\
-				\nBashStyle-NG configuration update helper.\
-				\nLicensed under the GNU GENERAL PUBLIC LICENSE v3"))
+				\n\nBashStyle-NG configuration helper.\
+				\n\nLicensed under the GNU GENERAL PUBLIC LICENSE v3"))
 
 		parser.add_option("-v", "--version", dest="version",
 				  action="store_true", default=False, help=_("print version and exit"))
