@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-26 12:59+0100\n"
-"PO-Revision-Date: 2017-02-26 13:03+0100\n"
+"POT-Creation-Date: 2017-02-26 17:45+0100\n"
+"PO-Revision-Date: 2017-02-26 17:46+0100\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -32,22 +32,28 @@ msgid ""
 "bashstyle <option>\t\t\t\t\t\n"
 "\n"
 "BashStyle-NG © 2007 - 2017 Christopher Bratusek\t\t\t\t\t\n"
+"\n"
+"BashStyle-NG let's you do more with Bash & Co.\t\t\t\t\t\n"
+"\n"
 "Licensed under the GNU GENERAL PUBLIC LICENSE v3"
 msgstr ""
 "bashstyle <option>\t\t\t\t\t\n"
 "\n"
 "BashStyle-NG © 2007 - 2017 Christopher Bratusek\t\t\t\t\t\n"
+"\n"
+"BashStyle-NG lässt dich mehr mit Bash & Co machen.\t\t\t\t\t\n"
+"\n"
 "Lizenziert unter der GNU GENERAL PUBLIC LICENSE v3"
 
-#: ui/args.py:32
+#: ui/args.py:33 ui/config-update-helper.py:31
 msgid "print version and exit"
 msgstr "Version anzeigen und beenden"
 
-#: ui/args.py:35
+#: ui/args.py:36 ui/config-update-helper.py:34
 msgid "print installation prefix and exit"
 msgstr "Installations-Präfix anzeigen und beenden"
 
-#: ui/args.py:38
+#: ui/args.py:39 ui/config-update-helper.py:37
 msgid ""
 "print used Python interpreter; if additional args are given they will be "
 "passed to the used Python interpreter."
@@ -55,23 +61,23 @@ msgstr ""
 "Verwendeten Python-Interpreter anzeigen; falls weitere Argumente beigefügt "
 "werden, diese an den Interpreter übergeben"
 
-#: ui/args.py:42
+#: ui/args.py:43 ui/config-update-helper.py:41
 msgid "open HTML documentation and exit"
 msgstr "HTML-Dokumentation öffnen und beenden"
 
-#: ui/args.py:45 ui/config-update-helper.py:31
+#: ui/args.py:46 ui/config-update-helper.py:44
 msgid "update user configuration and exit"
 msgstr "Benutzer-Konfiguration aktualisieren und beenden"
 
-#: ui/args.py:48 ui/config-update-helper.py:34
+#: ui/args.py:49 ui/config-update-helper.py:47
 msgid "backup user configuration and exit"
 msgstr "Benutzer-Konfiguration sichern und beenden"
 
-#: ui/args.py:51 ui/config-update-helper.py:37
+#: ui/args.py:52 ui/config-update-helper.py:50
 msgid "restore user configuration backup and exit"
 msgstr "Benutzer-Konfiguration anhand Sicherung wiederherstellen und beenden"
 
-#: ui/args.py:54 ui/config-update-helper.py:40
+#: ui/args.py:55 ui/config-update-helper.py:53
 msgid "reset user configuration and exit"
 msgstr "Konfiguration zurücksetzen und beenden"
 
@@ -244,13 +250,17 @@ msgid ""
 "config-update-helper <option>\t\t\t\t\n"
 "\n"
 "BashStyle-NG © 2007 - 2017 Christopher Bratusek\t\t\t\t\n"
-"BashStyle-NG configuration update helper.\t\t\t\t\n"
+"\n"
+"BashStyle-NG configuration helper.\t\t\t\t\n"
+"\n"
 "Licensed under the GNU GENERAL PUBLIC LICENSE v3"
 msgstr ""
 "config-update-helper <option>\t\t\t\t\t\n"
 "\n"
 "BashStyle-NG © 2007 - 2017 Christopher Bratusek\t\t\t\t\n"
-"BashStyle-NG configuration update helper.\t\t\t\t\n"
+"\n"
+"BashStyle-NG Konfigurations-Helfer.\t\t\t\t\n"
+"\n"
 "Lizenziert unter der GNU GENERAL PUBLIC LICENSE v3"
 
 #: ui/dicts.py:266 ui/dicts.py:286
@@ -2143,6 +2153,13 @@ msgstr "Hilfeseiten Farben anpassen"
 #: ui/bashstyle.ui.h:462
 msgid "Termcap"
 msgstr "Termcap"
+
+#~ msgid ""
+#~ "print used Python interpreter;\t if additional args are given they will "
+#~ "be passed to the used Python interpreter."
+#~ msgstr ""
+#~ "Verwendeten Python-Interpreter anzeigen;\t falls weitere Argumente "
+#~ "beigefügt werden, diese an den Interpreter übergeben"
 
 #~ msgid ""
 #~ "ResetConfig: no up-to-date backup or vendor configuration found, using "
