@@ -12,16 +12,21 @@
 case ${1} in
 
 	battery)
-		check_opt acpi systemkit::battery && (
-			load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
-			out="$(acpi -b)"
-			state="$(echo "${out}" | awk '{print $3}')"
-			case ${state} in
-				charging,)	statesign="^" ;;
-				discharging,)	statesign="v" ;;
-				charged,)	statesign="°" ;;
-			esac
-			echo "${statesign}${load}" )
+		which acpi &>/dev/null
+		if [[ $? != 0 ]]; then
+			echo -e "acpi not found, 'systemkit battery' won't work."
+			exit 1
+		fi
+
+		load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
+		out="$(acpi -b)"
+		state="$(echo "${out}" | awk '{print $3}')"
+		case ${state} in
+			charging,)	statesign="^" ;;
+			discharging,)	statesign="v" ;;
+			charged,)	statesign="°" ;;
+		esac
+		echo "${statesign}${load}"
 	;;
 
 	cpuload)
@@ -49,8 +54,12 @@ case ${1} in
 	;;
 
 	externalip)
-		check_opt wget systemkit::externalip && \
-			wget -q -O - http://showip.spamt.net/
+		which wget &>/dev/null
+		if [[ $? != 0 ]]; then
+			echo -e "wget not found, 'systemkit externalip' won't work."
+			exit 1
+		fi
+		wget -q -O - http://showip.spamt.net/
 	;;
 
 	internalip)
@@ -136,23 +145,36 @@ case ${1} in
 	;;
 
 	pci)
-		check_opt lspci systemkit::pci && (
+		which lspci &>/dev/null
+		if [[ $? != 0 ]]; then
+			echo -e "lspci not found, 'systemkit lspci' won't work."
+			exit 1
+		fi
 		echo -e "PCI Devices:
-$(lspci -vkmm)\n" )
+$(lspci -vkmm)\n"
 	;;
 
 	usb)
-		check_opt lsusb systemkit::usb && ( 
+		which lsusb &>/dev/null
+		if [[ $? != 0 ]]; then
+			echo -e "lsusb not found, 'systemkit usb' won't work."
+			exit 1
+		fi
 		echo -e "USB Devices:
-$(lsusb -v)\n" )
+$(lsusb -v)\n"
 	;;
 
 	bios)
-		check_opt dmidecode systemkit::bios && (
+		which dmidecode &>/dev/null
+		if [[ $? != 0 ]]; then
+			echo -e "dmidecode not found, 'systemkit bios' won't work."
+			exit 1
+		fi
+
 		if [[ ${EUID} == 0 ]]; then 
 			echo -e "SMBIOS/DMI Info:
 $(dmidecode -q)\n"
-		fi )
+		fi
 	;;
 
 	load1)	LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $1}' ;;

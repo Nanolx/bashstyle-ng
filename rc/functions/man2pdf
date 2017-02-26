@@ -9,7 +9,11 @@
 #							#
 #########################################################
 
-check_opt ps2pdf man2pdf
+which ps2pdf &>/dev/null
+if [[ $? != 0 ]]; then
+	echo -e "ps2pdf not found, man2pdf won't work."
+	exit 1
+fi
 
 case ${1} in
 

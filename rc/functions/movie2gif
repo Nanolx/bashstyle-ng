@@ -9,7 +9,11 @@
 #							#
 #########################################################
 
-check_opt ffmpeg movie2gif
+which ffmpeg &>/dev/null
+if [[ $? != 0 ]]; then
+	echo "ffmpeg not found, movie2gif won't work."
+	exit 1
+fi
 
 # by maxwux
 
