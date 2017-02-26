@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 20:30+0100\n"
-"PO-Revision-Date: 2017-02-25 20:31+0100\n"
+"POT-Creation-Date: 2017-02-26 12:59+0100\n"
+"PO-Revision-Date: 2017-02-26 13:03+0100\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -59,6 +59,22 @@ msgstr ""
 msgid "open HTML documentation and exit"
 msgstr "HTML-Dokumentation öffnen und beenden"
 
+#: ui/args.py:45 ui/config-update-helper.py:31
+msgid "update user configuration and exit"
+msgstr "Benutzer-Konfiguration aktualisieren und beenden"
+
+#: ui/args.py:48 ui/config-update-helper.py:34
+msgid "backup user configuration and exit"
+msgstr "Benutzer-Konfiguration sichern und beenden"
+
+#: ui/args.py:51 ui/config-update-helper.py:37
+msgid "restore user configuration backup and exit"
+msgstr "Benutzer-Konfiguration anhand Sicherung wiederherstellen und beenden"
+
+#: ui/args.py:54 ui/config-update-helper.py:40
+msgid "reset user configuration and exit"
+msgstr "Konfiguration zurücksetzen und beenden"
+
 #: ui/bs-ng.py:19
 #, python-format
 msgid ""
@@ -96,7 +112,7 @@ msgstr ""
 "CheckConfig: Benutzer ini ist auf Version {}, aber {} ist verfügbar, "
 "aktualisiere."
 
-#: ui/config.py:72
+#: ui/config.py:73
 msgid ""
 "CheckConfig: User ini version is at {}, but {} is the highest known. "
 "Resetting due to error."
@@ -104,66 +120,62 @@ msgstr ""
 "CheckConfig: Benutzer ini ist auf Version {}, aber {} ist die höchste "
 "bekannte. Setze aufgrund eines Fehlers zurück."
 
-#: ui/config.py:76
+#: ui/config.py:77
 msgid "CheckConfig: User configuration up-to-date."
 msgstr "CheckConfig: Benutzer-Konfiguration ist aktuell."
 
-#: ui/config.py:81
-msgid ""
-"ResetConfig: no up-to-date backup or vendor configuration found, using "
-"factory defaults."
-msgstr ""
-"ResetConfig: keine aktuelle Konfigurations-Sicherung oder Distributions-"
-"Konfiguration gefunden, benutze Programm-Standard."
+#: ui/config.py:82
+msgid "ResetConfig: reset to factory configuration."
+msgstr "RestoreConfig: auf Werkseinstellung zurücksetzen."
 
-#: ui/config.py:87
-msgid "ResetConfig: vendor configuration up-to-date, using it's values."
-msgstr "ResetConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
+#: ui/config.py:88
+msgid "ResetConfig: reset to vendor configuration."
+msgstr "RestoreConfig: auf Distributor-Konfiguration zurücksetzen."
 
-#: ui/config.py:94
-msgid "ResetConfig: backup configuration up-to-date, using it's values."
-msgstr "ResetConfig: backup configuration up-to-date, using it's values."
+#: ui/config.py:95
+msgid "ResetConfig: reset to user backup configuration."
+msgstr "RestoreConfig: auf Benutzer-Konfiguration Sicherung zurücksetzen."
 
-#: ui/config.py:100
+#: ui/config.py:101
 #, python-format
 msgid "BackupConfig: backing up configuration to %s."
 msgstr "BackupConfig: sichere Konfiguration nach %s."
 
-#: ui/config.py:107
+#: ui/config.py:108
 #, python-format
 msgid "RestoreConfig: restoring configuration from %s."
 msgstr "RestoreConfig: spiele Sicherung von %s ein"
 
-#: ui/config.py:110
+#: ui/config.py:111
 msgid "RestoreConfig: not restoring configuration as it's outdated."
 msgstr ""
 "RestoreConfig: spiele Konfigurations-Sicherung nicht ein, da sie veraltet "
 "ist."
 
-#: ui/config.py:112
+#: ui/config.py:113
 msgid "RestoreConfig: no backup configuration exists."
 msgstr "RestoreConfig: es existiert keine Konfigurations-Sicherung nach %s."
 
-#: ui/config.py:118
+#: ui/config.py:119
 msgid "UpdateConfig: vendor configuration up-to-date, copying as user-default."
 msgstr ""
 "UpdateConfig: Distributions-Konfiguration ist aktuell, nutze als Benutzer-"
 "Standard."
 
-#: ui/config.py:121
+#: ui/config.py:122
 msgid ""
 "UpdateConfig: vendor configuration outdated, using factory defaults instead!"
 msgstr ""
 "UpdateConfig: Distributions-Konfiguration veraltet, nutze Programm-Standard!"
 
-#: ui/config.py:124
+#: ui/config.py:125
 msgid ""
 "UpdateConfig: no vendor configuration found, using factory defaults instead."
 msgstr ""
 "UpdateConfig: keine Distributions-Konfiguration gefunden, benutze Programm-"
 "Standard."
 
-#: ui/config.py:128
+#: ui/config.py:129
 msgid "UpdateConfig: merging values."
 msgstr "UpdateConfig: kombiniere Werte."
 
@@ -227,9 +239,19 @@ msgstr "Kategorie: "
 msgid "BashStyle-NG StartUp"
 msgstr "BashStyle-NG StartUp"
 
-#: ui/config-update-helper.py:17
-msgid "BashStyle-NG configuration update helper."
-msgstr "BashStyle-NG Hilfsprogramm zur Aktualisierung der Konfiguration."
+#: ui/config-update-helper.py:25
+msgid ""
+"config-update-helper <option>\t\t\t\t\n"
+"\n"
+"BashStyle-NG © 2007 - 2017 Christopher Bratusek\t\t\t\t\n"
+"BashStyle-NG configuration update helper.\t\t\t\t\n"
+"Licensed under the GNU GENERAL PUBLIC LICENSE v3"
+msgstr ""
+"config-update-helper <option>\t\t\t\t\t\n"
+"\n"
+"BashStyle-NG © 2007 - 2017 Christopher Bratusek\t\t\t\t\n"
+"BashStyle-NG configuration update helper.\t\t\t\t\n"
+"Lizenziert unter der GNU GENERAL PUBLIC LICENSE v3"
 
 #: ui/dicts.py:266 ui/dicts.py:286
 msgid "General Style"
@@ -2121,6 +2143,23 @@ msgstr "Hilfeseiten Farben anpassen"
 #: ui/bashstyle.ui.h:462
 msgid "Termcap"
 msgstr "Termcap"
+
+#~ msgid ""
+#~ "ResetConfig: no up-to-date backup or vendor configuration found, using "
+#~ "factory defaults."
+#~ msgstr ""
+#~ "ResetConfig: keine aktuelle Konfigurations-Sicherung oder Distributions-"
+#~ "Konfiguration gefunden, benutze Programm-Standard."
+
+#~ msgid "ResetConfig: vendor configuration up-to-date, using it's values."
+#~ msgstr ""
+#~ "ResetConfig: Distributions-Konfiguration aktuell, benutze deren Werte."
+
+#~ msgid "ResetConfig: backup configuration up-to-date, using it's values."
+#~ msgstr "ResetConfig: backup configuration up-to-date, using it's values."
+
+#~ msgid "BashStyle-NG configuration update helper."
+#~ msgstr "BashStyle-NG Hilfsprogramm zur Aktualisierung der Konfiguration."
 
 #~ msgid "print used Python interpreter and exit"
 #~ msgstr "Python-Interpreter anzeigen und beenden"
