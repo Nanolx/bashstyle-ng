@@ -28,6 +28,7 @@ for lang in ${APP_LANGUAGES}; do
 done
 
 BIN_FILES=( data/bashstyle:${BINDIR}
+	    data/bashstyle-config-helper:${BINDIR}
 	    rc/functions/*:${DATADIR}/rc/functions
 	    rc/2048/2048:${DATADIR}/rc/2048)
 
