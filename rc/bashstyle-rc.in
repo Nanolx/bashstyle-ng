@@ -391,9 +391,13 @@ treecd () {
 }
 
 if [[ $(ini_get use_treecd) == True ]]; then
-	dbg_log alias cd=treecd
-	dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
-	[[ $(ini_get enable_colors) != True ]] && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
+	which tree &>/dev/null
+	if [[ $? == 0 ]]; then
+		dbg_log alias cd=treecd
+		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
+		[[ $(ini_get enable_colors) != True ]] && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
+	else	dbg_msg $"tree not found, not using treecd as cd replacement"
+	fi
 fi
 
 if [[ $(ini_get use_lscd) == True ]]; then
