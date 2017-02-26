@@ -14,13 +14,13 @@
 case ${1} in
 
 	--help | -h | "")
-		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "bsng-help" -s "unified way of creating fancy help messages in Bash scripts" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "bashstyle-help" -s "unified way of creating fancy help messages in Bash scripts" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "-a:<testboy>|Author to display in help"\
 			-o "-e:<test@boy.com>|Email-Adress to display in help"\
 			-o "-h:<testboy.com>|Homepage to display in help"\
 			-o "-l:<gpl>|License to display in help"\
-			-o "-n:<bsng-help>|Application name to display in help"\
+			-o "-n:<bashstyle-help>|Application name to display in help"\
 			-o "-o:<opt><example><description>|Options to display in help"\
 			-o "-s:this is a recursive help|Short description to display in help"\
 			-o "-v:${BSNG_VERSION}|Version to display in help"\
@@ -60,7 +60,7 @@ case ${1} in
 			VAL=${VAL/*:}
 			[[ ${VAL} == "" ]] && VAL="---"
 			DESC=${opt/*|}
-			EX+="${eorange}${OPT} \033[25G${ewhite}(${eblue}${VAL}${ewhite})\033[65G ${egreen}${DESC}\n"
+			EX+="${eorange}${OPT} \033[25G${ewhite}[${eblue}${VAL}${ewhite}]\033[65G ${egreen}${DESC}\n"
 		done
 		echo -e ${EX}
 		tput sgr0

@@ -14,7 +14,7 @@ check_opt ps2pdf man2pdf
 case ${1} in
 
 	--help | -h | "")
-		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "man2pdf" -s "create PDF from a manpage" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "manpage:bash|manpage to create a PDF from"
 	;;

@@ -242,7 +242,7 @@ $(dmidecode -q)\n"
 	countvisibleitems)	echo $(($(ls --color=no -1 -l ${@:2} | wc -l)-1)) ;;
 
 	*)
-		bsng-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "systemkit" -s "show various system information" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "battery:|show battery load state using acpi"\
 			-o "cpuload:|show cpu load"\
