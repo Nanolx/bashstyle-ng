@@ -1,0 +1,35 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2017 Christopher Bratusek		#
+#							#
+#########################################################
+
+export NO_AT_BRIDGE=1
+
+export BSNG_PREFIX="@PREFIX@"
+export BSNG_VERSION="@VERSION@"
+export BSNG_DATADIR="@DATADIR@"
+
+export PYTHON="@PYTHON@"
+export PYTHONPATH="${PYTHONPATH}:${BSNG_DATADIR}/bashstyle-ng/ui"
+
+case ${1} in
+	--python | -P )
+		shift
+		echo ${PYTHON}
+		[[ "${@}" ]] && ${PYTHON} "${@}"
+	;;
+
+	--doc | -d )
+		xdg-open "${BSNG_DATADIR}/doc/bashstyle-ng/index.html"
+	;;
+
+	*)
+		@PYTHON@ "${BSNG_DATADIR}/bashstyle-ng/ui/config-update-helper.py" "${@}"
+	;;
+esac
