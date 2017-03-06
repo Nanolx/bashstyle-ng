@@ -16,7 +16,7 @@ lang.install(names=['_'])
 import args
 args.CmdArgs()
 
-print(_("\nBashStyle-NG Version %s starting" % os.getenv('BSNG_UI_VERSION')))
+print(_("\nBashStyle-NG Version %s starting" % os.getenv('BSNG_VERSION')))
 
 MODULES = [ 'os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
             'undobuffer', 'lockfile', 'config', 'widgethandler', 'configui',
