@@ -32,6 +32,14 @@ has not enough lines of height to draw all user-requested prompt part.
 
 @item #232 (equinox): Dynamically calculate minimum required number of lines in
 height required to draw all user-requested prompt parts.
+
+@item #233 (clock): Use prompt color definitions instead of hacky @code{sed}
+substitutions (left-over from very (very) early @code{BashStyle-NG} versions)
+in the @code{clock} prompt style.
+
+@item #234 (poweruser): Use @code{grep -c} instead of @code{grep xx | wc -l}.
+
+@item #235 (ayoli): Fixes and improvements for @code{ayoli} prompt style.
 @end itemize
 
 @item New Features
@@ -87,6 +95,8 @@ in @code{-h}, @code{--help} message.
 @item Rename @code{bsng-help} to @code{bashstyle-help}.
 
 @item Remove @code{check_opt}, instead do a check in each script on it's own.
+
+@item Improve coding style for various functions, scripts and prompt styles.
 @end itemize
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

@@ -32,6 +32,14 @@ between.  For more detailed information see the git log.
           of lines in height required to draw all user-requested prompt
           parts.
 
+        - #233 (clock): Use prompt color definitions instead of hacky
+          'sed' substitutions (left-over from very (very) early
+          'BashStyle-NG' versions) in the 'clock' prompt style.
+
+        - #234 (poweruser): Use 'grep -c' instead of 'grep xx | wc -l'.
+
+        - #235 (ayoli): Fixes and improvements for 'ayoli' prompt style.
+
    * New Features
         - Add 'apkdump': grab information about android packages (apk)
           using aapt.
@@ -83,6 +91,9 @@ between.  For more detailed information see the git log.
 
         - Remove 'check_opt', instead do a check in each script on it's
           own.
+
+        - Improve coding style for various functions, scripts and prompt
+          styles.
 
      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
