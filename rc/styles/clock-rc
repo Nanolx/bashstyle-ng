@@ -10,16 +10,12 @@
 #########################################################
 
 function pre_prompt {
-let prompt_x=$(tput cols)-29
-tput sc
-tput cup 0 ${prompt_x}
-echo -en "$(echo ${color_separator} | sed -e 's/\\\[//g' -e 's/\\\]//g')\
-[$(echo ${color_date} | sed -e 's/\\\[//g' -e 's/\\\]//g') \
-$(date '+%a, %d %b %y')\
-$(echo ${color_separator} | sed -e 's/\\\[//g' -e 's/\\\]//g') ::\
-$(echo ${color_time} | sed -e 's/\\\[//g' -e 's/\\\]//g') $(date +%T)\
-$(echo ${color_separator} | sed -e 's/\\\[//g' -e 's/\\\]//g') ]"
-tput rc
+	let prompt_x=$(tput cols)-29
+	tput sc
+	tput cup 0 ${prompt_x}
+	echo -en "${ecolor_separator} [${ecolor_date} $(date '+%a, %d %b %y')\
+	${ecolor_separator} ::${ecolor_time} $(date +%T)${ecolor_separator} ]"
+	tput rc
 }
 
 PROMPT_COMMAND=pre_prompt
