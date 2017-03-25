@@ -14,10 +14,10 @@ fill_zeros () {
 	diff_string=""
 
 	if [[ ${current_len} -ne ${count_len} ]]; then
-		diff_len=$((${count_len}-${current_len}))
+		diff_len=$((count_len-current_len))
 		while test ${diff_len} -ne 0; do
 			diff_string="${diff_string}0"
-			diff_len=$((${diff_len}-1))
+			diff_len=$((diff_len-1))
 		done
 		echo ${diff_string}
 	fi
@@ -35,10 +35,10 @@ rename_files () {
 
 	files=$(find "${directory}" -maxdepth 1 -type f)
 
-	for image in ${files[@]}; do
+	for image in "${files[@]}"; do
 		suffix=$(fill_zeros ${count_now})${count_now}.${image##*.}
 		mv "${image}" "${directory}"/tmp/"${prefix}"-"${suffix}"
-		count_now=$(($count_now+1))
+		count_now=$((count_now+1))
 	done
 
 	mv "${directory}"/tmp/* "${directory}"/
