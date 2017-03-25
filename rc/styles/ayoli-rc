@@ -10,13 +10,12 @@
 #							#
 #########################################################
 
-user="whoami"
 host=${HOSTNAME/.*}
 
 function pre_prompt {
 
 newPWD="${PWD}"
-let promptsize=$(echo -n "--( $user @ $host ee, dd mmm yy )( ${PWD} )--" | wc -c | tr -d " ")
+let promptsize=$(echo -n "--( $(whoami) @ $host ee, dd mmm yy )( ${PWD} )--" | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
 
