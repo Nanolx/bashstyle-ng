@@ -16,8 +16,7 @@ host=${HOSTNAME/.*}
 function pre_prompt {
 
 newPWD="${PWD}"
-datenow=$(date "+%a, %d %b %y")
-let promptsize=$(echo -n "--( $user @ $host $datenow )( ${PWD} )--" | wc -c | tr -d " ")
+let promptsize=$(echo -n "--( $user @ $host ee, dd mmm yy )( ${PWD} )--" | wc -c | tr -d " ")
 
 let fillsize=${COLUMNS}-${promptsize}
 
