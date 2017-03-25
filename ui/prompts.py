@@ -15,15 +15,15 @@ separator_ps=r"""\\u @ \h | \d | \\t | \$(truncpwd) | \$(showuser) -> """
 
 vector_ps=r"""\┌( \u @ \h )─( \$(date +%I:%M%P) -:- \$(date +%m)/\$(date +%d) )\└( \$(truncpwd) )·> """
 
-floating_clock_pc=r"""let prompt_x=$(tput cols)-29
+clock_pc=r"""let prompt_x=$(tput cols)-29
 tput sc
 tput cup 0 ${prompt_x}
 echo -n \"[ $(date '+%a, %d %b %y') :: $(date +%T) ]\"
 tput rc"""
 
-floating_clock_ps=r"""[ \u @ \h : \$(truncpwd) ] """
+clock_ps=r"""[ \u @ \h : \$(truncpwd) ] """
 
-equinox_pc=r"""host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")
+equinox_pc=r"""host=${HOSTNAME/.*}
 [[ ! ${dirchar} ]] && dirchar="/"
 [[ ! ${trunc_symbol} ]] && trunc_symbol="«"
 [[ ! ${trunc_length} ]] && trunc_length=1
@@ -77,7 +77,7 @@ do
 			if [ ${lastexit} -eq 0 ]; then
 				echo -en \"( ✔: ${lastcommandprintable} )─┤\"
 			elif [ ${lastexit} -eq 141 ]; then
-				echo -en "${ecolor_separator}( ${eyellow}⊘: ${lastcommandprintable} ${ecolor_separator})─┤"
+				echo -en \"( ⊘: ${lastcommandprintable} )─┤\"
 			else
 				echo -en \"( ✘: ${lastcommandprintable} )─┤\"
 			fi
@@ -100,12 +100,12 @@ local five=$(uptime | sed -e \"s/.*load average: \(.*\...\), \(.*\...\), \(.*\..
 local diff1_5=$(echo -e \"scale = scale ($one) \\nx=$one - $five\\n if (x>0) {print \\\"up\\\"} else {print \\\"down\\\"}\\n print x \\nquit \\n\" | bc)
 loaddiff=\"$(echo -n \"${one}${diff1_5}\" | sed -e 's/down\-/down/g')\"
 
-let files=$(ls -l | grep \"^-\" | wc -l | tr -d \" \")
-let hiddenfiles=$(ls -l -d .* | grep \"^-\" | wc -l | tr -d \" \")
-let executables=$(ls -l | grep ^-..x | wc -l | tr -d \" \")
-let directories=$(ls -l | grep \"^d\" | wc -l | tr -d \" \")
-let hiddendirectories=$(ls -l -d .* | grep \"^d\" | wc -l | tr -d \" \")-2
-let linktemp=$(ls -l | grep \"^l\" | wc -l | tr -d \" \")
+let files=$(ls -l | grep -c \"^-\" | tr -d \" \")
+let hiddenfiles=$(ls -l -d .* | grep -c \"^-\" | tr -d \" \")
+let executables=$(ls -l | grep -c ^-..x | tr -d \" \")
+let directories=$(ls -l | grep -c \"^d\" | tr -d \" \")
+let hiddendirectories=$(ls -l -d .* | grep -c \"^d\" | tr -d \" \")-2
+let linktemp=$(ls -l | grep -c \"^l\" | tr -d \" \")
 
 if [ \"$linktemp\" -eq \"0\" ]
 then
@@ -114,7 +114,7 @@ else
 links=\" ${linktemp}l\"
 fi
 unset linktemp
-let devicetemp=$(ls -l | grep \"^[bc]\" | wc -l | tr -d \" \")
+let devicetemp=$(ls -l | grep -c \"^[bc]\" | tr -d \" \")
 
 if [ \"$devicetemp\" -eq \"0\" ]
 then
@@ -141,10 +141,9 @@ $(date +%d-%b-%y ) )-( files: \$(systemkit countvisiblefiles) / folders: \$(syst
 sputnik_ps=r"""\♦♦( \u @ \h : Space on /: \$(systemkit usedspace /) used of \$(systemkit totalspace /) )♦♦( \$(truncpwd) )♦♦\♦♦( \$(date +%H:%M) → \$(date \\\"+%a, %d %b %y\\\") : uptime : \$(systemkit uptime) \$(showuser) )♦♦ """
 
 ayoli_pc=r"""newPWD=\"${PWD}\"
-user=\"whoami\"
-host=$(echo -n $HOSTNAME | sed -e \"s/[\.].*//\")
+host=${HOSTNAME/.*}
 datenow=$(date \"+%a, %d %b %y\")
-let promptsize=$(echo -n \"┌( $user @ $host ddd., DD mmm YY)( ${PWD} )┐\" | wc -c | tr -d \" \")
+let promptsize=$(echo -n \"┌( $(whoami) @ $host dd, DD mmm YY)( ${PWD} )┐\" | wc -c | tr -d \" \")
 
 let fillsize=${COLUMNS}-${promptsize}
 
@@ -157,7 +156,7 @@ done
 if [ \"$fillsize\" -lt \"0\" ]
 then
     let cutt=3-${fillsize}
-    newPWD=\"...$(echo -n $PWD | sed -e \"s/\(^.\{$cutt\}\)\(.*\)/\2/\")\"
+    newPWD=\"...${PWD:${cutt}}\"
 fi"""
 
 ayoli_ps=r"""┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPWD
@@ -166,7 +165,7 @@ ayoli_ps=r"""┌─( \u @ \h \$(date \"+%a, %d %b %y\") )─\${fill}─( \$newPW
 styles_pc = {
 	      1 : empty_pc,
 	      2 : empty_pc,
-	      3 : floating_clock_pc,
+	      3 : clock_pc,
 	      4 : equinox_pc,
 	      5 : empty_pc,
 	      6 : poweruser_pc,
@@ -181,7 +180,7 @@ styles_pc = {
 styles_ps1 = {
 	       1 : separator_ps,
 	       2 : vector_ps,
-	       3 : floating_clock_ps,
+	       3 : clock_ps,
 	       4 : equinox_ps,
 	       5 : elite_ps,
 	       6 : poweruser_ps,
