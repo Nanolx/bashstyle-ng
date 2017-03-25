@@ -10,6 +10,12 @@
 #########################################################
 
 case ${@} in
+	"" )
+		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "sufffix" -s "fix suffix for files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "files:myfile.txt|file(s) to fix the suffix"
+	;;
+
 	* )
 		for image in "${@}"; do
 			if [[ -f "${image}" ]]; then
@@ -24,11 +30,5 @@ case ${@} in
 				fi
 			fi
 		done
-	;;
-
-	"" )
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "sufffix" -s "fix suffix for files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "files:myfile.txt|file(s) to fix the suffix"
 	;;
 esac

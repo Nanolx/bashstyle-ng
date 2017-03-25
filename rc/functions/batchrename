@@ -49,14 +49,12 @@ rename_files () {
 
 
 if [[ $# -ne 2 ]]; then
-	*)
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
-			-h "http://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
-			-s "batch rename files in NNN-NAME.SUFFIX scheme" \
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "directory:/home/test/mypictures|directory containing files"\
-			-o "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme"
-	;;
+	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
+		-h "http://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
+		-s "batch rename files in NNN-NAME.SUFFIX scheme" \
+		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+		-o "directory:/home/test/mypictures|directory containing files"\
+		-o "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme"
 else
 	directory="${1}"
 	if [[ ! -d "${directory}" ]]; then
