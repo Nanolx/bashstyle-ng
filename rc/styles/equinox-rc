@@ -26,7 +26,7 @@ _equinox_counter
 _equinox_sysload_pos=${counter}
 
 _equinox_systemload () {
-	echo -en "\033[${_equinox_sysload_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_sysload_pos};$((COLUMNS-29))H"
 	echo -en "${ecolor_separator}(${ecolor_font} system-load: $(systemkit load1)${ecolor_separator} )────────┤"
 }
 
@@ -38,7 +38,7 @@ _equinox_counter
 _equinox_cpuload_pos=${counter}
 
 _equinox_cpuload () {
-	echo -en "\033[${_equinox_cpuload_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_cpuload_pos};$((COLUMNS-29))H"
 	echo -en "${ecolor_separator}(${ecolor_font} cpu-load: $(systemkit cpuload)${ecolor_separator} )────────────┤"
 }
 
@@ -50,7 +50,7 @@ _equinox_counter
 _equinox_ram_pos=${counter}
 
 _equinox_ram () {
-	echo -en "\033[${_equinox_ram_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_ram_pos};$((COLUMNS-29))H"
 	echo -en "${ecolor_separator}(${ecolor_font} ram: ${ecolor_separator}$(systemkit usedram)mb${ecolor_font} / ${ecolor_separator}$(systemkit freeram)mb )─────┤"
 }
 
@@ -62,7 +62,7 @@ _equinox_counter
 _equinox_proc_pos=${counter}
 
 _equinox_proc () {
-	echo -en "\033[${_equinox_proc_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_proc_pos};$((COLUMNS-29))H"
 	echo -en "${ecolor_separator}(${ecolor_font} processes:${ecolor_ps} $(systemkit processes) ${ecolor_separator})──────────┤"
 }
 
@@ -74,7 +74,7 @@ _equinox_counter
 _equinox_lastcmd_pos=${counter}
 
 _equinox_lastcmd () {
-	echo -en "\033[${_equinox_lastcmd_pos};$((${COLUMNS}-29))H"
+	echo -en "\033[${_equinox_lastcmd_pos};$((COLUMNS-29))H"
 	case ${lastexit} in
 		0)
 			echo -en "${ecolor_separator}( ${egreen}${return_good}: ${lastcommandprintable} ${ecolor_separator})─┤"
@@ -105,7 +105,7 @@ newPWD="${PWD}"
 
 let promptsize=$(echo -n "--( $(whoami) @ ${host} )--( ${PWD} )-----" | wc -c | tr -d " ")
 
-let fillsize=${COLUMNS}-${promptsize}
+let fillsize=COLUMNS-${promptsize}
 fill=""
 while [ "${fillsize}" -gt "0" ]
 do
@@ -123,10 +123,10 @@ else
 fi
 
 _newPWD () {
-	echo -e ${newPWD}
+	echo -e "${newPWD}"
 }
 
-echo -en "\033[2;$((${COLUMNS}-29))H"
+echo -en "\033[2;$((COLUMNS-29))H"
 echo -en "${ecolor_separator}(${ecolor_time} $(date +%H:%M)${ecolor_separator} :${ecolor_date} $(date '+%a, %d %b %y')${ecolor_separator} )────┐"
 echo -en "\033[3;${COLUMNS}H${ecolor_separator}│"
 
@@ -142,7 +142,7 @@ if [[ ${i} -ge ${counter} ]]; then
 			${_equinox_proc_pos} )		_equinox_proc		;;
 			${_equinox_lastcmd_pos} )	_equinox_lastcmd	;;
 			* )
-				echo -en "\033[$((${i}));${COLUMNS}H${ecolor_separator}│"
+				echo -en "\033[$((i));${COLUMNS}H${ecolor_separator}│"
 			;;
 		esac
 		let i=${i}-1
@@ -150,7 +150,7 @@ if [[ ${i} -ge ${counter} ]]; then
 else
 	while [ ${i} -ge 4 ]
 	do
-		echo -en "\033[$((${i}));${COLUMNS}H${ecolor_separator}│"
+		echo -en "\033[$((i));${COLUMNS}H${ecolor_separator}│"
 		let i=${i}-1
 	done
 fi
