@@ -22,7 +22,7 @@ class ConfigUpdateHelper(object):
 
 	def __init__(self):
 
-		parser = optparse.OptionParser(_("config-update-helper <option>\
+		parser = optparse.OptionParser(_("bashstyle-config-helper <option>\
 				\n\nBashStyle-NG © 2007 - 2017 Christopher Bratusek\
 				\n\nBashStyle-NG configuration helper.\
 				\n\nLicensed under the GNU GENERAL PUBLIC LICENSE v3"))
