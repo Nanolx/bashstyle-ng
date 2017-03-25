@@ -28,6 +28,14 @@ between.  For more detailed information see the git log.
         - Add 'apkdump': grab information about android packages (apk)
           using aapt.
 
+        - Add 'sufffix': fixes the suffix for given files.
+
+        - Add 'batchrename': batch renames all files in a directory
+          using the 'NNN-NAME.SUFFIX' naming scheme, where 'NNN' is the
+          number of the file inside the directory (filled up with
+          leading zeros if required, eg.  '01' or '001') and 'NAME' is
+          given by the user.
+
    * Misc.  Changes
         - Minor improvements to the bashstyle launcher script.
              x minor code changes.

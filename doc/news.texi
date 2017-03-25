@@ -32,6 +32,13 @@ user's choice to use @code{treecd} instead of @code{cd}.
 @itemize @minus
 @item Add @code{apkdump}: grab information about android packages (apk) using
 aapt.
+
+@item Add @code{sufffix}: fixes the suffix for given files.
+
+@item Add @code{batchrename}: batch renames all files in a directory using the
+@code{NNN-NAME.SUFFIX} naming scheme, where @code{NNN} is the number of the file
+inside the directory (filled up with leading zeros if required, eg. @code{01} or
+@code{001}) and @code{NAME} is given by the user.
 @end itemize
 
 @item Misc. Changes
