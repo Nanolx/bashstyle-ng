@@ -25,7 +25,8 @@ between.  For more detailed information see the git log.
           override the user's choice to use 'treecd' instead of 'cd'.
 
         - #231 (equinox): Fix missing prompt part in 'equinox' style
-          when terminal has less than 16 lines of height.
+          when terminal has not enough lines of height to draw all
+          user-requested prompt part.
 
         - #232 (equinox): Dynamically calculate minimum required number
           of lines in height required to draw all user-requested prompt
