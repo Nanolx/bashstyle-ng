@@ -35,7 +35,7 @@ rename_files () {
 
 	files=$(find "${directory}" -maxdepth 1 -type f)
 
-	for image in "${files[@]}"; do
+	for image in ${files[@]}; do
 		suffix=$(fill_zeros ${count_now})${count_now}.${image##*.}
 		mv "${image}" "${directory}"/tmp/"${prefix}"-"${suffix}"
 		count_now=$((count_now+1))
