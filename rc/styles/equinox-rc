@@ -91,7 +91,9 @@ _equinox_lastcmd () {
 
 fi
 
-unset counter
+# currently counter holds the line number of the last prompt part
+# to draw. We need four more lines to make equinox properly work
+counter=$((counter+4))
 
 [[ ! ${dirchar} ]] && dirchar="/"
 [[ ! ${trunc_symbol} ]] && trunc_symbol="«"
@@ -130,7 +132,7 @@ echo -en "\033[3;${COLUMNS}H${ecolor_separator}│"
 
 i=${LINES}
 
-if [[ ${i} -ge 16 ]]; then
+if [[ ${i} -ge ${counter} ]]; then
 	while [ ${i} -ge 4 ]
 	do
 		case ${i} in
