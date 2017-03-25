@@ -1,0 +1,34 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2017 Christopher Bratusek		#
+#							#
+#########################################################
+
+case ${@} in
+	* )
+		for image in "${@}"; do
+			if [[ -f "${image}" ]]; then
+				baseimg=${image%.*}
+
+				suffix="$(grep "^$(file --mime-type "${image}" | \
+					awk '{print $2}')" /etc/mime.types | \
+					awk '{print $2}')"
+
+				if [[ "${image}" != "${baseimg}".${suffix} && ${suffix} ]]; then
+					mv -v "${image}" "${baseimg}".${suffix}
+				fi
+			fi
+		done
+	;;
+
+	"" )
+		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+			-l "GNU GPL v3" -n "sufffix" -s "fix suffix for files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "files:myfile.txt|file(s) to fix the suffix"
+	;;
+esac
