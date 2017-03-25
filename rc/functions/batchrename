@@ -1,0 +1,72 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2017 Christopher Bratusek		#
+#							#
+#########################################################
+
+fill_zeros () {
+	current_len=${#1}
+	diff_string=""
+
+	if [[ ${current_len} -ne ${count_len} ]]; then
+		diff_len=$((${count_len}-${current_len}))
+		while test ${diff_len} -ne 0; do
+			diff_string="${diff_string}0"
+			diff_len=$((${diff_len}-1))
+		done
+		echo ${diff_string}
+	fi
+}
+
+rename_files () {
+	mkdir "${directory}"/tmp
+
+	count_max=$(($(find "${directory}" -maxdepth 1 -type f | wc -l)))
+	count_len=${#count_max}
+	count_now=1
+
+	OLD_IFS="${IFS}"
+	export IFS=$'\n'
+
+	files=$(find "${directory}" -maxdepth 1 -type f)
+
+	for image in ${files[@]}; do
+		suffix=$(fill_zeros ${count_now})${count_now}.${image##*.}
+		mv "${image}" "${directory}"/tmp/"${prefix}"-"${suffix}"
+		count_now=$(($count_now+1))
+	done
+
+	mv "${directory}"/tmp/* "${directory}"/
+	rmdir "${directory}"/tmp
+
+	export IFS="${OLD_IFS}"
+}
+
+
+if [[ $# -ne 2 ]]; then
+	*)
+		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
+			-h "http://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
+			-s "batch rename files in NNN-NAME.SUFFIX scheme" \
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "directory:/home/test/mypictures|directory containing files"\
+			-o "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme"
+	;;
+else
+	directory="${1}"
+	if [[ ! -d "${directory}" ]]; then
+		echo "directory ${directory} does not exist!"
+		exit 1
+	elif [[ ! -w "${directory}" ]]; then
+		echo "directory ${directory} is not writeable!"
+		exit 1
+	fi
+
+	prefix="${2}"
+	rename_files
+fi
