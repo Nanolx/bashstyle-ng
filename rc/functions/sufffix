@@ -25,8 +25,8 @@ case ${@} in
 					awk '{print $2}')" /etc/mime.types | \
 					awk '{print $2}')"
 
-				if [[ "${image}" != "${baseimg}".${suffix} && ${suffix} ]]; then
-					mv -v "${image}" "${baseimg}".${suffix}
+				if [[ "${image}" != "${baseimg}.${suffix}" && ${suffix} ]]; then
+					mv -v "${image}" "${baseimg}.${suffix}"
 				fi
 			fi
 		done
