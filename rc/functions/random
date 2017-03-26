@@ -25,38 +25,38 @@ case ${1} in
 	;;
 
 	--special | -s )
-		echo $(cat /dev/urandom | tr -cd '[:graph:]' | head -c ${2:-16})
+		echo -e "$(tr -cd '[:graph:]' < /dev/urandom | head -c "${2:-16}")\n"
 	;;
 
 	--numerical | -0 )
-		echo $(cat /dev/urandom | tr -cd '[:digit:]' | head -c ${2:-16})
+		echo -e "$(tr -cd '[:digit:]' < /dev/urandom | head -c "${2:-16}")\n"
 	;;
 
 	--numericalrange | -r )
 		if [[ ${3} ]]; then
-			echo $(shuf -i ${2}-${3} -n 1)
-		else	echo $(shuf -i 0-${2} -n 1)
+			shuf -i "${2}-${3}" -n 1
+		else	shuf -i "0-${2}" -n 1
 		fi
 	;;
 
 	--alpha | -a )
-		echo $(cat /dev/urandom | tr -cd '[:alpha:]' | head -c ${2:-16})
+		echo -e "$(tr -cd '[:alpha:]' < /dev/urandom | head -c "${2:-16}")\n"
 	;;
 
 	--alphalow | -l )
-		echo $(cat /dev/urandom | tr -cd '[:lower:]' | head -c ${2:-16})
+		echo -e "$(tr -cd '[:lower:]' < /dev/urandom | head -c "${2:-16}")\n"
 	;;
 
 	--alphaup | -u )
-		echo $(cat /dev/urandom | tr -cd '[:upper:]' | head -c ${2:-16})
+		echo -e "$(tr -cd '[:upper:]' < /dev/urandom | head -c "${2:-16}")\n"
 	;;
 
 	--hexadecimal | -x )
-		echo $(cat /dev/urandom | tr -cd '[:xdigit:]' | head -c ${2:-16})
+		echo -e "$(tr -cd '[:xdigit:]' < /dev/urandom | head -c "${2:-16}")\n"
 	;;
 
 	--alphanumerical | -a0 )
-		echo $(cat /dev/urandom | tr -cd '[:alnum:]' | head -c ${2:-16})
+		echo -e "$(tr -cd '[:alnum:]' < /dev/urandom | head -c "${2:-16}")\n"
 	;;
 
 esac
