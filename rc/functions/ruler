@@ -31,7 +31,7 @@ case ${1} in
 				10)	printf "°" && j=0;;
 				*)	printf "." ;;
 			esac
-			j=$(($j+1))
+			j=$((j+1))
 		done
 		printf "\n"
 
@@ -40,7 +40,7 @@ case ${1} in
 				10)	printf "|" && k=0;;
 				*)	printf "%d" $k ;;
 			esac
-			k=$(($k+1))
+			k=$((k+1))
 		done
 		printf "\n"
 	;;
