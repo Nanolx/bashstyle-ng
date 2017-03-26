@@ -16,14 +16,14 @@ shopt -u nullglob
 if (( "${#bsng_vimrc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" VimCFG
-	export RC_FILE=${HOME}/.vimrc.bs-ng.$(date +%I-%M-%S)
+	 RC_FILE="${HOME}/.vimrc.bs-ng.$(date +%I-%M-%S)"
 
 	dbg_msg $"VimCFG Setting:" runtimepath
 	rc_add "set runtimepath+=${BSNG_DATADIR}/bashstyle-ng/vim/"
 
 	if [[ $(ini_get colorscheme) != "default" ]]; then
 		colorscheme=$(ini_get colorscheme)
-		dbg_msg $"VimCFG Setting:" $"Colorscheme" $colorscheme
+		dbg_msg $"VimCFG Setting:" $"Colorscheme" "${colorscheme}"
 		rc_add "colorscheme $colorscheme"
 	fi
 
@@ -154,7 +154,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	if [[ $(ini_get ruler) == True ]]; then
 		dbg_msg $"VimCFG Setting:" Show-Ruler $"On"
 		rc_add "set ruler"
-		dbg_msg $"VimCFG Setting:" Ruler-Format $(ini_get rulerformat)
+		dbg_msg $"VimCFG Setting:" Ruler-Format "$(ini_get rulerformat)"
 		rc_add "set rulerformat=$(ini_get rulerformat)"
 	else
 		dbg_msg $"VimCFG Setting:" Show-Ruler $"Off"
@@ -183,7 +183,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	if [[ $(ini_get wrap_line) == True ]]; then
 		dbg_msg $"VimCFG Setting:" Line-Wrapping $"On"
 		rc_add "set wrap"
-		dbg_msg $"VimCFG Setting:" Autowrap-length $(ini_get wrap_length)
+		dbg_msg $"VimCFG Setting:" Autowrap-length "$(ini_get wrap_length)"
 		rc_add "set tw=$(ini_get wrap_length)"
 	else
 		dbg_msg $"VimCFG Setting:" Line-Wrapping $"Off"
@@ -191,7 +191,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set tw=0"
 	fi
 
-	dbg_msg $"VimCFG Setting:" Tab-width $(ini_get tab_length)
+	dbg_msg $"VimCFG Setting:" Tab-width "$(ini_get tab_length)"
 	rc_add "set tabstop=$(ini_get tab_length)"
 	rc_add "set softtabstop=$(ini_get tab_length)"
 
@@ -215,13 +215,13 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		dbg_msg $"VimCFG Setting:" Fold Enable $"On"
 		rc_add "set foldenable"
 
-		dbg_msg $"VimCFG Setting:" Fold Level $(ini_get foldlevelstart)
+		dbg_msg $"VimCFG Setting:" Fold Level "$(ini_get foldlevelstart)"
 		rc_add "set foldlevelstart=$(ini_get foldlevelstart)"
 
-		dbg_msg $"VimCFG Setting:" Fold Maximum Nest $(ini_get foldnestmax)
+		dbg_msg $"VimCFG Setting:" Fold Maximum Nest "$(ini_get foldnestmax)"
 		rc_add "set foldnestmax=$(ini_get foldnestmax)"
 
-		dbg_msg $"VimCFG Setting:" Fold Method $(ini_get foldmethod)
+		dbg_msg $"VimCFG Setting:" Fold Method "$(ini_get foldmethod)"
 		rc_add "set foldmethod=$(ini_get foldmethod)"
 	else
 		dbg_msg $"VimCFG Setting:" Fold Enable $"Off"
@@ -240,7 +240,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	rc_add "	source ~/.vimrc.custom"
 	rc_add "endif"
 
-	mv ${RC_FILE} ${HOME}/.vimrc
+	mv "${RC_FILE}" "${HOME}"/.vimrc
 	unset RC_FILE
 
 fi
