@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-. ${BSNG_RCDIR}/internal/misc
+. "${BSNG_RCDIR}"/internal/misc
 
 case ${1} in
 
@@ -62,7 +62,7 @@ case ${1} in
 			DESC=${opt/*|}
 			EX+="${eorange}${OPT} \033[25G${ewhite}[${eblue}${VAL}${ewhite}]\033[65G ${egreen}${DESC}\n"
 		done
-		echo -e ${EX}
+		echo -e "${EX}"
 		tput sgr0
 
 		unset NAME SHORT_DESC OPTIONS VERSION AUTHOR EMAIL HOMEPAGE LICENSE YEAR
