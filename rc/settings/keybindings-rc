@@ -24,27 +24,31 @@ keybindings_setter () {
 			complete-path)	ACT='"\eb`which \ef` \e\C-e"' ;;
 			rerun-root)	ACT='"\ebsudo !!\e\C-e\C-j"' ;;
 			list-keys)	ACT='"\eblist-keybindings\e\C-e\C-j"' ;;
-			*)		ACT=${2} ;;
+			*)		ACT="${2}" ;;
 		esac
 
-		if [[ ${MOD} == e ]]; then
-			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" e-${KEY}
-			dbg_msg "\\e${KEY}":self-insert
-			bind "\\e${KEY}":self-insert
-			dbg_msg \"\\e${KEY}\":${ACT}
-			echo -E \"\\e${KEY}\":${ACT} >> ${RC_FILE}
-		elif [[ ${MOD} == C ]]; then
-			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" C-${KEY}
-			dbg_msg "\\C-${KEY}":self-insert
-			bind "\\C-${KEY}":self-insert
-			dbg_msg \"\\C-${KEY}\":${ACT}
-			echo -E \"\\C-${KEY}\":${ACT} >> ${RC_FILE}
-		elif [[ ${MOD} == X ]]; then
-			dbg_msg $"KeybindingsCFG Setting:" "${ACT}" ${KEY}
-			#bind "${KEY}":self-insert
-			dbg_msg ${KEY}:${ACT}
-			echo -E ${KEY}:${ACT} >> ${RC_FILE}
-		fi
+		case ${MOD} in
+			e)
+				dbg_msg $"KeybindingsCFG Setting:" "${ACT}" e-"${KEY}"
+				dbg_msg "\\e${KEY}":self-insert
+				bind "\\e${KEY}":self-insert
+				dbg_msg \"\\e"${KEY}"\":"${ACT}"
+				echo -E \"\\e"${KEY}"\":"${ACT}" >> "${RC_FILE}"
+			;;
+			C)
+				dbg_msg $"KeybindingsCFG Setting:" "${ACT}" C-"${KEY}"
+				dbg_msg "\\C-${KEY}":self-insert
+				bind "\\C-${KEY}":self-insert
+				dbg_msg \"\\C-"${KEY}"\":"${ACT}"
+				echo -E \"\\C-"${KEY}"\":"${ACT}" >> "${RC_FILE}"
+			;;
+			X)
+				dbg_msg $"KeybindingsCFG Setting:" "${ACT}" "${KEY}"
+				#bind "${KEY}":self-insert
+				dbg_msg "${KEY}":"${ACT}"
+				echo -E "${KEY}":"${ACT}" >> "${RC_FILE}"
+			;;
+		esac
 	fi
 }
 
@@ -54,7 +58,8 @@ shopt -u nullglob
 
 if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 
-	export RC_FILE=$HOME/.keybindings.bs-ng.$(date +%I-%M-%S)
+	export RC_FILE
+	RC_FILE="${HOME}/.keybindings.bs-ng.$(date +%I-%M-%S)"
 	dbg_msg $"KeybindingsCFG Loading:" $"Keybindings"
 
 	for key in undo upcase_word capitalize_word downcase_word transpose_words \
@@ -68,7 +73,7 @@ if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 		overwrite_mode menu_complete_backward rerun_root backward_kill_line \
 		list_keys; do
 
-			keybindings_setter $(ini_get $key) ${key//_/-}
+			keybindings_setter "$(ini_get $key)" "${key//_/-}"
 
 	done
 
@@ -76,13 +81,13 @@ if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 		# make the prompt properly re-draw when pressing [Return]
 		dbg_msg $"KeybindingsCFG Setting:" Equinox $"Return-Key compat"
 		dbg_msg 'RETURN: "\C-l\C-j"'
-		echo -E 'RETURN: "\C-l\C-j"' >> ${RC_FILE}
+		echo -E 'RETURN: "\C-l\C-j"' >> "${RC_FILE}"
 	fi
 
-	mv ${RC_FILE} ${HOME}/.keybindings
-	bind -f ${HOME}/.keybindings
+	mv "${RC_FILE}" "${HOME}"/.keybindings
 	unset RC_FILE
 
 fi
 
 rm -f "${HOME}"/.keybindings.bs-ng.*
+bind -f "${HOME}"/.keybindings
