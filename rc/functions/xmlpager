@@ -9,8 +9,7 @@
 #							#
 #########################################################
 
-which xmlindent &>/dev/null
-if [[ $? != 0 ]]; then
+if ! which xmlindent; then
 	echo -e "xmlindent not found, xmlpager won't work."
 	exit 1
 fi
