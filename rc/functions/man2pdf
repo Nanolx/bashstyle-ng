@@ -9,8 +9,7 @@
 #							#
 #########################################################
 
-which ps2pdf &>/dev/null
-if [[ $? != 0 ]]; then
+if ! which ps2pdf; then
 	echo -e "ps2pdf not found, man2pdf won't work."
 	exit 1
 fi
@@ -24,7 +23,7 @@ case ${1} in
 	;;
 
 	* )
-		man -t $1 | ps2pdf - >$1.pdf || echo "manpage ${1} does not exist"
+		man -t "${1}" | ps2pdf - >"${1}.pdf" || echo "manpage ${1} does not exist"
 	;;
 
 esac
