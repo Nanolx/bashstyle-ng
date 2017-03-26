@@ -12,8 +12,7 @@
 case ${1} in
 
 	battery)
-		which acpi &>/dev/null
-		if [[ $? != 0 ]]; then
+		if ! which acpi; then
 			echo -e "acpi not found, 'systemkit battery' won't work."
 			exit 1
 		fi
@@ -33,7 +32,7 @@ case ${1} in
 		NICE_IGNORE=20
 		t="0"
 
-		while read cpu ni; do
+		while read -r cpu ni; do
 			[[ $ni == *-* || $ni -le ${NICE_IGNORE} ]] &&	t="$t + ${cpu}"
 			[[ ${cpu%%.*} -eq 0 ]] && break
 		done < <(ps -Ao "%cpu= ni="| sort -r)
@@ -54,8 +53,7 @@ case ${1} in
 	;;
 
 	externalip)
-		which wget &>/dev/null
-		if [[ $? != 0 ]]; then
+		if ! which wget; then
 			echo -e "wget not found, 'systemkit externalip' won't work."
 			exit 1
 		fi
@@ -63,72 +61,73 @@ case ${1} in
 	;;
 
 	internalip)
-		LANG=C /sbin/ifconfig ${2} | grep 'inet addr:' | \
+		LANG=C /sbin/ifconfig "${2}" | grep 'inet addr:' | \
 			cut -d: -f2 | gawk '{ print $1}'
 	;;
 
 	usedram)
 		temp=$(top -bn1 | gawk '/Mem :/{print "(" $4 "-" $6 ") /1024"}' | bc)
 		if [[ ${temp} -lt 10 ]]; then
-			echo 000${temp}
+			echo "000${temp}"
 		elif [[ ${temp} -lt 100 ]]; then
-			echo 00${temp}
+			echo "00${temp}"
 		elif [[ ${temp} -lt 1000 ]]; then
-			echo 0${temp}
-		else	echo ${temp}
+			echo "0${temp}"
+		else	echo "${temp}"
 		fi
 	;;
 
 	freeram)
 		temp=$(top -bn1 | gawk '/Mem :/{print $6 "/1024"}' | bc)
 		if [[ ${temp} -lt 10 ]]; then
-			echo 000${temp}
+			echo "000${temp}"
 		elif [[ ${temp} -lt 100 ]]; then
-			echo 00${temp}
+			echo "00${temp}"
 		elif [[ ${temp} -lt 1000 ]]; then
-			echo 0${temp}
-		else	echo ${temp}
+			echo "0${temp}"
+		else	echo "${temp}"
 		fi
 	;;
 
 	totalram)
 		temp=$(top -bn1 | gawk '/Mem :/{print $4 "/1024"}' | bc)
 		if [[ ${temp} -lt 10 ]]; then
-			echo 000${temp}
+			echo "000${temp}"
 		elif [[ ${temp} -lt 100 ]]; then
-			echo 00${temp}
+			echo "00${temp}"
 		elif [[ ${temp} -lt 1000 ]]; then
-			echo 0${temp}
-		else	echo ${temp}
+			echo "0${temp}"
+		else	echo "${temp}"
 		fi
 	;;
 
-	usedram%)	echo $(top -bn1 | gawk '/Mem :/{print "100*(" $4 "-" $6 ")/" $4}' | bc)% ;;
-	freeram%)	echo $(top -bn1 | gawk '/Mem :/{print "100 *" $6 "/" $4}' | bc)% ;;
+	usedram%)	echo "$(top -bn1 | gawk '/Mem :/{print "100*(" $4 "-" $6 ")/" $4}' | bc)%" ;;
+	freeram%)	echo "$(top -bn1 | gawk '/Mem :/{print "100 *" $6 "/" $4}' | bc)%" ;;
 
 	dirsize)
-		${TotalBytes}=$(du . | awk '{print $1}')
+		TotalBytes=$(du . | awk '{print $1}')
 
-		if [ $${TotalBytes} -lt 1024 ]; then
-				echo ${TotalBytes} KB
-		elif [ $${TotalBytes} -lt 1048576 ]; then
-				echo $((${TotalBytes}/1024)) MB
-		elif [ $${TotalBytes} -lt 1073741824 ]; then
-				echo $((${TotalBytes}/1048576)) GB
-		else	echo $((${TotalBytes}/1073741824)) TB
+		if [[ ${TotalBytes} -lt 1024 ]]; then
+				echo "${TotalBytes} KB"
+		elif [[ ${TotalBytes} -lt 1048576 ]]; then
+				echo "$((TotalBytes/1024)) MB"
+		elif [[ ${TotalBytes} -lt 1073741824 ]]; then
+				echo "$((TotalBytes/1048576)) GB"
+		else	echo "$((TotalBytes/1073741824)) TB"
 		fi
 	;;
 
-	usedspace)	echo $(df -h | grep -w $2 | gawk '{print $3}')B ;;
-	freespace)	echo $(df -h | grep -w $2 | gawk '{print $4}')B ;;
-	totalspace)	echo $(df -h | grep -w $2 | gawk '{print $2}')B ;;
-	usedspace%)	echo $(df | grep -w $2 | gawk '{print $5}') ;;
-	freespace%)	echo $((100-$(df | grep -w $2 | gawk '{print $5}' | sed -e 's/\%//g')))% ;;
+	usedspace)	echo "$(df -h | grep -w "${2}" | gawk '{print $3}')B" ;;
+	freespace)	echo "$(df -h | grep -w "${2}" | gawk '{print $4}')B" ;;
+	totalspace)	echo "$(df -h | grep -w "${2}" | gawk '{print $2}')B" ;;
+	usedspace%)	df | grep -w "${2}" | gawk '{print $5}' ;;
+	freespace%)	temp=$(df | grep -w "${2}" | gawk '{print $5}')
+			echo "$((100-${temp//%/}))%" ;;
 
 	cpu)
 		echo -e "CPU:
-	Model:$(gawk -F \: '/model name/{print $2;exit;}' /proc/cpuinfo)
-	MHz  :$(gawk -F \: '/cpu MHz/{print $2;exit;}' /proc/cpuinfo)\n"
+	Model:$(gawk -F : '/model name/{print $2;exit;}' /proc/cpuinfo)
+	MHz  :$(gawk -F : '/cpu MHz/{print $2;exit;}' /proc/cpuinfo)\n"
 	;;
 
 	kernel)
@@ -145,8 +144,7 @@ case ${1} in
 	;;
 
 	pci)
-		which lspci &>/dev/null
-		if [[ $? != 0 ]]; then
+		if ! which lspci; then
 			echo -e "lspci not found, 'systemkit lspci' won't work."
 			exit 1
 		fi
@@ -155,8 +153,7 @@ $(lspci -vkmm)\n"
 	;;
 
 	usb)
-		which lsusb &>/dev/null
-		if [[ $? != 0 ]]; then
+		if ! which lsusb; then
 			echo -e "lsusb not found, 'systemkit usb' won't work."
 			exit 1
 		fi
@@ -165,8 +162,7 @@ $(lsusb -v)\n"
 	;;
 
 	bios)
-		which dmidecode &>/dev/null
-		if [[ $? != 0 ]]; then
+		if ! which dmidecode; then
 			echo -e "dmidecode not found, 'systemkit bios' won't work."
 			exit 1
 		fi
@@ -183,7 +179,7 @@ $(dmidecode -q)\n"
 
 	tty)
 		TTY=$(tty)
-		echo ${TTY:5} | sed -e 's/\//\:/g'
+		echo "${TTY:5}"
 	;;
 	
 	uptime)
@@ -256,12 +252,12 @@ $(dmidecode -q)\n"
 		fi
 	;;
 
-	countoverallfiles)	echo $(($(ls --color=no -1 -la ${@:2} | grep -v ^- | wc -l)-1)) ;;
-	countoveralldirs)	echo $(($(ls --color=no -1 -la ${@:2} | grep -v ^d | wc -l)-1)) ;;
-	countoverallitems)	echo $(($(ls --color=no -1 -la ${@:2} | wc -l)-1)) ;;
-	countvisiblefiles)	echo $(($(ls --color=no -1 -l ${@:2} | grep -v ^- | wc -l)-1)) ;;
-	countvisibledirs)	echo $(($(ls --color=no -1 -l ${@:2} | grep -v ^d | wc -l)-1)) ;;
-	countvisibleitems)	echo $(($(ls --color=no -1 -l ${@:2} | wc -l)-1)) ;;
+	countoverallfiles)	echo $(($(find "${PWD}" -maxdepth 1 | wc -l )-1)) ;;
+	countoveralldirs)	echo $(($(find "${PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
+	countoverallitems)	echo $(($(find "${PWD}" -maxdepth 1 -type f | wc -l )-1)) ;;
+	countvisiblefiles)	echo $(($(find "${PWD}" -maxdepth 1 -type f -name ".*" -prune -o -print | wc -l)-1)) ;;
+	countvisibledirs)	echo $(($(find "${PWD}" -maxdepth 1 -type d -name ".*" -prune -o -print | wc -l)-1)) ;;
+	countvisibleitems)	echo $(($(find "${PWD}" -maxdepth 1 -name ".*" -prune -o -print| wc -l)-1)) ;;
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
