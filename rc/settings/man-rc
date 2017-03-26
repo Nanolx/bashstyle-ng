@@ -90,8 +90,8 @@ if [[ $(ini_get enable_colors) == True ]]; then
 	unset termcap_mb termcap_md termcap_md termcap_mr \
 		termcap_mh termcap_us termcap_sof termcap_sob
 
-	for lfcolor in ${colors[@]}; do
-		eval unset lf${lfcolor}
+	for lfcolor in "${colors[@]}"; do
+		eval unset "lf${lfcolor}"
 	done
 
 fi
