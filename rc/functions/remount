@@ -21,8 +21,8 @@ case ${1} in
 	* )
 		DEVICE="${1}"
 		shift
-		OPTS=$(mount | grep ${DEVICE} | sed -e 's/.*(//g' -e  's/)//g')
-		mount -oremount,"${OPTS}","${@}" "${DEVICE}"
+		OPTS=$(mount | grep "${DEVICE}" | sed -e 's/.*(//g;s/)//g')
+		mount -oremount,"${OPTS}","${*}" "${DEVICE}"
 	;;
 
 esac
