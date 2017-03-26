@@ -16,7 +16,8 @@ shopt -u nullglob
 if (( "${#bsng_vimrc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" VimCFG
-	 RC_FILE="${HOME}/.vimrc.bs-ng.$(date +%I-%M-%S)"
+	export RC_FILE
+	RC_FILE="${HOME}/.vimrc.bs-ng.$(date +%I-%M-%S)"
 
 	dbg_msg $"VimCFG Setting:" runtimepath
 	rc_add "set runtimepath+=${BSNG_DATADIR}/bashstyle-ng/vim/"
