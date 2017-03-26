@@ -23,13 +23,13 @@ case ${1} in
 		[[ ! ${trunc_length} ]] && trunc_length=1
 
 		if [[ ${pwdmaxlen} != 0 && ${#PWD} -gt ${pwdmaxlen} ]]; then
-			pwdoffset=$(( ${#PWD} - ${pwdmaxlen} ))
+			pwdoffset=$((${#PWD}-pwdmaxlen))
 			xPWD="${ecolor_ps}${trunc_symbol}${PWD:${pwdoffset}:${pwdmaxlen}}"
 			newPWD="${xPWD//\//${ecolor_separator}${dirchar}${ecolor_wdir}}"
 		else
 			newPWD="${PWD//\//${ecolor_separator}${dirchar}${ecolor_wdir}}"
 		fi
 
-		echo -e $newPWD
+		echo -e "${newPWD}"
 	;;
 esac
