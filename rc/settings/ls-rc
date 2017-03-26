@@ -59,8 +59,8 @@ fi
 lscolors=(exec generic logs deb rpm dirs jpeg png gif mp3 ogg flac tar targz
 tarbz2 tarxz zip rar link socket pipe blockdev chardev)
 
-for lscolor in ${lscolors[@]}; do
-	eval _${lscolor}=$(ini_get ${lscolor})
+for lscolor in "${lscolors[@]}"; do
+	eval "_${lscolor}"=$(ini_get "${lscolor}")
 done
 
 _custom="$(ini_get custom)"
@@ -71,10 +71,10 @@ dbg_log export LS_COLORS="*=${_generic}:ex=${_exec}:*.log=${_logs}:*.deb=${_deb}
 *.tar.bz2=${_tarbz2}:*.tar.xz=${_tarxz}:*.zip=${_zip}:*.rar=${_rar}:ln=${_link}:\
 so=${_socket}:pi=${_pipe}:bd=${_blockdev}:cd=${_chardev}:${_custom}"
 
-dbg_msg $"LS_COLORS Setting:" LS_COLORS ${LS_COLORS}
+dbg_msg $"LS_COLORS Setting:" LS_COLORS "${LS_COLORS}"
 
-for lscolor in ${lscolors[@]}; do
-	eval unset _${lscolor}
+for lscolor in "${lscolors[@]}"; do
+	eval unset "_${lscolor}"
 done
 
 unset _custom
