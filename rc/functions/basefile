@@ -11,11 +11,11 @@
 
 case ${1} in
 
-	ext)	echo ${2##*.}	;;
-	name)	echo ${2##*/}	;;
+	ext)	echo "${2##*.}" ;;
+	name)	echo "${2##*/}" ;;
 	noext)	file=$(filename "${1}")
-			echo ${file%\.*} ;;
-	path)	echo ${file%/*}	;;
+			echo "${file%\.*}" ;;
+	path)	echo "${file%/*}" ;;
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
