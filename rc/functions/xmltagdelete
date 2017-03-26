@@ -37,7 +37,7 @@ case ${1} in
 		else	outfile=$(basename "${infile}").new
 		fi
 
-		sed "/${starttag}/,/${endtag}/d" "${infile}" > ${outfile}
-	;;
+		sed "/${starttag}/,/${endtag}/d" "${infile}" > "${outfile}"
+		;;
 
 esac
