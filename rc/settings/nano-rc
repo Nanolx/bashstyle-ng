@@ -16,7 +16,8 @@ shopt -u nullglob
 if (( "${#bsng_nanorc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" NanoCFG
-	export RC_FILE=${HOME}/.nanorc.bs-ng.$(date +%I-%M-%S)
+	export RC_FILE
+	RC_FILE="${HOME}/.nanorc.bs-ng.$(date +%I-%M-%S)"
 
 	if [[ $(ini_get auto_indent) == True ]]; then
 		dbg_msg $"NanoCFG Setting:" Auto-Indention $"On"
@@ -122,7 +123,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset poslog"
 	fi
 
-	dbg_msg $"NanoCFG Setting:" Tab Width $(ini_get tab_size)
+	dbg_msg $"NanoCFG Setting:" Tab Width "$(ini_get tab_size)"
 	rc_add "set tabsize $(ini_get tab_size)"
 
 	if [[ $(ini_get tab_to_spaces) == True ]]; then
@@ -135,8 +136,8 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 
 	if [[ $(ini_get set_uicolors) == True ]]; then
 		for uipart in function key status title; do
-			uipart_color=$(ini_get ${uipart}_color_fg,${uipart}_color_bg)
-			dbg_msg $"NanoCFG Setting:" UI Color ${uipart}: ${uipart_color}
+			uipart_color="$(ini_get ${uipart}_color_fg,${uipart}_color_bg)"
+			dbg_msg $"NanoCFG Setting:" UI Color "${uipart}": "${uipart_color}"
 			rc_add "set ${uipart}color ${uipart_color}"
 		done
 
@@ -151,7 +152,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 	else	dbg_msg $"NanoCFG Setting:" Colors $"Off"
 	fi
 
-	mv ${RC_FILE} ${HOME}/.nanorc
+	mv "${RC_FILE}" "${HOME}"/.nanorc
 	unset RC_FILE
 
 fi
