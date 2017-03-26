@@ -9,8 +9,7 @@
 #							#
 #########################################################
 
-which aapt &>/dev/null
-if [[ $? != 0 ]]; then
+if ! which aapt; then
 	echo -e "aapt not found, apkdump won't work."
 	exit 1
 fi
