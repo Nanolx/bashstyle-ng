@@ -331,7 +331,7 @@ if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal/birthday
 elif [[ $(ini_get welcome_message) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
-	dbg_log "$(ini_get welcome_message)"
+	dbg_log $(ini_get welcome_message)
 fi
 
 lscd() {
@@ -354,7 +354,7 @@ lscd() {
 	if [[ ${OLD_PWD} != "${PWD}" ]]; then
 		echo -e "\n${ccolor_banner}content:\n"
 		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
-			ls "${LSCD_OPTS}"
+			ls ${LSCD_OPTS}
 		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
 	fi
@@ -382,7 +382,7 @@ treecd () {
 	if [[ ${OLD_PWD} != "${PWD}" ]]; then
 		echo -e "\n${ccolor_banner}content:\n"
 		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
-			tree -L "${TREECD_OPTS}"
+			tree -L ${TREECD_OPTS}
 		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
 	fi
