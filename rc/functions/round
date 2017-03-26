@@ -20,8 +20,8 @@ case ${1} in
 
 	* )
 		if [[ $2 ]]; then
-			echo "$(printf %.${2}f $1)"
-		else	echo "$(printf %.0f $1)"
+			printf "%.${2}f" "${1}"
+		else	printf "%.0f" "${1}"
 		fi
 	;;
 
