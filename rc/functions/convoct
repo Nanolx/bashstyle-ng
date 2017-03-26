@@ -18,12 +18,12 @@ case ${1} in
 	dec | decimal)	echo $((8#$2)) ;;
 	hex | hexadecimal)	echo "obase=16 ; ibase=8 ; $2" | bc ;;
 	all)
-		echo "octal $2 = binary	$(convoct bin $2)
-octal $2 = decimal	$(convoct dec $2)
-octal $2 = hexadecimal	$(convoct hex $2)
-octal $2 = base32	$(convoct b32 $2)
-octal $2 = base64	$(convoct b64 $2)
-octal $2 = ascii	$(convoct asc $2)"
+		echo "octal $2 = binary	$(convoct bin "${2}")
+octal $2 = decimal	$(convoct dec "${2}")
+octal $2 = hexadecimal	$(convoct hex "${2}")
+octal $2 = base32	$(convoct b32 "${2}")
+octal $2 = base64	$(convoct b64 "${2}")
+octal $2 = ascii	$(convoct asc "${2}")"
 	;;
 
 	*)
