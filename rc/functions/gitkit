@@ -37,28 +37,28 @@ case ${1} in
 	branch)
 		if [[ -d .git ]]; then
 			BRANCH=$(git symbolic-ref HEAD 2>/dev/null)
-			echo ${BRANCH#refs/heads/}
+			echo "${BRANCH#refs/heads/}"
 		else	echo --
 		fi
 	;;
 
 	bz2)
 		if [[ -d .git ]]; then
-			git archive master | bzip2 -9 > "$(basename ${PWD})".tar.bz2
+			git archive master | bzip2 -9 > "$(basename "${PWD}")".tar.bz2
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
 
 	xz)
 		if [[ -d .git ]]; then
-			git archive master | xz -9 > "$(basename ${PWD})".tar.xz
+			git archive master | xz -9 > "$(basename "${PWD}")".tar.xz
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
 
 	zip)
 		if [[ -d .git ]]; then
-			git archive master --format=zip > "$(basename ${PWD})".zip
+			git archive master --format=zip > "$(basename "${PWD}")".zip
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
@@ -83,7 +83,7 @@ case ${1} in
 
 	openhub)
 		if [[ -d .git ]]; then
-			repo_url=$(git remote -v | grep origin.*fetch | \
+			repo_url=$(git remote -v | grep "origin.*fetch" | \
 				sed 's/\(.*github.com\)[:|/]\(.*\).git (fetch)/\2/' | \
 				awk {'print "https://github.com/" $1'})
 			(xargs x-www-browser "${repo_url}" &) || echo "not a github repository"
@@ -95,7 +95,7 @@ case ${1} in
 		if [[ -d .git ]]; then
 			REVISION=$(git rev-parse HEAD 2>/dev/null)
 			REVISION=${REVISION/HEAD/}
-			echo ${REVISION:0:6}
+			echo "${REVISION:0:6}"
 		else	echo --
 		fi
 	;;
@@ -110,7 +110,7 @@ case ${1} in
 
 	undelete)
 		if [[ -d .git ]]; then
-			git checkout $(git ls-files --deleted)
+			git checkout "$(git ls-files --deleted)"
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
