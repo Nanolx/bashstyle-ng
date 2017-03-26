@@ -18,7 +18,7 @@ case ${1} in
 	;;
 
 	*)
-		find -L -type l "${@}"
+		find "${1}" -L -type l
 	;;
 
 esac
