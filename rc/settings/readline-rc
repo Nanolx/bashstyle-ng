@@ -12,11 +12,11 @@
 shopt -s nullglob
 bsng_inputrc=( "${HOME}"/.inputrc.bs-ng.* )
 shopt -u nullglob
-
 if (( "${#bsng_inputrc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" ReadlineCFG
-	export RC_FILE="${HOME}/.inputrc.bs-ng.$(date +%I-%M-%S)"
+	export RC_FILE
+	RC_FILE="${HOME}/.inputrc.bs-ng.$(date +%I-%M-%S)"
 
 	if [[ $(ini_get editing_mode) == emacs ]]; then
 		dbg_msg $"ReadlineCFG Setting:" Editing-Mode Emacs
@@ -26,7 +26,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set editing-mode vi"
 	fi
 
-	dbg_msg $"ReadlineCFG Setting:" Bellstyle $(ini_get bellstyle)
+	dbg_msg $"ReadlineCFG Setting:" Bellstyle "$(ini_get bellstyle)"
 	rc_add "set bell-style $(ini_get bellstyle)"
 
 	if [[ $(ini_get completion) == True ]]; then
@@ -133,7 +133,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set show-mode-in-prompt off"
 	fi
 
-	dbg_msg $"ReadlineCFG Setting:" Completion-Query-Items $(ini_get query_items)
+	dbg_msg $"ReadlineCFG Setting:" Completion-Query-Items "$(ini_get query_items)"
 	rc_add "set completion-query-items $(ini_get query_items)"
 
 	if [[ $(ini_get use_readline70) == True ]]; then
@@ -155,13 +155,13 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 
 		if [[ $(ini_get show_editmode) == True ]]; then
 			if [[ $(ini_get editing_mode) == emacs ]]; then
-				dbg_msg $"ReadlineCFG Setting:" Emacs Mode String $(ini_get emacs_mode_string)
+				dbg_msg $"ReadlineCFG Setting:" Emacs Mode String "$(ini_get emacs_mode_string)"
 				rc_add "set emacs-mode-string $(ini_get emacs_mode_string)"
 			else
-				dbg_msg $"ReadlineCFG Setting:" Vi Commnad Mode String $(ini_get vi_cmd_mode_string)
+				dbg_msg $"ReadlineCFG Setting:" Vi Commnad Mode String "$(ini_get vi_cmd_mode_string)"
 				rc_add "set vi-cmd-mode-string $(ini_get vi_cmd_mode_string)"
 
-				dbg_msg $"ReadlineCFG Setting:" Vi Insert Mode String $(ini_get vi_ins_mode_string)
+				dbg_msg $"ReadlineCFG Setting:" Vi Insert Mode String "$(ini_get vi_ins_mode_string)"
 				rc_add "set vi-ins-mode-string $(ini_get vi_ins_mode_string)"
 			fi
 		fi
@@ -170,10 +170,10 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 
 	rc_add "\$include ${HOME}/.inputrc.custom"
 
-	mv ${RC_FILE} ${HOME}/.inputrc
-	bind -f ${HOME}/.inputrc
+	mv "${RC_FILE}" "${HOME}"/.inputrc
 	unset RC_FILE
 
 fi
 
 rm -f "${HOME}"/.inputrc.bs-ng.*
+bind -f "${HOME}"/.inputrc
