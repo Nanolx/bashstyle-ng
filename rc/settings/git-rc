@@ -30,13 +30,13 @@ COLOR_OPTS=( branch diff interactive pager status )
 
 if [[ $(ini_get git_color) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" Git colors $"On"
-	for opt in ${COLOR_OPTS[@]}; do
-		dbg_log git config --global color.${opt} true
+	for opt in "${COLOR_OPTS[@]}"; do
+		dbg_log git config --global color."${opt}" true
 	done
 else
 	dbg_msg $"BashStyle-NG Setting:" Git colors $"Off"
-	for opt in ${COLOR_OPTS[@]}; do
-		dbg_log git config --global color.${opt} false
+	for opt in "${COLOR_OPTS[@]}"; do
+		dbg_log git config --global color."${opt}" false
 	done
 fi
 
