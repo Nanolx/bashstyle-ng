@@ -14,23 +14,23 @@ verbose=$(ini_get debug_verbose)
 dbg_msg ()
 {
 	if [[ ${verbose} == True ]]; then
-		echo -E "$@" | tee -a ${BSNG_LOGFILE}
-	else	echo -E "$@" >> ${BSNG_LOGFILE}
+		echo -E "$@" | tee -a "${BSNG_LOGFILE}"
+	else	echo -E "$@" >> "${BSNG_LOGFILE}"
 	fi
 }
 
 dbg_log ()
 {
 	dbg_msg "$@"
-	"$@" > >(tee -a ${BSNG_LOGFILE}) 2>&1
+	"$@" > >(tee -a "${BSNG_LOGFILE}") 2>&1
 }
 
 dbg_finalize()
 {
-	sed '$!N; /^\(.*\)\n\1$/!P; D' -i ${BSNG_LOGFILE}
+	sed '$!N; /^\(.*\)\n\1$/!P; D' -i "${BSNG_LOGFILE}"
 }
 
 dbg_view ()
 {
-	cat ${BSNG_LOGFILE} | less
+	less "${BSNG_LOGFILE}"
 }

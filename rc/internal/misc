@@ -10,21 +10,22 @@
 #########################################################
 
 assign() {
-	for opt in ${@}; do
+	for opt in "${@}"; do
 		var="X=\$${opt/:*}"
-		eval ${var}
-		[[ ${X} == "" ]] && read ${opt/:*} <<< $(echo ${opt/*:})
+		eval "${var}"
+		[[ ${X} == "" ]] && read -r "${opt/:*}" <<< "${opt/*:}"
 	done
 }
 
 ini_get ()
 {
-	sed -n "s/^${1} = \(.*$\)/\1/p" ${HOME}/.bs-ng.ini | sed -e 's/\"//g'
+	sed -n "s/^${1} = \(.*$\)/\1/p" "${HOME}"/.bs-ng.ini | sed -e 's/\"//g'
 }
 
 def_get ()
 {
-	sed -n "s/^${1} = \(.*$\)/\1/p" ${BSNG_DATADIR}/bashstyle-ng/bs-ng.ini | \
+	sed -n "s/^${1} = \(.*$\)/\1/p" \
+		"${BSNG_DATADIR}"/bashstyle-ng/bs-ng.ini | \
 		sed -e 's/\"//g'
 }
 
@@ -38,22 +39,22 @@ ini_set ()
 {
 	SETTING=${1}
 	shift
-	VALUE=${@}
+	VALUE="${*}"
 
-	sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i ${HOME}/.bs-ng.ini
+	sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i "${HOME}"/.bs-ng.ini
 }
 
 ini_add ()
 {
 	SECTION=${1}
 	shift
-	VALUE=${@}
+	VALUE="${*}"
 
-	sed -e "/\[${SECTION}\]/ a ${VALUE}" ${HOME}/.bs-ng.ini
+	sed -e "/\[${SECTION}\]/ a ${VALUE}" -i "${HOME}"/.bs-ng.ini
 }
 
 rc_add ()
 {
 	dbg_msg "$@"
-	echo "${@}" >> ${RC_FILE}
+	echo "${@}" >> "${RC_FILE}"
 }
