@@ -25,7 +25,7 @@ case ${1} in
 
     spin | --spin)
 		echo -n "|/     |"
-		while [ -d /proc/${2} ]
+		while [ -d "/proc/${2}" ]
 		do
 			# moving right
 			echo -ne "\b\b\b\b\b\b\b-     |"
@@ -124,7 +124,7 @@ case ${1} in
     
     spanner | --spanner)
 		COUNT=0
-		while [ -d /proc/${2} ];do
+		while [ -d "/proc/${2}" ];do
 			while [ "$COUNT" -lt 10 ];do
 				echo -ne '\x08  ' ; sleep 0.1
 				((COUNT++))
@@ -137,7 +137,7 @@ case ${1} in
 	;;
 	
 	spinner | --spinner)
-		while [ -d /proc/${2} ];do
+		while [ -d "/proc/${2}" ];do
 			echo -ne '\e[01;32m/\x08' ; sleep 0.05
 			echo -ne '\e[01;32m-\x08' ; sleep 0.05
 			echo -ne '\e[01;32m\\\x08' ; sleep 0.05
@@ -146,7 +146,7 @@ case ${1} in
 	;;
 	
 	working | --working)
-		while [ -d /proc/${2} ]
+		while [ -d "/proc/${2}" ]
 		do
 			echo -ne "w      \b\b\b\b\b\b\b";sleep .08;
 			echo -ne "wo     \b\b\b\b\b\b\b";sleep .08;
@@ -165,7 +165,7 @@ case ${1} in
 	;;
 	
 	bar | --bar )
-		while [ -d /proc/${2} ]
+		while [ -d "/proc/${2}" ]
 		do
 			printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
 			sleep ${SP_DELAY:-.2}
@@ -174,7 +174,7 @@ case ${1} in
 	;;
 
 	*)
-		while [ -d /proc/${1} ]
+		while [ -d /proc/"${1}" ]
 		do
 			printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
 			sleep ${SP_DELAY:-.2}
