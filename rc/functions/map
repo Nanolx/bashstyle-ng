@@ -22,7 +22,7 @@ case ${1} in
 	;;
 
 	* )
-		if [ $# -lt 2 ] || [[ ! "$@" =~ [[:space:]]--[[:space:]] ]];then
+		if [ $# -lt 2 ] || [[ ! "$*" =~ [[:space:]]--[[:space:]] ]];then
 			echo "Invalid syntax." >&2; exit 1
 		fi
 
