@@ -13,7 +13,7 @@ _randomfunc() {
 
 	command=""
 
-	if [ $# -lt 2 ] || [[ ! "$@" =~ [[:space:]]--[[:space:]] ]];then
+	if [ $# -lt 2 ] || [[ ! "$*" =~ [[:space:]]--[[:space:]] ]];then
 			echo "Invalid syntax." >&2; exit 1
 	fi
 
@@ -22,7 +22,7 @@ _randomfunc() {
 	done
 	shift
 
-	if [[ ! "${@}" ]]; then
+	if [[ ! "${*}" ]]; then
 		files=(*)
 	else	files=("${@}")
 	fi
@@ -34,7 +34,7 @@ _randomfunc() {
 		echo "${RANDOMFILE}" >> /tmp/randomtmp
 	else
 		${command} "${RANDOMFILE}"
-		echo "${RANDOMFILE}" >> ${HOME}/.randomhistory
+		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory"
 	fi
 
 }
@@ -61,23 +61,23 @@ case ${1} in
 
 
 	-f | --first)
-		sed -n '1p' ${HOME}/.randomhistory
+		sed -n '1p' "${HOME}"/.randomhistory
 	;;
 
 	-L | --last)
-		sed -n '$p' ${HOME}/.randomhistory
+		sed -n '$p' "${HOME}"/.randomhistory
 	;;
 
 	-i | --item)
-		sed -n "${2}p" ${HOME}/.randomhistory
+		sed -n "${2}p" "${HOME}"/.randomhistory
 	;;
 
 	-l | --length)
-		wc -l ${HOME}/.randomhistory | gawk '{print $1}'
+		wc -l "${HOME}"/.randomhistory | gawk '{print $1}'
 	;;
 
 	-c | --clear)
-		rm ${HOME}/.randomhistory
+		rm "${HOME}"/.randomhistory
 	;;
 
 	-n | --count)
@@ -85,12 +85,12 @@ case ${1} in
 		count=$1
 		shift
 
-		while test ${count} -gt 0; do
+		while test "${count}" -gt 0; do
 			_randomfunc + -- "${@}"
-			count=$((${count} - 1))
+			count=$((count-1))
 		done
 
-		cat /tmp/randomtmp | sort | uniq -c | sort -n | tail | sort -nr
+		sort /tmp/randomtmp | uniq -c | sort -n | tail | sort -nr
 		rm /tmp/randomtmp
 	;;
 
