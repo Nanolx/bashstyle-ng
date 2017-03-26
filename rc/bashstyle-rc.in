@@ -24,32 +24,32 @@ INI_VERSION=31
 source ${BSNG_RCDIR}/internal/misc
 source ${BSNG_RCDIR}/internal/logging
 
-dbg_log rm -f ${BSNG_LOGFILE}
-dbg_log touch ${BSNG_LOGFILE}
+dbg_log rm -f "${BSNG_LOGFILE}"
+dbg_log touch "${BSNG_LOGFILE}"
 
 dbg_msg $"BashStyle-NG Starting"
-dbg_msg $"BashStyle-NG Bash Major Version:" $(echo ${BASH_VERSINFO[0]})
-dbg_msg $"BashStyle-NG Bash Minor Version:" $(echo ${BASH_VERSINFO[1]})
-dbg_msg $"BashStyle-NG Bash Patch Level:" $(echo ${BASH_VERSINFO[2]})
-dbg_msg $"BashStyle-NG Version:" ${BSNG_VERSION}
-dbg_msg $"BashStyle-NG Prefix:" ${BSNG_PREFIX}
-dbg_msg $"BashStyle-NG Logfile:" ${BSNG_LOGFILE}
-dbg_msg $"BashStyle-NG Ini Version:" ${INI_VERSION}
+dbg_msg $"BashStyle-NG Bash Major Version:" "${BASH_VERSINFO[0]}"
+dbg_msg $"BashStyle-NG Bash Minor Version:" "${BASH_VERSINFO[1]}"
+dbg_msg $"BashStyle-NG Bash Patch Level:" "${BASH_VERSINFO[2]}"
+dbg_msg $"BashStyle-NG Version:" "${BSNG_VERSION}"
+dbg_msg $"BashStyle-NG Prefix:" "${BSNG_PREFIX}"
+dbg_msg $"BashStyle-NG Logfile:" "${BSNG_LOGFILE}"
+dbg_msg $"BashStyle-NG Ini Version:" "${INI_VERSION}"
 
 if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
-	dbg_msg $"No user ini file (" ${HOME}/.bs-ng.ini $") found"
-	if [[ -f /etc/bs-ng_vendor.ini && $(ven_get ini_version) == ${INI_VERSION} ]]; then
+	dbg_msg $"No user ini file (" "${HOME}"/.bs-ng.ini $") found"
+	if [[ -f /etc/bs-ng_vendor.ini && $(ven_get ini_version) == "${INI_VERSION}" ]]; then
 		dbg_msg $"found an up-to-date vendor ini (/etc/bs-ng_vendor.ini), copying as user ini"
-		cp /etc/bs-ng_vendor.ini ${HOME}/.bs-ng.ini
+		cp /etc/bs-ng_vendor.ini "${HOME}"/.bs-ng.ini
 	else
 		dbg_msg $"no (up-to-date) vendor ini found"
-		dbg_msg $"using factory ini (" ${BSNG_DATADIR}/bashstyle-ng/bs-ng.ini} $"), copying as user ini"
-		cp ${BSNG_DATADIR}/bashstyle-ng/bs-ng.ini ${HOME}/.bs-ng.ini
+		dbg_msg $"using factory ini (" "${BSNG_DATADIR}"/bashstyle-ng/bs-ng.ini $"), copying as user ini"
+		cp "${BSNG_DATADIR}"/bashstyle-ng/bs-ng.ini "${HOME}"/.bs-ng.ini
 	fi
 else
-	if [[ $(ini_get ini_version) != ${INI_VERSION} ]]; then
+	if [[ $(ini_get ini_version) != "${INI_VERSION}" ]]; then
 		dbg_msg $"user configuration is not up-to-date"
-		dbg_msg $"expected version" ${INI_VERSION} $"but got" $(ini_get ini_version)
+		dbg_msg $"expected version" "${INI_VERSION}" $"but got" "$(ini_get ini_version)"
 		dbg_msg $"running config update helper"
 		dbg_log bashstyle --update
 	fi
@@ -58,7 +58,7 @@ fi
 dbg_log shopt -s checkwinsize
 
 if [[ $(ini_get path) != "" ]]; then
-	dbg_msg $"BashStyle-NG Setting:" PATH ${PATH}
+	dbg_msg $"BashStyle-NG Setting:" PATH "${PATH}"
 	PATH="$(ini_get path)"
 fi
 
@@ -101,7 +101,7 @@ dbg_log source ${BSNG_RCDIR}/settings/alias-rc
 
 if [[ -e ${HOME}/.bashstyle.custom ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
-	dbg_log source ${HOME}/.bashstyle.custom
+	dbg_log source "${HOME}"/.bashstyle.custom
 fi
 
 if [[ $(ini_get use_bashstyle) == True ]]; then
@@ -110,17 +110,17 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	dbg_log source ${BSNG_RCDIR}/styles/null-rc
 
 	if [[ ${BSNG_BASHVER} -ge 44 && $(ini_get ps0) != "" ]]; then
-		dbg_msg $"BashStyle-NG Setting:" PS0 $(ini_get ps0)
+		dbg_msg $"BashStyle-NG Setting:" PS0 "$(ini_get ps0)"
 		PS0="${color_ps0} $(ini_get ps0)${color_font} "
 	fi
 
-	dbg_msg $"BashStyle-NG Setting:" PS2 $(ini_get ps2)
+	dbg_msg $"BashStyle-NG Setting:" PS2 "$(ini_get ps2)"
 	PS2="${color_ps2} $(ini_get ps2)${color_font} "
 
-	dbg_msg $"BashStyle-NG Setting:" PS3 $(ini_get ps3)
+	dbg_msg $"BashStyle-NG Setting:" PS3 "$(ini_get ps3)"
 	PS3="${color_ps3} $(ini_get ps3)${color_font} "
 
-	dbg_msg $"BashStyle-NG Setting:" PS4 $(ini_get ps4)
+	dbg_msg $"BashStyle-NG Setting:" PS4 "$(ini_get ps4)"
 	PS4="${color_ps4} $(ini_get ps4)${color_font} "
 
 	if [[ $(ini_get random_style) == True ]]; then
@@ -176,7 +176,7 @@ error () { log "ERROR: $*" >&2; }
 fatal () { error "$@"; exit 1; }
 
 trap_add () {
-    trap_add_cmd=$1; shift || fatal "${FUNCNAME} usage error"
+    trap_add_cmd=$1; shift || fatal "${FUNCNAME[0]} usage error"
     for trap_add_name in "$@"; do
         trap -- "$(
             extract_trap_cmd() { printf '%s\n' "$3"; }
@@ -237,20 +237,20 @@ fi
 if [[ $(ini_get history_sync) == True ]]; then
 
 	_erasehistorydups () {
-		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
+		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 			tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
-			tac | sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
+			tac | sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
 	}
 
 	_ignorehistorydups () {
-		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
+		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 			gawk -F'HISTDILIMITER' '!x[$2]++' | \
-			sed -e 's/HISTDILIMITER/\n/g' > ${HISTFILE}.tmp
+			sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
 	}
 
 	_ignorehistoryspc () {
-		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' ${HISTFILE} | \
-			sed -e '/HISTDILIMITER /d' > ${HISTFILE}.tmp
+		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
+			sed -e '/HISTDILIMITER /d' > "${HISTFILE}".tmp
 	}
 
 	_ignorehistoryboth () {
@@ -270,7 +270,7 @@ if [[ $(ini_get history_sync) == True ]]; then
 		esac
 
 		if [[ -f ${HISTFILE}.tmp ]]; then
-			mv ${HISTFILE}.tmp ${HISTFILE} &>/dev/null && \
+			mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
 			builtin history -r
 		fi
 	}
@@ -331,7 +331,7 @@ if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal/birthday
 elif [[ $(ini_get welcome_message) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
-	dbg_log $(ini_get welcome_message)
+	dbg_log "$(ini_get welcome_message)"
 fi
 
 lscd() {
@@ -351,15 +351,15 @@ lscd() {
 		builtin cd "${1}" &>/dev/null
 	fi
 
-	if [[ ${OLD_PWD} != ${PWD} ]]; then
+	if [[ ${OLD_PWD} != "${PWD}" ]]; then
 		echo -e "\n${ccolor_banner}content:\n"
 		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
-			ls ${LSCD_OPTS}
+			ls "${LSCD_OPTS}"
 		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
 	fi
 
-	echo "${PWD}" > ${HOME}/.lastpwd
+	echo "${PWD}" > "${HOME}"/.lastpwd
 }
 
 treecd () {
@@ -379,20 +379,19 @@ treecd () {
 		builtin cd "${1}" &>/dev/null
 	fi
 
-	if [[ ${OLD_PWD} != ${PWD} ]]; then
+	if [[ ${OLD_PWD} != "${PWD}" ]]; then
 		echo -e "\n${ccolor_banner}content:\n"
 		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
-			tree -L ${TREECD_OPTS}
+			tree -L "${TREECD_OPTS}"
 		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
 	fi
 
-	echo "${PWD}" > ${HOME}/.lastpwd
+	echo "${PWD}" > "${HOME}"/.lastpwd
 }
 
 if [[ $(ini_get use_treecd) == True ]]; then
-	which tree &>/dev/null
-	if [[ $? == 0 ]]; then
+	if which tree; then
 		dbg_log alias cd=treecd
 		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
 		[[ $(ini_get enable_colors) != True ]] && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
@@ -409,9 +408,9 @@ fi
 reload_bash () {
 	#xk2c from commandlinefu.com
 	builtin unalias -a
-	builtin unset -f $(builtin compgen -A function)
+	builtin unset -f "$(builtin compgen -A function)"
 	[[ -f /etc/bash_completion ]] && source /etc/bash_completion
-	source ${HOME}/.bashrc
+	source "${HOME}"/.bashrc
 }
 
 unset style
