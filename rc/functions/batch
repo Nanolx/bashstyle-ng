@@ -19,7 +19,7 @@ case ${1} in
 	;;
 
 	* )
-		find . -type f -iname '*.'${1}'' -exec ${@:2}  {} \; ;
+		find . -type f -iname '*.'"${1}"'' -exec "${@:2}" {} \; ;
 	;;
 
 esac
