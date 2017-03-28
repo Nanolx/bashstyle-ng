@@ -19,18 +19,18 @@ check () {
 
 check_helper () {
 
-	[[ ${APPS[@]} ]] && (section_message APP && check_apps "false" "${APPS[@]}")
-	[[ ${OPT_APPS[@]} ]] && (section_message OPT_APP && check_apps "true" "${OPT_APPS[@]}")
-	[[ ${SAPPS[@]} ]] && (section_message SBINAPP && check_apps "false" "${SAPPS[@]}")
-	[[ ${OPT_SAPPS[@]} ]] && (section_message OPT_SBINAPP && check_apps "true" "${OPT_SAPPS[@]}")
-	[[ ${BUILD[@]} ]] && (section_message BUILD && check_apps "false" "${BUILD[@]}")
-	[[ ${PYMODS[@]} ]] && check_python
-	[[ ${PYMODS[@]} ]] && (section_message PYMOD && check_pymods "false" "${PYMODS[@]}")
-	[[ ${OPT_PYMODS[@]} ]] && (section_message OPT_PYMOD && check_pymods "true" "${OPT_PYMODS[@]}")
-	[[ ${LIBS[@]} ]] && (section_message LIB && check_libs "false" "${LIBS[@]}")
-	[[ ${OPT_LIBS[@]} ]] && (section_message OPT_LIB && check_libs "false" "${OPT_LIBS[@]}")
-	[[ ${GIR[@]} ]] && (section_message GIR && check_gir "false" "${GIR[@]}")
-	[[ ${OPT_GIR[@]} ]] && (section_message OPT_GIR && check_gir "false" "${OPT_GIR[@]}")
+	[[ "${APPS[*]}" ]] && (section_message APP && check_apps "false" "${APPS[@]}")
+	[[ "${OPT_APPS[*]}" ]] && (section_message OPT_APP && check_apps "true" "${OPT_APPS[@]}")
+	[[ "${SAPPS[*]}" ]] && (section_message SBINAPP && check_apps "false" "${SAPPS[@]}")
+	[[ "${OPT_SAPPS[*]}" ]] && (section_message OPT_SBINAPP && check_apps "true" "${OPT_SAPPS[@]}")
+	[[ "${BUILD[*]}" ]] && (section_message BUILD && check_apps "false" "${BUILD[@]}")
+	[[ "${PYMODS[*]}" ]] && check_python
+	[[ "${PYMODS[*]}" ]] && (section_message PYMOD && check_pymods "false" "${PYMODS[@]}")
+	[[ "${OPT_PYMODS[*]}" ]] && (section_message OPT_PYMOD && check_pymods "true" "${OPT_PYMODS[@]}")
+	[[ "${LIBS[*]}" ]] && (section_message LIB && check_libs "false" "${LIBS[@]}")
+	[[ "${OPT_LIBS[*]}" ]] && (section_message OPT_LIB && check_libs "false" "${OPT_LIBS[@]}")
+	[[ "${GIR[*]}" ]] && (section_message GIR && check_gir "false" "${GIR[@]}")
+	[[ "${OPT_GIR[*]}" ]] && (section_message OPT_GIR && check_gir "false" "${OPT_GIR[@]}")
 
 }
 
