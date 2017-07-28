@@ -252,12 +252,12 @@ $(dmidecode -q)\n"
 		fi
 	;;
 
-	countoverallfiles)	echo $(($(find "${PWD}" -maxdepth 1 | wc -l )-1)) ;;
-	countoveralldirs)	echo $(($(find "${PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
-	countoverallitems)	echo $(($(find "${PWD}" -maxdepth 1 -type f | wc -l )-1)) ;;
-	countvisiblefiles)	echo $(($(find "${PWD}" -maxdepth 1 -type f -name ".*" -prune -o -print | wc -l)-1)) ;;
-	countvisibledirs)	echo $(($(find "${PWD}" -maxdepth 1 -type d -name ".*" -prune -o -print | wc -l)-1)) ;;
-	countvisibleitems)	echo $(($(find "${PWD}" -maxdepth 1 -name ".*" -prune -o -print| wc -l)-1)) ;;
+	countoverallfiles)	echo $(($(find -L "${PWD}" -maxdepth 1 | wc -l )-1)) ;;
+	countoveralldirs)	echo $(($(find -L "${PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
+	countoverallitems)	echo $(($(find -L "${PWD}" -maxdepth 1 -type f | wc -l )-1)) ;;
+	countvisiblefiles)	echo $(($(find -L "${PWD}" -maxdepth 1 -type f -name ".*" -prune -o -print | wc -l)-1)) ;;
+	countvisibledirs)	echo $(($(find -L "${PWD}" -maxdepth 1 -type d -name ".*" -prune -o -print | wc -l)-1)) ;;
+	countvisibleitems)	echo $(($(find -L "${PWD}" -maxdepth 1 -name ".*" -prune -o -print| wc -l)-1)) ;;
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
