@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if ! which ffmpeg; then
+if ! which ffmpeg &>/dev/null; then
 	echo "ffmpeg not found, movie2gif won't work."
 	exit 1
 fi

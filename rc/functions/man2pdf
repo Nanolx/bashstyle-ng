@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if ! which ps2pdf; then
+if ! which ps2pdf &>/dev/null; then
 	echo -e "ps2pdf not found, man2pdf won't work."
 	exit 1
 fi

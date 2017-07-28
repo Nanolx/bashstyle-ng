@@ -12,7 +12,7 @@
 case ${1} in
 
 	battery)
-		if ! which acpi; then
+		if ! which acpi &>/dev/null; then
 			echo -e "acpi not found, 'systemkit battery' won't work."
 			exit 1
 		fi
@@ -53,7 +53,7 @@ case ${1} in
 	;;
 
 	externalip)
-		if ! which wget; then
+		if ! which wget &>/dev/null; then
 			echo -e "wget not found, 'systemkit externalip' won't work."
 			exit 1
 		fi
@@ -144,7 +144,7 @@ case ${1} in
 	;;
 
 	pci)
-		if ! which lspci; then
+		if ! which lspci &>/dev/null; then
 			echo -e "lspci not found, 'systemkit lspci' won't work."
 			exit 1
 		fi
@@ -153,7 +153,7 @@ $(lspci -vkmm)\n"
 	;;
 
 	usb)
-		if ! which lsusb; then
+		if ! which lsusb &>/dev/null; then
 			echo -e "lsusb not found, 'systemkit usb' won't work."
 			exit 1
 		fi
@@ -162,14 +162,16 @@ $(lsusb -v)\n"
 	;;
 
 	bios)
-		if ! which dmidecode; then
-			echo -e "dmidecode not found, 'systemkit bios' won't work."
-			exit 1
-		fi
-
 		if [[ ${EUID} == 0 ]]; then 
+			if ! which dmidecode &>/dev/null; then
+				echo -e "dmidecode not found, 'systemkit bios' won't work."
+				exit 1
+			fi
 			echo -e "SMBIOS/DMI Info:
 $(dmidecode -q)\n"
+		else
+			echo -e "you're not root"
+			exit 1
 		fi
 	;;
 

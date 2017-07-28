@@ -16,7 +16,16 @@ Each release lists incompatible changes at its top.
 @itemize @minus
 @item #238 (systemkit): make @code{countvisibleitems} work, when @code{PWD} is a
 symlinked directory.
+
+@item #239 (functions): scripts that check for required applications no longer
+print the path to the found binary.
 @end itemize
+
+@item Misc. Changes
+@itemize @minus
+@item When @code{systemkit bios} is called as non-root user a message is printed
+accordingly (instead of just exiting without further notice).
+@item itemize
 @end itemize
 
 @heading 10.0 ``10th Anniversary Version''
