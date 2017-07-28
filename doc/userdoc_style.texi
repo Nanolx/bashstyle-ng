@@ -280,3 +280,43 @@ Display the RAM status, either
 
 in the prompt.
 @end defvr
+
+@heading Equinox
+
+The following settings only apply to the @var{Equinox} prompt style.
+
+@defvr {Setting} Display system load
+Display load average for the last five minutes in the prompt.
+@end defvr
+
+@defvr {Setting} Display CPU load
+Display current CPU load in the prompt.
+@end defvr
+
+@defvr {Setting} Display number of running jobs
+Display the number of running jobs in the prompt.
+@end defvr
+
+@defvr {Setting} Display Memory
+Display the RAM status (free and used) in the prompt.
+@end defvr
+
+@defvr {Setting} Display last command
+Display last run command and whether it was executed succesful or not in the prompt.
+@end defvr
+
+@defvr {Setting} Display uptime
+Display the machine's uptime in the prompt.
+@end defvr
+
+@heading 4.4+
+
+Settings for Bash version 4.4 or newer
+
+@defvr {Setting} PS0
+The character(s) to use to indicate @code{PS0}.
+@end defvr
+
+@defvr {Setting} Color for PS0
+This sets the color for the PS0 sub prompt.
+@end defvr
