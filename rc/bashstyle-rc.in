@@ -334,7 +334,7 @@ elif [[ $(ini_get welcome_message) != "" ]]; then
 	dbg_log $(ini_get welcome_message)
 fi
 
-lscd() {
+ccd() {
 	OLD_PWD=${PWD}
 	clear
 	ccd_mkdir=0
@@ -364,51 +364,18 @@ lscd() {
 		fi
 		items=$(systemkit countvisibleitems)
 		if [[ ${items} -gt 35 ]]; then
-			ls ${LSCD_OPTS} | head -n 5
+			if [[ ${LSCD} == True ]]; then
+				ls ${LSCD_OPTS} | head -n 5
+			elif [[ ${TREECD} == True ]]; then
+				tree ${TREECD_OPTS} | head -n 5
+			fi
 			echo -e "${ccolor_banner} ...\n"
 		elif [[ ${items} -gt 0 ]]; then
-			ls ${LSCD_OPTS}
-		else	echo -e "${ccolor_empty}-- empty --\n"
-		fi
-	fi
-
-	echo "${PWD}" > "${HOME}"/.lastpwd
-}
-
-treecd () {
-	OLD_PWD=${PWD}
-	clear
-	ccd_mkdir=0
-
-	if [[ -f "${1}" ]]; then
-		builtin cd "${1%/*}" &>/dev/null
-	elif [[ -d "${1}" ]]; then
-		builtin cd "${1}" &>/dev/null
-	elif [[ "${1}" == -*   ]]; then
-		builtin cd "${*}" &>/dev/null
-	elif [[ ! "${1}" ]]; then
-		builtin cd &>/dev/null
-	elif [[ $(ini_get customcd_mkdir) == True ]]; then
-		if [ -w $(dirname ${1}) ]; then
-			mkdir -p "${1}" &>/dev/null
-			builtin cd "${1}" &>/dev/null
-			ccd_mkdir=1
-		else	echo -e "\n\n ++ could not create directory »$(basename ${1})«"
-		fi
-	else	echo -e "\n\n${eyellow} ++ directory »$(basename ${1})« does not exist."
-	fi
-
-	if [[ ${OLD_PWD} != "${PWD}" ]]; then
-		if [[ ${ccd_mkdir} -eq 1 ]]; then
-			echo -e "\n\n${ccolor_mkdir} ++ directory created: »$(basename ${PWD})«\n"
-		else	echo -e "\n\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\n"
-		fi
-		items=$(systemkit countvisibleitems)
-		if [[ ${items} -gt 35 ]]; then
-			ls ${LSCD_OPTS} | head -n 5
-			echo -e "${ccolor_banner} ...\n"
-		elif [[ ${items} -gt 0 ]]; then
-			ls ${LSCD_OPTS}
+			if [[ ${LSCD} == True ]]; then
+				ls ${LSCD_OPTS}
+			elif [[ ${TREECD} == True ]]; then
+				tree ${TREECD_OPTS}
+			fi
 		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
 	fi
@@ -418,7 +385,8 @@ treecd () {
 
 if [[ $(ini_get use_treecd) == True ]]; then
 	if which tree; then
-		dbg_log alias cd=treecd
+		dbg_log alias cd=ccd
+		dbg_log export TREECD=True
 		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
 		[[ $(ini_get enable_colors) != True ]] && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
 	else	dbg_msg $"tree not found, not using treecd as cd replacement"
@@ -426,7 +394,8 @@ if [[ $(ini_get use_treecd) == True ]]; then
 fi
 
 if [[ $(ini_get use_lscd) == True ]]; then
-	dbg_log alias cd=lscd
+	dbg_log alias cd=ccd
+	dbg_log export LSCD=True
 	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
 	[[ $(ini_get enable_colors) != True ]] && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
 fi
