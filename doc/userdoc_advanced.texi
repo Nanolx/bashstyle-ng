@@ -38,7 +38,7 @@ This controls how many history entries are saved. 0 for infinite.
 @defvr {Setting} Sync History (Multisession)
 This is a BashStyle-NG extension which allows syncronized history over multiple,
 simultaneously running Bash sessions. It provides custom functions for history
-controlling as well and history blacklisting is honoured as well.
+controlling as well, so history blacklisting is honoured.
 @end defvr
 
 @heading BashStyle-NG
@@ -70,9 +70,28 @@ When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
 controls whether a directory that does currently not exist is created and then
 changed into.
 
-Note: there's currently no permission check done for this feature, if the user
-is trying to create a directory where no permissions are granted @code{lscd} or
-@code{treecd} will spit out the usual @code{mkdir} and @code{cd} errors.
+Note: there's currently only partial permission check done for this feature,
+it will work when a directory inside an existing directory is created (1 level
+deep directory paths), deeper nested directories paths are not supported.
+
+Example: if @code{/home/test} exists @code{cd /home/test/newdir} will succeed,
+while @code{cd /home/test/newdir/newsubdir} will fail, as @code{/home/test/newdir}
+does not exist.
+@end defvr
+
+@defvr {Setting} lscd/treecd: banner color
+When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
+controls what color is used for the banner.
+@end defvr
+
+@defvr {Setting} lscd/treecd: empty color
+When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
+controls what color is used to indicate a directory is empty.
+@end defvr
+
+@defvr {Setting} lscd/treecd: mkdir color
+When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
+controls what color is used to indicate the directory was newly created.
 @end defvr
 
 @defvr {Setting} Restore directory in new shell
@@ -94,6 +113,11 @@ Additional options to pass to @code{treecd} for displaying the directory content
 All @code{tree} options are supported, see @code{tree --help} for all possibilites.
 @end defvr
 
+@defvr {Setting} Let @code{dd} show progressbar
+Let the @code{dd} utility show a progressbar. This requires @code{coreutils} version
+8.24 or newer.
+@end defvr
+
 @defvr {Setting} Let @code{dd} continue on error
 Normally the @code{dd} utility will abort on the first occurring error. Enabling
 this will make @code{dd} displaying a warning and continuing it's work instead.
@@ -101,10 +125,25 @@ this will make @code{dd} displaying a warning and continuing it's work instead.
 This is mostly useful when dealing with damaged CDs or thelike.
 @end defvr
 
-@defvr {Setting} Verbose output on start
-BashStyle-NG does several logging upon Bash session start. If you want visible
-logging enable this option. Usually you don't need this and thus it's disabled
-by default.
+@defvr {Setting} User Char
+Character to display in prompt for normal users, for root, it's always @code{#}.
+@end defvr
+
+@defvr {Setting} Return Code: OK
+Character to display in prompts that support return code displaying when a command
+has succesfully finished, default @code{✔}. On the linux console always @code{+}.
+@end defvr
+
+@defvr {Setting} Return Code: Error
+Character to display in prompts that support return code displaying when a command
+has failed to finish successfully, default @code{✘}. On the linux console always
+@code{-}.
+@end defvr
+
+@defvr {Setting} Return Code: Other
+Character to display in prompts that support return code displaying when a command
+has neither return code code{0} (success) or @code{1} (error), default @code{⊘}.
+On the linux console always @code{/}.
 @end defvr
 
 @defvr {Setting} Welcome Message
@@ -122,6 +161,12 @@ your choice made here, this has no technical impact on how your OS works.
 
 @defvr {Setting} User Birthday
 User's birthday in MM-DD format. What's gonna happen that day, I wonder?
+@end defvr
+
+@defvr {Setting} Verbose output on start
+BashStyle-NG does several logging upon Bash session start. If you want visible
+logging enable this option. Usually you don't need this and thus it's disabled
+by default.
 @end defvr
 
 @heading Bash Builtin
@@ -159,4 +204,18 @@ blacklist, @code{ls -A} will no longer include them. Use with caution.
 @defvr {Setting} Path
 A colon separated list of directories containing your systems executable files.
 If empty the system-wide @code{PATH} variable will be used.
+@end defvr
+
+@defvr {Setting} Include PWD in Path
+Wether the current directory (@code{.}) is appended to the @code{PATH} variable.
+@end defvr
+
+@heading Bash 4.4+
+
+Options introduced with Bash version 4.4.
+
+@defvr {Setting} Exec Blacklist
+Blacklist of binaries not to be executed. For example if @code{*conf} is part of
+Exec Blacklist, executing @code{autoconf} or any other matching binary will be
+prevented.
 @end defvr
