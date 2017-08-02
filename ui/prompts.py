@@ -127,7 +127,7 @@ unset devicetemp"""
 poweruser_ps=r"""\[ \$(date +%T) - \$(date +%D) ]
 [ \u @ \h ]\ [ \${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize)
 ${directories}.\${hiddendirectories}d\${links}\${devices} ][ \${loaddiff} ][
-$(ps ax | wc -l | sed -e \\\"s: ::g\\\")proc ]\[ \$(truncpwd) ] $ """
+$(ps ax | wc -l | sed -e \\\"s: ::g\\\")proc ]\[ \$(truncpwd) ] \$(showuser) """
 
 dirks_ps=r"""\[ \\t ] \u \$(truncpwd) $ """
 
