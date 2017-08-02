@@ -167,8 +167,8 @@ ${color_separator}┌─( ${color_user}\u ${color_font}@ ${color_host}\h \
 ${color_separator})─\${fill}─( ${color_wdir}\$(_newPWD)\
 ${color_separator} )────┘\n\
 ${color_separator}└─(${color_uptime} uptime: \$(systemkit uptime)\
-${color_font} :${EQUINOX_1_COLOR}\$(EQUINOX_1)${color_font} \$ \
-${color_separator})·>${color_font} "
+${color_font} :${EQUINOX_1_COLOR}\$(EQUINOX_1)${color_font} \
+\$(showuser) ${color_separator})·>${color_font} "
 
 else
 
@@ -177,7 +177,7 @@ ${color_separator}┌─( ${color_user}\u ${color_font}@ ${color_host}\h \
 ${color_separator})─\${fill}─( ${color_wdir}\$(_newPWD)\
 ${color_separator} )────┘\n\
 ${color_separator}└─(${EQUINOX_1_COLOR}\$(EQUINOX_1)${color_font} \
-\$ ${color_separator})·>${color_font} "
+\$(showuser) ${color_separator})·>${color_font} "
 
 fi
 

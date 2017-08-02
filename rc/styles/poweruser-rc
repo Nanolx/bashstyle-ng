@@ -50,4 +50,4 @@ ${color_separator}[ ${color_wdir}\${files}.\${hiddenfiles}-\${executables}x \$(s
 \${directories}.\${hiddendirectories}d\${links}\${devices}\
 ${color_separator} ][ ${color_uptime}\${loaddiff}${color_separator} ][ \
 ${color_ps}\$(ps ax | wc -l | sed -e \"s: ::g\")proc ${color_separator}]\
-\n${color_separator}[ ${color_wdir}\$(truncpwd)${POW_1_COLOR}\$(POW_1) ${color_separator}]${color_font} \$ "
+\n${color_separator}[ ${color_wdir}\$(truncpwd)${POW_1_COLOR}\$(POW_1) ${color_separator}]${color_font} \$(showuser) "
