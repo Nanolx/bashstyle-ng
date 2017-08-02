@@ -17,10 +17,17 @@ between.  For more detailed information see the git log.
           no longer print the path to the found binary.
 
    * Misc.  Changes
-        - 'lscd' and 'treecd' now have nicer output when cd-ing into a
-          directory, also if a directory has more than 25 items to
-          display, it only shows those and appends '...' as indicator
-          that more files are found inside.
+        - 'lscd' and 'treecd' changes:
+             x nicer banner shown after cd-ing
+
+             x truncate output if more than 50 items would be displayed
+
+             x when user choses that custom cd creates non-existent
+               directories, they now check whether user has write
+               permission for top-level directory.
+
+             x display a message if cd-ing failed because directory does
+               not exist.
 
         - Update documentation
              x Style: add 'Equinox' and '4.4+' Sections

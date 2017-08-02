@@ -23,9 +23,17 @@ print the path to the found binary.
 
 @item Misc. Changes
 @itemize @minus
-@item @code{lscd} and @code{treecd} now have nicer output when cd-ing into a
-directory, also if a directory has more than 35 items to display, it only shows
-those and appends @code{...} as indicator that more files are found inside.
+@item @code{lscd} and @code{treecd} changes:
+@itemize x
+@item nicer banner shown after cd-ing
+
+@item truncate output if more than 50 items would be displayed
+
+@item when user choses that custom cd creates non-existent directories,
+they now check whether user has write permission for top-level directory.
+
+@item display a message if cd-ing failed because directory does not exist.
+@end itemize
 
 @item Update documentation
 @itemize x

@@ -337,6 +337,7 @@ fi
 lscd() {
 	OLD_PWD=${PWD}
 	clear
+	ccd_mkdir=0
 
 	if [[ -f "${1}" ]]; then
 		builtin cd "${1%/*}" &>/dev/null
@@ -345,14 +346,22 @@ lscd() {
 	elif [[ "${1}" == -*   ]]; then
 		builtin cd "${*}" &>/dev/null
 	elif [[ ! "${1}" ]]; then
-		builtin cd
+		builtin cd &>/dev/null
 	elif [[ $(ini_get customcd_mkdir) == True ]]; then
-		mkdir -p "${1}"
-		builtin cd "${1}" &>/dev/null
+		if [ -w $(dirname ${1}) ]; then
+			mkdir -p "${1}" &>/dev/null
+			builtin cd "${1}" &>/dev/null
+			ccd_mkdir=1
+		else	echo -e "\n\n${ered} ++ could not create directory »$(basename ${1})«"
+		fi
+	else	echo -e "\n\n${eyellow} ++ directory »$(basename ${1})« does not exist."
 	fi
 
 	if [[ ${OLD_PWD} != "${PWD}" ]]; then
-		echo -e "\n\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\n"
+		if [[ ${ccd_mkdir} -eq 1 ]]; then
+			echo -e "\n\n${ccolor_mkdir} ++ directory created: »$(basename ${PWD})«\n"
+		else	echo -e "\n\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\n"
+		fi
 		items=$(systemkit countvisibleitems)
 		if [[ ${items} -gt 35 ]]; then
 			ls ${LSCD_OPTS} | head -n 5
@@ -369,6 +378,7 @@ lscd() {
 treecd () {
 	OLD_PWD=${PWD}
 	clear
+	ccd_mkdir=0
 
 	if [[ -f "${1}" ]]; then
 		builtin cd "${1%/*}" &>/dev/null
@@ -377,14 +387,22 @@ treecd () {
 	elif [[ "${1}" == -*   ]]; then
 		builtin cd "${*}" &>/dev/null
 	elif [[ ! "${1}" ]]; then
-		builtin cd
+		builtin cd &>/dev/null
 	elif [[ $(ini_get customcd_mkdir) == True ]]; then
-		mkdir -p "${1}"
-		builtin cd "${1}" &>/dev/null
+		if [ -w $(dirname ${1}) ]; then
+			mkdir -p "${1}" &>/dev/null
+			builtin cd "${1}" &>/dev/null
+			ccd_mkdir=1
+		else	echo -e "\n\n ++ could not create directory »$(basename ${1})«"
+		fi
+	else	echo -e "\n\n${eyellow} ++ directory »$(basename ${1})« does not exist."
 	fi
 
 	if [[ ${OLD_PWD} != "${PWD}" ]]; then
-		echo -e "\n\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\n"
+		if [[ ${ccd_mkdir} -eq 1 ]]; then
+			echo -e "\n\n${ccolor_mkdir} ++ directory created: »$(basename ${PWD})«\n"
+		else	echo -e "\n\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\n"
+		fi
 		items=$(systemkit countvisibleitems)
 		if [[ ${items} -gt 35 ]]; then
 			ls ${LSCD_OPTS} | head -n 5
