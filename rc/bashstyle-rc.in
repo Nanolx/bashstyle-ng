@@ -352,8 +352,12 @@ lscd() {
 	fi
 
 	if [[ ${OLD_PWD} != "${PWD}" ]]; then
-		echo -e "\n${ccolor_banner}content:\n"
-		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
+		echo -e "\n\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\n"
+		items=$(systemkit countvisibleitems)
+		if [[ ${items} -gt 35 ]]; then
+			ls ${LSCD_OPTS} | head -n 5
+			echo -e "${ccolor_banner} ...\n"
+		elif [[ ${items} -gt 0 ]]; then
 			ls ${LSCD_OPTS}
 		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
@@ -380,9 +384,13 @@ treecd () {
 	fi
 
 	if [[ ${OLD_PWD} != "${PWD}" ]]; then
-		echo -e "\n${ccolor_banner}content:\n"
-		if [[ $(systemkit countvisibleitems) -gt 0 ]]; then
-			tree -L ${TREECD_OPTS}
+		echo -e "\n\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\n"
+		items=$(systemkit countvisibleitems)
+		if [[ ${items} -gt 35 ]]; then
+			ls ${LSCD_OPTS} | head -n 5
+			echo -e "${ccolor_banner} ...\n"
+		elif [[ ${items} -gt 0 ]]; then
+			ls ${LSCD_OPTS}
 		else	echo -e "${ccolor_empty}-- empty --\n"
 		fi
 	fi

@@ -17,6 +17,14 @@ between.  For more detailed information see the git log.
           no longer print the path to the found binary.
 
    * Misc.  Changes
+        - 'lscd' and 'treecd' now have nicer output when cd-ing into a
+          directory, also if a directory has more than 25 items to
+          display, it only shows those and appends '...' as indicator
+          that more files are found inside.
+
+        - Update documentation
+             x Style: add 'Equinox' and '4.4+' Sections
+
         - When 'systemkit bios' is called as non-root user a message is
           printed accordingly (instead of just exiting without further
           notice).
