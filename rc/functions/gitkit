@@ -83,10 +83,10 @@ case ${1} in
 
 	openhub)
 		if [[ -d .git ]]; then
-			repo_url=$(git remote -v | grep "origin.*fetch" | \
-				sed 's/\(.*github.com\)[:|/]\(.*\).git (fetch)/\2/' | \
-				awk {'print "https://github.com/" $1'})
-			(xargs x-www-browser "${repo_url}" &) || echo "not a github repository"
+			repo_url=$(git remote -v | \
+				gawk '/origin.*fetch/{print $2}' | \
+				sed 's,:,/,;s,.*@,https://,')
+			(xargs x-www-browser "${repo_url}" &) || echo "not a git repository"
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
