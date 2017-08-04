@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.19.0 -->
+<!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.6"/>
-  <object class="GtkActionGroup" id="actiongroup_main">
-    <property name="name">cd_alias</property>
-    <child>
-      <object class="GtkRadioAction" id="lscd_alias">
-        <property name="draw_as_radio">True</property>
-        <property name="group">treecd_alias</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkRadioAction" id="treecd_alias">
-        <property name="draw_as_radio">True</property>
-      </object>
-    </child>
-  </object>
   <object class="GtkAdjustment" id="advanced.adjustment.history_size">
     <property name="upper">1000000</property>
     <property name="step_increment">1</property>
@@ -1403,7 +1389,6 @@
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Choose a category:</property>
                 <property name="ellipsize">start</property>
-                <property name="lines">1</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
