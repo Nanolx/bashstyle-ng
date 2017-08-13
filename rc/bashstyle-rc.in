@@ -369,7 +369,7 @@ ccd() {
 			elif [[ ${TREECD} == True ]]; then
 				tree ${TREECD_OPTS} | head -n 5
 			fi
-			echo -e "${ccolor_banner} ...\n"
+			echo -e "${ccolor_banner} ... $((items-35)) more items\n"
 		elif [[ ${items} -gt 0 ]]; then
 			if [[ ${LSCD} == True ]]; then
 				ls ${LSCD_OPTS}
