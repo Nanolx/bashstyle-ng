@@ -366,9 +366,9 @@ ccd() {
 		items=$(systemkit countvisibleitems)
 		if [[ ${items} -gt 35 ]]; then
 			if [[ ${LSCD} == True ]]; then
-				ls ${LSCD_OPTS} | head -n 5
+				ls ${LSCD_OPTS} -1 | head -n 35 | column
 			elif [[ ${TREECD} == True ]]; then
-				tree ${TREECD_OPTS} | head -n 5
+				tree ${TREECD_OPTS} -1 | head -n 35 | column
 			fi
 			echo -e "${ccolor_banner} ... $((items-35)) more items\n"
 		elif [[ ${items} -gt 0 ]]; then
