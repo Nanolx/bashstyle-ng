@@ -348,7 +348,8 @@ ccd() {
 	elif [[ ! "${1}" ]]; then
 		builtin cd &>/dev/null
 	elif [[ $(ini_get customcd_mkdir) == True ]]; then
-		if [ -w $(dirname ${1}) ]; then
+		xdir=$(topdir "${1}")
+		if [ -w "${xdir}" ]; then
 			mkdir -p "${1}" &>/dev/null
 			builtin cd "${1}" &>/dev/null
 			ccd_mkdir=1
