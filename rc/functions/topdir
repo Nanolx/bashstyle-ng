@@ -21,12 +21,14 @@ case "${1}" in
 	* )
 		dir="${1}"
 
-		while [[ "${dir}" != "/" ]]; do
+		while [[ "$(dirname ${dir})" != "/" ]]; do
 			dir=$(dirname "${dir}")
 			if [[ -d "${dir}" ]]; then
 				echo "${dir}"
 				exit 0
 			fi
-		done || exit 1
+		done
+
+		exit 1
 	;;
 esac
