@@ -41,6 +41,10 @@ given path, returns @code{1} if none found at all.
 
 @item @code{lscd} and @code{treecd} changes:
 @itemize x
+@item in the user interface you could previously enable both @code{lscd} and @code{treecd},
+which is of course not supported, so if both were enabled, @code{lscd} was used, always. This
+is fixed now, as the user interface now only lets enable one or the other, not both.
+
 @item nicer banner shown after cd-ing
 
 @item truncate output if more than 35 items would be displayed, also show how many
