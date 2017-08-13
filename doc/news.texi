@@ -27,6 +27,13 @@ origins (for example gitlab projects are now properly opened in browser, aswell)
 so potentially not working on previous GTK+ versions.
 @end itemize
 
+@item New Features
+@itemize @minus
+@item @code{topdir} function, returns the deepest existing toplevel directory for a
+given path, returns @code{1} if none found at all.
+
+@end itemize
+
 @item Misc. Changes
 @itemize @minus
 @item @code{Equinox} and @code{Power User} prompt styles now also use the
@@ -36,7 +43,8 @@ so potentially not working on previous GTK+ versions.
 @itemize x
 @item nicer banner shown after cd-ing
 
-@item truncate output if more than 50 items would be displayed
+@item truncate output if more than 35 items would be displayed, also show how many
+items have been ommited.
 
 @item when user choses that custom cd creates non-existent directories,
 they now check whether user has write permission for top-level directory.

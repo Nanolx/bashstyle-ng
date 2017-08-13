@@ -24,6 +24,10 @@ between.  For more detailed information see the git log.
           introduced in GTK+ 3.10, so potentially not working on
           previous GTK+ versions.
 
+   * New Features
+        - 'topdir' function, returns the deepest existing toplevel
+          directory for a given path, returns '1' if none found at all.
+
    * Misc.  Changes
         - 'Equinox' and 'Power User' prompt styles now also use the
           'showuser' function instead of bash built-in '$' prompt
@@ -32,7 +36,8 @@ between.  For more detailed information see the git log.
         - 'lscd' and 'treecd' changes:
              x nicer banner shown after cd-ing
 
-             x truncate output if more than 50 items would be displayed
+             x truncate output if more than 35 items would be displayed,
+               also show how many items have been ommited.
 
              x when user choses that custom cd creates non-existent
                directories, they now check whether user has write
