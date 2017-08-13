@@ -34,6 +34,12 @@ between.  For more detailed information see the git log.
           variable.
 
         - 'lscd' and 'treecd' changes:
+             x in the user interface you could previously enable both
+               'lscd' and 'treecd', which is of course not supported, so
+               if both were enabled, 'lscd' was used, always.  This is
+               fixed now, as the user interface now only lets enable one
+               or the other, not both.
+
              x nicer banner shown after cd-ing
 
              x truncate output if more than 35 items would be displayed,
