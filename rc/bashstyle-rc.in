@@ -353,15 +353,15 @@ ccd() {
 			mkdir -p "${1}" &>/dev/null
 			builtin cd "${1}" &>/dev/null
 			ccd_mkdir=1
-		else	echo -e $"\n\n${ered} ++ could not create directory »$(basename ${1})«"
+		else	echo -e "\n\n${ered}" $" ++ could not create directory" " »$(basename ${1})«"
 		fi
-	else	echo -e $"\n\n${eyellow} ++ directory »$(basename ${1})« does not exist."
+	else	echo -e "\n\n${eyellow}" $" ++ directory" "»$(basename ${1})«" $" does not exist."
 	fi
 
 	if [[ ${OLD_PWD} != "${PWD}" ]]; then
 		if [[ ${ccd_mkdir} -eq 1 ]]; then
-			echo -e $"\n\n${ccolor_mkdir} ++ directory created: »$(basename ${PWD})«\n"
-		else	echo -e $"\n\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\n"
+			echo -e "\n\n${ccolor_mkdir}" $" ++ directory created:" " »$(basename ${PWD})«\n"
+		else	echo -e "\n\n${ccolor_banner}" $" ++ content of directory:" " »$(basename ${PWD})«\n"
 		fi
 		items=$(systemkit countvisibleitems)
 		if [[ ${items} -gt 35 ]]; then
@@ -370,14 +370,14 @@ ccd() {
 			elif [[ ${TREECD} == True ]]; then
 				tree ${TREECD_OPTS} -1 | head -n 35 | column
 			fi
-			echo -e $"${ccolor_banner} ... $((items-35)) more items\n"
+			echo -e "${ccolor_banner}" $" ... " "$((items-35))" $" more items\n"
 		elif [[ ${items} -gt 0 ]]; then
 			if [[ ${LSCD} == True ]]; then
 				ls ${LSCD_OPTS}
 			elif [[ ${TREECD} == True ]]; then
 				tree ${TREECD_OPTS}
 			fi
-		else	echo -e $"${ccolor_empty}-- empty --\n"
+		else	echo -e "${ccolor_empty}" $"-- empty --\n"
 		fi
 	fi
 

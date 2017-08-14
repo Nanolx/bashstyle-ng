@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-14 10:20+0200\n"
-"PO-Revision-Date: 2017-08-14 10:22+0200\n"
+"POT-Creation-Date: 2017-08-14 22:37+0200\n"
+"PO-Revision-Date: 2017-08-14 22:39+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -173,31 +173,36 @@ msgid "Welcome Message"
 msgstr "Willkommensgruß"
 
 #: rc/bashstyle-rc:356
-msgid "\\n\\n${ered} ++ could not create directory »$(basename ${1})«"
-msgstr ""
-"\\n\\n${ered} ++ Verzeichnis »$(basename ${1})« konnte nicht erstellt werden"
+msgid " ++ could not create directory"
+msgstr " ++ konnte Verzeichnis nicht erstellen"
 
 #: rc/bashstyle-rc:358
-msgid "\\n\\n${eyellow} ++ directory »$(basename ${1})« does not exist."
-msgstr "\\n\\n${eyellow} ++ Verzeichnis »$(basename ${1})« existiert nicht."
+msgid " ++ directory"
+msgstr " ++ Verzeichnis"
+
+#: rc/bashstyle-rc:358
+msgid " does not exist."
+msgstr " existiert nicht."
 
 #: rc/bashstyle-rc:363
-msgid "\\n\\n${ccolor_mkdir} ++ directory created: »$(basename ${PWD})«\\n"
-msgstr "\\n\\n${ccolor_mkdir} ++ Verzeichnis erstellt: »$(basename ${PWD})«\\n"
+msgid " ++ directory created:"
+msgstr " ++ Verzeichnis erstellt:"
 
 #: rc/bashstyle-rc:364
-msgid "\\n\\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\\n"
-msgstr ""
-"\\n\\n${ccolor_banner} ++ Inhalt des Verzeichnisses: »$(basename ${PWD})«\\n"
+msgid " ++ content of directory:"
+msgstr " ++ Inhalt des Verzeichnisses:"
 
 #: rc/bashstyle-rc:373
-msgid "${ccolor_banner} ... $((items-35)) more items\\n"
-msgstr "${ccolor_banner} ... $((items-35)) weitere Elemente\\n"
+msgid " ... "
+msgstr " ... "
+
+#: rc/bashstyle-rc:373
+msgid " more items\\n"
+msgstr " weitere Elemente\\n"
 
 #: rc/bashstyle-rc:380
-#, sh-format
-msgid "${ccolor_empty}-- empty --\\n"
-msgstr "${ccolor_empty}-- leer --\\n"
+msgid "-- empty --\\n"
+msgstr "-- leer --\\n"
 
 #: rc/bashstyle-rc:393
 msgid "tree not found, not using treecd as cd replacement"
@@ -391,3 +396,9 @@ msgstr "VimCFG Setze:"
 #: rc/settings/vim-rc:27
 msgid "Colorscheme"
 msgstr "Farbschema"
+
+#~ msgid "\\n\\n${eyellow} ++ directory »$(basename ${1})« does not exist."
+#~ msgstr "\\n\\n${eyellow} ++ Verzeichnis »$(basename ${1})« existiert nicht."
+
+#~ msgid "${ccolor_banner} ... $((items-35)) more items\\n"
+#~ msgstr "${ccolor_banner} ... $((items-35)) weitere Elemente\\n"
