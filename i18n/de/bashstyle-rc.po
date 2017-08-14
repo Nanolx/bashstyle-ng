@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-04 15:26+0200\n"
-"PO-Revision-Date: 2017-02-25 20:32+0100\n"
+"POT-Creation-Date: 2017-08-14 10:20+0200\n"
+"PO-Revision-Date: 2017-08-14 10:22+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.3\n"
 
 #: rc/bashstyle-rc:30
 msgid "BashStyle-NG Starting"
@@ -172,15 +172,42 @@ msgstr "colorshell-reset wird der DEBUG-Trap hinzugefügt"
 msgid "Welcome Message"
 msgstr "Willkommensgruß"
 
-#: rc/bashstyle-rc:392
-msgid "tree not found, not using treecd as cd replacement"
+#: rc/bashstyle-rc:356
+msgid "\\n\\n${ered} ++ could not create directory »$(basename ${1})«"
 msgstr ""
+"\\n\\n${ered} ++ Verzeichnis »$(basename ${1})« konnte nicht erstellt werden"
 
-#: rc/bashstyle-rc:414
+#: rc/bashstyle-rc:358
+msgid "\\n\\n${eyellow} ++ directory »$(basename ${1})« does not exist."
+msgstr "\\n\\n${eyellow} ++ Verzeichnis »$(basename ${1})« existiert nicht."
+
+#: rc/bashstyle-rc:363
+msgid "\\n\\n${ccolor_mkdir} ++ directory created: »$(basename ${PWD})«\\n"
+msgstr "\\n\\n${ccolor_mkdir} ++ Verzeichnis erstellt: »$(basename ${PWD})«\\n"
+
+#: rc/bashstyle-rc:364
+msgid "\\n\\n${ccolor_banner} ++ content of directory: »$(basename ${PWD})«\\n"
+msgstr ""
+"\\n\\n${ccolor_banner} ++ Inhalt des Verzeichnisses: »$(basename ${PWD})«\\n"
+
+#: rc/bashstyle-rc:373
+msgid "${ccolor_banner} ... $((items-35)) more items\\n"
+msgstr "${ccolor_banner} ... $((items-35)) weitere Elemente\\n"
+
+#: rc/bashstyle-rc:380
+#, sh-format
+msgid "${ccolor_empty}-- empty --\\n"
+msgstr "${ccolor_empty}-- leer --\\n"
+
+#: rc/bashstyle-rc:393
+msgid "tree not found, not using treecd as cd replacement"
+msgstr "tree nicht gefunden, treecd wird nicht anstelle von cd verwendt"
+
+#: rc/bashstyle-rc:415
 msgid "Add history syncronization to DEBUG trap"
 msgstr "history syncronization wird der DEBUG-Trap hinzugefügt"
 
-#: rc/bashstyle-rc:418
+#: rc/bashstyle-rc:419
 msgid "Add remember command to DEBUG and ERR trap"
 msgstr "remember command wird den DEBUG- und ERR-Traps hinzugefügt"
 

@@ -45,7 +45,9 @@ given path, returns @code{1} if none found at all.
 which is of course not supported, so if both were enabled, @code{lscd} was used, always. This
 is fixed now, as the user interface now only lets enable one or the other, not both.
 
-@item nicer banner shown after cd-ing
+@item make @code{lscd} and @code{treecd} strings localizable.
+
+@item nicer banner shown after cd-ing.
 
 @item truncate output if more than 35 items would be displayed, also show how many
 items have been ommited.
@@ -65,6 +67,8 @@ they now check whether user has write permission for top-level directory.
 
 @item When @code{systemkit bios} is called as non-root user a message is printed
 accordingly (instead of just exiting without further notice).
+
+@item Update german translation.
 @end itemize
 @end itemize
 

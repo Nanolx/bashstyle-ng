@@ -45,7 +45,8 @@ generate_pot () {
 		ui/*.py ui/bashstyle.ui.h >/dev/null
 
 	echo -e "\t${WHITE}  *${YELLOW} bashstyle-rc.pot"
-	xgettext -o i18n/bashstyle-rc.pot -L shell rc/bashstyle-rc rc/settings/*-rc 2>/dev/null
+	xgettext -o i18n/bashstyle-rc.pot -L shell --frome-code=utf-8 \
+		rc/bashstyle-rc rc/settings/*-rc 2>/dev/null
 
 }
 
