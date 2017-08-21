@@ -12,13 +12,20 @@
 opt="${1}"
 shift
 
+lowercase () {
+	if [[ ${BASH_VERSINFO[0]} -ge 4 ]]; then
+		echo "${@,,}"
+	else	echo "${@}" | tr '[:upper:]' '[:lower:]'
+	fi
+}
+
 case "${opt}" in
 	-w | -W )
-		echo "${@,,}" | sed -re "s/(^)(.)/\U\2/g;s/(-|_| )(.)/\U \2/g"
+		lowercase "${@}" | sed -re "s/(^)(.)/\U\2/g;s/(-|_| )(.)/\U \2/g"
 	;;
 
 	-c | -C )
-		echo "${@,,}" | sed -re "s/(^|-|_| )(.)/\U\2/g"
+		lowercase "${@}" | sed -re "s/(^|-|_| )(.)/\U\2/g"
 	;;
 
 	"" | * )
