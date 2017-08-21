@@ -81,12 +81,21 @@ case ${1} in
 
 	funmsg)	wget -qO - http://whatthecommit.com/index.txt ;;
 
-	openhub)
+	openweb)
 		if [[ -d .git ]]; then
-			repo_url=$(git remote -v | \
-				gawk '/origin.*fetch/{print $2}' | \
-				sed 's,:,/,;s,.*@,https://,')
-			(xargs x-www-browser "${repo_url}" &) || echo "not a git repository"
+			repo_url=$(git remote -v | gawk '/origin.*fetch/{print $2}')
+			case "${repo_url}" in
+				git@* )
+					repo_url=$(echo "${repo_url}" | sed 's,:,/,;s,.*@,https://,')
+					x-www-browser "${repo_url}" &
+				;;
+				http* )
+					x-www-browser "${repo_url}" &
+				;;
+				* )
+					echo "couldn't parse web location"
+				;;
+			esac
 		else	echo "current directory is not the root of a git repository"
 		fi
 	;;
