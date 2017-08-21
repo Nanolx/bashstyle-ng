@@ -28,6 +28,10 @@ between.  For more detailed information see the git log.
         - 'topdir' function, returns the deepest existing toplevel
           directory for a given path, returns '1' if none found at all.
 
+        - 'camelcase' function, transforms a string ('test_string-a b')
+          in either camelcase ('TestStringAB') or word-by-word uppercase
+          ('Test String A B').
+
    * Misc.  Changes
         - 'Equinox' and 'Power User' prompt styles now also use the
           'showuser' function instead of bash built-in '$' prompt
