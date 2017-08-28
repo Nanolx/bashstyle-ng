@@ -259,7 +259,7 @@ $(dmidecode -q)\n"
 	cai | countoverallitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l )-1)) ;;
 	cvf | countvisiblefiles)	echo $(find -L "${2:-$PWD}" -maxdepth 1 -type f ! -name ".*" | wc -l) ;;
 	cvd | countvisibledirs)		echo $(find -L "${2:-$PWD}" -maxdepth 1 -type d ! -name ".*" | wc -l) ;;
-	cvi | countvisibleitems)	echo $(find -L "${2:-$PWD}" -maxdepth 1 ! -name ".*" -prune -o -print | wc -l) ;;
+	cvi | countvisibleitems)	echo $(find -L "${2:-$PWD}" -maxdepth 1 ! -name ".*" | wc -l) ;;
 	chf | counthiddenfiles)		echo $(find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" | wc -l) ;;
 	chd | counthiddendirs)		echo $(find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" | wc -l) ;;
 	chi | counthiddenitems)		echo $(find -L "${2:-$PWD}" -maxdepth 1 -name ".*" | wc -l) ;;
