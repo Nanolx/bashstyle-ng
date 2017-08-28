@@ -30,6 +30,8 @@ rename_files () {
 	count_len=${#count_max}
 	count_now=1
 
+	[[ "${MV_OPT}" == "-v" ]] && echo "renaming files using temporary directory \"${directory}/tmp\""
+
 	OLD_IFS="${IFS}"
 	export IFS=$'\n'
 
@@ -37,9 +39,11 @@ rename_files () {
 
 	for image in ${files[@]}; do
 		suffix=$(fill_zeros ${count_now})${count_now}.${image##*.}
-		mv "${image}" "${directory}"/tmp/"${prefix}"-"${suffix}"
+		mv "${MV_OPT}" "${image}" "${directory}"/tmp/"${prefix}"-"${suffix}"
 		count_now=$((count_now+1))
 	done
+
+	[[ "${MV_OPT}" == "-v" ]] && echo "moving files into destination directory \"${directory}\""
 
 	mv "${directory}"/tmp/* "${directory}"/
 	rmdir "${directory}"/tmp
@@ -47,12 +51,19 @@ rename_files () {
 	export IFS="${OLD_IFS}"
 }
 
+case ${1} in
+	-v | --verbose )
+		MV_OPT="-v"
+		shift
+	;;
+esac
 
 if [[ $# -ne 2 ]]; then
 	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
 		-h "http://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
 		-s "batch rename files in NNN-NAME.SUFFIX scheme" \
 		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+		-o "-v:|verbose output"\
 		-o "directory:/home/test/mypictures|directory containing files"\
 		-o "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme"
 else
