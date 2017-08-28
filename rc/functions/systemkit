@@ -254,12 +254,12 @@ $(dmidecode -q)\n"
 		fi
 	;;
 
-	countoverallfiles)	echo $(($(find -L "${PWD}" -maxdepth 1 | wc -l )-1)) ;;
-	countoveralldirs)	echo $(($(find -L "${PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
-	countoverallitems)	echo $(($(find -L "${PWD}" -maxdepth 1 -type f | wc -l )-1)) ;;
-	countvisiblefiles)	echo $(($(find -L "${PWD}" -maxdepth 1 -type f -name ".*" -prune -o -print | wc -l)-1)) ;;
-	countvisibledirs)	echo $(($(find -L "${PWD}" -maxdepth 1 -type d -name ".*" -prune -o -print | wc -l)-1)) ;;
-	countvisibleitems)	echo $(($(find -L "${PWD}" -maxdepth 1 -name ".*" -prune -o -print| wc -l)-1)) ;;
+	caf | countoverallfiles)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 | wc -l )-1)) ;;
+	cad | countoveralldirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
+	cai | countoverallitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l )-1)) ;;
+	cvf | countvisiblefiles)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" -prune -o -print | wc -l)-1)) ;;
+	cvd | countvisibledirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" -prune -o -print | wc -l)-1)) ;;
+	cvi | countvisibleitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -name ".*" -prune -o -print| wc -l)-1)) ;;
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
@@ -290,12 +290,12 @@ $(dmidecode -q)\n"
 			-o "load15:|show load average for 15 minutes"\
 			-o "tty:|show current TTY device node"\
 			-o "uptime:|show uptime in pretty printed format"\
-			-o "countoverallfiles:[directory]|count all files in directory (or pwd)"\
-			-o "countoveralldirs:[directory]|count all directories in directory (or pwd)"\
-			-o "countoverallitems:[directory]|count all items in directory (or pwd)"\
-			-o "countvisiblefiles:[directory]|count visible files in directory (or pwd)"\
-			-o "countvisibledirs:[directory]|count visible directories in directory (or pwd)"\
-			-o "countvisibleitems:[directory]|count visible items in directory (or pwd)"
+			-o "cof/countoverallfiles:[directory]|count all files in directory (or pwd)"\
+			-o "cod/countoveralldirs:[directory]|count all directories in directory (or pwd)"\
+			-o "coi/countoverallitems:[directory]|count all items in directory (or pwd)"\
+			-o "cvf/countvisiblefiles:[directory]|count visible files in directory (or pwd)"\
+			-o "cvd/countvisibledirs:[directory]|count visible directories in directory (or pwd)"\
+			-o "cvi/countvisibleitems:[directory]|count visible items in directory (or pwd)"
 	;;
 
 esac
