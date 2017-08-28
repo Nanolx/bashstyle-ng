@@ -34,7 +34,7 @@ case ${@} in
 					awk '{print $2}')"
 
 				if [[ "${image}" != "${baseimg}.${suffix}" && ${suffix} ]]; then
-					mv "${MV_OPT}" "${image}" "${baseimg}.${suffix}"
+					mv ${MV_OPT} "${image}" "${baseimg}.${suffix}"
 				fi
 			fi
 		done

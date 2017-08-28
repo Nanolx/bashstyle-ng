@@ -39,7 +39,7 @@ rename_files () {
 
 	for image in ${files[@]}; do
 		suffix=$(fill_zeros ${count_now})${count_now}.${image##*.}
-		mv "${MV_OPT}" "${image}" "${directory}"/tmp/"${prefix}"-"${suffix}"
+		mv ${MV_OPT} "${image}" "${directory}"/tmp/"${prefix}"-"${suffix}"
 		count_now=$((count_now+1))
 	done
 
