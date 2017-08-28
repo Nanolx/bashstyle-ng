@@ -257,12 +257,12 @@ $(dmidecode -q)\n"
 	caf | countoverallfiles)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 | wc -l )-1)) ;;
 	cad | countoveralldirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
 	cai | countoverallitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l )-1)) ;;
-	cvf | countvisiblefiles)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" -prune -o -print | wc -l)-1)) ;;
-	cvd | countvisibledirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" -prune -o -print | wc -l)-1)) ;;
-	cvi | countvisibleitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -name ".*" -prune -o -print | wc -l)-1)) ;;
-	chf | counthiddenfiles)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" | wc -l))) ;;
-	chd | counthiddendirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" | wc -l))) ;;
-	chi | counthiddenitems)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -name ".*" | wc -l))) ;;
+	cvf | countvisiblefiles)	echo $(find -L "${2:-$PWD}" -maxdepth 1 -type f ! -name ".*" | wc -l) ;;
+	cvd | countvisibledirs)		echo $(find -L "${2:-$PWD}" -maxdepth 1 -type d ! -name ".*" | wc -l) ;;
+	cvi | countvisibleitems)	echo $(find -L "${2:-$PWD}" -maxdepth 1 ! -name ".*" -prune -o -print | wc -l) ;;
+	chf | counthiddenfiles)		echo $(find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" | wc -l) ;;
+	chd | counthiddendirs)		echo $(find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" | wc -l) ;;
+	chi | counthiddenitems)		echo $(find -L "${2:-$PWD}" -maxdepth 1 -name ".*" | wc -l) ;;
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
