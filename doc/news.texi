@@ -13,6 +13,7 @@ Each release lists incompatible changes at its top.
 @itemize @bullet
 
 @item Bug Fixes
+@itemize @minus
 
 @item #242 (systemkit): @code{systemkit} did not except the given @code{directory}
 for function for counting files, directories or overall items, instead it always
@@ -21,8 +22,10 @@ none was given.
 
 @item #243 (systemkit): @code{systemkit} result of function for countine files,
 directories or overall items were off by 1 in some cases.
+@end itemize
 
 @item New Features
+@itemize @minus
 
 @item Add possiblity to count hidden items to @code{systemkit}:
 @itemize x
@@ -30,9 +33,10 @@ directories or overall items were off by 1 in some cases.
 @item counthiddendirs  / chd
 @item counthiddenitems / chi
 @end itemize
+@end itemize
 
 @item Misc. Changes
-
+@itemize @minus
 @item Add short switches for over-long switches to @code{systemkit}:
 @itemize x
 @item countvisiblefiles -> cvf
@@ -48,6 +52,7 @@ to get verbose output, if desired.
 
 @item Add @code{-v}, @code{--verbose} switch to @code{batchrename}, to get verbose
 output, if desired.
+@end itemize
 @end itemize
 
 @heading 10.1 ``Victory Forever''
