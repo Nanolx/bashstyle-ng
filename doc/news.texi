@@ -9,6 +9,47 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 10.2 ``Circus of Insanity''
+@itemize @bullet
+
+@item Bug Fixes
+
+@item #242 (systemkit): @code{systemkit} did not except the given @code{directory}
+for function for counting files, directories or overall items, instead it always
+used @code{PWD}. Now it respects a given @code{directory} and uses @code{PWD} if
+none was given.
+
+@item #243 (systemkit): @code{systemkit} result of function for countine files,
+directories or overall items were off by 1 in some cases.
+
+@item New Features
+
+@item Add possiblity to count hidden items to @code{systemkit}:
+@itemize x
+@item counthiddenfiles / chf
+@item counthiddendirs  / chd
+@item counthiddenitems / chi
+@end itemize
+
+@item Misc. Changes
+
+@item Add short switches for over-long switches to @code{systemkit}:
+@itemize x
+@item countvisiblefiles -> cvf
+@item countvisibledirs  -> cvd
+@item countvisibleitems -> cvi
+@item countoverallfiles -> cof
+@item countoveralldirs  -> cod
+@item countoverallitems -> coi
+@end itemize
+
+@item Make @code{sufffix} quiet by default, add @code{-v}, @code{--verbose} switch,
+to get verbose output, if desired.
+
+@item Add @code{-v}, @code{--verbose} switch to @code{batchrename}, to get verbose
+output, if desired.
+@end itemize
+
 @heading 10.1 ``Victory Forever''
 @itemize @bullet
 

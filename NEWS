@@ -6,6 +6,42 @@ between.  For more detailed information see the git log.
 
    Each release lists incompatible changes at its top.
 
+10.2 "Circus of Insanity"
+=========================
+
+   * Bug Fixes
+
+   * #242 (systemkit): 'systemkit' did not except the given 'directory'
+     for function for counting files, directories or overall items,
+     instead it always used 'PWD'.  Now it respects a given 'directory'
+     and uses 'PWD' if none was given.
+
+   * #243 (systemkit): 'systemkit' result of function for countine
+     files, directories or overall items were off by 1 in some cases.
+
+   * New Features
+
+   * Add possiblity to count hidden items to 'systemkit':
+        x counthiddenfiles / chf
+        x counthiddendirs / chd
+        x counthiddenitems / chi
+
+   * Misc.  Changes
+
+   * Add short switches for over-long switches to 'systemkit':
+        x countvisiblefiles -> cvf
+        x countvisibledirs -> cvd
+        x countvisibleitems -> cvi
+        x countoverallfiles -> cof
+        x countoveralldirs -> cod
+        x countoverallitems -> coi
+
+   * Make 'sufffix' quiet by default, add '-v', '--verbose' switch, to
+     get verbose output, if desired.
+
+   * Add '-v', '--verbose' switch to 'batchrename', to get verbose
+     output, if desired.
+
 10.1 "Victory Forever"
 ======================
 
