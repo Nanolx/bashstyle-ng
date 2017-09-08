@@ -38,21 +38,29 @@ do_gzip_man () {
 
 generate_pot () {
 
-	echo -e "\t${WHITE}+ ${MAGENTA} translation templates"
-	echo -e "\t${WHITE}  *${YELLOW} bashstyle.pot"
-	intltool-extract --type=gettext/glade ui/bashstyle.ui >/dev/null
-	xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bashstyle.pot \
-		ui/*.py ui/bashstyle.ui.h >/dev/null
+	if [[ ! -f .configure/results ]]; then
+		echo -e "\n${RED}You need to run './configure' first!\n"
+		exit 1
+	else
+		echo -e "\t${WHITE}+ ${MAGENTA} translation templates"
+		echo -e "\t${WHITE}  *${YELLOW} bashstyle.pot"
+		intltool-extract --type=gettext/glade ui/bashstyle.ui >/dev/null
+		xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bashstyle.pot \
+			ui/*.py ui/bashstyle.ui.h >/dev/null
 
-	echo -e "\t${WHITE}  *${YELLOW} bashstyle-rc.pot"
-	xgettext -o i18n/bashstyle-rc.pot -L shell --from-code=utf-8 \
-		rc/bashstyle-rc rc/settings/*-rc 2>/dev/null
+		echo -e "\t${WHITE}  *${YELLOW} bashstyle-rc.pot"
+		xgettext -o i18n/bashstyle-rc.pot -L shell --from-code=utf-8 \
+			rc/bashstyle-rc rc/settings/*-rc 2>/dev/null
+	fi
 
 }
 
 update_po () {
 
-	if [[ ! -f i18n/bashstyle.pot || ! -f i18n/bashstyle-rc.pot ]]; then
+	if [[ ! -f .configure/results ]]; then
+		echo -e "\n${RED}You need to run './configure' first!\n"
+		exit 1
+	elif [[ ! -f i18n/bashstyle.pot || ! -f i18n/bashstyle-rc.pot ]]; then
 		echo -e "\n${RED}You need to run './make pot' first!\n"
 		exit 1
 	else
