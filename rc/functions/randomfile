@@ -18,7 +18,7 @@ _randomfunc() {
 	fi
 
 	until [[ ${1} =~ -- ]]; do
-		command="$command$1"; shift
+		command="$command $1"; shift
 	done
 	shift
 
@@ -30,12 +30,11 @@ _randomfunc() {
 	n=${#files[@]}
 	RANDOMFILE="${files[RANDOM % n]}"
 
-	if [[ "${command}" == "+" ]]; then
-		echo "${RANDOMFILE}" >> /tmp/randomtmp
-	else
-		${command} "${RANDOMFILE}"
-		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory"
-	fi
+	case "${command}" in
+		*_repeat_* )	echo "${RANDOMFILE}" >> /tmp/randomtmp ;;
+		*_print_* )	echo "${RANDOMFILE}" | tee -a "${HOME}/.randomhistory";;
+		*)		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory" ;;
+	esac
 
 }
 
@@ -56,7 +55,11 @@ case ${1} in
 				-o "\tor:|--"\
 				-o "-n:decimal|repeat process n times"\
 				-o "--:|delimiter"\
-				-o "files:|for given files and print result"
+				-o "files:|for given files and print result"\
+				-o "\tor:|--"\
+				-o "-p:|only print result"\
+				-o "--:|delimiter"\
+				-o "files:|for given files and print result"\
 	;;
 
 
@@ -86,12 +89,17 @@ case ${1} in
 		shift
 
 		while test "${count}" -gt 0; do
-			_randomfunc + -- "${@}"
+			_randomfunc _repeat_ -- "${@}"
 			count=$((count-1))
 		done
 
 		sort /tmp/randomtmp | uniq -c | sort -n | tail | sort -nr
 		rm /tmp/randomtmp
+	;;
+
+	-p | --print)
+		shift
+		_randomfunc _print_ -- "${@}"
 	;;
 
 	*)
