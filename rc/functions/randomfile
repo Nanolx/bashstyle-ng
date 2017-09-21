@@ -21,6 +21,7 @@ _randomfunc() {
 		command="$command $1"; shift
 	done
 	shift
+	shift
 
 	if [[ ! "${*}" ]]; then
 		files=(*)
