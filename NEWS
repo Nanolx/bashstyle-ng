@@ -20,12 +20,22 @@ between.  For more detailed information see the git log.
           files, directories or overall items were off by 1 in some
           cases.
 
+        - #244 (randomfile): fix that 'randomfile' could not handle
+          parameters passed to the application, e.g.: 'randomfile geeqie
+          -r -- /home/test/Pictures/*' does now work as intended.
+
    * New Features
 
         - Add possiblity to count hidden items to 'systemkit':
              x counthiddenfiles / chf
              x counthiddendirs / chd
              x counthiddenitems / chi
+
+        - Add possibility to only print the result for 'randomfile',
+          using '-p', '--print' parameter.
+
+        - Add possibility to not specify any files, in that case it will
+          use all files from 'PWD', use like 'randomfile geeqie --'.
 
    * Misc.  Changes
         - Add short switches for over-long switches to 'systemkit':

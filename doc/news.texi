@@ -22,6 +22,10 @@ none was given.
 
 @item #243 (systemkit): @code{systemkit} result of function for countine files,
 directories or overall items were off by 1 in some cases.
+
+@item #244 (randomfile): fix that @code{randomfile} could not handle parameters
+passed to the application, e.g.: @code{randomfile geeqie -r -- /home/test/Pictures/*}
+does now work as intended.
 @end itemize
 
 @item New Features
@@ -33,6 +37,12 @@ directories or overall items were off by 1 in some cases.
 @item counthiddendirs  / chd
 @item counthiddenitems / chi
 @end itemize
+
+@item Add possibility to only print the result for @code{randomfile},
+using @code{-p}, @code{--print} parameter.
+
+@item Add possibility to not specify any files, in that case it will
+use all files from @code{PWD}, use like @code{randomfile geeqie --}.
 @end itemize
 
 @item Misc. Changes
