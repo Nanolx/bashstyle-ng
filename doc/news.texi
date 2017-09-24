@@ -26,6 +26,9 @@ directories or overall items were off by 1 in some cases.
 @item #244 (randomfile): fix that @code{randomfile} could not handle parameters
 passed to the application, e.g.: @code{randomfile geeqie -r -- /home/test/Pictures/*}
 does now work as intended.
+
+@item #245 (randomfile): check whether @code{HOME/.randomhistory} exists before doing
+anything when @code{-f}, @code{-l}, @code{-L} or @code{-i} are given.
 @end itemize
 
 @item New Features

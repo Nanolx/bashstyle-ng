@@ -65,23 +65,31 @@ case ${1} in
 
 
 	-f | --first)
-		sed -n '1p' "${HOME}"/.randomhistory
+		[[ -f ${HOME}/.randomhistory ]] && \
+			sed -n '1p' "${HOME}"/.randomhistory || \
+			echo "no 'randomfile' history available"
 	;;
 
 	-L | --last)
-		sed -n '$p' "${HOME}"/.randomhistory
+		[[ -f ${HOME}/.randomhistory ]] && \
+			sed -n '$p' "${HOME}"/.randomhistory || \
+			echo "no 'randomfile' history available"
 	;;
 
 	-i | --item)
-		sed -n "${2}p" "${HOME}"/.randomhistory
+		[[ -f ${HOME}/.randomhistory ]] && \
+			sed -n "${2}p" "${HOME}"/.randomhistory || \
+			echo "no 'randomfile' history available"
 	;;
 
 	-l | --length)
-		wc -l "${HOME}"/.randomhistory | gawk '{print $1}'
+		[[ -f ${HOME}/.randomhistory ]] && \
+			wc -l "${HOME}"/.randomhistory | gawk '{print $1}' || \
+			echo "no 'randomfile' history available"
 	;;
 
 	-c | --clear)
-		rm "${HOME}"/.randomhistory
+		rm -f "${HOME}"/.randomhistory
 	;;
 
 	-n | --count)
