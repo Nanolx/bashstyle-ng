@@ -31,7 +31,7 @@ FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
 VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
 BASHSTYLERC = (DATADIR + "/bashstyle-ng/rc/bashstyle-rc")
 
-app_ini_version = 31
+app_ini_version = 32
 
 class Config(object):
 	def InitConfig(self):
