@@ -22,12 +22,6 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	dbg_msg $"VimCFG Setting:" runtimepath
 	rc_add "set runtimepath+=${BSNG_DATADIR}/bashstyle-ng/vim/"
 
-	if [[ $(ini_get colorscheme) != "default" ]]; then
-		colorscheme=$(ini_get colorscheme)
-		dbg_msg $"VimCFG Setting:" $"Colorscheme" "${colorscheme}"
-		rc_add "colorscheme $colorscheme"
-	fi
-
 	if [[ $(ini_get syntax_hilight) == True ]]; then
 		dbg_msg $"VimCFG Setting:" Syntax $"On"
 		rc_add "syntax on"

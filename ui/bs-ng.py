@@ -239,7 +239,6 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("vim_hicol", "Vim", "highlight_column", "bool", None)
 		WidgetHandler.InitWidget("vim_ruler", "Vim", "ruler", "bool", None)
 		WidgetHandler.InitWidget("vim_rulerformat", "Vim", "rulerformat", "text", None)
-		WidgetHandler.InitWidget("vim_colorscheme", "Vim", "colorscheme", "combo", dicts.vim_colors)
 		WidgetHandler.InitWidget("vim_wildmenu", "Vim", "wildmenu", "bool", None)
 		WidgetHandler.InitWidget("vim_foldenable", "Vim", "foldenable", "bool", None)
 		WidgetHandler.InitWidget("vim_foldlevelstart", "Vim", "foldlevelstart", "int", None)

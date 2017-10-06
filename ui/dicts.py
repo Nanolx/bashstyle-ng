@@ -144,31 +144,6 @@ memory_types = {
 		3 : "none",
 	       }
 
-vim_colors = {
-	       0 : "default",
-	       1 : "adaryn",
-	       2 : "advantage",
-	       3 : "desert",
-	       4 : "gobo",
-	       5 : "impact",
-	       6 : "nightshade",
-	       7 : "nightwish",
-	       8 : "wombat",
-	       9 : "asu1dark",
-	      10 : "candycode",
-	      11 : "dw_orange",
-	      12 : "fruit",
-	      13 : "relaxedgreen",
-	      14 : "tango",
-	      15 : "molokai",
-	      16 : "vividchalk",
-	      17 : "meta5",
-	      18 : "woju",
-	      19 : "lightning",
-	      20 : "papercolor",
-	      21 : "solarized",
-	     }
-
 vim_foldmethods = {
 	       0 : "indent",
 	       1 : "marker",
