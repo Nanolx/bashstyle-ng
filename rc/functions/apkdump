@@ -18,20 +18,19 @@ opt=${1}
 shift
 
 case ${opt} in
-
-	name )
+	name | n)
 		aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $2}'
 	;;
 
-	version )
+	version | v)
 		aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $6}'
 	;;
 
-	versioncode )
+	versioncode | c)
 		aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $4}'
 	;;
 
-	perms )
+	perms | p)
 		aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^uses-permission:/{print $2}'
 	;;
 
@@ -43,5 +42,4 @@ case ${opt} in
 			-o "versioncode:apk|get version code of apk"\
 			-o "perms:apk|get list of requested permissions"
 	;;
-
 esac
