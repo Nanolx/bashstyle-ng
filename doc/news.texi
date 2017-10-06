@@ -51,6 +51,19 @@ using @code{-p}, @code{--print} parameter.
 use all files from @code{PWD}, use like @code{randomfile geeqie --}.
 @end itemize
 
+@item Removed Features
+@itemize @minus
+@item @code{2048} game
+@item @code{bashtips} function
+@item @code{batch} function
+@item @code{hilow} game
+@item @code{quickscript} function
+@item @code{remount} function
+@item @code{wininfo} function
+@item @code{xmltagdelete} function
+@item vim color schemes
+@end itemize
+
 @item Misc. Changes
 @itemize @minus
 @item Add short switches for over-long switches to @code{systemkit}:
@@ -61,6 +74,14 @@ use all files from @code{PWD}, use like @code{randomfile geeqie --}.
 @item countoverallfiles -> cof
 @item countoveralldirs  -> cod
 @item countoverallitems -> coi
+@end itemize
+
+@item Add short switches to @code{apkdump}:
+@itemize x
+@item name        -> n
+@item version     -> v
+@item versioncode -> c
+@item perms       -> p
 @end itemize
 
 @item Make @code{sufffix} quiet by default, add @code{-v}, @code{--verbose} switch,
