@@ -14,7 +14,6 @@ DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     rc/internal/*:${DATADIR}/rc/internal
 	     rc/settings/*:${DATADIR}/rc/settings
 	     rc/styles/*:${DATADIR}/rc/styles
-	     rc/2048/*.sh:${DATADIR}/rc/2048
 	     data/vim/colors/*:${DATADIR}/vim/colors
 	     data/*.ini:${DATADIR}
 	     data/*.desktop:${DESKTOPDIR} )
@@ -29,8 +28,7 @@ done
 
 BIN_FILES=( data/bashstyle:${BINDIR}
 	    data/bashstyle-config-helper:${BINDIR}
-	    rc/functions/*:${DATADIR}/rc/functions
-	    rc/2048/2048:${DATADIR}/rc/2048)
+	    rc/functions/*:${DATADIR}/rc/functions)
 
 ICON_FILES=( data/icons/*.png:${ICONDIR} )
 
