@@ -25,11 +25,7 @@ _randomfunc() {
 
 	if [[ ! "${*}" ]]; then
 		files=(*)
-	else
-		for arg in "${@}"; do
-			[[ -d "${arg}" ]] && arg="${arg}/*"
-			files=(${files[@]} ${arg})
-		done
+	else	files=(${@})
 	fi
 
 	n=${#files[@]}
