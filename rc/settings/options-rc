@@ -90,7 +90,7 @@ elif [[ $(ini_get dd_progress) == True ]]; then
 fi
 
 __dd () {
-	dd "${DD_OPTS}" "${@}"
+	dd ${DD_OPTS} "${@}"
 }
 
 dbg_log alias dd=__dd
