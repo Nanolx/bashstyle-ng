@@ -25,7 +25,7 @@ _randomfunc() {
 
 	if [[ ! "${*}" ]]; then
 		files=(*)
-	else	files=(${@})
+	else	files=("${@}")
 	fi
 
 	n=${#files[@]}
@@ -34,7 +34,8 @@ _randomfunc() {
 	case "${command}" in
 		*_repeat_* )	echo "${RANDOMFILE}" >> /tmp/randomtmp ;;
 		*_print_* )	echo "${RANDOMFILE}" | tee -a "${HOME}/.randomhistory";;
-		*)		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory" ;;
+		*)		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory"
+				${command} "${RANDOMFILE}" ;;
 	esac
 
 }
