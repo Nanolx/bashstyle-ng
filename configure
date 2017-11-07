@@ -31,7 +31,7 @@ while [[ ${xcount} -le $# ]]; do
 		--girpath=* )		GIRPATH="${1/*=}" ;;
 		--datadir=* )		DATADIR="${1/*=}" ;;
 		--python=* )		PYTHON="${1/*=}" ;;
-		--help )		MODE=help ;;
+		--help )		help_message ;;
 		--no-postinstall )	DISABLE_POSTINSTALL=1
 					echo "DISABLE_POSTINSTALL=1" >> \
 						"${PWD}"/.configure/results ;;
@@ -41,17 +41,13 @@ while [[ ${xcount} -le $# ]]; do
 done
 unset xcount
 
-if [[ ${MODE} == help ]]; then
-	help_message
-else
-	if [[ ${GIRPATH} == "" ]]; then
-		missing_girpath_message ; exit 1
-	fi
-
-	start_message
-	check_helper
-	copy_in_files
-	substitute_values
-	end_message
-	export_result
+if [[ ${GIRPATH} == "" ]]; then
+	missing_girpath_message ; exit 1
 fi
+
+start_message
+check_helper
+copy_in_files
+substitute_values
+end_message
+export_result

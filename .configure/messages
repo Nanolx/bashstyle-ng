@@ -105,6 +105,8 @@ help_message () {
 	${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks (for package-maintainers) " | column -t -s \*
 	tput sgr0
 
+	exit 0
+
 }
 
 missing_girpath_message () {
