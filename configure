@@ -20,26 +20,23 @@ done
 
 rm -f "${PWD}"/.configure/results
 
-xcount=0
-while [[ ${xcount} -le $# ]]; do
-	case ${1} in
-		--prefix=* )		PREFIX="${1/*=}" ;;
-		--pcdir=* )		PCDIR="${1/*=}" ;;
-		--bindir=* )		BINDIR="${1/*=}" ;;
-		--docdir=* )		DOCDIR="${1/*=}" ;;
-		--mandir=* )		MANDIR="${1/*=}" ;;
-		--girpath=* )		GIRPATH="${1/*=}" ;;
-		--datadir=* )		DATADIR="${1/*=}" ;;
-		--python=* )		PYTHON="${1/*=}" ;;
+for opt in ${@}; do
+	case ${opt} in
+		--prefix=* )		PREFIX="${opt/*=}" ;;
+		--pcdir=* )		PCDIR="${opt/*=}" ;;
+		--bindir=* )		BINDIR="${opt/*=}" ;;
+		--docdir=* )		DOCDIR="${opt/*=}" ;;
+		--mandir=* )		MANDIR="${opt/*=}" ;;
+		--girpath=* )		GIRPATH="${opt/*=}" ;;
+		--datadir=* )		DATADIR="${opt/*=}" ;;
+		--python=* )		PYTHON="${opt/*=}" ;;
 		--help )		help_message ;;
 		--no-postinstall )	DISABLE_POSTINSTALL=1
 					echo "DISABLE_POSTINSTALL=1" >> \
 						"${PWD}"/.configure/results ;;
 	esac
 	shift
-	xcount=$((xcount+1))
 done
-unset xcount
 
 if [[ ${GIRPATH} == "" ]]; then
 	missing_girpath_message ; exit 1

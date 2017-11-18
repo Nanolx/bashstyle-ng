@@ -14,7 +14,7 @@ APP_VERSION=10.2.90
 APP_CODENAME="Odyssey"
 APP_LANGUAGES="de"
 
-CFG_VERSION="4.3.8"
+CFG_VERSION="4.4.0"
 
 if [[ -d "/usr/lib/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib/girepository-1.0"
@@ -59,6 +59,8 @@ LOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )
 ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps\"
 DESKTOPDIR=\"${DATADIR}/applications\"
 PCDIR=\"${PCDIR}\"
-APP_LANGUAGES=\"${APP_LANGUAGES}\"" | sed -e 's,//,/,g' >> "${PWD}"/.configure/results
+APP_LANGUAGES=\"${APP_LANGUAGES}\"" | \
+	sed -e 's,//,/,g' >> \
+		"${PWD}"/.configure/results
 
 }
