@@ -101,7 +101,7 @@ help_message () {
 	${ORANGE}--datadir=<datadir>${WHITE} *|${GREEN} Change data path (default: /usr/share/)
 	${ORANGE}--pcdir=<pcdir>${WHITE} *|${GREEN} Change pkg-config path (default: /usr/share/pkgconfig)
 	${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look for G-I typelibs (default: /usr/lib/girepository-1.0/)
-	${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python)
+	${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python3)
 	${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks (for package-maintainers) " | column -t -s \*
 	tput sgr0
 
