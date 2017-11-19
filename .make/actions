@@ -10,31 +10,31 @@
 #########################################################
 
 make_build () {
-	check_configure && 
-	build_message && 
-	generate_mo &&
-	build_doc_html &&
-	do_gzip_man &&
-	build_end_message &&
+	check_configure && \
+	build_message && \
+	generate_mo && \
+	build_doc_html && \
+	do_gzip_man && \
+	build_end_message && \
 	touch "${PWD}"/.make/build_done
 }
 
 make_install () {
-	check_configure &&
-	check_built &&
-	check_root "install" &&
-	install_message && 
-	installdirs_create &&
-	install_bsng && 
-	post_install &&
+	check_configure && \
+	check_built && \
+	check_root "install" && \
+	install_message && \
+	installdirs_create && \
+	install_bsng && \
+	post_install && \
 	thanks_message
 }
 
 make_remove () {
-	check_configure &&
-	check_root "remove" &&
-	remove_message && 
-	remove_bsng &&
+	check_configure && \
+	check_root "remove" && \
+	remove_message && \
+	remove_bsng && \
 	post_remove
 }
 

@@ -11,23 +11,21 @@
 
 CF_MODULES=( base color )
 MK_MODULES=( build install messages checks actions )
-MK_VERSION=1.0.9
+MK_VERSION=1.1.0
 
 for mod in "${CF_MODULES[@]}"; do
 	source "${PWD}"/.configure/"${mod}"
 done
+
 for mod in "${MK_MODULES[@]}"; do
 	source "${PWD}"/.make/"${mod}"
 done
 
-xcount=0
-pcount=$#
-
-if [[ ${pcount} -eq 0 ]]; then
+if [[ $# -eq 0 ]]; then
 	help_message
 else
-	while [[ ${xcount} -lt ${pcount} ]]; do
-		case ${1} in
+	for opt in ${@}; do
+		case ${opt} in
 			clean )		make_clean ;;
 			pot )		generate_pot ;;
 			po )		update_po ;;
@@ -41,9 +39,7 @@ else
 			* )		help_message ;;
 		esac
 		shift
-		xcount=$((xcount+1))
 	done
 fi
 
-unset xcount pcount
 tput sgr0

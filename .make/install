@@ -33,31 +33,21 @@ installdirs_create ()
 		mkdir -p "${DESTDIR}/${LOCALEDIR}/${directory}"
 	done
 
-	mkdir -p "${DESTDIR}/${BINDIR}"
-	mkdir -p "${DESTDIR}/${ICONDIR}"
-	mkdir -p "${DESTDIR}/${PCDIR}"
-	mkdir -p "${DESTDIR}/${DOCDIR}"
-	mkdir -p "${DESTDIR}/${DESKTOPDIR}"
-	mkdir -p "${DESTDIR}/${MANDIR}"
+	mkdir -p "${DESTDIR}/${BINDIR}" "${DESTDIR}/${ICONDIR}" \
+		"${DESTDIR}/${PCDIR}" "${DESTDIR}/${DOCDIR}" \
+		"${DESTDIR}/${DESKTOPDIR}" "${DESTDIR}/${MANDIR}"
 }
 
 inst ()
 {
-	case ${1} in
-		bin )	MODE=755 ;;
-		* )	MODE=644 ;;
-	esac
-
 	FILE=${2/:*}
 	DEST=${2/*:}
 
-	if [[ ${1} == man ]]; then
-		install -m"${MODE}" ${FILE}.gz "${DESTDIR}/${DEST}"
-	else
-		install -m"${MODE}" ${FILE} "${DESTDIR}/${DEST}"
-	fi
-
-	unset TYPE FILE DEST
+	case ${1} in
+		bin )	install -m755 ${FILE} "${DESTDIR}/${DEST}" ;;
+		man )	install -m644 ${FILE}.gz "${DESTDIR}/${DEST}" ;;
+		* )	install -m644 ${FILE} "${DESTDIR}/${DEST}" ;;
+	esac
 }
 
 install_bsng () {
@@ -76,6 +66,7 @@ install_bsng () {
 	for file in "${DOC_FILES[@]}"; do
 		inst doc "${file}"
 	done
+
 	for file in "${MAN_FILES[@]}"; do
 		inst man "${file}"
 	done
