@@ -20,15 +20,19 @@ for module in MODULES:
         FAILED.append(module)
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(
+        _("The following modules failed to import: %s")
+        % (" ".join(FAILED))
+    )
     sys.exit(1)
 
 
 class CmdArgs(object):
-    parser = optparse.OptionParser(_("bashstyle <option>\
-                    \n\nBashStyle-NG © 2007 - 2017 Christopher Bratusek\
-                    \n\nBashStyle-NG let's you do more with Bash & Co.\
-                    \n\nLicensed under the GNU GENERAL PUBLIC LICENSE v3"))
+    parser = optparse.OptionParser(
+        _("\n  bashstyle <option>\n\n\
+        BashStyle-NG © 2007 - 2017 Christopher Bratusek\n\
+        Licensed under the GNU GENERAL PUBLIC LICENSE v3")
+    )
 
     parser.add_option(
         "-v", "--version", dest="version", action="store_true",
