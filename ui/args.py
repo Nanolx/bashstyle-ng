@@ -42,8 +42,8 @@ class CmdArgs(object):
 
     parser.add_option(
         "-P", "--python", dest="python", action="store_true",
-        default=False, help=_("print used Python interpreter;\
-if additional args are given they will be passed to the used Python\
+        default=False, help=_("print used Python interpreter; \
+if additional args are given they will be passed to the used Python \
 interpreter.")
     )
 
