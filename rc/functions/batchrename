@@ -30,7 +30,7 @@ rename_files () {
 	count_len=${#count_max}
 	count_now=1
 
-	[[ "${MV_OPT}" == "-v" ]] && echo "renaming files using temporary directory \"${directory}/tmp\""
+	[[ "${MV_OPT}" == "-v" ]] && echo -e "\n >> renaming files using temporary directory \"${directory}/tmp\""
 
 	OLD_IFS="${IFS}"
 	export IFS=$'\n'
@@ -43,9 +43,9 @@ rename_files () {
 		count_now=$((count_now+1))
 	done
 
-	[[ "${MV_OPT}" == "-v" ]] && echo "moving files into destination directory \"${directory}\""
+	[[ "${MV_OPT}" == "-v" ]] && echo -e "\n >> moving files into destination directory \"${directory}\""
 
-	mv "${directory}"/tmp/* "${directory}"/
+	mv ${MV_OPT} "${directory}"/tmp/* "${directory}/"/
 	rmdir "${directory}"/tmp
 
 	export IFS="${OLD_IFS}"
