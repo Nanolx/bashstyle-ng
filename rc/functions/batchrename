@@ -24,13 +24,14 @@ fill_zeros () {
 }
 
 rename_files () {
-	mkdir "${directory}"/tmp
+	mkdir "${directory}/tmp"
 
 	count_max=$(($(find "${directory}" -maxdepth 1 -type f | wc -l)))
 	count_len=${#count_max}
 	count_now=1
 
-	[[ "${MV_OPT}" == "-v" ]] && echo -e "\n >> renaming files using temporary directory \"${directory}/tmp\""
+	[[ "${MV_OPT}" == "-v" ]] && \
+		echo -e "\n\n >> renaming files using temporary directory \"${directory}/tmp\" \n\n"
 
 	OLD_IFS="${IFS}"
 	export IFS=$'\n'
@@ -39,26 +40,20 @@ rename_files () {
 
 	for image in ${files[@]}; do
 		suffix=$(fill_zeros ${count_now})${count_now}.${image##*.}
-		mv ${MV_OPT} "${image}" "${directory}"/tmp/"${prefix}"-"${suffix}"
+		mv ${MV_OPT} "${image}" "${directory}/tmp/${prefix}"-"${suffix}"
 		count_now=$((count_now+1))
 	done
 
-	[[ "${MV_OPT}" == "-v" ]] && echo -e "\n >> moving files into destination directory \"${directory}\""
+	[[ "${MV_OPT}" == "-v" ]] && \
+		echo -e "\n\n >> moving files into destination directory \"${directory}\" \n\n"
 
-	mv ${MV_OPT} "${directory}"/tmp/* "${directory}/"/
-	rmdir "${directory}"/tmp
+	mv ${MV_OPT} "${directory}/tmp/"* "${directory}/"
+	rmdir "${directory}/tmp"
 
 	export IFS="${OLD_IFS}"
 }
 
-case ${1} in
-	-v | --verbose )
-		MV_OPT="-v"
-		shift
-	;;
-esac
-
-if [[ $# -ne 2 ]]; then
+_help () {
 	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
 		-h "http://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
 		-s "batch rename files in NNN-NAME.SUFFIX scheme" \
@@ -66,16 +61,28 @@ if [[ $# -ne 2 ]]; then
 		-o "-v:|verbose output"\
 		-o "directory:/home/test/mypictures|directory containing files"\
 		-o "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme"
-else
+}
+
+case ${1} in
+	-v | --verbose )
+		export MV_OPT="-v"
+		shift
+	;;
+esac
+
+if [[ $# -ge 2 ]]; then
 	directory="${1}"
+
 	if [[ ! -d "${directory}" ]]; then
-		echo "directory ${directory} does not exist!"
+		echo "directory \"${directory}\" does not exist!"
 		exit 1
 	elif [[ ! -w "${directory}" ]]; then
-		echo "directory ${directory} is not writeable!"
+		echo "directory \"${directory}\" is not writeable!"
 		exit 1
 	fi
 
 	prefix="${2}"
 	rename_files
+else
+	_help
 fi
