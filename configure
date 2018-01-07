@@ -30,7 +30,7 @@ for opt in ${@}; do
 		--girpath=* )		GIRPATH="${opt/*=}" ;;
 		--datadir=* )		DATADIR="${opt/*=}" ;;
 		--python=* )		PYTHON="${opt/*=}" ;;
-		--help )		help_message ;;
+		--help | -h )		help_message ;;
 		--no-postinstall )	DISABLE_POSTINSTALL=1
 					echo "DISABLE_POSTINSTALL=1" >> \
 						"${PWD}"/.configure/results ;;
