@@ -18,7 +18,7 @@ for mod in "${MODULES[@]}"; do
 	source "${PWD}"/.configure/"${mod}"
 done
 
-rm -f "${PWD}"/.configure/results
+rm -f "${PWD}/.configure/results"
 
 for opt in ${@}; do
 	case ${opt} in
@@ -33,13 +33,14 @@ for opt in ${@}; do
 		--help | -h )		help_message ;;
 		--no-postinstall )	DISABLE_POSTINSTALL=1
 					echo "DISABLE_POSTINSTALL=1" >> \
-						"${PWD}"/.configure/results ;;
+						"${PWD}/.configure/results" ;;
 	esac
 	shift
 done
 
 if [[ ${GIRPATH} == "" ]]; then
-	missing_girpath_message ; exit 1
+	missing_girpath_message
+	exit 1
 fi
 
 start_message
