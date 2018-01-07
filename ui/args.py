@@ -29,7 +29,7 @@ if FAILED:
 class CmdArgs(object):
     parser = optparse.OptionParser(
         _("\n  bashstyle <option>\n\n\
-        BashStyle-NG © 2007 - 2017 Christopher Bratusek\n\
+        BashStyle-NG © 2007 - 2018 Christopher Bratusek\n\
         Licensed under the GNU GENERAL PUBLIC LICENSE v3")
     )
 
