@@ -66,10 +66,11 @@ done
 _custom="$(ini_get custom)"
 
 dbg_log export LS_COLORS="*=${_generic}:ex=${_exec}:*.log=${_logs}:*.deb=${_deb}:\
-*.rpm=${_rpm}:di=${_dirs}:*.jpg=${_jpg}:*.png=${_png}:*.gif=${_gif}:\
+*.rpm=${_rpm}:di=${_dirs}:*.jpg=${_jpg}:*.jpeg=${_jpg}:*.png=${_png}:*.gif=${_gif}:\
 *.mp3=${_mp3}:*.ogg=${_ogg}:*.flac=${_flac}:*.tar=${_tar}:*.tar.gz=${_targz}:\
-*.tar.bz2=${_tarbz2}:*.tar.xz=${_tarxz}:*.zip=${_zip}:*.rar=${_rar}:ln=${_link}:\
-so=${_socket}:pi=${_pipe}:bd=${_blockdev}:cd=${_chardev}:${_custom}"
+*.tgz=${_targz}:*.tar.bz2=${_tarbz2}:*.tbz=${_tarbz2}:*.tar.xz=${_tarxz}:\
+*.zip=${_zip}:*.rar=${_rar}:ln=${_link}:so=${_socket}:pi=${_pipe}:bd=${_blockdev}:\
+cd=${_chardev}:${_custom}"
 
 dbg_msg $"LS_COLORS Setting:" LS_COLORS "${LS_COLORS}"
 
