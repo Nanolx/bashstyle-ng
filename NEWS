@@ -12,6 +12,19 @@ between.  For more detailed information see the git log.
    * Bug Fixes
         - #250 (histignore): fix default value for HISTIGNORE
 
+        - #251 (history sync): fix 'history' not properly working when
+          'history sync' is active
+
+   * New Features
+        - new command 'history -D COMMAND' which deletes all entries of
+          a given command from the history, example:
+
+          'history -D rm'
+
+          will delete all occurences of 'rm' from the history.  'history
+          -D' does exact matches, so for example 'rmdir' is not removed
+          from history, if 'rm' is passed as 'COMMAND'.
+
    * Misc.  Changes
         - Minor user interface improvements
 

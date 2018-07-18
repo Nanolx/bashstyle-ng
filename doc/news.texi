@@ -14,6 +14,17 @@ Each release lists incompatible changes at its top.
 @item Bug Fixes
 @itemize @minus
 @item #250 (histignore): fix default value for HISTIGNORE
+
+@item #251 (history sync): fix @code{history} not properly working when @code{history sync} is active
+@end itemize
+
+@item New Features
+@itemize @minus
+@item new command @code{history -D COMMAND} which deletes all entries of a given command from the history, example:
+
+@code{history -D rm}
+
+will delete all occurences of @code{rm} from the history. @code{history -D} does exact matches, so for example @code{rmdir} is not removed from history, if @code{rm} is passed as @code{COMMAND}.
 @end itemize
 
 @item Misc. Changes
