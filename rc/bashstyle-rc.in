@@ -259,19 +259,21 @@ if [[ $(ini_get history_sync) == True ]]; then
 	}
 
 	_synchistory () {
-		builtin history -a
-		builtin history -c
+		if [[ ! ${lastcommand} == history* ]]; then
+			builtin history -a
+			builtin history -c
 
-		case ${HISTCONTROL} in
-			erasedups )	_erasehistorydups ;;
-			ignoredups)	_ignorehistorydups ;;
-			ignorespace)	_ignorehistorspc ;;
-			ignoreboth)	_ignorehistoryboth ;;
-		esac
+			case ${HISTCONTROL} in
+				erasedups )	_erasehistorydups ;;
+				ignoredups)	_ignorehistorydups ;;
+				ignorespace)	_ignorehistorspc ;;
+				ignoreboth)	_ignorehistoryboth ;;
+			esac
 
-		if [[ -f ${HISTFILE}.tmp ]]; then
-			mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
-			builtin history -r
+			if [[ -f ${HISTFILE}.tmp ]]; then
+				mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
+				builtin history -r
+			fi
 		fi
 	}
 
