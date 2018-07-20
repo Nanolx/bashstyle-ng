@@ -309,6 +309,22 @@ class BashStyleNG(object):
 		pbuilder = promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
 		pbuilder.InitPromptBuilder()
 
+		######################## Load the IconView and Notebook ############################
+		view = iconbook.IconBook()
+		view.InitIconBook()
+
+		######################## Load the configuration handling UI ########################
+		cfgui = configui.ConfigUI(config.cfo, config.udc, config.fdc)
+		cfgui.InitConfigUI()
+
+		######################## About Dialog non-static strings ###########################
+		WidgetHandler.InitWidget("about.prefix", None, os.getenv('BSNG_PREFIX'), "label", None)
+		WidgetHandler.InitWidget("about.version", None, "%s (%s)" %(os.getenv('BSNG_VERSION'), os.getenv('BSNG_CODENAME')), "label", None)
+
+		######################## Load the first start information UI #######################
+		suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
+		suui.InitStartupUI()
+
 		######################## Load the Main-Window ######################################
 		self.bashstyle = gtkbuilder.get_object("bashstyle")
 
@@ -318,18 +334,6 @@ class BashStyleNG(object):
 			Gtk.main_quit()
 
 		self.bashstyle.connect("destroy", destroy, None)
-
-		######################## Load the IconView and Notebook ############################
-		view = iconbook.IconBook()
-		view.InitIconBook()
-
-		######################## Load the configuration handling UI ########################
-		cfgui = configui.ConfigUI(config.cfo, config.udc, config.fdc)
-		cfgui.InitConfigUI()
-
-		######################## Load the first start information UI #######################
-		suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
-		suui.InitStartupUI()
 
 		self.bashstyle.show
 

@@ -100,8 +100,6 @@ class ConfigUI(object):
 		WidgetHandler.InitWidget("config.label_user.desc", None, config.UserConfigVersion(), "label", None)
 		WidgetHandler.InitWidget("config.label_vendor.desc", None, config.VendorConfigVersion(), "label", None)
 		WidgetHandler.InitWidget("config.label_factory.desc", None, config.FactoryConfigVersion(), "label", None)
-		WidgetHandler.InitWidget("about.prefix", None, os.getenv('BSNG_PREFIX'), "label", None)
-		WidgetHandler.InitWidget("about.version", None, os.getenv('BSNG_VERSION'), "label", None)
 
 		# widgets stored for later re-usage
 		restore_config = WidgetHandler.InitWidget("config.restore", restore_configAction, None, "button", None)
