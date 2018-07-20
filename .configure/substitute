@@ -23,6 +23,7 @@ substitute_values () {
 
 	sed -e "s>@VERSION@>${APP_VERSION}>g" \
 		-e "s>@PREFIX@>${PREFIX}>g" \
+		-e "s>@CODENAME@>${APP_CODENAME}>g" \
 		-e "s>@DATADIR@>${DATADIR}>g" \
 		-e "s>@PYTHON@>${PYTHON}>g" -i "${IN_FILES[@]}"
 	sed -e "s>//>/>g" -i "${IN_FILES[@]}"
