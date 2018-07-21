@@ -26,7 +26,7 @@ Each release lists incompatible changes at its top.
 
 will delete all occurences of @code{rm} from the history. @code{history -D} does exact matches, so for example @code{rmdir} is not removed from history, if @code{rm} is passed as @code{COMMAND}.
 
-@item New history isolation feature. This will set @code{HISTFILE} to a different file for each new session, this file is deleted when bash exits. Logically history sync feature is always disabled when this is active.
+@item New history isolation. This will disable both storing the history to file and history syncronization feature.
 @end itemize
 
 @item Misc. Changes

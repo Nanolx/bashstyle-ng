@@ -25,10 +25,8 @@ between.  For more detailed information see the git log.
           -D' does exact matches, so for example 'rmdir' is not removed
           from history, if 'rm' is passed as 'COMMAND'.
 
-        - New history isolation feature.  This will set 'HISTFILE' to a
-          different file for each new session, this file is deleted when
-          bash exits.  Logically history sync feature is always disabled
-          when this is active.
+        - New history isolation.  This will disable both storing the
+          history to file and history syncronization feature.
 
    * Misc.  Changes
         - Minor user interface improvements.
