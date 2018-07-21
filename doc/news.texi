@@ -28,7 +28,11 @@ Each release lists incompatible changes at its top.
 
 will delete all occurences of @code{rm} from the history. @code{history -D} does exact matches, so for example @code{rmdir} is not removed from history, if @code{rm} is passed as @code{COMMAND}.
 
-@item New history isolation. This will disable both storing the history to file and history syncronization feature.
+@item History Isolation. This will disable both storing the history to file and history syncronization feature.
+
+@item New shopt @code{localvar_inherit}, requires Bash version 5.0.
+
+@item New keybindings @code{next-screen-line} and @code{previous-screen-line}, requires Readline version 8.0.
 @end itemize
 
 @item Misc. Changes

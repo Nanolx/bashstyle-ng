@@ -141,3 +141,13 @@ if [[ ${BSNG_BASHVER} -ge 43 ]]; then
 		dbg_log shopt -u globasciiranges
 	fi
 fi
+
+# Stuff new in Bash 5.0
+if [[ ${BSNG_BASHVER} -ge 50 ]]; then
+	if [[ $(ini_get localvar_inherit) == True ]]; then
+		dbg_msg $"BashStyle-NG Setting:" localvar_inherit $"On"
+		dbg_log shopt -s localvar_inherit
+	else	dbg_msg $"BashStyle-NG Setting:" localvar_inherit $"Off"
+		dbg_log shopt -u localvar_inherit
+	fi
+fi

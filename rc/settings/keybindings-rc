@@ -71,7 +71,7 @@ if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 		backward_char backward_word backward_delete_char delete_char \
 		copy_backward_word copy_forward_word forward_char forward_word \
 		overwrite_mode menu_complete_backward rerun_root backward_kill_line \
-		list_keys; do
+		list_keys next_screen_line previous_screen_line; do
 
 			keybindings_setter "$(ini_get $key)" "${key//_/-}"
 

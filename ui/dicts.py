@@ -224,7 +224,9 @@ keybindings = {
     "menu_complete_backward",
     "rerun_root",
     "backward_kill_line",
-    "list_keys"
+    "list_keys",
+    "next_screen_line",
+    "previous_screen_line"
 }
 
 # IconView Stuff

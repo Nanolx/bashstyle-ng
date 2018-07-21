@@ -205,6 +205,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("extglob", "Shopt", "extglob", "bool", None)
 		WidgetHandler.InitWidget("nocaseglob", "Shopt", "nocaseglob", "bool", None)
 		WidgetHandler.InitWidget("nocasematch", "Shopt", "nocasematch", "bool", None)
+		WidgetHandler.InitWidget("localvar_inherit", "Shopt", "localvar_inherit", "bool", None)
 
 		######################## Git Stuff #################################################
 		WidgetHandler.InitWidget("use_git", "Git", "use_gitcfg", "switch", None)
