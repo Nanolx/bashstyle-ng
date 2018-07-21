@@ -20,16 +20,26 @@ Each release lists incompatible changes at its top.
 
 @item New Features
 @itemize @minus
-@item new command @code{history -D COMMAND} which deletes all entries of a given command from the history, example:
+@item New command @code{history -D COMMAND} which deletes all entries of a given command from the history, example:
 
 @code{history -D rm}
 
 will delete all occurences of @code{rm} from the history. @code{history -D} does exact matches, so for example @code{rmdir} is not removed from history, if @code{rm} is passed as @code{COMMAND}.
+
+@item New history isolation feature. This will set @code{HISTFILE} to a different file for each new session, this file is deleted when bash exits. Logically history sync feature is always disabled when this is active.
 @end itemize
 
 @item Misc. Changes
 @itemize @minus
 @item Minor user interface improvements.
+
+@itemize x
+@item Widget adjustments and sizes improved.
+
+@item User can now choose between standard @code{cd} or BashStyle-NG @code{lscd} or @code{treecd}.
+
+@item User can now choose between standard @code{history} or BashStyle-NG @code{History Sync} or @code{History Isolation}.
+@end itemize
 
 @item @code{bashstyle -v} and About Page now show the release codename, too.
 

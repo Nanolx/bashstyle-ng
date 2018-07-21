@@ -16,7 +16,7 @@ between.  For more detailed information see the git log.
           'history sync' is active
 
    * New Features
-        - new command 'history -D COMMAND' which deletes all entries of
+        - New command 'history -D COMMAND' which deletes all entries of
           a given command from the history, example:
 
           'history -D rm'
@@ -25,8 +25,21 @@ between.  For more detailed information see the git log.
           -D' does exact matches, so for example 'rmdir' is not removed
           from history, if 'rm' is passed as 'COMMAND'.
 
+        - New history isolation feature.  This will set 'HISTFILE' to a
+          different file for each new session, this file is deleted when
+          bash exits.  Logically history sync feature is always disabled
+          when this is active.
+
    * Misc.  Changes
         - Minor user interface improvements.
+
+             x Widget adjustments and sizes improved.
+
+             x User can now choose between standard 'cd' or BashStyle-NG
+               'lscd' or 'treecd'.
+
+             x User can now choose between standard 'history' or
+               BashStyle-NG 'History Sync' or 'History Isolation'.
 
         - 'bashstyle -v' and About Page now show the release codename,
           too.
