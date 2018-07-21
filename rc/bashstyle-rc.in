@@ -19,6 +19,7 @@ export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2018"
 export BSNG_BASHVER=${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}
 export BSNG_LOGFILE=${HOME}/.bashstyle.log
+export BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
 INI_VERSION=32
 
 source ${BSNG_RCDIR}/internal/misc
