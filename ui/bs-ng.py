@@ -155,6 +155,7 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("execignore", "Advanced", "exec_ignore", "text", None)
 		WidgetHandler.InitWidget("globignore", "Advanced", "glob_ignore", "text", None)
 		WidgetHandler.InitWidget("history_sync", "Advanced", "history_sync", "bool", None)
+		WidgetHandler.InitWidget("history_isolate", "Advanced", "history_isolate", "bool", None)
 		WidgetHandler.InitWidget("user_char", "Style", "user_char", "text", None)
 		WidgetHandler.InitWidget("return_good", "Style", "return_good", "text", None)
 		WidgetHandler.InitWidget("return_bad", "Style", "return_bad", "text", None)
