@@ -45,7 +45,7 @@ generate_pot () {
 		echo -e "\t${WHITE}+ ${MAGENTA} translation templates"
 		echo -e "\t${WHITE}  *${YELLOW} bashstyle.pot"
 		intltool-extract --type=gettext/glade ui/bashstyle.ui >/dev/null
-		xgettext -L python --keyword=_ --keyword=N_ --output=i18n/bashstyle.pot \
+		xgettext -L python --from-code=utf-8 --keyword=_ --keyword=N_ --output=i18n/bashstyle.pot \
 			ui/*.py ui/bashstyle.ui.h >/dev/null
 
 		echo -e "\t${WHITE}  *${YELLOW} bashstyle-rc.pot"
