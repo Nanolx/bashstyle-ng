@@ -20,9 +20,7 @@ dbg_msg $"BashStyle-NG Setting:" HISTIGNORE "${HISTIGNORE}"
 
 if [[ $(ini_get history_isolate) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"History Isolation" $"On"
-	dbg_log export HISTFILE="${HOME}/.bash_history_${BSNG_SESSION_TIME}"
-
-	dbg_log trap 'rm "${HOME}/.bash_history_${BSNG_SESSION_TIME}"' EXIT
+	dbg_log unset HISTFILE
 fi
 
 dbg_log export FIGNORE="$(ini_get completion_ignore)"
