@@ -27,8 +27,13 @@ between.  For more detailed information see the git log.
           -D' does exact matches, so for example 'rmdir' is not removed
           from history, if 'rm' is passed as 'COMMAND'.
 
-        - New history isolation.  This will disable both storing the
-          history to file and history syncronization feature.
+        - History Isolation.  This will disable both storing the history
+          to file and history syncronization feature.
+
+        - New shopt 'localvar_inherit', requires Bash version 5.0.
+
+        - New keybindings 'next-screen-line' and 'previous-screen-line',
+          requires Readline version 8.0.
 
    * Misc.  Changes
         - Minor user interface improvements.
