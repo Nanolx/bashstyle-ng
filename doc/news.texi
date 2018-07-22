@@ -28,7 +28,17 @@ Each release lists incompatible changes at its top.
 
 will delete all occurences of @code{rm} from the history. @code{history -D} does exact matches, so for example @code{rmdir} is not removed from history, if @code{rm} is passed as @code{COMMAND}.
 
-@item History Isolation. This will disable both storing the history to file and history syncronization feature.
+@item History Isolation. This will
+@itemize x
+
+@item prevent storing the history to file when Bash exits
+
+@item disable history syncronization
+
+@item disable in-session history
+
+@item disable the builtin history command
+@end itemize
 
 @item New shopt @code{localvar_inherit}, requires Bash version 5.0.
 

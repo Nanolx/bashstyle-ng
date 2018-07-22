@@ -18,11 +18,6 @@ dbg_msg $"BashStyle-NG Setting:" HISTCONTROL "${HISTCONTROL}"
 dbg_log export HISTIGNORE="$(ini_get history_ignore)"
 dbg_msg $"BashStyle-NG Setting:" HISTIGNORE "${HISTIGNORE}"
 
-if [[ $(ini_get history_isolate) == True ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"History Isolation" $"On"
-	dbg_log unset HISTFILE
-fi
-
 dbg_log export FIGNORE="$(ini_get completion_ignore)"
 dbg_msg $"BashStyle-NG Setting:" FIGNORE "${FIGNORE}"
 

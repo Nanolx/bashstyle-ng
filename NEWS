@@ -27,8 +27,15 @@ between.  For more detailed information see the git log.
           -D' does exact matches, so for example 'rmdir' is not removed
           from history, if 'rm' is passed as 'COMMAND'.
 
-        - History Isolation.  This will disable both storing the history
-          to file and history syncronization feature.
+        - History Isolation.  This will
+
+             x prevent storing the history to file when Bash exits
+
+             x disable history syncronization
+
+             x disable in-session history
+
+             x disable the builtin history command
 
         - New shopt 'localvar_inherit', requires Bash version 5.0.
 
