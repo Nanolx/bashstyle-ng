@@ -41,7 +41,6 @@ _randomfunc() {
 		_repeat_)	echo "${RANDOMFILE}" >> /tmp/randomtmp ;;
 		_print_)	echo "${RANDOMFILE}" | tee -a "${HOME}/.randomhistory";;
 		*)		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory"
-				echo "${ZERO_DELIMITER}:${command}:${RANDOMFILE}"
 				if [[ "${ZERO_DELIMITER}" == "true" ]]; then
 					${command}"${RANDOMFILE}"
 				else	${command} "${RANDOMFILE}"
