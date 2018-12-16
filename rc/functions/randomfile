@@ -17,6 +17,12 @@ _randomfunc() {
 			echo "Invalid syntax." >&2; exit 1
 	fi
 
+	if [[ "${1}" == "_zero_" ]]; then
+		ZERO_DELIMITER=true
+		shift
+	else	ZERO_DELIMITER=false
+	fi
+
 	until [[ ${1} =~ -- ]]; do
 		command="$command $1"; shift
 	done
@@ -32,36 +38,49 @@ _randomfunc() {
 	RANDOMFILE="${files[RANDOM % n]}"
 
 	case "${command}" in
-		*_repeat_* )	echo "${RANDOMFILE}" >> /tmp/randomtmp ;;
-		*_print_* )	echo "${RANDOMFILE}" | tee -a "${HOME}/.randomhistory";;
+		_repeat_)	echo "${RANDOMFILE}" >> /tmp/randomtmp ;;
+		_print_)	echo "${RANDOMFILE}" | tee -a "${HOME}/.randomhistory";;
 		*)		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory"
-				${command} "${RANDOMFILE}" ;;
+				echo "${ZERO_DELIMITER}:${command}:${RANDOMFILE}"
+				if [[ "${ZERO_DELIMITER}" == "true" ]]; then
+					${command}"${RANDOMFILE}"
+				else	${command} "${RANDOMFILE}"
+				fi
+		;;
 	esac
 
+}
+
+_randomfile_help () {
+	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+		-l "GNU GPL v3" -n "randomfile" -s "run a command on a random file" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+		-o "command:|command to run for file"\
+		-o "--:|end of command"\
+		-o "files:|list of possible files"\
+		-o "\tor:|--"\
+		-o "-z command:|command to run for file, append result without space"\
+		-o "--:|end of command"\
+		-o "files:|list of possible files"\
+		-o "\tor:|--"\
+		-o "-f:|print first entry of random history"\
+		-o "-L:|print last entry of random history"\
+		-o "-i:decimal|print nth entry of random history"\
+		-o "-l:|print number of entries in random history"\
+		-o "-c:|clear random history"\
+		-o "\tor:|--"\
+		-o "-n:decimal|repeat process n times"\
+		-o "--:|delimiter"\
+		-o "files:|for given files and print result"\
+		-o "\tor:|--"\
+		-o "-p:|only print result"\
+		-o "--:|delimiter"\
+		-o "files:|for given files and print result"
 }
 
 case ${1} in
 
 	--help | -h | "")
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
-				-l "GNU GPL v3" -n "randomfile" -s "run a command on a random file" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "command:|command to run for file"\
-				-o "--:|end of command"\
-				-o "files:|list of possible files"\
-				-o "\tor:|--"\
-				-o "-f:|print first entry of random history"\
-				-o "-L:|print last entry of random history"\
-				-o "-i:decimal|print nth entry of random history"\
-				-o "-l:|print number of entries in random history"\
-				-o "-c:|clear random history"\
-				-o "\tor:|--"\
-				-o "-n:decimal|repeat process n times"\
-				-o "--:|delimiter"\
-				-o "files:|for given files and print result"\
-				-o "\tor:|--"\
-				-o "-p:|only print result"\
-				-o "--:|delimiter"\
-				-o "files:|for given files and print result"\
+		_randomfile_help
 	;;
 
 
@@ -110,6 +129,11 @@ case ${1} in
 	-p | --print)
 		shift
 		_randomfunc _print_ -- "${@}"
+	;;
+
+	-z | --zero)
+		shift
+		_randomfunc _zero_ "${@}"
 	;;
 
 	*)
