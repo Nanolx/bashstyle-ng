@@ -38,8 +38,8 @@ _randomfunc() {
 	RANDOMFILE="${files[RANDOM % n]}"
 
 	case "${command}" in
-		_repeat_)	echo "${RANDOMFILE}" >> /tmp/randomtmp ;;
-		_print_)	echo "${RANDOMFILE}" | tee -a "${HOME}/.randomhistory";;
+		*_repeat_*)	echo "${RANDOMFILE}" >> /tmp/randomtmp ;;
+		*_print_*)	echo "${RANDOMFILE}" | tee -a "${HOME}/.randomhistory";;
 		*)		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory"
 				if [[ "${ZERO_DELIMITER}" == "true" ]]; then
 					${command}"${RANDOMFILE}"
