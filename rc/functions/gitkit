@@ -125,12 +125,19 @@ case ${1} in
 	;;
 
 	push)
+		echo -e "${blue}push to upstream"
 		git push
+
+		echo -e "${cyan}push tags to upstream"
 		git push --tag
-		[ -f ${PWD}/.git_mirror ] && \
+
+		if [ -f ${PWD}/.git_mirror ]; then
+			echo -e "${magenta}push to mirror"
 			for repo in $(cat ${PWD}/.git_mirror); do
-				git push -mirror "${repo}"
+				echo -e " +${yellow}mirror: ${repo}"
+				git push --mirror "${repo}"
 			done
+		fi
 	;;
 
 	taga)
