@@ -9,6 +9,16 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 10.6 ``Aventine''
+@itemize @bullet
+@item New Features
+@itemize @minus
+@item New switch @code{-z} for @code{randomfile} append filename to command without separating space, for example @code{randomfile geeqie -r File: -- $HOME/Pictures/*}
+
+@item New command @code{push} for @code{gitkit} which first pushes to upstream, then pushes tags to upstream and at last pushes to all mirrors found in @code{.git_mirror} file.
+@end itemize
+@end itemize
+
 @heading 10.5 ``Kerala''
 @itemize @bullet
 @item Bug Fixes

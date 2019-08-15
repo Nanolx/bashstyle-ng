@@ -6,6 +6,18 @@ between.  For more detailed information see the git log.
 
    Each release lists incompatible changes at its top.
 
+10.6 "Aventine"
+===============
+
+   * New Features
+        - New switch '-z' for 'randomfile' append filename to command
+          without separating space, for example 'randomfile geeqie -r
+          File: -- $HOME/Pictures/*'
+
+        - New command 'push' for 'gitkit' which first pushes to
+          upstream, then pushes tags to upstream and at last pushes to
+          all mirrors found in '.git_mirror' file.
+
 10.5 "Kerala"
 =============
 
