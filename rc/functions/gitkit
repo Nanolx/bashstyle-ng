@@ -125,16 +125,16 @@ case ${1} in
 	;;
 
 	push)
-		echo -e "${blue}push to upstream"
+		echo -e "\n${eblue}[1] push to upstream\n"
 		git push
 
-		echo -e "${cyan}push tags to upstream"
+		echo -e "\n${ecyan}[2] push tags to upstream\n"
 		git push --tag
 
 		if [ -f ${PWD}/.git_mirror ]; then
-			echo -e "${magenta}push to mirror"
+			echo -e "\n${emagenta}[3] push to mirror\n"
 			for repo in $(cat ${PWD}/.git_mirror); do
-				echo -e " +${yellow}mirror: ${repo}"
+				echo -e "\n${eyellow} * mirror: ${repo}\n"
 				git push --mirror "${repo}"
 			done
 		fi
