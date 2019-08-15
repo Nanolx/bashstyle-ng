@@ -10,18 +10,15 @@
 #########################################################
 
 check () {
-
 	for dir in ${PATH//:/ }; do
 		if [ -x ${dir}/${1} ]; then
 			echo found
 			continue 2
 		fi
 	done
-
 }
 
 check_helper () {
-
 	[[ "${APPS[*]}" ]] && (section_message APP && check_apps "false" "${APPS[@]}")
 	[[ "${OPT_APPS[*]}" ]] && (section_message OPT_APP && check_apps "true" "${OPT_APPS[@]}")
 	[[ "${SAPPS[*]}" ]] && (section_message SBINAPP && check_apps "false" "${SAPPS[@]}")
@@ -34,11 +31,9 @@ check_helper () {
 	[[ "${OPT_LIBS[*]}" ]] && (section_message OPT_LIB && check_libs "false" "${OPT_LIBS[@]}")
 	[[ "${GIR[*]}" ]] && (section_message GIR && check_gir "false" "${GIR[@]}")
 	[[ "${OPT_GIR[*]}" ]] && (section_message OPT_GIR && check_gir "false" "${OPT_GIR[@]}")
-
 }
 
 check_apps () {
-
 	OPT=${1}
 	shift
 
@@ -51,20 +46,18 @@ check_apps () {
 		elif [[ ${DEP_RETURN} != *found* && ${OPT} == true ]]; then
 			warn_message "${APP}" "${DESC}"
 			MISSING+=" ${APP}"
-		else 	fail_message m "${APP}"
+		else
+			fail_message m "${APP}"
 			kill -s TERM "${TOP_PID}"
 		fi
 	done
-
 }
 
 check_libs () {
-
 	OPT=${1}
 	shift
 
 	for ARG in "${@}"; do
-
 		LIB=$(gawk -F : '{print $1}' <(echo "${ARG}"))
 		VERSION=$(gawk -F : '{print $2}' <(echo "${ARG}"))
 		PC_FILE=$(gawk -F : '{print $3}' <(echo "${ARG}"))
@@ -84,12 +77,11 @@ check_libs () {
 		elif [[ ${EXIST_RETURN} != 0 && ${OPT} == true ]]; then
 			warn_message "${LIB}" "${DESC}"
 			MISSING+=" ${LIB}"
-		else	fail_message o "${LIB}" "${VERSION}"
+		else
+			fail_message o "${LIB}" "${VERSION}"
 			kill -s TERM "${TOP_PID}"
 		fi
-
 	done
-
 }
 
 check_gir () {
@@ -98,7 +90,6 @@ check_gir () {
 	shift
 
 	for ARG in "${@}"; do
-
 		GIR=$(gawk -F : '{print $1}' <(echo "${ARG}"))
 		VERSION=$(gawk -F : '{print $2}' <(echo "${ARG}"))
 		TYPE_LIB=$(gawk -F : '{print $3}' <(echo "${ARG}"))
@@ -119,16 +110,15 @@ check_gir () {
 		elif [[ ${EXIST_RETURN} != 0 && ${OPT} == true ]]; then
 			warn_message "${GIR}" "${DESC}"
 			MISSING+=" ${GIR}"
-		else	fail_message o "${GIR}" "${VERSION}"
+		else
+			fail_message o "${GIR}" "${VERSION}"
 			kill -s TERM "${TOP_PID}"
 		fi
-
 	done
 
 }
 
 check_python () {
-
 	section_message PY
 
 	if [[ ! -x ${PYTHON} ]]; then
@@ -146,16 +136,13 @@ check_python () {
 			ok_message Python
 		fi
 	fi
-
 }
 
 check_pymods () {
-
 	OPT=${1}
 	shift
 
 	for ARG in "${@}"; do
-
 		MOD=$(gawk -F : '{print $1}' <(echo "${ARG}"))
 		SMOD=$(gawk -F : '{print $2}' <(echo "${ARG}"))
 		DESC=$(gawk -F : '{print $3}' <(echo "${ARG}"))
@@ -178,7 +165,5 @@ imp.find_module('${MOD}')" 2>/dev/null
 		else 	fail_message m "${DEP}"
 			kill -s TERM "${TOP_PID}"
 		fi
-
 	done
-
 }

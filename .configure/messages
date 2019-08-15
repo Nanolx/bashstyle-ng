@@ -10,7 +10,6 @@
 #########################################################
 
 section_message () {
-
 	case ${1} in
 		APP )		echo -e "\n${RED}< Required ${WHITE}Applications" ;;
 		OPT_APP )	echo -e "\n${MAGENTA}< Optional ${WHITE}Applications" ;;
@@ -26,18 +25,14 @@ section_message () {
 		OPT_GIR)	echo -e "\n${MAGENTA}< Optional ${WHITE}GIR Repositories" ;;
 	esac
 	tput sgr0
-
 }
 
 start_message () {
-
 	echo -e "\n${WHITE}Configuring ${GREEN}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}(${APP_CODENAME})"
 	tput sgr0
-
 }
 
 ok_message () {
-
 	if [[ ${2} != "" ]]; then
 		echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK${SILVER} ( ${2} )"
 	else	echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK"
@@ -46,7 +41,6 @@ ok_message () {
 }
 
 fail_message () {
-
 	case ${1} in
 		m )	echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !MISSING!" ;;
 		o )	echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !OLDER THAN ${3}!" ;;
@@ -55,65 +49,58 @@ fail_message () {
 		p+ )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS ${PYMAXVER_P} OR ABOVE!" ;;
 	esac
 	tput sgr0
-
 }
 
 warn_message () {
-
 	echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${YELLOW} Not Available\
 		\n\t  > ${WHITE}${2}"
 	tput sgr0
-
 }
 
 maintainer_message () {
-
 	echo -e "\n${RED}Maintainer Mode ${WHITE}/ ${GREEN}Disabled Checks"
 	tput sgr0
-
 }
 
 end_message () {
-
-	export PATH="$OLDPATH"
+	export PATH="${OLDPATH}"
 	echo -e "\n${BLUE}Notes from configure:\
 		 \n${YELLOW}Prefix\t\t\t${WHITE}>${MAGENTA} ${PREFIX}\
 		 \n${YELLOW}Python\t\t\t${WHITE}>${MAGENTA} ${PYTHON}"
+
 	if [[ ${DISABLE_POSTINSTALL} ]]; then
 		echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
 	else	echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
 	fi
+
 	echo -e "\n\t${WHITE}You may want to continue with './make build'.\n"
 	tput sgr0
-
 }
 
 help_message () {
-
 	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}Configure v${CFG_VERSION} ${CYAN}help
 	\n${WHITE}Options:"
 
 	echo -e "	${ORANGE}--help${WHITE} *|${GREEN} Display this help message
-	${ORANGE}--prefix=<prefix>${WHITE} *|${GREEN} Change installation prefix (default: /usr)
-	${ORANGE}--bindir=<bindir>${WHITE} *|${GREEN} Change binary path (default: /usr/bin)
-	${ORANGE}--docdir=<docdir>${WHITE} *|${GREEN} Change doc path (default: /usr/share/doc/)
-	${ORANGE}--mandir=<mandir>${WHITE} *|${GREEN} Change man path (default: /usr/share/man/)
-	${ORANGE}--datadir=<datadir>${WHITE} *|${GREEN} Change data path (default: /usr/share/)
-	${ORANGE}--pcdir=<pcdir>${WHITE} *|${GREEN} Change pkg-config path (default: /usr/share/pkgconfig)
-	${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look for G-I typelibs (default: /usr/lib/girepository-1.0/)
-	${ORANGE}--python=<python>${WHITE} *|${GREEN} Make BashStyle-NG use a specific python (default: /usr/bin/python3)
-	${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks (for package-maintainers) " | column -t -s \*
+	${ORANGE}--prefix=<prefix>${WHITE} *|${GREEN} Change installation prefix *|${BLUE} (default: /usr)
+	${ORANGE}--bindir=<bindir>${WHITE} *|${GREEN} Change binary path *|${BLUE} (default: /usr/bin)
+	${ORANGE}--docdir=<docdir>${WHITE} *|${GREEN} Change doc path *|${BLUE} (default: /usr/share/doc)
+	${ORANGE}--mandir=<mandir>${WHITE} *|${GREEN} Change man path *|${BLUE} (default: /usr/share/man)
+	${ORANGE}--datadir=<datadir>${WHITE} *|${GREEN} Change data path *|${BLUE} (default: /usr/share)
+	${ORANGE}--pcdir=<pcdir>${WHITE} *|${GREEN} Change pkg-config path *|${BLUE} (default: /usr/share/pkgconfig)
+	${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look for G-I typelibs *|${BLUE} (default: /usr/lib/girepository-1.0)
+	${ORANGE}--python=<python>${WHITE} *|${GREEN} Use specific Python interpreter *|${BLUE} (default: /usr/bin/python3)
+	${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks *|${BLUE} (for package-maintainers)" | column -t -s \*
 	tput sgr0
 
 	exit 0
-
 }
 
 missing_girpath_message () {
-
 	echo -e "${RED}*** GIRPATH not detected ***${WHITE}
 	configure --girpath=<girpath> to specify where to look for
 	gobject-introspection files\n"
 	tput sgr0
 
+	exit 1
 }

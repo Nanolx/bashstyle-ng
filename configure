@@ -12,10 +12,10 @@
 shopt -s extglob
 export TOP_PID=$$
 
-MODULES=( base color messages checks substitute depends )
+MODULES=(base color messages checks substitute depends)
 
-for mod in "${MODULES[@]}"; do
-	source "${PWD}"/.configure/"${mod}"
+for module in "${MODULES[@]}"; do
+	source "${PWD}/.configure/${module}"
 done
 
 rm -f "${PWD}/.configure/results"
@@ -32,16 +32,12 @@ for opt in ${@}; do
 		--python=* )		PYTHON="${opt/*=}" ;;
 		--help | -h )		help_message ;;
 		--no-postinstall )	DISABLE_POSTINSTALL=1
-					echo "DISABLE_POSTINSTALL=1" >> \
-						"${PWD}/.configure/results" ;;
+					echo "DISABLE_POSTINSTALL=1" >> "${PWD}/.configure/results" ;;
 	esac
 	shift
 done
 
-if [[ ${GIRPATH} == "" ]]; then
-	missing_girpath_message
-	exit 1
-fi
+[ -z "${GIRPATH}" ] && missing_girpath_message
 
 start_message
 check_helper

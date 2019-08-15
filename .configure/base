@@ -46,7 +46,6 @@ export PATH="${PATH}:/sbin:/usr/sbin:/usr/local/sbin"
 
 export_result ()
 {
-
 	echo -e "PREFIX=\"${PREFIX}\"
 prefix=\"${PREFIX}\"
 DATADIR=\"${DATADIR}/bashstyle-ng\"
@@ -60,7 +59,5 @@ ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps\"
 DESKTOPDIR=\"${DATADIR}/applications\"
 PCDIR=\"${PCDIR}\"
 APP_LANGUAGES=\"${APP_LANGUAGES}\"" | \
-	sed -e 's,//,/,g' >> \
-		"${PWD}"/.configure/results
-
+	sed -e 's,//,/,g' >> "${PWD}"/.configure/results
 }
