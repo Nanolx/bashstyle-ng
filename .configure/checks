@@ -12,7 +12,10 @@
 check () {
 
 	for dir in ${PATH//:/ }; do
-		[[ -x ${dir}/${1} ]] && (echo found && continue 2)
+		if [ -x ${dir}/${1} ]; then
+			echo found
+			continue 2
+		fi
 	done
 
 }
