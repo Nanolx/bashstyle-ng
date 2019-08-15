@@ -81,7 +81,7 @@ case ${1} in
 
 	funmsg)	wget -qO - http://whatthecommit.com/index.txt ;;
 
-	openweb)
+	openweb | web)
 		if [[ -d .git ]]; then
 			repo_url=$(git remote -v | gawk '/origin.*fetch/{print $2}')
 			case "${repo_url}" in
@@ -122,6 +122,31 @@ case ${1} in
 			git checkout "$(git ls-files --deleted)"
 		else	echo "current directory is not the root of a git repository"
 		fi
+	;;
+
+	push)
+		git push
+		git push --tag
+		[ -f ${PWD}/.git_mirror ] && \
+			for repo in $(cat ${PWD}/.git_mirror); do
+				git push -mirror "${repo}"
+			done
+	;;
+
+	taga)
+		return 0
+	;;
+
+	tagd)
+		return 0
+	;;
+
+	tagr)
+		return 0
+	;;
+
+	tagc)
+		return 0
 	;;
 
 	*)
