@@ -13,9 +13,20 @@ Each release lists incompatible changes at its top.
 @itemize @bullet
 @item New Features
 @itemize @minus
-@item New switch @code{-z} for @code{randomfile} append filename to command without separating space, for example @code{randomfile geeqie -r File: -- $HOME/Pictures/*}
+@item New switch @code{-z} for @code{randomfile} append filename to command without separating space, for example @code{randomfile geeqie -r File: -- $HOME/Pictures/*}.
 
-@item New command @code{push} for @code{gitkit} which first pushes to upstream, then pushes tags to upstream and at last pushes to all mirrors found in @code{.git_mirror} file.
+@item New features for @code{gitkit}:
+@itemize x
+@item feature @code{push}: first push to upstream, then push tags and at last push to all mirrors found in @code{.git_mirror} file.
+
+@item feature @code{taga}: add tag and push to remote, example: @code{gitkit taga TAG [-m MESSAGE COMMITID]}.
+
+@item feature @code{tagd}: remove tag locally and remote, example: @code{gitkit tagd TAG}.
+
+@item feature @code{tagr}: rename a tag (technically removes tag and readds it with new name) locally and remote, example: @code{gitkit tagr OLDNAME NEWNAME}, preserves first line of tag annotation and commit pointed to.
+
+@item feature @code{tagc}: make a tag point to a different commit (technically removes tag and readss it pointing to new commit) locally and remote, example: @code{gitkit tagc TAG COMMITID}, preserves first line of tag annotation.
+@end itemize
 @end itemize
 
 @item Misc. Changes

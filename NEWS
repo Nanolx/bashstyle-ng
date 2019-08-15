@@ -12,11 +12,28 @@ between.  For more detailed information see the git log.
    * New Features
         - New switch '-z' for 'randomfile' append filename to command
           without separating space, for example 'randomfile geeqie -r
-          File: -- $HOME/Pictures/*'
+          File: -- $HOME/Pictures/*'.
 
-        - New command 'push' for 'gitkit' which first pushes to
-          upstream, then pushes tags to upstream and at last pushes to
-          all mirrors found in '.git_mirror' file.
+        - New features for 'gitkit':
+             x feature 'push': first push to upstream, then push tags
+               and at last push to all mirrors found in '.git_mirror'
+               file.
+
+             x feature 'taga': add tag and push to remote, example:
+               'gitkit taga TAG [-m MESSAGE COMMITID]'.
+
+             x feature 'tagd': remove tag locally and remote, example:
+               'gitkit tagd TAG'.
+
+             x feature 'tagr': rename a tag (technically removes tag and
+               readds it with new name) locally and remote, example:
+               'gitkit tagr OLDNAME NEWNAME', preserves first line of
+               tag annotation and commit pointed to.
+
+             x feature 'tagc': make a tag point to a different commit
+               (technically removes tag and readss it pointing to new
+               commit) locally and remote, example: 'gitkit tagc TAG
+               COMMITID', preserves first line of tag annotation.
 
    * Misc.  Changes
         - Configure 4.4.4: several minor internal changes, fixup a Bash

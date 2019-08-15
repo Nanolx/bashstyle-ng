@@ -74,24 +74,26 @@ case ${1} in
 	;;
 
 	export)
-		if [[ "${2}" && -d .git ]]; then
-			git checkout-index --prefix="${2}"/ -a
-		fi
+		[ ! -z "${2}" && -d .git ] && git checkout-index --prefix="${2}"/ -a
 	;;
 
-	funmsg)	wget -qO - http://whatthecommit.com/index.txt ;;
+	funmsg)
+		wget -qO - http://whatthecommit.com/index.txt
+	;;
 
 	openweb | web)
-		if [[ -d .git ]]; then
+		if [ -d .git ]; then
 			repo_url=$(git remote -v | gawk '/origin.*fetch/{print $2}')
 			case "${repo_url}" in
 				git@* )
 					repo_url=$(echo "${repo_url}" | sed 's,:,/,;s,.*@,https://,')
 					x-www-browser "${repo_url}" &
 				;;
+
 				http* )
 					x-www-browser "${repo_url}" &
 				;;
+
 				* )
 					echo "couldn't parse web location"
 				;;
@@ -101,7 +103,7 @@ case ${1} in
 	;;
 
 	revision)
-		if [[ -d .git ]]; then
+		if [ -d .git ]; then
 			REVISION=$(git rev-parse HEAD 2>/dev/null)
 			REVISION=${REVISION/HEAD/}
 			echo "${REVISION:0:6}"
@@ -118,7 +120,7 @@ case ${1} in
 	;;
 
 	undelete)
-		if [[ -d .git ]]; then
+		if [ -d .git ]; then
 			git checkout "$(git ls-files --deleted)"
 		else	echo "current directory is not the root of a git repository"
 		fi
@@ -134,26 +136,81 @@ case ${1} in
 		if [ -f ${PWD}/.git_mirror ]; then
 			echo -e "\n${emagenta}[3] push to mirror\n"
 			for repo in $(cat ${PWD}/.git_mirror); do
-				echo -e "\n${eyellow} * mirror: ${repo}\n"
+				echo -e "${eyellow} * mirror: ${repo}\n"
 				git push --mirror "${repo}"
 			done
 		fi
 	;;
 
 	taga)
-		return 0
+		shift
+
+		if [ ! -z "$(git tag -l "${1}")" ]; then
+			echo "tag \"${1}\" already exists!"
+		else
+			echo -e "\n${eblue}[1] create local tag ${1}\n"
+			git tag -a "${@}" || exit 1
+
+			echo -e "\n${ecyan}[2] push tag to remote\n"
+			git push --tag
+		fi
 	;;
 
 	tagd)
-		return 0
+		shift
+
+		if [ -z "$(git tag -l "${1}")" ]; then
+			echo "tag \"${1}\" does not exist!"
+		else
+			echo -e "\n${eblue}[1] remove local tag ${1}\n"
+			git tag -d "${1}" || exit 1
+
+			echo -e "\n${ecyan}[2] remove remote tag\n"
+			git push origin :refs/tags/"${1}"
+		fi
 	;;
 
 	tagr)
-		return 0
+		shift
+		in_TAG="${1}"
+		out_TAG="${2}"
+
+		if [ -z "$(git tag -l "${in_TAG}")" ]; then
+			echo "tag \"${in_TAG}\" does not exist!"
+			exit 1
+		fi
+
+		if [ ! -z "$(git tag -l "${out_TAG}")" ]; then
+			echo "tag \"${out_TAG}\" already exists!"
+			exit 1
+		fi
+
+		TAG_msg="$(git tag -n1 "${in_TAG}" | gawk '{sub($1 FS,"")}1')"
+		TAG_commit="$(git rev-list -n1 "${in_TAG}")"
+
+		gitkit tagd "${in_TAG}"
+		gitkit taga "${out_TAG}" -m "${TAG_msg}" "${TAG_commit}"
 	;;
 
 	tagc)
-		return 0
+		shift
+		TAG="${1}"
+		COM="${2}"
+
+		if [ -z "$(git tag -l "${TAG}")" ]; then
+			echo "tag \"${TAG}\" does not exist!"
+			exit 1
+		fi
+
+		if [ ! "$(git rev-parse "${COM}")" ]; then
+			echo "commit \"${COM}\" does not exist!"
+			exit 1
+		fi
+
+		TAG_msg="$(git tag -n1 "${in_TAG}" | gawk '{sub($1 FS,"")}1')"
+
+		gitkit tagd "${TAG}"
+		gitkit taga "${TAG}" -m "${TAG_msg}" "${COM}"
 	;;
 
 	*)
@@ -168,10 +225,15 @@ case ${1} in
 			-o "cloneorg:organization|clone all repos from a GitHub organization (SSH)"\
 			-o "export:directory|export Git repo for release tarball"\
 			-o "funmsg:|create funny Git commit message"\
-			-o "openweb:|open project page using x-www-browser"\
+			-o "web:|open project page using x-www-browser"\
 			-o "revision:|get 6 digit revision from a Git repo"\
 			-o "revno:|get traditional revision number from a Git repo"\
-			-o "undelete:|undelete files accidentally deleted locally"
+			-o "undelete:|undelete files accidentally deleted locally"\
+			-o "push:|push/push tag upstream + push to mirror in one go"\
+			-o "taga:tag [-m msg commit]|create a tag and push remote"\
+			-o "tagd:tag|remove tag locally and remote"\
+			-o "tagr:tag newtag|rename a tag locally and remote"\
+			-o "tagc:tag newcommit|make tag point to different commit"
 	;;
 
 esac
