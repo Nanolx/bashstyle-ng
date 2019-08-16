@@ -52,6 +52,12 @@ between.  For more detailed information see the git log.
 
                   + 'false', 'False', 'FALSE', '1'
 
+             x 'bt': check if arg is valid boolean true, example 'check
+               bt $myvar'.
+
+             x 'bf': check if arg is valid boolean false, example 'check
+               bf $myvar'.
+
              x 'm': check if arg is a valid mail address, example 'check
                m "test@dom.tld"'.  'check' matches against a regex and
                uses 'dig' to see if the domain is available, will
@@ -82,6 +88,19 @@ between.  For more detailed information see the git log.
                (technically removes tag and readss it pointing to new
                commit) locally and remote, example: 'gitkit tagc TAG
                COMMITID', preserves first line of tag annotation.
+
+             x remember ssh password feature: you can now let 'gitkit'
+               start an 'ssh-agent' in combination with 'ssh-add' so
+               that the afore mentioned new features (and ordinary 'git'
+               remote commands) don't require you to type in your
+               password everytime.  You can customize whether to use
+               that feature, how long 'ssh-agent' should remember the
+               passwords and what keyfile to use (fallback
+               '$HOME/.ssh/id_rsa').  When starting a new bash session
+               or closing a bash session the timer is reset and you'll
+               be prompted again.  See options 'Remember SSH Key', 'Time
+               to remember' and 'SSH RSA Keyfile' in the 'Git' section
+               of BashStyle-NG.
 
    * Misc.  Changes
         - Configure 4.4.4: several minor internal changes, fixup a Bash
