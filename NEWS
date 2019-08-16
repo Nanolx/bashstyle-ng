@@ -10,11 +10,59 @@ between.  For more detailed information see the git log.
 ===============
 
    * New Features
+        - New applet 'check': perform various non-standard checks, used
+          like 'test'.
+
+             x 'n': check if arg is a valid number (int, float, hex,
+               octal), example: 'check n 4.4'.
+
+             x 'i': check if arg is a valid integer, example: 'check i
+               4'.
+
+             x 'f': check if arg is a valid float, example: 'check f
+               4,4' or 'check f 4.4'.
+
+             x 'h': check if arg is a valid hex, example: 'check h
+               301DE8'.
+
+             x 'o': check if arg is a valid octal, example 'check o 24'.
+
+             x 'hc': check if arg is a valid hex color, example 'check
+               hc FFF' or 'check hc 000000', '#' may optionally lead.
+
+             x 's': check if arg is a valid string, example 'check s
+               "How do you do?"'.
+
+             x 'p': check if arg is a special character, example 'check
+               p ?'.
+
+             x 'c': check if arg1 contains arg2, example 'check c
+               "Thanks, I'm fine." "I'm"' or 'check c 1423532 235'.
+
+             x 'sw': check if arg1 starts with arg2, example 'check sw
+               Hello H' or 'check sw 12412 124'.
+
+             x 'ew': check if arg1 ends with arg2, example 'check ew
+               Goodbye e' or 'check ew 1422412 2412'.
+
+             x 'b': check if arg is a valid boolean, example 'check b
+               $myvar'.  'check' recognizes the following as boolean
+               value:
+                  + 'true', 'True', 'TRUE', '0'
+
+                  + 'false', 'False', 'FALSE', '1'
+
+             x 'm': check if arg is a valid mail address, example 'check
+               m "test@dom.tld"'.  'check' matches against a regex and
+               uses 'dig' to see if the domain is available, will
+               verbosely inform what's wrong (in case).
+
         - New switch '-z' for 'randomfile' append filename to command
           without separating space, for example 'randomfile geeqie -r
           File: -- $HOME/Pictures/*'.
 
         - New features for 'gitkit':
+
              x feature 'push': first push to upstream, then push tags
                and at last push to all mirrors found in '.git_mirror'
                file.

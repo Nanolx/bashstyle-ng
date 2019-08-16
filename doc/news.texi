@@ -13,9 +13,45 @@ Each release lists incompatible changes at its top.
 @itemize @bullet
 @item New Features
 @itemize @minus
+@item New applet @code{check}: perform various non-standard checks, used like @code{test}.
+
+@itemize x
+@item @code{n}: check if arg is a valid number (int, float, hex, octal), example: @code{check n 4.4}.
+
+@item @code{i}: check if arg is a valid integer, example: @code{check i 4}.
+
+@item @code{f}: check if arg is a valid float, example: @code{check f 4,4} or @code{check f 4.4}.
+
+@item @code{h}: check if arg is a valid hex, example: @code{check h 301DE8}.
+
+@item @code{o}: check if arg is a valid octal, example @code{check o 24}.
+
+@item @code{hc}: check if arg is a valid hex color, example @code{check hc FFF} or @code{check hc 000000}, @code{#} may optionally lead.
+
+@item @code{s}: check if arg is a valid string, example @code{check s "How do you do?"}.
+
+@item @code{p}: check if arg is a special character, example @code{check p ?}.
+
+@item @code{c}: check if arg1 contains arg2, example @code{check c "Thanks, I'm fine." "I'm"} or @code{check c 1423532 235}.
+
+@item @code{sw}: check if arg1 starts with arg2, example @code{check sw Hello H} or @code{check sw 12412 124}.
+
+@item @code{ew}: check if arg1 ends with arg2, example @code{check ew Goodbye e} or @code{check ew 1422412 2412}.
+
+@item @code{b}: check if arg is a valid boolean, example @code{check b $myvar}. @code{check} recognizes the following as boolean value:
+@itemize +
+@item @code{true}, @code{True}, @code{TRUE}, @code{0}
+
+@item @code{false}, @code{False}, @code{FALSE}, @code{1}
+@end itemize
+
+@item @code{m}: check if arg is a valid mail address, example @code{check m "test@@dom.tld"}. @code{check} matches against a regex and uses @code{dig} to see if the domain is available, will verbosely inform what's wrong (in case).
+@end itemize
+
 @item New switch @code{-z} for @code{randomfile} append filename to command without separating space, for example @code{randomfile geeqie -r File: -- $HOME/Pictures/*}.
 
 @item New features for @code{gitkit}:
+
 @itemize x
 @item feature @code{push}: first push to upstream, then push tags and at last push to all mirrors found in @code{.git_mirror} file.
 
