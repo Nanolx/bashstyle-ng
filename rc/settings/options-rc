@@ -50,7 +50,13 @@ dbg_log export HISTFILESIZE="$(ini_get history_size)"
 dbg_msg $"BashStyle-NG Setting:" HISTFILESIZE "${HISTFILESIZE}"
 
 if [[ $(ini_get restore_directory) == True ]]; then
-	dbg_log trap 'printf %s "${PWD}" > ${HOME}/.lastpwd' EXIT
+
+	_restore_directory_trap () {
+		printf %s "${PWD}" > ${HOME}/.lastpwd
+	}
+
+	trap_add '_restore_directory_trap' EXIT
+
 	if [[ -d "$(cat "${HOME}"/.lastpwd 2>/dev/null)" ]]; then
 		dbg_log cd "$(cat "${HOME}"/.lastpwd)"
 	fi
