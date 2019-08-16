@@ -44,7 +44,13 @@ if [[ $(ini_get git_ssh_remember) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Remember" $"On"
 	dbg_msg $"Bashstyle-NG Setting:" Git $"SSH Timeout" $(ini_get git_ssh_timeout)
 	dbg_log eval $(ssh-agent -s -t $(ini_get git_ssh_timeout)) >/dev/null
+
 	ini_set git_ssh_add_time 0
+
+	_git_ssh_remember_trap () {
+		bashstyle --ini-set git_ssh_add_time 0
+	}
+	trap_add _git_ssh_remember_trap EXIT
 else
 	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Remember" $"Off"
 fi
