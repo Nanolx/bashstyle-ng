@@ -40,9 +40,25 @@ else
 	done
 fi
 
+if [[ $(ini_get git_ssh_remember) == True ]]; then
+	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Remember" $"On"
+	dbg_msg $"Bashstyle-NG Setting:" Git $"SSH Timeout" $(ini_get git_ssh_timeout)
+	dbg_log eval $(ssh-agent -s -t $(ini_get git_ssh_timeout))
+	dbg_log export GITKIT_SSH_REMEMBER=True
+	dbg_log export GITKIT_SSH_TIMEOUT=$(ini_get git_ssh_timeout)
+else
+	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Remember" $"Off"
+	dbg_log export GITKIT_SSH_REMEMBER=False
+fi
+
 if [[ $(ini_get git_editor) != "" ]]; then
 	dbg_msg $"BashStyle-NG Setting:" Git $"editor"
 	dbg_log git config --global core.editor "$(ini_get git_editor)"
+fi
+
+if [[ -z "${git_ssh_keyfile}" ]]; then
+	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Keyfile" $(ini_get git_ssh_keyfile)
+	dbg_log eval "export GITKIT_SSH_KEYFILE=$(ini_get git_ssh_keyfile)"
 fi
 
 if [[ $(ini_get git_aliases) == True ]]; then

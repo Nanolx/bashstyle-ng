@@ -9,6 +9,21 @@
 #							#
 #########################################################
 
+gitkit_ssh_add () {
+	source "${BSNG_RCDIR}/internal/misc"
+
+	local git_ssh_add_time=$(ini_get git_ssh_add_time)
+
+	if [[ ${GITKIT_SSH_REMEMBER} == True ]]; then
+		if test ${git_ssh_add_time} -eq 0 -o ${git_ssh_add_time} -le $(($(date +%s) - ${GITKIT_SSH_TIMEOUT})); then
+			echo -e "\n${egreen}[0] ssh-add ${GITKIT_SSH_KEYFILE}\n"
+			ssh-add "${GITKIT_SSH_KEYFILE}"
+
+			ini_set git_ssh_add_time $(date +%s)
+		fi
+	fi
+}
+
 case ${1} in
 
 	action)
@@ -127,6 +142,8 @@ case ${1} in
 	;;
 
 	push)
+		gitkit_ssh_add
+
 		echo -e "\n${eblue}[1] push to upstream\n"
 		git push
 
@@ -148,6 +165,8 @@ case ${1} in
 		if [ ! -z "$(git tag -l "${1}")" ]; then
 			echo "tag \"${1}\" already exists!"
 		else
+			gitkit_ssh_add
+
 			echo -e "\n${eblue}[1] create local tag ${1}\n"
 			git tag -a "${@}" || exit 1
 
@@ -162,6 +181,8 @@ case ${1} in
 		if [ -z "$(git tag -l "${1}")" ]; then
 			echo "tag \"${1}\" does not exist!"
 		else
+			gitkit_ssh_add
+
 			echo -e "\n${eblue}[1] remove local tag ${1}\n"
 			git tag -d "${1}" || exit 1
 
