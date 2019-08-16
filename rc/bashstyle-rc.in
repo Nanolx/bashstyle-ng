@@ -170,26 +170,6 @@ fi
 
 dbg_log source ${BSNG_RCDIR}/settings/options-rc
 
-# by Richard Hansen https://stackoverflow.com/a/7287873
-
-log () { printf '%s\n' "$*"; }
-error () { log "ERROR: $*" >&2; }
-fatal () { error "$@"; exit 1; }
-
-trap_add () {
-    trap_add_cmd=$1; shift || fatal "${FUNCNAME[0]} usage error"
-    for trap_add_name in "$@"; do
-        trap -- "$(
-            extract_trap_cmd() { printf '%s\n' "$3"; }
-            eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
-            printf '%s\n' "${trap_add_cmd}"
-        )" "${trap_add_name}" \
-            || fatal "unable to add to trap ${trap_add_name}"
-    done
-}
-
-declare -f -t trap_add
-
 # do trapping stuff
 
 if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
