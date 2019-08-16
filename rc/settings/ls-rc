@@ -51,7 +51,7 @@ else
 	lcream="${style};38;5;5344"
 fi
 
-if [[ $(ini_get dark_terminal) == True ]]; then
+if bt $(ini_get dark_terminal); then
 	lblack=${lwhite}
 else	lwhite=${lblack}
 fi

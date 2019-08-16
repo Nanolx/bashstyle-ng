@@ -11,24 +11,24 @@
 
 dbg_msg $"BashStyle-NG Setting:" Git $"Options"
 
-if [[ $(ini_get git_user_name) != "" ]]; then
+if [ ! -z "$(ini_get git_user_name)" ]; then
 	dbg_msg $"BashStyle-NG Setting:" Git $"user name"
 	dbg_log git config --global user.name "$(ini_get git_user_name)"
 fi
 
-if [[ $(ini_get git_user_mail) != "" ]]; then
+if [ ! -z "$(ini_get git_user_mail)" ]; then
 	dbg_msg $"BashStyle-NG Setting:" Git $"user mail address"
 	dbg_log git config --global user.email "$(ini_get git_user_mail)"
 fi
 
-if [[ $(ini_get git_signkey) != "" ]]; then
+if [ ! -z "$(ini_get git_signkey)" ]; then
 	dbg_msg $"BashStyle-NG Setting:" Git $"default singing key"
 	dbg_log git config --global user.signingkey "$(ini_get git_signkey)"
 fi
 
-COLOR_OPTS=( branch diff interactive pager status )
+COLOR_OPTS=(branch diff interactive pager status)
 
-if [[ $(ini_get git_color) == True ]]; then
+if bt $(ini_get git_color); then
 	dbg_msg $"BashStyle-NG Setting:" Git colors $"On"
 	for opt in "${COLOR_OPTS[@]}"; do
 		dbg_log git config --global color."${opt}" true
@@ -40,7 +40,7 @@ else
 	done
 fi
 
-if [[ $(ini_get git_ssh_remember) == True ]]; then
+if bt $(ini_get git_ssh_remember); then
 	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Remember" $"On"
 	dbg_msg $"Bashstyle-NG Setting:" Git $"SSH Timeout" $(ini_get git_ssh_timeout)
 	dbg_log eval $(ssh-agent -s -t $(ini_get git_ssh_timeout)) >/dev/null
@@ -55,16 +55,16 @@ else
 	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Remember" $"Off"
 fi
 
-if [[ $(ini_get git_editor) != "" ]]; then
+if [ ! -z "$(ini_get git_editor)" ]; then
 	dbg_msg $"BashStyle-NG Setting:" Git $"editor"
 	dbg_log git config --global core.editor "$(ini_get git_editor)"
 fi
 
-if [[ -z "${git_ssh_keyfile}" ]]; then
+if [ ! -z "${git_ssh_keyfile}" ]; then
 	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Keyfile" $(ini_get git_ssh_keyfile)
 fi
 
-if [[ $(ini_get git_aliases) == True ]]; then
+if bt $(ini_get git_aliases); then
 	dbg_msg $"BashStyle-NG Setting:" Git aliases $"On"
 	dbg_log git config --global alias.co checkout
 	dbg_log git config --global alias.up pull

@@ -12,8 +12,8 @@
 custom_prompt=$(ini_get prompt)
 custom_command=$(ini_get command)
 
-if [[ ${use_custom_prompt} == True && ${custom_prompt} != "" ]]; then
-	if [[ ${custom_command} != "" ]]; then
+if [[ $(check bt $(ini_get use_custom_prompt)) && ! -z ${custom_prompt} ]]; then
+	if [[ ! -z ${custom_command} ]]; then
 		echo -E "function pre_prompt { " > "${HOME}"/.custom_prompt
 		echo -E "${custom_command}" >> "${HOME}"/.custom_prompt
 		echo -E "}" >> "${HOME}"/.custom_prompt

@@ -30,7 +30,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 	dbg_msg $"ReadlineCFG Setting:" Bellstyle "$(ini_get bellstyle)"
 	rc_add "set bell-style $(ini_get bellstyle)"
 
-	if [[ $(ini_get completion) == True ]]; then
+	if bt $(ini_get completion); then
 		dbg_msg $"ReadlineCFG Setting:" Disable-Completion $"Off"
 		rc_add "set disable-completion off"
 	else
@@ -38,7 +38,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set disable-completion on"
 	fi
 
-	if [[ $(ini_get scroll_horizontal) == True ]]; then
+	if bt $(ini_get scroll_horizontal); then
 		dbg_msg $"ReadlineCFG Setting:" Horizontal-Scroll-Mode $"On"
 		rc_add "set horizontal-scroll-mode on"
 	else
@@ -46,7 +46,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set horizontal-scroll-mode off"
 	fi
 
-	if [[ $(ini_get ambiguous_show) == True ]]; then
+	if bt $(ini_get ambiguous_show); then
 		dbg_msg $"ReadlineCFG Setting:" Show-All-If-Ambiguous $"On"
 		rc_add "set show-all-if-ambiguous on"
 	else
@@ -54,7 +54,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set show-all-if-ambiguous off"
 	fi
 
-	if [[ $(ini_get complete_hidden) == True ]]; then
+	if bt $(ini_get complete_hidden); then
 		dbg_msg $"ReadlineCFG Setting:" Match-Hidden-Files $"On"
 		rc_add "set match-hidden-files on"
 	else
@@ -62,7 +62,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set match-hidden-files off"
 	fi
 
-	if [[ $(ini_get ignore_case) == True ]]; then
+	if bt $(ini_get ignore_case); then
 		dbg_msg $"ReadlineCFG Setting:" Completion-Ignore-Case $"On"
 		rc_add "set completion-ignore-case on"
 	else
@@ -70,7 +70,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set completion-ignore-case off"
 	fi
 
-	if [[ $(ini_get visible_stats) == True ]]; then
+	if bt $(ini_get visible_stats); then
 		dbg_msg $"ReadlineCFG Setting:" Visible-Stats $"On"
 		rc_add "set visible-stats on"
 	else
@@ -78,7 +78,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set visible-stats off"
 	fi
 
-	if [[ $(ini_get colored_stats) == True ]]; then
+	if bt $(ini_get colored_stats); then
 		dbg_msg $"ReadlineCFG Setting:" Colored-Stats $"On"
 		rc_add "set colored-stats on"
 	else
@@ -86,7 +86,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set colored-stats off"
 	fi
 
-	if [[ $(ini_get skip_completed_text) == True ]]; then
+	if bt $(ini_get skip_completed_text); then
 		dbg_msg $"ReadlineCFG Setting:" Skip completed text $"On"
 		rc_add "set skip-completed-text on"
 	else
@@ -94,7 +94,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set skip-completed-text off"
 	fi
 
-	if [[ $(ini_get complete_horizontal) == True ]]; then
+	if bt $(ini_get complete_horizontal); then
 		dbg_msg $"ReadlineCFG Setting:" Print-Completions-Horizontally $"On"
 		rc_add "set print-completions-horizontally on"
 	else
@@ -102,7 +102,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set print-completions-horizontally off"
 	fi
 
-	if [[ $(ini_get mark_directories) == True ]]; then
+	if bt $(ini_get mark_directories); then
 		dbg_msg $"ReadlineCFG Setting:" Mark-Directories $"On"
 		rc_add "set mark-directories on"
 	else
@@ -110,7 +110,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set mark-directories off"
 	fi
 
-	if [[ $(ini_get mark_symbolic_directories) == True ]]; then
+	if bt $(ini_get mark_symbolic_directories); then
 		dbg_msg $"ReadlineCFG Setting:" Mark-Symlinked-Directories $"On"
 		rc_add "set mark-symlinked-directories on"
 	else
@@ -118,7 +118,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set mark-symlinked-directories off"
 	fi
 
-	if [[ $(ini_get mark_modified) == True ]]; then
+	if bt $(ini_get mark_modified); then
 		dbg_msg $"ReadlineCFG Setting:" Mark-Modified-Lines $"On"
 		rc_add "set mark-modified-lines on"
 	else
@@ -126,7 +126,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 		rc_add "set mark-modified-lines off"
 	fi
 
-	if [[ $(ini_get show_editmode) == True ]]; then
+	if bt $(ini_get show_editmode); then
 		dbg_msg $"ReadlineCFG Setting:" Show Editing Mode $"On"
 		rc_add "set show-mode-in-prompt on"
 	else
@@ -137,8 +137,8 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 	dbg_msg $"ReadlineCFG Setting:" Completion-Query-Items "$(ini_get query_items)"
 	rc_add "set completion-query-items $(ini_get query_items)"
 
-	if [[ $(ini_get use_readline70) == True ]]; then
-		if [[ $(ini_get colored_completion_prefix) == True ]]; then
+	if bt $(ini_get use_readline70); then
+		if bt $(ini_get colored_completion_prefix); then
 			dbg_msg $"ReadlineCFG Setting:" Colored Completion Prefix $"On"
 			rc_add "set colored-completion-prefix on"
 		else
@@ -146,7 +146,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 			rc_add "set colored-completion-prefix off"
 		fi
 
-		if [[ $(ini_get enable_bracketed_paste) == True ]]; then
+		if bt $(ini_get enable_bracketed_paste); then
 			dbg_msg $"ReadlineCFG Setting:" Enable Bracketed Paste $"On"
 			rc_add "set enable-bracketed-paste on"
 		else
@@ -154,7 +154,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 			rc_add "set enable-bracketed-paste off"
 		fi
 
-		if [[ $(ini_get show_editmode) == True ]]; then
+		if bt $(ini_get show_editmode); then
 			if [[ $(ini_get editing_mode) == emacs ]]; then
 				dbg_msg $"ReadlineCFG Setting:" Emacs Mode String "$(ini_get emacs_mode_string)"
 				rc_add "set emacs-mode-string $(ini_get emacs_mode_string)"

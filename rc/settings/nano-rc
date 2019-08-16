@@ -19,7 +19,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 	export RC_FILE
 	RC_FILE="${HOME}/.nanorc.bs-ng.${BSNG_SESSION_TIME}"
 
-	if [[ $(ini_get auto_indent) == True ]]; then
+	if bt $(ini_get auto_indent); then
 		dbg_msg $"NanoCFG Setting:" Auto-Indention $"On"
 		rc_add "set autoindent"
 	else
@@ -27,7 +27,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset autoindent"
 	fi
 
-	if [[ $(ini_get nano_backup) == True ]]; then
+	if bt $(ini_get nano_backup); then
 		dbg_msg $"NanoCFG Setting:" Autosave $"On"
 		rc_add "set backup"
 	else
@@ -35,7 +35,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset backup"
 	fi
 
-	if [[ $(ini_get bold_text) == True ]]; then
+	if bt $(ini_get bold_text); then
 		dbg_msg $"NanoCFG Setting:" Bold-Text $"On"
 		rc_add "set boldtext"
 	else
@@ -43,7 +43,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset boldtext"
 	fi
 
-	if [[ $(ini_get case_sensitive) == True ]]; then
+	if bt $(ini_get case_sensitive); then
 		dbg_msg $"NanoCFG Setting:" Case-Sensitive $"On"
 		rc_add "set casesensitive"
 	else
@@ -51,7 +51,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset casesensitive"
 	fi
 
-	if [[ $(ini_get show_positon) == True ]]; then
+	if bt $(ini_get show_positon); then
 		dbg_msg $"NanoCFG Setting:" Show-Position $"On"
 		rc_add "set const"
 	else
@@ -59,7 +59,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset const"
 	fi
 
-	if [[ $(ini_get more_space) == True ]]; then
+	if bt $(ini_get more_space); then
 		dbg_msg $"NanoCFG Setting:" More-Space $"On"
 		rc_add "set morespace"
 	else
@@ -67,7 +67,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset morespace"
 	fi
 
-	if [[ $(ini_get hide_help) == True ]]; then
+	if bt $(ini_get hide_help); then
 		dbg_msg $"NanoCFG Setting:" No-Help $"On"
 		rc_add "set nohelp"
 	else
@@ -75,7 +75,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset nohelp"
 	fi
 
-	if [[ $(ini_get history) == True ]]; then
+	if bt $(ini_get history); then
 		dbg_msg $"NanoCFG Setting:" History Log: $"On"
 		rc_add "set historylog"
 	else
@@ -83,7 +83,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset historylog"
 	fi
 
-	if [[ $(ini_get rebind_delete) == True ]]; then
+	if bt $(ini_get rebind_delete); then
 		dbg_msg $"NanoCFG Setting:" Rebind Delete: $"On"
 		rc_add "set rebinddelete"
 	else
@@ -91,7 +91,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset rebinddelete"
 	fi
 
-	if [[ $(ini_get rebind_keypad) == True ]]; then
+	if bt $(ini_get rebind_keypad); then
 		dbg_msg $"NanoCFG Setting:" Rebind Keypad: $"On"
 		rc_add "set rebindkeypad"
 	else
@@ -99,7 +99,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset rebindkeypad"
 	fi
 
-	if [[ $(ini_get enable_mouse) == True ]]; then
+	if bt $(ini_get enable_mouse); then
 		dbg_msg $"NanoCFG Setting:" Enable Mouse: $"On"
 		rc_add "set mouse"
 	else
@@ -107,7 +107,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset mouse"
 	fi
 
-	if [[ $(ini_get no_wrap) == True ]]; then
+	if bt $(ini_get no_wrap); then
 		dbg_msg $"NanoCFG Setting:" No Wrap $"On"
 		rc_add "set nowrap"
 	else
@@ -115,7 +115,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset nowrap"
 	fi
 
-	if [[ $(ini_get log_position) == True ]]; then
+	if bt $(ini_get log_position); then
 		dbg_msg $"NanoCFG Setting:" Log Position $"On"
 		rc_add "set poslog"
 	else
@@ -126,7 +126,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 	dbg_msg $"NanoCFG Setting:" Tab Width "$(ini_get tab_size)"
 	rc_add "set tabsize $(ini_get tab_size)"
 
-	if [[ $(ini_get tab_to_spaces) == True ]]; then
+	if bt $(ini_get tab_to_spaces); then
 		dbg_msg $"NanoCFG Setting:" Tab to spaces $"On"
 		rc_add "set tabstospaces"
 	else
@@ -134,7 +134,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset tabstospaces"
 	fi
 
-	if [[ $(ini_get set_uicolors) == True ]]; then
+	if bt $(ini_get set_uicolors); then
 		for uipart in function key status title; do
 			uipart_color="$(ini_get ${uipart}_color_fg,${uipart}_color_bg)"
 			dbg_msg $"NanoCFG Setting:" UI Color "${uipart}": "${uipart_color}"
@@ -144,7 +144,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		unset uipart_color
 	fi
 
-	if [[ $(ini_get syntax_highlight) == True ]]; then
+	if bt $(ini_get syntax_highlight); then
 		dbg_msg $"NanoCFG Setting:" Colors $"On"
 		for file in /usr/share/nano/*.nanorc; \
 			do rc_add "include \"$file\""; \

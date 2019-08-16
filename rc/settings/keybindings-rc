@@ -16,7 +16,7 @@ function list-keybindings () {
 }
 
 keybindings_setter () {
-	if [[ "${1}" != "" ]]; then
+	if [[ ! -z "${1}" ]]; then
 		MOD=${1/:*}
 		KEY=${1/*:}
 

@@ -21,7 +21,7 @@ case ${1} in
 	*)
 		if [[ ${EUID} -eq 0 ]]; then
 			echo -e "${ered}#"
-		elif [[ ${user_char} != "" ]]; then
+		elif [[ ! -z ${user_char} ]]; then
 			echo -e "${ecolor_user}${user_char}"
 		else	echo -e "${ecolor_user}$"
 		fi

@@ -58,7 +58,7 @@ case ${1} in
 			OPT=${opt/:*}
 			VAL=${opt/|*}
 			VAL=${VAL/*:}
-			[[ ${VAL} == "" ]] && VAL="---"
+			[[ -z ${VAL} ]] && VAL="---"
 			DESC=${opt/*|}
 			EX+="${eorange}${OPT} \033[25G${ewhite}[${eblue}${VAL}${ewhite}]\033[65G ${egreen}${DESC}\n"
 		done

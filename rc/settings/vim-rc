@@ -22,7 +22,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	dbg_msg $"VimCFG Setting:" runtimepath
 	rc_add "set runtimepath+=${BSNG_DATADIR}/bashstyle-ng/vim/"
 
-	if [[ $(ini_get syntax_hilight) == True ]]; then
+	if bt $(ini_get syntax_hilight); then
 		dbg_msg $"VimCFG Setting:" Syntax $"On"
 		rc_add "syntax on"
 	else
@@ -30,7 +30,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "syntax off"
 	fi
 
-	if [[ $(ini_get dark_background) == True ]]; then
+	if bt $(ini_get dark_background); then
 		dbg_msg $"VimCFG Setting:" Background dark
 		rc_add "set background=dark"
 	else
@@ -38,7 +38,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set background=light"
 	fi
 
-	if [[ $(ini_get jump_back) == True ]]; then
+	if bt $(ini_get jump_back); then
 		dbg_msg $"VimCFG Setting:" Jump-Back $"On"
 		rc_add "if has(\"autocmd\")"
 		rc_add "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")"
@@ -47,7 +47,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	else	dbg_msg $"VimCFG Setting:" Jump-Back $"Off"
 	fi
 
-	if [[ $(ini_get filetype_indent) == True ]]; then
+	if bt $(ini_get filetype_indent); then
 		dbg_msg $"VimCFG Setting:" Filetype-Indention $"On"
 		rc_add "if has(\"autocmd\")"
 		rc_add "    filetype plugin indent on"
@@ -64,7 +64,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nosmartindent"
 	fi
 
-	if [[ $(ini_get show_command) == True ]]; then
+	if bt $(ini_get show_command); then
 		dbg_msg $"VimCFG Setting:" Show-Command $"On"
 		rc_add "set showcmd"
 	else
@@ -72,7 +72,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noshowcmd"
 	fi
 
-	if [[ $(ini_get highlight_matches) == True ]]; then
+	if bt $(ini_get highlight_matches); then
 		dbg_msg $"VimCFG Setting:" Show-Matches $"On"
 		rc_add "set showmatch"
 	else
@@ -80,7 +80,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noshowmatch"
 	fi
 
-	if [[ $(ini_get ignore_case) == True ]]; then
+	if bt $(ini_get ignore_case); then
 		dbg_msg $"VimCFG Setting:" Ignore-Case $"On"
 		rc_add "set ignorecase"
 	else
@@ -88,7 +88,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noignorecase"
 	fi
 
-	if [[ $(ini_get smart_case) == True ]]; then
+	if bt $(ini_get smart_case); then
 		dbg_msg $"VimCFG Setting:" Smart-Case $"On"
 		rc_add "set smartcase"
 	else
@@ -96,7 +96,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nosmartcase"
 	fi
 
-	if [[ $(ini_get incremental_search) == True ]]; then
+	if bt $(ini_get incremental_search); then
 		dbg_msg $"VimCFG Setting:" Incremental-Search $"On"
 		rc_add "set incsearch"
 	else
@@ -104,7 +104,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noincsearch"
 	fi
 
-	if [[ $(ini_get highlight_brackets) == True ]]; then
+	if bt $(ini_get highlight_brackets); then
 		dbg_msg $"VimCFG Setting:" Highlight $"On"
 		rc_add "set hls"
 	else
@@ -112,7 +112,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nohls"
 	fi
 
-	if [[ $(ini_get show_lineno) == True ]]; then
+	if bt $(ini_get show_lineno); then
 		dbg_msg $"VimCFG Setting:" Show-Number $"On"
 		rc_add "set number"
 	else
@@ -120,7 +120,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nonumber"
 	fi
 
-	if [[ $(ini_get autosave) == True ]]; then
+	if bt $(ini_get autosave); then
 		dbg_msg $"VimCFG Setting:" Auto-Save $"On"
 		rc_add "set autowriteall"
 	else
@@ -128,7 +128,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noautowriteall"
 	fi
 
-	if [[ $(ini_get highlight_line) == True ]]; then
+	if bt $(ini_get highlight_line); then
 		dbg_msg $"VimCFG Setting:" Highlight-Current-Line $"On"
 		rc_add "set cursorline"
 		rc_add "hi CursorLine term=none cterm=underline ctermbg=none"
@@ -137,7 +137,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nocursorline"
 	fi
 
-	if [[ $(ini_get highlight_column) == True ]]; then
+	if bt $(ini_get highlight_column); then
 		dbg_msg $"VimCFG Setting:" Highlight-Current-Column $"On"
 		rc_add "set cursorcolumn"
 		rc_add "hi CursorColumn term=none cterm=underline ctermbg=none"
@@ -146,7 +146,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nocursorcolumn"
 	fi
 
-	if [[ $(ini_get ruler) == True ]]; then
+	if bt $(ini_get ruler); then
 		dbg_msg $"VimCFG Setting:" Show-Ruler $"On"
 		rc_add "set ruler"
 		dbg_msg $"VimCFG Setting:" Ruler-Format "$(ini_get rulerformat)"
@@ -156,7 +156,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noruler"
 	fi
 
-	if [[ $(ini_get vim_backup) == True ]]; then
+	if bt $(ini_get vim_backup); then
 		dbg_msg $"VimCFG Setting:" Backup $"On"
 		rc_add "set backup"
 	else
@@ -164,7 +164,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nobackup"
 	fi
 
-	if [[ $(ini_get start_line) == True ]]; then
+	if bt $(ini_get start_line); then
 		dbg_msg $"VimCFG Setting:" Start-Of-Line $"On"
 		rc_add "set startofline"
 	else
@@ -175,7 +175,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	dbg_msg $"VimCFG Setting:" Linespace 0
 	rc_add "set linespace=0"
 
-	if [[ $(ini_get wrap_line) == True ]]; then
+	if bt $(ini_get wrap_line); then
 		dbg_msg $"VimCFG Setting:" Line-Wrapping $"On"
 		rc_add "set wrap"
 		dbg_msg $"VimCFG Setting:" Autowrap-length "$(ini_get wrap_length)"
@@ -190,7 +190,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	rc_add "set tabstop=$(ini_get tab_length)"
 	rc_add "set softtabstop=$(ini_get tab_length)"
 
-	if [[ $(ini_get expandtab) == True ]]; then
+	if bt $(ini_get expandtab); then
 		dbg_msg $"VimCFG Setting:" Expand Tab $"On"
 		rc_add "set expandtab"
 	else
@@ -198,7 +198,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noexpandtab"
 	fi
 
-	if [[ $(ini_get chdir) == True ]]; then
+	if bt $(ini_get chdir); then
 		dbg_msg $"VimCFG Setting:" Auto chdir $"On"
 		rc_add "set autochdir"
 	else
@@ -206,7 +206,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noautochdir"
 	fi
 
-	if [[ $(ini_get foldenable) == True ]]; then
+	if bt $(ini_get foldenable); then
 		dbg_msg $"VimCFG Setting:" Fold Enable $"On"
 		rc_add "set foldenable"
 
@@ -223,7 +223,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nofoldenable"
 	fi
 
-	if [[ $(ini_get wildmenu) == True ]]; then
+	if bt $(ini_get wildmenu); then
 		dbg_msg $"VimCFG Setting:" Wildmenu $"On"
 		rc_add "set wildmenu"
 	else

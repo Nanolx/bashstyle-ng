@@ -9,6 +9,9 @@
 #							#
 #########################################################
 
+alias bt="check bt"
+alias bf="check bf"
+
 # by Richard Hansen https://stackoverflow.com/a/7287873
 
 log () { printf '%s\n' "$*"; }
@@ -33,7 +36,7 @@ assign() {
 	for opt in "${@}"; do
 		var="X=\$${opt/:*}"
 		eval "${var}"
-		[[ ${X} == "" ]] && read -r "${opt/:*}" <<< "${opt/*:}"
+		[[ -z ${X} ]] && read -r "${opt/:*}" <<< "${opt/*:}"
 	done
 }
 

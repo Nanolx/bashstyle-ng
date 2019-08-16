@@ -48,7 +48,7 @@ if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 		cp "${BSNG_DATADIR}"/bashstyle-ng/bs-ng.ini "${HOME}"/.bs-ng.ini
 	fi
 else
-	if [[ $(ini_get ini_version) != "${INI_VERSION}" ]]; then
+	if [ $(ini_get ini_version) -ne "${INI_VERSION}" ]; then
 		dbg_msg $"user configuration is not up-to-date"
 		dbg_msg $"expected version" "${INI_VERSION}" $"but got" "$(ini_get ini_version)"
 		dbg_msg $"running config update helper"
@@ -58,7 +58,7 @@ fi
 
 dbg_log shopt -s checkwinsize
 
-if [[ $(ini_get path) != "" ]]; then
+if [ ! -z $(ini_get path) ]; then
 	dbg_msg $"BashStyle-NG Setting:" PATH "${PATH}"
 	PATH="$(ini_get path)"
 fi
@@ -69,30 +69,30 @@ fi
 [[ ${PATH} != *bashstyle-ng/rc* ]] && \
 	export PATH="@DATADIR@/bashstyle-ng/rc/functions/:${PATH}"
 
-[[ $(ini_get path_wd) == True ]] && export PATH="${PATH}:."
+bt $(ini_get path_wd) && export PATH="${PATH}:."
 
-[[ $(ini_get enable_colors) == True ]] && \
+bt $(ini_get enable_colors) && \
 	dbg_log source ${BSNG_RCDIR}/settings/color-rc
 
-[[ $(ini_get use_lscolors) == True && $(ini_get enable_colors) == True ]] && \
+[ $(bt $(ini_get use_lscolors)) -a $(bt $(ini_get enable_colors)) ] && \
 	dbg_log source ${BSNG_RCDIR}/settings/ls-rc
 
-[[ $(ini_get use_readlinecfg) == True ]] && \
+bt $(ini_get use_readlinecfg) && \
 	dbg_log source ${BSNG_RCDIR}/settings/readline-rc
 
-[[ $(ini_get use_vimcfg) == True ]] && \
+bt $(ini_get use_vimcfg) && \
 	dbg_log source ${BSNG_RCDIR}/settings/vim-rc
 
-[[ $(ini_get use_nanocfg) == True ]] && \
+bt $(ini_get use_nanocfg) && \
 	dbg_log source ${BSNG_RCDIR}/settings/nano-rc
 
-[[ $(ini_get use_gitcfg) == True ]] && \
+bt $(ini_get use_gitcfg) && \
 	dbg_log source ${BSNG_RCDIR}/settings/git-rc
 
-[[ $(ini_get use_keybindingscfg) == True ]] && \
+bt $(ini_get use_keybindingscfg) && \
 	dbg_log source ${BSNG_RCDIR}/settings/keybindings-rc
 
-[[ $(ini_get less_termcap_color) == True ]] && \
+bt $(ini_get less_termcap_color) && \
 	dbg_log source ${BSNG_RCDIR}/settings/man-rc
 
 dbg_msg $"BashStyle-NG Setting:"  Shopts
@@ -105,12 +105,12 @@ if [[ -e ${HOME}/.bashstyle.custom ]]; then
 	dbg_log source "${HOME}"/.bashstyle.custom
 fi
 
-if [[ $(ini_get use_bashstyle) == True ]]; then
+if bt $(ini_get use_bashstyle); then
 
 	dbg_msg $"BashStyle-NG Loading:" BashStyle-NG
 	dbg_log source ${BSNG_RCDIR}/styles/null-rc
 
-	if [[ ${BSNG_BASHVER} -ge 44 && $(ini_get ps0) != "" ]]; then
+	if [[ ${BSNG_BASHVER} -ge 44 && ! -z $(ini_get ps0) ]]; then
 		dbg_msg $"BashStyle-NG Setting:" PS0 "$(ini_get ps0)"
 		PS0="${color_ps0} $(ini_get ps0)${color_font} "
 	fi
@@ -124,7 +124,7 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 	dbg_msg $"BashStyle-NG Setting:" PS4 "$(ini_get ps4)"
 	PS4="${color_ps4} $(ini_get ps4)${color_font} "
 
-	if [[ $(ini_get random_style) == True ]]; then
+	if bt $(ini_get random_style); then
 		dbg_msg $"BashStyle-NG Setting:" $"Random Prompt"
 
 		number=$(random -r 11)
@@ -153,9 +153,7 @@ if [[ $(ini_get use_bashstyle) == True ]]; then
 		fi
 	fi
 
-	use_custom_prompt=$(ini_get use_custom_prompt)
-
-	if [[ ${use_custom_prompt} == True ]]; then
+	if bt $(ini_get use_custom_prompt); then
 		dbg_msg $"BashStyle-NG Setting:" $"Custom" Prompt
 		dbg_log source ${BSNG_RCDIR}/styles/custom-rc
 	elif [[ -e ${BSNG_RCDIR}/styles/${pstyle}-rc ]]; then
@@ -172,10 +170,10 @@ dbg_log source ${BSNG_RCDIR}/settings/options-rc
 
 # do trapping stuff
 
-if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
+if [ $(bt $(ini_get colorshell)) -a $(bt $(ini_get enable_colors)) ]; then
 
 	_colorshell () {
-		if [[ ${OLDPS1} == "" ]]; then
+		if [[ -z ${OLDPS1} ]]; then
 			[[ ${BSNG_BASHVER} -ge 44 ]] && OLDPS0="${PS0}"
 			OLDPS1="${PS1}"
 			OLDPS2="${PS2}"
@@ -185,7 +183,7 @@ if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 
 		# exclude black (0) on dark terminal
 		# exclude white (7) on bright terminal
-		if [[ $(ini_get dark_terminal) == True ]]; then
+		if bt $(ini_get dark_terminal); then
 			randomcolor=$(random -r 1 7)
 		else	randomcolor=$(random -r 0 6)
 		fi
@@ -204,8 +202,7 @@ if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 	dbg_msg $"Add colorshell to DEBUG trap"
 	trap_add '_colorshell' DEBUG
 
-	if [[ $(ini_get colorshell_reset) == True ]]; then
-
+	if bt $(ini_get colorshell_reset); then
 		_colorshell_reset () {
 			echo -ne "\e[0m"
 		}
@@ -215,8 +212,7 @@ if [[ $(ini_get colorshell) && $(ini_get enable_colors) == True ]]; then
 	fi
 fi
 
-if [[ $(ini_get history_sync) == True ]]; then
-
+if bt $(ini_get history_sync); then
 	_erasehistorydups () {
 		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 			tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
@@ -267,17 +263,17 @@ if [[ ${TERM} != *xterm* ]]; then
 	return_bad="-"
 	return_other="/"
 else
-	if [[ $(ini_get return_good) != "" ]]; then
+	if [[ ! -z $(ini_get return_good) ]]; then
 		return_good="$(ini_get return_good)"
 	else	return_good="✔"
 	fi
 
-	if [[ $(ini_get return_bad) != "" ]]; then
+	if [[ ! -z $(ini_get return_bad) ]]; then
 		return_bad="$(ini_get return_bad)"
 	else	return_bad="✘"
 	fi
 
-	if [[ $(ini_get return_other) != "" ]]; then
+	if [[ ! -z $(ini_get return_other) ]]; then
 		return_other="$(ini_get return_other)"
 	else	return_other="⊘"
 	fi
@@ -312,7 +308,7 @@ remember_command_err () {
 
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal/birthday
-elif [[ $(ini_get welcome_message) != "" ]]; then
+elif [[ ! -z $(ini_get welcome_message) ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
 	dbg_log $(ini_get welcome_message)
 fi
@@ -330,7 +326,7 @@ ccd() {
 		builtin cd "${*}" &>/dev/null
 	elif [[ ! "${1}" ]]; then
 		builtin cd &>/dev/null
-	elif [[ $(ini_get customcd_mkdir) == True ]]; then
+	elif bt $(ini_get customcd_mkdir); then
 		xdir=$(topdir "${1}")
 		if [ -w "${xdir}" ]; then
 			mkdir -p "${1}" &>/dev/null
@@ -367,32 +363,32 @@ ccd() {
 	echo "${PWD}" > "${HOME}"/.lastpwd
 }
 
-if [[ $(ini_get use_treecd) == True ]]; then
+if bt $(ini_get use_treecd); then
 	if which tree; then
 		dbg_log alias cd=ccd
 		dbg_log export TREECD=True
 		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
-		[[ $(ini_get enable_colors) != True ]] && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
+		bf $(ini_get enable_colors) && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
 	else	dbg_msg $"tree not found, not using treecd as cd replacement"
 	fi
 fi
 
-if [[ $(ini_get use_lscd) == True ]]; then
+if bt $(ini_get use_lscd); then
 	dbg_log alias cd=ccd
 	dbg_log export LSCD=True
 	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
-	[[ $(ini_get enable_colors) != True ]] && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
+	bf $(ini_get enable_colors) && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
 fi
 
 reload_bash () {
 	#xk2c from commandlinefu.com
 	builtin unalias -a
 	builtin unset -f "$(builtin compgen -A function)"
-	[[ -f /etc/bash_completion ]] && source /etc/bash_completion
+	[ -f /etc/bash_completion ] && source /etc/bash_completion
 	source "${HOME}"/.bashrc
 }
 
-if [[ $(ini_get history_isolate) == True ]]; then
+if bt $(ini_get history_isolate); then
 	dbg_msg $"BashStyle-NG Setting:" $"History Isolation" $"On"
 	dbg_log unset HISTFILE
 	dbg_log set +o history
@@ -432,7 +428,7 @@ fi
 
 unset style
 
-if [[ $(ini_get history_sync) == True ]]; then
+if bt $(ini_get history_sync); then
 	dbg_msg $"Add history syncronization to DEBUG trap"
 	trap_add '_synchistory' DEBUG
 fi

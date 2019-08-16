@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-if [[ $(ini_get enable_colors) == True ]]; then
+if bt $(ini_get enable_colors); then
 	# enforce pager to be less, else this does not work
 	# less is a hard dependency for BashStyle-NG, so it
 	# must be available, no need for an explicit check
@@ -55,7 +55,7 @@ if [[ $(ini_get enable_colors) == True ]]; then
 	eval termcap_sob="$(ini_get less_standout_background)"
 	export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
 
-	if [[ $(ini_get dark_terminal) == True ]]; then
+	if bt $(ini_get dark_terminal); then
 		lfblack=${lfwhite}
 		lbblack=${lbwhite}
 	else	lfwhite=${lfblack}

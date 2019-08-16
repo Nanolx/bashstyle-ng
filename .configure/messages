@@ -33,7 +33,7 @@ start_message () {
 }
 
 ok_message () {
-	if [[ ${2} != "" ]]; then
+	if [[ ! -z ${2} ]]; then
 		echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK${SILVER} ( ${2} )"
 	else	echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK"
 	fi

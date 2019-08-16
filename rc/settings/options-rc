@@ -35,7 +35,7 @@ dbg_msg $"BashStyle-NG Setting:" CDPATH "${CDPATH}"
 dbg_log export FCEDIT="$(ini_get fcedit)"
 dbg_msg $"BashStyle-NG Setting:" FCEDIT "${FCEDIT}"
 
-if [[ $(grep -w TMOUT /etc/profile.d/*msec.sh 2>/dev/null) != "" ]]; then
+if [[ ! -z $(grep -w TMOUT /etc/profile.d/*msec.sh 2>/dev/null) ]]; then
 	echo -e "\n * /etc/profile.d/msec.sh prevents setting TMOUT!"
 else
 	dbg_msg $"BashStyle-NG Setting:" TMOUT "${TMOUT}"
@@ -49,12 +49,10 @@ dbg_msg $"BashStyle-NG Setting:" HISTSIZE "${HISTSIZE}"
 dbg_log export HISTFILESIZE="$(ini_get history_size)"
 dbg_msg $"BashStyle-NG Setting:" HISTFILESIZE "${HISTFILESIZE}"
 
-if [[ $(ini_get restore_directory) == True ]]; then
-
+if bt $(ini_get restore_directory); then
 	_restore_directory_trap () {
 		printf %s "${PWD}" > ${HOME}/.lastpwd
 	}
-
 	trap_add '_restore_directory_trap' EXIT
 
 	if [[ -d "$(cat "${HOME}"/.lastpwd 2>/dev/null)" ]]; then
@@ -62,15 +60,15 @@ if [[ $(ini_get restore_directory) == True ]]; then
 	fi
 fi
 
-if [[ $(ini_get colored_grep) == True && $(ini_get enable_colors) == True ]]; then
+if bt $(ini_get colored_grep) -a bt $(ini_get enable_colors); then
 	dbg_msg $"BashStyle-NG Setting:" Colored grep $"On"
 	alias grep="grep --color=auto"
 	GREP_COLOR="$(ini_get grep_color);"
 
 	# make black (01;38;5;0) white on dark terminal
 	# make white (01;38;5;97) black on bright terminal
-	[[ $(ini_get dark_terminal) == True && ${GREP_COLOR} == "01;38;5;0" ]] && GREP_COLOR="01;38;5;97"
-	[[ $(ini_get dark_terminal) == False && ${GREP_COLOR} == "01;38;5;97" ]] && GREP_COLOR="01;38;5;0"
+	[[ $(bt $(ini_get dark_terminal)) && ${GREP_COLOR} == "01;38;5;0" ]] && GREP_COLOR="01;38;5;97"
+	[[ $(check bf $(ini_get dark_terminal)) && ${GREP_COLOR} == "01;38;5;97" ]] && GREP_COLOR="01;38;5;0"
 
 else	dbg_msg $"BashStyle-NG Setting:" Colored grep $"Off"
 	alias grep="grep --color=no"
@@ -79,7 +77,7 @@ fi
 dbg_msg $"BashStyle-NG Setting:" dd $"Options"
 DD_OPTS=""
 
-if [[ $(ini_get dd_noerror) == True ]]; then
+if bt $(ini_get dd_noerror); then
 	dbg_msg $"BashStyle-NG Setting:" dd $"don't abort at errors"
 	dbg_log export DD_OPTS="${DD_OPTS} conv=noerror"
 fi
@@ -87,19 +85,19 @@ fi
 # status=progress is new in dd/coreutils 8.24
 DD_VERSION="$(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version))"
 
-if [[ $(ini_get dd_progress) == True && ${DD_VERSION} -ge 824 ]]; then
+if bt $(ini_get dd_progress) -a ${DD_VERSION} -ge 824; then
 	dbg_msg $"BashStyle-NG Setting:" dd $"display progressbar"
 	dbg_log export DD_OPTS="${DD_OPTS} status=progress"
-elif [[ $(ini_get dd_progress) == True ]]; then
+elif bt $(ini_get dd_progress); then
 	dbg_msg $"BashStyle-NG Setting:" dd $"display progressbar" \
 		$"was requested by user, but coreutils is not 8.24 or newer"
 fi
 
-__dd () {
+_dd () {
 	dd ${DD_OPTS} "${@}"
 }
 
-dbg_log alias dd=__dd
+dbg_log alias dd=_dd
 
 dbg_msg $"BashStyle-NG Setting:" $"Various Options"
 dbg_log export pwdmaxlen="$(ini_get pwdlength)"
