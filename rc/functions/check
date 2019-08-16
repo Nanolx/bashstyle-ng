@@ -63,6 +63,20 @@ is_bool () {
 	esac
 }
 
+is_true () {
+	case ${1} in
+		true | True | TRUE | 0 ) return 0 ;;
+		*                      ) return 1 ;;
+	esac
+}
+
+is_false () {
+	case ${1} in
+		false | False | FALSE | 1 ) return 0 ;;
+		*                         ) return 1 ;;
+	esac
+}
+
 ###
 #
 # original version of the following:
@@ -111,6 +125,8 @@ case ${1} in
 	sw)	starts_with "${2}" "${3}"	;;
 	ew)	ends_with "${2}" "${3}"		;;
 	b)	is_bool "${2}"			;;
+	bt)	is_true "${2}"			;;
+	bf)	is_false "${2}"			;;
 	m)	is_mail "${2}"			;;
 
 	*)
@@ -128,6 +144,8 @@ case ${1} in
 				-o "sw:testabc t|check if arg1 starts with arg2"\
 				-o "ew:14235 235|check if arg1 ends with arg2"\
 				-o "b:\${VAR}|check if arg is a boolean"\
+				-o "bt:\${VAR}|check if arg is boolean true"\
+				-o "bf:\${VAR}|check if arg is boolean false"\
 				-o "m:test@dom.tld|check if arg is valid mail address"
 	;;
 esac

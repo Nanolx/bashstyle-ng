@@ -45,6 +45,10 @@ Each release lists incompatible changes at its top.
 @item @code{false}, @code{False}, @code{FALSE}, @code{1}
 @end itemize
 
+@item @code{bt}: check if arg is valid boolean true, example @code{check bt $myvar}.
+
+@item @code{bf}: check if arg is valid boolean false, example @code{check bf $myvar}.
+
 @item @code{m}: check if arg is a valid mail address, example @code{check m "test@@dom.tld"}. @code{check} matches against a regex and uses @code{dig} to see if the domain is available, will verbosely inform what's wrong (in case).
 @end itemize
 
