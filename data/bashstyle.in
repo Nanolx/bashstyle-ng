@@ -34,6 +34,19 @@ case ${1} in
 		@PYTHON@ "${BSNG_DATADIR}/bashstyle-ng/ui/config-update-helper.py" "${@}"
 	;;
 
+	--ini-get )
+		sed -n "s/^${2} = \(.*$\)/\1/p" "${HOME}"/.bs-ng.ini | sed -e 's/\"//g'
+	;;
+
+	--ini-set )
+		shift
+		SETTING=${1}
+		shift
+		VALUE="${*}"
+
+		sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i "${HOME}"/.bs-ng.ini
+	;;
+
 	* )
 		@PYTHON@ "${BSNG_DATADIR}/bashstyle-ng/ui/bs-ng.py" "${@}"
 	;;
