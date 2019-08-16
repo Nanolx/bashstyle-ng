@@ -139,6 +139,11 @@
       </row>
     </data>
   </object>
+  <object class="GtkAdjustment" id="git.ssh_timeout">
+    <property name="upper">86400</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkListStore" id="iconviewstore">
     <columns>
       <!-- column-name icon -->
@@ -7198,37 +7203,6 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">Explanation of Git aliases
-
-co = checkout
-up = pull
-re = force reset to HEAD
-ma = checkout master</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">7</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSeparator" id="separator1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">4</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">6</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkLabel" id="label.git">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -7243,25 +7217,6 @@ ma = checkout master</property>
                     <property name="left_attach">0</property>
                     <property name="top_attach">0</property>
                     <property name="height">9</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="label2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">
-who = no of commits per contributor
-ci = commit
-ls  = prettified log
-stage = stage changes to tracked files
-lsb = show branches by last activity</property>
-                    <property name="angle">0.080000000000000002</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">8</property>
-                    <property name="width">2</property>
                   </packing>
                 </child>
                 <child>
@@ -7285,6 +7240,74 @@ lsb = show branches by last activity</property>
                     <property name="left_attach">1</property>
                     <property name="top_attach">0</property>
                   </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="git_ssh_remember">
+                    <property name="label" translatable="yes">Remember SSH Key</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="xalign">0</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.git_editor1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Time to remember</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="advanced.label.git_editor2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">SSH RSA Keyfile</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="git_ssh_keyfile">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="invisible_char">●</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="git_ssh_timeout">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="invisible_char">●</property>
+                    <property name="text" translatable="yes">0</property>
+                    <property name="primary_icon_name">gtk-revert-to-saved</property>
+                    <property name="secondary_icon_name">gtk-delete</property>
+                    <property name="adjustment">git.ssh_timeout</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>

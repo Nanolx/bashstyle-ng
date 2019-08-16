@@ -215,6 +215,9 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("git_signkey", "Git", "git_signkey", "text", None)
 		WidgetHandler.InitWidget("git_color", "Git", "git_color", "bool", None)
 		WidgetHandler.InitWidget("git_aliases", "Git", "git_aliases", "bool", None)
+		WidgetHandler.InitWidget("git_ssh_remember", "Git", "git_ssh_remember", "bool", None)
+		WidgetHandler.InitWidget("git_ssh_timeout", "Git", "git_ssh_timeout", "int", None)
+		WidgetHandler.InitWidget("git_ssh_keyfile", "Git", "git_ssh_keyfile", "text", None)
 
 		######################## VimCFG Stuff ##############################################
 		WidgetHandler.InitWidget("use_vim", "Vim", "use_vimcfg", "switch", None)

@@ -12,12 +12,15 @@
 gitkit_ssh_add () {
 	source "${BSNG_RCDIR}/internal/misc"
 
+	local git_ssh_remember=$(ini_get git_ssh_remember)
+	local git_ssh_timeout=$(ini_get git_ssh_timeout)
 	local git_ssh_add_time=$(ini_get git_ssh_add_time)
+	local eval git_ssh_keyfile=$(ini_get git_ssh_keyfile)
 
-	if [[ ${GITKIT_SSH_REMEMBER} == True ]]; then
-		if test ${git_ssh_add_time} -eq 0 -o ${git_ssh_add_time} -le $(($(date +%s) - ${GITKIT_SSH_TIMEOUT})); then
-			echo -e "\n${egreen}[0] ssh-add ${GITKIT_SSH_KEYFILE}\n"
-			ssh-add "${GITKIT_SSH_KEYFILE}"
+	if [[ ${git_ssh_remember} == True ]]; then
+		if test ${git_ssh_add_time} -eq 0 -o ${git_ssh_add_time} -le $(($(date +%s) - ${git_ssh_timeout})); then
+			echo -e "\n${egreen}[0] ssh-add ${git_ssh_keyfile}\n"
+			ssh-add "${git_ssh_keyfile}"
 
 			ini_set git_ssh_add_time $(date +%s)
 		fi
