@@ -20,7 +20,7 @@ gitkit_ssh_add () {
 	eval git_ssh_keyfile=$(ini_get git_ssh_keyfile)
 
 	if [[ ${git_ssh_remember} == True ]]; then
-		if test ${git_ssh_add_time} -eq 0 -o ${gitkit_time} -le $(($(date +%s) - ${git_ssh_timeout})); then
+		if test ${gitkit_time} -eq 0 -o ${gitkit_time} -le $(($(date +%s) - ${git_ssh_timeout})); then
 			echo -e "\n${egreen}[0] ssh-add ${git_ssh_keyfile}\n"
 			ssh-add "${git_ssh_keyfile}" && echo $(date +%s) > ${TMPDIR}/gitkit_time_$$
 		fi
