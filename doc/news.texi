@@ -68,7 +68,7 @@ Each release lists incompatible changes at its top.
 
 @item feature @code{tagc}: make a tag point to a different commit (technically removes tag and readss it pointing to new commit) locally and remote, example: @code{gitkit tagc TAG COMMITID}, preserves first line of tag annotation.
 
-@item remember ssh password feature: you can now let @code{gitkit} start an @code{ssh-agent} in combination with @code{ssh-add} so that the afore mentioned new features (and ordinary @code{git} remote commands) don't require you to type in your password everytime. You can customize whether to use that feature, how long @code{ssh-agent} should remember the passwords and what keyfile to use (fallback @code{$HOME/.ssh/id_rsa}). When starting a new bash session or closing a bash session the timer is reset and you'll be prompted again. See options @code{Remember SSH Key}, @code{Time to remember} and @code{SSH RSA Keyfile} in the @code{Git} section of BashStyle-NG.
+@item remember ssh password feature: you can now let @code{gitkit} start an @code{ssh-agent} in combination with @code{ssh-add} so that the afore mentioned new features (and ordinary @code{git} remote commands) don't require you to type in your password everytime. You can customize whether to use that feature, how long @code{ssh-agent} should remember the passwords and what keyfile to use (fallback @code{$HOME/.ssh/id_rsa}). The timer is separate in each Bash session. See options @code{Remember SSH Key}, @code{Time to remember} and @code{SSH RSA Keyfile} in the @code{Git} section of BashStyle-NG.
 @end itemize
 @end itemize
 
