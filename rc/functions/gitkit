@@ -15,14 +15,14 @@ gitkit_ssh_add () {
 	local git_ssh_remember=$(ini_get git_ssh_remember)
 	local git_ssh_timeout=$(ini_get git_ssh_timeout)
 
-	[ -f ${TMPDIR}/gitkit_time_$$ ] && local gitkit_time=$(cat ${TMPDIR}/gitkit_time_$$) || gitkit_time=0
+	[ -f ${TMPDIR}/gitkit_time_${BASH_SESSION_PID} ] && local gitkit_time=$(cat ${TMPDIR}/gitkit_time_${BASH_SESSION_PID}) || gitkit_time=0
 
 	eval git_ssh_keyfile=$(ini_get git_ssh_keyfile)
 
 	if [[ ${git_ssh_remember} == True ]]; then
 		if test ${gitkit_time} -eq 0 -o ${gitkit_time} -le $(($(date +%s) - ${git_ssh_timeout})); then
 			echo -e "\n${egreen}[0] ssh-add ${git_ssh_keyfile}\n"
-			ssh-add "${git_ssh_keyfile}" && echo $(date +%s) > ${TMPDIR}/gitkit_time_$$
+			ssh-add "${git_ssh_keyfile}" && echo $(date +%s) > ${TMPDIR}/gitkit_time_${BASH_SESSION_PID}
 		fi
 	fi
 }
