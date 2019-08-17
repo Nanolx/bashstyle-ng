@@ -10,16 +10,14 @@
 #########################################################
 
 gitkit_ssh_add () {
-	if check bt ${git_ssh_remember}; then
-		source "${BSNG_RCDIR}/internal/misc"
+	if check bt $(ini_get git_ssh_remember); then
 
-		local git_ssh_remember=$(ini_get git_ssh_remember)
-		local git_ssh_timeout=$(ini_get git_ssh_timeout)
-
+		local git_ssh_timeout=$(bashstyle --ini-get git_ssh_timeout)
 		local gitkit_file=${TMPDIR}/gitkit_time_${BASH_SESSION_PID}_${SSH_AGENT_PID}
+
 		[ -f ${gitkit_file} ] && local gitkit_time=$(cat ${gitkit_file}) || gitkit_time=0
 
-		eval git_ssh_keyfile=$(ini_get git_ssh_keyfile)
+		eval git_ssh_keyfile=$(bashstyle --ini-get git_ssh_keyfile)
 
 		if test ${gitkit_time} -eq 0 -o ${gitkit_time} -le $(($(date +%s) - ${git_ssh_timeout})); then
 			echo -e "\n${egreen}[0] ssh-add ${git_ssh_keyfile}\n"
