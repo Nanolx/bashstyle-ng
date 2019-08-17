@@ -46,7 +46,7 @@ if bt $(ini_get git_ssh_remember); then
 	dbg_log eval $(ssh-agent -s -t $(ini_get git_ssh_timeout)) >/dev/null
 
 	_git_ssh_remember_trap () {
-		rm -f ${TMPDIR}/gitkit_time_$$
+		rm -f ${TMPDIR}/gitkit_time_${BASH_SESSION_PID}
 	}
 	trap_add _git_ssh_remember_trap EXIT
 else
