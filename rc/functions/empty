@@ -9,16 +9,34 @@
 #							#
 #########################################################
 
-case ${1} in
+find_empty () {
+	case ${1} in
+		f )
+			[ -z "${2}" ] && path="${PWD}" || path="${2}"
+			find "${path}" -type f -empty | sort
+		;;
 
+		d )
+			[ -z "${2}" ] && path="${PWD}" || path="${2}"
+			find "${path}" -type d -empty | sort
+		;;
+
+		* )
+			[ -d "${1}" ] && path="${1}" || path="${PWD}"
+			find "${path}" -empty | sort
+		;;
+	esac
+}
+
+case ${1} in
 	--help | -h)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "empty" -s "find empty files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "type:[f] [d]|(optional) find [f]iles or [d]irectories only"\
 			-o "directory:|(optional) find empty files in directory (or current)"
 	;;
 
-	*)
-		find "$1" -empty
+	* )
+		find_empty "${1}" "${2}"
 	;;
-
 esac
