@@ -102,6 +102,12 @@ between.  For more detailed information see the git log.
                remember' and 'SSH RSA Keyfile' in the 'Git' section of
                BashStyle-NG.
 
+        - improved 'empty': you can now specify whether to look for
+          empty files (example: 'empty f [PATH]'), or directories
+          (example: 'empty d [PATH]') only.  Like before if no arg is
+          passed (or arg is a path) it will search for both empty files
+          and directories in given path or in 'PWD'.
+
    * Misc.  Changes
 
         - Configure 4.4.4: several minor internal changes, fixup a Bash

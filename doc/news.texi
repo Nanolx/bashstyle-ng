@@ -70,6 +70,8 @@ Each release lists incompatible changes at its top.
 
 @item remember ssh password feature: you can now let @code{gitkit} start an @code{ssh-agent} in combination with @code{ssh-add} so that the afore mentioned new features (and ordinary @code{git} remote commands) don't require you to type in your password everytime. You can customize whether to use that feature, how long @code{ssh-agent} should remember the passwords and what keyfile to use (fallback @code{$HOME/.ssh/id_rsa}). The timer is separate in each Bash session. See options @code{Remember SSH Key}, @code{Time to remember} and @code{SSH RSA Keyfile} in the @code{Git} section of BashStyle-NG.
 @end itemize
+
+@item improved @code{empty}: you can now specify whether to look for empty files (example: @code{empty f [PATH]}), or directories (example: @code{empty d [PATH]}) only. Like before if no arg is passed (or arg is a path) it will search for both empty files and directories in given path or in @code{PWD}.
 @end itemize
 
 @item Misc. Changes
