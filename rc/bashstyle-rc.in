@@ -65,10 +65,10 @@ if [ ! -z $(ini_get path) ]; then
 fi
 
 [[ ${PATH} != *games* && -d /usr/games/ ]] && \
-	export PATH="${PATH}:/usr/games/:/usr/local/games/"
+	export PATH="${PATH}:/usr/games:/usr/local/games"
 
 [[ ${PATH} != *bashstyle-ng/functions* ]] && \
-	export PATH="@DATADIR@/bashstyle-ng/functions/:${PATH}"
+	export PATH="@DATADIR@/bashstyle-ng/functions:${PATH}"
 
 bt $(ini_get path_wd) && export PATH="${PATH}:."
 
