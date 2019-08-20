@@ -75,6 +75,16 @@ interpreter.")
         default=False, help=_("reset user configuration and exit")
     )
 
+    parser.add_option(
+        "-i", "--ini-get", dest="ini-get", action="store_true",
+        default=False, help=_("get the value of the specified setting")
+    )
+
+    parser.add_option(
+        "-I", "--ini-set", dest="ini-set", action="store_true",
+        default=False, help=_("set the value of the specified setting")
+    )
+
     (options, args) = parser.parse_args()
 
     if options.version:
