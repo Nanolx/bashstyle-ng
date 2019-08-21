@@ -12,16 +12,16 @@
 # by gniourf_gniourf
 
 case ${1} in
-
 	--help | -h)
 		bashstyle-help -a "gniourf_gniourf" -e "" -h "http://www.commandlinefu.com/"\
-				-l "Public Domain" -n "ngroups" -s "Show groups current user is not part of" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "none:|--"
+				-l "Public Domain" -n "ngroups" -s "Show groups current or given user is not part of"\
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "user:|(optional) user to check (only if root)"
 	;;
 
 	* )
-		sed -e "/${USER}/d;s/:.*//g" /etc/group | \
-			sed -e :a -e '/$/N;s/\n/ /;ta'
+		[[ "${EUID}" -eq 0 && ! -z "${2}" ]] && user="${2}" || user="${USER}"
+		echo -e "user \"${user}\" is not part of the following groups:\n" \
+			$(sed -e "/${user}/d;s/:.*//g" /etc/group | sed -e :a -e '/$/N;s/\n/ /;ta')
 	;;
-
 esac
