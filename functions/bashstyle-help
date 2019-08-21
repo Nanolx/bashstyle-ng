@@ -9,10 +9,15 @@
 #							#
 #########################################################
 
-. "${BSNG_RCDIR}"/internal/misc
+assign() {
+	for opt in "${@}"; do
+		var="X=\$${opt/:*}"
+		eval "${var}"
+		[[ -z ${X} ]] && read -r "${opt/:*}" <<< "${opt/*:}"
+	done
+}
 
 case ${1} in
-
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "bashstyle-help" -s "unified way of creating fancy help messages in Bash scripts" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
@@ -67,5 +72,4 @@ case ${1} in
 
 		unset NAME SHORT_DESC OPTIONS VERSION AUTHOR EMAIL HOMEPAGE LICENSE YEAR
 	;;
-
 esac

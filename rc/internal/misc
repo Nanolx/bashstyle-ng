@@ -32,14 +32,6 @@ trap_add () {
 
 declare -f -t trap_add
 
-assign() {
-	for opt in "${@}"; do
-		var="X=\$${opt/:*}"
-		eval "${var}"
-		[[ -z ${X} ]] && read -r "${opt/:*}" <<< "${opt/*:}"
-	done
-}
-
 ini_get ()
 {
 	sed -n "s/^${1} = \(.*$\)/\1/p" "${HOME}"/.bs-ng.ini | sed -e 's/\"//g'
