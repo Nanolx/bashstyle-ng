@@ -19,9 +19,9 @@ case ${1} in
 	;;
 
 	* )
-		if [[ $2 ]]; then
-			printf "%.${2}f" "${1}"
-		else	printf "%.0f" "${1}"
+		if [ ! -z  "${2}" ]; then
+			printf "%.${2}f\n" "${1}"
+		else	printf "%.0f\n" "${1}"
 		fi
 	;;
 
