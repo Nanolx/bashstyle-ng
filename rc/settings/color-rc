@@ -34,7 +34,7 @@ elif [[ ${color_style} == underlined ]]; then
 	style="04"
 fi
 
-if [[ ${TERM} != *xterm* ]]; then
+if [[ ${TERM} != *xterm*color* ]]; then
 	black="\[\033[${style};30m\]"
 	red="\[\033[${style};31m\]"
 	green="\[\033[${style};32m\]"
