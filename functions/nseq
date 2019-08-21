@@ -13,12 +13,18 @@ case ${1} in
 
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
-				-l "GNU GPL v3" -n "nseq" -s "print a sequence of numbers from 0 to given" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "highest:|highest number of sequence"
+				-l "GNU GPL v3" -n "nseq" \
+				-s "print a sequence of numbers from X to Y of same width"\
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "lowest:|lowest number of sequence"\
+				-o "highest:|highest number of sequence"\
+				-o "separator:|(optional) field seprator, default '\\\n'"
 	;;
 
 	* )
-		seq -w 0 "${1}"
+		[ -z "${1}" ] && exit 1
+		[ -z "${2}" ] && exit 1
+		[ ! -z "${3}" ] && seq -s"${3}" -w ${1} ${2} || seq -w ${1} ${2}
 	;;
 
 esac
