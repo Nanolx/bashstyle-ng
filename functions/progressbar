@@ -15,15 +15,7 @@ SP_DELAY=0.2
 SP_STRING=${3:-'+     '}
 
 case ${1} in
-
-	--help | -h | "")
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
-				-l "GNU GPL v3" -n "progressbar" -s "display a progressbar while given PID is running" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "type:bar spin spinner spanner working|visual appearance of progressbar"\
-				-o "pid:|process id"
-	;;
-
-    spin | --spin)
+	spin )
 		echo -n "|/     |"
 		while [ -d "/proc/${2}" ]
 		do
@@ -120,9 +112,9 @@ case ${1} in
 			sleep .03
 		done
 		echo -e "\b\b\b\b\b\b\b\b\b|=======| done!"
-    ;;
-    
-    spanner | --spanner)
+	;;
+
+	spanner )
 		COUNT=0
 		while [ -d "/proc/${2}" ];do
 			while [ "$COUNT" -lt 10 ];do
@@ -135,7 +127,7 @@ case ${1} in
 			done
 		done
 	;;
-	
+
 	spinner | --spinner)
 		while [ -d "/proc/${2}" ];do
 			echo -ne '\e[01;32m/\x08' ; sleep 0.05
@@ -144,8 +136,8 @@ case ${1} in
 			echo -ne '\e[01;32m|\x08' ; sleep 0.05
 		done
 	;;
-	
-	working | --working)
+
+	working )
 		while [ -d "/proc/${2}" ]
 		do
 			echo -ne "w      \b\b\b\b\b\b\b";sleep .08;
@@ -163,8 +155,8 @@ case ${1} in
 			echo -ne "      g\b\b\b\b\b\b\b";sleep .08;
 		done
 	;;
-	
-	bar | --bar )
+
+	bar )
 		while [ -d "/proc/${2}" ]
 		do
 			printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
@@ -173,13 +165,12 @@ case ${1} in
 		done
 	;;
 
-	*)
-		while [ -d /proc/"${1}" ]
-		do
-			printf "$SP_COLOUR\e7  %${SP_WIDTH}s  \e8\e[01;37m" "$SP_STRING"
-			sleep ${SP_DELAY:-.2}
-			SP_STRING=${SP_STRING#"${SP_STRING%?}"}${SP_STRING%?}
-		done
+	* )
+		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
+				-l "GNU GPL v3" -n "progressbar" -s "display a progressbar while given PID is running"\
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "type:bar spin spinner spanner working|visual appearance of progressbar"\
+				-o "pid:|process id"
 	;;
 
 esac
