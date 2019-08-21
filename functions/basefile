@@ -10,12 +10,11 @@
 #########################################################
 
 case ${1} in
-
-	ext)	echo "${2##*.}" ;;
-	name)	echo "${2##*/}" ;;
-	noext)	file=$(filename "${1}")
-			echo "${file%\.*}" ;;
-	path)	echo "${file%/*}" ;;
+	ext   | e) echo "${2##*.}" ;;
+	name  | n) echo "${2##*/}" ;;
+	noext | N) file="${2##*/}"
+		   echo "${file%\.*}" ;;
+	path  | p) echo "${2%/*}" ;;
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "http://www.nanolx.org/"\
@@ -25,5 +24,4 @@ case ${1} in
 			-o "noext:file|output filename without path and extension"\
 			-o "path:file|output path of file"
 	;;
-
 esac
