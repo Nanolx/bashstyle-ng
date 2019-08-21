@@ -13,7 +13,7 @@ assign() {
 	for opt in "${@}"; do
 		var="X=\$${opt/:*}"
 		eval "${var}"
-		[[ -z ${X} ]] && read -r "${opt/:*}" <<< "${opt/*:}"
+		[ -z ${X} ] && read -r "${opt/:*}" <<< "${opt/*:}"
 	done
 }
 
