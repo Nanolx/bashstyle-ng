@@ -13,10 +13,9 @@
 # modified version by me
 
 case ${1} in
-
 	--help | -h)
 		bashstyle-help -a "xenospeek" -e "" -h "http://forums.linuxmint.com/viewtopic.php?f=42&t=91908&start=0#p527794"\
-			-l "GNU GPL v3" -n "asc2hex" -s "convert ascii char to hexadecimal equivalent" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-l "GNU GPL v3" -n "ruler" -s "print a numbered ruler on the terminal" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 			-o "none:|--"
 	;;
 
@@ -44,5 +43,4 @@ case ${1} in
 		done
 		printf "\n"
 	;;
-
 esac
