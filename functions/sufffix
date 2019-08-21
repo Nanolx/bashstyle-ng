@@ -33,7 +33,7 @@ case ${@} in
 					awk '{print $2}')" /etc/mime.types | \
 					awk '{print $2}')"
 
-				if [[ "${image}" != "${baseimg}.${suffix}" && ${suffix} ]]; then
+				if [[ "${image}" != "${baseimg}.${suffix}" && ! -z "${suffix}" ]]; then
 					mv ${MV_OPT} "${image}" "${baseimg}.${suffix}"
 				fi
 			fi
