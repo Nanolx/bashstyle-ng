@@ -91,7 +91,7 @@ case ${1} in
 	;;
 
 	export)
-		[ ! -z "${2}" && -d .git ] && git checkout-index --prefix="${2}"/ -a
+		[[ ! -z "${2}" && -d .git ]] && git checkout-index --prefix="${2}"/ -a
 	;;
 
 	funmsg)
