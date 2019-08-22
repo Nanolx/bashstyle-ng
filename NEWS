@@ -9,6 +9,16 @@ between.  For more detailed information see the git log.
 10.6 "Aventine"
 ===============
 
+   * Bug Fixes
+
+        - #253 color settings: compat with some embedded terminals (like
+          terminal in Geany IDE).
+
+        - #254 'basefile' function: fix 'noext' option.
+
+        - #255 'round' function: fix output not being visible in all
+          cases.
+
    * New Features
 
         - New applet 'check': perform various non-standard checks, used
@@ -68,7 +78,7 @@ between.  For more detailed information see the git log.
           without separating space, for example 'randomfile geeqie -r
           File: -- $HOME/Pictures/*'.
 
-        - New features for 'gitkit':
+        - New features for 'gitkit' applet:
 
              x feature 'push': first push to upstream, then push tags
                and at last push to all mirrors found in '.git_mirror'
@@ -108,14 +118,35 @@ between.  For more detailed information see the git log.
           passed (or arg is a path) it will search for both empty files
           and directories in given path or in 'PWD'.
 
+   * improved 'nseq' function: allow passing the lowest number, aswell
+     as the field separator (example: 'nseq 0 5 _').
+
+   * improved 'ngroups' function: if run as root, allow passing a
+     different user than current (example: 'ngroups USER').
+
+   * improved 'bashstyle' launcher: new switches '--ini-get' and
+     '--ini-set' allow getting or setting configuration values from
+     command line.
+
+        * Removed Features
+
+        * removed 'topdir' function.
+
+        * removed 'assign' function.
+
    * Misc.  Changes
 
         - Configure 4.4.4: several minor internal changes, fixup a Bash
           warning message.
 
+        - move all functions from 'DATADIR/bashstyle-ng/rc/functions' to
+          'DATADIR/bashstyle-ng/functions'.
+
+        - fix help message for 'ruler' function.
+
         - updated german translation.
 
-        - several minor internal changes.
+        - several minor internal changes and improvements.
 
 10.5 "Kerala"
 =============

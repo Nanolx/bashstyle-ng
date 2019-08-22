@@ -11,6 +11,16 @@ Each release lists incompatible changes at its top.
 
 @heading 10.6 ``Aventine''
 @itemize @bullet
+@item Bug Fixes
+@itemize @minus
+
+@item #253 color settings: compat with some embedded terminals (like terminal in Geany IDE).
+
+@item #254 @code{basefile} function: fix @code{noext} option.
+
+@item #255 @code{round} function: fix output not being visible in all cases.
+@end itemize
+
 @item New Features
 @itemize @minus
 
@@ -55,7 +65,7 @@ Each release lists incompatible changes at its top.
 
 @item New switch @code{-z} for @code{randomfile} append filename to command without separating space, for example @code{randomfile geeqie -r File: -- $HOME/Pictures/*}.
 
-@item New features for @code{gitkit}:
+@item New features for @code{gitkit} applet:
 
 @itemize x
 @item feature @code{push}: first push to upstream, then push tags and at last push to all mirrors found in @code{.git_mirror} file.
@@ -74,14 +84,32 @@ Each release lists incompatible changes at its top.
 @item improved @code{empty}: you can now specify whether to look for empty files (example: @code{empty f [PATH]}), or directories (example: @code{empty d [PATH]}) only. Like before if no arg is passed (or arg is a path) it will search for both empty files and directories in given path or in @code{PWD}.
 @end itemize
 
+@item improved @code{nseq} function: allow passing the lowest number, aswell as the field separator (example: @code{nseq 0 5 _}).
+
+@item improved @code{ngroups} function: if run as root, allow passing a different user than current (example: @code{ngroups USER}).
+
+@item improved @code{bashstyle} launcher: new switches @code{--ini-get} and @code{--ini-set} allow getting or setting configuration values from command line.
+
+@itemize @bullet
+@item Removed Features
+
+@item removed @code{topdir} function.
+
+@item removed @code{assign} function.
+@end itemize
+
 @item Misc. Changes
 @itemize @minus
 
 @item Configure 4.4.4: several minor internal changes, fixup a Bash warning message.
 
+@item move all functions from @code{DATADIR/bashstyle-ng/rc/functions} to @code{DATADIR/bashstyle-ng/functions}.
+
+@item fix help message for @code{ruler} function.
+
 @item updated german translation.
 
-@item several minor internal changes.
+@item several minor internal changes and improvements.
 @end itemize
 @end itemize
 
