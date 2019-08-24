@@ -130,21 +130,20 @@ between.  For more detailed information see the git log.
           passed (or arg is a path) it will search for both empty files
           and directories in given path or in 'PWD'.
 
-   * improved 'nseq' function: allow passing the lowest number, aswell
-     as the field separator (example: 'nseq 0 5 _').
+        - improved 'nseq' function: allow passing the lowest number,
+          aswell as the field separator (example: 'nseq 0 5 _').
 
-   * improved 'ngroups' function: if run as root, allow passing a
-     different user than current (example: 'ngroups USER').
+        - improved 'ngroups' function: if run as root, allow passing a
+          different user than current (example: 'ngroups USER').
 
-   * improved 'bashstyle' launcher: new switches '--ini-get' and
-     '--ini-set' allow getting or setting configuration values from
-     command line.
+        - improved 'bashstyle' launcher: new switches '--ini-get' and
+          '--ini-set' allow getting or setting configuration values from
+          command line.
 
-        * Removed Features
+   * Removed Features
+        - removed 'topdir' function.
 
-        * removed 'topdir' function.
-
-        * removed 'assign' function.
+        - removed 'assign' function.
 
    * Misc.  Changes
 

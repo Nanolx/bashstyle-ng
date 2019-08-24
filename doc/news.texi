@@ -97,7 +97,6 @@ Each release lists incompatible changes at its top.
 @end itemize
 
 @item improved @code{empty}: you can now specify whether to look for empty files (example: @code{empty f [PATH]}), or directories (example: @code{empty d [PATH]}) only. Like before if no arg is passed (or arg is a path) it will search for both empty files and directories in given path or in @code{PWD}.
-@end itemize
 
 @item improved @code{nseq} function: allow passing the lowest number, aswell as the field separator (example: @code{nseq 0 5 _}).
 
@@ -105,9 +104,9 @@ Each release lists incompatible changes at its top.
 
 @item improved @code{bashstyle} launcher: new switches @code{--ini-get} and @code{--ini-set} allow getting or setting configuration values from command line.
 
-@itemize @bullet
+@end itemize
 @item Removed Features
-
+@itemize @minus
 @item removed @code{topdir} function.
 
 @item removed @code{assign} function.
