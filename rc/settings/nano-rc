@@ -136,7 +136,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 
 	if bt $(ini_get set_uicolors); then
 		for uipart in function key status title; do
-			uipart_color="$(ini_get ${uipart}_color_fg,${uipart}_color_bg)"
+			uipart_color="$(ini_get ${uipart}_color_fg),$(ini_get ${uipart}_color_bg)"
 			dbg_msg $"NanoCFG Setting:" UI Color "${uipart}": "${uipart_color}"
 			rc_add "set ${uipart}color ${uipart_color}"
 		done
