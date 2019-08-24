@@ -262,7 +262,6 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("nano_morespace", "Nano", "more_space", "bool", None)
 		WidgetHandler.InitWidget("nano_history", "Nano", "history", "bool", None)
 		WidgetHandler.InitWidget("nano_rbdel", "Nano", "rebind_delete", "bool", None)
-		WidgetHandler.InitWidget("nano_rbkp", "Nano", "rebind_keypad", "bool", None)
 		WidgetHandler.InitWidget("nano_mouse", "Nano", "enable_mouse",  "bool", None)
 		WidgetHandler.InitWidget("nano_logpos",  "Nano", "log_position", "bool", None)
 		WidgetHandler.InitWidget("nano_nowrap", "Nano", "no_wrap", "bool", None)

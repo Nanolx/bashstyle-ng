@@ -53,10 +53,10 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 
 	if bt $(ini_get show_positon); then
 		dbg_msg $"NanoCFG Setting:" Show-Position $"On"
-		rc_add "set const"
+		rc_add "set constantshow"
 	else
 		dbg_msg $"NanoCFG Setting:" Show-Position $"Off"
-		rc_add "unset const"
+		rc_add "unset constantshow"
 	fi
 
 	if bt $(ini_get more_space); then
@@ -91,14 +91,6 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset rebinddelete"
 	fi
 
-	if bt $(ini_get rebind_keypad); then
-		dbg_msg $"NanoCFG Setting:" Rebind Keypad: $"On"
-		rc_add "set rebindkeypad"
-	else
-		dbg_msg $"NanoCFG Setting:" Rebind Keypad: $"Off"
-		rc_add "unset rebindkeypad"
-	fi
-
 	if bt $(ini_get enable_mouse); then
 		dbg_msg $"NanoCFG Setting:" Enable Mouse: $"On"
 		rc_add "set mouse"
@@ -117,10 +109,10 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 
 	if bt $(ini_get log_position); then
 		dbg_msg $"NanoCFG Setting:" Log Position $"On"
-		rc_add "set poslog"
+		rc_add "set positionlog"
 	else
 		dbg_msg $"NanoCFG Setting:" Log Position $"Off"
-		rc_add "unset poslog"
+		rc_add "unset positionlog"
 	fi
 
 	dbg_msg $"NanoCFG Setting:" Tab Width "$(ini_get tab_size)"
