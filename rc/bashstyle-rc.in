@@ -23,6 +23,16 @@ export BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
 export BASH_SESSION_PID=$$
 INI_VERSION=34
 
+if [[ ! -z "${TMPDIR}" ]]; then
+	export BSNG_TMPDIR=${TMPDIR}
+elif [ -w /var/tmp ]; then
+	export BSNG_TMPDIR=/var/tmp
+elif [ -w /tmp ]; then
+	export BSNG_TMPDIR=/tmp
+else
+	echo "unable to set BSNG_TMPDIR!"
+fi
+
 source ${BSNG_RCDIR}/internal/misc
 source ${BSNG_RCDIR}/internal/logging
 
