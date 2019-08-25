@@ -59,7 +59,7 @@ if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
 		cp "${BSNG_DATADIR}"/bashstyle-ng/bs-ng.ini "${HOME}"/.bs-ng.ini
 	fi
 else
-	if [ $(ini_get ini_version) -ne "${INI_VERSION}" ]; then
+	if [ $(ini_get ini_version) -ne ${INI_VERSION} ]; then
 		dbg_msg $"user configuration is not up-to-date"
 		dbg_msg $"expected version" "${INI_VERSION}" $"but got" "$(ini_get ini_version)"
 		dbg_msg $"running config update helper"
