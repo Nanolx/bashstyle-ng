@@ -34,20 +34,20 @@ declare -f -t trap_add
 
 ini_get ()
 {
-	sed -n "s/^${1} = \(.*$\)/\1/p" "${HOME}"/.bs-ng.ini | sed -e 's/\"//g'
+	sed -n "s/^${1} = \(.*$\)/\1/p" "${HOME}"/.bashstyle-ng.ini | sed -e 's/\"//g'
 }
 
 def_get ()
 {
 	sed -n "s/^${1} = \(.*$\)/\1/p" \
-		"${BSNG_DATADIR}"/bashstyle-ng/bs-ng.ini | \
+		"${BSNG_DATADIR}"/bashstyle-ng/bashstyle-ng.ini | \
 		sed -e 's/\"//g'
 }
 
 ven_get ()
 {
-	[[ -f /etc/bs-ng_vendor.ini ]] && sed -n "s/^${1} = \(.*$\)/\1/p" \
-		/etc/bs-ng_vendor.in | sed -e 's/\"//g'
+	[[ -f /etc/bashstyle-ng_vendor.ini ]] && sed -n "s/^${1} = \(.*$\)/\1/p" \
+		/etc/bashstyle-ng_vendor.ini | sed -e 's/\"//g'
 }
 
 ini_set ()
@@ -56,7 +56,7 @@ ini_set ()
 	shift
 	VALUE="${*}"
 
-	sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i "${HOME}"/.bs-ng.ini
+	sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i "${HOME}"/.bashstyle-ng.ini
 }
 
 ini_add ()
@@ -65,7 +65,7 @@ ini_add ()
 	shift
 	VALUE="${*}"
 
-	sed -e "/\[${SECTION}\]/ a ${VALUE}" -i "${HOME}"/.bs-ng.ini
+	sed -e "/\[${SECTION}\]/ a ${VALUE}" -i "${HOME}"/.bashstyle-ng.ini
 }
 
 rc_add ()

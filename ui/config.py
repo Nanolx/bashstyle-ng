@@ -24,19 +24,38 @@ if FAILED:
     sys.exit(1)
 
 DATADIR = os.getenv('BSNG_DATADIR')
-USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
-USER_DEFAULTS_NEW = (os.getenv('HOME') + '/.bs-ng.ini.new')
-USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
-FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bs-ng.ini')
-VENDOR_DEFAULTS = ('/etc/bs-ng_vendor.ini')
+
+USER_DEFAULTS_TMP = (os.getenv('HOME') + '/.bashstyle-ng.ini.new')
+FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bashstyle-ng.ini')
+VENDOR_DEFAULTS = ('/etc/bashstyle-ng_vendor.ini')
+
 BASHSTYLERC = (DATADIR + "/bashstyle-ng/rc/bashstyle-rc")
+
+# old user configuration file names (for migration)
+
+OLD_USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
+OLD_USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
+
+# new configuration file names
+
+USER_DEFAULTS = (os.getenv('HOME') + '/.bashstyle-ng.ini')
+USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bashstyle-ng.ini.save')
 
 app_ini_version = 36
 
 class Config(object):
 	def InitConfig(self):
+		self.MigrateConfig()
 		if not os.access(USER_DEFAULTS, os.F_OK):
 			self.ResetConfig(True)
+
+	def MigrateConfig(self):
+		if os.access(OLD_USER_DEFAULTS, os.F_OK):
+			print(_("MigrateConfig: renaming user's bs-ng.ini to bashstyle-ng.ini"))
+			shutil.move(OLD_USER_DEFAULTS, USER_DEFAULTS)
+		if os.access(OLD_USER_DEFAULTS_SAVE, os.F_OK):
+			print(_("MigrateConfig: renaming user's bs-ng.ini.save to bashstyle-ng.ini.save"))
+			shutil.move(OLD_USER_DEFAULTS_SAVE, USER_DEFAULTS_SAVE)
 
 	def LoadConfig(self):
 		try:
@@ -117,20 +136,20 @@ class Config(object):
 			vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
 			if vendor_ini.as_int("ini_version") == app_ini_version:
 				print(_("UpdateConfig: vendor configuration up-to-date, copying as user-default."))
-				shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS_NEW)
+				shutil.copy(VENDOR_DEFAULTS, USER_DEFAULTS_TMP)
 			else:
 				print(_("UpdateConfig: vendor configuration outdated, using factory defaults instead!"))
-				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
+				shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_TMP)
 		else:
 			print(_("UpdateConfig: no vendor configuration found, using factory defaults instead."))
-			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_NEW)
-		new = configobj.ConfigObj(infile=USER_DEFAULTS_NEW,default_encoding="utf8")
+			shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_TMP)
+		new = configobj.ConfigObj(infile=USER_DEFAULTS_TMP,default_encoding="utf8")
 		old = configobj.ConfigObj(infile=USER_DEFAULTS,default_encoding="utf8")
 		print(_("UpdateConfig: merging values."))
 		new.merge(old)
 		new["ini_version"] = app_ini_version
 		new.write()
-		shutil.move(USER_DEFAULTS_NEW, USER_DEFAULTS)
+		shutil.move(USER_DEFAULTS_TMP, USER_DEFAULTS)
 
 	def WriteConfig(self):
 		print(_("WriteConfig: saving configuration."))

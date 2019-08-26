@@ -18,7 +18,7 @@ export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="2007 - 2019"
 export BSNG_BASHVER=${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}
-export BSNG_LOGFILE=${HOME}/.bashstyle.log
+export BSNG_LOGFILE=${HOME}/.bashstyle-ng.log
 export BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
 export BASH_SESSION_PID=$$
 INI_VERSION=36
@@ -48,24 +48,7 @@ dbg_msg $"BashStyle-NG Prefix:" "${BSNG_PREFIX}"
 dbg_msg $"BashStyle-NG Logfile:" "${BSNG_LOGFILE}"
 dbg_msg $"BashStyle-NG Ini Version:" "${INI_VERSION}"
 
-if [[ ! -f ${HOME}/.bs-ng.ini ]]; then
-	dbg_msg $"No user ini file (" "${HOME}"/.bs-ng.ini $") found"
-	if [[ -f /etc/bs-ng_vendor.ini && $(ven_get ini_version) == "${INI_VERSION}" ]]; then
-		dbg_msg $"found an up-to-date vendor ini (/etc/bs-ng_vendor.ini), copying as user ini"
-		cp /etc/bs-ng_vendor.ini "${HOME}"/.bs-ng.ini
-	else
-		dbg_msg $"no (up-to-date) vendor ini found"
-		dbg_msg $"using factory ini (" "${BSNG_DATADIR}"/bashstyle-ng/bs-ng.ini $"), copying as user ini"
-		cp "${BSNG_DATADIR}"/bashstyle-ng/bs-ng.ini "${HOME}"/.bs-ng.ini
-	fi
-else
-	if [ $(ini_get ini_version) -ne ${INI_VERSION} ]; then
-		dbg_msg $"user configuration is not up-to-date"
-		dbg_msg $"expected version" "${INI_VERSION}" $"but got" "$(ini_get ini_version)"
-		dbg_msg $"running config update helper"
-		dbg_log bashstyle --update
-	fi
-fi
+bashstyle-config-helper --update >/dev/null
 
 dbg_log shopt -s checkwinsize
 
