@@ -11,7 +11,7 @@
 
 CF_MODULES=( base color )
 MK_MODULES=( build install messages checks actions )
-MK_VERSION=1.1.1
+MK_VERSION=1.1.2
 
 for mod in "${CF_MODULES[@]}"; do
 	source "${PWD}"/.configure/"${mod}"
