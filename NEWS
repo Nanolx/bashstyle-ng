@@ -27,6 +27,9 @@ development version "--"
         - #259 'ini handling': fix checking user settings being
           up-to-date on Bash startup.
 
+        - #260 'make': fix BashStyle-NG .desktop file, manpage and
+          'bashstyle-config-helper' not being uninstalled.
+
    * New Features
 
         - 'GNU Nano' settings: support for the following new settings
@@ -51,6 +54,15 @@ development version "--"
 
         - 'GNU Nano' settings: change default value for 'nohelp' to
           'False', so commands are shown unless user wants to hide them.
+
+        - 'list' applet: call 'ls -A' instead of 'ls -a' if hidden files
+          should be included.
+
+   * Misc.  Changes
+
+        - Restructure resource files.
+
+        - Update german translation.
 
 10.6.1 "Aventine II"
 ====================
