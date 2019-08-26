@@ -132,7 +132,7 @@ class Config(object):
 			print(_("RestoreConfig: no backup configuration exists."))
 
 	def UpdateConfig(self):
-		if os.access('/etc/bs-ng_vendor.ini', os.F_OK):
+		if os.access(VENDOR_DEFAULTS, os.F_OK):
 			vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS,default_encoding="utf8")
 			if vendor_ini.as_int("ini_version") == app_ini_version:
 				print(_("UpdateConfig: vendor configuration up-to-date, copying as user-default."))
