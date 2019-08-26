@@ -33,8 +33,8 @@ else
 	echo "unable to set BSNG_TMPDIR!"
 fi
 
-source ${BSNG_RCDIR}/internal/misc
-source ${BSNG_RCDIR}/internal/logging
+source ${BSNG_RCDIR}/internal_misc
+source ${BSNG_RCDIR}/internal_logging
 
 dbg_log rm -f "${BSNG_LOGFILE}"
 dbg_log touch "${BSNG_LOGFILE}"
@@ -83,33 +83,33 @@ fi
 bt $(ini_get path_wd) && export PATH="${PATH}:."
 
 bt $(ini_get enable_colors) && \
-	dbg_log source ${BSNG_RCDIR}/settings/color-rc
+	dbg_log source ${BSNG_RCDIR}/settings_color
 
 [ $(bt $(ini_get use_lscolors)) -a $(bt $(ini_get enable_colors)) ] && \
-	dbg_log source ${BSNG_RCDIR}/settings/ls-rc
+	dbg_log source ${BSNG_RCDIR}/settings_ls
 
 bt $(ini_get use_readlinecfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings/readline-rc
+	dbg_log source ${BSNG_RCDIR}/settings_readline
 
 bt $(ini_get use_vimcfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings/vim-rc
+	dbg_log source ${BSNG_RCDIR}/settings_vim
 
 bt $(ini_get use_nanocfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings/nano-rc
+	dbg_log source ${BSNG_RCDIR}/settings_nano
 
 bt $(ini_get use_gitcfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings/git-rc
+	dbg_log source ${BSNG_RCDIR}/settings_git
 
 bt $(ini_get use_keybindingscfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings/keybindings-rc
+	dbg_log source ${BSNG_RCDIR}/settings_keybindings
 
 bt $(ini_get less_termcap_color) && \
-	dbg_log source ${BSNG_RCDIR}/settings/man-rc
+	dbg_log source ${BSNG_RCDIR}/settings_man
 
 dbg_msg $"BashStyle-NG Setting:"  Shopts
-dbg_log source ${BSNG_RCDIR}/settings/shopt-rc
+dbg_log source ${BSNG_RCDIR}/settings_shopt
 
-dbg_log source ${BSNG_RCDIR}/settings/alias-rc
+dbg_log source ${BSNG_RCDIR}/settings_alias
 
 if [[ -e ${HOME}/.bashstyle.custom ]]; then
 	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
@@ -119,7 +119,7 @@ fi
 if bt $(ini_get use_bashstyle); then
 
 	dbg_msg $"BashStyle-NG Loading:" BashStyle-NG
-	dbg_log source ${BSNG_RCDIR}/styles/null-rc
+	dbg_log source ${BSNG_RCDIR}/styles_hook
 
 	if [[ ${BSNG_BASHVER} -ge 44 && ! -z $(ini_get ps0) ]]; then
 		dbg_msg $"BashStyle-NG Setting:" PS0 "$(ini_get ps0)"
@@ -166,10 +166,10 @@ if bt $(ini_get use_bashstyle); then
 
 	if bt $(ini_get use_custom_prompt); then
 		dbg_msg $"BashStyle-NG Setting:" $"Custom" Prompt
-		dbg_log source ${BSNG_RCDIR}/styles/custom-rc
-	elif [[ -e ${BSNG_RCDIR}/styles/${pstyle}-rc ]]; then
+		dbg_log source ${BSNG_RCDIR}/styles_custom
+	elif [[ -e ${BSNG_RCDIR}/styles_${pstyle} ]]; then
 		dbg_msg $"BashStyle-NG Setting:" ${pstyle} Prompt
-		dbg_log source ${BSNG_RCDIR}/styles/${pstyle}-rc
+		dbg_log source ${BSNG_RCDIR}/styles_${pstyle}
 	else
 		dbg_msg $"BashStyle-NG Setting:" $"Fallback" Prompt
 		dbg_log export PS1="\u@\h\w: "
@@ -177,7 +177,7 @@ if bt $(ini_get use_bashstyle); then
 
 fi
 
-dbg_log source ${BSNG_RCDIR}/settings/options-rc
+dbg_log source ${BSNG_RCDIR}/settings_options
 
 # do trapping stuff
 
@@ -318,7 +318,7 @@ remember_command_err () {
 
 
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
-	cat ${BSNG_RCDIR}/internal/birthday
+	cat ${BSNG_RCDIR}/internal_birthday
 elif [[ ! -z $(ini_get welcome_message) ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
 	dbg_log $(ini_get welcome_message)

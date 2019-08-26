@@ -11,11 +11,11 @@
 
 DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
 	     rc/bashstyle-rc:${DATADIR}/rc
-	     rc/internal/*:${DATADIR}/rc/internal
-	     rc/settings/*:${DATADIR}/rc/settings
-	     rc/styles/*:${DATADIR}/rc/styles
-	     data/*.ini:${DATADIR}
-	     data/*.desktop:${DESKTOPDIR} )
+	     rc/internal_*:${DATADIR}/rc
+	     rc/settings_*:${DATADIR}/rc
+	     rc/styles_*:${DATADIR}/rc
+	     data/bs-ng.ini:${DATADIR}
+	     data/bashstyle-ng.desktop:${DESKTOPDIR} )
 
 DOC_FILES=( doc/html/*.html:${DOCDIR} )
 MAN_FILES=( doc/bashstyle.1:${MANDIR} )
@@ -38,4 +38,5 @@ REMOVE_FILES=( ${LOCALE_REMOVE[@]}
 	       ${ICONDIR}/bs-ng*.png
 	       ${PCDIR}/bashstyle-ng.pc
 	       ${DATADIR}
+	       ${DESKTOPDIR}/bashstyle-ng.desktop
 	       ${DOCDIR} )
