@@ -153,7 +153,26 @@ vim_foldmethods = {
    5: "diff",
 }
 
-nano_colors = {
+nano_fg_colors = {
+    0: "white",
+    1: "brightwhite",
+    2: "black",
+    3: "brightblack",
+    4: "red",
+    5: "brightred",
+    6: "blue",
+    7: "brightblue",
+    8: "green",
+    9: "brightgreen",
+    10: "yellow",
+    11: "brightyellow",
+    12: "magenta",
+    13: "brightmagenta",
+    14: "cyan",
+    15: "brightcyan",
+}
+
+nano_bg_colors = {
     0: "white",
     1: "black",
     2: "red",

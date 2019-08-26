@@ -59,12 +59,12 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset constantshow"
 	fi
 
-	if bt $(ini_get more_space); then
+	if bt $(ini_get empty_space); then
 		dbg_msg $"NanoCFG Setting:" More-Space $"On"
-		rc_add "set morespace"
+		rc_add "unset emptyline"
 	else
 		dbg_msg $"NanoCFG Setting:" More-Space $"Off"
-		rc_add "unset morespace"
+		rc_add "set emptylines"
 	fi
 
 	if bt $(ini_get hide_help); then
@@ -126,8 +126,23 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset tabstospaces"
 	fi
 
+	if bt $(ini_get line_number); then
+		dbg_msg $"NanoCFG Setting:" Line Numbers $"On"
+		rc_add "set linenumbers"
+	else
+		dbg_msg $"NanoCFG Setting:" Line Numbers $"Off"
+		rc_add "unset linenumbers"
+	fi
+
+	if [ $(ini_get guide_stripe) -gt 0 ]; then
+		dbg_msg $"NanoCFG Setting:" Guide Stripe "$(ini_get guide_stripe)"
+		rc_add "set tabsize $(ini_get tab_size)"
+	else
+		dbg_msg $"NanoCFG Setting:" Guide Stripe $"Off"
+	fi
+
 	if bt $(ini_get set_uicolors); then
-		for uipart in function key status title; do
+		for uipart in function key status title number error selected stripe number; do
 			uipart_color="$(ini_get ${uipart}_color_fg),$(ini_get ${uipart}_color_bg)"
 			dbg_msg $"NanoCFG Setting:" UI Color "${uipart}": "${uipart_color}"
 			rc_add "set ${uipart}color ${uipart_color}"

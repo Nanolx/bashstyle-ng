@@ -20,10 +20,37 @@ development version "--"
 
              x 'poslog' was renamed to 'positionlog'.
 
+             x 'morespace' was replaced with 'emptyline'.
+
              x 'rebindkeypad' was removed.
 
         - #259 'ini handling': fix checking user settings being
           up-to-date on Bash startup.
+
+   * New Features
+
+        - 'GNU Nano' settings: support for the following new settings
+          has been added:
+
+             x 'linenumbers': whether to show line numbers at start of
+               line.
+
+             x 'guidestripe': whether to draw a stripe at given position
+               (0 = disabled) so help avoiding overlong lines.
+
+             x 'errorcolor': set color for error messages.
+
+             x 'selectedcolor': set color for selected text.
+
+             x 'stripecolor': set color for the guidestripe.
+
+             x 'numbercolor': set color for numbers.
+
+        - 'GNU Nano' settings: allow bright variants for foreground
+          colors.
+
+        - 'GNU Nano' settings: change default value for 'nohelp' to
+          'False', so commands are shown unless user wants to hide them.
 
 10.6.1 "Aventine II"
 ====================

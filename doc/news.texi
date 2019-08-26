@@ -23,10 +23,36 @@ Each release lists incompatible changes at its top.
 
 @item @code{poslog} was renamed to @code{positionlog}.
 
+@item @code{morespace} was replaced with @code{emptyline}.
+
 @item @code{rebindkeypad} was removed.
 @end itemize
 
 @item #259 @code{ini handling}: fix checking user settings being up-to-date on Bash startup.
+@end itemize
+
+@item New Features
+@itemize @minus
+
+@item @code{GNU Nano} settings: support for the following new settings has been added:
+
+@itemize x
+@item @code{linenumbers}: whether to show line numbers at start of line.
+
+@item @code{guidestripe}: whether to draw a stripe at given position (0 = disabled) so help avoiding overlong lines.
+
+@item @code{errorcolor}: set color for error messages.
+
+@item @code{selectedcolor}: set color for selected text.
+
+@item @code{stripecolor}: set color for the guidestripe.
+
+@item @code{numbercolor}: set color for numbers.
+@end itemize
+
+@item @code{GNU Nano} settings: allow bright variants for foreground colors.
+
+@item @code{GNU Nano} settings: change default value for @code{nohelp} to @code{False}, so commands are shown unless user wants to hide them.
 @end itemize
 @end itemize
 

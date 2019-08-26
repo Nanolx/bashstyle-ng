@@ -226,7 +226,7 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="nano_color">
+  <object class="GtkListStore" id="nano_bg_color">
     <columns>
       <!-- column-name Title -->
       <column type="gchararray"/>
@@ -257,6 +257,67 @@
         <col id="0" translatable="yes">Cyan</col>
       </row>
     </data>
+  </object>
+  <object class="GtkListStore" id="nano_fg_color">
+    <columns>
+      <!-- column-name Title -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bright Cyan</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="nano_guidestripe.adjustment">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="nano_tabwidth.adjustment">
     <property name="upper">100</property>
@@ -5084,108 +5145,7 @@
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
-                            <property name="height">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.label.editing">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Editing</property>
-                            <property name="angle">90</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">3</property>
-                            <property name="height">5</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.label.misc1">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">UI Colors</property>
-                            <property name="angle">90</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">9</property>
-                            <property name="height">9</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.label.misc">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Misc</property>
-                            <property name="angle">90</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">19</property>
                             <property name="height">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator" id="separator6">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">2</property>
-                            <property name="width">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator" id="separator7">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">8</property>
-                            <property name="width">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator" id="separator8">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">18</property>
-                            <property name="width">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_backup">
-                            <property name="label" translatable="yes">Backup files</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">0</property>
                           </packing>
                         </child>
                         <child>
@@ -5214,423 +5174,6 @@
                           <packing>
                             <property name="left_attach">2</property>
                             <property name="top_attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_indent">
-                            <property name="label" translatable="yes">Enable auto-indention</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_colors">
-                            <property name="label" translatable="yes">Enable syntax highlighting</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_nohelp">
-                            <property name="label" translatable="yes">Hide shortcuts</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">4</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_case">
-                            <property name="label" translatable="yes">Search case-sensitivley</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">4</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_nowrap">
-                            <property name="label" translatable="yes">No line wrapping</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">5</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_tabspace">
-                            <property name="label" translatable="yes">Convert tab to spaces</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">5</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="label6">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Tab width</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">6</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="nano_tabwidth">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">0</property>
-                            <property name="primary_icon_name">gtk-revert-to-saved</property>
-                            <property name="secondary_icon_name">gtk-delete</property>
-                            <property name="adjustment">nano_tabwidth.adjustment</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">7</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_colorui">
-                            <property name="label" translatable="yes">Change UI Colors</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">9</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.functions_fg.label">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Functions text color</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">10</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.functions_bg.label">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Functions background color</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">10</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="nano_functions_fg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">nano_color</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="nano_functions_fg.cellrenderer"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">11</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.keys_fg.label">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Keybindings text color</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">12</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.keys_bg.label">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Keybindings background color</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">12</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="nano_keys_fg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">nano_color</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="nano_keys_fg.cellrenderer"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">13</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="nano_keys_bg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">nano_color</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="nano_keys_bg.cellrenderer"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">13</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="nano_status_fg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">nano_color</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="nano_status_fg.cellrenderer"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">15</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="nano_status_bg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">nano_color</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="nano_status_bg.cellrenderer"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">15</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.status_fg.label">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Status text color</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">14</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.status_bg.label">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Status background color</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">14</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.title_fg.label">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Titlebar text color</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">16</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="nano.title_bg.label">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Titlebar background color</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">16</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="nano_title_fg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">nano_color</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">17</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="nano_title_bg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">nano_color</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="nano_title_bg.cellrenderer"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">17</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_boldtext">
-                            <property name="label" translatable="yes">Use bold text</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">19</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_mouse">
-                            <property name="label" translatable="yes">Enable Mouse Support</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">20</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_rbdel">
-                            <property name="label" translatable="yes">Rebind delete keys</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">21</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_morespace">
-                            <property name="label" translatable="yes">Have more space for editing</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">19</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton" id="nano_logpos">
-                            <property name="label" translatable="yes">Remember last position</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">20</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="nano_functions_bg">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">nano_color</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="nano_functions_bg.cellrenderer"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">11</property>
                           </packing>
                         </child>
                         <child>
@@ -5669,7 +5212,785 @@
                           </packing>
                         </child>
                         <child>
-                          <placeholder/>
+                          <object class="GtkSeparator" id="separator8">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">27</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_title_fg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_fg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">18</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_title_bg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_bg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_bg.cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">18</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.title_bg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Titlebar background color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">17</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_status_bg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_bg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_status_bg.cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">16</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.status_bg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Status background color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">15</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_keys_bg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_bg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_keys_bg.cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">14</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.keys_bg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Keybindings background color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_functions_bg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_bg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_functions_bg.cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.functions_bg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Functions background color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">11</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.title_fg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Titlebar text color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">17</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_status_fg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_fg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_status_fg.cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">16</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.status_fg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Status text color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">15</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_keys_fg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_fg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_keys_fg.cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">14</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.keys_fg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Keybindings text color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_functions_fg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_fg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_functions_fg.cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.functions_fg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Functions text color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">11</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_colorui">
+                            <property name="label" translatable="yes">Change UI Colors</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">10</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator7">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">9</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.label.editing">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Editing</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">4</property>
+                            <property name="height">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSpinButton" id="nano_tabwidth">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="text" translatable="yes">0</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                            <property name="adjustment">nano_tabwidth.adjustment</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">8</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.tab_width.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Tab width</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">7</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_nowrap">
+                            <property name="label" translatable="yes">No line wrapping</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">6</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_nohelp">
+                            <property name="label" translatable="yes">Hide shortcuts</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_indent">
+                            <property name="label" translatable="yes">Enable auto-indention</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_tabspace">
+                            <property name="label" translatable="yes">Convert tab to spaces</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">6</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_case">
+                            <property name="label" translatable="yes">Search case-sensitivley</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_colors">
+                            <property name="label" translatable="yes">Enable syntax highlighting</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator6">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">3</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_backup">
+                            <property name="label" translatable="yes">Backup files</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_line_numbers">
+                            <property name="label" translatable="yes">Show line numbers</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.guide_stripe.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Guide Stripe position</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">7</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSpinButton" id="nano_guide_stripe">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="text" translatable="yes">0</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                            <property name="adjustment">nano_guidestripe.adjustment</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">8</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.error_fg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Error text color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">19</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.error_bg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Error background color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">19</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.selected_fg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Selected text color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">21</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.selected_bg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Selected background color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">21</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.stripe_fg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Guide Stripe text color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">23</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.stripe_bg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Guide Stripe background color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">23</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_rbdel">
+                            <property name="label" translatable="yes">Rebind delete keys</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">30</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_mouse">
+                            <property name="label" translatable="yes">Enable Mouse Support</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">29</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_boldtext">
+                            <property name="label" translatable="yes">Use bold text</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">28</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_logpos">
+                            <property name="label" translatable="yes">Remember last position</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">29</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="nano_emptyspace">
+                            <property name="label" translatable="yes">Have more space for editing</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0.5</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">28</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.label.misc">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Misc</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">28</property>
+                            <property name="height">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.label.ui_colors">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">UI Colors</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">10</property>
+                            <property name="height">17</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.number_fg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Number text color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">25</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="nano.number_bg.label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Number background color</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">25</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_error_fg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_fg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer1"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">20</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_error_bg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_bg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer2"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">20</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_selected_fg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_fg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer3"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">22</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_selected_bg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_bg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer4"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">22</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_stripe_fg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_fg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer5"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">24</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_stripe_bg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_bg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer6"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">24</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_number_fg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_fg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer7"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">26</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="nano_number_bg">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="model">nano_bg_color</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="nano_title_fg.cellrenderer8"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">26</property>
+                          </packing>
                         </child>
                         <child>
                           <placeholder/>
