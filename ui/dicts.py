@@ -250,29 +250,30 @@ keybindings = {
 
 # IconView Stuff
 
-iconview_icons = ["bs-ng-style", "bs-ng-alias", "bs-ng-advanced",
-                  "bs-ng-shopts", "bs-ng-git", "bs-ng-readline",
-                  "bs-ng-vim", "bs-ng-nano", "bs-ng-ls", "bs-ng-man",
-                  "bs-ng-keys", "bs-ng-custom",  "bs-ng-config",
-                  "bs-ng-doc", "bs-ng-info", "bs-ng-shell"]
+iconview_icons = ["bashstyle-ng-style", "bashstyle-ng-alias", "bashstyle-ng-advanced",
+                  "bashstyle-ng-shopts", "bashstyle-ng-git", "bashstyle-ng-readline",
+                  "bashstyle-ng-vim", "bashstyle-ng-nano", "bashstyle-ng-ls",
+                  "bashstyle-ng-man", "bashstyle-ng-keys", "bashstyle-ng-custom",
+                  "bashstyle-ng-config", "bashstyle-ng-doc", "bashstyle-ng-info",
+                  "bashstyle-ng-shell"]
 
 iconview_labels = {
-    "bs-ng-style": _("General Style"),
-    "bs-ng-alias": _("Aliases"),
-    "bs-ng-advanced": _("Advanced"),
-    "bs-ng-readline": _("Readline"),
-    "bs-ng-vim": _("Vi improved"),
-    "bs-ng-nano": _("GNU Nano"),
-    "bs-ng-ls": _("LS colors"),
-    "bs-ng-custom": _("Custom Prompt"),
-    "bs-ng-shopts": _("Shell Options"),
-    "bs-ng-git": _("Git"),
-    "bs-ng-info": _("About"),
-    "bs-ng-keys": _("Keybindings"),
-    "bs-ng-config": _("Configuration"),
-    "bs-ng-doc": _("Documentation"),
-    "bs-ng-man": _("Manpage Colors"),
-    "bs-ng-shell": _("Start Terminal"),
+    "bashstyle-ng-style": _("General Style"),
+    "bashstyle-ng-alias": _("Aliases"),
+    "bashstyle-ng-advanced": _("Advanced"),
+    "bashstyle-ng-readline": _("Readline"),
+    "bashstyle-ng-vim": _("Vi improved"),
+    "bashstyle-ng-nano": _("GNU Nano"),
+    "bashstyle-ng-ls": _("LS colors"),
+    "bashstyle-ng-custom": _("Custom Prompt"),
+    "bashstyle-ng-shopts": _("Shell Options"),
+    "bashstyle-ng-git": _("Git"),
+    "bashstyle-ng-info": _("About"),
+    "bashstyle-ng-keys": _("Keybindings"),
+    "bashstyle-ng-config": _("Configuration"),
+    "bashstyle-ng-doc": _("Documentation"),
+    "bashstyle-ng-man": _("Manpage Colors"),
+    "bashstyle-ng-shell": _("Start Terminal"),
 }
 
 notebook_pages = {
