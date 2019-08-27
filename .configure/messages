@@ -68,7 +68,7 @@ end_message () {
 		 \n${YELLOW}Prefix\t\t\t${WHITE}>${MAGENTA} ${PREFIX}\
 		 \n${YELLOW}Python\t\t\t${WHITE}>${MAGENTA} ${PYTHON}"
 
-	if [[ ${DISABLE_POSTINSTALL} ]]; then
+	if [ ${DISABLE_POSTINSTALL} -eq 1 ]; then
 		echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
 	else	echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
 	fi

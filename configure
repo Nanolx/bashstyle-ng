@@ -31,8 +31,8 @@ for opt in ${@}; do
 		--datadir=* )		DATADIR="${opt/*=}" ;;
 		--python=* )		PYTHON="${opt/*=}" ;;
 		--help | -h )		help_message ;;
-		--no-postinstall )	DISABLE_POSTINSTALL=1
-					echo "DISABLE_POSTINSTALL=1" >> "${PWD}/.configure/results" ;;
+		--no-postinstall )	DISABLE_POSTINSTALL=1 ;;
+		* )			echo "unknown option: ${opt}" ;;
 	esac
 	shift
 done
