@@ -38,7 +38,7 @@ PYMINVER=${PYMINVER_P//.}
 PYMAXVER=${PYMAXVER_P//.}
 
 for lang in "${APP_LANGUAGES[@]}"; do
-	LC_MESSAGES_DIRS="${LC_MESSAGES_DIRS} ${lang}/LC_MESSAGES"
+	LC_MESSAGES_DIRS+="${lang}/LC_MESSAGES"
 done
 
 export OLDPATH=${PATH}
@@ -53,10 +53,10 @@ DOCDIR=\"${DOCDIR}/bashstyle-ng\"
 MANDIR=\"${MANDIR}/man1\"
 BINDIR=\"${BINDIR}\"
 LOCALEDIR=\"${DATADIR}/locale\"
-LOCALEDIR_LIST=( ${LC_MESSAGES_DIRS} )
+LOCALEDIR_LIST=(${LC_MESSAGES_DIRS})
 ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps\"
 DESKTOPDIR=\"${DATADIR}/applications\"
 PCDIR=\"${PCDIR}\"
-APP_LANGUAGES=\"${APP_LANGUAGES}\"" | \
-	sed -e 's,//,/,g' >> "${PWD}"/.configure/results
+APP_LANGUAGES=\"${APP_LANGUAGES}\"" \
+	>> "${PWD}"/.configure/results
 }
