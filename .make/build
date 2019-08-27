@@ -32,7 +32,7 @@ build_doc_html () {
 do_gzip_man () {
 	echo -e "\t${WHITE}+ ${MAGENTA} compressing manpages"
 	for manpage in "${MAN_FILES[@]}"; do
-		gzip "${PWD}/${manpage/:*}" > "${PWD}/${manpage/:*}.gz"
+		gzip -c "${PWD}/${manpage/:*}" > "${PWD}/${manpage/:*}.gz"
 	done
 }
 
