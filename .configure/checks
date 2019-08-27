@@ -20,7 +20,7 @@ check () {
 
 check_helper () {
 	[[ "${BUILD[*]}" ]] && (section_message BUILD && check_apps "false" "${BUILD[@]}")
-	[[ "${OPT_BUILD[*]}" ]] && (section_message OPT_BUILD && check_apps "false" "${OPT_BUILD[@]}")
+	[[ "${OPT_BUILD[*]}" ]] && (section_message OPT_BUILD && check_apps "true" "${OPT_BUILD[@]}")
 	[[ "${APPS[*]}" ]] && (section_message APP && check_apps "false" "${APPS[@]}")
 	[[ "${OPT_APPS[*]}" ]] && (section_message OPT_APP && check_apps "true" "${OPT_APPS[@]}")
 	[[ "${SAPPS[*]}" ]] && (section_message SBINAPP && check_apps "false" "${SAPPS[@]}")
