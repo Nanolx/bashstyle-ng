@@ -13,7 +13,7 @@ IN_FILES=(rc/bashstyle-rc data/bashstyle data/bashstyle-config-helper data/bashs
 
 copy_in_files () {
 	for in_file in "${IN_FILES[@]}"; do
-		cp "${in_file}".in "${in_file}";
+		cp "${in_file}".in "${in_file}"
 	done
 }
 

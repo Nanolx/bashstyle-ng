@@ -1,5 +1,5 @@
-APPS=( bash gawk grep sed bc less )
-OPT_APPS=( "acpi:systemkit battery won't work"
+APPS=(bash gawk grep sed bc less)
+OPT_APPS=("acpi:systemkit battery won't work"
 "lspci:systemkit pci won't work"
 "lsusb:systemkit usb won't work"
 "wget:systemkit externalip won't work"
@@ -8,12 +8,12 @@ OPT_APPS=( "acpi:systemkit battery won't work"
 "aapt:apkdump won't work"
 "xmlindent:xmlpager won't work"
 "ffmpeg:movie2gif won't work"
-"dig:check m won't work" )
+"dig:check m won't work")
 
 SAPPS=( )
-OPT_SAPPS=( "dmidecode:systemkit bios won't work" )
+OPT_SAPPS=("dmidecode:systemkit bios won't work")
 
-BUILD=( "msgfmt:can't build translation files" )
+BUILD=("msgfmt:can't build translation files")
 
 LIBS=( )
 OPT_LIBS=( )
@@ -21,5 +21,5 @@ OPT_LIBS=( )
 GIR=( )
 OPT_GIR=( )
 
-PYMODS=( gettext gi.repository:Gtk configobj shutil )
+PYMODS=(gettext gi.repository:Gtk configobj shutil)
 OPT_PYMODS=( )

@@ -37,8 +37,6 @@ for opt in ${@}; do
 	shift
 done
 
-[ -z "${GIRPATH}" ] && missing_girpath_message
-
 start_message
 check_helper
 copy_in_files

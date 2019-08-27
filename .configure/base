@@ -14,12 +14,14 @@ APP_VERSION=10.6.1
 APP_CODENAME="Aventine II"
 APP_LANGUAGES="de"
 
-CFG_VERSION="4.4.4"
+CFG_VERSION="4.4.5"
 
 if [[ -d "/usr/lib/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib/girepository-1.0"
 elif [[ -d "/usr/lib64/girepository-1.0/" ]]; then
 	export GIRPATH="/usr/lib64/girepository-1.0"
+else
+	missing_girpath_message
 fi
 
 PREFIX="/usr"
@@ -58,5 +60,5 @@ ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps\"
 DESKTOPDIR=\"${DATADIR}/applications\"
 PCDIR=\"${PCDIR}\"
 APP_LANGUAGES=\"${APP_LANGUAGES}\"" \
-	>> "${PWD}"/.configure/results
+	> "${PWD}"/.configure/results
 }

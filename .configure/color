@@ -17,7 +17,7 @@ MAGENTA="\033[01;35m"
 CYAN="\033[01;36m"
 WHITE="\033[01;37m"
 
-if [[ ${TERM} != *xterm* ]]; then
+if [[ ${TERM} != *xterm*color* ]]; then
 	SMOOTHBLUE=${BLUE}
 	ORANGE=${YELLOW}
 	CREAM=${MAGENTA}
