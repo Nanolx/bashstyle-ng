@@ -10,23 +10,23 @@
 #########################################################
 
 check_configure () {
-	if [[ ! -e .configure/results ]]; then
+	if [[ ! -f "${PWD}/.configure/results" ]]; then
 		run_configure_message
 		exit 1
-	else	source "${PWD}"/.configure/results
-		source "${PWD}"/.make/files
+	else	source "${PWD}/.configure/results"
+		source "${PWD}/.make/files"
 	fi
 }
 
 check_built () {
-	if [[ ! -e "${PWD}"/.make/build_done ]]; then
+	if [[ ! -f "${PWD}/.make/build_done" ]]; then
 		run_make_build_message
 		exit 1
 	fi
 }
 
 check_root () {
-	if [[ ${EUID} != 0 ]]; then
+	if [[ ${EUID} -ne 0 ]]; then
 		check_root_message "${1}"
 		exit 1
 	fi

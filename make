@@ -9,16 +9,16 @@
 #							#
 #########################################################
 
-CF_MODULES=( base color )
-MK_MODULES=( build install messages checks actions )
-MK_VERSION=1.1.2
+CF_MODULES=(base color)
+MK_MODULES=(build install messages checks actions)
+MK_VERSION=1.1.3
 
 for mod in "${CF_MODULES[@]}"; do
-	source "${PWD}"/.configure/"${mod}"
+	source "${PWD}/.configure/${mod}"
 done
 
 for mod in "${MK_MODULES[@]}"; do
-	source "${PWD}"/.make/"${mod}"
+	source "${PWD}/.make/${mod}"
 done
 
 if [[ $# -eq 0 ]]; then

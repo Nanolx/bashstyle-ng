@@ -11,52 +11,49 @@
 
 build_news () {
 	echo -e "\t${WHITE}+ ${MAGENTA} NEWS file"
-	makeinfo --no-validate  --no-headers doc/news.texi > NEWS
+	makeinfo --no-validate  --no-headers "${PWD}/doc/news.texi" > NEWS
 }
 
 build_readme () {
 	echo -e "\t${WHITE}+ ${MAGENTA} README file"
-	makeinfo --no-validate  --no-headers doc/userdoc_introduction.texi > README
+	makeinfo --no-validate  --no-headers "${PWD}/doc/userdoc_introduction.texi" > README
 }
 
 build_doc_info () {
 	echo -e "\t${WHITE}+ ${MAGENTA} Info documentation"
-	makeinfo -I "${PWD}"/doc/ doc/userdoc.texi -o doc/bashstyle.info
+	makeinfo -I "${PWD}/doc/" "${PWD}/doc/userdoc.texi" -o "${PWD}/doc/bashstyle.info"
 }
 
 build_doc_html () {
 	echo -e "\t${WHITE}+ ${MAGENTA} HTML documenation"
-	makeinfo -I "${PWD}"/doc/ --html doc/userdoc.texi -o doc/html
+	makeinfo -I "${PWD}/doc/" --html "${PWD}/doc/userdoc.texi" -o "${PWD}/doc/html"
 }
 
 do_gzip_man () {
 	echo -e "\t${WHITE}+ ${MAGENTA} compressing manpages"
 	for manpage in "${MAN_FILES[@]}"; do
-		gzip "${PWD}"/"${manpage/:*}" -c > "${PWD}"/"${manpage/:*}".gz
+		gzip "${PWD}/${manpage/:*}" > "${PWD}/${manpage/:*}.gz"
 	done
 }
 
 generate_pot () {
-
 	if [[ ! -f .configure/results ]]; then
 		echo -e "\n${RED}You need to run './configure' first!\n"
 		exit 1
 	else
 		echo -e "\t${WHITE}+ ${MAGENTA} translation templates"
 		echo -e "\t${WHITE}  *${YELLOW} bashstyle.pot"
-		intltool-extract --type=gettext/glade ui/bashstyle.ui >/dev/null
-		xgettext -L python --from-code=utf-8 --keyword=_ --keyword=N_ --output=i18n/bashstyle.pot \
-			ui/*.py ui/bashstyle.ui.h >/dev/null
+		intltool-extract --type=gettext/glade "ui/bashstyle.ui" >/dev/null
+		xgettext -L python --from-code=utf-8 --keyword=_ --keyword=N_ --output="${PWD}/i18n/bashstyle.pot" \
+			"${PWD}/ui"/*.py "${PWD}/ui/bashstyle.ui.h" >/dev/null
 
 		echo -e "\t${WHITE}  *${YELLOW} bashstyle-rc.pot"
-		xgettext -o i18n/bashstyle-rc.pot -L shell --from-code=utf-8 \
-			rc/bashstyle-rc rc/settings/*-rc 2>/dev/null
+		xgettext -o "${PWD}/i18n/bashstyle-rc.pot" -L shell --from-code=utf-8 \
+			"${PWD}/rc/bashstyle-rc" "${PWD}/rc"/settings_* 2>/dev/null
 	fi
-
 }
 
 update_po () {
-
 	if [[ ! -f .configure/results ]]; then
 		echo -e "\n${RED}You need to run './configure' first!\n"
 		exit 1
@@ -78,23 +75,20 @@ update_po () {
 				i18n/"${lang}"/bashstyle-rc.po i18n/bashstyle-rc.pot >/dev/null
 		done
 	fi
-
 }
 
 generate_mo () {
-
 	echo -e "\t${WHITE}+ ${MAGENTA} gui translations"
 	for lang in ${APP_LANGUAGES}; do
 		echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
-		msgfmt --output-file=i18n/"${lang}"/bashstyle.mo \
-			i18n/"${lang}"/bashstyle.po
+		msgfmt --output-file="${PWD}/i18n/${lang}/bashstyle.mo" \
+			"${PWD}/i18n/${lang}/bashstyle.po"
 	done
 
 	echo -e "\t${WHITE}+ ${MAGENTA} bashstyle-rc translations"
 	for lang in ${APP_LANGUAGES}; do
 		echo -e "\t${WHITE}  *${SMOOTHBLUE} ${lang}"
-		msgfmt --output-file=i18n/"${lang}"/bashstyle-rc.mo \
-			i18n/"${lang}"/bashstyle-rc.po
+		msgfmt --output-file="${PWD}/i18n/${lang}/bashstyle-rc.mo" \
+			"${PWD}/i18n/${lang}/bashstyle-rc.po"
 	done
-
 }

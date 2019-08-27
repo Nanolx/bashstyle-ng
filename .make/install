@@ -10,14 +10,14 @@
 #########################################################
 
 post_install () {
-	if [[ ! ${DISABLE_POSTINSTALL} ]]; then
+	if [ ${DISABLE_POSTINSTALL} -ne 1 ]; then
 		post_install_message
 		gtk-update-icon-cache -q -f "${PREFIX}"/share/icons/hicolor
 	fi
 }
 
 post_remove () {
-	echo -n
+	return 0
 }
 
 installdirs_create ()

@@ -9,36 +9,36 @@
 #							#
 #########################################################
 
-DATA_FILES=( ui/*.{py,ui}:${DATADIR}/ui
-	     rc/bashstyle-rc:${DATADIR}/rc
-	     rc/internal_*:${DATADIR}/rc
-	     rc/settings_*:${DATADIR}/rc
-	     rc/styles_*:${DATADIR}/rc
-	     data/bashstyle-ng.ini:${DATADIR}
-	     data/bashstyle-ng.desktop:${DESKTOPDIR} )
+DATA_FILES=(ui/*.{py,ui}:${DATADIR}/ui
+	    rc/bashstyle-rc:${DATADIR}/rc
+	    rc/internal_*:${DATADIR}/rc
+	    rc/settings_*:${DATADIR}/rc
+	    rc/styles_*:${DATADIR}/rc
+	    data/bashstyle-ng.ini:${DATADIR}
+	    data/bashstyle-ng.desktop:${DESKTOPDIR})
 
-DOC_FILES=( doc/html/*.html:${DOCDIR} )
-MAN_FILES=( doc/bashstyle.1:${MANDIR} )
+DOC_FILES=(doc/html/*.html:${DOCDIR})
+MAN_FILES=(doc/bashstyle.1:${MANDIR})
 
 for lang in ${APP_LANGUAGES}; do
-	LOCALE_REMOVE=( ${LOCALE_REMOVE[@]} ${LOCALEDIR}/${lang}/{bashstyle,bashstyle-rc}.mo)
-	LOCALE_FILES=( i18n/${lang}/*.mo:${LOCALEDIR}/${lang}/LC_MESSAGES )
+	LOCALE_REMOVE=(${LOCALE_REMOVE[@]} ${LOCALEDIR}/${lang}/{bashstyle,bashstyle-rc}.mo)
+	LOCALE_FILES=(i18n/${lang}/*.mo:${LOCALEDIR}/${lang}/LC_MESSAGES)
 done
 
-BIN_FILES=( data/bashstyle:${BINDIR}
-	    data/bashstyle-config-helper:${BINDIR}
-	    functions/*:${DATADIR}/functions)
+BIN_FILES=(data/bashstyle:${BINDIR}
+	   data/bashstyle-config-helper:${BINDIR}
+	   functions/*:${DATADIR}/functions)
 
-ICON_FILES=( data/icons/*.png:${ICONDIR} )
+ICON_FILES=(data/icons/*.png:${ICONDIR})
 
-PC_FILES=( data/bashstyle-ng.pc:${PCDIR} )
+PC_FILES=(data/bashstyle-ng.pc:${PCDIR})
 
-REMOVE_FILES=( ${LOCALE_REMOVE[@]}
-	       ${BINDIR}/bashstyle
-	       ${BINDIR}/bashtsyle-config-helper
-	       ${ICONDIR}/bashstyle-ng*.png
-	       ${PCDIR}/bashstyle-ng.pc
-	       ${MANDIR}/bashstyle.1
-	       ${DATADIR}
-	       ${DESKTOPDIR}/bashstyle-ng.desktop
-	       ${DOCDIR} )
+REMOVE_FILES=(${LOCALE_REMOVE[@]}
+	      ${BINDIR}/bashstyle
+	      ${BINDIR}/bashtsyle-config-helper
+	      ${ICONDIR}/bashstyle-ng*.png
+	      ${PCDIR}/bashstyle-ng.pc
+	      ${MANDIR}/bashstyle.1
+	      ${DATADIR}
+	      ${DESKTOPDIR}/bashstyle-ng.desktop
+	      ${DOCDIR})
