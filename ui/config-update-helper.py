@@ -85,6 +85,16 @@ interpreter.")
             default=False, help=_("reset user configuration and exit")
         )
 
+        parser.add_option(
+            "-E", "--enable", dest="enable", action="store_true",
+            default=False, help=_("enable BashStyle-NG")
+        )
+
+        parser.add_option(
+            "-D", "--disable", dest="disable", action="store_true",
+            default=False, help=_("disable BashStyle-NG")
+        )
+
         (options, args) = parser.parse_args()
 
         if options.version:
@@ -108,6 +118,12 @@ interpreter.")
 
         if options.reset:
             cfg.ResetConfig(False)
+
+        if options.enable:
+            cfg.EnableBashStyle(True)
+
+        if options.disable:
+            cfg.EnableBashStyle(False)
 
 
 if __name__ == "__main__":

@@ -85,6 +85,16 @@ interpreter.")
         default=False, help=_("set the value of the specified setting")
     )
 
+    parser.add_option(
+        "-E", "--enable", dest="enable", action="store_true",
+        default=False, help=_("enable BashStyle-NG")
+    )
+
+    parser.add_option(
+        "-D", "--disable", dest="disable", action="store_true",
+        default=False, help=_("disable BashStyle-NG")
+    )
+
     (options, args) = parser.parse_args()
 
     if options.version:

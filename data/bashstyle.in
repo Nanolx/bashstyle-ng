@@ -30,7 +30,7 @@ case ${1} in
 		xdg-open "${BSNG_DATADIR}/doc/bashstyle-ng/index.html"
 	;;
 
-	--update | -u | --backup | -b | --restore | -r | --reset | -R )
+	--update | -u | --backup | -b | --restore | -r | --reset | -R | -E | --enable | -D | --disable )
 		@PYTHON@ "${BSNG_DATADIR}/bashstyle-ng/ui/config-update-helper.py" "${@}"
 	;;
 
