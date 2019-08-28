@@ -98,6 +98,11 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("equinox_lastcmd", "Style", "equinox_lastcmd", "bool", None)
 		WidgetHandler.InitWidget("equinox_uptime", "Style", "equinox_uptime", "bool", None)
 
+		WidgetHandler.InitWidget("user_char", "Style", "user_char", "text", None)
+		WidgetHandler.InitWidget("return_good", "Style", "return_good", "text", None)
+		WidgetHandler.InitWidget("return_bad", "Style", "return_bad", "text", None)
+		WidgetHandler.InitWidget("return_other", "Style", "return_other", "text", None)
+
 		####################### Aliases ####################################################
 		WidgetHandler.InitWidget("alias1", "Alias", "alias_one", "text", None)
 		WidgetHandler.InitWidget("alias2", "Alias", "alias_two", "text", None)
@@ -156,10 +161,9 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("globignore", "Advanced", "glob_ignore", "text", None)
 		WidgetHandler.InitWidget("history_sync", "Advanced", "history_sync", "bool", None)
 		WidgetHandler.InitWidget("history_isolate", "Advanced", "history_isolate", "bool", None)
-		WidgetHandler.InitWidget("user_char", "Style", "user_char", "text", None)
-		WidgetHandler.InitWidget("return_good", "Style", "return_good", "text", None)
-		WidgetHandler.InitWidget("return_bad", "Style", "return_bad", "text", None)
-		WidgetHandler.InitWidget("return_other", "Style", "return_other", "text", None)
+		WidgetHandler.InitWidget("enable_bat", "Advanced", "use_bat", "bool", None)
+		WidgetHandler.InitWidget("bat_tabwidth", "Advanced", "bat_tabwidth", "int", None)
+		WidgetHandler.InitWidget("bat_theme", "Advanced", "bat_theme", "combo", dicts.bat_themes)
 
 		####################### Readline stuff #############################################
 		WidgetHandler.InitWidget("use_readline", "Readline", "use_readlinecfg", "switch", None)

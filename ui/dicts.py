@@ -371,3 +371,21 @@ symbolic_colors_ps1 = {
     8: "${color_uptime}",
     9: "${color_ps}",
 }
+
+bat_themes = {
+    0: "1337",
+    1: "DarkNeon",
+    2: "GitHub",
+    3: "Monokai Extended",
+    4: "Monokai Extended Bright",
+    5: "Monokai Extended Light",
+    6: "Monokai Extended Origin",
+    7: "OneHalfDark",
+    8: "OneHalfLight",
+    9: "Sublime Snazzy",
+    10: "TwoDark",
+    11: "ansi-dark",
+    12: "ansi-light",
+    13: "base16",
+    14: "zenburn",
+}

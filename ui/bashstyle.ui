@@ -14,6 +14,64 @@
     <property name="upper">10000</property>
     <property name="step_increment">1</property>
   </object>
+  <object class="GtkAdjustment" id="advanced.liststore.bat_tabwidth">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkListStore" id="advanced.liststore.bat_theme">
+    <columns>
+      <!-- column-name item -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">1337</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">DarkNeon</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">GitHub</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Monokai Extended</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Monokai Extended Bright</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Monokai Extended Light</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Monokai Extended Origin</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">OneHalfDark</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">OneHalfLight</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sublime Snazzy</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TwoDark</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">ansi-dark</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">ansi-light</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">base16</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">zenburn</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkListStore" id="advanced.liststore.history_control">
     <columns>
       <!-- column-name item -->
@@ -3807,6 +3865,110 @@
                             <property name="left_attach">1</property>
                             <property name="top_attach">5</property>
                           </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">4</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">35</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.bat">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">bat</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">36</property>
+                            <property name="height">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="enable_bat">
+                            <property name="label" translatable="yes">Use bat instead of cat</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">36</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="bat_theme">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">advanced.liststore.bat_theme</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour24"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">38</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.bat_theme">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">Choose bat Theme</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">37</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.bat_tabwidth">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="label" translatable="yes">Set bat Tab Width</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">37</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSpinButton" id="bat_tabwidth">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">•</property>
+                            <property name="text" translatable="yes">0</property>
+                            <property name="primary_icon_name">gtk-revert-to-saved</property>
+                            <property name="secondary_icon_name">gtk-delete</property>
+                            <property name="adjustment">advanced.liststore.bat_tabwidth</property>
+                            <property name="climb_rate">1</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">38</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <placeholder/>

@@ -21,7 +21,7 @@ export BSNG_BASHVER=${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}
 export BSNG_LOGFILE=${HOME}/.bashstyle-ng.log
 export BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
 export BASH_SESSION_PID=$$
-INI_VERSION=36
+INI_VERSION=37
 
 if [[ ! -z "${TMPDIR}" ]]; then
 	export BSNG_TMPDIR=${TMPDIR}
@@ -358,11 +358,12 @@ ccd() {
 }
 
 if bt $(ini_get use_treecd); then
-	if which tree; then
+	if which tree >/dev/null; then
 		dbg_log alias cd=ccd
 		dbg_log export TREECD=True
 		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
 		bf $(ini_get enable_colors) && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
+		dbg_msg $"using treecd wrapper for cd"
 	else	dbg_msg $"tree not found, not using treecd as cd replacement"
 	fi
 fi
@@ -372,6 +373,7 @@ if bt $(ini_get use_lscd); then
 	dbg_log export LSCD=True
 	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
 	bf $(ini_get enable_colors) && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
+	dbg_msg $"using lscd wrapper for cd"
 fi
 
 reload_bash () {
