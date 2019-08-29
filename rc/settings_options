@@ -79,7 +79,7 @@ DD_OPTS=""
 
 if bt $(ini_get dd_noerror); then
 	dbg_msg $"BashStyle-NG Setting:" dd $"don't abort at errors"
-	dbg_log export DD_OPTS+="conv=noerror"
+	dbg_log export DD_OPTS+="conv=noerror "
 fi
 
 # status=progress is new in dd/coreutils 8.24
@@ -87,7 +87,7 @@ DD_VERSION="$(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version))"
 
 if bt $(ini_get dd_progress) -a ${DD_VERSION} -ge 824; then
 	dbg_msg $"BashStyle-NG Setting:" dd $"display progressbar"
-	dbg_log export DD_OPTS+="status=progress"
+	dbg_log export DD_OPTS+="status=progress "
 elif bt $(ini_get dd_progress); then
 	dbg_msg $"BashStyle-NG Setting:" dd $"display progressbar" \
 		$"was requested by user, but coreutils is not 8.24 or newer"
