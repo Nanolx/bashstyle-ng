@@ -126,7 +126,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 		rc_add "unset tabstospaces"
 	fi
 
-	if bt $(ini_get line_number); then
+	if bt $(ini_get line_numbers); then
 		dbg_msg $"NanoCFG Setting:" Line Numbers $"On"
 		rc_add "set linenumbers"
 	else
