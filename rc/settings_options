@@ -65,7 +65,7 @@ if bt $(ini_get colored_grep) -a bt $(ini_get enable_colors); then
 	# make black (01;38;5;0) white on dark terminal
 	# make white (01;38;5;97) black on bright terminal
 	[[ $(bt $(ini_get dark_terminal)) && ${GREP_COLOR} == "01;38;5;0" ]] && GREP_COLOR="01;38;5;97"
-	[[ $(check bf $(ini_get dark_terminal)) && ${GREP_COLOR} == "01;38;5;97" ]] && GREP_COLOR="01;38;5;0"
+	[[ $(bf $(ini_get dark_terminal)) && ${GREP_COLOR} == "01;38;5;97" ]] && GREP_COLOR="01;38;5;0"
 
 else	dbg_msg $"BashStyle-NG Setting:" Colored grep $"Off"
 	alias grep="grep --color=no"
