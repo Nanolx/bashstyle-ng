@@ -1,0 +1,57 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG					#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2019 Christopher Bratusek		#
+#							#
+#########################################################
+
+assign() {
+	for opt in "${@}"; do
+		var="X=\$${opt/:*}"
+		eval "${var}"
+		[ -z "${X}" ] && read -r "${opt/:*}" <<< "${opt/*:}"
+	done
+}
+
+while getopts a:e:h:l:n:o:s:v:y: opts
+do
+	case "${opts}" in
+		a) AUTHOR="${OPTARG}" ;;
+		e) EMAIL="${OPTARG}" ;;
+		h) HOMEPAGE="${OPTARG}" ;;
+		l) LICENSE="${OPTARG}" ;;
+		n) NAME="${OPTARG}" ;;
+		o) OPTIONS+=( "${OPTARG}" ) ;;
+		s) SHORT_DESC="${OPTARG}" ;;
+		v) VERSION="${OPTARG}" ;;
+		y) YEAR="${OPTARG}" ;;
+	esac
+done
+
+assign NAME:not_given SHORT_DESC:not_given OPTIONS:not_given VERSION:not_given AUTHOR:not_given\
+	EMAIL:not_given HOMEPAGE:not_given LICENSE:not_given YEAR:not_given
+
+echo -e "\n${egreen}${NAME} ${eyellow}(${VERSION}) ${ecyan}help
+\n\033[8G${ewhite}-- ${emagenta}${SHORT_DESC} ${ewhite}--
+\n\033[8G${ewhite}(c) ${YEAR}: ${eblue}${AUTHOR} ${ewhite}<${ered}${EMAIL}${ewhite}>
+\033[8G${ecyan}License: ${ered}${LICENSE}${ewhite} // ${ecyan}Homepage: ${emagenta}${HOMEPAGE}\n"
+
+EX="${eorange}Options \033[25G${ewhite}(${eblue}Values${ewhite})\033[65G ${egreen}Description\n"
+EX+="${eorange}======= \033[25G${ewhite}=${eblue}======${ewhite}=\033[65G ${egreen}===========\n"
+
+for opt in "${OPTIONS[@]}"; do
+	OPT=${opt/:*}
+	VAL=${opt/|*}
+	VAL=${VAL/*:}
+	[[ -z ${VAL} ]] && VAL="---"
+	DESC=${opt/*|}
+	EX+="${eorange}${OPT} \033[25G${ewhite}[${eblue}${VAL}${ewhite}]\033[65G ${egreen}${DESC}\n"
+done
+echo -e "${EX}"
+tput sgr0
+
+unset NAME SHORT_DESC OPTIONS VERSION AUTHOR EMAIL HOMEPAGE LICENSE YEAR
