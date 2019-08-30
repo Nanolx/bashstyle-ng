@@ -30,6 +30,10 @@ BIN_FILES=(data/bashstyle:${BINDIR}
 	   data/bashstyle-config-helper:${BINDIR}
 	   functions/*:${BINDIR})
 
+for function in functions/*; do
+	BIN_REMOVE=(${BIN_REMOVE[@]} ${BINDIR}/$(basename ${function}))
+done
+
 ICON_FILES=(data/icons/*.png:${ICONDIR})
 
 PC_FILES=(data/bashstyle-ng.pc:${PCDIR})
@@ -37,6 +41,7 @@ PC_FILES=(data/bashstyle-ng.pc:${PCDIR})
 REMOVE_FILES=(${LOCALE_REMOVE[@]}
 	      ${BINDIR}/bashstyle
 	      ${BINDIR}/bashtsyle-config-helper
+	      ${BIN_REMOVE[@]}
 	      ${ICONDIR}/bashstyle-ng*.png
 	      ${PCDIR}/bashstyle-ng.pc
 	      ${MANDIR}/bashstyle.1
