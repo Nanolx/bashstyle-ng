@@ -38,7 +38,7 @@ fi
 alias bt="check bt"
 alias bf="check bf"
 
-for module in ini log cd colorshell colorshell_reset help history \
+for module in ini log cd colorshell colorshell_reset history \
 	history_sync reload_bash remember_command_debug trap_add \
 	remember_command_error remember_directory remove_tempfile; do
 	source ${BSNG_RCDIR}/function_${module}
