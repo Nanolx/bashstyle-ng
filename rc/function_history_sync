@@ -31,19 +31,21 @@ ignorehistoryboth () {
 	ignorehistoryspc
 }
 
-if [[ ! ${lastcommand} == history* ]]; then
-	builtin history -a
-	builtin history -c
+bashstyle-history-sync () {
+	if [[ ! ${lastcommand} == history* ]]; then
+		builtin history -a
+		builtin history -c
 
-	case ${HISTCONTROL} in
-		erasedups )	_erasehistorydups ;;
-		ignoredups)	_ignorehistorydups ;;
-		ignorespace)	_ignorehistorspc ;;
-		ignoreboth)	_ignorehistoryboth ;;
-	esac
+		case ${HISTCONTROL} in
+			erasedups )	erasehistorydups ;;
+			ignoredups)	ignorehistorydups ;;
+			ignorespace)	ignorehistorspc ;;
+			ignoreboth)	ignorehistoryboth ;;
+		esac
 
-	if [[ -f ${HISTFILE}.tmp ]]; then
-		mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
-		builtin history -r
+		if [[ -f ${HISTFILE}.tmp ]]; then
+			mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
+			builtin history -r
+		fi
 	fi
-fi
+}

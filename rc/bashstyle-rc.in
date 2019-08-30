@@ -13,7 +13,6 @@
 TEXTDOMAIN="bashstyle-rc"
 
 export BSNG_PREFIX=@PREFIX@
-export BSNG_EXECDIR=@EXECDIR@
 export BSNG_DATADIR=@DATADIR@
 export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
@@ -39,8 +38,11 @@ fi
 alias bt="check bt"
 alias bf="check bf"
 
-source ${BSNG_RCDIR}/internal_misc
-source ${BSNG_RCDIR}/internal_logging
+for module in ini log cd colorshell colorshell_reset help history \
+	history_sync reload_bash remember_command_debug trap_add \
+	remember_command_error remember_directory remove_tempfile; do
+	source ${BSNG_RCDIR}/function_${module}
+done
 
 dbg_log rm -f "${BSNG_LOGFILE}"
 dbg_log touch "${BSNG_LOGFILE}"
@@ -68,9 +70,6 @@ fi
 
 [[ ${PATH} != *${HOME}/bin* && -d ${HOME}/bin ]] && \
 	export PATH="${PATH}:${HOME}/bin"
-
-[[ ${PATH} != *${BSNG_EXECDIR}* ]] && \
-	export PATH="${PATH}:${BSNG_EXECDIR}"
 
 bt $(ini_get path_wd) && export PATH="${PATH}:."
 
@@ -210,8 +209,6 @@ elif [[ ! -z $(ini_get welcome_message) ]]; then
 	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
 	dbg_log $(ini_get welcome_message)
 fi
-
-source "${BSNG_EXECDIR}/bashstyle-cd"
 
 if bt $(ini_get history_isolate); then
 	dbg_msg $"BashStyle-NG Setting:" $"History Isolation" $"On"

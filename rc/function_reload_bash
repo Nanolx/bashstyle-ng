@@ -9,8 +9,10 @@
 #							#
 #########################################################
 
-#xk2c from commandlinefu.com
-builtin unalias -a
-builtin unset -f "$(builtin compgen -A function)"
-[ -f /etc/bash_completion ] && source /etc/bash_completion
-source "${HOME}"/.bashrc
+bashstyle-reload-bash () {
+	#xk2c from commandlinefu.com
+	builtin unalias -a
+	builtin unset -f "$(builtin compgen -A function)"
+	[ -f /etc/bash_completion ] && source /etc/bash_completion
+	source "${HOME}"/.bashrc
+}

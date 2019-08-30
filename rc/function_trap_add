@@ -15,12 +15,14 @@ log () { printf '%s\n' "$*"; }
 error () { log "ERROR: $*" >&2; }
 fatal () { error "$@"; exit 1; }
 
-trap_add_cmd=$1; shift || fatal "${FUNCNAME[0]} usage error"
-for trap_add_name in "$@"; do
-trap -- "$(
-    extract_trap_cmd() { printf '%s\n' "$3"; }
-    eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
-    printf '%s\n' "${trap_add_cmd}"
-)" "${trap_add_name}" \
-    || fatal "unable to add to trap ${trap_add_name}"
-done
+bashstyle-trap-add () {
+    trap_add_cmd=$1; shift || fatal "${FUNCNAME[0]} usage error"
+    for trap_add_name in "$@"; do
+    trap -- "$(
+        extract_trap_cmd() { printf '%s\n' "$3"; }
+        eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
+        printf '%s\n' "${trap_add_cmd}"
+    )" "${trap_add_name}" \
+        || fatal "unable to add to trap ${trap_add_name}"
+    done
+}

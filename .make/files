@@ -14,6 +14,7 @@ DATA_FILES=(ui/*.{py,ui}:${DATADIR}/ui
 	    rc/internal_*:${DATADIR}/rc
 	    rc/settings_*:${DATADIR}/rc
 	    rc/styles_*:${DATADIR}/rc
+	    rc/function_*:${DATADIR}/rc
 	    data/bashstyle-ng.ini:${DATADIR}
 	    data/bashstyle-ng.desktop:${DESKTOPDIR})
 
@@ -27,8 +28,7 @@ done
 
 BIN_FILES=(data/bashstyle:${BINDIR}
 	   data/bashstyle-config-helper:${BINDIR}
-	   functions/*:${BINDIR}
-	   libexec/*:${EXECDIR})
+	   functions/*:${BINDIR})
 
 ICON_FILES=(data/icons/*.png:${ICONDIR})
 
