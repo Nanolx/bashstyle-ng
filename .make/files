@@ -27,7 +27,8 @@ done
 
 BIN_FILES=(data/bashstyle:${BINDIR}
 	   data/bashstyle-config-helper:${BINDIR}
-	   functions/*:${DATADIR}/functions)
+	   functions/*:${BINDIR}
+	   libexec/*:${EXECDIR})
 
 ICON_FILES=(data/icons/*.png:${ICONDIR})
 

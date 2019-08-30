@@ -1,0 +1,49 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2019 Christopher Bratusek		#
+#							#
+#########################################################
+
+erasehistorydups () {
+	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
+		tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
+		tac | sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
+}
+
+ignorehistorydups () {
+	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
+		gawk -F'HISTDILIMITER' '!x[$2]++' | \
+		sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
+}
+
+ignorehistoryspc () {
+	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
+		sed -e '/HISTDILIMITER /d' > "${HISTFILE}".tmp
+}
+
+ignorehistoryboth () {
+	ignorehistorydups
+	ignorehistoryspc
+}
+
+if [[ ! ${lastcommand} == history* ]]; then
+	builtin history -a
+	builtin history -c
+
+	case ${HISTCONTROL} in
+		erasedups )	_erasehistorydups ;;
+		ignoredups)	_ignorehistorydups ;;
+		ignorespace)	_ignorehistorspc ;;
+		ignoreboth)	_ignorehistoryboth ;;
+	esac
+
+	if [[ -f ${HISTFILE}.tmp ]]; then
+		mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
+		builtin history -r
+	fi
+fi

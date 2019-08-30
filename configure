@@ -27,6 +27,7 @@ for opt in ${@}; do
 		--bindir=* )		BINDIR="${opt/*=}" ;;
 		--docdir=* )		DOCDIR="${opt/*=}" ;;
 		--mandir=* )		MANDIR="${opt/*=}" ;;
+		--libexecdir=* )	EXECDIR="${opt/*=}" ;;
 		--girpath=* )		GIRPATH="${opt/*=}" ;;
 		--datadir=* )		DATADIR="${opt/*=}" ;;
 		--python=* )		PYTHON="${opt/*=}" ;;

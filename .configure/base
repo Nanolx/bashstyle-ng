@@ -28,6 +28,7 @@ PREFIX="/usr"
 PYTHON=$(which python3 || which python2 || which python)
 
 BINDIR="${PREFIX}/bin"
+EXECDIR="${PREFIX}/libexec"
 PCDIR="${PREFIX}/share/pkgconfig"
 DATADIR="${PREFIX}/share"
 DOCDIR="${DATADIR}/doc"
@@ -52,8 +53,9 @@ export_result ()
 {
 	echo -e "PREFIX=\"${PREFIX}\"
 prefix=\"${PREFIX}\"
+EXECDIR=\"${EXECDIR}\"
 DATADIR=\"${DATADIR}/bashstyle-ng\"
-DATADIR_LIST=(functions ui rc)
+DATADIR_LIST=(ui rc)
 DOCDIR=\"${DOCDIR}/bashstyle-ng\"
 MANDIR=\"${MANDIR}/man1\"
 BINDIR=\"${BINDIR}\"
@@ -64,5 +66,5 @@ DESKTOPDIR=\"${DATADIR}/applications\"
 PCDIR=\"${PCDIR}\"
 APP_LANGUAGES=\"${APP_LANGUAGES}\"
 DISABLE_POSTINSTALL=${DISABLE_POSTINSTALL}" \
-	> "${PWD}"/.configure/results
+	> "${PWD}/.configure/results"
 }

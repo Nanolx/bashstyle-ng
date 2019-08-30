@@ -13,6 +13,7 @@
 TEXTDOMAIN="bashstyle-rc"
 
 export BSNG_PREFIX=@PREFIX@
+export BSNG_EXECDIR=@EXECDIR@
 export BSNG_DATADIR=@DATADIR@
 export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
 export BSNG_VERSION=@VERSION@
@@ -23,6 +24,8 @@ export BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
 export BASH_SESSION_PID=$$
 INI_VERSION=37
 
+export PATH="${PATH}:${BSNG_EXECDIR}"
+
 if [[ ! -z "${TMPDIR}" ]]; then
 	export BSNG_TMPDIR=${TMPDIR}
 elif [ -w /var/tmp ]; then
@@ -32,6 +35,9 @@ elif [ -w /tmp ]; then
 else
 	echo "unable to set BSNG_TMPDIR!"
 fi
+
+alias bt="check bt"
+alias bf="check bf"
 
 source ${BSNG_RCDIR}/internal_misc
 source ${BSNG_RCDIR}/internal_logging
@@ -60,8 +66,11 @@ fi
 [[ ${PATH} != *games* && -d /usr/games/ ]] && \
 	export PATH="${PATH}:/usr/games:/usr/local/games"
 
-[[ ${PATH} != *bashstyle-ng/functions* ]] && \
-	export PATH="@DATADIR@/bashstyle-ng/functions:${PATH}"
+[[ ${PATH} != *${HOME}/bin* && -d ${HOME}/bin ]] && \
+	export PATH="${PATH}:${HOME}/bin"
+
+[[ ${PATH} != *${BSNG_EXECDIR}* ]] && \
+	export PATH="${PATH}:${BSNG_EXECDIR}"
 
 bt $(ini_get path_wd) && export PATH="${PATH}:."
 
@@ -100,7 +109,6 @@ if [[ -e ${HOME}/.bashstyle.custom ]]; then
 fi
 
 if bt $(ini_get use_bashstyle); then
-
 	dbg_msg $"BashStyle-NG Loading:" BashStyle-NG
 	dbg_log source ${BSNG_RCDIR}/styles_hook
 
@@ -157,7 +165,6 @@ if bt $(ini_get use_bashstyle); then
 		dbg_msg $"BashStyle-NG Setting:" $"Fallback" Prompt
 		dbg_log export PS1="\u@\h\w: "
 	fi
-
 fi
 
 dbg_log source ${BSNG_RCDIR}/settings_options
@@ -165,89 +172,13 @@ dbg_log source ${BSNG_RCDIR}/settings_options
 # do trapping stuff
 
 if [ $(bt $(ini_get colorshell)) -a $(bt $(ini_get enable_colors)) ]; then
-
-	_colorshell () {
-		if [[ -z ${OLDPS1} ]]; then
-			[[ ${BSNG_BASHVER} -ge 44 ]] && OLDPS0="${PS0}"
-			OLDPS1="${PS1}"
-			OLDPS2="${PS2}"
-			OLDPS3="${PS3}"
-			OLDPS4="${PS4}"
-		fi
-
-		# exclude black (0) on dark terminal
-		# exclude white (7) on bright terminal
-		if bt $(ini_get dark_terminal); then
-			randomcolor=$(random -r 1 7)
-		else	randomcolor=$(random -r 0 6)
-		fi
-
-		cmd_text_colour='\[`tput setaf ${randomcolor}`\]'
-
-		shopt -s promptvars
-
-		[[ ${BSNG_BASHVER} -ge 44 ]] && PS0="${OLDPS0}${cmd_text_colour}"
-		PS1="${OLDPS1}${cmd_text_colour}"
-		PS2="${OLDPS2}${cmd_text_colour}"
-		PS3="${OLDPS3}${cmd_text_colour}"
-		PS4="${OLDPS4}${cmd_text_colour}"
-
-	}
 	dbg_msg $"Add colorshell to DEBUG trap"
-	trap_add '_colorshell' DEBUG
+	bashstyle-trap-add 'bashstyle-colorshell' DEBUG
 
 	if bt $(ini_get colorshell_reset); then
-		_colorshell_reset () {
-			echo -ne "\e[0m"
-		}
-
 		dbg_msg $"Add colorshell-reset to DEBUG trap"
-		trap_add '_colorshell_reset' DEBUG
+		bashstyle-trap-add 'bashstyle-colorshell-reset' DEBUG
 	fi
-fi
-
-if bt $(ini_get history_sync); then
-	_erasehistorydups () {
-		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
-			tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
-			tac | sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
-	}
-
-	_ignorehistorydups () {
-		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
-			gawk -F'HISTDILIMITER' '!x[$2]++' | \
-			sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
-	}
-
-	_ignorehistoryspc () {
-		gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
-			sed -e '/HISTDILIMITER /d' > "${HISTFILE}".tmp
-	}
-
-	_ignorehistoryboth () {
-		_ignorehistorydups
-		_ignorehistoryspc
-	}
-
-	_synchistory () {
-		if [[ ! ${lastcommand} == history* ]]; then
-			builtin history -a
-			builtin history -c
-
-			case ${HISTCONTROL} in
-				erasedups )	_erasehistorydups ;;
-				ignoredups)	_ignorehistorydups ;;
-				ignorespace)	_ignorehistorspc ;;
-				ignoreboth)	_ignorehistoryboth ;;
-			esac
-
-			if [[ -f ${HISTFILE}.tmp ]]; then
-				mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
-				builtin history -r
-			fi
-		fi
-	}
-
 fi
 
 # remember last exit status and command
@@ -273,33 +204,6 @@ else
 	fi
 fi
 
-remember_command_debug () {
-	local _lastexit=$?
-	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
-	[ -n "$COMP_LINE" ] && return
-	[ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
-	[[ "$BASH_COMMAND" == trap\ * ]] && return
-	[[ "$BASH_COMMAND" == *lastcommand* ]] && return
-	[[ "$BASH_COMMAND" == *lastexit* ]] && return
-	local X_COMMAND=${BASH_COMMAND//$'\n'/ }
-	X_COMMAND=${X_COMMAND//\\n/ }
-	lastcommand=${BASH_COMMAND}
-	lastcommandprintable=${X_COMMAND:0:21}
-	if [ ${#lastcommandprintable} -gt 21 ]; then
-		lastcommandprintable=${lastcommandprintable:0:20}'>'
-	else
-		lastcommandprintable="$(printf '%-21s' "$lastcommandprintable")"
-	fi
-	lastexit=${_lastexit}
-}
-
-remember_command_err () {
-	local _lastexit=$?
-	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
-	lastexit=${_lastexit}
-}
-
-
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal_birthday
 elif [[ ! -z $(ini_get welcome_message) ]]; then
@@ -307,59 +211,9 @@ elif [[ ! -z $(ini_get welcome_message) ]]; then
 	dbg_log $(ini_get welcome_message)
 fi
 
-ccd() {
-	OLD_PWD=${PWD}
-	clear
-	ccd_mkdir=0
-
-	if [[ -f "${1}" ]]; then
-		builtin cd "${1%/*}" &>/dev/null
-	elif [[ -d "${1}" ]]; then
-		builtin cd "${1}" &>/dev/null
-	elif [[ "${1}" == -*   ]]; then
-		builtin cd "${*}" &>/dev/null
-	elif [[ ! "${1}" ]]; then
-		builtin cd &>/dev/null
-	elif bt $(ini_get customcd_mkdir); then
-		xdir=$(topdir "${1}")
-		if [ -w "${xdir}" ]; then
-			mkdir -p "${1}" &>/dev/null
-			builtin cd "${1}" &>/dev/null
-			ccd_mkdir=1
-		else	echo -e "\n\n${ered}" $" ++ could not create directory" " »$(basename ${1})«"
-		fi
-	else	echo -e "\n\n${eyellow}" $" ++ directory" "»$(basename ${1})«" $" does not exist."
-	fi
-
-	if [[ ${OLD_PWD} != "${PWD}" ]]; then
-		if [[ ${ccd_mkdir} -eq 1 ]]; then
-			echo -e "\n\n${ccolor_mkdir}" $" ++ directory created:" " »$(basename ${PWD})«\n"
-		else	echo -e "\n\n${ccolor_banner}" $" ++ content of directory:" " »$(basename ${PWD})«\n"
-		fi
-		items=$(systemkit countvisibleitems)
-		if [[ ${items} -gt 35 ]]; then
-			if [[ ${LSCD} == True ]]; then
-				ls ${LSCD_OPTS} -1 | head -n 35 | column
-			elif [[ ${TREECD} == True ]]; then
-				tree ${TREECD_OPTS} -1 | head -n 35 | column
-			fi
-			echo -e "${ccolor_banner}" $" ... " "$((items-35))" $" more items\n"
-		elif [[ ${items} -gt 0 ]]; then
-			if [[ ${LSCD} == True ]]; then
-				ls ${LSCD_OPTS}
-			elif [[ ${TREECD} == True ]]; then
-				tree ${TREECD_OPTS}
-			fi
-		else	echo -e "${ccolor_empty}" $"-- empty --\n"
-		fi
-	fi
-
-	echo "${PWD}" > "${HOME}"/.lastpwd
-}
-
 if bt $(ini_get use_treecd); then
 	if which tree >/dev/null; then
-		dbg_log alias cd=ccd
+		dbg_log alias cd=bashstyle-cd
 		dbg_log export TREECD=True
 		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
 		bf $(ini_get enable_colors) && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
@@ -369,20 +223,12 @@ if bt $(ini_get use_treecd); then
 fi
 
 if bt $(ini_get use_lscd); then
-	dbg_log alias cd=ccd
+	dbg_log alias cd=bashstyle-cd
 	dbg_log export LSCD=True
 	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
 	bf $(ini_get enable_colors) && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
 	dbg_msg $"using lscd wrapper for cd"
 fi
-
-reload_bash () {
-	#xk2c from commandlinefu.com
-	builtin unalias -a
-	builtin unset -f "$(builtin compgen -A function)"
-	[ -f /etc/bash_completion ] && source /etc/bash_completion
-	source "${HOME}"/.bashrc
-}
 
 if bt $(ini_get history_isolate); then
 	dbg_msg $"BashStyle-NG Setting:" $"History Isolation" $"On"
@@ -390,48 +236,19 @@ if bt $(ini_get history_isolate); then
 	dbg_log set +o history
 	dbg_log enable -n history
 else
-	history () {
-		case "${1}" in
-			-D )
-				local history_lines_matching
-				local internal_counter
-
-				if [ -z "${2}" ]; then
-					echo "no command to delete given!"
-				else
-					history_lines_matching=$(builtin history | gawk -v pattern="^ .*[0-9]  ${2} " '$0 ~ pattern{print $1}')
-					if [ -z "${history_lines_matching}" ]; then
-						echo "no history entry matching \"${2}\"!"
-					else
-						internal_counter=0
-
-						for line in ${history_lines_matching}; do
-							builtin history -d $((line-internal_counter))
-							builtin history -w
-							internal_counter=$((internal_counter+1))
-						done
-					fi
-				fi
-			;;
-
-			* )
-				builtin history "${@}"
-			;;
-		esac
-	}
-
+	alias history=bashstyle-history
 fi
 
 unset style
 
 if bt $(ini_get history_sync); then
 	dbg_msg $"Add history syncronization to DEBUG trap"
-	trap_add '_synchistory' DEBUG
+	bashstyle-trap-add 'bashstyle-history-sync' DEBUG
 fi
 
 dbg_msg $"Add remember command to DEBUG and ERR trap"
-trap_add 'remember_command_debug' DEBUG
-trap_add 'remember_command_err' ERR
+bashstyle-trap-add 'bashstyle-remember-command-debug' DEBUG
+bashstyle-trap-add 'bashstyle-remember-command-error' ERR
 
 lastcommand=""
 lastcommandprintable="                     "

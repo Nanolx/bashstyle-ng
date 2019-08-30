@@ -1,0 +1,38 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2019 Christopher Bratusek		#
+#							#
+#########################################################
+
+case "${1}" in
+	-D )
+		local history_lines_matching
+		local internal_counter
+
+		if [ -z "${2}" ]; then
+			echo "no command to delete given!"
+		else
+			history_lines_matching=$(builtin history | gawk -v pattern="^ .*[0-9]  ${2} " '$0 ~ pattern{print $1}')
+			if [ -z "${history_lines_matching}" ]; then
+				echo "no history entry matching \"${2}\"!"
+			else
+				internal_counter=0
+
+				for line in ${history_lines_matching}; do
+					builtin history -d $((line-internal_counter))
+					builtin history -w
+					internal_counter=$((internal_counter+1))
+				done
+			fi
+		fi
+	;;
+
+	* )
+		builtin history "${@}"
+	;;
+esac

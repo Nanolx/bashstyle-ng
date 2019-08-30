@@ -1,0 +1,35 @@
+#!/bin/bash
+#########################################################
+# 							#
+# This is BashStyle-NG  				#
+#							#
+# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
+#							#
+# Copyright 2007 - 2019 Christopher Bratusek		#
+#							#
+#########################################################
+
+if [[ -z ${OLDPS1} ]]; then
+	[[ ${BSNG_BASHVER} -ge 44 ]] && OLDPS0="${PS0}"
+	OLDPS1="${PS1}"
+	OLDPS2="${PS2}"
+	OLDPS3="${PS3}"
+	OLDPS4="${PS4}"
+fi
+
+# exclude black (0) on dark terminal
+# exclude white (7) on bright terminal
+if bt $(ini_get dark_terminal); then
+	randomcolor=$(random -r 1 7)
+else	randomcolor=$(random -r 0 6)
+fi
+
+cmd_text_colour='\[`tput setaf ${randomcolor}`\]'
+
+shopt -s promptvars
+
+[[ ${BSNG_BASHVER} -ge 44 ]] && PS0="${OLDPS0}${cmd_text_colour}"
+PS1="${OLDPS1}${cmd_text_colour}"
+PS2="${OLDPS2}${cmd_text_colour}"
+PS3="${OLDPS3}${cmd_text_colour}"
+PS4="${OLDPS4}${cmd_text_colour}"

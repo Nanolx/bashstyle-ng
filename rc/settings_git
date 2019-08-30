@@ -45,10 +45,7 @@ if bt $(ini_get git_ssh_remember); then
 	dbg_msg $"Bashstyle-NG Setting:" Git $"SSH Timeout" $(ini_get git_ssh_timeout)
 	dbg_log eval $(ssh-agent -s -t $(ini_get git_ssh_timeout)) >/dev/null
 
-	_git_ssh_remember_trap () {
-		rm -f ${BSNG_TMPDIR}/gitkit_time_${BASH_SESSION_PID}*
-	}
-	trap_add _git_ssh_remember_trap EXIT
+	bashstyle-trap-add 'bashstyle-remove-tempfile' EXIT
 else
 	dbg_msg $"BashStyle-NG Setting:" Git $"SSH Remember" $"Off"
 fi
