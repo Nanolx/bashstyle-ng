@@ -17,7 +17,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" NanoCFG
 	export RC_FILE
-	RC_FILE="${HOME}/.nanorc.bs-ng.${BSNG_SESSION_TIME}"
+	RC_FILE="${HOME}/.nanorc.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
 
 	if bt $(ini_get auto_indent); then
 		dbg_msg $"NanoCFG Setting:" Auto-Indention $"On"
@@ -163,5 +163,3 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 	unset RC_FILE
 
 fi
-
-rm -f "${HOME}"/.nanorc.bs-ng.${BSNG_SESSION_TIME}
