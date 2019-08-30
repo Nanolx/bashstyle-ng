@@ -9,50 +9,71 @@
 #							#
 #########################################################
 
-OLD_PWD=${PWD}
-clear
-ccd_mkdir=0
+bashstyle-cd () {
+	OLD_PWD=${PWD}
+	clear
+	ccd_mkdir=0
 
-if [[ -f "${1}" ]]; then
-	builtin cd "${1%/*}" &>/dev/null
-elif [[ -d "${1}" ]]; then
-	builtin cd "${1}" &>/dev/null
-elif [[ "${1}" == -*   ]]; then
-	builtin cd "${*}" &>/dev/null
-elif [[ ! "${1}" ]]; then
-	builtin cd &>/dev/null
-elif bt $(ini_get customcd_mkdir); then
-	xdir=$(topdir "${1}")
-	if [ -w "${xdir}" ]; then
-		mkdir -p "${1}" &>/dev/null
+	if [[ -f "${1}" ]]; then
+		builtin cd "${1%/*}" &>/dev/null
+	elif [[ -d "${1}" ]]; then
 		builtin cd "${1}" &>/dev/null
-		ccd_mkdir=1
-	else	echo -e "\n\n${ered}" $" ++ could not create directory" " »$(basename ${1})«"
+	elif [[ "${1}" == -*   ]]; then
+		builtin cd "${*}" &>/dev/null
+	elif [[ ! "${1}" ]]; then
+		builtin cd &>/dev/null
+	elif bt $(ini_get customcd_mkdir); then
+		xdir=$(topdir "${1}")
+		if [ -w "${xdir}" ]; then
+			mkdir -p "${1}" &>/dev/null
+			builtin cd "${1}" &>/dev/null
+			ccd_mkdir=1
+		else	echo -e "\n\n${ered}" $" ++ could not create directory" " »$(basename ${1})«"
+		fi
+	else	echo -e "\n\n${eyellow}" $" ++ directory" "»$(basename ${1})«" $" does not exist."
 	fi
-else	echo -e "\n\n${eyellow}" $" ++ directory" "»$(basename ${1})«" $" does not exist."
+
+	if [[ ${OLD_PWD} != "${PWD}" ]]; then
+		if [[ ${ccd_mkdir} -eq 1 ]]; then
+			echo -e "\n\n${ccolor_mkdir}" $" ++ directory created:" " »$(basename ${PWD})«\n"
+		else	echo -e "\n\n${ccolor_banner}" $" ++ content of directory:" " »$(basename ${PWD})«\n"
+		fi
+		items=$(systemkit countvisibleitems)
+		if [[ ${items} -gt 35 ]]; then
+			if [[ ${LSCD} == True ]]; then
+				ls ${LSCD_OPTS} -1 | head -n 35 | column
+			elif [[ ${TREECD} == True ]]; then
+				tree ${TREECD_OPTS} -1 | head -n 35 | column
+			fi
+			echo -e "${ccolor_banner}" $" ... " "$((items-35))" $" more items\n"
+		elif [[ ${items} -gt 0 ]]; then
+			if [[ ${LSCD} == True ]]; then
+				ls ${LSCD_OPTS}
+			elif [[ ${TREECD} == True ]]; then
+				tree ${TREECD_OPTS}
+			fi
+		else	echo -e "${ccolor_empty}" $"-- empty --\n"
+		fi
+	fi
+
+	echo "${PWD}" > "${HOME}/.lastpwd"
+}
+
+if bt $(ini_get use_treecd); then
+	if which tree >/dev/null; then
+		dbg_log alias cd=bashstyle-cd
+		dbg_log export TREECD=True
+		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
+		bf $(ini_get enable_colors) && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
+		dbg_msg $"using treecd wrapper for cd"
+	else	dbg_msg $"tree not found, not using treecd as cd replacement"
+	fi
 fi
 
-if [[ ${OLD_PWD} != "${PWD}" ]]; then
-	if [[ ${ccd_mkdir} -eq 1 ]]; then
-		echo -e "\n\n${ccolor_mkdir}" $" ++ directory created:" " »$(basename ${PWD})«\n"
-	else	echo -e "\n\n${ccolor_banner}" $" ++ content of directory:" " »$(basename ${PWD})«\n"
-	fi
-	items=$(systemkit countvisibleitems)
-	if [[ ${items} -gt 35 ]]; then
-		if [[ ${LSCD} == True ]]; then
-			ls ${LSCD_OPTS} -1 | head -n 35 | column
-		elif [[ ${TREECD} == True ]]; then
-			tree ${TREECD_OPTS} -1 | head -n 35 | column
-		fi
-		echo -e "${ccolor_banner}" $" ... " "$((items-35))" $" more items\n"
-	elif [[ ${items} -gt 0 ]]; then
-		if [[ ${LSCD} == True ]]; then
-			ls ${LSCD_OPTS}
-		elif [[ ${TREECD} == True ]]; then
-			tree ${TREECD_OPTS}
-		fi
-	else	echo -e "${ccolor_empty}" $"-- empty --\n"
-	fi
+if bt $(ini_get use_lscd); then
+	dbg_log alias cd=bashstyle-cd
+	dbg_log export LSCD=True
+	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
+	bf $(ini_get enable_colors) && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
+	dbg_msg $"using lscd wrapper for cd"
 fi
-
-echo "${PWD}" > "${HOME}/.lastpwd"

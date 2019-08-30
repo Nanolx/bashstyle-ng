@@ -211,24 +211,7 @@ elif [[ ! -z $(ini_get welcome_message) ]]; then
 	dbg_log $(ini_get welcome_message)
 fi
 
-if bt $(ini_get use_treecd); then
-	if which tree >/dev/null; then
-		dbg_log alias cd=bashstyle-cd
-		dbg_log export TREECD=True
-		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
-		bf $(ini_get enable_colors) && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
-		dbg_msg $"using treecd wrapper for cd"
-	else	dbg_msg $"tree not found, not using treecd as cd replacement"
-	fi
-fi
-
-if bt $(ini_get use_lscd); then
-	dbg_log alias cd=bashstyle-cd
-	dbg_log export LSCD=True
-	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
-	bf $(ini_get enable_colors) && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
-	dbg_msg $"using lscd wrapper for cd"
-fi
+source "${BSNG_EXECDIR}/bashstyle-cd"
 
 if bt $(ini_get history_isolate); then
 	dbg_msg $"BashStyle-NG Setting:" $"History Isolation" $"On"
