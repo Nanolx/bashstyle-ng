@@ -1,7 +1,7 @@
 #!/bin/bash
 #########################################################
 # 							#
-# This is BashStyle-NG 7.5				#
+# This is BashStyle-NG					#
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
 #							#
@@ -17,10 +17,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" VimCFG
 	export RC_FILE
-	RC_FILE="${HOME}/.vimrc.bs-ng.${BSNG_SESSION_TIME}"
-
-	dbg_msg $"VimCFG Setting:" runtimepath
-	rc_add "set runtimepath+=${BSNG_DATADIR}/bashstyle-ng/vim/"
+	RC_FILE="${HOME}/.vimrc.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
 
 	if bt $(ini_get syntax_hilight); then
 		dbg_msg $"VimCFG Setting:" Syntax $"On"
@@ -235,9 +232,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	rc_add "	source ~/.vimrc.custom"
 	rc_add "endif"
 
-	mv "${RC_FILE}" "${HOME}"/.vimrc
+	mv "${RC_FILE}" "${HOME}/.vimrc"
 	unset RC_FILE
 
 fi
-
-rm -f "${HOME}"/.vimrc.bs-ng.${BSNG_SESSION_TIME}
