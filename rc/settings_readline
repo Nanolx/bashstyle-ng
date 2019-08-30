@@ -17,7 +17,7 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 
 	dbg_msg $"BashStyle-NG Loading:" ReadlineCFG
 	export RC_FILE
-	RC_FILE="${HOME}/.inputrc.bs-ng.${BSNG_SESSION_TIME}"
+	RC_FILE="${HOME}/.inputrc.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
 
 	if [[ $(ini_get editing_mode) == emacs ]]; then
 		dbg_msg $"ReadlineCFG Setting:" Editing-Mode Emacs
@@ -176,5 +176,4 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
 
 fi
 
-rm -f "${HOME}"/.inputrc.bs-ng.${BSNG_SESSION_TIME}
 bind -f "${HOME}"/.inputrc
