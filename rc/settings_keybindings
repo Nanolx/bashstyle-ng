@@ -59,7 +59,7 @@ shopt -u nullglob
 if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 
 	export RC_FILE
-	RC_FILE="${HOME}/.keybindings.bs-ng.${BSNG_SESSION_TIME}"
+	RC_FILE="${HOME}/.keybindings.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
 	dbg_msg $"KeybindingsCFG Loading:" $"Keybindings"
 
 	for key in undo upcase_word capitalize_word downcase_word transpose_words \
@@ -89,5 +89,4 @@ if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 
 fi
 
-rm -f "${HOME}"/.keybindings.bs-ng.${BSNG_SESSION_TIME}
 bind -f "${HOME}"/.keybindings
