@@ -9,8 +9,11 @@
 #							#
 #########################################################
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
+
 if ! which xmlindent &>/dev/null; then
-	echo -e "xmlindent not found, xmlpager won't work."
+	echo -e $"xmlindent not found, xmlpager won't work."
 	exit 1
 fi
 
@@ -18,9 +21,9 @@ case ${1} in
 
 	-h | --help )
 		bashstyle-help -a "hackerb9" -e "" -h "http://www.commandlinefu.com/"\
-			-l "GNU GPL v3" -n "xmlpager" -s "pager for xml files with highlighted text"\
+			-l "GNU GPL v3" -n "xmlpager" -s $"pager for xml files with highlighted text"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "file:|xml file to read"
+			-o $"file:|xml file to read"
 	;;
 
 	*)
@@ -30,3 +33,5 @@ case ${1} in
 	;;
 
 esac
+
+unset TEXTDOMAIN

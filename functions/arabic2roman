@@ -9,12 +9,14 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "arabic2roman" -s "convert arabic number to roman" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "input:|convert arabic number to roman"
+			-l "GNU GPL v3" -n "arabic2roman" -s $"convert arabic number to roman" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"input:|convert arabic number to roman"
 	;;
 
 	* )
@@ -27,5 +29,6 @@ case ${1} in
 			s/6$/VI/;s/7$/VII/;s/8$/VIII/;s/9$/IX/
 			s/[0-9]//g'
 	;;
-
 esac
+
+unset TEXTDOMAIN

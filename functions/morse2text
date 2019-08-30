@@ -9,12 +9,15 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "morse2text" -s "convert morse code to plain text" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "code:|code to convert"
+			-l "GNU GPL v3" -n "morse2text" -s $"convert morse code to plain text" \
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"code:|code to convert"
 	;;
 
 	* )
@@ -24,5 +27,6 @@ case ${1} in
 			| sed -e {s/0-\ /a/g} -e {s/00\ /i/g} -e {s/--\ /m/g} -e {s/-0\ /n/g} \
 			| sed -e {s/0\ /e/g} -e {s/-\ /t/g}
 	;;
-
 esac
+
+unset TEXTDOMAIN

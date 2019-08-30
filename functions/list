@@ -9,20 +9,21 @@
 #							#
 #########################################################
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "list" -s "various ls variants" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "single:|one-column ls, directories first"\
-			-o "group:|show group for files in directory"\
-			-o "verbose:|detailed ls without hidden files"\
-			-o "detailed:|detailed ls including hidden files"\
-			-o "voctal:|detailed ls without hidden files (octal perms)"\
-			-o "doctal:|detailed ls including hidden files (octal perms)"\
-			-o "perm:|show plain and octal permissions for files"\
-			-o "owner:|show owner for files in directory"
+			-l "GNU GPL v3" -n "list" -s $"various ls variants" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"single:|one-column ls, directories first"\
+			-o $"group:|show group for files in directory"\
+			-o $"verbose:|detailed ls without hidden files"\
+			-o $"detailed:|detailed ls including hidden files"\
+			-o $"voctal:|detailed ls without hidden files (octal perms)"\
+			-o $"doctal:|detailed ls including hidden files (octal perms)"\
+			-o $"perm:|show plain and octal permissions for files"\
+			-o $"owner:|show owner for files in directory"
 	;;
 
 	-s | single)	ls -1 --group-directories-first "${@:2}" ;;
@@ -43,3 +44,5 @@ case ${1} in
 			  awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}' ;;
 
 esac
+
+unset TEXTDOMAIN

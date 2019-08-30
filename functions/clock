@@ -9,12 +9,14 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	--help | -h)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "clock" -s "simple clock for bash" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "none:|--"
+			-l "GNU GPL v3" -n "clock" -s $"simple clock for bash" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"none:|--"
 	;;
 
 	*)
@@ -26,5 +28,6 @@ case ${1} in
 			sleep 1;
 		done
 	;;
-
 esac
+
+unset TEXTDOMAIN

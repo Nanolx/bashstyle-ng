@@ -9,14 +9,18 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	-h | --help )
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "treefind" -s "tree-ified variant of ind" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "none:|--"
+			-l "GNU GPL v3" -n "treefind" -s $"tree-ified variant of find"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"none:|--"
 	;;
 
 	* )	find "$@" | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/' ;;
-
 esac
+
+unset TEXTDOMAIN

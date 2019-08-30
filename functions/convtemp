@@ -9,8 +9,10 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	cf | cel-fah)
 		echo "scale=2; $1 * 1.8  + 32" | bc
 	;;
@@ -37,13 +39,14 @@ case ${1} in
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "convtemp" -s "convert between °C, °F and °K" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "cf:number|convert °C to °F"\
-			-o "ck:number|convert °C to °K"\
-			-o "fc:number|convert °F to °C"\
-			-o "fk:number|convert °F to °K"\
-			-o "kc:number|convert °K to °C"\
-			-o "kf:number|convert °K to °F"
+			-l "GNU GPL v3" -n "convtemp" -s $"convert between °C, °F and °K" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"cf:number|convert °C to °F"\
+			-o $"ck:number|convert °C to °K"\
+			-o $"fc:number|convert °F to °C"\
+			-o $"fk:number|convert °F to °K"\
+			-o $"kc:number|convert °K to °C"\
+			-o $"kf:number|convert °K to °F"
 	;;
-
 esac
+
+unset TEXTDOMAIN

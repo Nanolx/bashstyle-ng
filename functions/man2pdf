@@ -9,21 +9,24 @@
 #							#
 #########################################################
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
+
 if ! which ps2pdf &>/dev/null; then
-	echo -e "ps2pdf not found, man2pdf won't work."
+	echo -e $"ps2pdf not found, man2pdf won't work."
 	exit 1
 fi
 
 case ${1} in
-
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "man2pdf" -s "create PDF from a manpage" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "manpage:bash|manpage to create a PDF from"
+			-l "GNU GPL v3" -n "man2pdf" -s $"create PDF from a manpage" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"manpage:bash|manpage to create a PDF from"
 	;;
 
 	* )
-		man -t "${1}" | ps2pdf - >"${1}.pdf" || echo "manpage ${1} does not exist"
+		man -t "${1}" | ps2pdf - >"${1}.pdf" || echo $"manpage ${1} does not exist"
 	;;
-
 esac
+
+unset TEXTDOMAIN

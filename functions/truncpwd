@@ -9,15 +9,18 @@
 #							#
 #########################################################
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
+
 case ${1} in
 	-h | --help)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "truncpwd" -s "pretty print current directory" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "none:|--"
+			-l "GNU GPL v3" -n "truncpwd" -s $"pretty print current directory" \
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"none:|--"
 	;;
 
 	* )
-
 		[[ ! ${dirchar} ]] && dirchar="/"
 		[[ ! ${trunc_symbol} ]] && trunc_symbol="«"
 		[[ ! ${trunc_length} ]] && trunc_length=1
@@ -33,3 +36,5 @@ case ${1} in
 		echo -e "${newPWD}"
 	;;
 esac
+
+unset TEXTDOMAIN

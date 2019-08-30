@@ -11,17 +11,22 @@
 
 # by gniourf_gniourf
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
+
 case ${1} in
 	--help | -h)
 		bashstyle-help -a "gniourf_gniourf" -e "" -h "http://www.commandlinefu.com/"\
-				-l "Public Domain" -n "ngroups" -s "Show groups current or given user is not part of"\
+				-l "Public Domain" -n "ngroups" -s $"Show groups current or given user is not part of"\
 				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "user:|(optional) user to check (only if root)"
+				-o $"user:|(optional) user to check (only if root)"
 	;;
 
 	* )
 		[[ "${EUID}" -eq 0 && ! -z "${2}" ]] && user="${2}" || user="${USER}"
-		echo -e "user \"${user}\" is not part of the following groups:\n" \
+		echo -e $"user \"${user}\" is not part of the following groups:\n" \
 			$(sed -e "/${user}/d;s/:.*//g" /etc/group | sed -e :a -e '/$/N;s/\n/ /;ta')
 	;;
 esac
+
+unset TEXTDOMAIN

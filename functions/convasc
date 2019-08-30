@@ -9,8 +9,10 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	b32 | base32)	echo "obase=32 ; $(convasc dec "${2}")" | bc ;;
 	b64 | base64)	echo "obase=64 ; $(convasc dec "${2}")" | bc ;;
 	bin | binary)	echo "obase=2 ; $(convasc dec "${2}")" | bc ;;
@@ -28,14 +30,16 @@ ascii $2 = base64	$(convasc b64 "${2}")"
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "convasc" -s "convert ascii char to numerical equivalents" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "bin:|convert ascii to binary equivalent"\
-			-o "b32:|convert ascii to base32 equivalent"\
-			-o "b64:|convert ascii to base64 equivalent"\
-			-o "dec:|convert ascii to decimal equivalent"\
-			-o "hex:|convert ascii to hexadecimal equivalent"\
-			-o "oct:|convert ascii to octal equivalent"\
-			-o "all:|convert ascii to other numerical equivalents"
+			-l "GNU GPL v3" -n "convasc" -s $"convert ascii char to numerical equivalents" \
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"bin:|convert ascii to binary equivalent"\
+			-o $"b32:|convert ascii to base32 equivalent"\
+			-o $"b64:|convert ascii to base64 equivalent"\
+			-o $"dec:|convert ascii to decimal equivalent"\
+			-o $"hex:|convert ascii to hexadecimal equivalent"\
+			-o $"oct:|convert ascii to octal equivalent"\
+			-o $"all:|convert ascii to other numerical equivalents"
 	;;
-
 esac
+
+unset TEXT_DOMAIN

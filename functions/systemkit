@@ -9,11 +9,14 @@
 #							#
 #########################################################
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
+
 case ${1} in
 
 	battery)
 		if ! which acpi &>/dev/null; then
-			echo -e "acpi not found, 'systemkit battery' won't work."
+			echo -e $"acpi not found, 'systemkit battery' won't work."
 			exit 1
 		fi
 
@@ -54,7 +57,7 @@ case ${1} in
 
 	externalip)
 		if ! which wget &>/dev/null; then
-			echo -e "wget not found, 'systemkit externalip' won't work."
+			echo -e $"wget not found, 'systemkit externalip' won't work."
 			exit 1
 		fi
 		wget -q -O - http://showip.spamt.net/
@@ -138,39 +141,36 @@ case ${1} in
 	;;
 
 	partitions)
-		echo -e "Partitions:
-	device-node type mount used free total
-	$(df -h --output=source,fstype,target,used,avail,size | grep "^/dev")\n" | column -t
+		echo -e $"Partitions:\n"\
+	$"device-node type mount used free total\n"\
+	"$(df -h --output=source,fstype,target,used,avail,size | grep "^/dev")\n" | column -t
 	;;
 
 	pci)
 		if ! which lspci &>/dev/null; then
-			echo -e "lspci not found, 'systemkit lspci' won't work."
+			echo -e $"lspci not found, 'systemkit lspci' won't work."
 			exit 1
 		fi
-		echo -e "PCI Devices:
-$(lspci -vkmm)\n"
+		echo -e $"PCI Devices:\n\n""$(lspci -vkmm)\n"
 	;;
 
 	usb)
 		if ! which lsusb &>/dev/null; then
-			echo -e "lsusb not found, 'systemkit usb' won't work."
+			echo -e $"lsusb not found, 'systemkit usb' won't work."
 			exit 1
 		fi
-		echo -e "USB Devices:
-$(lsusb -v)\n"
+		echo -e $"USB Devices:\n\n""$(lsusb -v)\n"
 	;;
 
 	bios)
 		if [[ ${EUID} == 0 ]]; then 
 			if ! which dmidecode &>/dev/null; then
-				echo -e "dmidecode not found, 'systemkit bios' won't work."
+				echo -e $"dmidecode not found, 'systemkit bios' won't work."
 				exit 1
 			fi
-			echo -e "SMBIOS/DMI Info:
-$(dmidecode -q)\n"
+			echo -e "SMBIOS/DMI Info:\n\n""$(dmidecode -q)\n"
 		else
-			echo -e "you're not root"
+			echo -e $"You're not root"
 			exit 1
 		fi
 	;;
@@ -266,42 +266,45 @@ $(dmidecode -q)\n"
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "systemkit" -s "show various system information" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "battery:|show battery load state using acpi"\
-			-o "cpuload:|show cpu load"\
-			-o "externalip:|show your PCs external ip"\
-			-o "internalip:interface|show interface's internal ip"\
-			-o "usedram:|used RAM"\
-			-o "usedram%:|used RAM in %"\
-			-o "freeram:|free RAM"\
-			-o "freeram%:|free RAM in %"\
-			-o "totalram:|total RAM"\
-			-o "dirsize:|size of all items in current dir"\
-			-o "usedspace:mount|used space on mountpoint"\
-			-o "freespace:mount|free space on mountpoint"\
-			-o "totalspace:mount|total space on mountpoint"\
-			-o "usedspace%:mount|used space on mountpoint in %"\
-			-o "freespace%:mount|free space on mountpoint in %"\
-			-o "cpu:|show cpu information"\
-			-o "kernel:|show kernel information"\
-			-o "partitons:|show mounted partitions information"\
-			-o "pci:|show pci device information"\
-			-o "usb:|show usb device information"\
-			-o "bios:|show bios information [only root]"\
-			-o "load1:|show load average for 1 minute"\
-			-o "load5:|show load average for 5 minutes"\
-			-o "load15:|show load average for 15 minutes"\
-			-o "tty:|show current TTY device node"\
-			-o "uptime:|show uptime in pretty printed format"\
-			-o "cof/countoverallfiles:[directory]|count all files in directory (or pwd)"\
-			-o "cod/countoveralldirs:[directory]|count all directories in directory (or pwd)"\
-			-o "coi/countoverallitems:[directory]|count all items in directory (or pwd)"\
-			-o "cvf/countvisiblefiles:[directory]|count visible files in directory (or pwd)"\
-			-o "cvd/countvisibledirs:[directory]|count visible directories in directory (or pwd)"\
-			-o "cvi/countvisibleitems:[directory]|count visible items in directory (or pwd)"\
-			-o "chf/counthiddenfiles:[directory]|count hidden files in directory (or pwd)"\
-			-o "chd/counthiddendirs:[directory]|count hidden directories in directory (or pwd)"\
-			-o "chi/counthiddenitems:[directory]|count hidden items in directory (or pwd)"
+			-l "GNU GPL v3" -n "systemkit" -s $"show various system information" \
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"battery:|show battery load state using acpi"\
+			-o $"cpuload:|show cpu load"\
+			-o $"externalip:|show your PCs external ip"\
+			-o $"internalip:interface|show interface's internal ip"\
+			-o $"usedram:|used RAM"\
+			-o $"usedram%:|used RAM in %"\
+			-o $"freeram:|free RAM"\
+			-o $"freeram%:|free RAM in %"\
+			-o $"totalram:|total RAM"\
+			-o $"dirsize:|size of all items in current dir"\
+			-o $"usedspace:mount|used space on mountpoint"\
+			-o $"freespace:mount|free space on mountpoint"\
+			-o $"totalspace:mount|total space on mountpoint"\
+			-o $"usedspace%:mount|used space on mountpoint in %"\
+			-o $"freespace%:mount|free space on mountpoint in %"\
+			-o $"cpu:|show cpu information"\
+			-o $"kernel:|show kernel information"\
+			-o $"partitons:|show mounted partitions information"\
+			-o $"pci:|show pci device information"\
+			-o $"usb:|show usb device information"\
+			-o $"bios:|show bios information [only root]"\
+			-o $"load1:|show load average for 1 minute"\
+			-o $"load5:|show load average for 5 minutes"\
+			-o $"load15:|show load average for 15 minutes"\
+			-o $"tty:|show current TTY device node"\
+			-o $"uptime:|show uptime in pretty printed format"\
+			-o $"cof:[directory]|count all files in directory (or pwd)"\
+			-o $"cod:[directory]|count all directories in directory (or pwd)"\
+			-o $"coi:[directory]|count all items in directory (or pwd)"\
+			-o $"cvf:[directory]|count visible files in directory (or pwd)"\
+			-o $"cvd:[directory]|count visible directories in directory (or pwd)"\
+			-o $"cvi:[directory]|count visible items in directory (or pwd)"\
+			-o $"chf:[directory]|count hidden files in directory (or pwd)"\
+			-o $"chd:[directory]|count hidden directories in directory (or pwd)"\
+			-o $"chi:[directory]|count hidden items in directory (or pwd)"
 	;;
 
 esac
+
+unset TEXTDOMAIN

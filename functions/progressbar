@@ -14,6 +14,9 @@ SP_WIDTH=5.5
 SP_DELAY=0.2
 SP_STRING=${3:-'+     '}
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
+
 case ${1} in
 	spin )
 		echo -n "|/     |"
@@ -167,12 +170,13 @@ case ${1} in
 
 	* )
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-				-l "GNU GPL v3" -n "progressbar" -s "display a progressbar while given PID is running"\
+				-l "GNU GPL v3" -n "progressbar" -s $"display a progressbar while given PID is running"\
 				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "type:bar spin spinner spanner working|visual appearance of progressbar"\
-				-o "pid:|process id"
+				-o $"type:bar spin spinner spanner working|visual appearance of progressbar"\
+				-o $"pid:|process id"
 	;;
 
 esac
 
 tput sgr0
+unset TEXTDOMAIN

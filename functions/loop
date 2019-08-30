@@ -9,14 +9,16 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "loop" -s "search for file inside colon-separated list of directories"\
+			-l "GNU GPL v3" -n "loop" -s $"search for file inside colon-separated list of directories"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "diretory-list:|list of directories (colon-separeated)"\
-			-o "file:|file to look for"
+			-o $"directory-list:|list of directories (colon-separeated)"\
+			-o $"file:|file to look for"
 	;;
 
 	* )
@@ -28,5 +30,6 @@ case ${1} in
 			done
 		fi
 	;;
-
 esac
+
+unset TEXTDOMAIN

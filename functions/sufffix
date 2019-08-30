@@ -9,6 +9,9 @@
 #							#
 #########################################################
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
+
 case ${1} in
 	-v | --verbose )
 		MV_OPT="-v"
@@ -19,9 +22,9 @@ esac
 case ${@} in
 	"" )
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "sufffix" -s "fix suffix for files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "-v:|verbose output"\
-			-o "files:myfile.txt|file(s) to fix the suffix"
+			-l "GNU GPL v3" -n "sufffix" -s $"fix suffix for files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"-v:|verbose output"\
+			-o $"files:myfile.txt|file(s) to fix the suffix"
 	;;
 
 	* )
@@ -40,3 +43,5 @@ case ${@} in
 		done
 	;;
 esac
+
+unset TEXTDOMAIN

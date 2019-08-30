@@ -9,16 +9,19 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	--help | -h)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "deadlink" -s "find dead links" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "directory:|(optional) directory to scan (or current)"
+			-l "GNU GPL v3" -n "deadlink" -s $"find dead links" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"directory:|(optional) directory to scan (or current)"
 	;;
 
 	*)
 		find "${1}" -L -type l
 	;;
-
 esac
+
+unset TEXTDOMAIN

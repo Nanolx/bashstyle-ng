@@ -9,8 +9,10 @@
 #							#
 #########################################################
 
-case ${1} in
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
 
+case ${1} in
 	asc | ascii)	echo -e "\0$(printf %o $((8#$2)))" ;;
 	b32 | base32)	echo "obase=32 ; ibase=8 ; $2" | bc ;;
 	b64 | base64)	echo "obase=64 ; ibase=8 ; $2" | bc ;;
@@ -28,14 +30,16 @@ octal $2 = ascii	$(convoct asc "${2}")"
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "convoct" -s "convert octal to other numerical equivalents" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "asc:|convert octal to ascii equivalent"\
-			-o "b32:|convert octal to base32 equivalent"\
-			-o "b64:|convert octal to base64 equivalent"\
-			-o "dec:|convert octal to decimal equivalent"\
-			-o "hex:|convert octal to hexadecimal equivalent"\
-			-o "bin:|convert octal to binary equivalent"\
-			-o "all:|convert octal to other numerical equivalents"
+			-l "GNU GPL v3" -n "convoct" -s $"convert octal to other numerical equivalents" \
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"asc:|convert octal to ascii equivalent"\
+			-o $"b32:|convert octal to base32 equivalent"\
+			-o $"b64:|convert octal to base64 equivalent"\
+			-o $"dec:|convert octal to decimal equivalent"\
+			-o $"hex:|convert octal to hexadecimal equivalent"\
+			-o $"bin:|convert octal to binary equivalent"\
+			-o $"all:|convert octal to other numerical equivalents"
 	;;
-
 esac
+
+unset TEXTDOMAIN

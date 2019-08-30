@@ -9,6 +9,9 @@
 #							#
 #########################################################
 
+. gettext.sh
+TEXTDOMAIN="bashstyle-rc"
+
 find_empty () {
 	case ${1} in
 		f )
@@ -31,12 +34,14 @@ find_empty () {
 case ${1} in
 	--help | -h)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "empty" -s "find empty files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "type:[f] [d]|(optional) find [f]iles or [d]irectories only"\
-			-o "directory:|(optional) find empty files in directory (or current)"
+			-l "GNU GPL v3" -n "empty" -s $"find empty files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o $"type:[f] [d]|(optional) find [f]iles or [d]irectories only"\
+			-o $"directory:|(optional) find empty files in directory (or current)"
 	;;
 
 	* )
 		find_empty "${1}" "${2}"
 	;;
 esac
+
+unset TEXTDOMAIN
