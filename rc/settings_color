@@ -22,17 +22,13 @@ ecolors=(eblack ered egreen eyellow eblue emagenta ecyan egrey ewhite ecoldblue
 
 color_style=$(ini_get color_style)
 
-if [[ ${color_style} == bright ]]; then
-	style="01"
-elif [[ ${color_style} == normal ]]; then
-	style="0"
-elif [[ ${color_style} == inverted ]]; then
-	style="7"
-elif [[ ${color_style} == dimmed ]]; then
-	style="02"
-elif [[ ${color_style} == underlined ]]; then
-	style="04"
-fi
+case ${color_style} in
+	bright ) style="01" ;;
+	normal ) style="0" ;;
+	inverted ) style="7" ;;
+	dimmed ) style="02" ;;
+	underlined ) style="04" ;;
+esac
 
 if [[ ${TERM} != *xterm*color* ]]; then
 	black="\[\033[${style};30m\]"
