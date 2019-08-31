@@ -24,7 +24,7 @@ case ${1} in
 
 	* )
 		[[ "${EUID}" -eq 0 && ! -z "${2}" ]] && user="${2}" || user="${USER}"
-		echo -e $"user \"${user}\" is not part of the following groups:\n" \
+		echo -e $"user ${user} is not part of the following groups:\n" \
 			$(sed -e "/${user}/d;s/:.*//g" /etc/group | sed -e :a -e '/$/N;s/\n/ /;ta')
 	;;
 esac
