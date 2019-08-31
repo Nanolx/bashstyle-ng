@@ -9,4 +9,6 @@
 #							#
 #########################################################
 
-printf %s "${PWD}" > ${HOME}/.lastpwd
+bashstyle-remember-directory () {
+	printf %s "${PWD}" > ${HOME}/.lastpwd
+}

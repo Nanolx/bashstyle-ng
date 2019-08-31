@@ -9,4 +9,6 @@
 #							#
 #########################################################
 
-rm -f ${BSNG_TMPDIR}/gitkit_time_${BASH_SESSION_PID}*
+bashstyle-remove-tempfile () {
+	rm -f ${BSNG_TMPDIR}/gitkit_time_${BASH_SESSION_PID}*
+}

@@ -23,4 +23,3 @@ case ${1} in
 	* )	find "$@" | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/' ;;
 esac
 
-unset TEXTDOMAIN

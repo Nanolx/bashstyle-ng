@@ -22,4 +22,3 @@ case ${1} in
 	*)	clear ; perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}' ;;
 esac
 
-unset TEXTDOMAIN
