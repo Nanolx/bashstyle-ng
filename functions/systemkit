@@ -108,7 +108,7 @@ case ${1} in
 	freeram%)	echo "$(top -bn1 | gawk '/Mem :/{print "100 *" $6 "/" $4}' | bc)%" ;;
 
 	dirsize)
-		TotalBytes=$(du . | awk '{print $1}')
+		TotalBytes=$(du -s ${2} | awk '{print $1}')
 
 		if [[ ${TotalBytes} -lt 1024 ]]; then
 				echo "${TotalBytes} KB"
