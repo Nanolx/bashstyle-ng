@@ -24,9 +24,9 @@ case ${1} in
 		out="$(acpi -b)"
 		state="$(echo "${out}" | awk '{print $3}')"
 		case ${state} in
-			charging,)	statesign="^" ;;
-			discharging,)	statesign="v" ;;
-			charged,)	statesign="°" ;;
+			Charging,)	statesign="^" ;;
+			Discharging,)	statesign="v" ;;
+			Full,)		statesign="°" ;;
 		esac
 		echo "${statesign}${load}"
 	;;
@@ -36,7 +36,7 @@ case ${1} in
 		t="0"
 
 		while read -r cpu ni; do
-			[[ $ni == *-* || $ni -le ${NICE_IGNORE} ]] &&	t="$t + ${cpu}"
+			[[ $ni == *-* || $ni -le ${NICE_IGNORE} ]] && t="$t + ${cpu}"
 			[[ ${cpu%%.*} -eq 0 ]] && break
 		done < <(ps -Ao "%cpu= ni="| sort -r)
 
@@ -64,8 +64,7 @@ case ${1} in
 	;;
 
 	internalip)
-		LANG=C /sbin/ifconfig "${2}" | grep 'inet addr:' | \
-			cut -d: -f2 | gawk '{ print $1}'
+		LANG=C /sbin/ifconfig "${2}" | gawk '/inet /{print $2}'
 	;;
 
 	usedram)
