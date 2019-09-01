@@ -148,7 +148,7 @@ case ${1} in
 
 	pci)
 		if ! which lspci &>/dev/null; then
-			echo -e $"lspci not found, 'systemkit lspci' won't work."
+			echo -e $"lspci not found, 'systemkit pci' won't work."
 			exit 1
 		fi
 		echo -e $"PCI Devices:\n\n""$(lspci -vkmm)\n"
