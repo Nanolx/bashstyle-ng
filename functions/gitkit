@@ -29,6 +29,20 @@ gitkit_ssh_add () {
 	fi
 }
 
+github_clone () {
+	if ! which wget &>/dev/null; then
+			echo -e $"wget not found, 'gitkit cloneorg' won't work."
+			exit 1
+	fi
+
+	if ! which xe &>/dev/null; then
+		echo -e $"xe not found, 'gitkit cloneorg' won't work."
+		exit 1
+	fi
+	wget -qO - https://api.github.com/"${1}"/"${2}"/repos?per_page=200 | \
+		awk -F\" '/ssh_url/{print $4}' | xe git clone
+}
+
 case ${1} in
 
 	action)
@@ -84,13 +98,11 @@ case ${1} in
 	;;
 
 	cloneuser)
-		curl -s https://api.github.com/users/"${2}"/repos?per_page=200 | \
-			ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| %x[git clone #{repo["ssh_url"]} ]}'
+		github_cone users "${2}"
 	;;
 	
 	cloneorg)
-		curl -s https://api.github.com/orgs/"${2}"/repos?per_page=200 | \
-			ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| %x[git clone #{repo["ssh_url"]} ]}'
+		github_clone orgs "${2}"
 	;;
 
 	export)
@@ -98,6 +110,10 @@ case ${1} in
 	;;
 
 	funmsg)
+		if ! which wget &>/dev/null; then
+			echo -e $"wget not found, 'gitkit funmsg' won't work."
+			exit 1
+		fi
 		wget -qO - http://whatthecommit.com/index.txt
 	;;
 
