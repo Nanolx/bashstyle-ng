@@ -26,3 +26,5 @@ bashstyle-trap-add () {
         || fatal "unable to add to trap ${trap_add_name}"
     done
 }
+
+declare -f -t bashstyle-trap-add
