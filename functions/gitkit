@@ -14,6 +14,10 @@ TEXTDOMAIN="bashstyle-rc"
 
 gitkit_ssh_add () {
 	if check bt $(bashstyle --ini-get git_ssh_remember); then
+		if ! which ssh-add &>/dev/null; then
+			echo -e $"ssh-add not found, remembering password won't work."
+			exit 1
+		fi
 
 		local git_ssh_timeout=$(bashstyle --ini-get git_ssh_timeout)
 		local gitkit_file=${BSNG_TMPDIR}/gitkit_time_${BASH_SESSION_PID}_${SSH_AGENT_PID}
