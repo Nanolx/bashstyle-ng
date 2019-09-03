@@ -10,12 +10,14 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 gitkit_ssh_add () {
 	if check bt $(bashstyle --ini-get git_ssh_remember); then
-		if ! which ssh-add &>/dev/null; then
-			echo -e $"ssh-add not found, remembering password won't work."
+		local dep="ssh-add"
+		local prog="remembering SSH password"
+		if ! which ${dep} &>/dev/null; then
+			echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
 			exit 1
 		fi
 
@@ -27,22 +29,28 @@ gitkit_ssh_add () {
 		eval git_ssh_keyfile=$(bashstyle --ini-get git_ssh_keyfile)
 
 		if test ${gitkit_time} -eq 0 -o ${gitkit_time} -le $(($(date +%s) - ${git_ssh_timeout})); then
-			echo -e $"\n${egreen}[0] ssh-add ${git_ssh_keyfile}\n"
+			echo -e "$(eval_gettext "\n${egreen}[0] ssh-add ${git_ssh_keyfile}\n")"
 			ssh-add "${git_ssh_keyfile}" && echo $(date +%s) > ${gitkit_file}
 		fi
 	fi
 }
 
 github_clone () {
-	if ! which wget &>/dev/null; then
-			echo -e $"wget not found, 'gitkit cloneorg' won't work."
+	local dep="wget"
+	local prog="'gitkit cloneorg'"
+
+	if ! which ${dep} &>/dev/null; then
+			echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
 			exit 1
 	fi
 
-	if ! which xe &>/dev/null; then
-		echo -e $"xe not found, 'gitkit cloneorg' won't work."
+	dep="xe"
+
+	if ! which ${dep} &>/dev/null; then
+		echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
 		exit 1
 	fi
+
 	wget -qO - https://api.github.com/"${1}"/"${2}"/repos?per_page=200 | \
 		awk -F\" '/ssh_url/{print $4}' | xe git clone
 }
@@ -83,21 +91,21 @@ case ${1} in
 	bz2)
 		if [[ -d .git ]]; then
 			git archive master | bzip2 -9 > "$(basename "${PWD}")".tar.bz2
-		else	echo $"current directory is not the root of a git repository"
+		else	echo "$(eval_gettext "current directory is not the root of a git repository")"
 		fi
 	;;
 
 	xz)
 		if [[ -d .git ]]; then
 			git archive master | xz -9 > "$(basename "${PWD}")".tar.xz
-		else	echo $"current directory is not the root of a git repository"
+		else	echo "$(eval_gettext "current directory is not the root of a git repository")"
 		fi
 	;;
 
 	zip)
 		if [[ -d .git ]]; then
 			git archive master --format=zip > "$(basename "${PWD}")".zip
-		else	echo $"current directory is not the root of a git repository"
+		else	echo "$(eval_gettext "current directory is not the root of a git repository")"
 		fi
 	;;
 
@@ -114,10 +122,14 @@ case ${1} in
 	;;
 
 	funmsg)
-		if ! which wget &>/dev/null; then
-			echo -e $"wget not found, 'gitkit funmsg' won't work."
-			exit 1
+		dep="wget"
+		prog="'gitkit funmsg'"
+
+		if ! which ${dep} &>/dev/null; then
+				echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
+				exit 1
 		fi
+
 		wget -qO - http://whatthecommit.com/index.txt
 	;;
 
@@ -135,10 +147,10 @@ case ${1} in
 				;;
 
 				* )
-					echo $"couldn't parse web location"
+					echo "$(eval_gettext "couldn't parse web location")"
 				;;
 			esac
-		else	echo $"current directory is not the root of a git repository"
+		else	echo "$(eval_gettext "current directory is not the root of a git repository")"
 		fi
 	;;
 
@@ -162,23 +174,23 @@ case ${1} in
 	undelete)
 		if [ -d .git ]; then
 			git checkout "$(git ls-files --deleted)"
-		else	echo $"current directory is not the root of a git repository"
+		else	echo "$(eval_gettext "current directory is not the root of a git repository")"
 		fi
 	;;
 
 	push)
 		gitkit_ssh_add
 
-		echo -e $"\n${eblue}[1] push to upstream\n"
+		echo -e "$(eval_gettext "\n${eblue}[1] push to upstream\n")"
 		git push
 
-		echo -e $"\n${ecyan}[2] push tags to upstream\n"
+		echo -e "$(eval_gettext "\n${ecyan}[2] push tags to upstream\n")"
 		git push --tag
 
 		if [ -f ${PWD}/.git_mirror ]; then
-			echo -e $"\n${emagenta}[3] push to mirror\n"
+			echo -e "$(eval_gettext "\n${emagenta}[3] push to mirror\n")"
 			for repo in $(cat ${PWD}/.git_mirror); do
-				echo -e $"${eyellow} * mirror: ${repo}\n"
+				echo -e "$(eval_gettext "${eyellow} * mirror: ${repo}\n")"
 				git push --mirror "${repo}"
 			done
 		fi
@@ -186,32 +198,34 @@ case ${1} in
 
 	taga)
 		shift
+		local tag=${1}
 
-		if [ ! -z "$(git tag -l "${1}")" ]; then
-			echo $"tag \"${1}\" already exists!"
+		if [ ! -z "$(git tag -l "${tag}")" ]; then
+			echo "$(eval_gettext "tag ${tag} already exists!")"
 		else
 			gitkit_ssh_add
 
-			echo -e $"\n${eblue}[1] create local tag ${1}\n"
+			echo -e "$(eval_gettext "\n${eblue}[1] create local tag ${tag}\n")"
 			git tag -a "${@}" || exit 1
 
-			echo -e $"\n${ecyan}[2] push tag to remote\n"
+			echo -e "$(eval_gettext "\n${ecyan}[2] push tag to remote\n")"
 			git push --tag
 		fi
 	;;
 
 	tagd)
 		shift
+		local tag=${1}
 
 		if [ -z "$(git tag -l "${1}")" ]; then
-			echo $"tag \"${1}\" does not exist!"
+			echo "$(eval_gettext "tag ${tag} does not exist!")"
 		else
 			gitkit_ssh_add
 
-			echo -e $"\n${eblue}[1] remove local tag ${1}\n"
+			echo -e "$(eval_gettext "\n${eblue}[1] remove local tag ${tag}\n")"
 			git tag -d "${1}" || exit 1
 
-			echo -e $"\n${ecyan}[2] remove remote tag\n"
+			echo -e "$(eval_gettext "\n${ecyan}[2] remove remote tag\n")"
 			git push origin :refs/tags/"${1}"
 		fi
 	;;
@@ -222,12 +236,12 @@ case ${1} in
 		out_TAG="${2}"
 
 		if [ -z "$(git tag -l "${in_TAG}")" ]; then
-			echo $"tag \"${in_TAG}\" does not exist!"
+			echo "$(eval_gettext "tag ${in_TAG} does not exist!")"
 			exit 1
 		fi
 
 		if [ ! -z "$(git tag -l "${out_TAG}")" ]; then
-			echo $"tag \"${out_TAG}\" already exists!"
+			echo "$(eval_gettext "tag ${out_TAG} already exists!")"
 			exit 1
 		fi
 
@@ -244,12 +258,12 @@ case ${1} in
 		COM="${2}"
 
 		if [ -z "$(git tag -l "${TAG}")" ]; then
-			echo $"tag \"${TAG}\" does not exist!"
+			echo "$(eval_gettext "tag ${TAG} does not exist!")"
 			exit 1
 		fi
 
 		if [ ! "$(git rev-parse "${COM}")" ]; then
-			echo $"commit \"${COM}\" does not exist!"
+			echo "$(eval_gettext "commit ${COM} does not exist!")"
 			exit 1
 		fi
 
@@ -261,25 +275,25 @@ case ${1} in
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "gitkit" -s $"various companion functions for Git" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"action:|print the current action in a Git repo"\
-			-o $"branch:|print the current branch in a Git repo"\
-			-o $"bz2:|create bz2 archive from a Git repo"\
-			-o $"xz:|create xz archive from a Git repo"\
-			-o $"zip:|create zip archive from a Git repo"\
-			-o $"cloneuser:username|clone all repos from a GitHub user (SSH)"\
-			-o $"cloneorg:organization|clone all repos from a GitHub organization (SSH)"\
-			-o $"export:directory|export Git repo for release tarball"\
-			-o $"funmsg:|create funny Git commit message"\
-			-o $"web:|open project page using x-www-browser"\
-			-o $"revision:|get 6 digit revision from a Git repo"\
-			-o $"revno:|get traditional revision number from a Git repo"\
-			-o $"undelete:|undelete files accidentally deleted locally"\
-			-o $"push:|push/push tag upstream + push to mirror in one go"\
-			-o $"taga:tag [-m msg commit]|create a tag and push remote"\
-			-o $"tagd:tag|remove tag locally and remote"\
-			-o $"tagr:tag newtag|rename a tag locally and remote"\
-			-o $"tagc:tag newcommit|make tag point to different commit"
+			-l "GNU GPL v3" -n "gitkit" -s "$(eval_gettext "various companion functions for Git")"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "$(eval_gettext "action:|print the current action in a Git repo")"\
+			-o "$(eval_gettext "branch:|print the current branch in a Git repo")"\
+			-o "$(eval_gettext "bz2:|create bz2 archive from a Git repo")"\
+			-o "$(eval_gettext "xz:|create xz archive from a Git repo")"\
+			-o "$(eval_gettext "zip:|create zip archive from a Git repo")"\
+			-o "$(eval_gettext "cloneuser:username|clone all repos from a GitHub user (SSH)")"\
+			-o "$(eval_gettext "cloneorg:organization|clone all repos from a GitHub organization (SSH)")"\
+			-o "$(eval_gettext "export:directory|export Git repo for release tarball")"\
+			-o "$(eval_gettext "funmsg:|create funny Git commit message")"\
+			-o "$(eval_gettext "web:|open project page using x-www-browser")"\
+			-o "$(eval_gettext "revision:|get 6 digit revision from a Git repo")"\
+			-o "$(eval_gettext "revno:|get traditional revision number from a Git repo")"\
+			-o "$(eval_gettext "undelete:|undelete files accidentally deleted locally")"\
+			-o "$(eval_gettext "push:|push/push tag upstream + push to mirror in one go")"\
+			-o "$(eval_gettext "taga:tag [-m msg commit]|create a tag and push remote")"\
+			-o "$(eval_gettext "tagd:tag|remove tag locally and remote")"\
+			-o "$(eval_gettext "tagr:tag newtag|rename a tag locally and remote")"\
+			-o "$(eval_gettext "tagc:tag newcommit|make tag point to different commit")"
 	;;
 esac
-

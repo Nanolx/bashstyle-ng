@@ -10,14 +10,14 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	-h | --help )
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "showuser" -s $"prompt function to display $ or user-set char, or # for root"\
+			-l "GNU GPL v3" -n "showuser" -s "$(eval_gettext "prompt function to display $ or user-set char, or # for root")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "none:|---"
+			-o "$(eval_gettext "none:|---")"
 	;;
 
 	*)
@@ -29,4 +29,3 @@ case ${1} in
 		fi
 	;;
 esac
-

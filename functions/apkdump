@@ -10,10 +10,13 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
-if ! which aapt &>/dev/null; then
-	echo -e $"aapt not found, apkdump won't work."
+dep="aapt"
+prog="apkdump"
+
+if ! which ${dep} &>/dev/null; then
+	echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
 	exit 1
 fi
 
@@ -39,11 +42,12 @@ case ${opt} in
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "apkdump" -s $"grab apk infos using aapt" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"name:apk|get package name of apk"\
-			-o $"version:apk|get human-readable version of apk"\
-			-o $"versioncode:apk|get version code of apk"\
-			-o $"perms:apk|get list of requested permissions"
+			-l "GNU GPL v3" -n "apkdump" -s "$(eval_gettext "grab apk infos using aapt")" \
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "$(eval_gettext "name:apk|get package name of apk")"\
+			-o "$(eval_gettext "version:apk|get human-readable version of apk")"\
+			-o "$(eval_gettext "versioncode:apk|get version code of apk")"\
+			-o "$(eval_gettext "perms:apk|get list of requested permissions")"
 	;;
 esac
 

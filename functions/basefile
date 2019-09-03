@@ -10,7 +10,7 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	ext   | e) echo "${2##*.}" ;;
@@ -21,11 +21,12 @@ case ${1} in
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "basefile" -s $"variant of basename for files" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"ext:file|output extension of file"\
-			-o $"name:file|output filename without path"\
-			-o $"noext:file|output filename without path and extension"\
-			-o $"path:file|output path of file"
+			-l "GNU GPL v3" -n "basefile" -s "$(eval_gettext "variant of basename for files")"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "$(eval_gettext "ext:file|output extension of file")"\
+			-o "$(eval_gettext "name:file|output filename without path")"\
+			-o "$(eval_gettext "noext:file|output filename without path and extension")"\
+			-o "$(eval_gettext "path:file|output path of file")"
 	;;
 esac
 

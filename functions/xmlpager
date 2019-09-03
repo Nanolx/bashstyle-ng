@@ -10,20 +10,21 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
-if ! which xmlindent &>/dev/null; then
-	echo -e $"xmlindent not found, xmlpager won't work."
+dep="xmlindent"
+prog="xmlpager"
+if ! which ${dep} &>/dev/null; then
+	echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
 	exit 1
 fi
 
 case ${1} in
-
 	-h | --help )
 		bashstyle-help -a "hackerb9" -e "" -h "http://www.commandlinefu.com/"\
-			-l "GNU GPL v3" -n "xmlpager" -s $"pager for xml files with highlighted text"\
+			-l "GNU GPL v3" -n "xmlpager" -s "$(eval_gettext "pager for xml files with highlighted text")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"file:|xml file to read"
+			-o "$(eval_gettext "file:|xml file to read")"
 	;;
 
 	*)
@@ -31,6 +32,4 @@ case ${1} in
 			awk '{gsub(">",">'$(tput bold; tput setf 4)'"); gsub("<","'$(tput sgr0)'<"); print;} END {print "'$(tput sgr0)'"}' | \
 			less -r
 	;;
-
 esac
-

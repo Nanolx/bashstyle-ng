@@ -10,13 +10,14 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "arabic2roman" -s $"convert arabic number to roman" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"input:|convert arabic number to roman"
+			-l "GNU GPL v3" -n "arabic2roman" -s "$(eval_gettext "convert arabic number to roman")"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "$(eval_gettext "input:|convert arabic number to roman")"
 	;;
 
 	* )

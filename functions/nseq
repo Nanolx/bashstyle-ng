@@ -10,17 +10,17 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
 				-l "GNU GPL v3" -n "nseq" \
-				-s $"print a sequence of numbers from X to Y of same width"\
+				-s "$(eval_gettext "print a sequence of numbers from X to Y of same width")"\
 				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o $"lowest:|lowest number of sequence"\
-				-o $"highest:|highest number of sequence"\
-				-o $"separator:|(optional) field seprator, default '\\\n'"
+				-o "$(eval_gettext "lowest:|lowest number of sequence")"\
+				-o "$(eval_gettext "highest:|highest number of sequence")"\
+				-o "$(eval_gettext "separator:|(optional) field seprator, default '\\\n'")"
 	;;
 
 	* )
@@ -29,4 +29,3 @@ case ${1} in
 		[ ! -z "${3}" ] && seq -s"${3}" -w ${1} ${2} || seq -w ${1} ${2}
 	;;
 esac
-

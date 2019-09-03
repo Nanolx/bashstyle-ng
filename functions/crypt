@@ -10,18 +10,17 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "crypt" -s $"crypt input string by shift 13 (also known as ceasars code)"\
+			-l "GNU GPL v3" -n "crypt" -s "$(eval_gettext "crypt input string by shift 13 (also known as ceasars code)")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"text:|text to crypt"
+			-o "$(eval_gettext "text:|text to crypt")"
 	;;
 
 	*)
 		echo "${@}" | tr a-zA-Z n-za-mN-ZA-M
 	;;
 esac
-

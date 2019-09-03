@@ -10,14 +10,14 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	-h | --help)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "truncpwd" -s $"pretty print current directory" \
+			-l "GNU GPL v3" -n "truncpwd" -s "$(eval_gettext "pretty print current directory")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"none:|--"
+			-o "$(eval_gettext "none:|--")"
 	;;
 
 	* )
@@ -36,4 +36,3 @@ case ${1} in
 		echo -e "${newPWD}"
 	;;
 esac
-

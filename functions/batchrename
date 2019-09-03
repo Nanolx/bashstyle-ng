@@ -10,7 +10,7 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 fill_zeros () {
 	current_len=${#1}
@@ -34,7 +34,7 @@ rename_files () {
 	count_now=1
 
 	[[ "${MV_OPT}" == "-v" ]] && \
-		echo -e $"\n\n >> renaming files using temporary directory \"${directory}/tmp\" \n\n"
+		echo -e "$(eval_gettext "\n\n >> renaming files using temporary directory \"${directory}/tmp\" \n\n")"
 
 	OLD_IFS="${IFS}"
 	export IFS=$'\n'
@@ -48,7 +48,7 @@ rename_files () {
 	done
 
 	[[ "${MV_OPT}" == "-v" ]] && \
-		echo -e $"\n\n >> moving files into destination directory \"${directory}\" \n\n"
+		echo -e "$(evaL_gettext "\n\n >> moving files into destination directory \"${directory}\" \n\n")"
 
 	mv ${MV_OPT} "${directory}/tmp/"* "${directory}/"
 	rmdir "${directory}/tmp"
@@ -59,11 +59,11 @@ rename_files () {
 _help () {
 	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
 		-h "https://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
-		-s $"batch rename files in NNN-NAME.SUFFIX scheme" \
+		-s "$(eval_gettext "batch rename files in NNN-NAME.SUFFIX scheme")"\
 		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-		-o $"-v:|verbose output"\
-		-o $"directory:/home/test/mypictures|directory containing files"\
-		-o $"prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme"
+		-o "$(eval_gettext "-v:|verbose output")"\
+		-o "$(eval_gettext "directory:/home/test/mypictures|directory containing files")"\
+		-o "$(eval_gettext "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme")"
 }
 
 case ${1} in
@@ -77,10 +77,10 @@ if [[ $# -ge 2 ]]; then
 	directory="${1}"
 
 	if [[ ! -d "${directory}" ]]; then
-		echo $"directory \"${directory}\" does not exist!"
+		echo "$(eval_gettext "directory \"${directory}\" does not exist!")"
 		exit 1
 	elif [[ ! -w "${directory}" ]]; then
-		echo $"directory \"${directory}\" is not writeable!"
+		echo "$(eval_gettext "directory \"${directory}\" is not writeable!")"
 		exit 1
 	fi
 

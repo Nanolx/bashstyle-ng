@@ -10,7 +10,7 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	asc | ascii)	echo -e "\0$(printf %o $((2#$2)))" ;;
@@ -30,15 +30,14 @@ binary $2 = ascii		$(convbin asc "${2}")"
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "convbin" -s $"convert binaries to other numerical equivalents" \
+			-l "GNU GPL v3" -n "convbin" -s "$(eval_gettext "convert binaries to other numerical equivalents")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"asc:|convert binary to ascii equivalent"\
-			-o $"b32:|convert binary to base32 equivalent"\
-			-o $"b64:|convert binary to base64 equivalent"\
-			-o $"dec:|convert binary to decimal equivalent"\
-			-o $"hex:|convert binary to hexadecimal equivalent"\
-			-o $"oct:|convert binary to octal equivalent"\
-			-o $"all:|convert binary to other numerical equivalents"
+			-o "$(eval_gettext "asc:|convert binary to ascii equivalent")"\
+			-o "$(eval_gettext "b32:|convert binary to base32 equivalent")"\
+			-o "$(eval_gettext "b64:|convert binary to base64 equivalent")"\
+			-o "$(eval_gettext "dec:|convert binary to decimal equivalent")"\
+			-o "$(eval_gettext "hex:|convert binary to hexadecimal equivalent")"\
+			-o "$(eval_gettext "oct:|convert binary to octal equivalent")"\
+			-o "$(eval_gettext "all:|convert binary to other numerical equivalents")"
 	;;
 esac
-

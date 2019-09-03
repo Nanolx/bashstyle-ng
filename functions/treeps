@@ -10,14 +10,14 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	-h | --help)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "treeps" -s $"tree-ified variant of ps" \
+			-l "GNU GPL v3" -n "treeps" -s "$(eval_gettext "tree-ified variant of ps")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"none:|--"
+			-o "$(eval_gettext "none:|--")"
 	;;
 
 	*)
@@ -25,4 +25,3 @@ case ${1} in
 			awk 'NR <= 1 {print;next} !/awk/ && $0~var' var="${1:-".*"}"
 	;;
 esac
-

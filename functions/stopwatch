@@ -10,13 +10,14 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	-h | --help )
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "stopwatch" -s $"a simple stopwatch" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"none:|--"
+			-l "GNU GPL v3" -n "stopwatch" -s "$(eval_gettext "a simple stopwatch")"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "$(eval_gettext "none:|--")"
 	;;
 
 	*)
@@ -27,9 +28,8 @@ case ${1} in
 			DIFF=$((NOW-BEGIN))
 			MINS=$((DIFF/60))
 			SECS=$((DIFF%60))
-			echo -ne $"Time elapsed:" "$MINS:$(printf %02d $SECS)\r"
+			echo -ne "$(eval_gettext "Time elapsed:")" "${MINS}:$(printf %02d ${SECS})\r"
 			sleep .1
 		done
 	;;
 esac
-

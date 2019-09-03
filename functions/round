@@ -10,14 +10,15 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "round" -s $"round number" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"number:|number to round"\
-			-o $"decimal places:|(optional) decimal places [or 0]"
+			-l "GNU GPL v3" -n "round" -s "$(eval_gettext "round number")"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "$(eval_gettext "number:|number to round")"\
+			-o "$(eval_gettext "decimal places:|(optional) decimal places [or 0]")"
 	;;
 
 	* )
@@ -27,4 +28,3 @@ case ${1} in
 		fi
 	;;
 esac
-

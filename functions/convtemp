@@ -10,7 +10,7 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	cf | cel-fah)
@@ -39,13 +39,14 @@ case ${1} in
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "convtemp" -s $"convert between °C, °F and °K" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"cf:number|convert °C to °F"\
-			-o $"ck:number|convert °C to °K"\
-			-o $"fc:number|convert °F to °C"\
-			-o $"fk:number|convert °F to °K"\
-			-o $"kc:number|convert °K to °C"\
-			-o $"kf:number|convert °K to °F"
+			-l "GNU GPL v3" -n "convtemp" -s "$(eval_gettext "convert between °C, °F and °K")"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "$(eval_gettext "cf:number|convert °C to °F")"\
+			-o "$(eval_gettext "ck:number|convert °C to °K")"\
+			-o "$(eval_gettext "fc:number|convert °F to °C")"\
+			-o "$(eval_gettext "fk:number|convert °F to °K")"\
+			-o "$(eval_gettext "kc:number|convert °K to °C")"\
+			-o "$(eval_gettext "kf:number|convert °K to °F")"
 	;;
 esac
 

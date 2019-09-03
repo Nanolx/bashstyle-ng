@@ -10,22 +10,39 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
-if ! which ps2pdf &>/dev/null; then
-	echo -e $"ps2pdf not found, man2pdf won't work."
+dep="ps2pdf"
+prog="man2pdf"
+
+if ! which ${dep} &>/dev/null; then
+	echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
 	exit 1
 fi
+
+man_exists () {
+	man -t "${1}" &>/dev/null
+
+	# 'man' returns 16, if a manpage does not exist
+	if [[ $? -ne 0 ]]; then
+		return 1
+	else	return 0
+	fi
+}
 
 case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "man2pdf" -s $"create PDF from a manpage" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"manpage:bash|manpage to create a PDF from"
+			-l "GNU GPL v3" -n "man2pdf" -s "$(eval_gettext "create PDF from a manpage")"\
+			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+			-o "$(eval_gettext "manpage:bash|manpage to create a PDF from")"
 	;;
 
 	* )
-		man -t "${1}" | ps2pdf - >"${1}.pdf" || echo $"manpage ${1} does not exist"
+		manpage="${1}"
+
+		man_exists "${manpage}" && man -t "${manpage}" | ps2pdf - > "${manpage}.pdf" \
+			|| echo "$(eval_gettext "manpage ${manpage} does not exist")"
 	;;
 esac
 

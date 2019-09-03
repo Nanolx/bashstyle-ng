@@ -12,31 +12,30 @@
 # by downdiagonal
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "downdiagonal" -e "" -h "http://www.commandlinefu.com/"\
-			-l "Public Domain" -n "map" -s $"run a command on given files or directories"\
+			-l "Public Domain" -n "map" -s "$(eval_gettext "run a command on given files or directories")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"command:|command to map"\
-			-o $" -- :|end of command"\
-			-o $"files:|list of files or directories"
+			-o "$(eval_gettext "command:|command to map")"\
+			-o "$(eval_gettext " -- :|end of command")"\
+			-o "$(eval_gettext "files:|list of files or directories")"
 	;;
 
 	* )
 		if [ $# -lt 2 ] || [[ ! "$*" =~ [[:space:]]--[[:space:]] ]];then
-			echo "Invalid syntax." >&2; exit 1
+			echo "$(eval_gettext "invalid syntax")" >&2; exit 1
 		fi
 
 		until [[ $1 =~ -- ]]; do
-			command="$command $1"; shift
+			command="$command ${1}"; shift
 		done
 
 		command="$command ${1%:}"; shift
-		for i in "$@"; do
+		for i in "${@}"; do
 			eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
 		done
 	;;
 esac
-

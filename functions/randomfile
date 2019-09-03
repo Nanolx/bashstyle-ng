@@ -10,14 +10,13 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 _randomfunc() {
-
 	command=""
 
 	if [ $# -lt 2 ] || [[ ! "$*" =~ [[:space:]]--[[:space:]] ]];then
-			echo $"Invalid syntax." >&2; exit 1
+			echo "$(eval_gettext "invalid syntax")" >&2; exit 1
 	fi
 
 	if [[ "${1}" == "_zero_" ]]; then
@@ -50,64 +49,62 @@ _randomfunc() {
 				fi
 		;;
 	esac
-
 }
 
 _randomfile_help () {
 	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-		-l "GNU GPL v3" -n "randomfile" -s $"run a command on a random file" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-		-o $"command:|command to run for file"\
-		-o $"--:|end of command"\
-		-o $"files:|list of possible files"\
-		-o $"\tor:|--"\
-		-o $"-z:command|command to run for file, append result without space"\
-		-o $"--:|end of command"\
-		-o $"files:|list of possible files"\
-		-o $"\tor:|--"\
-		-o $"-f:|print first entry of random history"\
-		-o $"-L:|print last entry of random history"\
-		-o $"-i:decimal|print nth entry of random history"\
-		-o $"-l:|print number of entries in random history"\
-		-o $"-c:|clear random history"\
-		-o $"\tor:|--"\
-		-o $"-n:decimal|repeat process n times"\
-		-o $"--:|delimiter"\
-		-o $"files:|for given files and print result"\
-		-o $"\tor:|--"\
-		-o $"-p:|only print result"\
-		-o $"--:|delimiter"\
-		-o $"files:|for given files and print result"
+		-l "GNU GPL v3" -n "randomfile" -s "$(eval_gettext "run a command on a random file")"\
+		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+		-o "$(eval_gettext "command:|command to run for file")"\
+		-o "$(eval_gettext "--:|end of command")"\
+		-o "$(eval_gettext "files:|list of possible files")"\
+		-o "$(eval_gettext "\tor:|--")"\
+		-o "$(eval_gettext "-z:command|command to run for file, append result without space")"\
+		-o "$(eval_gettext "--:|end of command")"\
+		-o "$(eval_gettext "files:|list of possible files")"\
+		-o "$(eval_gettext "\tor:|--")"\
+		-o "$(eval_gettext "-f:|print first entry of random history")"\
+		-o "$(eval_gettext "-L:|print last entry of random history")"\
+		-o "$(eval_gettext "-i:decimal|print nth entry of random history")"\
+		-o "$(eval_gettext "-l:|print number of entries in random history")"\
+		-o "$(eval_gettext "-c:|clear random history")"\
+		-o "$(eval_gettext "\tor:|--")"\
+		-o "$(eval_gettext "-n:decimal|repeat process n times")"\
+		-o "$(eval_gettext "--:|delimiter")"\
+		-o "$(eval_gettext "files:|for given files and print result")"\
+		-o "$(eval_gettext "\tor:|--")"\
+		-o "$(eval_gettext "-p:|only print result")"\
+		-o "$(eval_gettext "--:|delimiter")"\
+		-o "$(eval_gettext "files:|for given files and print result")"
 }
 
 case ${1} in
-
 	--help | -h | "")
 		_randomfile_help
 	;;
 
-
 	-f | --first)
 		[[ -f ${HOME}/.randomhistory ]] && \
 			sed -n '1p' "${HOME}"/.randomhistory || \
-			echo $"no 'randomfile' history available"
+			echo "$(eval_gettext "no 'randomfile' history available")"
 	;;
 
 	-L | --last)
 		[[ -f ${HOME}/.randomhistory ]] && \
 			sed -n '$p' "${HOME}"/.randomhistory || \
-			echo $"no 'randomfile' history available"
+			echo "$(eval_gettext "no 'randomfile' history available")"
 	;;
 
 	-i | --item)
 		[[ -f ${HOME}/.randomhistory ]] && \
 			sed -n "${2}p" "${HOME}"/.randomhistory || \
-			echo $"no 'randomfile' history available"
+			echo "$(eval_gettext "no 'randomfile' history available")"
 	;;
 
 	-l | --length)
 		[[ -f ${HOME}/.randomhistory ]] && \
 			wc -l "${HOME}"/.randomhistory | gawk '{print $1}' || \
-			echo $"no 'randomfile' history available"
+			echo "$(eval_gettext "no 'randomfile' history available")"
 	;;
 
 	-c | --clear)
@@ -141,6 +138,4 @@ case ${1} in
 	*)
 		_randomfunc "${@}"
 	;;
-
 esac
-

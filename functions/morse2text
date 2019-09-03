@@ -10,14 +10,14 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	--help | -h | "")
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "morse2text" -s $"convert morse code to plain text" \
+			-l "GNU GPL v3" -n "morse2text" -s "$(eval_gettext "convert morse code to plain text")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o $"code:|code to convert"
+			-o "$(eval_gettext "code:|code to convert")"
 	;;
 
 	* )
@@ -28,4 +28,3 @@ case ${1} in
 			| sed -e {s/0\ /e/g} -e {s/-\ /t/g}
 	;;
 esac
-

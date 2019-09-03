@@ -10,14 +10,15 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	--help | -h)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-				-l "GNU GPL v3" -n "power" -s $"calculate powers of numbers" -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o $"number:|number to calculate power from"\
-				-o $"power:|(optional) power [or 2]"
+				-l "GNU GPL v3" -n "power" -s "$(eval_gettext "calculate powers of numbers")"\
+				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+				-o "$(eval_gettext "number:|number to calculate power from")"\
+				-o "$(eval_gettext "power:|(optional) power [or 2]")"
 	;;
 
 	* )
@@ -27,4 +28,3 @@ case ${1} in
 		fi
 	;;
 esac
-
