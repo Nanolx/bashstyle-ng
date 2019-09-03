@@ -9,7 +9,7 @@
 #                                                       #
 #########################################################
 
-dbg_msg $"BashStyle-NG Setting:" LS_COLORS
+dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" LS_COLORS
 
 lblack="${style};30"
 lred="${style};31"
@@ -72,7 +72,7 @@ dbg_log export LS_COLORS="*=${_generic}:ex=${_exec}:*.log=${_logs}:*.deb=${_deb}
 *.zip=${_zip}:*.rar=${_rar}:ln=${_link}:so=${_socket}:pi=${_pipe}:bd=${_blockdev}:\
 cd=${_chardev}:${_custom}"
 
-dbg_msg $"LS_COLORS Setting:" LS_COLORS "${LS_COLORS}"
+dbg_msg "$(eval_gettext "LS_COLORS Setting:")" LS_COLORS "${LS_COLORS}"
 
 for lscolor in "${lscolors[@]}"; do
 	eval unset "_${lscolor}"

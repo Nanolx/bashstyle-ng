@@ -10,54 +10,54 @@
 #########################################################
 
 if [ $(bt $(ini_get colored_ls)) -a $(bt $(ini_get enable_colors)) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Colored ls $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored ls "$(eval_gettext "On")"
 	dbg_log alias ls="ls -CF --color=auto --group-directories-first"
 else
-	dbg_msg $"BashStyle-NG Setting:" Colored ls $"Off"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored ls "$(eval_gettext "Off")"
 	dbg_log alias ls="ls -CF --color=no --group-directories-first"
 fi
 
 if [ ! -z $(ini_get alias_one) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_one)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_one)"
 	dbg_log alias "$(ini_get alias_one)"
 fi
 
 if [ ! -z $(ini_get alias_two) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_two)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_two)"
 	dbg_log alias "$(ini_get alias_two)"
 fi
 
 if [ ! -z $(ini_get alias_three) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_three)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_three)"
 	dbg_log alias "$(ini_get alias_three)"
 fi
 
 if [ ! -z $(ini_get alias_four) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_four)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_four)"
 	dbg_log alias "$(ini_get alias_four)"
 fi
 
 if [ ! -z $(ini_get alias_five) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_five)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_five)"
 	dbg_log alias "$(ini_get alias_five)"
 fi
 
 if [ ! -z $(ini_get alias_six) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_six)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_six)"
 	dbg_log alias "$(ini_get alias_six)"
 fi
 
 if [ ! -z $(ini_get alias_seven) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_seven)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_seven)"
 	dbg_log alias "$(ini_get alias_seven)"
 fi
 
 if [ ! -z $(ini_get alias_eight) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_eight)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_eight)"
 	dbg_log alias "$(ini_get alias_eight)"
 fi
 
 if [ ! -z $(ini_get alias_nine) ]; then
-	dbg_msg $"BashStyle-NG Setting:" Alias "$(ini_get alias_nine)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Alias "$(ini_get alias_nine)"
 	dbg_log alias "$(ini_get alias_nine)"
 fi

@@ -10,7 +10,7 @@
 #########################################################
 
 if bt $(ini_get enable_colors); then
-	dbg_msg $"BashStyle-NG Setting:" $"colored manpages" $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "colored manpages")" "$(eval_gettext "On")"
 
 	# enforce pager to be less, else this does not work
 	# less is a hard dependency for BashStyle-NG, so it
@@ -96,5 +96,5 @@ if bt $(ini_get enable_colors); then
 		eval unset "lf${lfcolor}"
 	done
 else
-	dbg_msg $"BashStyle-NG Setting:" $"colored manpages" $"Off"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "colored manpages")" "$(eval_gettext "Off")"
 fi

@@ -9,8 +9,8 @@
 #							#
 #########################################################
 
-dbg_msg $"BashStyle-NG Setting:" Colors $"On"
-dbg_msg $"BashStyle-NG Setting:" Color-Style "$(ini_get color_style)"
+dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colors "$(eval_gettext "On")"
+dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Color-Style "$(ini_get color_style)"
 
 colors=(black red green yellow blue magenta cyan grey white coldblue
 	smoothblue iceblue turqoise smoothgreen winered brown silver ocher

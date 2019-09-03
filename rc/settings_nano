@@ -14,137 +14,136 @@ bsng_nanorc=( "${HOME}"/.nanorc.bs-ng.* )
 shopt -u nullglob
 
 if (( "${#bsng_nanorc[@]}" == 0 )); then
-
-	dbg_msg $"BashStyle-NG Loading:" NanoCFG
+	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" NanoCFG
 	export RC_FILE
 	RC_FILE="${HOME}/.nanorc.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
 
 	if bt $(ini_get auto_indent); then
-		dbg_msg $"NanoCFG Setting:" Auto-Indention $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Auto-Indention "$(eval_gettext "On")"
 		rc_add "set autoindent"
 	else
-		dbg_msg $"NanoCFG Setting:" Auto-Indention $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Auto-Indention "$(eval_gettext "Off")"
 		rc_add "unset autoindent"
 	fi
 
 	if bt $(ini_get nano_backup); then
-		dbg_msg $"NanoCFG Setting:" Autosave $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Autosave "$(eval_gettext "On")"
 		rc_add "set backup"
 	else
-		dbg_msg $"NanoCFG Setting:" Autosave $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Autosave "$(eval_gettext "Off")"
 		rc_add "unset backup"
 	fi
 
 	if bt $(ini_get bold_text); then
-		dbg_msg $"NanoCFG Setting:" Bold-Text $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Bold-Text "$(eval_gettext "On")"
 		rc_add "set boldtext"
 	else
-		dbg_msg $"NanoCFG Setting:" Bold-Text $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Bold-Text "$(eval_gettext "Off")"
 		rc_add "unset boldtext"
 	fi
 
 	if bt $(ini_get case_sensitive); then
-		dbg_msg $"NanoCFG Setting:" Case-Sensitive $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Case-Sensitive "$(eval_gettext "On")"
 		rc_add "set casesensitive"
 	else
-		dbg_msg $"NanoCFG Setting:" Case-Sensitive $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Case-Sensitive "$(eval_gettext "Off")"
 		rc_add "unset casesensitive"
 	fi
 
 	if bt $(ini_get show_positon); then
-		dbg_msg $"NanoCFG Setting:" Show-Position $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Show-Position "$(eval_gettext "On")"
 		rc_add "set constantshow"
 	else
-		dbg_msg $"NanoCFG Setting:" Show-Position $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Show-Position "$(eval_gettext "Off")"
 		rc_add "unset constantshow"
 	fi
 
 	if bt $(ini_get empty_space); then
-		dbg_msg $"NanoCFG Setting:" More-Space $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" More-Space "$(eval_gettext "On")"
 		rc_add "unset emptyline"
 	else
-		dbg_msg $"NanoCFG Setting:" More-Space $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" More-Space "$(eval_gettext "Off")"
 		rc_add "set emptylines"
 	fi
 
 	if bt $(ini_get hide_help); then
-		dbg_msg $"NanoCFG Setting:" No-Help $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" No-Help "$(eval_gettext "On")"
 		rc_add "set nohelp"
 	else
-		dbg_msg $"NanoCFG Setting:" No-Help $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" No-Help "$(eval_gettext "Off")"
 		rc_add "unset nohelp"
 	fi
 
 	if bt $(ini_get history); then
-		dbg_msg $"NanoCFG Setting:" History Log: $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" History Log: "$(eval_gettext "On")"
 		rc_add "set historylog"
 	else
-		dbg_msg $"NanoCFG Setting:" History Log: $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" History Log: "$(eval_gettext "Off")"
 		rc_add "unset historylog"
 	fi
 
 	if bt $(ini_get rebind_delete); then
-		dbg_msg $"NanoCFG Setting:" Rebind Delete: $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Rebind Delete: "$(eval_gettext "On")"
 		rc_add "set rebinddelete"
 	else
-		dbg_msg $"NanoCFG Setting:" Rebind Delete: $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Rebind Delete: "$(eval_gettext "Off")"
 		rc_add "unset rebinddelete"
 	fi
 
 	if bt $(ini_get enable_mouse); then
-		dbg_msg $"NanoCFG Setting:" Enable Mouse: $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Enable Mouse: "$(eval_gettext "On")"
 		rc_add "set mouse"
 	else
-		dbg_msg $"NanoCFG Setting:" Enable Mouse: $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Enable Mouse: "$(eval_gettext "Off")"
 		rc_add "unset mouse"
 	fi
 
 	if bt $(ini_get no_wrap); then
-		dbg_msg $"NanoCFG Setting:" No Wrap $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" No Wrap "$(eval_gettext "On")"
 		rc_add "set nowrap"
 	else
-		dbg_msg $"NanoCFG Setting:" No Wrap $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" No Wrap "$(eval_gettext "Off")"
 		rc_add "unset nowrap"
 	fi
 
 	if bt $(ini_get log_position); then
-		dbg_msg $"NanoCFG Setting:" Log Position $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Log Position "$(eval_gettext "On")"
 		rc_add "set positionlog"
 	else
-		dbg_msg $"NanoCFG Setting:" Log Position $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Log Position "$(eval_gettext "Off")"
 		rc_add "unset positionlog"
 	fi
 
-	dbg_msg $"NanoCFG Setting:" Tab Width "$(ini_get tab_size)"
+	dbg_msg "$(eval_gettext "NanoCFG Setting:")" Tab Width "$(ini_get tab_size)"
 	rc_add "set tabsize $(ini_get tab_size)"
 
 	if bt $(ini_get tab_to_spaces); then
-		dbg_msg $"NanoCFG Setting:" Tab to spaces $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Tab to spaces "$(eval_gettext "On")"
 		rc_add "set tabstospaces"
 	else
-		dbg_msg $"NanoCFG Setting:" Tab to spaces $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Tab to spaces "$(eval_gettext "Off")"
 		rc_add "unset tabstospaces"
 	fi
 
 	if bt $(ini_get line_numbers); then
-		dbg_msg $"NanoCFG Setting:" Line Numbers $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Line Numbers "$(eval_gettext "On")"
 		rc_add "set linenumbers"
 	else
-		dbg_msg $"NanoCFG Setting:" Line Numbers $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Line Numbers "$(eval_gettext "Off")"
 		rc_add "unset linenumbers"
 	fi
 
 	if [ $(ini_get guide_stripe) -gt 0 ]; then
-		dbg_msg $"NanoCFG Setting:" Guide Stripe "$(ini_get guide_stripe)"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Guide Stripe "$(ini_get guide_stripe)"
 		rc_add "set tabsize $(ini_get tab_size)"
 	else
-		dbg_msg $"NanoCFG Setting:" Guide Stripe $"Off"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Guide Stripe "$(eval_gettext "Off")"
 	fi
 
 	if bt $(ini_get set_uicolors); then
 		for uipart in function key status title number error selected stripe number; do
 			uipart_color="$(ini_get ${uipart}_color_fg),$(ini_get ${uipart}_color_bg)"
-			dbg_msg $"NanoCFG Setting:" UI Color "${uipart}": "${uipart_color}"
+			dbg_msg "$(eval_gettext "NanoCFG Setting:")" UI Color "${uipart}": "${uipart_color}"
 			rc_add "set ${uipart}color ${uipart_color}"
 		done
 
@@ -152,14 +151,13 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 	fi
 
 	if bt $(ini_get syntax_highlight); then
-		dbg_msg $"NanoCFG Setting:" Colors $"On"
+		dbg_msg "$(eval_gettext "NanoCFG Setting:")" Colors "$(eval_gettext "On")"
 		for file in /usr/share/nano/*.nanorc; \
 			do rc_add "include \"$file\""; \
 		done
-	else	dbg_msg $"NanoCFG Setting:" Colors $"Off"
+	else	dbg_msg "$(eval_gettext "NanoCFG Setting:")" Colors "$(eval_gettext "Off")"
 	fi
 
 	mv "${RC_FILE}" "${HOME}"/.nanorc
 	unset RC_FILE
-
 fi

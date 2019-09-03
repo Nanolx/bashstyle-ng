@@ -15,154 +15,154 @@ shopt -u nullglob
 
 if (( "${#bsng_inputrc[@]}" == 0 )); then
 
-	dbg_msg $"BashStyle-NG Loading:" ReadlineCFG
+	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" ReadlineCFG
 	export RC_FILE
 	RC_FILE="${HOME}/.inputrc.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
 
 	if [[ $(ini_get editing_mode) == emacs ]]; then
-		dbg_msg $"ReadlineCFG Setting:" Editing-Mode Emacs
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Editing-Mode Emacs
 		rc_add "set editing-mode emacs"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Editing-Mode Vi
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Editing-Mode Vi
 		rc_add "set editing-mode vi"
 	fi
 
-	dbg_msg $"ReadlineCFG Setting:" Bellstyle "$(ini_get bellstyle)"
+	dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Bellstyle "$(ini_get bellstyle)"
 	rc_add "set bell-style $(ini_get bellstyle)"
 
 	if bt $(ini_get completion); then
-		dbg_msg $"ReadlineCFG Setting:" Disable-Completion $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Disable-Completion "$(eval_gettext "Off")"
 		rc_add "set disable-completion off"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Disable-Completion $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Disable-Completion "$(eval_gettext "On")"
 		rc_add "set disable-completion on"
 	fi
 
 	if bt $(ini_get scroll_horizontal); then
-		dbg_msg $"ReadlineCFG Setting:" Horizontal-Scroll-Mode $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Horizontal-Scroll-Mode "$(eval_gettext "On")"
 		rc_add "set horizontal-scroll-mode on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Horizontal-Scroll-Mode $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Horizontal-Scroll-Mode "$(eval_gettext "Off")"
 		rc_add "set horizontal-scroll-mode off"
 	fi
 
 	if bt $(ini_get ambiguous_show); then
-		dbg_msg $"ReadlineCFG Setting:" Show-All-If-Ambiguous $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Show-All-If-Ambiguous "$(eval_gettext "On")"
 		rc_add "set show-all-if-ambiguous on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Show-All-If-Ambiguous $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Show-All-If-Ambiguous "$(eval_gettext "Off")"
 		rc_add "set show-all-if-ambiguous off"
 	fi
 
 	if bt $(ini_get complete_hidden); then
-		dbg_msg $"ReadlineCFG Setting:" Match-Hidden-Files $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Match-Hidden-Files "$(eval_gettext "On")"
 		rc_add "set match-hidden-files on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Match-Hidden-Files $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Match-Hidden-Files "$(eval_gettext "Off")"
 		rc_add "set match-hidden-files off"
 	fi
 
 	if bt $(ini_get ignore_case); then
-		dbg_msg $"ReadlineCFG Setting:" Completion-Ignore-Case $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Completion-Ignore-Case "$(eval_gettext "On")"
 		rc_add "set completion-ignore-case on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Completion-Ignore-Case $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Completion-Ignore-Case "$(eval_gettext "Off")"
 		rc_add "set completion-ignore-case off"
 	fi
 
 	if bt $(ini_get visible_stats); then
-		dbg_msg $"ReadlineCFG Setting:" Visible-Stats $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Visible-Stats "$(eval_gettext "On")"
 		rc_add "set visible-stats on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Visible-Stats $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Visible-Stats "$(eval_gettext "Off")"
 		rc_add "set visible-stats off"
 	fi
 
 	if bt $(ini_get colored_stats); then
-		dbg_msg $"ReadlineCFG Setting:" Colored-Stats $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Colored-Stats "$(eval_gettext "On")"
 		rc_add "set colored-stats on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Colored-Stats $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Colored-Stats "$(eval_gettext "Off")"
 		rc_add "set colored-stats off"
 	fi
 
 	if bt $(ini_get skip_completed_text); then
-		dbg_msg $"ReadlineCFG Setting:" Skip completed text $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Skip completed text "$(eval_gettext "On")"
 		rc_add "set skip-completed-text on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Skip completed text $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Skip completed text "$(eval_gettext "Off")"
 		rc_add "set skip-completed-text off"
 	fi
 
 	if bt $(ini_get complete_horizontal); then
-		dbg_msg $"ReadlineCFG Setting:" Print-Completions-Horizontally $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Print-Completions-Horizontally "$(eval_gettext "On")"
 		rc_add "set print-completions-horizontally on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Print-Completions-Horizontally $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Print-Completions-Horizontally "$(eval_gettext "Off")"
 		rc_add "set print-completions-horizontally off"
 	fi
 
 	if bt $(ini_get mark_directories); then
-		dbg_msg $"ReadlineCFG Setting:" Mark-Directories $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Mark-Directories "$(eval_gettext "On")"
 		rc_add "set mark-directories on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Mark-Directories $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Mark-Directories "$(eval_gettext "Off")"
 		rc_add "set mark-directories off"
 	fi
 
 	if bt $(ini_get mark_symbolic_directories); then
-		dbg_msg $"ReadlineCFG Setting:" Mark-Symlinked-Directories $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Mark-Symlinked-Directories "$(eval_gettext "On")"
 		rc_add "set mark-symlinked-directories on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Mark-Symlinked-Directories $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Mark-Symlinked-Directories "$(eval_gettext "Off")"
 		rc_add "set mark-symlinked-directories off"
 	fi
 
 	if bt $(ini_get mark_modified); then
-		dbg_msg $"ReadlineCFG Setting:" Mark-Modified-Lines $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Mark-Modified-Lines "$(eval_gettext "On")"
 		rc_add "set mark-modified-lines on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Mark-Modified-Lines $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Mark-Modified-Lines "$(eval_gettext "Off")"
 		rc_add "set mark-modified-lines off"
 	fi
 
 	if bt $(ini_get show_editmode); then
-		dbg_msg $"ReadlineCFG Setting:" Show Editing Mode $"On"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Show Editing Mode "$(eval_gettext "On")"
 		rc_add "set show-mode-in-prompt on"
 	else
-		dbg_msg $"ReadlineCFG Setting:" Show Editing Mode $"Off"
+		dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Show Editing Mode "$(eval_gettext "Off")"
 		rc_add "set show-mode-in-prompt off"
 	fi
 
-	dbg_msg $"ReadlineCFG Setting:" Completion-Query-Items "$(ini_get query_items)"
+	dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Completion-Query-Items "$(ini_get query_items)"
 	rc_add "set completion-query-items $(ini_get query_items)"
 
 	if bt $(ini_get use_readline70); then
 		if bt $(ini_get colored_completion_prefix); then
-			dbg_msg $"ReadlineCFG Setting:" Colored Completion Prefix $"On"
+			dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Colored Completion Prefix "$(eval_gettext "On")"
 			rc_add "set colored-completion-prefix on"
 		else
-			dbg_msg $"ReadlineCFG Setting:" Colored Completion Prefix $"Off"
+			dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Colored Completion Prefix "$(eval_gettext "Off")"
 			rc_add "set colored-completion-prefix off"
 		fi
 
 		if bt $(ini_get enable_bracketed_paste); then
-			dbg_msg $"ReadlineCFG Setting:" Enable Bracketed Paste $"On"
+			dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Enable Bracketed Paste "$(eval_gettext "On")"
 			rc_add "set enable-bracketed-paste on"
 		else
-			dbg_msg $"ReadlineCFG Setting:" Enable Bracketed Paste $"Off"
+			dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Enable Bracketed Paste "$(eval_gettext "Off")"
 			rc_add "set enable-bracketed-paste off"
 		fi
 
 		if bt $(ini_get show_editmode); then
 			if [[ $(ini_get editing_mode) == emacs ]]; then
-				dbg_msg $"ReadlineCFG Setting:" Emacs Mode String "$(ini_get emacs_mode_string)"
+				dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Emacs Mode String "$(ini_get emacs_mode_string)"
 				rc_add "set emacs-mode-string $(ini_get emacs_mode_string)"
 			else
-				dbg_msg $"ReadlineCFG Setting:" Vi Commnad Mode String "$(ini_get vi_cmd_mode_string)"
+				dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Vi Commnad Mode String "$(ini_get vi_cmd_mode_string)"
 				rc_add "set vi-cmd-mode-string $(ini_get vi_cmd_mode_string)"
 
-				dbg_msg $"ReadlineCFG Setting:" Vi Insert Mode String "$(ini_get vi_ins_mode_string)"
+				dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Vi Insert Mode String "$(ini_get vi_ins_mode_string)"
 				rc_add "set vi-ins-mode-string $(ini_get vi_ins_mode_string)"
 			fi
 		fi

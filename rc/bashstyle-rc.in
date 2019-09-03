@@ -10,7 +10,7 @@
 #########################################################
 
 . gettext.sh
-TEXTDOMAIN="bashstyle-rc"
+export TEXTDOMAIN="bashstyle-rc"
 
 export BSNG_PREFIX=@PREFIX@
 export BSNG_DATADIR=@DATADIR@
@@ -47,21 +47,21 @@ done
 dbg_log rm -f "${BSNG_LOGFILE}"
 dbg_log touch "${BSNG_LOGFILE}"
 
-dbg_msg $"BashStyle-NG Starting"
-dbg_msg $"BashStyle-NG Bash Major Version:" "${BASH_VERSINFO[0]}"
-dbg_msg $"BashStyle-NG Bash Minor Version:" "${BASH_VERSINFO[1]}"
-dbg_msg $"BashStyle-NG Bash Patch Level:" "${BASH_VERSINFO[2]}"
-dbg_msg $"BashStyle-NG Version:" "${BSNG_VERSION}"
-dbg_msg $"BashStyle-NG Prefix:" "${BSNG_PREFIX}"
-dbg_msg $"BashStyle-NG Logfile:" "${BSNG_LOGFILE}"
-dbg_msg $"BashStyle-NG Ini Version:" "${INI_VERSION}"
+dbg_msg "$(eval_gettext "BashStyle-NG Starting")"
+dbg_msg "$(eval_gettext "BashStyle-NG Bash Major Version:")" "${BASH_VERSINFO[0]}"
+dbg_msg "$(eval_gettext "BashStyle-NG Bash Minor Version:")" "${BASH_VERSINFO[1]}"
+dbg_msg "$(eval_gettext "BashStyle-NG Bash Patch Level:")" "${BASH_VERSINFO[2]}"
+dbg_msg "$(eval_gettext "BashStyle-NG Version:")" "${BSNG_VERSION}"
+dbg_msg "$(eval_gettext "BashStyle-NG Prefix:")" "${BSNG_PREFIX}"
+dbg_msg "$(eval_gettext "BashStyle-NG Logfile:")" "${BSNG_LOGFILE}"
+dbg_msg "$(eval_gettext "BashStyle-NG Ini Version:")" "${INI_VERSION}"
 
 bashstyle-config-helper --update >/dev/null
 
 dbg_log shopt -s checkwinsize
 
 if [ ! -z $(ini_get path) ]; then
-	dbg_msg $"BashStyle-NG Setting:" PATH "${PATH}"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PATH "${PATH}"
 	PATH="$(ini_get path)"
 fi
 
@@ -97,36 +97,36 @@ bt $(ini_get use_keybindingscfg) && \
 bt $(ini_get less_termcap_color) && \
 	dbg_log source ${BSNG_RCDIR}/settings_man
 
-dbg_msg $"BashStyle-NG Setting:"  Shopts
+dbg_msg "$(eval_gettext "BashStyle-NG Setting:")"  Shopts
 dbg_log source ${BSNG_RCDIR}/settings_shopt
 
 dbg_log source ${BSNG_RCDIR}/settings_alias
 
 if [[ -e ${HOME}/.bashstyle.custom ]]; then
-	dbg_msg $"BashStyle-NG Loading:" $"Custom Settings"
+	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" "$(eval_gettext "Custom Settings")"
 	dbg_log source "${HOME}"/.bashstyle.custom
 fi
 
 if bt $(ini_get use_bashstyle); then
-	dbg_msg $"BashStyle-NG Loading:" BashStyle-NG
+	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" BashStyle-NG
 	dbg_log source ${BSNG_RCDIR}/styles_hook
 
 	if [[ ${BSNG_BASHVER} -ge 44 && ! -z $(ini_get ps0) ]]; then
-		dbg_msg $"BashStyle-NG Setting:" PS0 "$(ini_get ps0)"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS0 "$(ini_get ps0)"
 		PS0="${color_ps0} $(ini_get ps0)${color_font} "
 	fi
 
-	dbg_msg $"BashStyle-NG Setting:" PS2 "$(ini_get ps2)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS2 "$(ini_get ps2)"
 	PS2="${color_ps2} $(ini_get ps2)${color_font} "
 
-	dbg_msg $"BashStyle-NG Setting:" PS3 "$(ini_get ps3)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS3 "$(ini_get ps3)"
 	PS3="${color_ps3} $(ini_get ps3)${color_font} "
 
-	dbg_msg $"BashStyle-NG Setting:" PS4 "$(ini_get ps4)"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS4 "$(ini_get ps4)"
 	PS4="${color_ps4} $(ini_get ps4)${color_font} "
 
 	if bt $(ini_get random_style); then
-		dbg_msg $"BashStyle-NG Setting:" $"Random Prompt"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Random Prompt")"
 
 		number=$(random -r 11)
 		case ${number} in
@@ -144,24 +144,24 @@ if bt $(ini_get use_bashstyle); then
 			11 ) pstyle=ayoli ;;
 		esac
 
-		dbg_msg $"BashStyle-NG Setting:" ${pstyle} $"randomly chosen"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" ${pstyle} "$(eval_gettext "randomly chosen")"
 	else
 		pstyle=$(ini_get prompt_style)
 		if [[ ${pstyle} == clock-ad ]]; then
-			dbg_msg $"Clock Advanced prompt style is deprecated, changing to Equinox"
+			dbg_msg "$(eval_gettext "Clock Advanced prompt style is deprecated, changing to Equinox")"
 			pstyle="equinox"
 			ini_set prompt_style equinox
 		fi
 	fi
 
 	if bt $(ini_get use_custom_prompt); then
-		dbg_msg $"BashStyle-NG Setting:" $"Custom" Prompt
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Custom")" Prompt
 		dbg_log source ${BSNG_RCDIR}/styles_custom
 	elif [[ -e ${BSNG_RCDIR}/styles_${pstyle} ]]; then
-		dbg_msg $"BashStyle-NG Setting:" ${pstyle} Prompt
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" ${pstyle} Prompt
 		dbg_log source ${BSNG_RCDIR}/styles_${pstyle}
 	else
-		dbg_msg $"BashStyle-NG Setting:" $"Fallback" Prompt
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Fallback")" Prompt
 		dbg_log export PS1="\u@\h\w: "
 	fi
 fi
@@ -171,11 +171,11 @@ dbg_log source ${BSNG_RCDIR}/settings_options
 # do trapping stuff
 
 if [ $(bt $(ini_get colorshell)) -a $(bt $(ini_get enable_colors)) ]; then
-	dbg_msg $"Add colorshell to DEBUG trap"
+	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
 	bashstyle-trap-add 'bashstyle-colorshell' DEBUG
 
 	if bt $(ini_get colorshell_reset); then
-		dbg_msg $"Add colorshell-reset to DEBUG trap"
+		dbg_msg "$(eval_gettext "Add colorshell-reset to DEBUG trap")"
 		bashstyle-trap-add 'bashstyle-colorshell-reset' DEBUG
 	fi
 fi
@@ -206,12 +206,12 @@ fi
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal_birthday
 elif [[ ! -z $(ini_get welcome_message) ]]; then
-	dbg_msg $"BashStyle-NG Setting:" $"Welcome Message"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Welcome Message")"
 	dbg_log $(ini_get welcome_message)
 fi
 
 if bt $(ini_get history_isolate); then
-	dbg_msg $"BashStyle-NG Setting:" $"History Isolation" $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "History Isolation")" "$(eval_gettext "On")"
 	dbg_log unset HISTFILE
 	dbg_log set +o history
 	dbg_log enable -n history
@@ -222,11 +222,11 @@ fi
 unset style
 
 if bt $(ini_get history_sync); then
-	dbg_msg $"Add history syncronization to DEBUG trap"
+	dbg_msg "$(eval_gettext "Add history syncronization to DEBUG trap")"
 	bashstyle-trap-add 'bashstyle-history-sync' DEBUG
 fi
 
-dbg_msg $"Add remember command to DEBUG and ERR trap"
+dbg_msg "$(eval_gettext "Add remember command to DEBUG and ERR trap")"
 bashstyle-trap-add 'bashstyle-remember-command-debug' DEBUG
 bashstyle-trap-add 'bashstyle-remember-command-error' ERR
 

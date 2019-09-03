@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-dbg_msg $"BashStyle-NG Loading:" KeybindingsCFG
+dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" KeybindingsCFG
 
 function list-keybindings () {
 	bind -P | sed -e '/is not/d;s/can be found on/:/' | column -s : -t
@@ -29,21 +29,21 @@ keybindings_setter () {
 
 		case ${MOD} in
 			e)
-				dbg_msg $"KeybindingsCFG Setting:" "${ACT}" e-"${KEY}"
+				dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" e-"${KEY}"
 				dbg_msg "\\e${KEY}":self-insert
 				bind "\\e${KEY}":self-insert
 				dbg_msg \"\\e"${KEY}"\":"${ACT}"
 				echo -E \"\\e"${KEY}"\":"${ACT}" >> "${RC_FILE}"
 			;;
 			C)
-				dbg_msg $"KeybindingsCFG Setting:" "${ACT}" C-"${KEY}"
+				dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" C-"${KEY}"
 				dbg_msg "\\C-${KEY}":self-insert
 				bind "\\C-${KEY}":self-insert
 				dbg_msg \"\\C-"${KEY}"\":"${ACT}"
 				echo -E \"\\C-"${KEY}"\":"${ACT}" >> "${RC_FILE}"
 			;;
 			X)
-				dbg_msg $"KeybindingsCFG Setting:" "${ACT}" "${KEY}"
+				dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" "${KEY}"
 				#bind "${KEY}":self-insert
 				dbg_msg "${KEY}":"${ACT}"
 				echo -E "${KEY}":"${ACT}" >> "${RC_FILE}"
@@ -60,7 +60,7 @@ if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 
 	export RC_FILE
 	RC_FILE="${HOME}/.keybindings.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
-	dbg_msg $"KeybindingsCFG Loading:" $"Keybindings"
+	dbg_msg "$(eval_gettext "KeybindingsCFG Loading:")" "$(eval_gettext "Keybindings")"
 
 	for key in undo upcase_word capitalize_word downcase_word transpose_words \
 		transpose_chars unix_word_rubout kill_word possible_filename_completions \
@@ -79,14 +79,13 @@ if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 
 	if [[ $(ini_get prompt_style) == equinox ]]; then
 		# make the prompt properly re-draw when pressing [Return]
-		dbg_msg $"KeybindingsCFG Setting:" Equinox $"Return-Key compat"
+		dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" Equinox "$(eval_gettext "Return-Key compat")"
 		dbg_msg 'RETURN: "\C-l\C-j"'
 		echo -E 'RETURN: "\C-l\C-j"' >> "${RC_FILE}"
 	fi
 
 	mv "${RC_FILE}" "${HOME}"/.keybindings
 	unset RC_FILE
-
 fi
 
 bind -f "${HOME}"/.keybindings

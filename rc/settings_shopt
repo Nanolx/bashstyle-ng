@@ -10,116 +10,116 @@
 #########################################################
 
 if bt $(ini_get cdspell); then
-	dbg_msg $"BashStyle-NG Setting:" cdspell $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" cdspell "$(eval_gettext "On")"
 	dbg_log shopt -s cdspell
-else	dbg_msg $"BashStyle-NG Setting:" cdspell $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" cdspell "$(eval_gettext "Off")"
 	dbg_log shopt -u cdspell
 fi
 
 if bt $(ini_get cdable_vars); then
-	dbg_msg $"BashStyle-NG Setting:" cdable_vars $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" cdable_vars "$(eval_gettext "On")"
 	dbg_log shopt -s cdable_vars
-else	dbg_msg $"BashStyle-NG Setting:" cdable_vars $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" cdable_vars "$(eval_gettext "Off")"
 	dbg_log shopt -u cdable_vars
 fi
 
 if bt $(ini_get checkhash); then
-	dbg_msg $"BashStyle-NG Setting:" checkhash $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" checkhash "$(eval_gettext "On")"
 	dbg_log shopt -s checkhash
-else	dbg_msg $"BashStyle-NG Setting:" checkhash $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" checkhash "$(eval_gettext "Off")"
 	dbg_log shopt -u checkhash
 fi
 
 if bt $(ini_get cmdhist); then
-	dbg_msg $"BashStyle-NG Setting:" cmdhist $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" cmdhist "$(eval_gettext "On")"
 	dbg_log shopt -s cmdhist
-else	dbg_msg $"BashStyle-NG Setting:" cmdhist $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" cmdhist "$(eval_gettext "Off")"
 	dbg_log shopt -u cmdhist
 fi
 
 if bt $(ini_get force_fignore); then
-	dbg_msg $"BashStyle-NG Setting:" force_fignore $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" force_fignore "$(eval_gettext "On")"
 	dbg_log shopt -s force_fignore
-else	dbg_msg $"BashStyle-NG Setting:" force_fignore $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" force_fignore "$(eval_gettext "Off")"
 	dbg_log shopt -u force_fignore
 fi
 
 if bt $(ini_get histreedit); then
-	dbg_msg $"BashStyle-NG Setting:" histreedit $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" histreedit "$(eval_gettext "On")"
 	dbg_log shopt -s histreedit
-else	dbg_msg $"BashStyle-NG Setting:" histreedit $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" histreedit "$(eval_gettext "Off")"
 	dbg_log shopt -u histreedit
 fi
 
 if bt $(ini_get no_empty_cmd_completion); then
-	dbg_msg $"BashStyle-NG Setting:" no_empty_cmd_completion $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" no_empty_cmd_completion "$(eval_gettext "On")"
 	dbg_log shopt -s no_empty_cmd_completion
-else	dbg_msg $"BashStyle-NG Setting:" no_empty_cmd_completion $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" no_empty_cmd_completion "$(eval_gettext "Off")"
 	dbg_log shopt -u no_empty_cmd_completion
 fi
 
 if [[ ${HISTCONTROL} != erasedups && $(bt $(ini_get histappend)) ]]; then
-	dbg_msg $"BashStyle-NG Setting:" histappend $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" histappend "$(eval_gettext "On")"
 	dbg_log shopt -s histappend
-else	dbg_msg $"BashStyle-NG Setting:" histappend $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" histappend "$(eval_gettext "Off")"
 	dbg_log shopt -u histappend
 fi
 
 if bt $(ini_get dotglob); then
-	dbg_msg $"BashStyle-NG Setting:" dotglob $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dotglob "$(eval_gettext "On")"
 	dbg_log shopt -s dotglob
-else	dbg_msg $"BashStyle-NG Setting:" dotglob $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dotglob "$(eval_gettext "Off")"
 	dbg_log shopt -u dotglob
 fi
 
 if bt $(ini_get extglob); then
-	dbg_msg $"BashStyle-NG Setting:" extglob $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" extglob "$(eval_gettext "On")"
 	dbg_log shopt -s extglob
-else	dbg_msg $"BashStyle-NG Setting:" extglob $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" extglob "$(eval_gettext "Off")"
 	dbg_log shopt -u extglob
 fi
 
 if bt $(ini_get nocaseglob); then
-	dbg_msg $"BashStyle-NG Setting:" nocaseglob $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" nocaseglob "$(eval_gettext "On")"
 	dbg_log shopt -s nocaseglob
-else	dbg_msg $"BashStyle-NG Setting:" nocaseglob $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" nocaseglob "$(eval_gettext "Off")"
 	dbg_log shopt -u nocaseglob
 fi
 
 if bt $(ini_get nocasematch); then
-	dbg_msg $"BashStyle-NG Setting:" nocasematch $"On"
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" nocasematch "$(eval_gettext "On")"
 	dbg_log shopt -s nocasematch
-else	dbg_msg $"BashStyle-NG Setting:" nocasematch $"Off"
+else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" nocasematch "$(eval_gettext "Off")"
 	dbg_log shopt -u nocasematch
 fi
 
 # Stuff new in Bash 4.0
 if [[ ${BASH_VERSINFO[0]} -ge "4" ]]; then
 	if bt $(ini_get autocd); then
-		dbg_msg $"BashStyle-NG Setting:" autocd $"On"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" autocd "$(eval_gettext "On")"
 		dbg_log shopt -s autocd
-	else	dbg_msg $"BashStyle-NG Setting:" autocd $"Off"
+	else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" autocd "$(eval_gettext "Off")"
 		dbg_log shopt -u autocd
 	fi
 
 	if bt $(ini_get checkjobs); then
-		dbg_msg $"BashStyle-NG Setting:" checkjobs $"On"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" checkjobs "$(eval_gettext "On")"
 		dbg_log shopt -s checkjobs
-	else	dbg_msg $"BashStyle-NG Setting:" checkjobs $"Off"
+	else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" checkjobs "$(eval_gettext "Off")"
 		dbg_log shopt -u checkjobs
 	fi
 
 	if bt $(ini_get globstar); then
-		dbg_msg $"BashStyle-NG Setting:" globstar $"On"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" globstar "$(eval_gettext "On")"
 		dbg_log shopt -s globstar
-	else	dbg_msg $"BashStyle-NG Setting:" globstar $"Off"
+	else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" globstar "$(eval_gettext "Off")"
 		dbg_log shopt -u globstar
 	fi
 
 	if bt $(ini_get dirspell); then
-		dbg_msg $"BashStyle-NG Setting:" dirspell $"On"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dirspell "$(eval_gettext "On")"
 		dbg_log shopt -s dirspell
-	else	dbg_msg $"BashStyle-NG Setting:" dirspell $"Off"
+	else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dirspell "$(eval_gettext "Off")"
 		dbg_log shopt -u dirspell
 	fi
 fi
@@ -127,16 +127,16 @@ fi
 # Stuff new in Bash 4.3
 if [[ ${BSNG_BASHVER} -ge 43 ]]; then
 	if bt $(ini_get direxpand); then
-		dbg_msg $"BashStyle-NG Setting:" direxpand $"On"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" direxpand "$(eval_gettext "On")"
 		dbg_log shopt -s direxpand
-	else	dbg_msg $"BashStyle-NG Setting:" direxpand $"Off"
+	else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" direxpand "$(eval_gettext "Off")"
 		dbg_log shopt -u direxpand
 	fi
 
 	if bt $(ini_get globasciirange); then
-		dbg_msg $"BashStyle-NG Setting:" globasciiranges $"On"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" globasciiranges "$(eval_gettext "On")"
 		dbg_log shopt -s globasciiranges
-	else	dbg_msg $"BashStyle-NG Setting:" globasciiranges $"Off"
+	else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" globasciiranges "$(eval_gettext "Off")"
 		dbg_log shopt -u globasciiranges
 	fi
 fi
@@ -144,9 +144,9 @@ fi
 # Stuff new in Bash 5.0
 if [[ ${BSNG_BASHVER} -ge 50 ]]; then
 	if bt $(ini_get localvar_inherit); then
-		dbg_msg $"BashStyle-NG Setting:" localvar_inherit $"On"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" localvar_inherit "$(eval_gettext "On")"
 		dbg_log shopt -s localvar_inherit
-	else	dbg_msg $"BashStyle-NG Setting:" localvar_inherit $"Off"
+	else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" localvar_inherit "$(eval_gettext "Off")"
 		dbg_log shopt -u localvar_inherit
 	fi
 fi
