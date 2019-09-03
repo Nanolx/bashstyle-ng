@@ -16,7 +16,7 @@ dep="ffmpeg"
 prog="movie2gif"
 
 if ! which ${dep} &>/dev/null; then
-	echo "$(eval_gettext "${dep} not found, ${prog} won't work.")"
+	eval_gettext "${dep} not found, ${prog} won't work."; echo
 	exit 1
 fi
 

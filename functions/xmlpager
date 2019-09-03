@@ -15,7 +15,7 @@ export TEXTDOMAIN="bashstyle-rc"
 dep="xmlindent"
 prog="xmlpager"
 if ! which ${dep} &>/dev/null; then
-	echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
+	eval_gettext "${dep} not found, ${prog} won't work."; echo
 	exit 1
 fi
 

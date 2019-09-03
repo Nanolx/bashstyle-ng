@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-03 21:07+0200\n"
-"PO-Revision-Date: 2019-09-02 18:57+0200\n"
+"POT-Creation-Date: 2019-09-03 21:39+0200\n"
+"PO-Revision-Date: 2019-09-03 21:25+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -408,14 +408,17 @@ msgid "Options"
 msgstr "Optionen"
 
 #: /home/chris/Playground/bashstyle-ng/rc/settings_git:15
+#, sh-format
 msgid "user name"
 msgstr "Benutzername"
 
 #: /home/chris/Playground/bashstyle-ng/rc/settings_git:20
+#, sh-format
 msgid "user mail address"
 msgstr "E-Mail-Adresse"
 
 #: /home/chris/Playground/bashstyle-ng/rc/settings_git:25
+#, sh-format
 msgid "default singing key"
 msgstr "Signatur-Schlüssel"
 
@@ -520,7 +523,7 @@ msgstr "NanoCFG Setze:"
 #: /home/chris/Playground/bashstyle-ng/rc/settings_options:39
 #, sh-format
 msgid "\\n * /etc/profile.d/msec.sh prevents setting TMOUT!"
-msgstr ""
+msgstr "\\n * /etc/profile.d/msec.sh verhindert das setzen von TMOUT!"
 
 #: /home/chris/Playground/bashstyle-ng/rc/settings_options:78
 #, sh-format
@@ -721,7 +724,7 @@ msgstr "path:Datei:Pfad der Datei ausgeben"
 #: /home/chris/Playground/bashstyle-ng/functions/batchrename:62
 #, sh-format
 msgid "batch rename files in NNN-NAME.SUFFIX scheme"
-msgstr ""
+msgstr "Dateien massenhaft im NNN-NAME.SUFFIX-Schema umbenennen"
 
 #: /home/chris/Playground/bashstyle-ng/functions/batchrename:64
 #: /home/chris/Playground/bashstyle-ng/functions/sufffix:27
@@ -733,11 +736,12 @@ msgstr "-v:|Gesprächige Ausgabe"
 #, sh-format
 msgid "directory:/home/test/mypictures|directory containing files"
 msgstr ""
+"directory:/home/test/mypictures|Verzeichnis welches die Dateien enthält"
 
 #: /home/chris/Playground/bashstyle-ng/functions/batchrename:66
 #, sh-format
 msgid "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme"
-msgstr ""
+msgstr "prefix:MyPictures2016|Namensteil des NNN-NAME.SUFFIX-Schemas"
 
 #: /home/chris/Playground/bashstyle-ng/functions/binary-clock:18
 #, sh-format
@@ -783,82 +787,82 @@ msgstr "-c:test_text-a b|camelcase Zeichenkette (TestTextAB)"
 #: /home/chris/Playground/bashstyle-ng/functions/check:147
 #, sh-format
 msgid "additional test functions"
-msgstr ""
+msgstr "Zusätzliche Test-Funktionen"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:149
 #, sh-format
-msgid "n:4 [4[,.]4|check if arg is any number"
-msgstr ""
+msgid "n:4 [4[,.]4]|check if arg is any number"
+msgstr "n:4 [4[,.]4]|Prüfe ob Argument eine Zahl ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:150
 #, sh-format
 msgid "i:4|check if arg is integer"
-msgstr ""
+msgstr "i:4|Prüfe ob Argument eine Integer ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:151
 #, sh-format
 msgid "f:4[,.]4|check if arg is float"
-msgstr ""
+msgstr "f:4[,.]4|Prüfe ob Argument eine Kommazahl ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:152
 #, sh-format
 msgid "h:301DE8|check if arg is hex"
-msgstr ""
+msgstr "h:301DE8|Prüfe ob Argument eine Hexadezimale ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:153
 #, sh-format
 msgid "o:24|check if arg is octal"
-msgstr ""
+msgstr "o:24|Prüfe ob Argument eine Oktale ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:154
 #, sh-format
 msgid "hc:[#]FFFFFF|check if arg is valid hex color"
-msgstr ""
+msgstr "hc:[#]FFFFFF|Prüfe ob Argument ein gültiger Hex-Farbwert ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:155
 #, sh-format
 msgid "s:test|check if arg is a string"
-msgstr ""
+msgstr "s:test|Prüfe ob Argument eine Zeichenkette ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:156
 #, sh-format
 msgid "p:+|check if arg is special character"
-msgstr ""
+msgstr "p:+|Prüfe ob Argument ein Sonderzeichen ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:157
 #, sh-format
 msgid "c:testabc abc|check if arg1 contains arg2"
-msgstr ""
+msgstr "c:testabc abc|Prüfe ob Argument1 Argument2 enthält"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:158
 #, sh-format
 msgid "sw:testabc t|check if arg1 starts with arg2"
-msgstr ""
+msgstr "sw:|testabc t|Prüfe ob Argument1 mit Argument2 beginnt"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:159
 #, sh-format
 msgid "ew:14235 235|check if arg1 ends with arg2"
-msgstr ""
+msgstr "ew:14235 235|Prüfe ob Argument1 mit Argument2 endet"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:160
 #, sh-format
 msgid "b:${VAR}|check if arg is a boolean"
-msgstr ""
+msgstr "b:${VAR}|Prüfen ob VAR ein bool'scher Wert ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:161
 #, sh-format
 msgid "bt:${VAR}|check if arg is boolean true"
-msgstr ""
+msgstr "bf:${VAR}|Prüfen ob VAR boolsch' Wahr ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:162
 #, sh-format
 msgid "bf:${VAR}|check if arg is boolean false"
-msgstr ""
+msgstr "bf:${VAR}|Prüfen ob VAR boolsch' Falsch ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/check:163
 #, sh-format
 msgid "m:test@dom.tld|check if arg is valid mail address"
-msgstr ""
+msgstr "m:test@dom.tld|Prüfe ob Argument eine gültige E-Mail-Adresse ist"
 
 #: /home/chris/Playground/bashstyle-ng/functions/clock:18
 #, sh-format
@@ -1153,97 +1157,99 @@ msgstr "konnte Web-URL nicht auswerten"
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:278
 #, sh-format
 msgid "various companion functions for Git"
-msgstr ""
+msgstr "Verschiedene Zusatzfunktionen für Git"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:280
 #, sh-format
 msgid "action:|print the current action in a Git repo"
-msgstr ""
+msgstr "action:|Aktuelle Aktion im Git repo ausgeben"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:281
 #, sh-format
 msgid "branch:|print the current branch in a Git repo"
-msgstr ""
+msgstr "branch:|Aktuellen Zweig im Git repo ausgeben"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:282
 #, sh-format
 msgid "bz2:|create bz2 archive from a Git repo"
-msgstr ""
+msgstr "bz2:|Erstelle bz2-Archiv aus einem Git repo"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:283
 #, sh-format
 msgid "xz:|create xz archive from a Git repo"
-msgstr ""
+msgstr "xz:|Erstelle xz-Archiv aus einem Git repo"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:284
 #, sh-format
 msgid "zip:|create zip archive from a Git repo"
-msgstr ""
+msgstr "zip:|Erstelle zip-Archiv aus einem Git repo"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:285
 #, sh-format
 msgid "cloneuser:username|clone all repos from a GitHub user (SSH)"
 msgstr ""
+"cloneuser:Benutzer|Klone alle Repositorien eines GitHub-Benutzers (SSH)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:286
 #, sh-format
 msgid "cloneorg:organization|clone all repos from a GitHub organization (SSH)"
 msgstr ""
+"cloneorg:Organisation|Klone alle Repositorien einer GitHub-Organisation (SSH)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:287
 #, sh-format
 msgid "export:directory|export Git repo for release tarball"
-msgstr ""
+msgstr "export:Verzeichnis|Exportiere Git Repositorium für Release-Tarbälle"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:288
 #, sh-format
 msgid "funmsg:|create funny Git commit message"
-msgstr ""
+msgstr "funmsg:|Erstelle eine spaßige Git-Commit-Meldung"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:289
 #, sh-format
 msgid "web:|open project page using x-www-browser"
-msgstr ""
+msgstr "web:|Projekt-Seite mittels x-www-browser öffnen"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:290
 #, sh-format
 msgid "revision:|get 6 digit revision from a Git repo"
-msgstr ""
+msgstr "revision:|6-stellige Revision des Git Repos ausgeben"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:291
 #, sh-format
 msgid "revno:|get traditional revision number from a Git repo"
-msgstr ""
+msgstr "revno:|Traditionelle Revisions-Nummer eines Git Repos ausgeben"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:292
 #, sh-format
 msgid "undelete:|undelete files accidentally deleted locally"
-msgstr ""
+msgstr "undelete:|Versehentlich gelöschte Dateien wiederherstellen"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:293
 #, sh-format
 msgid "push:|push/push tag upstream + push to mirror in one go"
-msgstr ""
+msgstr "push:|Commits und Tags nach Upstream und Spiegel in einem Zug senden"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:294
 #, sh-format
 msgid "taga:tag [-m msg commit]|create a tag and push remote"
-msgstr ""
+msgstr "taga:tag [-m meldung commit]|Tag erstellen und entfernt pushen"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:295
 #, sh-format
 msgid "tagd:tag|remove tag locally and remote"
-msgstr ""
+msgstr "tagd:tag|Tag local und entfernt löschen"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:296
 #, sh-format
 msgid "tagr:tag newtag|rename a tag locally and remote"
-msgstr ""
+msgstr "tagr:tag newtag|Tag local und entfernt umbenennen"
 
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:297
 #, sh-format
 msgid "tagc:tag newcommit|make tag point to different commit"
-msgstr ""
+msgstr "tagc:tag commit|Tag auf anderen Commit zeigen lassen"
 
 #: /home/chris/Playground/bashstyle-ng/functions/list:18
 #, sh-format
@@ -1341,9 +1347,9 @@ msgstr "files:|Liste der Dateien oder Verzeichnisse"
 
 #: /home/chris/Playground/bashstyle-ng/functions/map:29
 #: /home/chris/Playground/bashstyle-ng/functions/randomfile:19
-#, fuzzy, sh-format
+#, sh-format
 msgid "invalid syntax"
-msgstr "Ungültige Syntax."
+msgstr "ungültige Syntax"
 
 #: /home/chris/Playground/bashstyle-ng/functions/morse2text:18
 #, sh-format
@@ -1412,7 +1418,7 @@ msgid "highest:|highest number of sequence"
 msgstr "highest:|Höchste Zahl der Sequenz"
 
 #: /home/chris/Playground/bashstyle-ng/functions/nseq:23
-#, fuzzy, sh-format
+#, sh-format
 msgid "separator:|(optional) field seprator, default '\\\\n'"
 msgstr "separator:|(optional) Feldtrenner, Standard '\\\\\\n'"
 
@@ -1626,7 +1632,7 @@ msgid "print a numbered ruler on the terminal"
 msgstr "Ein nummeriertes Lineal ausgeben"
 
 #: /home/chris/Playground/bashstyle-ng/functions/showuser:20
-#, fuzzy, sh-format
+#, sh-format
 msgid "none:|---"
 msgstr "keine:|--"
 
@@ -1666,13 +1672,14 @@ msgid "PCI Devices:\\n\\n"
 msgstr "PCI-Geräte:\\n\\n"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:169
+#, sh-format
 msgid "USB Devices:\\n\\n"
 msgstr "USB-Geräte:\\n\\n"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:180
 #, sh-format
 msgid "SMBIOS/DMI Info:\\n\\n"
-msgstr ""
+msgstr "SMBIOS/DMI Info:\\n\\n"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:182
 #, sh-format
@@ -1815,52 +1822,55 @@ msgid "uptime:|show uptime in pretty printed format"
 msgstr "uptime:|Laufzeit in hübschem Format ausgeben"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:306
-#, fuzzy, sh-format
+#, sh-format
 msgid "cof:directory|count all files in directory (or pwd)"
-msgstr "cof:[Verzeichnis]|Zähle alle Dateien im Verzeichnis (oder PWD)"
+msgstr "cof:Verzeichnis|Zähle alle Dateien im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:307
-#, fuzzy, sh-format
+#, sh-format
 msgid "cod:directory|count all directories in directory (or pwd)"
-msgstr "cod:[Verzeichnis]|Zähle alle Unterordner im Verzeichnis (oder PWD)"
+msgstr "cod:Verzeichnis|Zähle alle Unterordner im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:308
-#, fuzzy, sh-format
+#, sh-format
 msgid "coi:directory|count all items in directory (or pwd)"
-msgstr "coi:[Verzeichnis]|Zähle alle Elemente im Verzeichnis (oder PWD)"
+msgstr "coi:Verzeichnis|Zähle alle Elemente im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:309
-#, fuzzy, sh-format
+#, sh-format
 msgid "cvf:directory|count visible files in directory (or pwd)"
-msgstr "cvf:[Verzeichnis]|Zähle sichtbare Dateien im Verzeichnis (oder PWD)"
+msgstr ""
+"cvf:Verzeichnis|Zähle sichtbare Dateien im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:310
-#, fuzzy, sh-format
+#, sh-format
 msgid "cvd:directory|count visible directories in directory (or pwd)"
 msgstr ""
-"cvd:[Verzeichnis]|Zähle sichtbare Unterordner im Verzeichnis (oder PWD)"
+"cvd:Verzeichnis|Zähle sichtbare Unterordner im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:311
-#, fuzzy, sh-format
+#, sh-format
 msgid "cvi:directory|count visible items in directory (or pwd)"
-msgstr "cvi:[Verzeichnis]|Zähle sichtbare Elemente im Verzeichnis (oder PWD)"
+msgstr ""
+"cvi:Verzeichnis|Zähle sichtbare Elemente im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:312
-#, fuzzy, sh-format
+#, sh-format
 msgid "chf:directory|count hidden files in directory (or pwd)"
-msgstr "chf:[Verzeichnis]|Zähle versteckte Dateien im Verzeichnis (oder PWD)"
+msgstr ""
+"chf:Verzeichnis|Zähle versteckte Dateien im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:313
-#, fuzzy, sh-format
+#, sh-format
 msgid "chd:directory|count hidden directories in directory (or pwd)"
 msgstr ""
-"chd:[Verzeichnis]|Zähle versteckte Unterordner im Verzeichnis (oder PWD)"
+"chd:Verzeichnis|Zähle versteckte Unterordner im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/systemkit:314
-#, fuzzy, sh-format
+#, sh-format
 msgid "chi:directory|count hidden items in directory (or pwd)"
 msgstr ""
-"chi:[Verzeichnis]|Zähle all versteckte Elemente im Verzeichnis (oder PWD)"
+"chi:Verzeichnis|Zähle all versteckte Elemente im Verzeichnis (oder aktuelles)"
 
 #: /home/chris/Playground/bashstyle-ng/functions/treefind:18
 #, sh-format
@@ -1887,49 +1897,58 @@ msgstr "Pager für XML-Dateien mit hervorgehobenem Text"
 msgid "file:|xml file to read"
 msgstr "file:|Zu lesende XML-Datei"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:31
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:33
+#, sh-format
 msgid " ++ could not create directory"
 msgstr " ++ konnte Verzeichnis nicht erstellen"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:33
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:35
+#, sh-format
 msgid " ++ directory"
 msgstr " ++ Verzeichnis"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:33
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:35
+#, sh-format
 msgid " does not exist."
 msgstr " existiert nicht."
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:38
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:40
+#, sh-format
 msgid " ++ directory created:"
 msgstr " ++ Verzeichnis erstellt:"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:39
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:41
+#, sh-format
 msgid " ++ content of directory:"
 msgstr " ++ Inhalt des Verzeichnisses:"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:48
-msgid " ... "
-msgstr " ... "
-
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:48
-msgid " more items\\n"
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:50
+#, fuzzy, sh-format
+msgid "more items\\n"
 msgstr " weitere Elemente\\n"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:55
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:57
+#, sh-format
 msgid "-- empty --\\n"
 msgstr "-- leer --\\n"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:68
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:70
+#, sh-format
 msgid "using treecd wrapper for cd"
 msgstr "benutze treecd als Wrapper für cd"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:69
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:71
+#, sh-format
 msgid "tree not found, not using treecd as cd replacement"
 msgstr "tree nicht gefunden, treecd wird nicht anstelle von cd verwendt"
 
-#: /home/chris/Playground/bashstyle-ng/rc/function_cd:78
+#: /home/chris/Playground/bashstyle-ng/rc/function_cd:80
+#, sh-format
 msgid "using lscd wrapper for cd"
 msgstr "benutze lscd als Wrapper für cd"
+
+#~ msgid " ... "
+#~ msgstr " ... "
 
 #~ msgid "aapt not found, apkdump won't work."
 #~ msgstr "aapt nicht gefunden, apkdump wird nicht funktionieren."

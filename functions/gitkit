@@ -17,7 +17,7 @@ gitkit_ssh_add () {
 		local dep="ssh-add"
 		local prog="remembering SSH password"
 		if ! which ${dep} &>/dev/null; then
-			echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
+			eval_gettext "${dep} not found, ${prog} won't work."; echo
 			exit 1
 		fi
 
@@ -40,14 +40,14 @@ github_clone () {
 	local prog="'gitkit cloneorg'"
 
 	if ! which ${dep} &>/dev/null; then
-			echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
-			exit 1
+		eval_gettext "${dep} not found, ${prog} won't work."; echo
+		exit 1
 	fi
 
 	dep="xe"
 
 	if ! which ${dep} &>/dev/null; then
-		echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
+		eval_gettext "${dep} not found, ${prog} won't work."; echo
 		exit 1
 	fi
 
@@ -126,8 +126,8 @@ case ${1} in
 		prog="'gitkit funmsg'"
 
 		if ! which ${dep} &>/dev/null; then
-				echo -e "$(eval_gettext "${dep} not found, ${prog} won't work.")"
-				exit 1
+			eval_gettext "${dep} not found, ${prog} won't work."; echo
+			exit 1
 		fi
 
 		wget -qO - http://whatthecommit.com/index.txt
