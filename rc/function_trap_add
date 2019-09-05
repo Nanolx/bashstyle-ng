@@ -12,18 +12,18 @@
 # by Richard Hansen https://stackoverflow.com/a/7287873
 
 log () { printf '%s\n' "$*"; }
-error () { log "ERROR: $*" >&2; }
+error () { log "$(eval_gettext "ERROR:")" "$*" >&2; }
 fatal () { error "$@"; exit 1; }
 
 bashstyle-trap-add () {
-    trap_add_cmd=$1; shift || fatal "${FUNCNAME[0]} usage error"
+    trap_add_cmd=$1; shift || fatal "${FUNCNAME[0]}" "$(eval_gettext "invalid syntax")"
     for trap_add_name in "$@"; do
     trap -- "$(
         extract_trap_cmd() { printf '%s\n' "$3"; }
         eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
         printf '%s\n' "${trap_add_cmd}"
     )" "${trap_add_name}" \
-        || fatal "unable to add to trap ${trap_add_name}"
+        || fatal "$(eval_gettext "unable to add ${trap_add_cmd} to trap ${trap_add_name}")"
     done
 }
 

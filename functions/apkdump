@@ -12,13 +12,7 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
-dep="aapt"
-prog="apkdump"
-
-if ! which ${dep} &>/dev/null; then
-	eval_gettext "${dep} not found, ${prog} won't work."; echo
-	exit 1
-fi
+check P "aapt" "apkdump" || exit 1
 
 opt=${1}
 shift

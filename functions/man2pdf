@@ -12,13 +12,7 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
-dep="ps2pdf"
-prog="man2pdf"
-
-if ! which ${dep} &>/dev/null; then
-	eval_gettext "${dep} not found, ${prog} won't work."; echo
-	exit 1
-fi
+check P "ps2pdf" "man2pdf" || exit 1
 
 man_exists () {
 	man -t "${1}" &>/dev/null

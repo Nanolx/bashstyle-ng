@@ -12,12 +12,7 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
-dep="xmlindent"
-prog="xmlpager"
-if ! which ${dep} &>/dev/null; then
-	eval_gettext "${dep} not found, ${prog} won't work."; echo
-	exit 1
-fi
+check P xmlindent xmlpager || exit 1
 
 case ${1} in
 	-h | --help )

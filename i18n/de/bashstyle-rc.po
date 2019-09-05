@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BashStyle-NG\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-03 21:39+0200\n"
-"PO-Revision-Date: 2019-09-03 21:25+0200\n"
+"POT-Creation-Date: 2019-09-05 20:19+0200\n"
+"PO-Revision-Date: 2019-09-05 20:20+0200\n"
 "Last-Translator: Christopher Roy Bratusek <nano@jpberlin.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/bs-ng/"
 "language/de_DE/)\n"
@@ -71,8 +71,8 @@ msgstr "BashStyle-NG Ini Version:"
 #: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:158
 #: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:161
 #: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:164
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:209
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:214
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:221
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:228
 #: /home/chris/Playground/bashstyle-ng/rc/settings_alias:13
 #: /home/chris/Playground/bashstyle-ng/rc/settings_alias:16
 #: /home/chris/Playground/bashstyle-ng/rc/settings_alias:21
@@ -204,27 +204,32 @@ msgstr "Benutzerdefiniert"
 msgid "Fallback"
 msgstr "Ausfall"
 
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:174
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:196
+#, sh-format
+msgid "Add remember command to DEBUG and ERR trap"
+msgstr "Den DEBUG- und ERR-Traps wurde remember command hinzugefügt"
+
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:207
 #, sh-format
 msgid "Add colorshell to DEBUG trap"
 msgstr "Der DEBUG-Trap wurde colorshell hinzugefügt"
 
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:178
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:211
 #, sh-format
 msgid "Add colorshell-reset to DEBUG trap"
 msgstr "Der DEBUG-Trap wurde colorshell-reset hinzugefügt"
 
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:209
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:221
 #, sh-format
 msgid "Welcome Message"
 msgstr "Willkommensgruß"
 
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:214
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:228
 #, sh-format
 msgid "History Isolation"
 msgstr "Verlaufs-Isolation"
 
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:214
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:228
 #: /home/chris/Playground/bashstyle-ng/rc/settings_alias:13
 #: /home/chris/Playground/bashstyle-ng/rc/settings_color:12
 #: /home/chris/Playground/bashstyle-ng/rc/settings_git:32
@@ -308,15 +313,10 @@ msgstr "Verlaufs-Isolation"
 msgid "On"
 msgstr "An"
 
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:225
+#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:237
 #, sh-format
 msgid "Add history syncronization to DEBUG trap"
 msgstr "Der DEBUG-Trap wurde history syncronization hinzugefügt"
-
-#: /home/chris/Playground/bashstyle-ng/rc/bashstyle-rc:229
-#, sh-format
-msgid "Add remember command to DEBUG and ERR trap"
-msgstr "Den DEBUG- und ERR-Traps wurde remember command hinzugefügt"
 
 #: /home/chris/Playground/bashstyle-ng/rc/settings_alias:16
 #: /home/chris/Playground/bashstyle-ng/rc/settings_git:37
@@ -661,27 +661,27 @@ msgstr "ReadlineCFG Setze:"
 msgid "VimCFG Setting:"
 msgstr "VimCFG Setze:"
 
-#: /home/chris/Playground/bashstyle-ng/functions/apkdump:45
+#: /home/chris/Playground/bashstyle-ng/functions/apkdump:39
 #, sh-format
 msgid "grab apk infos using aapt"
 msgstr "APK-Informationen mittels aapt auswerten"
 
-#: /home/chris/Playground/bashstyle-ng/functions/apkdump:47
+#: /home/chris/Playground/bashstyle-ng/functions/apkdump:41
 #, sh-format
 msgid "name:apk|get package name of apk"
 msgstr "name:APK|Paket-Name der APK-Datei ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/apkdump:48
+#: /home/chris/Playground/bashstyle-ng/functions/apkdump:42
 #, sh-format
 msgid "version:apk|get human-readable version of apk"
 msgstr "version:APK|Menschenlesbare Versionsnummer ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/apkdump:49
+#: /home/chris/Playground/bashstyle-ng/functions/apkdump:43
 #, sh-format
 msgid "versioncode:apk|get version code of apk"
 msgstr "versioncode:APK|Version der APK ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/apkdump:50
+#: /home/chris/Playground/bashstyle-ng/functions/apkdump:44
 #, sh-format
 msgid "perms:apk|get list of requested permissions"
 msgstr "perms:APK|Angeforderte Berechtigungen auslesen"
@@ -784,82 +784,87 @@ msgstr "-w:test_text-a b|Text-Elemente groß setzen (Test Text A B)"
 msgid "-c:test_string-a b|camelcase string (TestStringAB)"
 msgstr "-c:test_text-a b|camelcase Zeichenkette (TestTextAB)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:147
+#: /home/chris/Playground/bashstyle-ng/functions/check:158
 #, sh-format
 msgid "additional test functions"
 msgstr "Zusätzliche Test-Funktionen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:149
+#: /home/chris/Playground/bashstyle-ng/functions/check:160
 #, sh-format
 msgid "n:4 [4[,.]4]|check if arg is any number"
 msgstr "n:4 [4[,.]4]|Prüfe ob Argument eine Zahl ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:150
+#: /home/chris/Playground/bashstyle-ng/functions/check:161
 #, sh-format
 msgid "i:4|check if arg is integer"
 msgstr "i:4|Prüfe ob Argument eine Integer ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:151
+#: /home/chris/Playground/bashstyle-ng/functions/check:162
 #, sh-format
 msgid "f:4[,.]4|check if arg is float"
 msgstr "f:4[,.]4|Prüfe ob Argument eine Kommazahl ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:152
+#: /home/chris/Playground/bashstyle-ng/functions/check:163
 #, sh-format
 msgid "h:301DE8|check if arg is hex"
 msgstr "h:301DE8|Prüfe ob Argument eine Hexadezimale ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:153
+#: /home/chris/Playground/bashstyle-ng/functions/check:164
 #, sh-format
 msgid "o:24|check if arg is octal"
 msgstr "o:24|Prüfe ob Argument eine Oktale ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:154
+#: /home/chris/Playground/bashstyle-ng/functions/check:165
 #, sh-format
 msgid "hc:[#]FFFFFF|check if arg is valid hex color"
 msgstr "hc:[#]FFFFFF|Prüfe ob Argument ein gültiger Hex-Farbwert ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:155
+#: /home/chris/Playground/bashstyle-ng/functions/check:166
 #, sh-format
 msgid "s:test|check if arg is a string"
 msgstr "s:test|Prüfe ob Argument eine Zeichenkette ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:156
+#: /home/chris/Playground/bashstyle-ng/functions/check:167
 #, sh-format
 msgid "p:+|check if arg is special character"
 msgstr "p:+|Prüfe ob Argument ein Sonderzeichen ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:157
+#: /home/chris/Playground/bashstyle-ng/functions/check:168
 #, sh-format
 msgid "c:testabc abc|check if arg1 contains arg2"
 msgstr "c:testabc abc|Prüfe ob Argument1 Argument2 enthält"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:158
+#: /home/chris/Playground/bashstyle-ng/functions/check:169
 #, sh-format
 msgid "sw:testabc t|check if arg1 starts with arg2"
 msgstr "sw:|testabc t|Prüfe ob Argument1 mit Argument2 beginnt"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:159
+#: /home/chris/Playground/bashstyle-ng/functions/check:170
 #, sh-format
 msgid "ew:14235 235|check if arg1 ends with arg2"
 msgstr "ew:14235 235|Prüfe ob Argument1 mit Argument2 endet"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:160
+#: /home/chris/Playground/bashstyle-ng/functions/check:171
 #, sh-format
 msgid "b:${VAR}|check if arg is a boolean"
 msgstr "b:${VAR}|Prüfen ob VAR ein bool'scher Wert ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:161
+#: /home/chris/Playground/bashstyle-ng/functions/check:172
 #, sh-format
 msgid "bt:${VAR}|check if arg is boolean true"
 msgstr "bf:${VAR}|Prüfen ob VAR boolsch' Wahr ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:162
+#: /home/chris/Playground/bashstyle-ng/functions/check:173
 #, sh-format
 msgid "bf:${VAR}|check if arg is boolean false"
 msgstr "bf:${VAR}|Prüfen ob VAR boolsch' Falsch ist"
 
-#: /home/chris/Playground/bashstyle-ng/functions/check:163
+#: /home/chris/Playground/bashstyle-ng/functions/check:174
+#, sh-format
+msgid "P:dep prog|check if dependency of program exists"
+msgstr "P:dep prog|Prüfe ob Abhängigkeit von Programm existiert"
+
+#: /home/chris/Playground/bashstyle-ng/functions/check:175
 #, sh-format
 msgid "m:test@dom.tld|check if arg is valid mail address"
 msgstr "m:test@dom.tld|Prüfe ob Argument eine gültige E-Mail-Adresse ist"
@@ -1140,113 +1145,113 @@ msgid "directory:|(optional) find empty files in directory (or current)"
 msgstr ""
 "directory:|(optional) Leere Dateien im Verzeichnis finden (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:94
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:101
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:108
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:77
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:84
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:91
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:129
 #: /home/chris/Playground/bashstyle-ng/functions/gitkit:153
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:177
 #, sh-format
 msgid "current directory is not the root of a git repository"
 msgstr "Aktuelles Verzeichnis ist kein Git-Repositorium Basis-Verzeichnis"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:150
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:126
 #, sh-format
 msgid "couldn't parse web location"
 msgstr "konnte Web-URL nicht auswerten"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:278
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:254
 #, sh-format
 msgid "various companion functions for Git"
 msgstr "Verschiedene Zusatzfunktionen für Git"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:280
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:256
 #, sh-format
 msgid "action:|print the current action in a Git repo"
 msgstr "action:|Aktuelle Aktion im Git repo ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:281
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:257
 #, sh-format
 msgid "branch:|print the current branch in a Git repo"
 msgstr "branch:|Aktuellen Zweig im Git repo ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:282
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:258
 #, sh-format
 msgid "bz2:|create bz2 archive from a Git repo"
 msgstr "bz2:|Erstelle bz2-Archiv aus einem Git repo"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:283
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:259
 #, sh-format
 msgid "xz:|create xz archive from a Git repo"
 msgstr "xz:|Erstelle xz-Archiv aus einem Git repo"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:284
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:260
 #, sh-format
 msgid "zip:|create zip archive from a Git repo"
 msgstr "zip:|Erstelle zip-Archiv aus einem Git repo"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:285
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:261
 #, sh-format
 msgid "cloneuser:username|clone all repos from a GitHub user (SSH)"
 msgstr ""
 "cloneuser:Benutzer|Klone alle Repositorien eines GitHub-Benutzers (SSH)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:286
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:262
 #, sh-format
 msgid "cloneorg:organization|clone all repos from a GitHub organization (SSH)"
 msgstr ""
 "cloneorg:Organisation|Klone alle Repositorien einer GitHub-Organisation (SSH)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:287
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:263
 #, sh-format
 msgid "export:directory|export Git repo for release tarball"
 msgstr "export:Verzeichnis|Exportiere Git Repositorium für Release-Tarbälle"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:288
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:264
 #, sh-format
 msgid "funmsg:|create funny Git commit message"
 msgstr "funmsg:|Erstelle eine spaßige Git-Commit-Meldung"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:289
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:265
 #, sh-format
 msgid "web:|open project page using x-www-browser"
 msgstr "web:|Projekt-Seite mittels x-www-browser öffnen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:290
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:266
 #, sh-format
 msgid "revision:|get 6 digit revision from a Git repo"
 msgstr "revision:|6-stellige Revision des Git Repos ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:291
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:267
 #, sh-format
 msgid "revno:|get traditional revision number from a Git repo"
 msgstr "revno:|Traditionelle Revisions-Nummer eines Git Repos ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:292
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:268
 #, sh-format
 msgid "undelete:|undelete files accidentally deleted locally"
 msgstr "undelete:|Versehentlich gelöschte Dateien wiederherstellen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:293
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:269
 #, sh-format
 msgid "push:|push/push tag upstream + push to mirror in one go"
 msgstr "push:|Commits und Tags nach Upstream und Spiegel in einem Zug senden"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:294
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:270
 #, sh-format
 msgid "taga:tag [-m msg commit]|create a tag and push remote"
 msgstr "taga:tag [-m meldung commit]|Tag erstellen und entfernt pushen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:295
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:271
 #, sh-format
 msgid "tagd:tag|remove tag locally and remote"
 msgstr "tagd:tag|Tag local und entfernt löschen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:296
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:272
 #, sh-format
 msgid "tagr:tag newtag|rename a tag locally and remote"
 msgstr "tagr:tag newtag|Tag local und entfernt umbenennen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/gitkit:297
+#: /home/chris/Playground/bashstyle-ng/functions/gitkit:273
 #, sh-format
 msgid "tagc:tag newcommit|make tag point to different commit"
 msgstr "tagc:tag commit|Tag auf anderen Commit zeigen lassen"
@@ -1315,12 +1320,12 @@ msgstr "directory-list:|Liste der Verzeichnisse (Doppelpunkt getrennt)"
 msgid "file:|file to look for"
 msgstr "file:|Zu suchende Datei"
 
-#: /home/chris/Playground/bashstyle-ng/functions/man2pdf:36
+#: /home/chris/Playground/bashstyle-ng/functions/man2pdf:30
 #, sh-format
 msgid "create PDF from a manpage"
 msgstr "Erzeuge PDF aus Hilfeseiten"
 
-#: /home/chris/Playground/bashstyle-ng/functions/man2pdf:38
+#: /home/chris/Playground/bashstyle-ng/functions/man2pdf:32
 #, sh-format
 msgid "manpage:bash|manpage to create a PDF from"
 msgstr "manpage:Bash|Hilfeseite aus der ein PDF erzeugt werden soll"
@@ -1347,6 +1352,7 @@ msgstr "files:|Liste der Dateien oder Verzeichnisse"
 
 #: /home/chris/Playground/bashstyle-ng/functions/map:29
 #: /home/chris/Playground/bashstyle-ng/functions/randomfile:19
+#: /home/chris/Playground/bashstyle-ng/rc/function_trap_add:19
 #, sh-format
 msgid "invalid syntax"
 msgstr "ungültige Syntax"
@@ -1361,33 +1367,33 @@ msgstr "Konvertiert Morse-Kode in Reintext"
 msgid "code:|code to convert"
 msgstr "code:|Zu konvertierender Kode"
 
-#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:29
+#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:23
 #, sh-format
 msgid "create GIF from Movie"
 msgstr "Erzeuge GIF aus Videos"
 
-#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:31
+#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:25
 #, sh-format
 msgid "input file:coolfilm.avi|movie file to generate GIF from"
 msgstr ""
 "input file:coolfilm.avi|Video-Datei aus der ein GIF erzeugt werden soll"
 
-#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:32
+#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:26
 #, sh-format
 msgid "start time:00:00:00.000|start time"
 msgstr "start time:00:00:00.000|Startzeit"
 
-#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:33
+#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:27
 #, sh-format
 msgid "duration:10|scene duration"
 msgstr "duration:10|Szene-Dauer"
 
-#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:34
+#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:28
 #, sh-format
 msgid "scale:320:-1|GIF scale"
 msgstr "scale:320:-1|GIF-Skalierung"
 
-#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:35
+#: /home/chris/Playground/bashstyle-ng/functions/movie2gif:29
 #, sh-format
 msgid "output file:coolgif.gif|output file name"
 msgstr "output file:coolgif.gif|Ausgabedatei"
@@ -1656,217 +1662,217 @@ msgstr "Suffix von Dateien korrigieren"
 msgid "files:myfile.txt|file(s) to fix the suffix"
 msgstr "files:Dateien|Dateien deren Suffix korrigiert werden soll"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:147
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:136
 #, sh-format
 msgid "Partitions:\\n"
 msgstr "Partitionen:\\n"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:148
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:137
 #, sh-format
 msgid "device-node type mount used free total\\n"
 msgstr "Geräte-Knoten Typ Mount Benutzt Frei Gesamt\\n"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:159
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:143
 #, sh-format
 msgid "PCI Devices:\\n\\n"
 msgstr "PCI-Geräte:\\n\\n"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:169
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:148
 #, sh-format
 msgid "USB Devices:\\n\\n"
 msgstr "USB-Geräte:\\n\\n"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:180
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:154
 #, sh-format
 msgid "SMBIOS/DMI Info:\\n\\n"
 msgstr "SMBIOS/DMI Info:\\n\\n"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:182
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:156
 #, sh-format
 msgid "You're not root"
 msgstr "Benutzer ist nicht root"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:278
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:252
 #, sh-format
 msgid "show various system information"
 msgstr "Verschiedene System-Informationen ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:280
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:254
 #, sh-format
 msgid "battery:|show battery load state using acpi"
 msgstr "battery:|Akkustand mittels acpi anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:281
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:255
 #, sh-format
 msgid "cpuload:|show cpu load"
 msgstr "cpuload:|Prozessor-Last anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:282
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:256
 #, sh-format
 msgid "externalip:|show your PCs external ip"
 msgstr "externalip:|Externe IP des Computers anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:283
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:257
 #, sh-format
 msgid "internalip:interface|show interface's internal ip"
 msgstr "internalip:Interface|Interne IP des Interfaces anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:284
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:258
 #, sh-format
 msgid "usedram:|used RAM"
 msgstr "usedram:|Benutzter Arbeitsspeicher"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:285
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:259
 #, sh-format
 msgid "usedram%:|used RAM in %"
 msgstr "usedram:|Benutzter Arbeitsspeicher in %"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:286
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:260
 #, sh-format
 msgid "freeram:|free RAM"
 msgstr "freeram:|Freier Arbeitsspeicher"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:287
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:261
 #, sh-format
 msgid "freeram%:|free RAM in %"
 msgstr "freeram%:|Freier Arbeitsspeicher in %"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:288
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:262
 #, sh-format
 msgid "totalram:|total RAM"
 msgstr "totalram:|Arbeitsspeicher insgesamt"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:289
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:263
 #, sh-format
 msgid "dirsize:|size of all items in current dir"
 msgstr "dirsize:|Größe aller Elemente im aktuellen Verzeichnis"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:290
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:264
 #, sh-format
 msgid "usedspace:mount|used space on mountpoint"
 msgstr "usedspace:mount|Benutzter Speicher auf Mountpunkt"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:291
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:265
 #, sh-format
 msgid "freespace:mount|free space on mountpoint"
 msgstr "freespace:Mount|Freier Speicherplatz auf Einhängepunkt"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:292
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:266
 #, sh-format
 msgid "totalspace:mount|total space on mountpoint"
 msgstr "totalspace:mount|Gesamtspeicherplatz auf Mountpunkt"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:293
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:267
 #, sh-format
 msgid "usedspace%:mount|used space on mountpoint in %"
 msgstr "usedspace:mount|Benutzter Speicher auf Mountpunkt in %"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:294
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:268
 #, sh-format
 msgid "freespace%:mount|free space on mountpoint in %"
 msgstr "freespace%:Mount|Freier Speicherplatz auf Einhängepunkt in %"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:295
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:269
 #, sh-format
 msgid "cpu:|show cpu information"
 msgstr "cpu:|Prozessor-Informationen anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:296
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:270
 #, sh-format
 msgid "kernel:|show kernel information"
 msgstr "kernel:|Kernel-Informationen anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:297
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:271
 #, sh-format
 msgid "partitons:|show mounted partitions information"
 msgstr "partitions:|Informationen für eingehängte Partitionen ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:298
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:272
 #, sh-format
 msgid "pci:|show pci device information"
 msgstr "pci:|PCI-Geräte-Informationen ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:299
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:273
 #, sh-format
 msgid "usb:|show usb device information"
 msgstr "usb:|USB-Geräte-Informationen ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:300
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:274
 #, sh-format
 msgid "bios:|show bios information [only root]"
 msgstr "bios:|BIOS-Informationen anzeigen [nur root]"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:301
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:275
 #, sh-format
 msgid "load1:|show load average for 1 minute"
 msgstr "load1:|Durchschnittslast der letzten 1 Minute anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:302
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:276
 #, sh-format
 msgid "load5:|show load average for 5 minutes"
 msgstr "load5:|Durchschnittslast der letzten 5 Minute anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:303
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:277
 #, sh-format
 msgid "load15:|show load average for 15 minutes"
 msgstr "load15:|Durchschnittslast der letzten 15 Minute anzeigen"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:304
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:278
 #, sh-format
 msgid "tty:|show current TTY device node"
 msgstr "tty:|Aktuellen TTY-Geräte-Knoten ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:305
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:279
 #, sh-format
 msgid "uptime:|show uptime in pretty printed format"
 msgstr "uptime:|Laufzeit in hübschem Format ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:306
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:280
 #, sh-format
 msgid "cof:directory|count all files in directory (or pwd)"
 msgstr "cof:Verzeichnis|Zähle alle Dateien im Verzeichnis (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:307
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:281
 #, sh-format
 msgid "cod:directory|count all directories in directory (or pwd)"
 msgstr "cod:Verzeichnis|Zähle alle Unterordner im Verzeichnis (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:308
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:282
 #, sh-format
 msgid "coi:directory|count all items in directory (or pwd)"
 msgstr "coi:Verzeichnis|Zähle alle Elemente im Verzeichnis (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:309
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:283
 #, sh-format
 msgid "cvf:directory|count visible files in directory (or pwd)"
 msgstr ""
 "cvf:Verzeichnis|Zähle sichtbare Dateien im Verzeichnis (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:310
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:284
 #, sh-format
 msgid "cvd:directory|count visible directories in directory (or pwd)"
 msgstr ""
 "cvd:Verzeichnis|Zähle sichtbare Unterordner im Verzeichnis (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:311
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:285
 #, sh-format
 msgid "cvi:directory|count visible items in directory (or pwd)"
 msgstr ""
 "cvi:Verzeichnis|Zähle sichtbare Elemente im Verzeichnis (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:312
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:286
 #, sh-format
 msgid "chf:directory|count hidden files in directory (or pwd)"
 msgstr ""
 "chf:Verzeichnis|Zähle versteckte Dateien im Verzeichnis (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:313
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:287
 #, sh-format
 msgid "chd:directory|count hidden directories in directory (or pwd)"
 msgstr ""
 "chd:Verzeichnis|Zähle versteckte Unterordner im Verzeichnis (oder aktuelles)"
 
-#: /home/chris/Playground/bashstyle-ng/functions/systemkit:314
+#: /home/chris/Playground/bashstyle-ng/functions/systemkit:288
 #, sh-format
 msgid "chi:directory|count hidden items in directory (or pwd)"
 msgstr ""
@@ -1887,12 +1893,12 @@ msgstr "tree-fizierte Variante von ps"
 msgid "pretty print current directory"
 msgstr "Aktuelles Verzeichnis hübsch ausgeben"
 
-#: /home/chris/Playground/bashstyle-ng/functions/xmlpager:25
+#: /home/chris/Playground/bashstyle-ng/functions/xmlpager:20
 #, sh-format
 msgid "pager for xml files with highlighted text"
 msgstr "Pager für XML-Dateien mit hervorgehobenem Text"
 
-#: /home/chris/Playground/bashstyle-ng/functions/xmlpager:27
+#: /home/chris/Playground/bashstyle-ng/functions/xmlpager:22
 #, sh-format
 msgid "file:|xml file to read"
 msgstr "file:|Zu lesende XML-Datei"
@@ -1923,9 +1929,9 @@ msgid " ++ content of directory:"
 msgstr " ++ Inhalt des Verzeichnisses:"
 
 #: /home/chris/Playground/bashstyle-ng/rc/function_cd:50
-#, fuzzy, sh-format
+#, sh-format
 msgid "more items\\n"
-msgstr " weitere Elemente\\n"
+msgstr "weitere Elemente\\n"
 
 #: /home/chris/Playground/bashstyle-ng/rc/function_cd:57
 #, sh-format
@@ -1946,6 +1952,16 @@ msgstr "tree nicht gefunden, treecd wird nicht anstelle von cd verwendt"
 #, sh-format
 msgid "using lscd wrapper for cd"
 msgstr "benutze lscd als Wrapper für cd"
+
+#: /home/chris/Playground/bashstyle-ng/rc/function_history:22
+#, sh-format
+msgid "no command to delete given!"
+msgstr "kein zu löschender Befehl angegeben!"
+
+#: /home/chris/Playground/bashstyle-ng/rc/function_trap_add:15
+#, sh-format
+msgid "ERROR:"
+msgstr "FEHLER:"
 
 #~ msgid " ... "
 #~ msgstr " ... "

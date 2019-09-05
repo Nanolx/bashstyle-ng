@@ -14,12 +14,7 @@ export TEXTDOMAIN="bashstyle-rc"
 
 gitkit_ssh_add () {
 	if check bt $(bashstyle --ini-get git_ssh_remember); then
-		local dep="ssh-add"
-		local prog="remembering SSH password"
-		if ! which ${dep} &>/dev/null; then
-			eval_gettext "${dep} not found, ${prog} won't work."; echo
-			exit 1
-		fi
+		check P "ssh-add" "remembering SSH password" || exit 1
 
 		local git_ssh_timeout=$(bashstyle --ini-get git_ssh_timeout)
 		local gitkit_file=${BSNG_TMPDIR}/gitkit_time_${BASH_SESSION_PID}_${SSH_AGENT_PID}
@@ -36,20 +31,8 @@ gitkit_ssh_add () {
 }
 
 github_clone () {
-	local dep="wget"
-	local prog="'gitkit cloneorg'"
-
-	if ! which ${dep} &>/dev/null; then
-		eval_gettext "${dep} not found, ${prog} won't work."; echo
-		exit 1
-	fi
-
-	dep="xe"
-
-	if ! which ${dep} &>/dev/null; then
-		eval_gettext "${dep} not found, ${prog} won't work."; echo
-		exit 1
-	fi
+	check P "wget" "'gitkit cloneorg/cloneuser'" || exit 1
+	check P "xe" "'gitkit cloneorg/cloneuser'" || exit 1
 
 	wget -qO - https://api.github.com/"${1}"/"${2}"/repos?per_page=200 | \
 		awk -F\" '/ssh_url/{print $4}' | xe git clone
@@ -122,14 +105,7 @@ case ${1} in
 	;;
 
 	funmsg)
-		dep="wget"
-		prog="'gitkit funmsg'"
-
-		if ! which ${dep} &>/dev/null; then
-			eval_gettext "${dep} not found, ${prog} won't work."; echo
-			exit 1
-		fi
-
+		check P "wget" "'gitkit funmsg'" || exit 1
 		wget -qO - http://whatthecommit.com/index.txt
 	;;
 

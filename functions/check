@@ -115,6 +115,25 @@ is_mail () {
 	return ${status}
 }
 
+prog_exists () {
+	local dependency="${1}"
+	local program="${2}"
+	local dep_return=1
+
+	for dir in ${PATH//:/ }; do
+		if [ -x ${dir}/${1} ]; then
+			dep_return=0
+			continue 2
+		fi
+	done
+
+	case ${dep_return} in
+		0) return 0 ;;
+		1) echo "$(eval_gettext "${dependency} not found, ${program} will not work.")"
+		   return 1 ;;
+	esac
+}
+
 case ${1} in
 	n)	is_number "${2}"		;;
 	i)	is_int "${2}"			;;
@@ -130,17 +149,9 @@ case ${1} in
 	b)	is_bool "${2}"			;;
 	bt)	is_true "${2}"			;;
 	bf)	is_false "${2}"			;;
+	P)	prog_exists "${2}" "${3}"	;;
 
-	m)
-		dep="dig"
-		prog="'check m'"
-		if ! which ${dep} &>/dev/null; then
-			eval_gettext "${dep} not found, ${prog} won't work."; echo
-			exit 1
-		fi
-
-		is_mail "${2}"
-	;;
+	m)	check P "dig" "'check m'" && is_mail "${2}"	;;
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
@@ -160,7 +171,7 @@ case ${1} in
 				-o "$(eval_gettext "b:\${VAR}|check if arg is a boolean")"\
 				-o "$(eval_gettext "bt:\${VAR}|check if arg is boolean true")"\
 				-o "$(eval_gettext "bf:\${VAR}|check if arg is boolean false")"\
+				-o "$(eval_gettext "P:dep prog|check if dependency of program exists")"\
 				-o "$(eval_gettext "m:test@dom.tld|check if arg is valid mail address")"
 	;;
 esac
-

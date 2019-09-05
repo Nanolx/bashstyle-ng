@@ -14,13 +14,7 @@ export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
 	battery)
-		dep="acpi"
-		prog="'systemkit battery'"
-
-		if ! which ${dep} &>/dev/null; then
-			eval_gettext "${dep} not found, ${prog} won't work."; echo
-			exit 1
-		fi
+		check P "acpi" "'systemkit battery'" || exit 1
 
 		load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
 		out="$(acpi -b)"
@@ -58,12 +52,7 @@ case ${1} in
 	;;
 
 	externalip)
-		dep="wget"
-		prog="'systemkit externalip'"
-		if ! which wget &>/dev/null; then
-			eval_gettext "${dep} not found, ${prog} won't work."; echo
-			exit 1
-		fi
+		check P "wget" "'systemkit externalip'" || exit 1
 		wget -q -O - http://showip.spamt.net/
 	;;
 
@@ -150,33 +139,18 @@ case ${1} in
 	;;
 
 	pci)
-		dep="lspci"
-		prog="'systemkit pci'"
-		if ! which ${dep} &>/dev/null; then
-			eval_gettext "${dep} not found, ${prog} won't work."; echo
-			exit 1
-		fi
+		check P "lspci" "'systemkit pci'" || exit 1
 		echo -e "$(eval_gettext "PCI Devices:\n\n")" "$(lspci -vkmm)\n"
 	;;
 
 	usb)
-		dep="lsusb"
-		prog="'systemkit usb'"
-		if ! which ${dep} &>/dev/null; then
-			eval_gettext "${dep} not found, ${prog} won't work."; echo
-			exit 1
-		fi
+		check P "lsusb" "'systemkit usb'" || exit 1
 		echo -e "$(eval_gettext "USB Devices:\n\n")" "$(lsusb -v)\n"
 	;;
 
 	bios)
 		if [[ ${EUID} == 0 ]]; then
-			dep="dmidecode"
-			prog="'systemkit bios'"
-			if ! which dmidecode &>/dev/null; then
-				eval_gettext "${dep} not found, ${prog} won't work."; echo
-				exit 1
-			fi
+			check P "dmidecode" "'systemkit bios'" || exit 1
 			echo -e "$(eval_gettext "SMBIOS/DMI Info:\n\n")" "$(dmidecode -q)\n"
 		else
 			echo -e "$(eval_gettext "You're not root")"

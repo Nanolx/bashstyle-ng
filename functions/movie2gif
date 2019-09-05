@@ -12,13 +12,7 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
-dep="ffmpeg"
-prog="movie2gif"
-
-if ! which ${dep} &>/dev/null; then
-	eval_gettext "${dep} not found, ${prog} won't work."; echo
-	exit 1
-fi
+check P "ffmpeg" "movie2gif" || exit 1
 
 # by maxwux
 
