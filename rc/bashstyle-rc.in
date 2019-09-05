@@ -170,16 +170,6 @@ dbg_log source ${BSNG_RCDIR}/settings_options
 
 # do trapping stuff
 
-if [ $(bt $(ini_get colorshell)) -a $(bt $(ini_get enable_colors)) ]; then
-	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
-	bashstyle-trap-add 'bashstyle-colorshell' DEBUG
-
-	if bt $(ini_get colorshell_reset); then
-		dbg_msg "$(eval_gettext "Add colorshell-reset to DEBUG trap")"
-		bashstyle-trap-add 'bashstyle-colorshell-reset' DEBUG
-	fi
-fi
-
 # remember last exit status and command
 
 if [[ ${TERM} != *xterm* ]]; then
@@ -203,12 +193,36 @@ else
 	fi
 fi
 
+dbg_msg "$(eval_gettext "Add remember command to DEBUG and ERR trap")"
+bashstyle-trap-add 'bashstyle-remember-command-debug' DEBUG
+bashstyle-trap-add 'bashstyle-remember-command-error' ERR
+
+lastcommand=""
+lastcommandprintable="                     "
+lastexit=0
+
+# colorshell
+
+if [ $(bt $(ini_get colorshell)) -a $(bt $(ini_get enable_colors)) ]; then
+	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
+	bashstyle-trap-add 'bashstyle-colorshell' DEBUG
+
+	if bt $(ini_get colorshell_reset); then
+		dbg_msg "$(eval_gettext "Add colorshell-reset to DEBUG trap")"
+		bashstyle-trap-add 'bashstyle-colorshell-reset' DEBUG
+	fi
+fi
+
+# birthday greeting
+
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal_birthday
 elif [[ ! -z $(ini_get welcome_message) ]]; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Welcome Message")"
 	dbg_log $(ini_get welcome_message)
 fi
+
+# history isolation/history sync
 
 if bt $(ini_get history_isolate); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "History Isolation")" "$(eval_gettext "On")"
@@ -219,23 +233,14 @@ else
 	alias history=bashstyle-history
 fi
 
-unset style
-
 if bt $(ini_get history_sync); then
 	dbg_msg "$(eval_gettext "Add history syncronization to DEBUG trap")"
 	bashstyle-trap-add 'bashstyle-history-sync' DEBUG
 fi
 
-dbg_msg "$(eval_gettext "Add remember command to DEBUG and ERR trap")"
-bashstyle-trap-add 'bashstyle-remember-command-debug' DEBUG
-bashstyle-trap-add 'bashstyle-remember-command-error' ERR
-
-lastcommand=""
-lastcommandprintable="                     "
-lastexit=0
-
 dbg_finalize
 
+unset style
 unalias bt
 unalias bf
 
