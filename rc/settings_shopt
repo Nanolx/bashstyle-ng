@@ -9,6 +9,8 @@
 #							#
 #########################################################
 
+dbg_msg "$(eval_gettext "BashStyle-NG Setting:")"  Shopts
+
 if bt $(ini_get cdspell); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" cdspell "$(eval_gettext "On")"
 	dbg_log shopt -s cdspell

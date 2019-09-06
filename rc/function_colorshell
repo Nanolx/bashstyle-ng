@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-bashstyle-colorshell () {
+bashstyle_colorshell () {
 	if [[ -z ${OLDPS1} ]]; then
 		[[ ${BSNG_BASHVER} -ge 44 ]] && OLDPS0="${PS0}"
 		OLDPS1="${PS1}"
@@ -34,4 +34,8 @@ bashstyle-colorshell () {
 	PS2="${OLDPS2}${cmd_text_colour}"gea
 	PS3="${OLDPS3}${cmd_text_colour}"
 	PS4="${OLDPS4}${cmd_text_colour}"
+}
+
+bashstyle_colorshell_reset () {
+	echo -ne "\e[0m"
 }

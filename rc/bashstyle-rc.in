@@ -12,6 +12,7 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
+# environment variables
 export BSNG_PREFIX=@PREFIX@
 export BSNG_DATADIR=@DATADIR@
 export BSNG_RCDIR=${BSNG_DATADIR}/bashstyle-ng/rc
@@ -21,22 +22,18 @@ export BSNG_BASHVER=${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}
 export BSNG_LOGFILE=${HOME}/.bashstyle-ng.log
 export BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
 export BASH_SESSION_PID=$$
-INI_VERSION=37
 
-export PATH="${PATH}:${BSNG_EXECDIR}"
+# load ini / loggin functions
+source ${BSNG_RCDIR}/function_ini
+source ${BSNG_RCDIR}/function_log
 
+# global aliases / settings
 alias bt="check bt"
 alias bf="check bf"
 
-for module in ini log cd colorshell colorshell_reset history \
-	history_sync reload_bash remember_command_debug trap_add \
-	remember_command_error remember_directory; do
-	source ${BSNG_RCDIR}/function_${module}
-done
+dbg_log shopt -s checkwinsize
 
-dbg_log rm -f "${BSNG_LOGFILE}"
-dbg_log touch "${BSNG_LOGFILE}"
-
+# start logging
 dbg_msg "$(eval_gettext "BashStyle-NG Starting")"
 dbg_msg "$(eval_gettext "BashStyle-NG Bash Major Version:")" "${BASH_VERSINFO[0]}"
 dbg_msg "$(eval_gettext "BashStyle-NG Bash Minor Version:")" "${BASH_VERSINFO[1]}"
@@ -46,57 +43,27 @@ dbg_msg "$(eval_gettext "BashStyle-NG Prefix:")" "${BSNG_PREFIX}"
 dbg_msg "$(eval_gettext "BashStyle-NG Logfile:")" "${BSNG_LOGFILE}"
 dbg_msg "$(eval_gettext "BashStyle-NG Ini Version:")" "${INI_VERSION}"
 
+# check whether ini is up-to-date
 bashstyle-config-helper --update >/dev/null
 
-dbg_log shopt -s checkwinsize
-
+# setup PATH
 if [ ! -z $(ini_get path) ]; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PATH "${PATH}"
 	PATH="$(ini_get path)"
 fi
 
-[[ ${PATH} != *games* && -d /usr/games/ ]] && \
-	export PATH="${PATH}:/usr/games:/usr/local/games"
-
-[[ ${PATH} != *${HOME}/bin* && -d ${HOME}/bin ]] && \
-	export PATH="${PATH}:${HOME}/bin"
-
 bt $(ini_get path_wd) && export PATH="${PATH}:."
+[[ ${PATH} != *games* && -d /usr/games/ ]] && export PATH="${PATH}:/usr/games:/usr/local/games"
+[[ ${PATH} != *${HOME}/bin* && -d ${HOME}/bin ]] && export PATH="${PATH}:${HOME}/bin"
 
-bt $(ini_get enable_colors) && \
+# color settings: general, ls and manpages
+if bt $(ini_get enable_colors); then
 	dbg_log source ${BSNG_RCDIR}/settings_color
-
-[ $(bt $(ini_get use_lscolors)) -a $(bt $(ini_get enable_colors)) ] && \
-	dbg_log source ${BSNG_RCDIR}/settings_ls
-
-bt $(ini_get use_readlinecfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings_readline
-
-bt $(ini_get use_vimcfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings_vim
-
-bt $(ini_get use_nanocfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings_nano
-
-bt $(ini_get use_gitcfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings_git
-
-bt $(ini_get use_keybindingscfg) && \
-	dbg_log source ${BSNG_RCDIR}/settings_keybindings
-
-bt $(ini_get less_termcap_color) && \
-	dbg_log source ${BSNG_RCDIR}/settings_man
-
-dbg_msg "$(eval_gettext "BashStyle-NG Setting:")"  Shopts
-dbg_log source ${BSNG_RCDIR}/settings_shopt
-
-dbg_log source ${BSNG_RCDIR}/settings_alias
-
-if [[ -e ${HOME}/.bashstyle.custom ]]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" "$(eval_gettext "Custom Settings")"
-	dbg_log source "${HOME}"/.bashstyle.custom
+	bt $(ini_get use_lscolors) && dbg_log source ${BSNG_RCDIR}/settings_ls
+	bt $(ini_get less_termcap_color) && dbg_log source ${BSNG_RCDIR}/settings_man
 fi
 
+# Bash prompt theming
 if bt $(ini_get use_bashstyle); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" BashStyle-NG
 	dbg_log source ${BSNG_RCDIR}/styles_hook
@@ -137,11 +104,6 @@ if bt $(ini_get use_bashstyle); then
 		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" ${pstyle} "$(eval_gettext "randomly chosen")"
 	else
 		pstyle=$(ini_get prompt_style)
-		if [[ ${pstyle} == clock-ad ]]; then
-			dbg_msg "$(eval_gettext "Clock Advanced prompt style is deprecated, changing to Equinox")"
-			pstyle="equinox"
-			ini_set prompt_style equinox
-		fi
 	fi
 
 	if bt $(ini_get use_custom_prompt); then
@@ -156,55 +118,38 @@ if bt $(ini_get use_bashstyle); then
 	fi
 fi
 
+# readline settings
+bt $(ini_get use_readlinecfg) && dbg_log source ${BSNG_RCDIR}/settings_readline
+bt $(ini_get use_keybindingscfg) && dbg_log source ${BSNG_RCDIR}/settings_keybindings
+
+# Bash settings: shopts and aliases
+dbg_log source ${BSNG_RCDIR}/settings_shopt
+dbg_log source ${BSNG_RCDIR}/settings_alias
+
+# BashStyle settings: advanced
 dbg_log source ${BSNG_RCDIR}/settings_options
 
-# do trapping stuff
+# external settings: Vim, Nano and Git
+bt $(ini_get use_vimcfg) && dbg_log source ${BSNG_RCDIR}/settings_vim
+bt $(ini_get use_nanocfg) && dbg_log source ${BSNG_RCDIR}/settings_nano
+bt $(ini_get use_gitcfg) && dbg_log source ${BSNG_RCDIR}/settings_git
 
-# remember last exit status and command
+# extra BashStyle functions
+for module in cd remember_command colorshell history; do
+	source ${BSNG_RCDIR}/function_${module}
+done
 
-if [[ ${TERM} != *xterm* ]]; then
-	return_good="+"
-	return_bad="-"
-	return_other="/"
-else
-	if [[ ! -z $(ini_get return_good) ]]; then
-		return_good="$(ini_get return_good)"
-	else	return_good="✔"
-	fi
+# function to properly reload Bash
+#xk2c from commandlinefu.com
 
-	if [[ ! -z $(ini_get return_bad) ]]; then
-		return_bad="$(ini_get return_bad)"
-	else	return_bad="✘"
-	fi
+reload_bash () {
+	builtin unalias -a
+	builtin unset -f "$(builtin compgen -A function)"
+	[ -f /etc/bash_completion ] && source /etc/bash_completion
+	source "${HOME}"/.bashrc
+}
 
-	if [[ ! -z $(ini_get return_other) ]]; then
-		return_other="$(ini_get return_other)"
-	else	return_other="⊘"
-	fi
-fi
-
-dbg_msg "$(eval_gettext "Add remember command to DEBUG and ERR trap")"
-bashstyle-trap-add 'bashstyle-remember-command-debug' DEBUG
-bashstyle-trap-add 'bashstyle-remember-command-error' ERR
-
-lastcommand=""
-lastcommandprintable="                     "
-lastexit=0
-
-# colorshell
-
-if [ $(bt $(ini_get colorshell)) -a $(bt $(ini_get enable_colors)) ]; then
-	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
-	bashstyle-trap-add 'bashstyle-colorshell' DEBUG
-
-	if bt $(ini_get colorshell_reset); then
-		dbg_msg "$(eval_gettext "Add colorshell-reset to DEBUG trap")"
-		bashstyle-trap-add 'bashstyle-colorshell-reset' DEBUG
-	fi
-fi
-
-# birthday greeting
-
+# birthday greeting / welcome message
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal_birthday
 elif [[ ! -z $(ini_get welcome_message) ]]; then
@@ -212,27 +157,83 @@ elif [[ ! -z $(ini_get welcome_message) ]]; then
 	dbg_log $(ini_get welcome_message)
 fi
 
-# history isolation/history sync
-
-if bt $(ini_get history_isolate); then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "History Isolation")" "$(eval_gettext "On")"
-	dbg_log unset HISTFILE
-	dbg_log set +o history
-	dbg_log enable -n history
-else
-	alias history=bashstyle-history
+# load custom settings file
+if [[ -f ${HOME}/.bashstyle.custom ]]; then
+	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" "$(eval_gettext "Custom Settings")"
+	dbg_log source "${HOME}/.bashstyle.custom"
 fi
 
-if bt $(ini_get history_sync); then
-	dbg_msg "$(eval_gettext "Add history syncronization to DEBUG trap")"
-	bashstyle-trap-add 'bashstyle-history-sync' DEBUG
+# do trapping stuff
+# by Richard Hansen https://stackoverflow.com/a/7287873
+
+trap_log () { printf '%s\n' "$*"; }
+trap_error () { trap_log "$(eval_gettext "ERROR:")" "$*" >&2; }
+trap_fatal () { trap_error "$@"; exit 1; }
+
+bashstyle_trap_add () {
+    trap_add_cmd=$1; shift || trap_fatal "${FUNCNAME[0]}" "$(eval_gettext "invalid syntax")"
+    for trap_add_name in "$@"; do
+    trap -- "$(
+        extract_trap_cmd() { printf '%s\n' "$3"; }
+        eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
+        printf '%s\n' "${trap_add_cmd}"
+    )" "${trap_add_name}" \
+        || trap_fatal "$(eval_gettext "unable to add ${trap_add_cmd} to trap ${trap_add_name}")"
+    done
+}
+
+declare -f -t bashstyle_trap_add
+
+# remember command / last exit status
+
+dbg_msg "$(eval_gettext "Add remember command to DEBUG and ERR trap")"
+bashstyle_trap_add 'bashstyle_remember_command_debug' DEBUG
+bashstyle_trap_add 'bashstyle_remember_command_error' ERR
+
+# colorshell
+
+if [ $(bt $(ini_get colorshell)) -a $(bt $(ini_get enable_colors)) ]; then
+	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
+	bashstyle_trap_add 'bashstyle_colorshell' DEBUG
+
+	if bt $(ini_get colorshell_reset); then
+		dbg_msg "$(eval_gettext "Add colorshell-reset to DEBUG trap")"
+		bashstyle_trap_add 'bashstyle_colorshell_reset' DEBUG
+	fi
 fi
+
+# history syncronization
+
+if bf $(ini_get history_isolate); then
+	alias history=bashstyle_history
+	if bt $(ini_get history_sync); then
+		dbg_msg "$(eval_gettext "Add history syncronization to DEBUG trap")"
+		bashstyle_trap_add 'bashstyle_history_sync' DEBUG
+	fi
+fi
+
+# remember directory
+if bt $(ini_get restore_directory); then
+bashstyle_remember_directory () {
+	printf %s "${PWD}" > ${HOME}/.lastpwd
+}
+
+	bashstyle_trap_add 'bashstyle_remember_directory' EXIT
+fi
+
+# clean-up
 
 dbg_finalize
 
-unset style
+unset pstyle
+unset TEXTDOMAIN
+
+unset -f bashstyle_trap_add
+unset -f trap_fatal
+unset -f trap_error
+unset -f trap_log
+
 unalias bt
 unalias bf
 
-unset TEXTDOMAIN
 export BSNG_TRAP_RECORD=True

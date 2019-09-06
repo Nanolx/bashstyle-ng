@@ -34,3 +34,6 @@ dbg_view ()
 {
 	less "${BSNG_LOGFILE}"
 }
+
+dbg_log rm -f "${BSNG_LOGFILE}"
+dbg_log touch "${BSNG_LOGFILE}"

@@ -9,7 +9,21 @@
 #							#
 #########################################################
 
-bashstyle-remember-command-debug () {
+if [[ ${TERM} != *xterm* ]]; then
+	return_good="+"
+	return_bad="-"
+	return_other="/"
+else
+	[[ ! -z $(ini_get return_good) ]] && return_good="$(ini_get return_good)" || return_good="✔"
+	[[ ! -z $(ini_get return_bad) ]] && return_bad="$(ini_get return_bad)" || return_bad="✘"
+	[[ ! -z $(ini_get return_other) ]] && return_other="$(ini_get return_other)" || return_other="⊘"
+fi
+
+lastcommand=""
+lastcommandprintable="                     "
+lastexit=0
+
+bashstyle_remember_command_debug () {
 	local _lastexit=$?
 	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
 	[ -n "$COMP_LINE" ] && return
@@ -30,5 +44,11 @@ bashstyle-remember-command-debug () {
 		lastcommandprintable="$(printf '%-21s' "$lastcommandprintable")"
 	fi
 
+	lastexit=${_lastexit}
+}
+
+bashstyle_remember_command_error () {
+	local _lastexit=$?
+	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
 	lastexit=${_lastexit}
 }

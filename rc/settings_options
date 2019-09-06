@@ -50,11 +50,8 @@ dbg_log export HISTFILESIZE="$(ini_get history_size)"
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" HISTFILESIZE "${HISTFILESIZE}"
 
 if bt $(ini_get restore_directory); then
-	bashstyle-trap-add 'bashstyle-remember-directory' EXIT
-
-	if [[ -d "$(cat "${HOME}"/.lastpwd 2>/dev/null)" ]]; then
-		dbg_log cd "$(cat "${HOME}"/.lastpwd)"
-	fi
+	lastpwd=$(cat "${HOME}/.lastpwd")
+	[ -d "${lastpwd}" ] && dbg_log cd "${lastpwd}"
 fi
 
 if bt $(ini_get colored_grep) -a bt $(ini_get enable_colors); then

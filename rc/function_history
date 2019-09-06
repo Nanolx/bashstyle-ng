@@ -9,7 +9,7 @@
 #							#
 #########################################################
 
-bashstyle-history () {
+bashstyle_history () {
 	case "${1}" in
 		-D )
 			local history_lines_matching
@@ -40,3 +40,51 @@ bashstyle-history () {
 		;;
 	esac
 }
+
+erasehistorydups () {
+	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
+		tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
+		tac | sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
+}
+
+ignorehistorydups () {
+	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
+		gawk -F'HISTDILIMITER' '!x[$2]++' | \
+		sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
+}
+
+ignorehistoryspc () {
+	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
+		sed -e '/HISTDILIMITER /d' > "${HISTFILE}".tmp
+}
+
+ignorehistoryboth () {
+	ignorehistorydups
+	ignorehistoryspc
+}
+
+bashstyle_history_sync () {
+	if [[ ! ${lastcommand} == history* ]]; then
+		builtin history -a
+		builtin history -c
+
+		case ${HISTCONTROL} in
+			erasedups )	erasehistorydups ;;
+			ignoredups)	ignorehistorydups ;;
+			ignorespace)	ignorehistorspc ;;
+			ignoreboth)	ignorehistoryboth ;;
+		esac
+
+		if [[ -f ${HISTFILE}.tmp ]]; then
+			mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
+			builtin history -r
+		fi
+	fi
+}
+
+if bt $(ini_get history_isolate); then
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "History Isolation")" "$(eval_gettext "On")"
+	dbg_log unset HISTFILE
+	dbg_log set +o history
+	dbg_log enable -n history
+fi
