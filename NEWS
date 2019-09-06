@@ -30,6 +30,14 @@ between.  For more detailed information see the git log.
         - #260 'make': fix BashStyle-NG .desktop file, manpage and
           'bashstyle-config-helper' not being uninstalled.
 
+        - #261 'systemkit': fix 'systemkit dirsize' not working.
+
+        - #262 'systemkit': fix 'systemkit battery' not working with
+          recent 'acpi' versions.
+
+        - #263 'systemkit': fix 'systemkit internalip' not working with
+          recent 'ifconfig' versions.
+
    * New Features
 
         - 'GNU Nano' settings: support for the following new settings
@@ -61,6 +69,10 @@ between.  For more detailed information see the git log.
         - New Settings allowing to use 'bat' instead of 'cat', also
           allow setting default theme for 'bat' and tab width.
 
+        - 'check' new flag 'P': check if a program exists, and print a
+          message if not, example 'check P [program-to-check]
+          [program-that-requests]'.
+
    * Misc.  Changes
 
         - Allow enabling/disabling BashStyle-NG from terminal via
@@ -78,11 +90,23 @@ between.  For more detailed information see the git log.
         - Rename .desktop file from 'bs-ng.desktop' to
           'bashstyle-ng.desktop'.
 
-        - Restructure resource files.
+        - Simplify 'gitkit cloneuser' / 'gitkit cloneorg', use 'wget' +
+          'awk' + 'xe' instead of 'curl' + 'ruby'.
 
-        - Configure 4.4.5: various minor internal changes.
+        - Various internal improvements; Restructure resource files;
+          Check for optional dependencies explicitely in all functions.
+
+        - Improve Debian packaging scripts.
+
+        - Configure 4.4.5: various minor internal changes; complete list
+          of checks.
 
         - Make 1.1.3: various minor internal changes.
+
+        - Made most included functions translatable.
+
+        - Use 'eval_gettext' for translating Bash Scripts intead of
+          outdated '$""' syntax.
 
         - Update german translation.
 

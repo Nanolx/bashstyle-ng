@@ -17,6 +17,7 @@ Each release lists incompatible changes at its top.
 @item #257 @code{GNU Nano} settings: fix setting UI colors.
 
 @item #258 @code{GNU Nano} settings: update possible settings for new @code{GNU Nano} versions.
+
 @itemize x
 
 @item @code{const} was renamed to @code{constantshow}.
@@ -31,6 +32,12 @@ Each release lists incompatible changes at its top.
 @item #259 @code{ini handling}: fix checking user settings being up-to-date on Bash startup.
 
 @item #260 @code{make}: fix BashStyle-NG .desktop file, manpage and @code{bashstyle-config-helper} not being uninstalled.
+
+@item #261 @code{systemkit}: fix @code{systemkit dirsize} not working.
+
+@item #262 @code{systemkit}: fix @code{systemkit battery} not working with recent @code{acpi} versions.
+
+@item #263 @code{systemkit}: fix @code{systemkit internalip} not working with recent @code{ifconfig} versions.
 @end itemize
 
 @item New Features
@@ -60,6 +67,8 @@ Each release lists incompatible changes at its top.
 
 @item New Settings allowing to use @code{bat} instead of @code{cat}, also allow setting default theme for @code{bat} and tab width.
 
+@item @code{check} new flag @code{P}: check if a program exists, and print a message if not, example @code{check P [program-to-check] [program-that-requests]}.
+
 @end itemize
 @item Misc. Changes
 @itemize @minus
@@ -74,11 +83,19 @@ Each release lists incompatible changes at its top.
 
 @item Rename .desktop file from @code{bs-ng.desktop} to @code{bashstyle-ng.desktop}.
 
-@item Restructure resource files.
+@item Simplify @code{gitkit cloneuser} / @code{gitkit cloneorg}, use @code{wget} + @code{awk} + @code{xe} instead of @code{curl} + @code{ruby}.
 
-@item Configure 4.4.5: various minor internal changes.
+@item Various internal improvements; Restructure resource files; Check for optional dependencies explicitely in all functions. 
+
+@item Improve Debian packaging scripts.
+
+@item Configure 4.4.5: various minor internal changes; complete list of checks.
 
 @item Make 1.1.3: various minor internal changes.
+
+@item Made most included functions translatable.
+
+@item Use @code{eval_gettext} for translating Bash Scripts intead of outdated @code{$""} syntax.
 
 @item Update german translation.
 @end itemize
