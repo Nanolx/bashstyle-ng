@@ -11,6 +11,12 @@ Each release lists incompatible changes at its top.
 
 @heading 10.7 (in-dev) ``Kaffee Filtrino''
 @itemize @bullet
+@item Important Information
+@itemize @minus
+
+@item Starting with this release Python 3.0.0 or newer is required to run BashStyle-NG.
+@end itemize
+
 @item Bug Fixes
 @itemize @minus
 
@@ -86,6 +92,8 @@ Each release lists incompatible changes at its top.
 @item Rename .desktop file from @code{bs-ng.desktop} to @code{bashstyle-ng.desktop}.
 
 @item Simplify @code{gitkit cloneuser} / @code{gitkit cloneorg}, use @code{wget} + @code{awk} + @code{xe} instead of @code{curl} + @code{ruby}.
+
+@item Improved @code{gitkit} function for remembering SSH password.
 
 @item Various internal improvements; Restructure resource files; Check for optional dependencies explicitely in all functions. 
 
