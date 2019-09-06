@@ -25,16 +25,6 @@ INI_VERSION=37
 
 export PATH="${PATH}:${BSNG_EXECDIR}"
 
-if [[ ! -z "${TMPDIR}" ]]; then
-	export BSNG_TMPDIR=${TMPDIR}
-elif [ -w /var/tmp ]; then
-	export BSNG_TMPDIR=/var/tmp
-elif [ -w /tmp ]; then
-	export BSNG_TMPDIR=/tmp
-else
-	echo "unable to set BSNG_TMPDIR!"
-fi
-
 alias bt="check bt"
 alias bf="check bf"
 
