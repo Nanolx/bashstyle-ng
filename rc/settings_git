@@ -44,8 +44,6 @@ if bt $(ini_get git_ssh_remember); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Remember")" "$(eval_gettext "On")"
 	dbg_msg "$(eval_gettext "Bashstyle-NG Setting:")" Git "$(eval_gettext "SSH Timeout")" $(ini_get git_ssh_timeout)
 	dbg_log eval $(ssh-agent -s -t $(ini_get git_ssh_timeout)) >/dev/null
-
-	bashstyle-trap-add 'bashstyle-remove-tempfile' EXIT
 else
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Remember")" "$(eval_gettext "Off")"
 fi

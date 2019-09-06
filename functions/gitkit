@@ -16,16 +16,14 @@ gitkit_ssh_add () {
 	if check bt $(bashstyle --ini-get git_ssh_remember); then
 		check P "ssh-add" "remembering SSH password" || exit 1
 
-		local git_ssh_timeout=$(bashstyle --ini-get git_ssh_timeout)
-		local gitkit_file=${BSNG_TMPDIR}/gitkit_time_${BASH_SESSION_PID}_${SSH_AGENT_PID}
-
-		[ -f ${gitkit_file} ] && local gitkit_time=$(cat ${gitkit_file}) || gitkit_time=0
-
 		eval git_ssh_keyfile=$(bashstyle --ini-get git_ssh_keyfile)
 
-		if test ${gitkit_time} -eq 0 -o ${gitkit_time} -le $(($(date +%s) - ${git_ssh_timeout})); then
+		local git_ssh_timeout=$(bashstyle --ini-get git_ssh_timeout)
+		local ssh_add_keys="$(ssh-add -l | gawk '{print $3}')"
+
+		if [[ "${ssh_add_keys}" != *${git_ssh_keyfile}* ]]; then
 			echo -e "$(eval_gettext "\n${egreen}[0] ssh-add ${git_ssh_keyfile}\n")"
-			ssh-add "${git_ssh_keyfile}" && echo $(date +%s) > ${gitkit_file}
+			ssh-add -t "${git_ssh_timeout}" "${git_ssh_keyfile}"
 		fi
 	fi
 }
