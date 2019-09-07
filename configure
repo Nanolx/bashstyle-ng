@@ -19,11 +19,7 @@ CWD=$(dirname "$(readlink -m "${BASH_SOURCE[0]}")")
 
 IN_FILES=(rc/bashstyle-rc data/bashstyle data/bashstyle-config-helper data/bashstyle-ng.pc)
 
-APP_NAME="BashStyle-NG"
-APP_VERSION=10.6.90
-APP_CODENAME="Kaffee Filtrino"
-APP_LANGUAGES="de"
-
+source "${CWD}/.settings"
 CFG_VERSION="4.5.0"
 CFG_RESULTS="${CWD}/.configure_results"
 
@@ -125,7 +121,6 @@ set_colors () {
 ##############################
 # Screen messages
 ##############################
-
 section_message () {
 	case ${1} in
 		APP )		echo -e "\n${RED}< Required ${WHITE}Applications" ;;
@@ -212,8 +207,7 @@ help_message () {
 
 missing_girpath_message () {
 	echo -e "${RED}*** GIRPATH not detected ***${WHITE}
-	configure --girpath=<girpath> to specify where to look for
-	gobject-introspection files\n"
+	configure --girpath=<girpath> to specify where to look for gobject-introspection files\n"
 	tput sgr0
 
 	exit 1
@@ -401,7 +395,6 @@ substitute_values () {
 ##############################
 # Export results
 ##############################
-
 export_result ()
 {
 	echo -e "PREFIX=\"${PREFIX}\"
@@ -422,6 +415,9 @@ DISABLE_POSTINSTALL=${DISABLE_POSTINSTALL}" \
 	> "${CFG_RESULTS}"
 }
 
+##############################
+# Main Loop
+##############################
 for opt in "${@}"; do
 	case ${opt} in
 		--prefix=* )		PREFIX="${opt/*=}" ;;
@@ -439,6 +435,9 @@ for opt in "${@}"; do
 	shift
 done
 
+##############################
+# Do stuff
+##############################
 set_colors
 start_message
 check_helper
