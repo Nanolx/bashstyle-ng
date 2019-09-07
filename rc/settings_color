@@ -30,16 +30,27 @@ case ${color_style} in
 	underlined ) style="04" ;;
 esac
 
+black="\[\033[${style};30m\]"
+red="\[\033[${style};31m\]"
+green="\[\033[${style};32m\]"
+yellow="\[\033[${style};33m\]"
+blue="\[\033[${style};34m\]"
+magenta="\[\033[${style};35m\]"
+cyan="\[\033[${style};36m\]"
+grey="\[\033[${style};37m\]"
+white="\[\033[${style};38m\]"
+
+eblack="\033[${style};30m"
+ered="\033[${style};31m"
+egreen="\033[${style};32m"
+eyellow="\033[${style};33m"
+eblue="\033[${style};34m"
+emagenta="\033[${style};35m"
+ecyan="\033[${style};36m"
+egrey="\033[${style};37m"
+ewhite="\033[${style};38m"
+
 if [[ ${TERM} != *xterm*color* ]]; then
-	black="\[\033[${style};30m\]"
-	red="\[\033[${style};31m\]"
-	green="\[\033[${style};32m\]"
-	yellow="\[\033[${style};33m\]"
-	blue="\[\033[${style};34m\]"
-	magenta="\[\033[${style};35m\]"
-	cyan="\[\033[${style};36m\]"
-	grey="\[\033[${style};37m\]"
-	white="\[\033[${style};97m\]"
 	coldblue=${blue}
 	smoothblue=${blue}
 	iceblue=${blue}
@@ -54,15 +65,6 @@ if [[ ${TERM} != *xterm*color* ]]; then
 	pink=${magenta}
 	cream=${magenta}
 
-	eblack="\033[${style};30m"
-	ered="\033[${style};31m"
-	egreen="\033[${style};32m"
-	eyellow="\033[${style};33m"
-	eblue="\033[${style};34m"
-	emagenta="\033[${style};35m"
-	ecyan="\033[${style};36m"
-	egrey="\033[${style};37m"
-	ewhite="\033[${style};97m"
 	ecoldblue=${eblue}
 	esmoothblue=${eblue}
 	eiceblue=${eblue}
@@ -77,15 +79,6 @@ if [[ ${TERM} != *xterm*color* ]]; then
 	epink=${emagenta}
 	ecream=${emagenta}
 else
-	black="\[\033[${style};38;5;0m\]"
-	red="\[\033[${style};38;5;1m\]"
-	green="\[\033[${style};38;5;2m\]"
-	yellow="\[\033[${style};38;5;3m\]"
-	blue="\[\033[${style};38;5;4m\]"
-	magenta="\[\033[${style};38;5;5m\]"
-	cyan="\[\033[${style};38;5;6m\]"
-	grey="\[\033[${style};38;5;8m\]"
-	white="\[\033[${style};38;5;7m\]"
 	coldblue="\[\033[${style};38;5;33m\]"
 	smoothgreen="\[\033[${style};38;5;42m\]"
 	iceblue="\[\033[${style};38;5;45m\]"
@@ -100,15 +93,6 @@ else
 	orange="\[\033[${style};38;5;202m\]"
 	silver="\[\033[${style};38;5;245m\]"
 
-	eblack="\033[${style};38;5;0m"
-	ered="\033[${style};38;5;1m"
-	egreen="\033[${style};38;5;2m"
-	eyellow="\033[${style};38;5;3m"
-	eblue="\033[${style};38;5;4m"
-	emagenta="\033[${style};38;5;5m"
-	ecyan="\033[${style};38;5;6m"
-	egrey="\033[${style};38;5;8m"
-	ewhite="\033[${style};38;5;7m"
 	ecoldblue="\033[${style};38;5;33m"
 	esmoothgreen="\033[${style};38;5;42m"
 	eiceblue="\033[${style};38;5;45m"

@@ -19,7 +19,7 @@ lblue="${style};34"
 lmagenta="${style};35"
 lcyan="${style};36"
 lgrey="${style};37"
-lwhite="${style};97"
+lwhite="${style};38"
 
 if [[ ${TERM} != *xterm*color* ]]; then
 	lcoldblue=${lblue}
@@ -36,19 +36,19 @@ if [[ ${TERM} != *xterm*color* ]]; then
 	lpink=${lmagenta}
 	lcream=${lmagenta}
 else
-	lcoldblue="${style};38;5;33"
-	lsmoothblue="${style};38;5;111"
-	liceblue="${style};38;5;45"
-	lturqoise="${style};38;5;50"
-	lsmoothgreen="${style};38;5;42"
-	lwinered="${style};38;5;637"
-	lbrown="${style};38;5;684"
-	lsilver="${style};38;5;761"
-	locher="${style};38;5;690"
-	lorange="${style};38;5;714"
-	lpurple="${style};38;5;604"
-	lpink="${style};38;5;213"
-	lcream="${style};38;5;5344"
+	ecoldblue="${style};38;5;33m"
+	esmoothgreen="${style};38;5;42m"
+	eiceblue="${style};38;5;45m"
+	eturqoise="${style};38;5;50m"
+	epurple="${style};38;5;92m"
+	esmoothblue="${style};38;5;111m"
+	ewinered="${style};38;5;125m"
+	ebrown="${style};38;5;130"
+	eocher="${style};38;5;136m"
+	epink="${style};38;5;200m"
+	ecream="${style};38;5;218m"
+	eorange="${style};38;5;202m"
+	esilver="${style};38;5;245m"
 fi
 
 if bt $(ini_get dark_terminal); then

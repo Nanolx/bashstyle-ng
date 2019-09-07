@@ -357,7 +357,7 @@ install_bsng () {
 		inst bin "${file}"
 	done
 
-	echo -e "\t${WHITE}+${CYAN}  documentation and manual pages"
+	echo -e "\t${WHITE}+${CYAN} documentation and manual pages"
 	for file in "${DOC_FILES[@]}"; do
 		inst doc "${file}"
 	done

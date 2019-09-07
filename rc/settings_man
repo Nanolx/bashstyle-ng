@@ -9,24 +9,39 @@
 #							#
 #########################################################
 
-if bt $(ini_get enable_colors); then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "colored manpages")" "$(eval_gettext "On")"
+dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "colored manpages")" "$(eval_gettext "On")"
 
-	# enforce pager to be less, else this does not work
-	# less is a hard dependency for BashStyle-NG, so it
-	# must be available, no need for an explicit check
-	export PAGER="less"
+# enforce pager to be less, else this does not work
+# less is a hard dependency for BashStyle-NG, so it
+# must be available, no need for an explicit check
+export PAGER="less"
 
-	# foreground colors
-	lfblack="38;5;0m"
-	lfred="38;5;1m"
-	lfgreen="38;5;2m"
-	lfyellow="38;5;3m"
-	lfblue="38;5;4m"
-	lfmagenta="38;5;129m"
-	lfcyan="38;5;6m"
-	lfgrey="38;5;7m"
-	lfwhite="38;5;999m"
+# foreground colors
+lfblack="30m"
+lfred="31m"
+lfgreen="32m"
+lfyellow="33m"
+lfblue="34m"
+lfmagenta="35m"
+lfcyan="36m"
+lfgrey="37m"
+lfwhite="38m"
+
+if [[ ${TERM} != *xterm*color* ]]; then
+	lfcoldblue=${lfblue}
+	lfsmoothblue=${lfblue}
+	lficeblue=${lfblue}
+	lfturqoise=${lfcyan}
+	lfsmoothgreen=${lfgreen}
+	lfwinered=${lfred}
+	lfbrown=${lfyellow}
+	lfsilver=${lfwhite}
+	lfocher=${lfyellow}
+	lforange=${lfyellow}
+	lfpurple=${lfmagenta}
+	lfpink=${lfmagenta}
+	lfcream=${lfmagenta}
+else
 	lfcoldblue="38;5;33m"
 	lfsmoothblue="38;5;111m"
 	lficeblue="38;5;45m"
@@ -40,62 +55,60 @@ if bt $(ini_get enable_colors); then
 	lfpurple="38;5;604m"
 	lfpink="38;5;213m"
 	lfcream="38;5;5344m"
-
-	# background colors
-	lbblack="30"
-	lbred="41"
-	lbgreen="42"
-	lbyellow="43"
-	lbblue="44"
-	lbmagenta="45"
-	lbcyan="46"
-	lbgrey="47"
-	lbwhite="107"
-
-	# standout-mode
-	eval termcap_sof="$(ini_get less_standout_foreground)"
-	eval termcap_sob="$(ini_get less_standout_background)"
-	export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
-
-	if bt $(ini_get dark_terminal); then
-		lfblack=${lfwhite}
-		lbblack=${lbwhite}
-	else	lfwhite=${lfblack}
-		lbwhite=${lbblack}
-	fi
-
-	# blinking text
-	eval termcap_mb="$(ini_get less_blink)"
-	export LESS_TERMCAP_mb=$(echo -e "\033[01;${termcap_mb}")
-
-	# bold text
-	eval termcap_md="$(ini_get less_bold)"
-	export LESS_TERMCAP_md=$(echo -e "\033[01;${termcap_md}")
-
-	# underline text
-	eval termcap_us="$(ini_get less_underline)"
-	export LESS_TERMCAP_us=$(echo -e "\033[04;${termcap_us}")
-
-	# reverse text
-	eval termcap_rs="$(ini_get less_reverse)"
-	export LESS_TERMCAP_mr=$(echo -e "\033[07;${termcap_rs}")
-
-	# dimmed text
-	eval termcap_mh="$(ini_get less_dim)"
-	export LESS_TERMCAP_mh=$(echo -e "\033[02;${termcap_mh}")
-
-	# stop mode ; stop underline; stop standout
-	export LESS_TERMCAP_me=$'\033[0m'
-	export LESS_TERMCAP_se=$'\033[0m'
-	export LESS_TERMCAP_ue=$'\033[0m'
-
-	unset termcap_mb termcap_md termcap_md termcap_mr \
-		termcap_mh termcap_us termcap_sof termcap_sob \
-		termcap_rs
-
-	for lfcolor in "${colors[@]}"; do
-		eval unset "lf${lfcolor}"
-	done
-else
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "colored manpages")" "$(eval_gettext "Off")"
 fi
+
+# background colors
+lbblack="30"
+lbred="41"
+lbgreen="42"
+lbyellow="43"
+lbblue="44"
+lbmagenta="45"
+lbcyan="46"
+lbgrey="47"
+lbwhite="107"
+
+# standout-mode
+eval termcap_sof="$(ini_get less_standout_foreground)"
+eval termcap_sob="$(ini_get less_standout_background)"
+export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
+
+if bt $(ini_get dark_terminal); then
+	lfblack=${lfwhite}
+	lbblack=${lbwhite}
+else	lfwhite=${lfblack}
+	lbwhite=${lbblack}
+fi
+
+# blinking text
+eval termcap_mb="$(ini_get less_blink)"
+export LESS_TERMCAP_mb=$(echo -e "\033[01;${termcap_mb}")
+
+# bold text
+eval termcap_md="$(ini_get less_bold)"
+export LESS_TERMCAP_md=$(echo -e "\033[01;${termcap_md}")
+
+# underline text
+eval termcap_us="$(ini_get less_underline)"
+export LESS_TERMCAP_us=$(echo -e "\033[04;${termcap_us}")
+
+# reverse text
+eval termcap_rs="$(ini_get less_reverse)"
+export LESS_TERMCAP_mr=$(echo -e "\033[07;${termcap_rs}")
+
+# dimmed text
+eval termcap_mh="$(ini_get less_dim)"
+export LESS_TERMCAP_mh=$(echo -e "\033[02;${termcap_mh}")
+
+# stop mode ; stop underline; stop standout
+export LESS_TERMCAP_me=$'\033[0m'
+export LESS_TERMCAP_se=$'\033[0m'
+export LESS_TERMCAP_ue=$'\033[0m'
+
+unset termcap_mb termcap_md termcap_md termcap_mr \
+	termcap_mh termcap_us termcap_sof termcap_sob \
+	termcap_rs
+
+for lfcolor in "${colors[@]}"; do
+	eval unset "lf${lfcolor}"
+done
