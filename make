@@ -113,7 +113,7 @@ thanks_message () {
 # Load configure results
 ##############################
 
-[[ $# -eq 0 ]] && help_message
+[[ $# -eq 0 || ${1} == @(-h|--help) ]] && help_message
 
 if [[ ! -f "${CWD}/.configure_results" ]]; then
 	run_configure_message
