@@ -90,7 +90,8 @@ if bt $(ini_get enable_colors); then
 	export LESS_TERMCAP_ue=$'\033[0m'
 
 	unset termcap_mb termcap_md termcap_md termcap_mr \
-		termcap_mh termcap_us termcap_sof termcap_sob
+		termcap_mh termcap_us termcap_sof termcap_sob \
+		termcap_rs
 
 	for lfcolor in "${colors[@]}"; do
 		eval unset "lf${lfcolor}"

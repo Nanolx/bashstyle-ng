@@ -145,6 +145,9 @@ done
 reload_bash () {
 	builtin unalias -a
 	builtin unset -f "$(builtin compgen -A function)"
+	for trap in EXIT DEBUG ERROR; do
+		trap '' ${TRAP}
+	done
 	[ -f /etc/bash_completion ] && source /etc/bash_completion
 	source "${HOME}"/.bashrc
 }
@@ -179,6 +182,8 @@ bashstyle_trap_add () {
         printf '%s\n' "${trap_add_cmd}"
     )" "${trap_add_name}" \
         || trap_fatal "$(eval_gettext "unable to add ${trap_add_cmd} to trap ${trap_add_name}")"
+
+    unset trap_add_cmd trap_add_name
     done
 }
 
@@ -225,13 +230,12 @@ fi
 
 dbg_finalize
 
-unset pstyle
-unset TEXTDOMAIN
+unset pstyle TEXTDOMAIN
 
 unset -f bashstyle_trap_add
-unset -f trap_fatal
-unset -f trap_error
-unset -f trap_log
+unset -f trap_fatal trap_error trap_log
+unset -f ini_get ini_set ini_add def_get ven_get rc_add
+unset -f dbg_msg dbg_log dbg_finalize
 
 unalias bt
 unalias bf

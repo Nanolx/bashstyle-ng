@@ -147,7 +147,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 			rc_add "set ${uipart}color ${uipart_color}"
 		done
 
-		unset uipart_color
+		unset uipart_color uipart
 	fi
 
 	if bt $(ini_get syntax_highlight); then

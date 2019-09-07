@@ -10,12 +10,12 @@
 #########################################################
 
 bashstyle_colorshell () {
-	if [[ -z ${OLDPS1} ]]; then
-		[[ ${BSNG_BASHVER} -ge 44 ]] && OLDPS0="${PS0}"
-		OLDPS1="${PS1}"
-		OLDPS2="${PS2}"
-		OLDPS3="${PS3}"
-		OLDPS4="${PS4}"
+	if [[ -z ${OLD_PS1} ]]; then
+		[[ ${BSNG_BASHVER} -ge 44 ]] && OLD_PS0="${PS0}"
+		OLD_PS1="${PS1}"
+		OLD_PS2="${PS2}"
+		OLD_PS3="${PS3}"
+		OLD_PS4="${PS4}"
 	fi
 
 	# exclude black (0) on dark terminal
@@ -29,11 +29,11 @@ bashstyle_colorshell () {
 
 	shopt -s promptvars
 
-	[[ ${BSNG_BASHVER} -ge 44 ]] && PS0="${OLDPS0}${cmd_text_colour}"
-	PS1="${OLDPS1}${cmd_text_colour}"
-	PS2="${OLDPS2}${cmd_text_colour}"gea
-	PS3="${OLDPS3}${cmd_text_colour}"
-	PS4="${OLDPS4}${cmd_text_colour}"
+	[[ ${BSNG_BASHVER} -ge 44 ]] && PS0="${OLD_PS0}${cmd_text_colour}"
+	PS1="${OLD_PS1}${cmd_text_colour}"
+	PS2="${OLD_PS2}${cmd_text_colour}"
+	PS3="${OLD_PS3}${cmd_text_colour}"
+	PS4="${OLD_PS4}${cmd_text_colour}"
 }
 
 bashstyle_colorshell_reset () {

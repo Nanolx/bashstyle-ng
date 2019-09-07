@@ -26,16 +26,16 @@ if [ ! -z "$(ini_get git_signkey)" ]; then
 	dbg_log git config --global user.signingkey "$(ini_get git_signkey)"
 fi
 
-COLOR_OPTS=(branch diff interactive pager status)
+color_opts=(branch diff interactive pager status)
 
 if bt $(ini_get git_color); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git colors "$(eval_gettext "On")"
-	for opt in "${COLOR_OPTS[@]}"; do
+	for opt in "${color_opts[@]}"; do
 		dbg_log git config --global color."${opt}" true
 	done
 else
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git colors "$(eval_gettext "Off")"
-	for opt in "${COLOR_OPTS[@]}"; do
+	for opt in "${color_opts[@]}"; do
 		dbg_log git config --global color."${opt}" false
 	done
 fi
@@ -44,6 +44,10 @@ if bt $(ini_get git_ssh_remember); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Remember")" "$(eval_gettext "On")"
 	dbg_msg "$(eval_gettext "Bashstyle-NG Setting:")" Git "$(eval_gettext "SSH Timeout")" $(ini_get git_ssh_timeout)
 	dbg_log eval $(ssh-agent -s -t $(ini_get git_ssh_timeout)) >/dev/null
+
+	if [ ! -z "${git_ssh_keyfile}" ]; then
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Keyfile")" $(ini_get git_ssh_keyfile)
+	fi
 else
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Remember")" "$(eval_gettext "Off")"
 fi
@@ -51,10 +55,6 @@ fi
 if [ ! -z "$(ini_get git_editor)" ]; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "editor")"
 	dbg_log git config --global core.editor "$(ini_get git_editor)"
-fi
-
-if [ ! -z "${git_ssh_keyfile}" ]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Keyfile")" $(ini_get git_ssh_keyfile)
 fi
 
 if bt $(ini_get git_aliases); then
@@ -80,3 +80,5 @@ else
 	dbg_log git config --global --unset alias.stage
 	dbg_log git config --global --unset alias.lsb
 fi
+
+unset color_opts

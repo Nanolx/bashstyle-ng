@@ -39,8 +39,7 @@ if [[ ! -z $(grep -w TMOUT /etc/profile.d/*msec.sh 2>/dev/null) ]]; then
 	echo -e "$(eval_gettext "\n * /etc/profile.d/msec.sh prevents setting TMOUT!")"
 else
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" TMOUT "${TMOUT}"
-	export TMOUT
-	TMOUT="$(ini_get timeout)"
+	dbg_log export TMOUT="$(ini_get timeout)"
 fi
 
 dbg_log export HISTSIZE="$(ini_get history_size)"
@@ -69,25 +68,25 @@ else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gett
 fi
 
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "Options")"
-DD_OPTS=""
+dd_opts=""
 
 if bt $(ini_get dd_noerror); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "don't abort at errors")"
-	dbg_log export DD_OPTS+="conv=noerror "
+	dbg_log export dd_opts+="conv=noerror "
 fi
 
 # status=progress is new in dd/coreutils 8.24
-DD_VERSION="$(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version))"
+dd_version="$(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version))"
 
-if bt $(ini_get dd_progress) -a ${DD_VERSION} -ge 824; then
+if bt $(ini_get dd_progress) -a ${dd_version} -ge 824; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "display progressbar")"
-	dbg_log export DD_OPTS+="status=progress "
+	dbg_log export dd_opts+="status=progress "
 elif bt $(ini_get dd_progress); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "display progressbar")" \
 		"$(eval_gettext "was requested by user, but coreutils is not 8.24 or newer")"
 fi
 
-dbg_log alias dd="dd ${DD_OPTS}"
+dbg_log alias dd="dd ${dd_opts}"
 
 if bt $(ini_get use_bat); then
 	if which bat >/dev/null; then
@@ -113,3 +112,5 @@ dbg_log export trunc_symbol="$(ini_get pwdcut)"
 dbg_log export trunc_length="$((${#trunc_symbol}-1))"
 dbg_log export dirchar="$(ini_get directory_indicator)"
 dbg_log export user_char="$(ini_get user_char)"
+
+unset lastpwd dd_opts dd_version

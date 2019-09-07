@@ -11,7 +11,7 @@
 
 dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" KeybindingsCFG
 
-function list-keybindings () {
+function list_keybindings () {
 	bind -P | sed -e '/is not/d;s/can be found on/:/' | column -s : -t
 }
 
@@ -23,7 +23,7 @@ keybindings_setter () {
 		case ${2} in
 			complete-path)	ACT='"\eb`which \ef` \e\C-e"' ;;
 			rerun-root)	ACT='"\ebsudo !!\e\C-e\C-j"' ;;
-			list-keys)	ACT='"\eblist-keybindings\e\C-e\C-j"' ;;
+			list-keys)	ACT='"\eblist_keybindings\e\C-e\C-j"' ;;
 			*)		ACT="${2}" ;;
 		esac
 
@@ -89,3 +89,5 @@ if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 fi
 
 bind -f "${HOME}"/.keybindings
+
+unset MOD KEY ACT

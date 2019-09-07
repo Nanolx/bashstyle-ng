@@ -42,17 +42,17 @@ bashstyle-cd () {
 		fi
 		items=$(systemkit countvisibleitems)
 		if [[ ${items} -gt 35 ]]; then
-			if [[ ${LSCD} == True ]]; then
-				ls ${LSCD_OPTS} -go_dir | head -n 35 | column
-			elif [[ ${TREECD} == True ]]; then
-				tree ${TREECD_OPTS} -go_dir | head -n 35 | column
+			if [[ ${BSNG_LSCD} == True ]]; then
+				ls ${BSNG_LSCD_OPTS} -go_dir | head -n 35 | column
+			elif [[ ${BSNG_TREECD} == True ]]; then
+				tree ${BSNG_TREECD_OPTS} -go_dir | head -n 35 | column
 			fi
 			echo -e "${ccolor_banner} ... $((items-35)) " "$(eval_gettext "more items\n")"
 		elif [[ ${items} -gt 0 ]]; then
-			if [[ ${LSCD} == True ]]; then
-				ls ${LSCD_OPTS}
-			elif [[ ${TREECD} == True ]]; then
-				tree ${TREECD_OPTS}
+			if [[ ${BSNG_LSCD} == True ]]; then
+				ls ${BSNG_LSCD_OPTS}
+			elif [[ ${BSNG_TREECD} == True ]]; then
+				tree ${BSNG_TREECD_OPTS}
 			fi
 		else	echo -e "${ccolor_empty}" "$(eval_gettext "-- empty --\n")"
 		fi
@@ -64,9 +64,9 @@ bashstyle-cd () {
 if bt $(ini_get use_treecd); then
 	if which tree >/dev/null; then
 		dbg_log alias cd=bashstyle-cd
-		dbg_log export TREECD=True
-		dbg_log export TREECD_OPTS="$(ini_get treecd_opts)"
-		bf $(ini_get enable_colors) && dbg_log export TREECD_OPTS="${TREECD_OPTS} -n"
+		dbg_log export BSNG_TREECD=True
+		dbg_log export BSNG_TREECD_OPTS="$(ini_get treecd_opts)"
+		bf $(ini_get enable_colors) && dbg_log export BSNG_TREECD_OPTS="${BSNG_TREECD_OPTS} -n"
 		dbg_msg "$(eval_gettext "using treecd wrapper for cd")"
 	else	dbg_msg "$(eval_gettext "tree not found, not using treecd as cd replacement")"
 	fi
@@ -74,8 +74,8 @@ fi
 
 if bt $(ini_get use_lscd); then
 	dbg_log alias cd=bashstyle-cd
-	dbg_log export LSCD=True
-	dbg_log export LSCD_OPTS="$(ini_get lscd_opts)"
-	bf $(ini_get enable_colors) && dbg_log export LSCD_OPTS="${LSCD_OPTS} --color=no"
+	dbg_log export BSNG_LSCD=True
+	dbg_log export BSNG_LSCD_OPTS="$(ini_get lscd_opts)"
+	bf $(ini_get enable_colors) && dbg_log export BSNG_LSCD_OPTS="${BSNG_LSCD_OPTS} --color=no"
 	dbg_msg "$(eval_gettext "using lscd wrapper for cd")"
 fi
