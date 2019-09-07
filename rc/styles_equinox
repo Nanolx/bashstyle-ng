@@ -130,7 +130,7 @@ echo -en "\033[2;$((COLUMNS-29))H"
 echo -en "${ecolor_separator}(${ecolor_time} $(date +%H:%M)${ecolor_separator} :${ecolor_date} $(date '+%a, %d %b %y')${ecolor_separator} )────┐"
 echo -en "\033[3;${COLUMNS}H${ecolor_separator}│"
 
-i=${LINES}
+local i=${LINES}
 
 if [[ ${i} -ge ${counter} ]]; then
 	while [ ${i} -ge 4 ]

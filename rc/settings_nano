@@ -161,3 +161,5 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 	mv "${RC_FILE}" "${HOME}"/.nanorc
 	unset RC_FILE
 fi
+
+unset bsng_nanorc
