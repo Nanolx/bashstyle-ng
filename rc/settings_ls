@@ -11,16 +11,6 @@
 
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" LS_COLORS
 
-color_style=$(ini_get color_style)
-
-case ${color_style} in
-	bright ) style="01" ;;
-	normal ) style="0" ;;
-	inverted ) style="7" ;;
-	dimmed ) style="02" ;;
-	underlined ) style="04" ;;
-esac
-
 lblack="${style};30"
 lred="${style};31"
 lgreen="${style};32"
