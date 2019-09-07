@@ -37,7 +37,7 @@ do_gzip_man () {
 }
 
 generate_pot () {
-	if [[ ! -f .configure/results ]]; then
+	if [[ ! -f .configure_results ]]; then
 		echo -e "\n${RED}You need to run './configure' first!\n"
 		exit 1
 	else
@@ -55,7 +55,7 @@ generate_pot () {
 }
 
 update_po () {
-	if [[ ! -f .configure/results ]]; then
+	if [[ ! -f .configure_results ]]; then
 		echo -e "\n${RED}You need to run './configure' first!\n"
 		exit 1
 	elif [[ ! -f i18n/bashstyle.pot || ! -f i18n/bashstyle-rc.pot ]]; then

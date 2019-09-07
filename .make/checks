@@ -10,10 +10,10 @@
 #########################################################
 
 check_configure () {
-	if [[ ! -f "${PWD}/.configure/results" ]]; then
+	if [[ ! -f "${PWD}/.configure_results" ]]; then
 		run_configure_message
 		exit 1
-	else	source "${PWD}/.configure/results"
+	else	source "${PWD}/.configure_results"
 		source "${PWD}/.make/files"
 	fi
 }

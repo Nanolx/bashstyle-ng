@@ -9,18 +9,420 @@
 #							#
 #########################################################
 
+##############################
+# Setup
+##############################
 shopt -s extglob
-export TOP_PID=$$
+TOP_PID=$$
 
-MODULES=(base color messages checks substitute depends)
+CWD=$(dirname "$(readlink -m "${BASH_SOURCE[0]}")")
 
-for module in "${MODULES[@]}"; do
-	source "${PWD}/.configure/${module}"
+IN_FILES=(rc/bashstyle-rc data/bashstyle data/bashstyle-config-helper data/bashstyle-ng.pc)
+
+APP_NAME="BashStyle-NG"
+APP_VERSION=10.6.90
+APP_CODENAME="Kaffee Filtrino"
+APP_LANGUAGES="de"
+
+CFG_VERSION="4.5.0"
+CFG_RESULTS="${CWD}/.configure_results"
+
+if [[ -d "/usr/lib/girepository-1.0/" ]]; then
+	GIRPATH="/usr/lib/girepository-1.0"
+elif [[ -d "/usr/lib64/girepository-1.0/" ]]; then
+	GIRPATH="/usr/lib64/girepository-1.0"
+else
+	missing_girpath_message
+fi
+
+PREFIX="/usr"
+BINDIR="${PREFIX}/bin"
+PCDIR="${PREFIX}/share/pkgconfig"
+DATADIR="${PREFIX}/share"
+DOCDIR="${DATADIR}/doc"
+MANDIR="${DATADIR}/man"
+
+PYTHON=$(command -v python3 || command -v python)
+
+PYMINVER_P="3.0.0"
+PYMAXVER_P="3.9.0"
+
+PYMINVER=${PYMINVER_P//.}
+PYMAXVER=${PYMAXVER_P//.}
+
+DISABLE_POSTINSTALL=0
+
+for lang in "${APP_LANGUAGES[@]}"; do
+	LC_MESSAGES_DIRS+="${lang}/LC_MESSAGES"
 done
 
-rm -f "${PWD}/.configure/results"
+PATH="${PATH}:/sbin:/usr/sbin:/usr/local/sbin"
 
-for opt in ${@}; do
+rm -f "${CWD}/.configure_results"
+
+##############################
+# Dependencies
+##############################
+APPS=(bash bc gawk grep less sed)
+OPT_APPS=("aapt:apkdump won't work"
+"acpi:systemkit battery won't work"
+"bat:using bat instead of cat won't work"
+"dig:check m won't work"
+"ffmpeg:movie2gif won't work"
+"lspci:systemkit pci won't work"
+"lsusb:systemkit usb won't work"
+"ps2pdf:man2pdf won't work"
+"ssh-add:gitkit won't be able to remember the password"
+"tree:treecd won't work"
+"wget:some systemkit and gikit feautres won't work"
+"xe:using gitkit cloneuser/cloneorg won't work"
+"xmlindent:xmlpager won't work")
+
+SAPPS=( )
+OPT_SAPPS=("dmidecode:systemkit bios won't work")
+
+BUILD=("makeinfo:can't build documentation"
+"msgfmt:can't build translation files"
+"pkg-config:can't perform library checks")
+OPT_BUILD=("gtk-update-icon-cache:can't update icon cache"
+"intltool-extract:can't create translation templates"
+"msgmerge:can't update translation files"
+"xgettext:can't create translation templates")
+
+LIBS=( )
+OPT_LIBS=( )
+
+GIR=( )
+OPT_GIR=( )
+
+PYMODS=(configobj gettext gi.repository:Gtk shutil)
+OPT_PYMODS=( )
+
+##############################
+# Color Settings
+##############################
+set_colors () {
+	RED="\033[01;31m"
+	GREEN="\033[01;32m"
+	YELLOW="\033[01;33m"
+	BLUE="\033[01;34m"
+	MAGENTA="\033[01;35m"
+	CYAN="\033[01;36m"
+	WHITE="\033[01;37m"
+
+	case ${TERM} in
+		*xterm*color )
+			ORANGE="\033[01;38;5;202m"
+			SILVER="\033[01;38;5;246m"
+		;;
+		* )
+			ORANGE=${YELLOW}
+			SILVER=${WHITE}
+		;;
+	esac
+}
+
+##############################
+# Screen messages
+##############################
+
+section_message () {
+	case ${1} in
+		APP )		echo -e "\n${RED}< Required ${WHITE}Applications" ;;
+		OPT_APP )	echo -e "\n${MAGENTA}< Optional ${WHITE}Applications" ;;
+		SBINAPP )	echo -e "\n${RED}< Required ${WHITE}SuperUser Applications" ;;
+		OPT_SBINAPP )	echo -e "\n${MAGENTA}< Optional ${WHITE}SuperUser Applications" ;;
+		BUILD )		echo -e "\n${RED}< Required ${WHITE}Build Tools" ;;
+		OPT_BUILD )	echo -e "\n${MAGENTA}< Optional ${WHITE}Build Tools" ;;
+		PY )		echo -e "\n${RED}< Python Interpreter${WHITE} >= ${PYMINVER_P} && <= ${PYMAXVER_P}" ;;
+		PYMOD )		echo -e "\n${RED}< Required ${WHITE}Python Modules" ;;
+		OPT_PYMOD )	echo -e "\n${MAGENTA}< Optional ${WHITE}Python Modules" ;;
+		LIB )		echo -e "\n${RED}< Required ${WHITE}Libraries" ;;
+		OPT_LIB )	echo -e "\n${MAGENTA}< Optional ${WHITE}Libraries" ;;
+		GIR )		echo -e "\n${RED}< Required ${WHITE}GIR Repositories" ;;
+		OPT_GIR )	echo -e "\n${MAGENTA}< Optional ${WHITE}GIR Repositories" ;;
+	esac
+	tput sgr0
+}
+
+start_message () {
+	echo -e "\n${WHITE}Configuring ${GREEN}${APP_NAME}${YELLOW} v${APP_VERSION} ${CYAN}(${APP_CODENAME})"
+	tput sgr0
+}
+
+ok_message () {
+	if [[ -n ${2} ]]; then
+		echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK${SILVER} ( ${2} )"
+	else	echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK"
+	fi
+	tput sgr0
+}
+
+fail_message () {
+	case ${1} in
+		m )	echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !MISSING!" ;;
+		o )	echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !OLDER THAN ${3}!" ;;
+		p )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !MISSING!" ;;
+		p- )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !OLDER THAN ${PYMINVER_P}!" ;;
+		p+ )	echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS ${PYMAXVER_P} OR ABOVE!" ;;
+	esac
+	tput sgr0
+}
+
+warn_message () {
+	echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${YELLOW} Not Available\
+		\n\t  > ${WHITE}${2}"
+	tput sgr0
+}
+
+end_message () {
+	echo -e "\n${BLUE}Notes from configure:\
+		 \n${YELLOW}Prefix\t\t\t${WHITE}>${MAGENTA} ${PREFIX}\
+		 \n${YELLOW}Python\t\t\t${WHITE}>${MAGENTA} ${PYTHON}"
+
+	if [ "${DISABLE_POSTINSTALL}" -eq 1 ]; then
+		echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
+	else	echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
+	fi
+
+	echo -e "\n\t${SILVER}You may want to continue with './make build'.\n"
+	tput sgr0
+}
+
+help_message () {
+	set_colors
+	echo -e "\n${GREEN}${APP_NAME} ${MAGENTA}v${APP_VERSION}${WHITE} / ${YELLOW}Configure v${CFG_VERSION} ${CYAN}help
+	\n${WHITE}Options:"
+
+	echo -e "	${ORANGE}--help${WHITE} *|${GREEN} Display this help message
+	${ORANGE}--prefix=<prefix>${WHITE} *|${GREEN} Change installation prefix${WHITE} *|${BLUE} default: /usr
+	${ORANGE}--bindir=<bindir>${WHITE} *|${GREEN} Change binary path${WHITE} *|${BLUE} default: /usr/bin
+	${ORANGE}--docdir=<docdir>${WHITE} *|${GREEN} Change doc path${WHITE} *|${BLUE} default: /usr/share/doc
+	${ORANGE}--mandir=<mandir>${WHITE} *|${GREEN} Change man path${WHITE} *|${BLUE} default: /usr/share/man
+	${ORANGE}--datadir=<datadir>${WHITE} *|${GREEN} Change data path${WHITE} *|${BLUE} default: /usr/share
+	${ORANGE}--pcdir=<pcdir>${WHITE} *|${GREEN} Change pkg-config path${WHITE} *|${BLUE} default: /usr/share/pkgconfig
+	${ORANGE}--girpath=<girpath>${WHITE} *|${GREEN} Where to look for G-I typelibs${WHITE} *|${BLUE} default: /usr/lib/girepository-1.0
+	${ORANGE}--python=<python>${WHITE} *|${GREEN} Use specific Python interpreter${WHITE} *|${BLUE} default: /usr/bin/python3
+	${ORANGE}--no-postinstall${WHITE} *|${GREEN} Disable post-installation tasks${WHITE} *|${BLUE} for package-maintainers" | column -t -s \*
+	echo
+	tput sgr0
+
+	exit 0
+}
+
+missing_girpath_message () {
+	echo -e "${RED}*** GIRPATH not detected ***${WHITE}
+	configure --girpath=<girpath> to specify where to look for
+	gobject-introspection files\n"
+	tput sgr0
+
+	exit 1
+}
+
+##############################
+# Dependency checks
+##############################
+check () {
+	for dir in ${PATH//:/ }; do
+		if [ -x "${dir}/${1}" ]; then
+			echo found
+			continue 2
+		fi
+	done
+}
+
+check_helper () {
+	[[ "${BUILD[*]}" ]] && (section_message BUILD && check_apps "false" "${BUILD[@]}")
+	[[ "${OPT_BUILD[*]}" ]] && (section_message OPT_BUILD && check_apps "true" "${OPT_BUILD[@]}")
+	[[ "${APPS[*]}" ]] && (section_message APP && check_apps "false" "${APPS[@]}")
+	[[ "${OPT_APPS[*]}" ]] && (section_message OPT_APP && check_apps "true" "${OPT_APPS[@]}")
+	[[ "${SAPPS[*]}" ]] && (section_message SBINAPP && check_apps "false" "${SAPPS[@]}")
+	[[ "${OPT_SAPPS[*]}" ]] && (section_message OPT_SBINAPP && check_apps "true" "${OPT_SAPPS[@]}")
+	[[ "${PYMODS[*]}" ]] && check_python
+	[[ "${PYMODS[*]}" ]] && (section_message PYMOD && check_pymods "false" "${PYMODS[@]}")
+	[[ "${OPT_PYMODS[*]}" ]] && (section_message OPT_PYMOD && check_pymods "true" "${OPT_PYMODS[@]}")
+	[[ "${LIBS[*]}" ]] && (section_message LIB && check_libs "false" "${LIBS[@]}")
+	[[ "${OPT_LIBS[*]}" ]] && (section_message OPT_LIB && check_libs "false" "${OPT_LIBS[@]}")
+	[[ "${GIR[*]}" ]] && (section_message GIR && check_gir "false" "${GIR[@]}")
+	[[ "${OPT_GIR[*]}" ]] && (section_message OPT_GIR && check_gir "false" "${OPT_GIR[@]}")
+}
+
+check_apps () {
+	OPT=${1}
+	shift
+
+	for ARG in "${@}"; do
+		APP="${ARG/:*}"
+		DESC="${ARG/*:}"
+		DEP_RETURN=$(check "${APP}")
+		if [[ ${DEP_RETURN} == *found* ]]; then
+			ok_message "${APP}"
+		elif [[ ${DEP_RETURN} != *found* && ${OPT} == true ]]; then
+			warn_message "${APP}" "${DESC}"
+			MISSING+=" ${APP}"
+		else
+			fail_message m "${APP}"
+			kill -s TERM "${TOP_PID}"
+		fi
+	done
+}
+
+check_libs () {
+	OPT=${1}
+	shift
+
+	for ARG in "${@}"; do
+		LIB=$(gawk -F : '{print $1}' <(echo "${ARG}"))
+		VERSION=$(gawk -F : '{print $2}' <(echo "${ARG}"))
+		PC_FILE=$(gawk -F : '{print $3}' <(echo "${ARG}"))
+		DESC=$(gawk -F : '{print $4}' <(echo "${ARG}"))
+
+		pkg-config --exists "${PC_FILE}"
+		EXIST_RETURN=$?
+
+		pkg-config --atleast-version="${VERSION}" "${PC_FILE}"
+		DEP_RETURN=$?
+
+		if [[ ${EXIST_RETURN} != 0 && ! ${OPT} == true ]]; then
+			fail_message m "${LIB}"
+			kill -s TERM "${TOP_PID}"
+		elif [[ ${DEP_RETURN} == 0 ]]; then
+			ok_message "${LIB}" "${VERSION}"+
+		elif [[ ${EXIST_RETURN} != 0 && ${OPT} == true ]]; then
+			warn_message "${LIB}" "${DESC}"
+			MISSING+=" ${LIB}"
+		else
+			fail_message o "${LIB}" "${VERSION}"
+			kill -s TERM "${TOP_PID}"
+		fi
+	done
+}
+
+check_gir () {
+	OPT=${1}
+	shift
+
+	for ARG in "${@}"; do
+		GIR_NAME=$(gawk -F : '{print $1}' <(echo "${ARG}"))
+		VERSION=$(gawk -F : '{print $2}' <(echo "${ARG}"))
+		TYPE_LIB=$(gawk -F : '{print $3}' <(echo "${ARG}"))
+		DESC=$(gawk -F : '{print $4}' <(echo "${ARG}"))
+		FILE=$(basename "${GIRPATH}"/"${TYPE_LIB}"* .typelib 2>/dev/null)
+
+		if [[ ${FILE} != ".typelib" ]]; then
+			EXIST_RETURN=0
+			XVER=$(gawk -F - '{print $2}' <(echo "${FILE}"))
+			DEP_RETURN=$(echo "$XVER >= ${VERSION}" | bc)
+		fi
+
+		if [[ ${EXIST_RETURN} != 0 && ! ${OPT} == true ]]; then
+			fail_message m "${GIR_NAME}"
+			kill -s TERM "${TOP_PID}"
+		elif [[ ${DEP_RETURN} == 1 ]]; then
+			ok_message "${GIR_NAME}" "${VERSION}"+
+		elif [[ ${EXIST_RETURN} != 0 && ${OPT} == true ]]; then
+			warn_message "${GIR_NAME}" "${DESC}"
+			MISSING+=" ${GIR_NAME}"
+		else
+			fail_message o "${GIR_NAME}" "${VERSION}"
+			kill -s TERM "${TOP_PID}"
+		fi
+	done
+}
+
+check_python () {
+	section_message PY
+
+	if [[ ! -x ${PYTHON} ]]; then
+		fail_message p
+		kill -s TERM "${TOP_PID}"
+	else
+		PYVER=$(${PYTHON} --version 2>&1)
+		PYVER_C="${PYVER//@(*\ |\.|\+)}"
+		if [[ ${PYVER_C:0:3} -lt ${PYMINVER} ]]; then
+			fail_message p-
+			kill -s TERM "${TOP_PID}"
+		elif [[ ${PYVER_C:0:3} -gt ${PYMAXVER} ]]; then
+			fail_message p+
+			kill -s TERM "${TOP_PID}"
+		else
+			ok_message Python "${PYVER}"
+		fi
+	fi
+}
+
+check_pymods () {
+	OPT=${1}
+	shift
+
+	for ARG in "${@}"; do
+		MOD=$(gawk -F : '{print $1}' <(echo "${ARG}"))
+		SMOD=$(gawk -F : '{print $2}' <(echo "${ARG}"))
+		DESC=$(gawk -F : '{print $3}' <(echo "${ARG}"))
+
+		if [[ ${SMOD} ]]; then
+			DEP="${SMOD} (${MOD})"
+			${PYTHON} -c "from ${MOD} import ${SMOD}" 2>/dev/null
+		else
+			DEP="${MOD}"
+			${PYTHON} -c "import imp
+imp.find_module('${MOD}')" 2>/dev/null
+		fi
+
+		DEP_RETURN=$?
+		if [[ ${DEP_RETURN} == 0 ]]; then
+			ok_message "${DEP}"
+		elif [[ ${DEP_RETURN} != 0 && ${OPT} == true ]]; then
+			warn_message "${DEP}" "${DESC}"
+			MISSING+=" ${DEP}"
+		else 	fail_message m "${DEP}"
+			kill -s TERM "${TOP_PID}"
+		fi
+	done
+}
+
+##############################
+# Variable substitution
+##############################
+copy_in_files () {
+	for in_file in "${IN_FILES[@]}"; do
+		cp "${in_file}".in "${in_file}"
+	done
+}
+
+substitute_values () {
+	sed -e "s>@VERSION@>${APP_VERSION}>g" \
+		-e "s>@PREFIX@>${PREFIX}>g" \
+		-e "s>@CODENAME@>${APP_CODENAME}>g" \
+		-e "s>@DATADIR@>${DATADIR}>g" \
+		-e "s>@PYTHON@>${PYTHON}>g" -i "${IN_FILES[@]}"
+}
+
+##############################
+# Export results
+##############################
+
+export_result ()
+{
+	echo -e "PREFIX=\"${PREFIX}\"
+prefix=\"${PREFIX}\"
+EXECDIR=\"${EXECDIR}\"
+DATADIR=\"${DATADIR}/bashstyle-ng\"
+DATADIR_LIST=(ui rc)
+DOCDIR=\"${DOCDIR}/bashstyle-ng\"
+MANDIR=\"${MANDIR}/man1\"
+BINDIR=\"${BINDIR}\"
+LOCALEDIR=\"${DATADIR}/locale\"
+LOCALEDIR_LIST=(${LC_MESSAGES_DIRS})
+ICONDIR=\"${DATADIR}/icons/hicolor/32x32/apps\"
+DESKTOPDIR=\"${DATADIR}/applications\"
+PCDIR=\"${PCDIR}\"
+APP_LANGUAGES=\"${APP_LANGUAGES}\"
+DISABLE_POSTINSTALL=${DISABLE_POSTINSTALL}" \
+	> "${CFG_RESULTS}"
+}
+
+for opt in "${@}"; do
 	case ${opt} in
 		--prefix=* )		PREFIX="${opt/*=}" ;;
 		--pcdir=* )		PCDIR="${opt/*=}" ;;
@@ -37,6 +439,7 @@ for opt in ${@}; do
 	shift
 done
 
+set_colors
 start_message
 check_helper
 copy_in_files
