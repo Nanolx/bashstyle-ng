@@ -153,8 +153,7 @@ done
 MAN_FILES=("${CWD}/doc/bashstyle.1:${MANDIR}")
 
 for lang in ${APP_LANGUAGES}; do
-	LOCALE_FILES+=("${CWD}/i18n/${lang}/bashstyle.mo:${LOCALEDIR}/${lang}/LC_MESSAGES")
-	LOCALE_FILES+=("${CWD}/i18n/${lang}/bashstyle-rc.mo:${LOCALEDIR}/${lang}/LC_MESSAGES")
+	LOCALE_FILES+=("${CWD}/i18n/${lang}"/{bashstyle,bashstyle-rc}.mo:"${LOCALEDIR}/${lang}/LC_MESSAGES")
 done
 
 BIN_FILES=("${CWD}/data/bashstyle:${BINDIR}"
