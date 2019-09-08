@@ -13,12 +13,12 @@
 export TEXTDOMAIN="bashstyle-rc"
 
 gitkit_ssh_add () {
-	if check bt $(bashstyle --ini-get git_ssh_remember); then
+	if check bt "$(bashstyle --ini-get git_ssh_remember)"; then
 		check P "ssh-add" "remembering SSH password" || exit 1
 
-		eval git_ssh_keyfile=$(bashstyle --ini-get git_ssh_keyfile)
+		eval git_ssh_keyfile="$(bashstyle --ini-get git_ssh_keyfile)"
 
-		local git_ssh_timeout=$(bashstyle --ini-get git_ssh_timeout)
+		local git_ssh_timeout="$(bashstyle --ini-get git_ssh_timeout)"
 		local ssh_add_keys="$(ssh-add -l | gawk '{print $3}')"
 
 		if [[ "${ssh_add_keys}" != *${git_ssh_keyfile}* ]]; then
@@ -99,7 +99,7 @@ case ${1} in
 	;;
 
 	export)
-		[[ ! -z "${2}" && -d .git ]] && git checkout-index --prefix="${2}"/ -a
+		[[ -n "${2}" && -d .git ]] && git checkout-index --prefix="${2}"/ -a
 	;;
 
 	funmsg)
@@ -161,9 +161,9 @@ case ${1} in
 		echo -e "$(eval_gettext "\n${ecyan}[2] push tags to upstream\n")"
 		git push --tag
 
-		if [ -f ${PWD}/.git_mirror ]; then
+		if [ -f "${PWD}/.git_mirror" ]; then
 			echo -e "$(eval_gettext "\n${emagenta}[3] push to mirror\n")"
-			for repo in $(cat ${PWD}/.git_mirror); do
+			for repo in "$(cat ${PWD}/.git_mirror)"; do
 				echo -e "$(eval_gettext "${eyellow} * mirror: ${repo}\n")"
 				git push --mirror "${repo}"
 			done
@@ -174,7 +174,7 @@ case ${1} in
 		shift
 		tag=${1}
 
-		if [ ! -z "$(git tag -l "${tag}")" ]; then
+		if [ -n "$(git tag -l "${tag}")" ]; then
 			echo "$(eval_gettext "tag ${tag} already exists!")"
 		else
 			gitkit_ssh_add
@@ -214,7 +214,7 @@ case ${1} in
 			exit 1
 		fi
 
-		if [ ! -z "$(git tag -l "${out_TAG}")" ]; then
+		if [ -n "$(git tag -l "${out_TAG}")" ]; then
 			echo "$(eval_gettext "tag ${out_TAG} already exists!")"
 			exit 1
 		fi
