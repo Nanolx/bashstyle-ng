@@ -43,9 +43,9 @@ bashstyle-cd () {
 		items=$(systemkit countvisibleitems)
 		if [[ ${items} -gt 35 ]]; then
 			if [[ ${BSNG_LSCD} == True ]]; then
-				ls ${BSNG_LSCD_OPTS} -go_dir | head -n 35 | column
+				ls ${BSNG_LSCD_OPTS} -1 | head -n 35 | column
 			elif [[ ${BSNG_TREECD} == True ]]; then
-				tree ${BSNG_TREECD_OPTS} -go_dir | head -n 35 | column
+				tree ${BSNG_TREECD_OPTS} -1 | head -n 35 | column
 			fi
 			echo -e "${ccolor_banner} ... $((items-35)) " "$(eval_gettext "more items\n")"
 		elif [[ ${items} -gt 0 ]]; then
