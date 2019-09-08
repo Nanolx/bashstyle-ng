@@ -36,7 +36,7 @@ is_octal () {
 }
 
 is_string () {
-	! $(is_number ${1}) && return 0 || return 1
+	! is_number "${1}" && return 0 || return 1
 }
 
 is_special () {
@@ -99,7 +99,7 @@ is_valid_domain () {
 
 is_mail () {
 	local address="${1}"
-	local domain="$(echo ${1} | gawk -F@ '{print $2}')"
+	local domain="$(echo "${1}" | gawk -F@ '{print $2}')"
 	local status=0
 
 	if ! is_valid_address "${address}"; then
@@ -121,7 +121,7 @@ prog_exists () {
 	local dep_return=1
 
 	for dir in ${PATH//:/ }; do
-		if [ -x ${dir}/${1} ]; then
+		if [ -x "${dir}/${1}" ]; then
 			dep_return=0
 			continue 2
 		fi

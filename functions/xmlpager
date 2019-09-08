@@ -24,7 +24,7 @@ case ${1} in
 
 	*)
 		xmlindent "${@}" | \
-			awk '{gsub(">",">'$(tput bold; tput setf 4)'"); gsub("<","'$(tput sgr0)'<"); print;} END {print "'$(tput sgr0)'"}' | \
+			awk '{gsub(">",">'"$(tput bold; tput setf 4)"'"); gsub("<","'"$(tput sgr0)"'<"); print;} END {print "'"$(tput sgr0)"'"}' | \
 			less -r
 	;;
 esac

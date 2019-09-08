@@ -29,6 +29,7 @@ do
 		s) SHORT_DESC="${OPTARG}" ;;
 		v) VERSION="${OPTARG}" ;;
 		y) YEAR="${OPTARG}" ;;
+		*) echo "wrong option ${opts}" ;;
 	esac
 done
 

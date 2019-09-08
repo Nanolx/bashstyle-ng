@@ -13,7 +13,7 @@
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	-v | --verbose )
+	v | verbose )
 		MV_OPT="-v"
 		shift
 	;;
@@ -24,7 +24,7 @@ case ${@} in
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
 			-l "GNU GPL v3" -n "sufffix" -s "$(eval_gettext "fix suffix for files")"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "-v:|verbose output")"\
+			-o "$(eval_gettext "v:|verbose output")"\
 			-o "$(eval_gettext "files:myfile.txt|file(s) to fix the suffix")"
 	;;
 
@@ -37,7 +37,7 @@ case ${@} in
 					awk '{print $2}')" /etc/mime.types | \
 					awk '{print $2}')"
 
-				if [[ "${image}" != "${baseimg}.${suffix}" && ! -z "${suffix}" ]]; then
+				if [[ "${image}" != "${baseimg}.${suffix}" && -n "${suffix}" ]]; then
 					mv ${MV_OPT} "${image}" "${baseimg}.${suffix}"
 				fi
 			fi

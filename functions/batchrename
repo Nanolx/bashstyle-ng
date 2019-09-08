@@ -41,16 +41,16 @@ rename_files () {
 
 	files=$(find "${directory}" -maxdepth 1 -type f)
 
-	for image in ${files[@]}; do
+	for image in "${files[@]}"; do
 		suffix=$(fill_zeros ${count_now})${count_now}.${image##*.}
-		mv ${MV_OPT} "${image}" "${directory}/tmp/${prefix}"-"${suffix}"
+		mv "${MV_OPT}" "${image}" "${directory}/tmp/${prefix}-${suffix}"
 		count_now=$((count_now+1))
 	done
 
 	[[ "${MV_OPT}" == "-v" ]] && \
 		echo -e "$(evaL_gettext "\n\n >> moving files into destination directory \"${directory}\" \n\n")"
 
-	mv ${MV_OPT} "${directory}/tmp/"* "${directory}/"
+	mv "${MV_OPT}" "${directory}/tmp/"* "${directory}/"
 	rmdir "${directory}/tmp"
 
 	export IFS="${OLD_IFS}"
@@ -61,13 +61,13 @@ _help () {
 		-h "https://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
 		-s "$(eval_gettext "batch rename files in NNN-NAME.SUFFIX scheme")"\
 		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-		-o "$(eval_gettext "-v:|verbose output")"\
+		-o "$(eval_gettext "v:|verbose output")"\
 		-o "$(eval_gettext "directory:/home/test/mypictures|directory containing files")"\
 		-o "$(eval_gettext "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme")"
 }
 
 case ${1} in
-	-v | --verbose )
+	v | verbose )
 		export MV_OPT="-v"
 		shift
 	;;

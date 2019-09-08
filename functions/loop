@@ -22,9 +22,9 @@ case ${1} in
 	;;
 
 	* )
-		if [ ! -z "${2}" ]; then
+		if [ -n "${2}" ]; then
 			for dir in ${1//:/ }; do
-				if [ -e ${dir}/${2} ]; then
+				if [ -e "${dir}/${2}" ]; then
 					echo "${dir}/${2}" && continue 2
 				fi
 			done

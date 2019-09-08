@@ -22,7 +22,7 @@ case ${1} in
 	;;
 
 	* )
-		if [ ! -z  "${2}" ]; then
+		if [ -n  "${2}" ]; then
 			printf "%.${2}f\n" "${1}"
 		else	printf "%.0f\n" "${1}"
 		fi

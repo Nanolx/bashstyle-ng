@@ -38,7 +38,7 @@ blue="\[\033[${style};34m\]"
 magenta="\[\033[${style};35m\]"
 cyan="\[\033[${style};36m\]"
 grey="\[\033[${style};37m\]"
-white="\[\033[${style};38m\]"
+white="\[\033[${style};97m\]"
 
 eblack="\033[${style};30m"
 ered="\033[${style};31m"
@@ -48,7 +48,7 @@ eblue="\033[${style};34m"
 emagenta="\033[${style};35m"
 ecyan="\033[${style};36m"
 egrey="\033[${style};37m"
-ewhite="\033[${style};38m"
+ewhite="\033[${style};97m"
 
 if [[ ${TERM} != *xterm*color* ]]; then
 	coldblue=${blue}
