@@ -14,9 +14,9 @@ if [[ ${TERM} != *xterm* ]]; then
 	return_bad="-"
 	return_other="/"
 else
-	[[ ! -z $(ini_get return_good) ]] && return_good="$(ini_get return_good)" || return_good="✔"
-	[[ ! -z $(ini_get return_bad) ]] && return_bad="$(ini_get return_bad)" || return_bad="✘"
-	[[ ! -z $(ini_get return_other) ]] && return_other="$(ini_get return_other)" || return_other="⊘"
+	[[ -n $(ini_get return_good) ]] && return_good="$(ini_get return_good)" || return_good="✔"
+	[[ -n $(ini_get return_bad) ]] && return_bad="$(ini_get return_bad)" || return_bad="✘"
+	[[ -n $(ini_get return_other) ]] && return_other="$(ini_get return_other)" || return_other="⊘"
 fi
 
 lastcommand=""

@@ -18,7 +18,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	export RC_FILE
 	RC_FILE="${HOME}/.vimrc.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
 
-	if bt $(ini_get syntax_hilight); then
+	if bt "$(ini_get syntax_hilight)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Syntax "$(eval_gettext "On")"
 		rc_add "syntax on"
 	else
@@ -26,7 +26,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "syntax off"
 	fi
 
-	if bt $(ini_get dark_background); then
+	if bt "$(ini_get dark_background)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Background dark
 		rc_add "set background=dark"
 	else
@@ -34,7 +34,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set background=light"
 	fi
 
-	if bt $(ini_get jump_back); then
+	if bt "$(ini_get jump_back)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Jump-Back "$(eval_gettext "On")"
 		rc_add "if has(\"autocmd\")"
 		rc_add "    au BufReadPost * if line(\"'\\\"\") > 0 && line(\"'\\\"\") <= line(\"$\")"
@@ -43,7 +43,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	else	dbg_msg "$(eval_gettext "VimCFG Setting:")" Jump-Back "$(eval_gettext "Off")"
 	fi
 
-	if bt $(ini_get filetype_indent); then
+	if bt "$(ini_get filetype_indent)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Filetype-Indention "$(eval_gettext "On")"
 		rc_add "if has(\"autocmd\")"
 		rc_add "    filetype plugin indent on"
@@ -60,7 +60,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nosmartindent"
 	fi
 
-	if bt $(ini_get show_command); then
+	if bt "$(ini_get show_command)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Show-Command "$(eval_gettext "On")"
 		rc_add "set showcmd"
 	else
@@ -68,7 +68,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noshowcmd"
 	fi
 
-	if bt $(ini_get highlight_matches); then
+	if bt "$(ini_get highlight_matches)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Show-Matches "$(eval_gettext "On")"
 		rc_add "set showmatch"
 	else
@@ -76,7 +76,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noshowmatch"
 	fi
 
-	if bt $(ini_get ignore_case); then
+	if bt "$(ini_get ignore_case)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Ignore-Case "$(eval_gettext "On")"
 		rc_add "set ignorecase"
 	else
@@ -84,7 +84,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noignorecase"
 	fi
 
-	if bt $(ini_get smart_case); then
+	if bt "$(ini_get smart_case)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Smart-Case "$(eval_gettext "On")"
 		rc_add "set smartcase"
 	else
@@ -92,7 +92,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nosmartcase"
 	fi
 
-	if bt $(ini_get incremental_search); then
+	if bt "$(ini_get incremental_search)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Incremental-Search "$(eval_gettext "On")"
 		rc_add "set incsearch"
 	else
@@ -100,7 +100,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noincsearch"
 	fi
 
-	if bt $(ini_get highlight_brackets); then
+	if bt "$(ini_get highlight_brackets)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Highlight "$(eval_gettext "On")"
 		rc_add "set hls"
 	else
@@ -108,7 +108,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nohls"
 	fi
 
-	if bt $(ini_get show_lineno); then
+	if bt "$(ini_get show_lineno)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Show-Number "$(eval_gettext "On")"
 		rc_add "set number"
 	else
@@ -116,7 +116,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nonumber"
 	fi
 
-	if bt $(ini_get autosave); then
+	if bt "$(ini_get autosave)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Auto-Save "$(eval_gettext "On")"
 		rc_add "set autowriteall"
 	else
@@ -124,7 +124,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noautowriteall"
 	fi
 
-	if bt $(ini_get highlight_line); then
+	if bt "$(ini_get highlight_line)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Highlight-Current-Line "$(eval_gettext "On")"
 		rc_add "set cursorline"
 		rc_add "hi CursorLine term=none cterm=underline ctermbg=none"
@@ -133,7 +133,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nocursorline"
 	fi
 
-	if bt $(ini_get highlight_column); then
+	if bt "$(ini_get highlight_column)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Highlight-Current-Column "$(eval_gettext "On")"
 		rc_add "set cursorcolumn"
 		rc_add "hi CursorColumn term=none cterm=underline ctermbg=none"
@@ -142,7 +142,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nocursorcolumn"
 	fi
 
-	if bt $(ini_get ruler); then
+	if bt "$(ini_get ruler)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Show-Ruler "$(eval_gettext "On")"
 		rc_add "set ruler"
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Ruler-Format "$(ini_get rulerformat)"
@@ -152,7 +152,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noruler"
 	fi
 
-	if bt $(ini_get vim_backup); then
+	if bt "$(ini_get vim_backup)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Backup "$(eval_gettext "On")"
 		rc_add "set backup"
 	else
@@ -160,7 +160,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nobackup"
 	fi
 
-	if bt $(ini_get start_line); then
+	if bt "$(ini_get start_line)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Start-Of-Line "$(eval_gettext "On")"
 		rc_add "set startofline"
 	else
@@ -171,7 +171,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	dbg_msg "$(eval_gettext "VimCFG Setting:")" Linespace 0
 	rc_add "set linespace=0"
 
-	if bt $(ini_get wrap_line); then
+	if bt "$(ini_get wrap_line)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Line-Wrapping "$(eval_gettext "On")"
 		rc_add "set wrap"
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Autowrap-length "$(ini_get wrap_length)"
@@ -186,7 +186,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 	rc_add "set tabstop=$(ini_get tab_length)"
 	rc_add "set softtabstop=$(ini_get tab_length)"
 
-	if bt $(ini_get expandtab); then
+	if bt "$(ini_get expandtab)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Expand Tab "$(eval_gettext "On")"
 		rc_add "set expandtab"
 	else
@@ -194,7 +194,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noexpandtab"
 	fi
 
-	if bt $(ini_get chdir); then
+	if bt "$(ini_get chdir)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Auto chdir "$(eval_gettext "On")"
 		rc_add "set autochdir"
 	else
@@ -202,7 +202,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set noautochdir"
 	fi
 
-	if bt $(ini_get foldenable); then
+	if bt "$(ini_get foldenable)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Fold Enable "$(eval_gettext "On")"
 		rc_add "set foldenable"
 
@@ -219,7 +219,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
 		rc_add "set nofoldenable"
 	fi
 
-	if bt $(ini_get wildmenu); then
+	if bt "$(ini_get wildmenu)"; then
 		dbg_msg "$(eval_gettext "VimCFG Setting:")" Wildmenu "$(eval_gettext "On")"
 		rc_add "set wildmenu"
 	else

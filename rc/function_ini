@@ -26,7 +26,7 @@ def_get ()
 
 ven_get ()
 {
-	[[ -f "${VEDNDOR_DEFAULTS}" ]] && sed -n "s/^${1} = \(.*$\)/\1/p" \
+	[[ -f "${VENDOR_DEFAULTS}" ]] && sed -n "s/^${1} = \(.*$\)/\1/p" \
 		"${VENDOR_DEFAULTS}" | sed -e 's/\"//g'
 }
 

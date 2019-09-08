@@ -17,28 +17,28 @@ bashstyle-cd () {
 	local go_dir="${1}"
 
 	if [[ -f "${go_dir}" ]]; then
-		builtin cd "${go_dir%/*}" &>/dev/null
+		builtin cd "${go_dir%/*}" &>/dev/null || exit 1
 	elif [[ -d "${go_dir}" ]]; then
-		builtin cd "${go_dir}" &>/dev/null
+		builtin cd "${go_dir}" &>/dev/null || exit 1
 	elif [[ "${go_dir}" == -*   ]]; then
-		builtin cd "${*}" &>/dev/null
+		builtin cd "${*}" &>/dev/null || exit 1
 	elif [[ ! "${go_dir}" ]]; then
-		builtin cd &>/dev/null
-	elif bt $(ini_get customcd_mkdir); then
+		builtin cd &>/dev/null || exit 1
+	elif bt "$(ini_get customcd_mkdir)"; then
 		xdir=$(dirname "${go_dir}")
 		if [ -w "${xdir}" ]; then
 			mkdir -p "${go_dir}" &>/dev/null
-			builtin cd "${go_dir}" &>/dev/null
+			builtin cd "${go_dir}" &>/dev/null || exit 1
 			ccd_mkdir=1
-		else	echo -e "\n\n${ered}" "$(eval_gettext " ++ could not create directory")" " »$(basename ${go_dir})«"
+		else	echo -e "\n\n${ered}" "$(eval_gettext " ++ could not create directory")" " »$(basename "${go_dir}")«"
 		fi
-	else	echo -e "\n\n${eyellow}" "$(eval_gettext " ++ directory")" "»$(basename ${go_dir})«" "$(eval_gettext " does not exist.")"
+	else	echo -e "\n\n${eyellow}" "$(eval_gettext " ++ directory")" "»$(basename "${go_dir}")«" "$(eval_gettext " does not exist.")"
 	fi
 
 	if [[ ${OLD_PWD} != "${PWD}" ]]; then
 		if [[ ${ccd_mkdir} -eq 1 ]]; then
-			echo -e "\n\n${ccolor_mkdir}" "$(eval_gettext " ++ directory created:")" " »$(basename ${PWD})«\n"
-		else	echo -e "\n\n${ccolor_banner}" "$(eval_gettext " ++ content of directory:")" " »$(basename ${PWD})«\n"
+			echo -e "\n\n${ccolor_mkdir}" "$(eval_gettext " ++ directory created:")" " »$(basename "${PWD}")«\n"
+		else	echo -e "\n\n${ccolor_banner}" "$(eval_gettext " ++ content of directory:")" " »$(basename "${PWD}")«\n"
 		fi
 		items=$(systemkit countvisibleitems)
 		if [[ ${items} -gt 35 ]]; then
@@ -61,21 +61,21 @@ bashstyle-cd () {
 	echo "${PWD}" > "${HOME}/.lastpwd"
 }
 
-if bt $(ini_get use_treecd); then
-	if which tree >/dev/null; then
+if bt "$(ini_get use_treecd)"; then
+	if command -v tree >/dev/null; then
 		dbg_log alias cd=bashstyle-cd
 		dbg_log export BSNG_TREECD=True
 		dbg_log export BSNG_TREECD_OPTS="$(ini_get treecd_opts)"
-		bf $(ini_get enable_colors) && dbg_log export BSNG_TREECD_OPTS="${BSNG_TREECD_OPTS} -n"
+		bf "$(ini_get enable_colors)" && dbg_log export BSNG_TREECD_OPTS="${BSNG_TREECD_OPTS} -n"
 		dbg_msg "$(eval_gettext "using treecd wrapper for cd")"
 	else	dbg_msg "$(eval_gettext "tree not found, not using treecd as cd replacement")"
 	fi
 fi
 
-if bt $(ini_get use_lscd); then
+if bt "$(ini_get use_lscd)"; then
 	dbg_log alias cd=bashstyle-cd
 	dbg_log export BSNG_LSCD=True
 	dbg_log export BSNG_LSCD_OPTS="$(ini_get lscd_opts)"
-	bf $(ini_get enable_colors) && dbg_log export BSNG_LSCD_OPTS="${BSNG_LSCD_OPTS} --color=no"
+	bf "$(ini_get enable_colors)" && dbg_log export BSNG_LSCD_OPTS="${BSNG_LSCD_OPTS} --color=no"
 	dbg_msg "$(eval_gettext "using lscd wrapper for cd")"
 fi

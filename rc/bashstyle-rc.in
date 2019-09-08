@@ -47,28 +47,28 @@ dbg_msg "$(eval_gettext "BashStyle-NG Ini Version:")" "${INI_VERSION}"
 bashstyle-config-helper --update >/dev/null
 
 # setup PATH
-if [ ! -z $(ini_get path) ]; then
+if [ -n "$(ini_get path)" ]; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PATH "${PATH}"
 	PATH="$(ini_get path)"
 fi
 
-bt $(ini_get path_wd) && export PATH="${PATH}:."
+bt "$(ini_get path_wd)" && export PATH="${PATH}:."
 [[ ${PATH} != *games* && -d /usr/games/ ]] && export PATH="${PATH}:/usr/games:/usr/local/games"
 [[ ${PATH} != *${HOME}/bin* && -d ${HOME}/bin ]] && export PATH="${PATH}:${HOME}/bin"
 
 # color settings: general, ls and manpages
-if bt $(ini_get enable_colors); then
+if bt "$(ini_get enable_colors)"; then
 	dbg_log source ${BSNG_RCDIR}/settings_color
-	bt $(ini_get use_lscolors) && dbg_log source ${BSNG_RCDIR}/settings_ls
-	bt $(ini_get less_termcap_color) && dbg_log source ${BSNG_RCDIR}/settings_man
+	bt "$(ini_get use_lscolors)" && dbg_log source ${BSNG_RCDIR}/settings_ls
+	bt "$(ini_get less_termcap_color)" && dbg_log source ${BSNG_RCDIR}/settings_man
 fi
 
 # Bash prompt theming
-if bt $(ini_get use_bashstyle); then
+if bt "$(ini_get use_bashstyle)"; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" BashStyle-NG
 	dbg_log source ${BSNG_RCDIR}/styles_hook
 
-	if [[ ${BSNG_BASHVER} -ge 44 && ! -z $(ini_get ps0) ]]; then
+	if [[ ${BSNG_BASHVER} -ge 44 && -n $(ini_get ps0) ]]; then
 		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS0 "$(ini_get ps0)"
 		PS0="${color_ps0} $(ini_get ps0)${color_font} "
 	fi
@@ -82,7 +82,7 @@ if bt $(ini_get use_bashstyle); then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS4 "$(ini_get ps4)"
 	PS4="${color_ps4} $(ini_get ps4)${color_font} "
 
-	if bt $(ini_get random_style); then
+	if bt "$(ini_get random_style)"; then
 		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Random Prompt")"
 
 		number=$(random -r 11)
@@ -106,12 +106,12 @@ if bt $(ini_get use_bashstyle); then
 		pstyle=$(ini_get prompt_style)
 	fi
 
-	if bt $(ini_get use_custom_prompt); then
+	if bt "$(ini_get use_custom_prompt)"; then
 		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Custom")" Prompt
 		dbg_log source ${BSNG_RCDIR}/styles_custom
 	elif [[ -e ${BSNG_RCDIR}/styles_${pstyle} ]]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" ${pstyle} Prompt
-		dbg_log source ${BSNG_RCDIR}/styles_${pstyle}
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "${pstyle}" Prompt
+		dbg_log source "${BSNG_RCDIR}/styles_${pstyle}"
 	else
 		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Fallback")" Prompt
 		dbg_log export PS1="\u@\h\w: "
@@ -119,8 +119,8 @@ if bt $(ini_get use_bashstyle); then
 fi
 
 # readline settings
-bt $(ini_get use_readlinecfg) && dbg_log source ${BSNG_RCDIR}/settings_readline
-bt $(ini_get use_keybindingscfg) && dbg_log source ${BSNG_RCDIR}/settings_keybindings
+bt "$(ini_get use_readlinecfg)" && dbg_log source ${BSNG_RCDIR}/settings_readline
+bt "$(ini_get use_keybindingscfg)" && dbg_log source ${BSNG_RCDIR}/settings_keybindings
 
 # Bash settings: shopts and aliases
 dbg_log source ${BSNG_RCDIR}/settings_shopt
@@ -130,9 +130,9 @@ dbg_log source ${BSNG_RCDIR}/settings_alias
 dbg_log source ${BSNG_RCDIR}/settings_options
 
 # external settings: Vim, Nano and Git
-bt $(ini_get use_vimcfg) && dbg_log source ${BSNG_RCDIR}/settings_vim
-bt $(ini_get use_nanocfg) && dbg_log source ${BSNG_RCDIR}/settings_nano
-bt $(ini_get use_gitcfg) && dbg_log source ${BSNG_RCDIR}/settings_git
+bt "$(ini_get use_vimcfg)" && dbg_log source ${BSNG_RCDIR}/settings_vim
+bt "$(ini_get use_nanocfg)" && dbg_log source ${BSNG_RCDIR}/settings_nano
+bt "$(ini_get use_gitcfg)" && dbg_log source ${BSNG_RCDIR}/settings_git
 
 # extra BashStyle functions
 for module in cd remember_command colorshell history; do
@@ -146,7 +146,7 @@ reload_bash () {
 	builtin unalias -a
 	builtin unset -f "$(builtin compgen -A function)"
 	for trap in EXIT DEBUG ERROR; do
-		trap '' ${TRAP}
+		trap '' "${trap}"
 	done
 	[ -f /etc/bash_completion ] && source /etc/bash_completion
 	source "${HOME}"/.bashrc
@@ -155,7 +155,7 @@ reload_bash () {
 # birthday greeting / welcome message
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal_birthday
-elif [[ ! -z $(ini_get welcome_message) ]]; then
+elif [[ -n $(ini_get welcome_message) ]]; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Welcome Message")"
 	dbg_log $(ini_get welcome_message)
 fi
@@ -197,11 +197,11 @@ bashstyle_trap_add 'bashstyle_remember_command_error' ERR
 
 # colorshell
 
-if [ $(bt $(ini_get colorshell)) -a $(bt $(ini_get enable_colors)) ]; then
+if [ "$(bt "$(ini_get colorshell)")" ] && [ "$(bt "$(ini_get enable_colors)")" ]; then
 	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
 	bashstyle_trap_add 'bashstyle_colorshell' DEBUG
 
-	if bt $(ini_get colorshell_reset); then
+	if bt "$(ini_get colorshell_reset)"; then
 		dbg_msg "$(eval_gettext "Add colorshell-reset to DEBUG trap")"
 		bashstyle_trap_add 'bashstyle_colorshell_reset' DEBUG
 	fi
@@ -209,18 +209,18 @@ fi
 
 # history syncronization
 
-if bf $(ini_get history_isolate); then
+if bf "$(ini_get history_isolate)"; then
 	alias history=bashstyle_history
-	if bt $(ini_get history_sync); then
+	if bt "$(ini_get history_sync)"; then
 		dbg_msg "$(eval_gettext "Add history syncronization to DEBUG trap")"
 		bashstyle_trap_add 'bashstyle_history_sync' DEBUG
 	fi
 fi
 
 # remember directory
-if bt $(ini_get restore_directory); then
+if bt "$(ini_get restore_directory)"; then
 bashstyle_remember_directory () {
-	printf %s "${PWD}" > ${HOME}/.lastpwd
+	printf %s "${PWD}" > "${HOME}/.lastpwd"
 }
 
 	bashstyle_trap_add 'bashstyle_remember_directory' EXIT

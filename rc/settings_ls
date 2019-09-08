@@ -51,7 +51,7 @@ else
 	lsilver="${style};38;5;245"
 fi
 
-if bt $(ini_get dark_terminal); then
+if bt "$(ini_get dark_terminal)"; then
 	lblack=${lwhite}
 else	lwhite=${lblack}
 fi

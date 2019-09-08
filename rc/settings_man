@@ -73,7 +73,7 @@ eval termcap_sof="$(ini_get less_standout_foreground)"
 eval termcap_sob="$(ini_get less_standout_background)"
 export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
 
-if bt $(ini_get dark_terminal); then
+if bt "$(ini_get dark_terminal)"; then
 	lfblack=${lfwhite}
 	lbblack=${lbwhite}
 else	lfwhite=${lfblack}

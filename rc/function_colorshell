@@ -20,7 +20,7 @@ bashstyle_colorshell () {
 
 	# exclude black (0) on dark terminal
 	# exclude white (7) on bright terminal
-	if check bt $(bashstyle --ini-get dark_terminal); then
+	if check bt "$(bashstyle --ini-get dark_terminal)"; then
 		randomcolor=$(random -r 1 7)
 	else	randomcolor=$(random -r 0 6)
 	fi
