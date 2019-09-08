@@ -128,4 +128,8 @@ for color in banner mkdir empty; do
 	eval ccolor_"${color}"="${temp/\$/\$e}"
 done
 
+for color in "${ecolors[@]}"; do
+	export "${color}"
+done
+
 unset temp ecolors pcolors color_style
