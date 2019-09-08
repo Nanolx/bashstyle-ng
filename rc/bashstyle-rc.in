@@ -197,7 +197,7 @@ bashstyle_trap_add 'bashstyle_remember_command_error' ERR
 
 # colorshell
 
-if [ "$(bt "$(ini_get colorshell)")" ] && [ "$(bt "$(ini_get enable_colors)")" ]; then
+if $(bt "$(ini_get colorshell)") && $(bt "$(ini_get enable_colors)"); then
 	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
 	bashstyle_trap_add 'bashstyle_colorshell' DEBUG
 

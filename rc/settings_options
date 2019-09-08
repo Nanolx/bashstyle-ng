@@ -53,15 +53,15 @@ if bt "$(ini_get restore_directory)"; then
 	[ -d "${lastpwd}" ] && dbg_log cd "${lastpwd}"
 fi
 
-if bt "$(ini_get colored_grep) -a bt $(ini_get enable_colors)"; then
+if bt "$(ini_get colored_grep)" && bt "$(ini_get enable_colors)"; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "On")"
 	alias grep="grep --color=auto"
 	GREP_COLOR="$(ini_get grep_color);"
 
 	# make black (01;38;5;0) white on dark terminal
 	# make white (01;38;5;97) black on bright terminal
-	[[ "$(bt "$(ini_get dark_terminal)")" && ${GREP_COLOR} == "01;38;5;0" ]] && GREP_COLOR="01;38;5;97"
-	[[ "$(bf "$(ini_get dark_terminal)")" && ${GREP_COLOR} == "01;38;5;97" ]] && GREP_COLOR="01;38;5;0"
+	[[ $(bt "$(ini_get dark_terminal)") && ${GREP_COLOR} == "01;38;5;0" ]] && GREP_COLOR="01;38;5;97"
+	[[ $(bf "$(ini_get dark_terminal)") && ${GREP_COLOR} == "01;38;5;97" ]] && GREP_COLOR="01;38;5;0"
 
 else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "Off")"
 	alias grep="grep --color=no"
@@ -78,7 +78,7 @@ fi
 # status=progress is new in dd/coreutils 8.24
 dd_version="$(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version))"
 
-if [ "$(bt "$(ini_get dd_progress)")" ] && [ "${dd_version}" -ge 824 ]; then
+if $(bt "$(ini_get dd_progress)") && [ "${dd_version}" -ge 824 ]; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "display progressbar")"
 	dbg_log export dd_opts+="status=progress "
 elif bt "$(ini_get dd_progress)"; then
