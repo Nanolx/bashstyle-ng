@@ -172,7 +172,7 @@ case ${1} in
 
 	taga)
 		shift
-		local tag=${1}
+		tag=${1}
 
 		if [ ! -z "$(git tag -l "${tag}")" ]; then
 			echo "$(eval_gettext "tag ${tag} already exists!")"
@@ -189,7 +189,7 @@ case ${1} in
 
 	tagd)
 		shift
-		local tag=${1}
+		tag=${1}
 
 		if [ -z "$(git tag -l "${1}")" ]; then
 			echo "$(eval_gettext "tag ${tag} does not exist!")"
