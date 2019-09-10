@@ -113,13 +113,17 @@ thanks_message () {
 # Load configure results
 ##############################
 
-[[ $# -eq 0 || ${1} == @(-h|--help) ]] && help_message
+[[ $# -eq 0 ]] && help_message
 
-if [[ ! -f "${CWD}/.configure_results" ]]; then
-	run_configure_message
-	kill -s TERM "${TOP_PID}"
-else	source "${CWD}/.configure_results"
-fi
+case ${1} in
+	pot | po | build | install | remove )
+		if [[ ! -f "${CWD}/.configure_results" ]]; then
+			run_configure_message
+			kill -s TERM "${TOP_PID}"
+		else	source "${CWD}/.configure_results"
+		fi
+	;;
+esac
 
 ##############################
 # Filelist: clean
