@@ -89,7 +89,14 @@ fi
 dbg_log alias dd="dd ${dd_opts}"
 
 if bt "$(ini_get use_bat)"; then
-	if command -v bat >/dev/null; then
+	if command -v batcat >/dev/null; then
+		batcmd=batcat
+	elif command -v bat >/dev/null; then
+		batcmd=bat
+	else	batcmd=""
+	fi
+
+	if [ -n "${batcmd}" ]; then
 		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "as replacement for")" cat
 
 		if [ -n "$(ini_get bat_theme)" ]; then
@@ -99,9 +106,9 @@ if bt "$(ini_get use_bat)"; then
 
 		if [ "$(ini_get bat_tabwidth)" -gt 0 ]; then
 			dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "Tab Width")" "$(ini_get bat_tabwidth)"
-			dbg_log alias cat="bat --tabs $(ini_get bat_tabwidth)"
+			dbg_log alias cat="${batcmd} --tabs $(ini_get bat_tabwidth)"
 		else
-			dbg_log alias cat=bat
+			dbg_log alias cat="${batcmd}"
 		fi
 	fi
 fi
@@ -113,4 +120,4 @@ dbg_log export trunc_length="$((${#trunc_symbol}-1))"
 dbg_log export dirchar="$(ini_get directory_indicator)"
 dbg_log export user_char="$(ini_get user_char)"
 
-unset lastpwd dd_opts dd_version
+unset lastpwd dd_opts dd_version batcmd
