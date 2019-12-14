@@ -54,7 +54,7 @@ bashstyle-cd () {
 			elif [[ ${BSNG_TREECD} == True ]]; then
 				tree ${BSNG_TREECD_OPTS}
 			fi
-		else	echo -e "${ccolor_empty}" "$(eval_gettext "-- empty --\n")"
+		else	echo -e "${ccolor_empty}" "-- $(eval_gettext "empty") --\n"
 		fi
 	fi
 
