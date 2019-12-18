@@ -338,6 +338,7 @@ class BashStyleNG(object):
 		######################## About Dialog non-static strings ###########################
 		WidgetHandler.InitWidget("about.prefix", None, os.getenv('BSNG_PREFIX'), "label", None)
 		WidgetHandler.InitWidget("about.version", None, "%s (%s)" %(os.getenv('BSNG_VERSION'), os.getenv('BSNG_CODENAME')), "label", None)
+		WidgetHandler.InitWidget("about.log", None, "file://" + os.getenv('HOME') + "/.bashstyle-ng.log", "link", None)
 
 		######################## Load the first start information UI #######################
 		suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
