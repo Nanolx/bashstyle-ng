@@ -59,6 +59,7 @@ class WidgetHandler(object):
 			#	label		GtkLabel
 			#	cpb_button	Custom Prompt Builder GtkButton
 			#	cpb_combo	Custom Prompt Builder GtkComboBox
+			#	link		GtkLinkButton
 
 			# required parameters:
 			#	for text, int, bool, switch:
@@ -73,6 +74,8 @@ class WidgetHandler(object):
 			#		widget, pc_text, ps1_text, type, action
 			#	for cpb_combo:
 			#		widget, pc_dict, ps1_dict, type action
+			#	for link:
+			#		widget, None, link, type, None
 
 			def LoadWidget():
 				object = gtkbuilder.get_object("%s" % widget)
@@ -91,6 +94,8 @@ class WidgetHandler(object):
 					object.set_active(self.SwapDictionary(dict)[self.config["%s" % group]["%s" % setting]])
 				elif  type == "label":
 					object.set_label("%s" % setting)
+				elif type == "link":
+					object.set_uri("%s" % setting)
 				elif type == "cpb_combo":
 					object.set_active(0)
 
