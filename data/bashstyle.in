@@ -47,6 +47,10 @@ case ${1} in
 		sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i "${HOME}"/.bashstyle-ng.ini
 	;;
 
+	--log | -l )
+		less "${BSNG_LOGFILE}"
+	;;
+
 	* )
 		@PYTHON@ "${BSNG_DATADIR}/bashstyle-ng/ui/bashstyle-ng.py" "${@}"
 	;;

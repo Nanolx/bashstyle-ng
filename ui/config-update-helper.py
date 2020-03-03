@@ -66,6 +66,11 @@ interpreter.")
         )
 
         parser.add_option(
+            "-l", "--log", dest="log", action="store_true",
+            default=False, help=_("view BashStyle-NG log file")
+        )
+
+        parser.add_option(
             "-u", "--update", dest="update", action="store_true",
             default=False, help=_("update user configuration and exit")
         )
