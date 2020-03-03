@@ -5,7 +5,7 @@
 #							#
 # Licensed under GNU GENERAL PUBLIC LICENSE v3		#
 #							#
-# Copyright 2007 - 2019 Christopher Bratusek		#
+# Copyright 2007 - 2020 Christopher Bratusek		#
 #							#
 #########################################################
 
