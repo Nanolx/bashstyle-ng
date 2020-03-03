@@ -36,6 +36,14 @@ github_clone () {
 		awk -F\" '/ssh_url/{print $4}' | xe git clone
 }
 
+github_list () {
+	# https://www.commandlinefu.com/commands/view/24836/print-all-git-repos-from-a-user-only-curl-and-grep
+	check P "curl" "'gitkit listorg/listuser'" || exit 1
+
+	curl -s https://api.github.com/"${1}"/"${2}"/repos?per_page=1000 | \
+		grep -oP '(?<="git_url": ").*(?="\,)'
+}
+
 case ${1} in
 
 	action)
@@ -96,6 +104,14 @@ case ${1} in
 	
 	cloneorg)
 		github_clone orgs "${2}"
+	;;
+
+	listuser)
+		github_list users "${2}"
+	;;
+
+	listorg)
+		github_list orgs "${2}"
 	;;
 
 	export)
@@ -258,6 +274,8 @@ case ${1} in
 			-o "$(eval_gettext "zip:|create zip archive from a Git repo")"\
 			-o "$(eval_gettext "cloneuser:username|clone all repos from a GitHub user (SSH)")"\
 			-o "$(eval_gettext "cloneorg:organization|clone all repos from a GitHub organization (SSH)")"\
+			-o "$(eval_gettext "listuser:username|list all repos from a GitHub user")"\
+			-o "$(eval_gettext "listorg:organization|list all repos from a GitHub organization")"\
 			-o "$(eval_gettext "export:directory|export Git repo for release tarball")"\
 			-o "$(eval_gettext "funmsg:|create funny Git commit message")"\
 			-o "$(eval_gettext "web:|open project page using x-www-browser")"\
