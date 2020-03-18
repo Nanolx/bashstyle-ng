@@ -133,3 +133,8 @@ for color in "${ecolors[@]}"; do
 done
 
 unset temp ecolors pcolors color_style
+
+if [[ $(ini_get use_gcc_colors) == True ]]; then
+	export GCC_COLORS="error=$(ini_get gcc_color_error):warning=$(ini_get gcc_color_warn):note=$(ini_get gcc_color_notes):caret=$(ini_get gcc_color_caret):locus=$(ini_get gcc_color_locus):quote=$(ini_get gcc_color_quote)"
+else	unset GCC_COLORS
+fi

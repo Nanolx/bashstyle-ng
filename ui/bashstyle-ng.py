@@ -318,6 +318,15 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("ls_blockdev", "LSColors", "blockdev", "combo", dicts.ls_colors)
 		WidgetHandler.InitWidget("ls_chardev", "LSColors", "chardev", "combo", dicts.ls_colors)
 
+		####################### GCC Colors #############################################
+		WidgetHandler.InitWidget("gcc_colors_enable", "GCC", "use_gcc_colors", "switch", None)
+		WidgetHandler.InitWidget("gcc_color_error", "GCC", "gcc_color_error", "combo", dicts.gcc_colors)
+		WidgetHandler.InitWidget("gcc_color_warn", "GCC", "gcc_color_warn", "combo", dicts.gcc_colors)
+		WidgetHandler.InitWidget("gcc_color_notes", "GCC", "gcc_color_notes", "combo", dicts.gcc_colors)
+		WidgetHandler.InitWidget("gcc_color_caret", "GCC", "gcc_color_caret", "combo", dicts.gcc_colors)
+		WidgetHandler.InitWidget("gcc_color_locus", "GCC", "gcc_color_locus", "combo", dicts.gcc_colors)
+		WidgetHandler.InitWidget("gcc_color_quote", "GCC", "gcc_color_quote", "combo", dicts.gcc_colors)
+
 		######################## Keybindings ###############################################
 		keytree = keybindings.KeyTree(config.cfo, config.udc, config.fdc)
 		keytree.InitTree()

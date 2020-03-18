@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.6"/>
   <object class="GtkAdjustment" id="advanced.adjustment.history_size">
@@ -194,6 +194,41 @@
       </row>
       <row>
         <col id="0" translatable="yes">Misc. Elements</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="gcc_color_store">
+    <columns>
+      <!-- column-name Title -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">White</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Red</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Blue</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Green</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Yellow</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Magenta</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Cyan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nothing</col>
       </row>
     </data>
   </object>
@@ -886,7 +921,7 @@
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">BashStyle-NG Toolbox</property>
     <property name="icon_name">bashstyle-ng-toolbox</property>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
     <child>
@@ -1426,7 +1461,7 @@
     <property name="icon_name">bashstyle-ng</property>
     <property name="gravity">south-east</property>
     <property name="has_resize_grip">True</property>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
     <child>
@@ -8523,7 +8558,6 @@
                     <property name="receives_default">True</property>
                     <property name="halign">start</property>
                     <property name="relief">none</property>
-                    <property name="uri"></property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -9073,7 +9107,7 @@ assuming /usr was the chosen install prefix. </property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="model">style.liststore.termcap.foreground</property>
                     <child>
-                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour13"/>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.termcap_mb"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -9091,7 +9125,7 @@ assuming /usr was the chosen install prefix. </property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="model">style.liststore.termcap.foreground</property>
                     <child>
-                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour14"/>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.termcap_md"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -9109,7 +9143,7 @@ assuming /usr was the chosen install prefix. </property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="model">style.liststore.termcap.foreground</property>
                     <child>
-                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour15"/>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.termcap_us"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -9127,7 +9161,7 @@ assuming /usr was the chosen install prefix. </property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="model">style.liststore.termcap.foreground</property>
                     <child>
-                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour16"/>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.termcap_rs"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -9145,7 +9179,7 @@ assuming /usr was the chosen install prefix. </property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="model">style.liststore.termcap.foreground</property>
                     <child>
-                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour17"/>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.termcap_mh"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -9163,7 +9197,7 @@ assuming /usr was the chosen install prefix. </property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="model">style.liststore.termcap.foreground</property>
                     <child>
-                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour18"/>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.termcap_sof"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -9181,7 +9215,7 @@ assuming /usr was the chosen install prefix. </property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="model">style.liststore.termcap.foreground</property>
                     <child>
-                      <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour19"/>
+                      <object class="GtkCellRendererText" id="style.cellrenderer.termcap_sob"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -9233,6 +9267,250 @@ assuming /usr was the chosen install prefix. </property>
               </object>
               <packing>
                 <property name="position">15</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkGrid" id="gcc_colors.grid">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="row_spacing">6</property>
+                <property name="column_spacing">15</property>
+                <child>
+                  <object class="GtkSeparator" id="gcc_colors.separator">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">6</property>
+                    <property name="margin_bottom">6</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">1</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSwitch" id="gcc_colors_enable">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="halign">start</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="gcc_colors_enable.label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Enable GCC Colors</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">GCC Colors</property>
+                    <property name="angle">90</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                    <property name="height">8</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="gcc_colors_error_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for GCC Errors</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="gcc_colors_warn_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for GCC Warnings</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="gcc_colors_note_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for GCC Notes</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="gcc_colors_caret_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for GCC Carets</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="gcc_colors_locus">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for GCC Locus</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="gcc_colors_quote_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Color for GCC Quotes</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="gcc_color_error">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="model">gcc_color_store</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="gcc_color_renderer_error"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="gcc_color_warn">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">gcc_color_store</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="gcc_coloror_renderer_warn"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="gcc_color_notes">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">gcc_color_store</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="gcc_color_renderer_notes"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="gcc_color_caret">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">gcc_color_store</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="gcc_color_renderer_caret"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="gcc_color_locus">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">gcc_color_store</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="gcc_color_renderer_locus"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="gcc_color_quote">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">gcc_color_store</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="gcc_color_renderer_quote"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">7</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">16</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">GCC Colors</property>
+              </object>
+              <packing>
+                <property name="position">16</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>

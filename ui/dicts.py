@@ -208,6 +208,20 @@ ls_colors = {
     21: "$lcream",
 }
 
+# GCC Colors
+
+gcc_colors = {
+    0: "01;37",
+    1: "01;30",
+    2: "01;31",
+    3: "01;34",
+    4: "01;32",
+    5: "01;33",
+    6: "01;35",
+    7: "01;36",
+    8: "01",
+}
+
 # Keybindings
 
 keybindings = {
@@ -255,7 +269,7 @@ iconview_icons = ["bashstyle-ng-style", "bashstyle-ng-alias", "bashstyle-ng-adva
                   "bashstyle-ng-vim", "bashstyle-ng-nano", "bashstyle-ng-ls",
                   "bashstyle-ng-man", "bashstyle-ng-keys", "bashstyle-ng-custom",
                   "bashstyle-ng-config", "bashstyle-ng-doc", "bashstyle-ng-info",
-                  "bashstyle-ng-shell"]
+                  "bashstyle-ng-gcc", "bashstyle-ng-shell"]
 
 iconview_labels = {
     "bashstyle-ng-style": _("General Style"),
@@ -273,6 +287,7 @@ iconview_labels = {
     "bashstyle-ng-config": _("Configuration"),
     "bashstyle-ng-doc": _("Documentation"),
     "bashstyle-ng-man": _("Manpage Colors"),
+    "bashstyle-ng-gcc": _("GCC Colors"),
     "bashstyle-ng-shell": _("Start Terminal"),
 }
 
@@ -292,6 +307,7 @@ notebook_pages = {
     _("Keybindings"): 11,
     _("BashStyle-NG StartUp"): 13,
     _("Configuration"): 14,
+    _("GCC Colors"): 16,
     _("Documentation"): 0,
     _("Start Terminal"): 0,
 }
