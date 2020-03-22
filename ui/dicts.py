@@ -267,9 +267,9 @@ keybindings = {
 iconview_icons = ["bashstyle-ng-style", "bashstyle-ng-alias", "bashstyle-ng-advanced",
                   "bashstyle-ng-shopts", "bashstyle-ng-git", "bashstyle-ng-readline",
                   "bashstyle-ng-vim", "bashstyle-ng-nano", "bashstyle-ng-ls",
-                  "bashstyle-ng-man", "bashstyle-ng-keys", "bashstyle-ng-custom",
-                  "bashstyle-ng-config", "bashstyle-ng-doc", "bashstyle-ng-info",
-                  "bashstyle-ng-gcc", "bashstyle-ng-shell"]
+                  "bashstyle-ng-man", "bashstyle-ng-gcc", "bashstyle-ng-keys",
+                  "bashstyle-ng-custom", "bashstyle-ng-config", "bashstyle-ng-doc",
+                  "bashstyle-ng-info", "bashstyle-ng-shell"]
 
 iconview_labels = {
     "bashstyle-ng-style": _("General Style"),
