@@ -113,6 +113,24 @@ if bt "$(ini_get use_bat)"; then
 	fi
 fi
 
+if bt "$(ini_get curl_useragent)"; then
+	if [ -n "$(ini_get curl_useragent_string)" ]; then
+		grep -q user-agent "${HOME}/.curlrc" && \
+			sed -e '/user-agent/d' -i "${HOME}/.curlrc"
+
+		echo "user-agent = \"$(ini_get curl_useragent_string)\"" >> "${HOME}/.curlrc"
+	fi
+fi
+
+if bt "$(ini_get wget_useragent)"; then
+	if [ -n "$(ini_get wget_useragent_string)" ]; then
+		grep -q user_agent "${HOME}/.wgetrc" && \
+			sed -e '/user_agent/d' -i "${HOME}/.wgetrc"
+
+		echo "user_agent = \"$(ini_get wget_useragent_string)\"" >> "${HOME}/.wgetrc"
+	fi
+fi
+
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Various Options")"
 dbg_log export pwdmaxlen="$(ini_get pwdlength)"
 dbg_log export trunc_symbol="$(ini_get pwdcut)"

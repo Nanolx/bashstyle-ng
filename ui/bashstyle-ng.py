@@ -164,6 +164,10 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("enable_bat", "Advanced", "use_bat", "bool", None)
 		WidgetHandler.InitWidget("bat_tabwidth", "Advanced", "bat_tabwidth", "int", None)
 		WidgetHandler.InitWidget("bat_theme", "Advanced", "bat_theme", "combo", dicts.bat_themes)
+		WidgetHandler.InitWidget("curl_useragent", "Advanced", "curl_useragent", "bool", None)
+		WidgetHandler.InitWidget("curl_useragent_string", "Advanced", "curl_useragent_string", "text", None)
+		WidgetHandler.InitWidget("wget_useragent", "Advanced", "wget_useragent", "bool", None)
+		WidgetHandler.InitWidget("wget_useragent_string", "Advanced", "wget_useragent_string", "text", None)
 
 		####################### Readline stuff #############################################
 		WidgetHandler.InitWidget("use_readline", "Readline", "use_readlinecfg", "switch", None)
