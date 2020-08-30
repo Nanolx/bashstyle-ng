@@ -13,6 +13,15 @@ between.  For more detailed information see the git log.
 
         - #268 (gitkit): fix 'cloneuser' command not working.
 
+        - #269 (history sync): fix terrible bug that could cause
+          complete loss of history when many Bash instance are started
+          at once and trying to access the history file.
+
+        - #270 'bashstyle_history': custom 'history -D' param now also
+          deletes single commands in history (eg: 'history -D geany'
+          previously only deleted 'geany some_file', but not 'geany',
+          now both will be deleted)
+
    * New Features
 
         - 'colors': add possibility to set colors for GCC messages.
@@ -25,6 +34,12 @@ between.  For more detailed information see the git log.
 
         - 'advanced': add possibility to set useragent string for
           'wget'.
+
+        - 'bashstyle_history': custom 'history -D' param now accepts
+          multi-word commands for deletion.
+
+        - 'bashstyle_history': new custom 'history -g' param to grep
+          history for simple pattern.
 
         - 'bashstyle': add '-l'/'--log' action to view BashStyle-NG log
           file.
