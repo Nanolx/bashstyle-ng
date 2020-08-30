@@ -64,7 +64,7 @@ ignorehistoryboth () {
 }
 
 bashstyle_history_sync () {
-	if [[ ! ${lastcommand} == history* ]]; then
+	if [[ ! ${lastcommand} == *history* ]]; then
 		builtin history -a
 		builtin history -c
 
