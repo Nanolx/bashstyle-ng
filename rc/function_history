@@ -9,6 +9,9 @@
 #							#
 #########################################################
 
+readonly HISTFILE_TMP="${HISTFILE}.tmp.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
+export HISTFILE_TMP
+
 bashstyle_history () {
 	case "${1}" in
 		-D )
@@ -16,12 +19,11 @@ bashstyle_history () {
 			local internal_counter
 			local history_command
 
-			history_command="${2}"
+			shift
+			history_command="${@}"
 
-			if [ -z "${history_command}" ]; then
-				echo "$(eval_gettext "no command to delete given!")"
-			else
-				history_lines_matching=$(builtin history | gawk -v pattern="^ .*[0-9]  ${history_command} " '$0 ~ pattern{print $1}')
+			if [ -n "${history_command}" ]; then
+				history_lines_matching=$(builtin history | gawk -v pattern="^ .*[0-9]  ${history_command}" '$0 ~ pattern{print $1}')
 				if [ -z "${history_lines_matching}" ]; then
 					echo "$(eval_gettext "no history entry matching ${history_command}")"
 				else
@@ -32,7 +34,14 @@ bashstyle_history () {
 						internal_counter=$((internal_counter+1))
 					done
 				fi
+			else
+				echo "$(eval_gettext "no command to delete given!")"
 			fi
+		;;
+
+		-g )
+			shift
+			builtin history | grep "${@}"
 		;;
 
 		* )
@@ -44,18 +53,18 @@ bashstyle_history () {
 erasehistorydups () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 		tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
-		tac | sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
+		tac | sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE_TMP}"
 }
 
 ignorehistorydups () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 		gawk -F'HISTDILIMITER' '!x[$2]++' | \
-		sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE}".tmp
+		sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE_TMP}"
 }
 
 ignorehistoryspc () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
-		sed -e '/HISTDILIMITER /d' > "${HISTFILE}".tmp
+		sed -e '/HISTDILIMITER /d' > "${HISTFILE_TMP}"
 }
 
 ignorehistoryboth () {
@@ -64,20 +73,26 @@ ignorehistoryboth () {
 }
 
 bashstyle_history_sync () {
-	if [[ ! ${lastcommand} == *history* ]]; then
-		builtin history -a
-		builtin history -c
+	shopt -s nullglob
+	bsng_histfile=( "${HISTFILE}".tmp.* )
+	shopt -u nullglob
 
-		case ${HISTCONTROL} in
-			erasedups )	erasehistorydups ;;
-			ignoredups)	ignorehistorydups ;;
-			ignorespace)	ignorehistorspc ;;
-			ignoreboth)	ignorehistoryboth ;;
-		esac
+	if (( "${#bsng_histfile[@]}" == 0 )); then
+		if [[ ! ${lastcommand} == *history* ]]; then
+			builtin history -a
+			builtin history -c
 
-		if [[ -f ${HISTFILE}.tmp ]]; then
-			mv "${HISTFILE}".tmp "${HISTFILE}" &>/dev/null && \
-			builtin history -r
+			case ${HISTCONTROL} in
+				erasedups )	erasehistorydups ;;
+				ignoredups)	ignorehistorydups ;;
+				ignorespace)	ignorehistorspc ;;
+				ignoreboth)	ignorehistoryboth ;;
+			esac
+
+			if [[ -f "${HISTFILE_TMP}" ]]; then
+				mv "${HISTFILE_TMP}" "${HISTFILE}" &>/dev/null && \
+				builtin history -r
+			fi
 		fi
 	fi
 }
