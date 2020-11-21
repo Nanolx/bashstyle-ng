@@ -49,8 +49,10 @@ dbg_log export HISTFILESIZE="$(ini_get history_size)"
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" HISTFILESIZE "${HISTFILESIZE}"
 
 if bt "$(ini_get restore_directory)"; then
-	lastpwd=$(cat "${HOME}/.lastpwd")
-	[ -d "${lastpwd}" ] && dbg_log cd "${lastpwd}"
+	if [ -f "${HOME}/.lastpwd" ]; then
+		lastpwd=$(cat "${HOME}/.lastpwd")
+		[ -d "${lastpwd}" ] && dbg_log cd "${lastpwd}"
+	fi
 fi
 
 if bt "$(ini_get colored_grep)" && bt "$(ini_get enable_colors)"; then
@@ -115,7 +117,7 @@ fi
 
 if bt "$(ini_get curl_useragent)"; then
 	if [ -n "$(ini_get curl_useragent_string)" ]; then
-		grep -q user-agent "${HOME}/.curlrc" && \
+		grep -q user-agent "${HOME}/.curlrc" 2>/dev/null && \
 			sed -e '/user-agent/d' -i "${HOME}/.curlrc"
 
 		echo "user-agent = \"$(ini_get curl_useragent_string)\"" >> "${HOME}/.curlrc"
@@ -124,7 +126,7 @@ fi
 
 if bt "$(ini_get wget_useragent)"; then
 	if [ -n "$(ini_get wget_useragent_string)" ]; then
-		grep -q user_agent "${HOME}/.wgetrc" && \
+		grep -q user_agent "${HOME}/.wgetrc" 2>/dev/null && \
 			sed -e '/user_agent/d' -i "${HOME}/.wgetrc"
 
 		echo "user_agent = \"$(ini_get wget_useragent_string)\"" >> "${HOME}/.wgetrc"
