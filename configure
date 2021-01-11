@@ -38,11 +38,11 @@ MANDIR="${DATADIR}/man"
 
 PYTHON=$(command -v python3 || command -v python)
 
-PYMINVER_P="3.0.0"
-PYMAXVER_P="3.9.0"
+PYMINVER_P=">=3.x"
+PYMAXVER_P="<=4.x"
 
-PYMINVER=${PYMINVER_P//.}
-PYMAXVER=${PYMAXVER_P//.}
+PYMINVER=3
+PYMAXVER=4
 
 DISABLE_POSTINSTALL=0
 
@@ -89,7 +89,7 @@ section_message () {
 		OPT_SBINAPP )	echo -e "\n${MAGENTA}< Optional ${WHITE}SuperUser Applications" ;;
 		BUILD )		echo -e "\n${RED}< Required ${WHITE}Build Tools" ;;
 		OPT_BUILD )	echo -e "\n${MAGENTA}< Optional ${WHITE}Build Tools" ;;
-		PY )		echo -e "\n${RED}< Python Interpreter${WHITE} >= ${PYMINVER_P} && <= ${PYMAXVER_P}" ;;
+		PY )		echo -e "\n${RED}< Python Interpreter${WHITE} ${PYMINVER_P} && ${PYMAXVER_P}" ;;
 		PYMOD )		echo -e "\n${RED}< Required ${WHITE}Python Modules" ;;
 		OPT_PYMOD )	echo -e "\n${MAGENTA}< Optional ${WHITE}Python Modules" ;;
 		LIB )		echo -e "\n${RED}< Required ${WHITE}Libraries" ;;
@@ -293,10 +293,10 @@ check_python () {
 	else
 		PYVER=$(${PYTHON} --version 2>&1)
 		PYVER_C="${PYVER//@(*\ |\.|\+)}"
-		if [[ ${PYVER_C:0:3} -lt ${PYMINVER} ]]; then
+		if [[ ${PYVER_C:0:1} -lt ${PYMINVER} ]]; then
 			fail_message p-
 			kill -s TERM "${TOP_PID}"
-		elif [[ ${PYVER_C:0:3} -gt ${PYMAXVER} ]]; then
+		elif [[ ${PYVER_C:0:1} -ge ${PYMAXVER} ]]; then
 			fail_message p+
 			kill -s TERM "${TOP_PID}"
 		else
