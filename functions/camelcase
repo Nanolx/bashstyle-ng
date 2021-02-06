@@ -33,9 +33,9 @@ case "${opt}" in
 
 	"" | * )
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "camelcase" -s "$(eval_gettext "camelcase transform string")"\
+			-l "GNU GPL v3" -n "camelcase" -s $"camelcase transform string"\
 			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "-w:test_string-a b|uppercase string elements (Test String A B)")"\
-			-o "$(eval_gettext "-c:test_string-a b|camelcase string (TestStringAB)")"
+			-o $"-w:test_string-a b|uppercase string elements (Test String A B)"\
+			-o $"-c:test_string-a b|camelcase string (TestStringAB)"
 	;;
 esac
