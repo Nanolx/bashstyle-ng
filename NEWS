@@ -15,6 +15,11 @@ between.  For more detailed information see the git log.
 
         - #272 'configure': make python version check more robust
 
+        - #273 'gettext': due a bug in 'eval_gettext' strings starting
+          with dashes lead to issues in 'camelcase', 'random' and
+          'randomfile' functions, so use old school '$'...'' syntax as
+          quick fix.
+
 10.7.2 (20200830) "Klick Klack"
 ===============================
 
@@ -29,7 +34,7 @@ between.  For more detailed information see the git log.
         - #270 'bashstyle_history': custom 'history -D' param now also
           deletes single commands in history (eg: 'history -D geany'
           previously only deleted 'geany some_file', but not 'geany',
-          now both will be deleted)
+          now both will be deleted).
 
    * New Features
 
