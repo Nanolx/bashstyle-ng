@@ -34,7 +34,7 @@ case ${@} in
 				baseimg=${image%.*}
 
 				suffix="$(grep "^$(file --mime-type "${image}" | \
-					awk '{print $2}')" /etc/mime.types | \
+					awk '{print $2}')[[:space:]]" /etc/mime.types | \
 					awk '{print $2}')"
 
 				if [[ "${image}" != "${baseimg}.${suffix}" && -n "${suffix}" ]]; then
