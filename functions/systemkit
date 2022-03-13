@@ -60,44 +60,12 @@ case ${1} in
 		LANG=C /sbin/ifconfig "${2}" | gawk '/inet /{print $2}'
 	;;
 
-	usedram)
-		temp=$(top -bn1 | gawk '/Mem :/{print "(" $4 "-" $6 ") /1024"}' | bc)
-		if [[ ${temp} -lt 10 ]]; then
-			echo "000${temp}"
-		elif [[ ${temp} -lt 100 ]]; then
-			echo "00${temp}"
-		elif [[ ${temp} -lt 1000 ]]; then
-			echo "0${temp}"
-		else	echo "${temp}"
-		fi
-	;;
+	usedram) LANG=C top -bn1 | gawk '/MiB Mem/{print $4 "-" $6}' | bc;;
+	freeram) LANG=C top -bn1 | gawk '/MiB Mem/{print $6}' ;;
+	totalram) LANG=C top -bn1 | gawk '/MiB Mem/{print $4}' ;;
 
-	freeram)
-		temp=$(top -bn1 | gawk '/Mem :/{print $6 "/1024"}' | bc)
-		if [[ ${temp} -lt 10 ]]; then
-			echo "000${temp}"
-		elif [[ ${temp} -lt 100 ]]; then
-			echo "00${temp}"
-		elif [[ ${temp} -lt 1000 ]]; then
-			echo "0${temp}"
-		else	echo "${temp}"
-		fi
-	;;
-
-	totalram)
-		temp=$(top -bn1 | gawk '/Mem :/{print $4 "/1024"}' | bc)
-		if [[ ${temp} -lt 10 ]]; then
-			echo "000${temp}"
-		elif [[ ${temp} -lt 100 ]]; then
-			echo "00${temp}"
-		elif [[ ${temp} -lt 1000 ]]; then
-			echo "0${temp}"
-		else	echo "${temp}"
-		fi
-	;;
-
-	usedram%)	echo "$(top -bn1 | gawk '/Mem :/{print "100*(" $4 "-" $6 ")/" $4}' | bc)%" ;;
-	freeram%)	echo "$(top -bn1 | gawk '/Mem :/{print "100 *" $6 "/" $4}' | bc)%" ;;
+	usedram%)	echo "$(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc)%" ;;
+	freeram%)	echo "$(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc)%" ;;
 
 	dirsize)
 		TotalBytes=$(du -s "${2}" | awk '{print $1}')
