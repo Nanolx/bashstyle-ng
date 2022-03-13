@@ -25,6 +25,8 @@ if [[ -d "/usr/lib/girepository-1.0/" ]]; then
 	GIRPATH="/usr/lib/girepository-1.0"
 elif [[ -d "/usr/lib64/girepository-1.0/" ]]; then
 	GIRPATH="/usr/lib64/girepository-1.0"
+elif [[ -d "/usr/share/gir-1.0/" ]]; then
+	GIRPATH="/usr/share/gir-1.0"
 else
 	missing_girpath_message
 fi
