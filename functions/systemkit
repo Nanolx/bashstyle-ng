@@ -13,7 +13,7 @@
 export TEXTDOMAIN="bashstyle-rc"
 
 prettyprint () {
-	LANG=C printf "%0${2}g\n" ${1}
+	LANG=C printf "%0${2}.f\n" ${1}
 }
 
 case ${1} in
@@ -56,9 +56,9 @@ case ${1} in
 		LANG=C /sbin/ifconfig "${2}" | gawk '/inet /{print $2}'
 	;;
 
-	usedram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4 "-" $6}' | bc) 6 ;;
-	freeram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $6}') 6 ;;
-	totalram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4}') 6 ;;
+	usedram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4 "-" $6}' | bc) 5 ;;
+	freeram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $6}') 5 ;;
+	totalram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4}') 5 ;;
 
 	usedram%)	prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc)% 3 ;;
 	freeram%)	prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc)% 3 ;;
@@ -191,14 +191,7 @@ case ${1} in
 
 	processes)
 		procs=$(ps ax | wc -l | awk '{print $1}')
-
-		if [[ ${procs} -lt 10 ]]; then
-			echo "000${procs}"
-		elif [[ ${procs} -lt 100 ]]; then
-			echo "00${procs}"
-		elif [[ ${procs} -lt 1000 ]]; then
-			echo "0${procs}"
-		fi
+		prettyprint ${procs} 4
 	;;
 
 	cof | countoverallfiles)	echo "$(find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l )" ;;
