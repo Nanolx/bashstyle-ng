@@ -51,7 +51,7 @@ _equinox_ram_pos=${counter}
 
 _equinox_ram () {
 	echo -en "\033[${_equinox_ram_pos};$((COLUMNS-29))H"
-	echo -en "${ecolor_separator}(${ecolor_font} ram: ${ecolor_separator}$(systemkit usedram)mb${ecolor_font} / ${ecolor_separator}$(systemkit freeram)mb )─────┤"
+	echo -en "${ecolor_separator}(${ecolor_font} ram: ${ecolor_separator}$(systemkit usedram)m${ecolor_font} / ${ecolor_separator}$(systemkit freeram)m )─────┤"
 }
 
 fi
