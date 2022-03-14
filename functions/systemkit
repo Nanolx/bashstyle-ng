@@ -12,6 +12,10 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
+prettyprint () {
+	LANG=C printf "%0${2}g\n" ${1}
+}
+
 case ${1} in
 	battery)
 		check P "acpi" "'systemkit battery'" || exit 1
@@ -40,15 +44,7 @@ case ${1} in
 		[[ ! "${cpu#.}x" = "${cpu}x" ]] && cpu="0${cpu}"
 		cpu=${cpu%%.*}
 
-		if [[ ${cpu} -gt 100 ]]; then
-			cpu=100
-		elif [[ ${cpu} -lt 10 ]]; then
-			prepend=00
-		elif [[ ${cpu} -lt 100  ]]; then
-			prepend=0
-		fi
-
-		echo ${prepend}${cpu}
+		prettyprint ${cpu} 3
 	;;
 
 	externalip)
@@ -60,12 +56,12 @@ case ${1} in
 		LANG=C /sbin/ifconfig "${2}" | gawk '/inet /{print $2}'
 	;;
 
-	usedram) LANG=C top -bn1 | gawk '/MiB Mem/{print $4 "-" $6}' | bc;;
-	freeram) LANG=C top -bn1 | gawk '/MiB Mem/{print $6}' ;;
-	totalram) LANG=C top -bn1 | gawk '/MiB Mem/{print $4}' ;;
+	usedram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4 "-" $6}' | bc) 6 ;;
+	freeram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $6}') 6 ;;
+	totalram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4}') 6 ;;
 
-	usedram%)	echo "$(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc)%" ;;
-	freeram%)	echo "$(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc)%" ;;
+	usedram%)	prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc)% 3 ;;
+	freeram%)	prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc)% 3 ;;
 
 	dirsize)
 		TotalBytes=$(du -s "${2}" | awk '{print $1}')
