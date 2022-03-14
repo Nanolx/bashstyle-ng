@@ -22,6 +22,12 @@ between.  For more detailed information see the git log.
         - 'configure': add '/usr/share/gir-1.0' to gir paths to look
           for.
 
+        - 'systemkit': ensure output from cpuload is always 3 digits,
+          ram usage always 5 digits (filled with leading zeros; for
+          inclusion in prompts).
+
+        - 'equinox': adopt to 'systemkit' changes.
+
         - Remove year from copyright notices in all files, except
           documentation, also E-Mail.
 
