@@ -60,8 +60,8 @@ case ${1} in
 	freeram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $6}') 5 ;;
 	totalram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4}') 5 ;;
 
-	usedram%)	prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc)% 3 ;;
-	freeram%)	prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc)% 3 ;;
+	usedram%) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc) 3 ;;
+	freeram%) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc) 3 ;;
 
 	dirsize)
 		TotalBytes=$(du -s "${2}" | awk '{print $1}')
