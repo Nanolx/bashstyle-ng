@@ -351,7 +351,9 @@ substitute_values () {
 		-e "s>@PREFIX@>${PREFIX}>g" \
 		-e "s>@CODENAME@>${APP_CODENAME}>g" \
 		-e "s>@DATADIR@>${DATADIR}>g" \
-		-e "s>@PYTHON@>${PYTHON}>g" -i "${IN_FILES[@]}"
+		-e "s>@PYTHON@>${PYTHON}>g" \
+		-e "s>@BSNG_YEAR@>${APP_YEAR}>g" \
+		-i "${IN_FILES[@]}"
 }
 
 ##############################
