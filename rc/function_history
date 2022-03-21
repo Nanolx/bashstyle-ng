@@ -9,12 +9,12 @@
 #							#
 #########################################################
 
-if [ -z "${BASHSTYLE_TMP_HISTFILE+x}" ]; then
-	readonly BASHSTYLE_TMP_HISTFILE="${HISTFILE}.tmp.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
-	export BASHSTYLE_TMP_HISTFILE
+if [ -z "${BSNG_TMP_HISTFILE+x}" ]; then
+	readonly BSNG_TMP_HISTFILE="${HISTFILE}.tmp.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
+	export BSNG_TMP_HISTFILE
 fi
 
-bashstyle_history () {
+BSNG_history () {
 	case "${1}" in
 		-D )
 			local history_lines_matching
@@ -55,18 +55,18 @@ bashstyle_history () {
 erasehistorydups () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 		tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
-		tac | sed -e 's/HISTDILIMITER/\n/g' > "${BASHSTYLE_TMP_HISTFILE}"
+		tac | sed -e 's/HISTDILIMITER/\n/g' > "${BSNG_TMP_HISTFILE}"
 }
 
 ignorehistorydups () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 		gawk -F'HISTDILIMITER' '!x[$2]++' | \
-		sed -e 's/HISTDILIMITER/\n/g' > "${BASHSTYLE_TMP_HISTFILE}"
+		sed -e 's/HISTDILIMITER/\n/g' > "${BSNG_TMP_HISTFILE}"
 }
 
 ignorehistoryspc () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
-		sed -e '/HISTDILIMITER /d' > "${BASHSTYLE_TMP_HISTFILE}"
+		sed -e '/HISTDILIMITER /d' > "${BSNG_TMP_HISTFILE}"
 }
 
 ignorehistoryboth () {
@@ -74,7 +74,7 @@ ignorehistoryboth () {
 	ignorehistoryspc
 }
 
-bashstyle_history_sync () {
+BSNG_history_sync () {
 	shopt -s nullglob
 	bsng_histfile=( "${HISTFILE}".tmp.* )
 	shopt -u nullglob
@@ -91,8 +91,8 @@ bashstyle_history_sync () {
 				ignoreboth)	ignorehistoryboth ;;
 			esac
 
-			if [[ -f "${BASHSTYLE_TMP_HISTFILE}" ]]; then
-				mv "${BASHSTYLE_TMP_HISTFILE}" "${HISTFILE}" &>/dev/null && \
+			if [[ -f "${BSNG_TMP_HISTFILE}" ]]; then
+				mv "${BSNG_TMP_HISTFILE}" "${HISTFILE}" &>/dev/null && \
 				builtin history -r
 			fi
 		fi
