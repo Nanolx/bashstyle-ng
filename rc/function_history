@@ -9,8 +9,10 @@
 #							#
 #########################################################
 
-readonly HISTFILE_TMP="${HISTFILE}.tmp.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
-export HISTFILE_TMP
+if [ -z "${BASHSTYLE_TMP_HISTFILE+x}" ]; then
+	readonly BASHSTYLE_TMP_HISTFILE="${HISTFILE}.tmp.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
+	export BASHSTYLE_TMP_HISTFILE
+fi
 
 bashstyle_history () {
 	case "${1}" in
@@ -53,18 +55,18 @@ bashstyle_history () {
 erasehistorydups () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 		tac | gawk -F'HISTDILIMITER' '!x[$2]++' | \
-		tac | sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE_TMP}"
+		tac | sed -e 's/HISTDILIMITER/\n/g' > "${BASHSTYLE_TMP_HISTFILE}"
 }
 
 ignorehistorydups () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
 		gawk -F'HISTDILIMITER' '!x[$2]++' | \
-		sed -e 's/HISTDILIMITER/\n/g' > "${HISTFILE_TMP}"
+		sed -e 's/HISTDILIMITER/\n/g' > "${BASHSTYLE_TMP_HISTFILE}"
 }
 
 ignorehistoryspc () {
 	gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
-		sed -e '/HISTDILIMITER /d' > "${HISTFILE_TMP}"
+		sed -e '/HISTDILIMITER /d' > "${BASHSTYLE_TMP_HISTFILE}"
 }
 
 ignorehistoryboth () {
@@ -89,8 +91,8 @@ bashstyle_history_sync () {
 				ignoreboth)	ignorehistoryboth ;;
 			esac
 
-			if [[ -f "${HISTFILE_TMP}" ]]; then
-				mv "${HISTFILE_TMP}" "${HISTFILE}" &>/dev/null && \
+			if [[ -f "${BASHSTYLE_TMP_HISTFILE}" ]]; then
+				mv "${BASHSTYLE_TMP_HISTFILE}" "${HISTFILE}" &>/dev/null && \
 				builtin history -r
 			fi
 		fi
