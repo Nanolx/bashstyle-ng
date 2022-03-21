@@ -17,6 +17,8 @@ between.  For more detailed information see the git log.
         - #275 'systemkit': adopt 'freeram', 'usedram', 'totalram',
           'usedram%', 'freeram%', to 'top' changes.
 
+        - #276 'reload_bash': fix resetting 'ERR' trap.
+
    * Misc.  Changes
 
         - 'configure': add '/usr/share/gir-1.0' to gir paths to look
@@ -28,8 +30,14 @@ between.  For more detailed information see the git log.
 
         - 'equinox': adopt to 'systemkit' changes.
 
+        - 'HISTFILE_TMP' envvar used by customized 'bashstyle-ng'
+          history functions renamed to 'BSNG_TMP_HISTFILE' to match
+          other 'bashstyle-ng' envvars.  Also guard for 'reload_bash'.
+
         - Remove year from copyright notices in all files, except
           documentation, also E-Mail.
+
+        - Let configure substitute 'BSNG_YEAR' envvar from '.settings'.
 
 10.7.3 (20210319) "New Horizons"
 ================================

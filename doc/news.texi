@@ -19,6 +19,8 @@ Each release lists incompatible changes at its top.
 @item #275 @code{systemkit}: adopt @code{freeram}, @code{usedram}, @code{totalram},
 @code{usedram%}, @code{freeram%}, to @code{top} changes.
 
+@item #276 @code{reload_bash}: fix resetting @code{ERR} trap.
+
 @end itemize
 @item Misc. Changes
 @itemize @minus
@@ -30,7 +32,12 @@ Each release lists incompatible changes at its top.
 
 @item @code{equinox}: adopt to @code{systemkit} changes.
 
+@item @code{HISTFILE_TMP} envvar used by customized @code{bashstyle-ng} history functions renamed
+to @code{BSNG_TMP_HISTFILE} to match other @code{bashstyle-ng} envvars. Also guard for @code{reload_bash}.
+
 @item Remove year from copyright notices in all files, except documentation, also E-Mail.
+
+@item Let configure substitute @code{BSNG_YEAR} envvar from @code{.settings}.
 @end itemize
 @end itemize
 
