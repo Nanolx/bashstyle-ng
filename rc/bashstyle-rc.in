@@ -144,7 +144,7 @@ done
 reload_bash () {
 	builtin unalias -a
 	builtin unset -f "$(builtin compgen -A function)"
-	for trap in EXIT DEBUG ERROR; do
+	for trap in EXIT DEBUG ERR; do
 		trap '' "${trap}"
 	done
 	[ -f /etc/bash_completion ] && source /etc/bash_completion
