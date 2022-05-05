@@ -14,7 +14,7 @@ if [ -z "${BSNG_TMP_HISTFILE+x}" ]; then
 	export BSNG_TMP_HISTFILE
 fi
 
-BSNG_history () {
+bashstyle_history () {
 	case "${1}" in
 		-D )
 			local history_lines_matching
@@ -74,7 +74,7 @@ ignorehistoryboth () {
 	ignorehistoryspc
 }
 
-BSNG_history_sync () {
+bashstyle_history_sync () {
 	shopt -s nullglob
 	bsng_histfile=( "${HISTFILE}".tmp.* )
 	shopt -u nullglob
