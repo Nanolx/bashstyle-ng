@@ -131,7 +131,7 @@ esac
 CLEAN_FILES=(data/bashstyle data/bashstyle-config-helper data/bashstyle-ng.pc
 	     ui/bashstyle.ui.h rc/bashstyle-rc i18n/??/*.mo i18n/*.pot
 	     .configure_results .make/build_done ui/#bashstyle.ui#
-	     ui/bashstyle.ui~ doc/bashstyle.info doc/*.gz )
+	     ui/bashstyle.ui~ doc/bashstyle.info doc/*.gz .build_done)
 
 CLEAN_DIRS=(doc/html)
 
