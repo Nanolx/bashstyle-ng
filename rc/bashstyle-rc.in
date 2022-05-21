@@ -225,6 +225,15 @@ bashstyle_remember_directory () {
 	bashstyle_trap_add 'bashstyle_remember_directory' EXIT
 fi
 
+# by goelztec
+# from: https://www.commandlinefu.com/commands/view/25663/
+#
+functions () {
+	shopt -s extdebug
+	declare -F | grep -v "declare -f _" | declare -F $(awk "{print $3}") | column -t
+	shopt -u extdebug
+}
+
 # clean-up
 
 dbg_finalize
