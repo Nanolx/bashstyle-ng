@@ -11,6 +11,7 @@
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
+REVERSE_NAME=0
 
 fill_zeros () {
 	current_len=${#1}
@@ -28,6 +29,7 @@ fill_zeros () {
 
 rename_files () {
 	mkdir "${directory}/tmp"
+	reverse=${1}
 
 	count_max=$(($(find "${directory}" -maxdepth 1 -type f | wc -l)))
 	count_len=${#count_max}
@@ -41,11 +43,23 @@ rename_files () {
 
 	files=($(find "${directory}" -maxdepth 1 -type f))
 
-	for image in "${files[@]}"; do
-		suffix=$(fill_zeros ${count_now})${count_now}.${image##*.}
-		mv ${MV_OPT} "${image}" "${directory}/tmp/${prefix}-${suffix}"
-		count_now=$((count_now+1))
-	done
+	case ${reverse} in
+		1 )
+			for image in "${files[@]}"; do
+				num=$(fill_zeros ${count_now})${count_now}
+				mv ${MV_OPT} "${image}" "${directory}/tmp/${num}-${prefix}.${image##*.}"
+				count_now=$((count_now+1))
+			done
+		;;
+
+		0 )
+			for image in "${files[@]}"; do
+				num=$(fill_zeros ${count_now})${count_now}
+				mv ${MV_OPT} "${image}" "${directory}/tmp/${prefix}-${num}.${image##*.}"
+				count_now=$((count_now+1))
+			done
+		;;
+	esac
 
 	[[ "${MV_OPT}" == "-v" ]] && \
 		echo -e "$(eval_gettext "\n\n >> moving files into destination directory \"${directory}\" \n\n")"
@@ -59,21 +73,31 @@ rename_files () {
 _help () {
 	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
 		-h "https://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
-		-s "$(eval_gettext "batch rename files in NNN-NAME.SUFFIX scheme")"\
+		-s "$(eval_gettext "batch rename files in NAME-NNN.SUFFIX scheme")"\
 		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 		-o "$(eval_gettext "v:|verbose output")"\
+		-o "$(eval_gettext "r:|reverse filename to NNN-NAME.SUFFIX scheme")"\
 		-o "$(eval_gettext "directory:/home/test/mypictures|directory containing files")"\
 		-o "$(eval_gettext "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme")"
 }
 
-case ${1} in
-	v | verbose )
-		export MV_OPT="-v"
-		shift
-	;;
-esac
+if [[ $# -gt 2 ]]; then
+	while [[ $# -gt 2 ]]; do
+		case ${1} in
+			v | verbose )
+				MV_OPT="-v"
+				shift
+			;;
 
-if [[ $# -ge 2 ]]; then
+			r | reverse )
+				REVERSE_NAME=1
+				shift
+			;;
+		esac
+	done
+fi
+
+if [[ $# -eq 2 ]]; then
 	directory="${1}"
 
 	if [[ ! -d "${directory}" ]]; then
@@ -85,7 +109,7 @@ if [[ $# -ge 2 ]]; then
 	fi
 
 	prefix="${2}"
-	rename_files
+	rename_files ${REVERSE_NAME}
 else
 	_help
 fi
