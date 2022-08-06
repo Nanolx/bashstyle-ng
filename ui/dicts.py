@@ -259,7 +259,9 @@ keybindings = {
     "backward_kill_line",
     "list_keys",
     "next_screen_line",
-    "previous_screen_line"
+    "previous_screen_line",
+    "spell_correct_word",
+    "fetch_history"
 }
 
 # IconView Stuff
