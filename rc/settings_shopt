@@ -152,3 +152,14 @@ if [[ ${BSNG_BASHVER} -ge 50 ]]; then
 		dbg_log shopt -u localvar_inherit
 	fi
 fi
+
+# Stuff new in Bash 5.2
+if [[ ${BSNG_BASHVER} -ge 52 ]]; then
+	if bt "$(ini_get glob_skip_dots)"; then
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" globskipdots "$(eval_gettext "On")"
+		dbg_log shopt -s globskipdots
+	else
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" globskipdots "$(eval_gettext "Off")"
+		dbg_log shopt -u globskipdots
+	fi
+fi
