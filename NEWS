@@ -9,6 +9,16 @@ between.  For more detailed information see the git log.
 10.7.5 (in-dev) "Aionos"
 ========================
 
+   * Bug Fixes
+
+        - #277 'colors': the color 'brown' could not be used properly.
+
+        - #278 'manpage colors': fix definition of manpage colors for
+          terminals with support for more than 8 colors.
+
+        - #279 'manpage colors': swap 'black' and 'white' on dark
+          terminals, before defining 'stand out' color.
+
    * New Features
 
         - Add keybinding new in Bash 5.2 'spell-correct-word' to
@@ -23,10 +33,23 @@ between.  For more detailed information see the git log.
           functions and where they have been defined, by user
           'goelztec'.
 
+        - Add option to change default settings for 'less' pager (may
+          conflict with less as 'git' pager when also using 'colored
+          manpages').
+
+        - Properly unset several more variables only used during
+          initiliazation.
+
    * Misc.  Changes
 
         - Add 'r', 'reverse' option to 'batchrename' for creating
           reverse filenames.
+
+        - Improve user interface for changing user agent strings for
+          'cURL' and 'wget'.
+
+        - Properly log changing user agent strings for 'cURL' and 'wget'
+          in 'HOME/.bashstyle-ng.log'.
 
         - Remove deprecated properties from Glade UI definition.
 

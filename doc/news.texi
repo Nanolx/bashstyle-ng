@@ -11,6 +11,16 @@ Each release lists incompatible changes at its top.
 
 @heading 10.7.5 (in-dev) ``Aionos``
 @itemize @bullet
+@item Bug Fixes
+@itemize @minus
+
+@item #277 @code{colors}: the color @code{brown} could not be used properly.
+
+@item #278 @code{manpage colors}: fix definition of manpage colors for terminals with support for more than 8 colors.
+
+@item #279 @code{manpage colors}: swap @code{black} and @code{white} on dark terminals, before defining @code{stand out} color.
+
+@end itemize
 @item New Features
 
 @itemize @minus
@@ -21,12 +31,20 @@ Each release lists incompatible changes at its top.
 @item Add shopt new in Bash 5.2 @code{globskipdots} to shopt settings.
 
 @item Add @code{functions} from @code{commandlinefu.com}, a function showing functions and where they have been defined, by user @code{goelztec}.
+
+@item Add option to change default settings for @code{less} pager (may conflict with less as @code{git} pager when also using @code{colored manpages}).
+
+@item Properly unset several more variables only used during initiliazation.
 @end itemize
 
 @item Misc. Changes
 @itemize @minus
 
 @item Add @code{r}, @code{reverse} option to @code{batchrename} for creating reverse filenames.
+
+@item Improve user interface for changing user agent strings for @code{cURL} and @code{wget}.
+
+@item Properly log changing user agent strings for @code{cURL} and @code{wget} in @code{HOME/.bashstyle-ng.log}.
 
 @item Remove deprecated properties from Glade UI definition.
 
