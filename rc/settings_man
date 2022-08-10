@@ -58,15 +58,15 @@ else
 fi
 
 # background colors
-lbblack="30"
-lbred="41"
-lbgreen="42"
-lbyellow="43"
-lbblue="44"
-lbmagenta="45"
-lbcyan="46"
-lbgrey="47"
-lbwhite="107"
+lbblack="30m"
+lbred="41m"
+lbgreen="42m"
+lbyellow="43m"
+lbblue="44m"
+lbmagenta="45m"
+lbcyan="46m"
+lbgrey="47m"
+lbwhite="107m"
 
 if bt "$(ini_get dark_terminal)"; then
 	lfblack=${lfwhite}
@@ -78,7 +78,7 @@ fi
 # standout-mode
 eval termcap_sof="$(ini_get less_standout_foreground)"
 eval termcap_sob="$(ini_get less_standout_background)"
-export LESS_TERMCAP_so=$(echo -e "\033[01;${termcap_sob};${termcap_sof}")
+export LESS_TERMCAP_so=$(echo -e "\033[${termcap_sob}\033[01;${termcap_sof}")
 
 # blinking text
 eval termcap_mb="$(ini_get less_blink)"
@@ -111,4 +111,5 @@ unset termcap_mb termcap_md termcap_md termcap_mr \
 
 for lfcolor in "${colors[@]}"; do
 	eval unset "lf${lfcolor}"
+	eval unset "lb${lfcolor}"
 done
