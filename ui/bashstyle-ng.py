@@ -168,6 +168,8 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("curl_useragent_string", "Advanced", "curl_useragent_string", "text", None)
 		WidgetHandler.InitWidget("wget_useragent", "Advanced", "wget_useragent", "bool", None)
 		WidgetHandler.InitWidget("wget_useragent_string", "Advanced", "wget_useragent_string", "text", None)
+		WidgetHandler.InitWidget("less_options", "Advanced", "less_options", "bool", None)
+		WidgetHandler.InitWidget("less_options_string", "Advanced", "less_options_string", "text", None)
 
 		####################### Readline stuff #############################################
 		WidgetHandler.InitWidget("use_readline", "Readline", "use_readlinecfg", "switch", None)

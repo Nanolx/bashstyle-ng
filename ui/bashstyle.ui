@@ -3033,7 +3033,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <!-- n-columns=3 n-rows=43 -->
+                      <!-- n-columns=3 n-rows=47 -->
                       <object class="GtkGrid" id="advanced.grid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -4012,7 +4012,7 @@
                           <packing>
                             <property name="left-attach">0</property>
                             <property name="top-attach">40</property>
-                            <property name="height">3</property>
+                            <property name="height">4</property>
                           </packing>
                         </child>
                         <child>
@@ -4029,40 +4029,16 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkCheckButton" id="wget_useragent">
-                            <property name="label" translatable="yes">Set UserAgent for wget</property>
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="receives-default">False</property>
-                            <property name="draw-indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">40</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.curl_useragent">
+                          <object class="GtkSeparator" id="separator21">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">Enter UserAgent for cURL</property>
+                            <property name="margin-top">4</property>
+                            <property name="margin-bottom">4</property>
                           </object>
                           <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">41</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="advanced.label.wget_useragent">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">Enter UserAgent for wget</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">41</property>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">39</property>
+                            <property name="width">3</property>
                           </packing>
                         </child>
                         <child>
@@ -4075,7 +4051,77 @@
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
+                            <property name="top-attach">41</property>
+                            <property name="width">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="wget_useragent">
+                            <property name="label" translatable="yes">Set UserAgent for wget</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="draw-indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
                             <property name="top-attach">42</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="less_options_string">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="invisible-char">●</property>
+                            <property name="primary-icon-name">gtk-revert-to-saved</property>
+                            <property name="secondary-icon-name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">46</property>
+                            <property name="width">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="less_options">
+                            <property name="label" translatable="yes">Set options for less pager</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="draw-indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">45</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator30">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-top">4</property>
+                            <property name="margin-bottom">4</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">44</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.bat2">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">less</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">45</property>
+                            <property name="height">2</property>
                           </packing>
                         </child>
                         <child>
@@ -4087,22 +4133,19 @@
                             <property name="secondary-icon-name">gtk-delete</property>
                           </object>
                           <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">42</property>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">43</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSeparator" id="separator21">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-top">4</property>
-                            <property name="margin-bottom">4</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">39</property>
-                            <property name="width">3</property>
-                          </packing>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <placeholder/>
