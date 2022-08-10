@@ -117,19 +117,28 @@ fi
 
 if bt "$(ini_get curl_useragent)"; then
 	if [ -n "$(ini_get curl_useragent_string)" ]; then
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "cURL UserAgent")" "$(ini_get curl_useragent_string)"
 		grep -q user-agent "${HOME}/.curlrc" 2>/dev/null && \
 			sed -e '/user-agent/d' -i "${HOME}/.curlrc"
 
-		echo "user-agent = \"$(ini_get curl_useragent_string)\"" >> "${HOME}/.curlrc"
+		dbg_log echo "user-agent = \"$(ini_get curl_useragent_string)\"" >> "${HOME}/.curlrc"
 	fi
 fi
 
 if bt "$(ini_get wget_useragent)"; then
 	if [ -n "$(ini_get wget_useragent_string)" ]; then
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "wget UserAgent")" "$(ini_get wget_useragent_string)"
 		grep -q user_agent "${HOME}/.wgetrc" 2>/dev/null && \
 			sed -e '/user_agent/d' -i "${HOME}/.wgetrc"
 
-		echo "user_agent = \"$(ini_get wget_useragent_string)\"" >> "${HOME}/.wgetrc"
+		dbg_log echo "user_agent = \"$(ini_get wget_useragent_string)\"" >> "${HOME}/.wgetrc"
+	fi
+fi
+
+if bt "$(ini_get less_options)"; then
+	if [ -n "$(ini_get less_options_string)" ]; then
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "less pager options")" "$(ini_get less_options_string)"
+		dbg_log export LESS="$(ini_get less_options_string)"
 	fi
 fi
 
