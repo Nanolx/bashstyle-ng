@@ -53,11 +53,12 @@ class IconBook(object):
         notebook.set_current_page(0)
 
         main_label = gtkbuilder.get_object("main.label")
+        main_label.set_visible(0)
 
         def back_clicked(data):
             notebook.set_current_page(0)
             back.set_visible(0)
-            main_label.set_text(_("Choose a Category:"))
+            main_label.set_visible(0)
 
         back = gtkbuilder.get_object("back")
         back.connect("clicked", back_clicked)
@@ -81,6 +82,7 @@ class IconBook(object):
             else:
                 notebook.set_current_page(dicts.notebook_pages[model[item][1]])
                 back.set_visible(1)
+                main_label.set_visible(1)
                 main_label.set_text(_("Category: ") + _(model[item][1]))
 
         iconview.connect("item-activated", iconview_activated)

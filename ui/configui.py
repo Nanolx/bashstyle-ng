@@ -122,11 +122,9 @@ class StartupUI(object):
 			def setBashStyle(data, atad):
 				config.EnableBashStyle(True)
 				notebook.set_current_page(0)
-				main_label.set_text(_("Choose a Category:"))
 
 			def abortBashStyle(data, atad):
 				notebook.set_current_page(0)
-				main_label.set_text(_("Choose a Category:"))
 
 			WidgetHandler = widgethandler.WidgetHandler(self.config, self.userdefault, self.factorydefault)
 			WidgetHandler.InitWidget("startup.enable", setBashStyle, None, "button", None)
@@ -134,6 +132,3 @@ class StartupUI(object):
 
 			notebook = gtkbuilder.get_object("notebook")
 			notebook.set_current_page(13)
-
-			main_label = gtkbuilder.get_object("main.label")
-			main_label.set_text(_("Category: ") + _("BashStyle-NG StartUp"))
