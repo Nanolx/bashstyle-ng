@@ -93,7 +93,7 @@ else
 			esac
 
 			mv "${BSNG_TMP_HISTFILE}" "${HISTFILE}" &>/dev/null
+			builtin history -r
 		fi
-		builtin history -r
 	}
 fi
