@@ -16,6 +16,17 @@ dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "colored manpa
 # must be available, no need for an explicit check
 export PAGER="less"
 
+# background colors
+lbblack="30m"
+lbred="41m"
+lbgreen="42m"
+lbyellow="43m"
+lbblue="44m"
+lbmagenta="45m"
+lbcyan="46m"
+lbgrey="47m"
+lbwhite="107m"
+
 # foreground colors
 lfblack="30m"
 lfred="31m"
@@ -26,6 +37,13 @@ lfmagenta="35m"
 lfcyan="36m"
 lfgrey="37m"
 lfwhite="97m"
+
+if bt "$(ini_get dark_terminal)"; then
+	lfblack=${lfwhite}
+	lbblack=${lbwhite}
+else	lfwhite=${lfblack}
+	lbwhite=${lbblack}
+fi
 
 if [[ ${TERM} != *xterm*color* ]]; then
 	lfcoldblue=${lfblue}
@@ -55,24 +73,6 @@ else
 	lfcream="38;5;218m"
 	lforange="38;5;202m"
 	lfsilver="38;5;245m"
-fi
-
-# background colors
-lbblack="30m"
-lbred="41m"
-lbgreen="42m"
-lbyellow="43m"
-lbblue="44m"
-lbmagenta="45m"
-lbcyan="46m"
-lbgrey="47m"
-lbwhite="107m"
-
-if bt "$(ini_get dark_terminal)"; then
-	lfblack=${lfwhite}
-	lbblack=${lbwhite}
-else	lfwhite=${lfblack}
-	lbwhite=${lbblack}
 fi
 
 # standout-mode
