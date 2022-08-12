@@ -24,11 +24,13 @@ Each release lists incompatible changes at its top.
 @item New Features
 
 @itemize @minus
-@item Add keybinding new in Bash 5.2 @code{spell-correct-word} to keybindings setter.
+@item Add new @code{spell-correct-word} keybinding from Bash 5.2 to keybindings setter.
 
-@item Add keybinding new in Readline 8.2 @code{fetch-history} to keybindings setter.
+@item Add new keybinding @code{fetch-history} from Readline 8.2  to keybindings setter.
 
-@item Add shopt new in Bash 5.2 @code{globskipdots} to shopt settings.
+@item Add new shopt @code{globskipdots} from Bash 5.2 to settings.
+
+@item Add @code{r}, @code{reverse} option to @code{batchrename} for creating reverse filenames.
 
 @item Add @code{functions} from @code{commandlinefu.com}, a function showing functions and where they have been defined, by user @code{goelztec}.
 
@@ -38,13 +40,11 @@ Each release lists incompatible changes at its top.
 @item Misc. Changes
 @itemize @minus
 
-@item Add @code{r}, @code{reverse} option to @code{batchrename} for creating reverse filenames.
+@item Minor improvements to @code{bashstyle_history-sync}, e. g. syncing from within embedded terminals like in @code{Geany} works now.
 
-@item Various (minor) UI improvments.
+@item Various (minor) UI improvments and remove deprecated properties from Glade UI definition.
 
 @item Properly log changing user agent strings for @code{cURL} and @code{wget} in @code{HOME/.bashstyle-ng.log}.
-
-@item Remove deprecated properties from Glade UI definition.
 
 @item Properly unset several more variables only used during initiliazation.
 

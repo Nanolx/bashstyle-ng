@@ -21,13 +21,16 @@ between.  For more detailed information see the git log.
 
    * New Features
 
-        - Add keybinding new in Bash 5.2 'spell-correct-word' to
+        - Add new 'spell-correct-word' keybinding from Bash 5.2 to
           keybindings setter.
 
-        - Add keybinding new in Readline 8.2 'fetch-history' to
+        - Add new keybinding 'fetch-history' from Readline 8.2 to
           keybindings setter.
 
-        - Add shopt new in Bash 5.2 'globskipdots' to shopt settings.
+        - Add new shopt 'globskipdots' from Bash 5.2 to settings.
+
+        - Add 'r', 'reverse' option to 'batchrename' for creating
+          reverse filenames.
 
         - Add 'functions' from 'commandlinefu.com', a function showing
           functions and where they have been defined, by user
@@ -39,18 +42,15 @@ between.  For more detailed information see the git log.
 
    * Misc.  Changes
 
-        - Add 'r', 'reverse' option to 'batchrename' for creating
-          reverse filenames.
+        - Minor improvements to 'bashstyle_history-sync', e.  g.
+          syncing from within embedded terminals like in 'Geany' works
+          now.
 
-        - Improve user interface for changing user agent strings for
-          'cURL' and 'wget'.
-
-        - Improve user interface for setting 'vim' ruler.
+        - Various (minor) UI improvments and remove deprecated
+          properties from Glade UI definition.
 
         - Properly log changing user agent strings for 'cURL' and 'wget'
           in 'HOME/.bashstyle-ng.log'.
-
-        - Remove deprecated properties from Glade UI definition.
 
         - Properly unset several more variables only used during
           initiliazation.
