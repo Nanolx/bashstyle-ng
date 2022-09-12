@@ -41,7 +41,7 @@ OLD_USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
 USER_DEFAULTS = (os.getenv('HOME') + '/.bashstyle-ng.ini')
 USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bashstyle-ng.ini.save')
 
-app_ini_version = 41
+app_ini_version = 43
 
 class Config(object):
 	def InitConfig(self):

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.14"/>
   <object class="GtkAdjustment" id="advanced.adjustment.history_size">
@@ -1742,21 +1742,6 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkCheckButton" id="grep_color">
-                            <property name="label" translatable="yes">Colored grep output</property>
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="receives-default">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="draw-indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">6</property>
-                            <property name="height">2</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkComboBox" id="color_ps3">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
@@ -2455,35 +2440,6 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkComboBox" id="grep_colour">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="model">style.liststore.grep_colour</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="style.cellrenderer.grep_colour"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">7</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="style.label.grep_colour">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Choose grep color</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">6</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkCheckButton" id="colorshell_reset">
                             <property name="label" translatable="yes">Normal text color for output</property>
                             <property name="visible">True</property>
@@ -2733,6 +2689,18 @@
                             <property name="left-attach">2</property>
                             <property name="top-attach">38</property>
                           </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <placeholder/>
@@ -3016,7 +2984,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <!-- n-columns=3 n-rows=47 -->
+                      <!-- n-columns=3 n-rows=50 -->
                       <object class="GtkGrid" id="advanced.grid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -4123,6 +4091,65 @@
                             <property name="top-attach">43</property>
                             <property name="width">2</property>
                           </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="separator31">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-top">4</property>
+                            <property name="margin-bottom">4</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">47</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="advanced.label.bat3">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Grep</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">48</property>
+                            <property name="height">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="grep_options">
+                            <property name="label" translatable="yes">Set options for Grep pager</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="draw-indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">48</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="grep_options_string">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="invisible-char">●</property>
+                            <property name="primary-icon-name">gtk-revert-to-saved</property>
+                            <property name="secondary-icon-name">gtk-delete</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">49</property>
+                            <property name="width">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                         <child>
                           <placeholder/>
@@ -9440,235 +9467,536 @@ assuming /usr was the chosen install prefix. </property>
               </packing>
             </child>
             <child>
-              <!-- n-columns=3 n-rows=8 -->
-              <object class="GtkGrid" id="gcc_colors.grid">
+              <object class="GtkScrolledWindow" id="gcc_grep.scrolledwindow">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="row-spacing">3</property>
-                <property name="column-spacing">15</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
                 <child>
-                  <object class="GtkSeparator" id="gcc_colors.separator">
+                  <object class="GtkViewport" id="gcc_grep_viewport">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-top">6</property>
-                    <property name="margin-bottom">6</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">1</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSwitch" id="gcc_colors_enable">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="halign">start</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="gcc_colors_enable.label">
-                    <property name="width-request">255</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Enable GCC Colors</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">GCC Colors</property>
-                    <property name="angle">90</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left-attach">0</property>
-                    <property name="top-attach">0</property>
-                    <property name="height">8</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="gcc_colors_error_label">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Color for GCC Errors</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="gcc_colors_warn_label">
-                    <property name="width-request">255</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Color for GCC Warnings</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="gcc_colors_note_label">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Color for GCC Notes</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="gcc_colors_caret_label">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Color for GCC Carets</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="gcc_colors_locus">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Color for GCC Locus</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">6</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="gcc_colors_quote_label">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Color for GCC Quotes</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">6</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="gcc_color_error">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="model">gcc_color_store</property>
                     <child>
-                      <object class="GtkCellRendererText" id="gcc_color_renderer_error"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
+                      <!-- n-columns=3 n-rows=19 -->
+                      <object class="GtkGrid" id="gcc_grep.grid">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="row-spacing">3</property>
+                        <property name="column-spacing">15</property>
+                        <child>
+                          <object class="GtkSeparator" id="gcc_colors.separator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-top">6</property>
+                            <property name="margin-bottom">6</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">1</property>
+                            <property name="width">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="gcc_colors_enable">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="halign">start</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="gcc_colors_enable.label">
+                            <property name="width-request">255</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Enable GCC Colors</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">GCC Colors</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">0</property>
+                            <property name="height">8</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="gcc_colors_error_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for GCC Errors</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="gcc_colors_warn_label">
+                            <property name="width-request">255</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for GCC Warnings</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="gcc_colors_note_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for GCC Notes</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="gcc_colors_caret_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for GCC Carets</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="gcc_colors_locus">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for GCC Locus</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">6</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="gcc_colors_quote_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for GCC Quotes</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">6</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="gcc_color_error">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="gcc_color_renderer_error"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="gcc_color_warn">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="gcc_coloror_renderer_warn"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="gcc_color_notes">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="gcc_color_renderer_notes"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="gcc_color_caret">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="gcc_color_renderer_caret"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="gcc_color_locus">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="gcc_color_renderer_locus"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">7</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="gcc_color_quote">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="gcc_color_renderer_quote"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">7</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_enable">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Enable Grep Colors</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">9</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="grep_colors_enable">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="halign">start</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">9</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="grep_colors.separator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-top">6</property>
+                            <property name="margin-bottom">6</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">8</property>
+                            <property name="width">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator" id="grep_colors.separator1">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-top">6</property>
+                            <property name="margin-bottom">6</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">10</property>
+                            <property name="width">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_ms">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for Grep selected matches</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">11</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_mc">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for Grep context matches</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">11</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_sl">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for Grep selected lines</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_cx">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for Grep context lines</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_fn">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for Grep file names</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">15</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_ln">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for Grep line numbers</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">15</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_bn">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for Grep byte offset</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">17</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="grep_colors_label_se">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Color for Grep separator</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">17</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Grep Colors</property>
+                            <property name="angle">90</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">9</property>
+                            <property name="height">10</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="grep_color_ms">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="grep_color_renderer_ms"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="grep_color_mc">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="grep_color_renderer_mc"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">12</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="grep_color_sl">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="grep_color_renderer_sl"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">14</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="grep_color_cx">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="grep_color_renderer_cx"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">14</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="grep_color_fn">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="grep_color_renderer_fn"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">16</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="grep_color_ln">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="grep_color_renderer_ln"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">16</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="grep_color_bn">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="grep_color_renderer_bn"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">18</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="grep_color_se">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="model">gcc_color_store</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="grep_color_renderer_se"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">18</property>
+                          </packing>
+                        </child>
+                      </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="gcc_color_warn">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="model">gcc_color_store</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="gcc_coloror_renderer_warn"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="gcc_color_notes">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="model">gcc_color_store</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="gcc_color_renderer_notes"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="gcc_color_caret">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="model">gcc_color_store</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="gcc_color_renderer_caret"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="gcc_color_locus">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="model">gcc_color_store</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="gcc_color_renderer_locus"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">7</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="gcc_color_quote">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="model">gcc_color_store</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="gcc_color_renderer_quote"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left-attach">2</property>
-                    <property name="top-attach">7</property>
-                  </packing>
                 </child>
               </object>
               <packing>

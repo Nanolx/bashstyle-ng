@@ -54,31 +54,6 @@ less_background_colors = {
    8: "$lbwhite",
 }
 
-grep_colors = {
-   0: "01;38;5;0",
-   1: "01;38;5;1",
-   2: "01;38;5;2",
-   3: "01;38;5;3",
-   4: "01;38;5;4",
-   5: "01;38;5;5",
-   6: "01;38;5;6",
-   7: "01;38;5;7",
-   8: "01;38;5;97",
-   9: "01;38;5;33",
-   10: "01;38;5;111",
-   11: "01;38;5;45",
-   12: "01;38;5;60",
-   13: "01;38;5;42",
-   14: "01;38;5;637",
-   15: "01;38;5;684",
-   16: "01;38;5;761",
-   17: "01;38;5;690",
-   18: "01;38;5;714",
-   19: "01;38;5;604",
-   20: "01;38;5;213",
-   21: "01;38;5;5344",
-}
-
 colors = {
     0: "$black",
     1: "$red",
@@ -222,6 +197,20 @@ gcc_colors = {
     8: "01",
 }
 
+# Grep Colors
+
+grep_colors = {
+    0: "37",
+    1: "30",
+    2: "31",
+    3: "34",
+    4: "32",
+    5: "33",
+    6: "35",
+    7: "36",
+    8: "",
+}
+
 # Keybindings
 
 keybindings = {
@@ -289,7 +278,7 @@ iconview_labels = {
     "bashstyle-ng-config": _("Configuration"),
     "bashstyle-ng-doc": _("Documentation"),
     "bashstyle-ng-man": _("Manpage Colors"),
-    "bashstyle-ng-gcc": _("GCC Colors"),
+    "bashstyle-ng-gcc": _("GCC & Grep Colors"),
     "bashstyle-ng-shell": _("Start Terminal"),
 }
 
@@ -309,7 +298,7 @@ notebook_pages = {
     _("Keybindings"): 11,
     _("BashStyle-NG StartUp"): 13,
     _("Configuration"): 14,
-    _("GCC Colors"): 16,
+    _("GCC & Grep Colors"): 16,
     _("Documentation"): 0,
     _("Start Terminal"): 0,
 }

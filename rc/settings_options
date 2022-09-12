@@ -55,19 +55,45 @@ if bt "$(ini_get restore_directory)"; then
 	fi
 fi
 
-if bt "$(ini_get colored_grep)" && bt "$(ini_get enable_colors)"; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "On")"
-	alias grep="grep --color=auto"
-	GREP_COLOR="$(ini_get grep_color);"
+if bt "$(ini_get grep_options)"; then
+	if [ -n "$(ini_get grep_options_string)" ]; then
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" grep "$(eval_gettext "Grep options")" "$(ini_get grep_options_string)"
+		grep_opts="$(ini_get grep_options_string)"
+	fi
+fi
 
-	# make black (01;38;5;0) white on dark terminal
-	# make white (01;38;5;97) black on bright terminal
-	[[ $(bt "$(ini_get dark_terminal)") && ${GREP_COLOR} == "01;38;5;0" ]] && GREP_COLOR="01;38;5;97"
-	[[ $(bf "$(ini_get dark_terminal)") && ${GREP_COLOR} == "01;38;5;97" ]] && GREP_COLOR="01;38;5;0"
+if bt "$(ini_get use_grep_colors)" && bt "$(ini_get enable_colors)"; then
+	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "On")"
+	grep_opts_color="--color=auto"
+
+	case $(ini_get color_style) in
+		bright ) style="01" ;;
+		normal ) style="0" ;;
+		inverted ) style="7" ;;
+		dimmed ) style="02" ;;
+		underlined ) style="04" ;;
+	esac
+
+	grep_ms=$(ini_get grep_color_ms)
+	grep_mc=$(ini_get grep_color_mc)
+	grep_sl=$(ini_get grep_color_sl)
+	grep_cx=$(ini_get grep_color_cx)
+	grep_fn=$(ini_get grep_color_fn)
+	grep_ln=$(ini_get grep_color_ln)
+	grep_bn=$(ini_get grep_color_bn)
+	grep_se=$(ini_get grep_color_se)
+
+	export GREP_COLORS="ms=${style};${grep_ms}:mc=${style};${grep_mc}:\
+sl=${style};${grep_sl}:cx=${style};${grep_cx}:fn=${style};${grep_fn}:\
+ln=${style};${grep_ln}:bn=${style};${grep_bn}:se=${style};${grep_se}"
+
+	unset style grep_ms grep_mc grep_sl grep_cx grep_fn grep_ln grep_bn grep_se
 
 else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "Off")"
 	alias grep="grep --color=no"
 fi
+
+alias grep="grep ${grep_opts} ${grep_opts_color}"
 
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "Options")"
 dd_opts=""
@@ -117,7 +143,7 @@ fi
 
 if bt "$(ini_get curl_useragent)"; then
 	if [ -n "$(ini_get curl_useragent_string)" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "cURL UserAgent")" "$(ini_get curl_useragent_string)"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "cURL UserAgent")" "$(ini_get curl_useragent_string)"
 		grep -q user-agent "${HOME}/.curlrc" 2>/dev/null && \
 			sed -e '/user-agent/d' -i "${HOME}/.curlrc"
 
@@ -127,7 +153,7 @@ fi
 
 if bt "$(ini_get wget_useragent)"; then
 	if [ -n "$(ini_get wget_useragent_string)" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "wget UserAgent")" "$(ini_get wget_useragent_string)"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "wget UserAgent")" "$(ini_get wget_useragent_string)"
 		grep -q user_agent "${HOME}/.wgetrc" 2>/dev/null && \
 			sed -e '/user_agent/d' -i "${HOME}/.wgetrc"
 
@@ -137,7 +163,7 @@ fi
 
 if bt "$(ini_get less_options)"; then
 	if [ -n "$(ini_get less_options_string)" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "less pager options")" "$(ini_get less_options_string)"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "less pager options")" "$(ini_get less_options_string)"
 		dbg_log export LESS="$(ini_get less_options_string)"
 	fi
 fi

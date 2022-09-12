@@ -61,11 +61,9 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)
 		WidgetHandler.InitWidget("dark_terminal", "Style", "dark_terminal", "bool", None)
 		WidgetHandler.InitWidget("ls_color", "Style", "colored_ls", "bool", None)
-		WidgetHandler.InitWidget("grep_color", "Style", "colored_grep", "bool", None)
 		WidgetHandler.InitWidget("random_style", "Style", "random_style", "bool", None)
 		WidgetHandler.InitWidget("prompt_style", "Style", "prompt_style", "combo", dicts.prompt_styles)
 		WidgetHandler.InitWidget("color_style", "Style", "color_style", "combo", dicts.color_styles)
-		WidgetHandler.InitWidget("grep_colour", "Style", "grep_color", "combo", dicts.grep_colors)
 		WidgetHandler.InitWidget("colorshell", "Style", "colorshell", "bool", None)
 		WidgetHandler.InitWidget("colorshell_reset", "Style", "colorshell_reset", "bool", None)
 		WidgetHandler.InitWidget("color_date", "Style", "color_date", "combo", dicts.colors)
@@ -170,6 +168,8 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("wget_useragent_string", "Advanced", "wget_useragent_string", "text", None)
 		WidgetHandler.InitWidget("less_options", "Advanced", "less_options", "bool", None)
 		WidgetHandler.InitWidget("less_options_string", "Advanced", "less_options_string", "text", None)
+		WidgetHandler.InitWidget("grep_options", "Advanced", "grep_options", "bool", None)
+		WidgetHandler.InitWidget("grep_options_string", "Advanced", "grep_options_string", "text", None)
 
 		####################### Readline stuff #############################################
 		WidgetHandler.InitWidget("use_readline", "Readline", "use_readlinecfg", "switch", None)
@@ -332,6 +332,17 @@ class BashStyleNG(object):
 		WidgetHandler.InitWidget("gcc_color_caret", "GCC", "gcc_color_caret", "combo", dicts.gcc_colors)
 		WidgetHandler.InitWidget("gcc_color_locus", "GCC", "gcc_color_locus", "combo", dicts.gcc_colors)
 		WidgetHandler.InitWidget("gcc_color_quote", "GCC", "gcc_color_quote", "combo", dicts.gcc_colors)
+
+		####################### Grep Colors ############################################
+		WidgetHandler.InitWidget("grep_colors_enable", "GREP", "use_grep_colors", "switch", None)
+		WidgetHandler.InitWidget("grep_color_ms", "GREP", "grep_color_ms", "combo", dicts.grep_colors)
+		WidgetHandler.InitWidget("grep_color_mc", "GREP", "grep_color_mc", "combo", dicts.grep_colors)
+		WidgetHandler.InitWidget("grep_color_sl", "GREP", "grep_color_sl", "combo", dicts.grep_colors)
+		WidgetHandler.InitWidget("grep_color_cx", "GREP", "grep_color_cx", "combo", dicts.grep_colors)
+		WidgetHandler.InitWidget("grep_color_fn", "GREP", "grep_color_fn", "combo", dicts.grep_colors)
+		WidgetHandler.InitWidget("grep_color_ln", "GREP", "grep_color_ln", "combo", dicts.grep_colors)
+		WidgetHandler.InitWidget("grep_color_bn", "GREP", "grep_color_bn", "combo", dicts.grep_colors)
+		WidgetHandler.InitWidget("grep_color_se", "GREP", "grep_color_se", "combo", dicts.grep_colors)
 
 		######################## Keybindings ###############################################
 		keytree = keybindings.KeyTree(config.cfo, config.udc, config.fdc)
