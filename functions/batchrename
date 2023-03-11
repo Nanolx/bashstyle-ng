@@ -12,6 +12,7 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 REVERSE_NAME=0
+SORT_MODE=DEFAULT
 
 fill_zeros () {
 	current_len=${#1}
@@ -41,7 +42,23 @@ rename_files () {
 	OLD_IFS="${IFS}"
 	export IFS=$'\n'
 
-	files=($(find "${directory}" -maxdepth 1 -type f))
+	case ${SORT_MODE} in
+		DEFAULT )
+			files=($(find "${directory}" -maxdepth 1 -type f))
+		;;
+		DATE_ASCENDING )
+			files=($(find "${directory}" -maxdepth 1 -type f -printf '%T@ %p\n' | sort -k1 -n | awk '{print $2}'))
+		;;
+		DATE_DESCENDING )
+			files=($(find "${directory}" -maxdepth 1 -type f -printf '%T@ %p\n' | sort -k1 -r -n | awk '{print $2}'))
+		;;
+		NAME_ASCENDING )
+			files=($(find "${directory}" -maxdepth 1 -type f | sort -k1 -d))
+		;;
+		NAME_DESCENDING )
+			files=($(find "${directory}" -maxdepth 1 -type f | sort -k1 -r -d))
+		;;
+	esac
 
 	case ${reverse} in
 		1 )
@@ -77,6 +94,11 @@ _help () {
 		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
 		-o "$(eval_gettext "v:|verbose output")"\
 		-o "$(eval_gettext "r:|reverse filename to NNN-NAME.SUFFIX scheme")"\
+		-o "$(eval_gettext "sort:MODE|sort files by MODE, which is one of")"\
+		-o "$(eval_gettext "	d+:|sort files oldest to newest")"\
+		-o "$(eval_gettext "	d-:|sort files newest to oldest")"\
+		-o "$(eval_gettext "	n+:|sort files A to Z")"\
+		-o "$(eval_gettext "	n-:|sort files Z to A")"\
 		-o "$(eval_gettext "directory:/home/test/mypictures|directory containing files")"\
 		-o "$(eval_gettext "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme")"
 }
@@ -84,16 +106,19 @@ _help () {
 if [[ $# -gt 2 ]]; then
 	while [[ $# -gt 2 ]]; do
 		case ${1} in
-			v | verbose )
-				MV_OPT="-v"
-				shift
-			;;
-
-			r | reverse )
-				REVERSE_NAME=1
+			v | verbose )	MV_OPT="-v" ;;
+			r | reverse )	REVERSE_NAME=1 ;;
+			sort )
+				case ${2} in
+					d+ ) SORT_MODE=DATE_ASCENDING ;;
+					d- ) SORT_MODE=DATE_DESCENDING ;;
+					n+ ) SORT_MODE=NAME_ASCENDING ;;
+					n- ) SORT_MODE=NAME_DESCENDING ;;
+				esac
 				shift
 			;;
 		esac
+		shift
 	done
 fi
 
@@ -113,4 +138,3 @@ if [[ $# -eq 2 ]]; then
 else
 	_help
 fi
-
