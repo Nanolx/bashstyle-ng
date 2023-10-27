@@ -6,478 +6,482 @@ between.  For more detailed information see the git log.
 
    Each release lists incompatible changes at its top.
 
-10.9 (in-dev) "Splatsville"
+10.9 (in-dev) “Splatsville“
 ===========================
 
-   * New Features
+   • Bug Fixes
 
-        - Add ability to add manual options for 'grep'.
+        − #281: fix ‘batchrename’ for file names with spaces in
+          ‘d+’/‘d-’ sort modes
+   • New Features
 
-        - Remove utilization of 'GREP_COLOR' and use more versatible
-          'GREP_COLORS' envvar, with eight separate color settings.
+        − Add ability to add manual options for ‘grep’.
 
-        - Add ability to choose sort order for files for 'batchrename'.
+        − Remove utilization of ‘GREP_COLOR’ and use more versatible
+          ‘GREP_COLORS’ envvar, with eight separate color settings.
 
-10.8 (20220812) "Aionos"
+        − Add ability to choose sort order for files for ‘batchrename’.
+
+10.8 (20220812) “Aionos“
 ========================
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #277 'colors': the color 'brown' could not be used properly.
+        − #277 ‘colors’: the color ‘brown’ could not be used properly.
 
-        - #278 'manpage colors': fix definition of manpage colors for
+        − #278 ‘manpage colors’: fix definition of manpage colors for
           terminals with support for more than 8 colors.
 
-        - #279 'manpage colors': swap 'black' and 'white' on dark
-          terminals, before defining 'stand out' color.
+        − #279 ‘manpage colors’: swap ‘black’ and ‘white’ on dark
+          terminals, before defining ‘stand out’ color.
 
-        - #280 'bashstyle_history_sync': syncing from within embedded
-          terminals (like in 'Geany') works now.
+        − #280 ‘bashstyle_history_sync’: syncing from within embedded
+          terminals (like in ‘Geany’) works now.
 
-   * New Features
+   • New Features
 
-        - Add new 'spell-correct-word' keybinding from Bash 5.2 to
+        − Add new ‘spell-correct-word’ keybinding from Bash 5.2 to
           keybindings setter.
 
-        - Add new keybinding 'fetch-history' from Readline 8.2 to
+        − Add new keybinding ‘fetch-history’ from Readline 8.2 to
           keybindings setter.
 
-        - Add new shopt 'globskipdots' from Bash 5.2 to settings.
+        − Add new shopt ‘globskipdots’ from Bash 5.2 to settings.
 
-        - Add 'r', 'reverse' option to 'batchrename' for creating
+        − Add ‘r’, ‘reverse’ option to ‘batchrename’ for creating
           reverse filenames.
 
-        - Add 'functions' from 'commandlinefu.com', a function showing
+        − Add ‘functions’ from ‘commandlinefu.com’, a function showing
           functions and where they have been defined, by user
-          'goelztec'.
+          ‘goelztec’.
 
-        - Add option to change default settings for 'less' pager (may
-          conflict with less as 'git' pager when also using 'colored
-          manpages').
+        − Add option to change default settings for ‘less’ pager (may
+          conflict with less as ‘git’ pager when also using ‘colored
+          manpages’).
 
-   * Misc.  Changes
+   • Misc.  Changes
 
-        - Minor improvements to 'bashstyle_history_sync'.
+        − Minor improvements to ‘bashstyle_history_sync’.
 
-        - Various (minor) UI improvments and remove deprecated
+        − Various (minor) UI improvments and remove deprecated
           properties from Glade UI definition.
 
-        - Properly log changing user agent strings for 'cURL' and 'wget'
-          in 'HOME/.bashstyle-ng.log'.
+        − Properly log changing user agent strings for ‘cURL’ and ‘wget’
+          in ‘HOME/.bashstyle-ng.log’.
 
-        - Properly unset several more variables only used during
+        − Properly unset several more variables only used during
           initiliazation.
 
-        - Update german translation.
+        − Update german translation.
 
-10.7.4 (20220505) "Stargazer"
+10.7.4 (20220505) “Stargazer“
 =============================
 
-   * 15th Anniversary
+   • 15th Anniversary
 
-        - The very first release of 'BashStyle' was released on 1st May
+        − The very first release of ‘BashStyle’ was released on 1st May
           2007, so version 10.7.4 marks the 15th Anniversary version.  I
           never thought the project would live on a long time like that.
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #274 'sufffix': fix wrongly named files, when mime-type leads
+        − #274 ‘sufffix’: fix wrongly named files, when mime-type leads
           to non-exact match.
 
-        - #275 'systemkit': adopt 'freeram', 'usedram', 'totalram',
-          'usedram%', 'freeram%', to 'top' changes.
+        − #275 ‘systemkit’: adopt ‘freeram’, ‘usedram’, ‘totalram’,
+          ‘usedram%’, ‘freeram%’, to ‘top’ changes.
 
-        - #276 'reload_bash': fix resetting 'ERR' trap.
+        − #276 ‘reload_bash’: fix resetting ‘ERR’ trap.
 
-   * Misc.  Changes
+   • Misc.  Changes
 
-        - 'configure': add '/usr/share/gir-1.0' to gir paths to look
+        − ‘configure’: add ‘/usr/share/gir-1.0’ to gir paths to look
           for.
 
-        - 'systemkit': ensure output from cpuload is always 3 digits,
+        − ‘systemkit’: ensure output from cpuload is always 3 digits,
           ram usage always 5 digits (filled with leading zeros; for
           inclusion in prompts).
 
-        - 'equinox': adopt to 'systemkit' changes.
+        − ‘equinox’: adopt to ‘systemkit’ changes.
 
-        - 'HISTFILE_TMP' envvar used by customized 'bashstyle-ng'
-          history functions renamed to 'BSNG_TMP_HISTFILE' to match
-          other 'bashstyle-ng' envvars.  Also guard for 'reload_bash'.
+        − ‘HISTFILE_TMP’ envvar used by customized ‘bashstyle-ng’
+          history functions renamed to ‘BSNG_TMP_HISTFILE’ to match
+          other ‘bashstyle-ng’ envvars.  Also guard for ‘reload_bash’.
 
-        - Remove year from copyright notices in all files, except
+        − Remove year from copyright notices in all files, except
           documentation, also E-Mail.
 
-        - Let configure substitute 'BSNG_YEAR' envvar from '.settings'.
+        − Let configure substitute ‘BSNG_YEAR’ envvar from ‘.settings’.
 
-10.7.3 (20210319) "New Horizons"
+10.7.3 (20210319) “New Horizons“
 ================================
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #271 'bashstyle-rc': prevent error messages on first start
+        − #271 ‘bashstyle-rc’: prevent error messages on first start
 
-        - #272 'configure': make python version check more robust
+        − #272 ‘configure’: make python version check more robust
 
-        - #273 'gettext': due a bug in 'eval_gettext' strings starting
-          with dashes lead to issues in 'camelcase', 'random' and
-          'randomfile' functions, so use old school '$'...'' syntax as
+        − #273 ‘gettext’: due a bug in ‘eval_gettext’ strings starting
+          with dashes lead to issues in ‘camelcase’, ‘random’ and
+          ‘randomfile’ functions, so use old school ‘$'...'’ syntax as
           quick fix.
 
-10.7.2 (20200830) "Klick Klack"
+10.7.2 (20200830) “Klick Klack“
 ===============================
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #268 'gitkit': fix 'cloneuser' command not working.
+        − #268 ‘gitkit’: fix ‘cloneuser’ command not working.
 
-        - #269 'history sync': fix terrible bug that could cause
+        − #269 ‘history sync’: fix terrible bug that could cause
           complete loss of history when many Bash instance are started
           at once and trying to access the history file.
 
-        - #270 'bashstyle_history': custom 'history -D' param now also
-          deletes single commands in history (eg: 'history -D geany'
-          previously only deleted 'geany some_file', but not 'geany',
+        − #270 ‘bashstyle_history’: custom ’history -D’ param now also
+          deletes single commands in history (eg: ‘history -D geany’
+          previously only deleted ‘geany some_file’, but not ‘geany’,
           now both will be deleted).
 
-   * New Features
+   • New Features
 
-        - 'colors': add possibility to set colors for GCC messages.
+        − ‘colors’: add possibility to set colors for GCC messages.
 
-        - 'gitkit': add 'listuser' and 'listorg' commands for listing
+        − ‘gitkit’: add ‘listuser’ and ‘listorg’ commands for listing
           repos from a GitHub user or GitHub organization.
 
-        - 'advanced': add possibility to set useragent string for
-          'cURL'.
+        − ‘advanced’: add possibility to set useragent string for
+          ‘cURL’.
 
-        - 'advanced': add possibility to set useragent string for
-          'wget'.
+        − ‘advanced’: add possibility to set useragent string for
+          ‘wget’.
 
-        - 'bashstyle_history': custom 'history -D' param now accepts
+        − ‘bashstyle_history’: custom ‘history -D’ param now accepts
           multi-word commands for deletion.
 
-        - 'bashstyle_history': new custom 'history -g' param to grep
+        − ‘bashstyle_history’: new custom ‘history -g’ param to grep
           history for simple pattern.
 
-        - 'bashstyle': add '-l'/'--log' action to view BashStyle-NG log
+        − ‘bashstyle’: add ‘-l’/‘--log’ action to view BashStyle-NG log
           file.
 
-   * Misc.  Changes
+   • Misc.  Changes
 
-        - Update german translation.
+        − Update german translation.
 
-10.7.1 (20191220) "Dragonyule"
+10.7.1 (20191220) “Dragonyule“
 ==============================
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #266 'lscd', 'treecd': fix error messages when cd-ing into
+        − #266 ‘lscd’, ‘treecd’: fix error messages when cd-ing into
           empty directory caused by gettext string evalutation.
 
-        - #267 'bat': on some distributions 'bat' is called 'batcat',
+        − #267 ‘bat’: on some distributions ‘bat’ is called ‘batcat’,
           support both.
 
-   * New Features
+   • New Features
 
-        - Allow to open the BashStyle-NG logfile
-          ('HOME/.bashstyle-ng.log') from UI (About > BashStyle-NG
+        − Allow to open the BashStyle-NG logfile
+          (‘HOME/.bashstyle-ng.log’) from UI (About > BashStyle-NG
           Logfile).
 
-   * Misc.  Changes
-        - Add package 'fd-find' to suggested packages in Debian
+   • Misc.  Changes
+        − Add package ‘fd-find’ to suggested packages in Debian
           GNU/Linux packaging scripts.
 
-10.7 (20190910) "Kaffee Filtrino"
+10.7 (20190910) “Kaffee Filtrino”
 =================================
 
-   * Important Information
+   • Important Information
 
-        - Starting with this release Python 3.0.0 or newer is required
+        − Starting with this release Python 3.0.0 or newer is required
           to run BashStyle-NG.
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #257 'GNU Nano' settings: fix setting UI colors.
+        − #257 ‘GNU Nano’ settings: fix setting UI colors.
 
-        - #258 'GNU Nano' settings: update possible settings for new
-          'GNU Nano' versions.
+        − #258 ‘GNU Nano’ settings: update possible settings for new
+          ‘GNU Nano’ versions.
 
-             x 'const' was renamed to 'constantshow'.
+             x ‘const’ was renamed to ‘constantshow’.
 
-             x 'poslog' was renamed to 'positionlog'.
+             x ‘poslog’ was renamed to ‘positionlog’.
 
-             x 'morespace' was replaced with 'emptyline'.
+             x ‘morespace’ was replaced with ‘emptyline’.
 
-             x 'rebindkeypad' was removed.
+             x ‘rebindkeypad’ was removed.
 
-        - #259 'ini handling': fix checking user settings being
+        − #259 ‘ini handling’: fix checking user settings being
           up-to-date on Bash startup.
 
-        - #260 'make': fix BashStyle-NG .desktop file, manpage and
-          'bashstyle-config-helper' not being uninstalled.
+        − #260 ‘make’: fix BashStyle-NG .desktop file, manpage and
+          ‘bashstyle-config-helper’ not being uninstalled.
 
-        - #261 'systemkit': fix 'systemkit dirsize' not working.
+        − #261 ‘systemkit’: fix ‘systemkit dirsize’ not working.
 
-        - #262 'systemkit': fix 'systemkit battery' not working with
-          recent 'acpi' versions.
+        − #262 ‘systemkit’: fix ‘systemkit battery’ not working with
+          recent ‘acpi’ versions.
 
-        - #263 'systemkit': fix 'systemkit internalip' not working with
-          recent 'ifconfig' versions.
+        − #263 ‘systemkit’: fix ‘systemkit internalip’ not working with
+          recent ‘ifconfig’ versions.
 
-        - #264 'ls color' settings: compat with some embedded terminals
+        − #264 ‘ls color’ settings: compat with some embedded terminals
           (like terminal in Geany IDE).
 
-        - #265 'manpage color' settings: compat with some embedded
+        − #265 ‘manpage color’ settings: compat with some embedded
           terminals (like terminal in Geany IDE).
 
-   * New Features
+   • New Features
 
-        - 'GNU Nano' settings: support for the following new settings
+        − ‘GNU Nano’ settings: support for the following new settings
           has been added:
 
-             x 'linenumbers': whether to show line numbers at start of
+             x ‘linenumbers’: whether to show line numbers at start of
                line.
 
-             x 'guidestripe': whether to draw a stripe at given position
+             x ‘guidestripe’: whether to draw a stripe at given position
                (0 = disabled) so help avoiding overlong lines.
 
-             x 'errorcolor': set color for error messages.
+             x ‘errorcolor’: set color for error messages.
 
-             x 'selectedcolor': set color for selected text.
+             x ‘selectedcolor’: set color for selected text.
 
-             x 'stripecolor': set color for the guidestripe.
+             x ‘stripecolor’: set color for the guidestripe.
 
-             x 'numbercolor': set color for numbers.
+             x ‘numbercolor’: set color for numbers.
 
-        - 'GNU Nano' settings: allow bright variants for foreground
+        − ‘GNU Nano’ settings: allow bright variants for foreground
           colors.
 
-        - 'GNU Nano' settings: change default value for 'nohelp' to
-          'False', so commands are shown unless user wants to hide them.
+        − ‘GNU Nano’ settings: change default value for ‘nohelp’ to
+          ‘False’, so commands are shown unless user wants to hide them.
 
-        - 'list' applet: call 'ls -A' instead of 'ls -a' if hidden files
+        − ‘list’ applet: call ‘ls -A’ instead of ‘ls -a’ if hidden files
           should be included.
 
-        - New Settings allowing to use 'bat' instead of 'cat', also
-          allow setting default theme for 'bat' and tab width.
+        − New Settings allowing to use ‘bat’ instead of ‘cat’, also
+          allow setting default theme for ‘bat’ and tab width.
 
-        - 'check' new flag 'P': check if a program exists, and print a
-          message if not, example 'check P [program-to-check]
-          [program-that-requests]'.
+        − ‘check’ new flag ‘P’: check if a program exists, and print a
+          message if not, example ‘check P [program-to-check]
+          [program-that-requests]’.
 
-   * Misc.  Changes
+   • Misc.  Changes
 
-        - Allow enabling/disabling BashStyle-NG from terminal via
-          'bashstyle --enable' or 'bashstyle --disable'.
+        − Allow enabling/disabling BashStyle-NG from terminal via
+          ‘bashstyle --enable’ or ‘bashstyle --disable’.
 
-        - Rename user configuration from 'HOME/.bs-ng.ini' to
-          'HOME/.bashstyle-ng.ini' (auto-migrate from old to new name).
+        − Rename user configuration from ‘HOME/.bs-ng.ini’ to
+          ‘HOME/.bashstyle-ng.ini’ (auto-migrate from old to new name).
 
-        - Rename vendor configuration from '/etc/bs-ng_vendor.ini' to
-          '/etc/bashstyle-ng_vendor.ini'.
+        − Rename vendor configuration from ‘/etc/bs-ng_vendor.ini’ to
+          ‘/etc/bashstyle-ng_vendor.ini’.
 
-        - Rename all icons from 'bs-ng-[ICONNAME].png' to
-          'bashstyle-ng-[ICONNAME].png'.
+        − Rename all icons from ‘bs-ng-[ICONNAME].png’ to
+          ‘bashstyle-ng-[ICONNAME].png’.
 
-        - Rename .desktop file from 'bs-ng.desktop' to
-          'bashstyle-ng.desktop'.
+        − Rename .desktop file from ‘bs-ng.desktop’ to
+          ‘bashstyle-ng.desktop’.
 
-        - Simplify 'gitkit cloneuser' / 'gitkit cloneorg', use 'wget' +
-          'awk' + 'xe' instead of 'curl' + 'ruby'.
+        − Simplify ‘gitkit cloneuser’ / ‘gitkit cloneorg’, use ‘wget’ +
+          ‘awk’ + ‘xe’ instead of ‘curl’ + ‘ruby’.
 
-        - Improved 'gitkit' function for remembering SSH password.
+        − Improved ‘gitkit’ function for remembering SSH password.
 
-        - Various internal improvements; Restructure resource files;
+        − Various internal improvements; Restructure resource files;
           Check for optional dependencies explicitely in all functions.
 
-        - Improve Debian packaging scripts.
+        − Improve Debian packaging scripts.
 
-        - Configure 4.5.0: various internal changes and improvements;
+        − Configure 4.5.0: various internal changes and improvements;
           complete list of checks.
 
-        - Make 2.0.0: various internal changes and improvements.
+        − Make 2.0.0: various internal changes and improvements.
 
-        - Made most included functions translatable.
+        − Made most included functions translatable.
 
-        - Use 'eval_gettext' for translating Bash Scripts intead of
-          outdated '$""' syntax.
+        − Use ‘eval_gettext’ for translating Bash Scripts intead of
+          outdated ‘$""’ syntax.
 
-        - Update german translation.
+        − Update german translation.
 
-10.6.1 "Aventine II"
+10.6.1 “Aventine II”
 ====================
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #256 'gitkit' applet: handle the case where 'TMPDIR' is unset.
+        − #256 ‘gitkit’ applet: handle the case where ‘TMPDIR’ is unset.
 
-   * Misc.  Changes
+   • Misc.  Changes
 
-        - 'check' function: check if 'dig' is installed before executing
-          'check m'.
+        − ‘check’ function: check if ‘dig’ is installed before executing
+          ‘check m’.
 
-10.6 "Aventine"
+10.6 “Aventine”
 ===============
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #253 color settings: compat with some embedded terminals (like
+        − #253 color settings: compat with some embedded terminals (like
           terminal in Geany IDE).
 
-        - #254 'basefile' function: fix 'noext' option.
+        − #254 ‘basefile’ function: fix ‘noext’ option.
 
-        - #255 'round' function: fix output not being visible in all
+        − #255 ‘round’ function: fix output not being visible in all
           cases.
 
-   * New Features
+   • New Features
 
-        - New applet 'check': perform various non-standard checks, used
-          like 'test'.
+        − New applet ‘check’: perform various non-standard checks, used
+          like ‘test’.
 
-             x 'n': check if arg is a valid number (int, float, hex,
-               octal), example: 'check n 4.4'.
+             x ‘n’: check if arg is a valid number (int, float, hex,
+               octal), example: ‘check n 4.4’.
 
-             x 'i': check if arg is a valid integer, example: 'check i
-               4'.
+             x ‘i’: check if arg is a valid integer, example: ‘check i
+               4’.
 
-             x 'f': check if arg is a valid float, example: 'check f
-               4,4' or 'check f 4.4'.
+             x ‘f’: check if arg is a valid float, example: ‘check f
+               4,4’ or ‘check f 4.4’.
 
-             x 'h': check if arg is a valid hex, example: 'check h
-               301DE8'.
+             x ‘h’: check if arg is a valid hex, example: ‘check h
+               301DE8’.
 
-             x 'o': check if arg is a valid octal, example 'check o 24'.
+             x ‘o’: check if arg is a valid octal, example ‘check o 24’.
 
-             x 'hc': check if arg is a valid hex color, example 'check
-               hc FFF' or 'check hc 000000', '#' may optionally lead.
+             x ‘hc’: check if arg is a valid hex color, example ‘check
+               hc FFF’ or ‘check hc 000000’, ‘#’ may optionally lead.
 
-             x 's': check if arg is a valid string, example 'check s
-               "How do you do?"'.
+             x ‘s’: check if arg is a valid string, example ‘check s
+               "How do you do?"’.
 
-             x 'p': check if arg is a special character, example 'check
-               p ?'.
+             x ‘p’: check if arg is a special character, example ‘check
+               p ?’.
 
-             x 'c': check if arg1 contains arg2, example 'check c
-               "Thanks, I'm fine." "I'm"' or 'check c 1423532 235'.
+             x ‘c’: check if arg1 contains arg2, example ‘check c
+               "Thanks, I'm fine." "I'm"’ or ‘check c 1423532 235’.
 
-             x 'sw': check if arg1 starts with arg2, example 'check sw
-               Hello H' or 'check sw 12412 124'.
+             x ‘sw’: check if arg1 starts with arg2, example ‘check sw
+               Hello H’ or ‘check sw 12412 124’.
 
-             x 'ew': check if arg1 ends with arg2, example 'check ew
-               Goodbye e' or 'check ew 1422412 2412'.
+             x ‘ew’: check if arg1 ends with arg2, example ‘check ew
+               Goodbye e’ or ‘check ew 1422412 2412’.
 
-             x 'b': check if arg is a valid boolean, example 'check b
-               $myvar'.  'check' recognizes the following as boolean
+             x ‘b’: check if arg is a valid boolean, example ‘check b
+               $myvar’.  ‘check’ recognizes the following as boolean
                value:
-                  + 'true', 'True', 'TRUE', '0'
+                  + ‘true’, ‘True’, ‘TRUE’, ‘0’
 
-                  + 'false', 'False', 'FALSE', '1'
+                  + ‘false’, ‘False’, ‘FALSE’, ‘1’
 
-             x 'bt': check if arg is valid boolean true, example 'check
-               bt $myvar'.
+             x ‘bt’: check if arg is valid boolean true, example ‘check
+               bt $myvar’.
 
-             x 'bf': check if arg is valid boolean false, example 'check
-               bf $myvar'.
+             x ‘bf’: check if arg is valid boolean false, example ‘check
+               bf $myvar’.
 
-             x 'm': check if arg is a valid mail address, example 'check
-               m "test@dom.tld"'.  'check' matches against a regex and
-               uses 'dig' to see if the domain is available, will
-               verbosely inform what's wrong (in case).
+             x ‘m’: check if arg is a valid mail address, example ‘check
+               m "test@dom.tld"’.  ‘check’ matches against a regex and
+               uses ‘dig’ to see if the domain is available, will
+               verbosely inform what’s wrong (in case).
 
-        - New switch '-z' for 'randomfile' append filename to command
-          without separating space, for example 'randomfile geeqie -r
-          File: -- $HOME/Pictures/*'.
+        − New switch ‘-z’ for ‘randomfile’ append filename to command
+          without separating space, for example ‘randomfile geeqie -r
+          File: -- $HOME/Pictures/*’.
 
-        - New features for 'gitkit' applet:
+        − New features for ‘gitkit’ applet:
 
-             x feature 'push': first push to upstream, then push tags
-               and at last push to all mirrors found in '.git_mirror'
+             x feature ‘push’: first push to upstream, then push tags
+               and at last push to all mirrors found in ‘.git_mirror’
                file.
 
-             x feature 'taga': add tag and push to remote, example:
-               'gitkit taga TAG [-m MESSAGE COMMITID]'.
+             x feature ‘taga’: add tag and push to remote, example:
+               ‘gitkit taga TAG [-m MESSAGE COMMITID]’.
 
-             x feature 'tagd': remove tag locally and remote, example:
-               'gitkit tagd TAG'.
+             x feature ‘tagd’: remove tag locally and remote, example:
+               ‘gitkit tagd TAG’.
 
-             x feature 'tagr': rename a tag (technically removes tag and
+             x feature ‘tagr’: rename a tag (technically removes tag and
                readds it with new name) locally and remote, example:
-               'gitkit tagr OLDNAME NEWNAME', preserves first line of
+               ‘gitkit tagr OLDNAME NEWNAME’, preserves first line of
                tag annotation and commit pointed to.
 
-             x feature 'tagc': make a tag point to a different commit
+             x feature ‘tagc’: make a tag point to a different commit
                (technically removes tag and readss it pointing to new
-               commit) locally and remote, example: 'gitkit tagc TAG
-               COMMITID', preserves first line of tag annotation.
+               commit) locally and remote, example: ‘gitkit tagc TAG
+               COMMITID’, preserves first line of tag annotation.
 
-             x remember ssh password feature: you can now let 'gitkit'
-               start an 'ssh-agent' in combination with 'ssh-add' so
-               that the afore mentioned new features (and ordinary 'git'
-               remote commands) don't require you to type in your
+             x remember ssh password feature: you can now let ‘gitkit’
+               start an ‘ssh-agent’ in combination with ‘ssh-add’ so
+               that the afore mentioned new features (and ordinary ‘git’
+               remote commands) don’t require you to type in your
                password everytime.  You can customize whether to use
-               that feature, how long 'ssh-agent' should remember the
+               that feature, how long ‘ssh-agent’ should remember the
                passwords and what keyfile to use (fallback
-               '$HOME/.ssh/id_rsa').  The timer is separate in each Bash
-               session.  See options 'Remember SSH Key', 'Time to
-               remember' and 'SSH RSA Keyfile' in the 'Git' section of
+               ‘$HOME/.ssh/id_rsa’).  The timer is separate in each Bash
+               session.  See options ‘Remember SSH Key’, ‘Time to
+               remember’ and ‘SSH RSA Keyfile’ in the ‘Git’ section of
                BashStyle-NG.
 
-        - improved 'empty': you can now specify whether to look for
-          empty files (example: 'empty f [PATH]'), or directories
-          (example: 'empty d [PATH]') only.  Like before if no arg is
+        − improved ‘empty’: you can now specify whether to look for
+          empty files (example: ‘empty f [PATH]’), or directories
+          (example: ‘empty d [PATH]’) only.  Like before if no arg is
           passed (or arg is a path) it will search for both empty files
-          and directories in given path or in 'PWD'.
+          and directories in given path or in ‘PWD’.
 
-        - improved 'nseq' function: allow passing the lowest number,
-          aswell as the field separator (example: 'nseq 0 5 _').
+        − improved ‘nseq’ function: allow passing the lowest number,
+          aswell as the field separator (example: ‘nseq 0 5 _’).
 
-        - improved 'ngroups' function: if run as root, allow passing a
-          different user than current (example: 'ngroups USER').
+        − improved ‘ngroups’ function: if run as root, allow passing a
+          different user than current (example: ‘ngroups USER’).
 
-        - improved 'bashstyle' launcher: new switches '--ini-get' and
-          '--ini-set' allow getting or setting configuration values from
+        − improved ‘bashstyle’ launcher: new switches ‘--ini-get’ and
+          ‘--ini-set’ allow getting or setting configuration values from
           command line.
 
-   * Removed Features
-        - removed 'topdir' function.
+   • Removed Features
+        − removed ‘topdir’ function.
 
-        - removed 'assign' function.
+        − removed ‘assign’ function.
 
-   * Misc.  Changes
+   • Misc.  Changes
 
-        - Configure 4.4.4: several minor internal changes, fixup a Bash
+        − Configure 4.4.4: several minor internal changes, fixup a Bash
           warning message.
 
-        - move all functions from 'DATADIR/bashstyle-ng/rc/functions' to
-          'DATADIR/bashstyle-ng/functions'.
+        − move all functions from ‘DATADIR/bashstyle-ng/rc/functions’ to
+          ‘DATADIR/bashstyle-ng/functions’.
 
-        - fix help message for 'ruler' function.
+        − fix help message for ‘ruler’ function.
 
-        - updated german translation.
+        − updated german translation.
 
-        - several minor internal changes and improvements.
+        − several minor internal changes and improvements.
 
-10.5 "Kerala"
+10.5 “Kerala”
 =============
 
-   * Bug Fixes
-        - #250 (histignore): fix default value for HISTIGNORE.
+   • Bug Fixes
+        − #250 (histignore): fix default value for HISTIGNORE.
 
-        - #251 (history sync): fix 'history' not properly working when
-          'history sync' is active.
+        − #251 (history sync): fix ‘history’ not properly working when
+          ‘history sync’ is active.
 
-        - #252 (make): fix creating pot files.
+        − #252 (make): fix creating pot files.
 
-   * New Features
-        - New command 'history -D COMMAND' which deletes all entries of
+   • New Features
+        − New command ‘history -D COMMAND’ which deletes all entries of
           a given command from the history, example:
 
-          'history -D rm'
+          ‘history -D rm’
 
-          will delete all occurences of 'rm' from the history.  'history
-          -D' does exact matches, so for example 'rmdir' is not removed
-          from history, if 'rm' is passed as 'COMMAND'.
+          will delete all occurences of ‘rm’ from the history.  ‘history
+          -D’ does exact matches, so for example ‘rmdir’ is not removed
+          from history, if ‘rm’ is passed as ‘COMMAND’.
 
-        - History Isolation.  This will
+        − History Isolation.  This will
 
              x prevent storing the history to file when Bash exits
 
@@ -487,115 +491,115 @@ between.  For more detailed information see the git log.
 
              x disable the builtin history command
 
-        - New shopt 'localvar_inherit', requires Bash version 5.0.
+        − New shopt ‘localvar_inherit’, requires Bash version 5.0.
 
-        - New keybindings 'next-screen-line' and 'previous-screen-line',
+        − New keybindings ‘next-screen-line’ and ‘previous-screen-line’,
           requires Readline version 8.0.
 
-   * Misc.  Changes
-        - Minor user interface improvements.
+   • Misc.  Changes
+        − Minor user interface improvements.
 
              x Widget adjustments and sizes improved.
 
-             x User can now choose between standard 'cd' or BashStyle-NG
-               'lscd' or 'treecd'.
+             x User can now choose between standard ‘cd’ or BashStyle-NG
+               ‘lscd’ or ‘treecd’.
 
-             x User can now choose between standard 'history' or
-               BashStyle-NG 'History Sync' or 'History Isolation'.
+             x User can now choose between standard ‘history’ or
+               BashStyle-NG ‘History Sync’ or ‘History Isolation’.
 
-        - 'bashstyle -v' and About Page now show the release codename,
+        − ‘bashstyle -v’ and About Page now show the release codename,
           too.
 
-        - New internally used variable 'BSNG_SESSION_TIME' contains the
-          BashStyle-NG startup time in '+%I-%M-%S-%N' format.
+        − New internally used variable ‘BSNG_SESSION_TIME’ contains the
+          BashStyle-NG startup time in ‘+%I-%M-%S-%N’ format.
 
-        - Updated german translation.
+        − Updated german translation.
 
-10.4 "Alrest"
+10.4 “Alrest”
 =============
 
-   * Bug Fixes
-        - #249 (lscolors): fix applying ls color for jpg files
+   • Bug Fixes
+        − #249 (lscolors): fix applying ls color for jpg files
 
-   * Misc.  Changes
-        - LS Colors: apply colors for alternative suffixes, too:
-             x apply color for 'jpg' to 'jpeg'
-             x apply color for 'tar.gz' to 'tgz'
-             x apply color for 'tar.bz2' to 'tbz'
+   • Misc.  Changes
+        − LS Colors: apply colors for alternative suffixes, too:
+             x apply color for ‘jpg’ to ‘jpeg’
+             x apply color for ‘tar.gz’ to ‘tgz’
+             x apply color for ‘tar.bz2’ to ‘tbz’
 
-        - Make 1.1.0: simplify code, minor fixes
+        − Make 1.1.0: simplify code, minor fixes
 
-        - Configure 4.4.1: add '-h' in addition to '--help', minor
+        − Configure 4.4.1: add ‘-h’ in addition to ‘--help’, minor
           changes
 
-        - 'batchrename': proper verbose output
+        − ‘batchrename’: proper verbose output
 
-10.3 "Odyssey"
+10.3 “Odyssey”
 ==============
 
-   * Bug Fixes
-        - #247 (randomfile): fix executing 'randomfile' if neither '-r'
-          or '-p' are used.
+   • Bug Fixes
+        − #247 (randomfile): fix executing ‘randomfile’ if neither ‘-r’
+          or ‘-p’ are used.
 
-        - #248 (randomfile): fix handling file or directory names with
+        − #248 (randomfile): fix handling file or directory names with
           spaces.
 
-   * Misc.  Changes
-        - Configure 4.4.0: simplify code
+   • Misc.  Changes
+        − Configure 4.4.0: simplify code
 
-        - Update 'README', 'TODO', Debian GNU/Linux package description.
+        − Update ‘README’, ‘TODO’, Debian GNU/Linux package description.
 
-        - Update german translation.
+        − Update german translation.
 
-10.2 "Circus of Insanity"
+10.2 “Circus of Insanity”
 =========================
 
-   * Bug Fixes
+   • Bug Fixes
 
-        - #242 (systemkit): 'systemkit' did not accept the given
-          'directory' for function for counting files, directories or
-          overall items, instead it always used 'PWD'.  Now it respects
-          a given 'directory' and uses 'PWD' if none was given.
+        − #242 (systemkit): ‘systemkit’ did not accept the given
+          ‘directory’ for function for counting files, directories or
+          overall items, instead it always used ‘PWD’.  Now it respects
+          a given ‘directory’ and uses ‘PWD’ if none was given.
 
-        - #243 (systemkit): 'systemkit' result of function for countine
+        − #243 (systemkit): ‘systemkit’ result of function for countine
           files, directories or overall items were off by 1 in some
           cases.
 
-        - #244 (randomfile): fix that 'randomfile' could not handle
-          parameters passed to the application, e.g.: 'randomfile geeqie
-          -r -- /home/test/Pictures/*' does now work as intended.
+        − #244 (randomfile): fix that ‘randomfile’ could not handle
+          parameters passed to the application, e.g.: ‘randomfile geeqie
+          -r -- /home/test/Pictures/*’ does now work as intended.
 
-        - #245 (randomfile): check whether 'HOME/.randomhistory' exists
-          before doing anything when '-f', '-l', '-L' or '-i' are given.
+        − #245 (randomfile): check whether ‘HOME/.randomhistory’ exists
+          before doing anything when ‘-f’, ‘-l’, ‘-L’ or ‘-i’ are given.
 
-        - #246 (dd): fix that custom 'dd' options don't work.
+        − #246 (dd): fix that custom ‘dd’ options don’t work.
 
-   * New Features
+   • New Features
 
-        - Add possiblity to count hidden items to 'systemkit':
+        − Add possiblity to count hidden items to ‘systemkit’:
              x counthiddenfiles / chf
              x counthiddendirs / chd
              x counthiddenitems / chi
 
-        - Add possibility to only print the result for 'randomfile',
-          using '-p', '--print' parameter.
+        − Add possibility to only print the result for ‘randomfile’,
+          using ‘-p’, ‘--print’ parameter.
 
-        - Add possibility to not specify any files, in that case it will
-          use all files from 'PWD', use like 'randomfile geeqie --'.
+        − Add possibility to not specify any files, in that case it will
+          use all files from ‘PWD’, use like ‘randomfile geeqie --’.
 
-   * Removed Features
-        - '2048' game
-        - 'bashtips' function
-        - 'batch' function
-        - 'hilow' game
-        - 'quickscript' function
-        - 'remount' function
-        - 'wininfo' function
-        - 'xmltagdelete' function
-        - vim color schemes
+   • Removed Features
+        − ‘2048’ game
+        − ‘bashtips’ function
+        − ‘batch’ function
+        − ‘hilow’ game
+        − ‘quickscript’ function
+        − ‘remount’ function
+        − ‘wininfo’ function
+        − ‘xmltagdelete’ function
+        − vim color schemes
 
-   * Misc.  Changes
-        - Add short switches for over-long switches to 'systemkit':
+   • Misc.  Changes
+        − Add short switches for over-long switches to ‘systemkit’:
              x countvisiblefiles -> cvf
              x countvisibledirs -> cvd
              x countvisibleitems -> cvi
@@ -603,58 +607,58 @@ between.  For more detailed information see the git log.
              x countoveralldirs -> cod
              x countoverallitems -> coi
 
-        - Add short switches to 'apkdump':
+        − Add short switches to ‘apkdump’:
              x name -> n
              x version -> v
              x versioncode -> c
              x perms -> p
 
-        - Make 'sufffix' quiet by default, add '-v', '--verbose' switch,
+        − Make ‘sufffix’ quiet by default, add ‘-v’, ‘--verbose’ switch,
           to get verbose output, if desired.
 
-        - Add '-v', '--verbose' switch to 'batchrename', to get verbose
+        − Add ‘-v’, ‘--verbose’ switch to ‘batchrename’, to get verbose
           output, if desired.
 
-10.1 "Victory Forever"
+10.1 “Victory Forever”
 ======================
 
-   * Bug Fixes
-        - #238 (systemkit): make 'countvisibleitems' work, when 'PWD' is
+   • Bug Fixes
+        − #238 (systemkit): make ‘countvisibleitems’ work, when ‘PWD’ is
           a symlinked directory.
 
-        - #239 (functions): scripts that check for required applications
+        − #239 (functions): scripts that check for required applications
           no longer print the path to the found binary.
 
-        - #240 (gitkit): make 'openhub' parameter support more than just
+        − #240 (gitkit): make ‘openhub’ parameter support more than just
           github.com origins (for example gitlab projects are now
-          properly opened in browser, aswell), also rename 'openhub'
-          parameter into 'openweb'.
+          properly opened in browser, aswell), also rename ‘openhub’
+          parameter into ‘openweb’.
 
-        - #241 (ui): fixed that the UI definition had a property
+        − #241 (ui): fixed that the UI definition had a property
           introduced in GTK+ 3.10, so potentially not working on
           previous GTK+ versions.
 
-   * New Features
-        - 'topdir' function, returns the deepest existing toplevel
-          directory for a given path, returns '1' if none found at all.
+   • New Features
+        − ‘topdir’ function, returns the deepest existing toplevel
+          directory for a given path, returns ‘1’ if none found at all.
 
-        - 'camelcase' function, transforms a string ('test_string-a b')
-          in either camelcase ('TestStringAB') or word-by-word uppercase
-          ('Test String A B').
+        − ‘camelcase’ function, transforms a string (‘test_string-a b’)
+          in either camelcase (‘TestStringAB’) or word-by-word uppercase
+          (‘Test String A B’).
 
-   * Misc.  Changes
-        - 'Equinox' and 'Power User' prompt styles now also use the
-          'showuser' function instead of bash built-in '$' prompt
+   • Misc.  Changes
+        − ‘Equinox’ and ‘Power User’ prompt styles now also use the
+          ‘showuser’ function instead of bash built-in ‘$’ prompt
           variable.
 
-        - 'lscd' and 'treecd' changes:
+        − ‘lscd’ and ‘treecd’ changes:
              x in the user interface you could previously enable both
-               'lscd' and 'treecd', which is of course not supported, so
-               if both were enabled, 'lscd' was used, always.  This is
+               ‘lscd’ and ‘treecd’, which is of course not supported, so
+               if both were enabled, ‘lscd’ was used, always.  This is
                fixed now, as the user interface now only lets enable one
                or the other, not both.
 
-             x make 'lscd' and 'treecd' strings localizable.
+             x make ‘lscd’ and ‘treecd’ strings localizable.
 
              x nicer banner shown after cd-ing.
 
@@ -668,166 +672,166 @@ between.  For more detailed information see the git log.
              x display a message if cd-ing failed because directory does
                not exist.
 
-        - Update documentation
-             x Style: add 'Equinox' and '4.4+' Sections
+        − Update documentation
+             x Style: add ‘Equinox’ and ‘4.4+’ Sections
 
-             x Advanced: add all new features introduced in '10.0'
+             x Advanced: add all new features introduced in ‘10.0’
 
-        - When 'systemkit bios' is called as non-root user a message is
+        − When ‘systemkit bios’ is called as non-root user a message is
           printed accordingly (instead of just exiting without further
           notice).
 
-        - Update german translation.
+        − Update german translation.
 
-10.0 "10th Anniversary Version"
+10.0 “10th Anniversary Version”
 ===============================
 
-   * Bug Fixes
-        - #226 (gitkit): fix 'openhub' feature, when there is more than
+   • Bug Fixes
+        − #226 (gitkit): fix ‘openhub’ feature, when there is more than
           one remote.
 
-        - #227 (bashstyle-rc): Make Bash history syncronization over
+        − #227 (bashstyle-rc): Make Bash history syncronization over
           different sessions more robust.
 
-        - #228 (ui): Fix translation domain for user interface.
+        − #228 (ui): Fix translation domain for user interface.
 
-        - #229 (launcher): Fix '-p' and '-P' command line args were
+        − #229 (launcher): Fix ‘-p’ and ‘-P’ command line args were
           mixed up.
 
-        - #230 (treecd): Check whether 'tree' is installed, if not,
-          override the user's choice to use 'treecd' instead of 'cd'.
+        − #230 (treecd): Check whether ‘tree’ is installed, if not,
+          override the user’s choice to use ‘treecd’ instead of ‘cd’.
 
-        - #231 (equinox): Fix missing prompt part in 'equinox' style
+        − #231 (equinox): Fix missing prompt part in ‘equinox’ style
           when terminal has not enough lines of height to draw all
           user-requested prompt part.
 
-        - #232 (equinox): Dynamically calculate minimum required number
+        − #232 (equinox): Dynamically calculate minimum required number
           of lines in height required to draw all user-requested prompt
           parts.
 
-        - #233 (clock): Use prompt color definitions instead of hacky
-          'sed' substitutions (left-over from very (very) early
-          'BashStyle-NG' versions) in the 'clock' prompt style.
+        − #233 (clock): Use prompt color definitions instead of hacky
+          ‘sed’ substitutions (left-over from very (very) early
+          ‘BashStyle-NG’ versions) in the ‘clock’ prompt style.
 
-        - #234 (poweruser): Use 'grep -c' instead of 'grep xx | wc -l'.
+        − #234 (poweruser): Use ‘grep -c’ instead of ‘grep xx | wc -l’.
 
-        - #235 (ayoli): Fixes and improvements for 'ayoli' prompt style.
+        − #235 (ayoli): Fixes and improvements for ‘ayoli’ prompt style.
 
-        - #236 (custom-prompt-builder): Version of 'equinox' prompt
-          style in the 'custom-prompt-builder' was bugged since the
-          introduction of 'lastcommand' prompt part.
+        − #236 (custom-prompt-builder): Version of ‘equinox’ prompt
+          style in the ‘custom-prompt-builder’ was bugged since the
+          introduction of ‘lastcommand’ prompt part.
 
-        - #237 (systemkit): 'systemkit --dirsize' was broken.
+        − #237 (systemkit): ‘systemkit --dirsize’ was broken.
 
-   * New Features
-        - Add 'apkdump': grab information about android packages (apk)
+   • New Features
+        − Add ‘apkdump’: grab information about android packages (apk)
           using aapt.
 
-        - Add 'sufffix': fixes the suffix for given files.
+        − Add ‘sufffix’: fixes the suffix for given files.
 
-        - Add 'batchrename': batch renames all files in a directory
-          using the 'NNN-NAME.SUFFIX' naming scheme, where 'NNN' is the
+        − Add ‘batchrename’: batch renames all files in a directory
+          using the ‘NNN-NAME.SUFFIX’ naming scheme, where ‘NNN’ is the
           number of the file inside the directory (filled up with
-          leading zeros if required, eg.  '01' or '001') and 'NAME' is
+          leading zeros if required, eg.  ‘01’ or ‘001’) and ‘NAME’ is
           given by the user.
 
-   * Misc.  Changes
-        - Minor improvements to the bashstyle launcher script.
+   • Misc.  Changes
+        − Minor improvements to the bashstyle launcher script.
              x minor code changes.
 
-             x Add '-d', '--doc' command line arg to bashstyle, which
-               opens the HTML documentation using 'xdg-open'.
+             x Add ‘-d’, ‘--doc’ command line arg to bashstyle, which
+               opens the HTML documentation using ‘xdg-open’.
 
-             x Improve description of the '-P', '--python' command line
+             x Improve description of the ‘-P’, ‘--python’ command line
                arg of the bashstyle launcher script.
 
-        - More versatile 'config-update-helper'.
-             x Install 'bashstyle-config-helper' launcher script.
+        − More versatile ‘config-update-helper’.
+             x Install ‘bashstyle-config-helper’ launcher script.
 
              x Add backup, restore and reset actions to
-               'config-update-helper'.
+               ‘config-update-helper’.
 
-             x Add '-b', '--backup' command line arg to bashstyle, which
+             x Add ‘-b’, ‘--backup’ command line arg to bashstyle, which
                will backup the user configuration.
 
-             x Add '-r', '--restore' command line arg to bashstyle,
+             x Add ‘-r’, ‘--restore’ command line arg to bashstyle,
                which will restore a previously backed up user
                configuration.
 
-             x Add '-R', '--reset' command line arg to bashstyle, which
+             x Add ‘-R’, ‘--reset’ command line arg to bashstyle, which
                will reset the user configuration to vendor values (if
                vendor configuration exists and is up to date) or factory
                values.
 
-             x '-u', '--update' command line arg of bashstyle was not
-               mentioned in '-h', '--help' message.
+             x ‘-u’, ‘--update’ command line arg of bashstyle was not
+               mentioned in ‘-h’, ‘--help’ message.
 
-        - Update german translation.
+        − Update german translation.
 
-        - Update 'bashstyle.1' manpage.
+        − Update ‘bashstyle.1’ manpage.
 
-        - Rename 'bsng-help' to 'bashstyle-help'.
+        − Rename ‘bsng-help’ to ‘bashstyle-help’.
 
-        - Remove 'check_opt', instead do a check in each script on it's
+        − Remove ‘check_opt’, instead do a check in each script on it’s
           own.
 
-        - Improve coding style for various functions, scripts and prompt
+        − Improve coding style for various functions, scripts and prompt
           styles.
 
-        - Update prompt styles in the 'custom-prompt-builder'.
+        − Update prompt styles in the ‘custom-prompt-builder’.
 
      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-9.3 "Trick or Treat"
+9.3 “Trick or Treat”
 ====================
 
-   * Notes
-        - This release renamed the 'nx-rc' to 'bashstyle-rc', that
-          means, you'll have to re-enable 'BashStyle-NG' in your
-          '$HOME/.bashrc'.  Upon first start 'BashStyle-NG' will offer
-          you to do so, on it's own.
+   • Notes
+        − This release renamed the ‘nx-rc’ to ‘bashstyle-rc’, that
+          means, you’ll have to re-enable ‘BashStyle-NG’ in your
+          ‘$HOME/.bashrc’.  Upon first start ‘BashStyle-NG’ will offer
+          you to do so, on it’s own.
 
           Additional notes for Git repo users:
              x This also applies to users that have used version 9.3
                prior to commit 4e621c.
 
-             x Any references to 'nx-rc' will be auto-removed when
+             x Any references to ‘nx-rc’ will be auto-removed when
                re-enabling from UI, as of commit 2ff6c0, if you
-               transisted before that commit, be sure to remove 'nx-rc'
-               references from your '$HOME/.bashrc' manually.
+               transisted before that commit, be sure to remove ‘nx-rc’
+               references from your ‘$HOME/.bashrc’ manually.
 
-   * Bug Fixes
-        - #204 (debian vendor config): fixed error in Debian vendor
+   • Bug Fixes
+        − #204 (debian vendor config): fixed error in Debian vendor
           configuration, preventing BashStyle-NG UI from startup.
 
-        - #205 (ui): fixed buttons for saving, restoring, deleting and
+        − #205 (ui): fixed buttons for saving, restoring, deleting and
           reverting user configuration in UI not working.
 
-        - #206 (manpage colors): enforce environment variable 'PAGER' to
-          be 'less', else colorizing manpages might fail, if an other
+        − #206 (manpage colors): enforce environment variable ‘PAGER’ to
+          be ‘less’, else colorizing manpages might fail, if an other
           pager is used.
 
-        - #207 (trap): fix recording exit code of last command if it's
+        − #207 (trap): fix recording exit code of last command if it’s
           not 0.
 
-        - #208 (startup): fix enabling 'BashStyle-NG' in '$HOME/.bashrc'
+        − #208 (startup): fix enabling ‘BashStyle-NG’ in ‘$HOME/.bashrc’
           from user interface in certain cases.
 
-        - #209 (startup): add file check when enabling 'BashStyle-NG' in
-          '$HOME/.bashrc', so that 'Bash' does not run into errors on
-          startup when 'BashStyle-NG' was uninstalled, but the startup
+        − #209 (startup): add file check when enabling ‘BashStyle-NG’ in
+          ‘$HOME/.bashrc’, so that ‘Bash’ does not run into errors on
+          startup when ‘BashStyle-NG’ was uninstalled, but the startup
           entry still exists.
 
           Aswell as when it was installed to a different prefix, without
-          having adjusted the startup entry in '$HOME/.bashrc'.
+          having adjusted the startup entry in ‘$HOME/.bashrc’.
 
-        - #210 (configuration): when 'ini_version' of '$HOME/.bs-ng.ini'
-          is bigger than 'app_ini_version', the configuration is reset
+        − #210 (configuration): when ‘ini_version’ of ‘$HOME/.bs-ng.ini’
+          is bigger than ‘app_ini_version’, the configuration is reset
           to either vendor or factory default configuration.  When doing
           so the configuration was not reloaded by the user interface
           (which could potentially lead to a crash).
 
-        - #211 (colorshell): new option 'Dark Terminal Background'
+        − #211 (colorshell): new option ‘Dark Terminal Background’
           allows user to set whether the terminal background is dark or
           bright.  This option is used for colorshell to prevent the
           font color being black on dark terminals, respectively white
@@ -835,92 +839,92 @@ between.  For more detailed information see the git log.
           output.
 
           This option also applies to all other terminal dependant color
-          settings in 'BashStyle-NG', where 'white' will be 'black' on
-          bright terminals, respectively 'black' will be 'white' on dark
+          settings in ‘BashStyle-NG’, where ‘white’ will be ‘black’ on
+          bright terminals, respectively ‘black’ will be ‘white’ on dark
           terminals.
 
-        - #212 (readline): fixed setting 'bell-style' readline variable.
+        − #212 (readline): fixed setting ‘bell-style’ readline variable.
 
-        - #213 (readline): fixed setting 'completion-ignore-case'
+        − #213 (readline): fixed setting ‘completion-ignore-case’
           readline variable.
 
-        - #214 (ls colors): fixed readline not inheriting 'LS_COLORS'
-          set by 'BashStyle-NG'.  This resulted in readline functions
-          using distribution default 'LS_COLORS', but bash functions
+        − #214 (ls colors): fixed readline not inheriting ‘LS_COLORS’
+          set by ‘BashStyle-NG’.  This resulted in readline functions
+          using distribution default ‘LS_COLORS’, but bash functions
           using the user set variable.
 
-        - #215 (lastcommand): fixed last command recording to generate
-          ugly results for bash prompts ('lastcommandprintable') by
+        − #215 (lastcommand): fixed last command recording to generate
+          ugly results for bash prompts (‘lastcommandprintable’) by
           removing all newlines from the string.
 
-        - #216 (treecd): fixed user set 'treecd' options not being
+        − #216 (treecd): fixed user set ‘treecd’ options not being
           honoured.
 
-        - #217 (lscd, treecd, grep): force switch to monochrome output
+        − #217 (lscd, treecd, grep): force switch to monochrome output
           when user has disabled colorful prompts.
 
-        - #218 (equinox, truncpwd): fixed prompt length calculation for
-          'equinox' prompt, if 'pwdcut' ini value is not set.  Fixed
-          output string length calculation for 'truncpwd' function
+        − #218 (equinox, truncpwd): fixed prompt length calculation for
+          ‘equinox’ prompt, if ‘pwdcut’ ini value is not set.  Fixed
+          output string length calculation for ‘truncpwd’ function
           aswell.
 
-        - #219 (debug log): the debug log now properly stores all
+        − #219 (debug log): the debug log now properly stores all
           messages, run commands and their (error) output in
-          '$HOME/.bashstyle.log' after startup.  Before this fix only
-          the messages from 'BashStyle-NG' itself were stored, making
+          ‘$HOME/.bashstyle.log’ after startup.  Before this fix only
+          the messages from ‘BashStyle-NG’ itself were stored, making
           the debug log rather useless.
 
-        - #220 (ini_set): fixed setting ini values from shell.
+        − #220 (ini_set): fixed setting ini values from shell.
 
-        - #221 (equinox): when on linux console let display '+', '-' and
-          '/' for 'lastcommand' exit code visualization instead of '✔',
-          '✘' and '⊘', as they won't display correctly.
+        − #221 (equinox): when on linux console let display ‘+’, ‘-’ and
+          ‘/’ for ‘lastcommand’ exit code visualization instead of ‘✔’,
+          ‘✘’ and ‘⊘’, as they won’t display correctly.
 
-        - #222 (custom prompt builder): fixed a few bugs in the
+        − #222 (custom prompt builder): fixed a few bugs in the
           pre-definied prompt definitions for the custom prompt builder.
 
-        - #223 (keybindings): fixed that keybindings were always
+        − #223 (keybindings): fixed that keybindings were always
           changed, even if user disabled that feature from UI.
 
-        - #224 (factory ini, debian vendor ini): enable 'extglob' shopt
-          by default.  Some bash completion definitions don't work
-          without (eg: vim's).
+        − #224 (factory ini, debian vendor ini): enable ‘extglob’ shopt
+          by default.  Some bash completion definitions don’t work
+          without (eg: vim’s).
 
-        - #225 (dd): fixed no longer working 'dd' when loading
-          'bashstyle-rc' more than one time during a single bash
+        − #225 (dd): fixed no longer working ‘dd’ when loading
+          ‘bashstyle-rc’ more than one time during a single bash
           session.
 
-   * New Features
-        - Previously updating the user configuration to a new version
-          was only possible by invoking the 'BashStyle-NG' user
+   • New Features
+        − Previously updating the user configuration to a new version
+          was only possible by invoking the ‘BashStyle-NG’ user
           interface.  Now the user configuration is auto-updated from
-          'bashstyle-rc' upon shell start up aswell (if needed, vendor
+          ‘bashstyle-rc’ upon shell start up aswell (if needed, vendor
           configuration is considered if up-to-date, else factory
           configuration will be used (same behaviour as from user
           interface)).
 
-          Manual update is possible via 'bashstyle --update', or
-          'bashstyle -u'.  If your configuration is up-to-date, nothing
+          Manual update is possible via ‘bashstyle --update’, or
+          ‘bashstyle -u’.  If your configuration is up-to-date, nothing
           will be changed.
 
-        - New Termcap/Manpage coloring function.  'BashStyle-NG' now
+        − New Termcap/Manpage coloring function.  ‘BashStyle-NG’ now
           allows you to choose the different colors for manpages from
           the User Interface, rather than only giving you a handful of
           pre-defined color schemes.
 
-        - Added option to include the current directory to the 'PATH'
+        − Added option to include the current directory to the ‘PATH’
           variable.
 
-        - Added coloring options for 'lscd' and 'treecd' for different
-          'banner', 'mkdir' and 'empty' labels.
+        − Added coloring options for ‘lscd’ and ‘treecd’ for different
+          ‘banner’, ‘mkdir’ and ‘empty’ labels.
 
-        - Added options for letting user choose what to use for
-          'lastcommand' exit code visualization.  'return_good', which
-          is '✔'/'+' by default 'return-bad', which is '✘'/'-' by
-          default and 'return_other', which is '⊘'/'/' by default.  This
-          is currently only used in 'equinox' prompt.
+        − Added options for letting user choose what to use for
+          ‘lastcommand’ exit code visualization.  ‘return_good’, which
+          is ‘✔’/‘+’ by default ‘return-bad’, which is ‘✘’/‘-’ by
+          default and ‘return_other’, which is ‘⊘’/‘/’ by default.  This
+          is currently only used in ‘equinox’ prompt.
 
-        - Ability to choose what to display in 'equinox' prompt.  You
+        − Ability to choose what to display in ‘equinox’ prompt.  You
           can now enable or disable the following informations:
              x system load
              x cpu load
@@ -930,202 +934,202 @@ between.  For more detailed information see the git log.
              x process count
              x uptime
 
-        - Added 'showuser' function.  Prompt function to either show '$'
-          for normal users, a custom-set symbol.  Always displays '#'
+        − Added ‘showuser’ function.  Prompt function to either show ‘$’
+          for normal users, a custom-set symbol.  Always displays ‘#’
           for root.  If colors are enabled color for normal-users will
-          be 'color_user' and red for root.
+          be ‘color_user’ and red for root.
 
-        - Added 'user_char' option.  Set this to let 'showuser' display
-          something else than '$' for ordinary users.
+        − Added ‘user_char’ option.  Set this to let ‘showuser’ display
+          something else than ‘$’ for ordinary users.
 
-        - New Bash 4.4 features support:
-             + 'EXECIGNORE' a colon-separated list of commands to ignore
+        − New Bash 4.4 features support:
+             + ‘EXECIGNORE’ a colon-separated list of commands to ignore
                from completion.  Only matched if the *complete* filename
                matches.  For example if you want to exclude
 
-               '/usr/bin/autoreconf'
+               ‘/usr/bin/autoreconf’
 
                from command completion, you need to add something like
 
-               '/usr/bin/autreconf' or '*/autoreconf'
+               ‘/usr/bin/autreconf’ or ‘*/autoreconf’
 
-               to 'EXECIGNORE'.
+               to ‘EXECIGNORE’.
 
-             + 'PS0' prompt and color setting.  A new prompt which is
+             + ‘PS0’ prompt and color setting.  A new prompt which is
                displayed after completion was done and before the
                completed command is executed.
 
-        - New Readline 7.0 features support:
+        − New Readline 7.0 features support:
              + added Readline 7.0 master switch (enable to make use of
                the following).
 
-             + 'Colored Completion Prefix' makes the matching prefix of
+             + ‘Colored Completion Prefix’ makes the matching prefix of
                the issued completion appear in a special color for all
                matches.
 
-             + 'Enable Bracketed Paste' makes Bash handle multi-line
+             + ‘Enable Bracketed Paste’ makes Bash handle multi-line
                pasted code like single-line, preventing erroneous
                completion or execution.
 
-             + 'Vi Command Mode String' is an indicator printed before
-               the last line of 'PS1' when Bash is in vi command mode.
+             + ‘Vi Command Mode String’ is an indicator printed before
+               the last line of ‘PS1’ when Bash is in vi command mode.
 
-             + 'Vi Insert Mode String' is an indicator printed before
-               the last line of 'PS1' when Bash is in vi insert mode.
+             + ‘Vi Insert Mode String’ is an indicator printed before
+               the last line of ‘PS1’ when Bash is in vi insert mode.
 
-             + 'Emacs Mode String' is an indicator printed before the
-               last line of 'PS1' when Bash is in emacs mode.
+             + ‘Emacs Mode String’ is an indicator printed before the
+               last line of ‘PS1’ when Bash is in emacs mode.
 
-   * Updated / Improved Features
-        - 'history syncronization' improved history syncronization
+   • Updated / Improved Features
+        − ‘history syncronization’ improved history syncronization
           erasedups, ignoredups, ignorespace and ignoreboth
           implementation.  Made it more robust in case multiple Bash
           sessions start up simultaneously (should throw a lot less to
           no more errors).
 
-        - 'random' function's '--numericalrange', '-r' param previously
-          only allowed setting the 'highest' value of random range,
-          starting from zero.  Now it's possible to set the 'lowest'
+        − ‘random’ function’s ‘--numericalrange’, ‘-r’ param previously
+          only allowed setting the ‘highest’ value of random range,
+          starting from zero.  Now it’s possible to set the ‘lowest’
           value optionally, aswell.  Both syntaxes are supported:
 
-          'random -r 10' will give you a random number between 0 and 10
-          'random -r 5 10' will give you a random number between 5 and
+          ‘random -r 10’ will give you a random number between 0 and 10
+          ‘random -r 5 10’ will give you a random number between 5 and
           10
 
-        - 'colors' added support for both 'grey' and 'white' in all
-          color settings.  Note: depending on your terminal's color
-          settings you might not see a difference here, that's not a
+        − ‘colors’ added support for both ‘grey’ and ‘white’ in all
+          color settings.  Note: depending on your terminal’s color
+          settings you might not see a difference here, that’s not a
           bug.
 
-        - 'colorshell' does no longer pollute 'PS1...4' variables.  It
-          does now store 'PS1...4' once per session to 'OLDPS1...4' and
-          appends it's randomly choosen text color to the it.
+        − ‘colorshell’ does no longer pollute ‘PS1...4’ variables.  It
+          does now store ‘PS1...4’ once per session to ‘OLDPS1...4’ and
+          appends it’s randomly choosen text color to the it.
 
-        - 'equinox' prompt now shows '⊘' in yellow when exiting 'git
-          log' using 'q' key, instead of '✘' in red.  Exiting 'git log'
-          results in return code 141, but it's not an actual error, thus
+        − ‘equinox’ prompt now shows ‘⊘’ in yellow when exiting ‘git
+          log’ using ‘q’ key, instead of ‘✘’ in red.  Exiting ‘git log’
+          results in return code 141, but it’s not an actual error, thus
           the new state was added.
 
-   * UI changes
-        - Use 'GtkSwitch'es instead of 'GtkRadionButton's for main
+   • UI changes
+        − Use ‘GtkSwitch’es instead of ‘GtkRadionButton’s for main
           switches in the UI.
 
-        - Make the radio buttons 'use lscd instead of cd' and 'use
-          treecd instead of cd' exclude each other.
+        − Make the radio buttons ‘use lscd instead of cd’ and ‘use
+          treecd instead of cd’ exclude each other.
 
-   * Configure
+   • Configure
 
-        - 4.3.8
+        − 4.3.8
              + code review.
              + make build dependencies a separate dependency group.
 
-   * Misc.  Changes
+   • Misc.  Changes
 
-        - Translation Domain changes:
-             x old: 'bs-ng', new: 'bashstyle'
+        − Translation Domain changes:
+             x old: ‘bs-ng’, new: ‘bashstyle’
 
-             x old: 'nx-rc', new: 'bashstyle-rc'
+             x old: ‘nx-rc’, new: ‘bashstyle-rc’
 
-        - Improvements to 'bashstyle' launcher script.
+        − Improvements to ‘bashstyle’ launcher script.
 
-        - Minor improvements to the Custom Prompt Builder UI.
+        − Minor improvements to the Custom Prompt Builder UI.
 
-        - Added option to launch Terminal Emulator from UI (uses
-          'x-terminal-emulator').
+        − Added option to launch Terminal Emulator from UI (uses
+          ‘x-terminal-emulator’).
 
-        - Since a few versions the code for setting colors has been
+        − Since a few versions the code for setting colors has been
           changed, so we no longer need a monochrome version of each
           prompt style, avoiding lots of (mostly) duplicated code.
 
-        - Standardize shebangs in python scripts (and remove
+        − Standardize shebangs in python scripts (and remove
           corresponding lintian override).
 
-        - Updated german translation.
+        − Updated german translation.
 
-        - Don't mark setting's name and a few others as translatable
+        − Don’t mark setting’s name and a few others as translatable
           strings.
 
-        - Changed string 'GIT' to 'Git' in the UI and other pacles.
+        − Changed string ‘GIT’ to ‘Git’ in the UI and other pacles.
 
-        - Move last command recording to the end of 'BashStyle-NG'
-          initialization, no need to record 'BashStyle-NG's startup.
+        − Move last command recording to the end of ‘BashStyle-NG’
+          initialization, no need to record ‘BashStyle-NG’s startup.
 
-        - 'WidgetHandler' now supports 'GtkSwitch'es, 'GtkButton's and
-          'GtkLabel's, Custom Prompt Builders special 'GtkButton's and
-          'GtkComboBox'es.
+        − ‘WidgetHandler’ now supports ‘GtkSwitch’es, ‘GtkButton’s and
+          ‘GtkLabel’s, Custom Prompt Builders special ‘GtkButton’s and
+          ‘GtkComboBox’es.
 
-        - Less environment pollution by 'unset'ing a lot of variables
-          which are of no use after 'BashStyle-NG' initialization.
+        − Less environment pollution by ‘unset’ing a lot of variables
+          which are of no use after ‘BashStyle-NG’ initialization.
 
-        - Simplified color setup mechanism for non/echoable prompt part
+        − Simplified color setup mechanism for non/echoable prompt part
           colors.
 
-        - Minor fix for 'dbg_msg' function, now some of the output
-          strings in '$HOME/.bashstyle.log' are more readable.
+        − Minor fix for ‘dbg_msg’ function, now some of the output
+          strings in ‘$HOME/.bashstyle.log’ are more readable.
 
-        - Minor coding style changes / improvements.
+        − Minor coding style changes / improvements.
 
      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-9.2 "Galvanize"
+9.2 “Galvanize”
 ===============
 
-   * Bug Fixes
-        - #191 (make): gtk-update-icon-cache was not properly invoked
+   • Bug Fixes
+        − #191 (make): gtk-update-icon-cache was not properly invoked
           after make install
 
-        - #192 (custom prompt builder): inserting prompt parts from
+        − #192 (custom prompt builder): inserting prompt parts from
           GtkComboBoxes did not work
 
-        - #193 (nano): setting Nano UI Colors an Tabs to Spaces did not
+        − #193 (nano): setting Nano UI Colors an Tabs to Spaces did not
           work
 
-        - #194 (colors): color definitions have not been properly
+        − #194 (colors): color definitions have not been properly
           exported to external scripts, which thus always displayed
           monochrome output
 
-        - #195 (nx-rc): fixed filtering out 'trap' from 'lastcommand'
+        − #195 (nx-rc): fixed filtering out ‘trap’ from ‘lastcommand’
           storing [Mingye Wang]
 
-        - #196 (nx-rc): fixup 'lastexit' value storing [Mingye Wang]
+        − #196 (nx-rc): fixup ‘lastexit’ value storing [Mingye Wang]
 
-        - #197 (nano) (vim) (readline) (keybindings): fixup file
+        − #197 (nano) (vim) (readline) (keybindings): fixup file
           existence checks which are intended to prevent file conflicts
           when multiple Bash sessions are started at the same time
           [Mingye Wang]
 
-        - #198 (nx-rc): fixup detection of vendor ini version on first
+        − #198 (nx-rc): fixup detection of vendor ini version on first
           load of nx-rc if no user ini exists
 
-        - #199 (reload): fixup reload to properly restore the complete
+        − #199 (reload): fixup reload to properly restore the complete
           environment, including BashStyle-NG and Bash Programmable
           Completion.
 
-        - #200 (dd_opts): ensure setting DD_OPTS is properly done.
+        − #200 (dd_opts): ensure setting DD_OPTS is properly done.
 
-        - #201 (ls_colors): setting Tar/XZ color from UI didn't work.
+        − #201 (ls_colors): setting Tar/XZ color from UI didn’t work.
 
-        - #202 (configure): fixed last arguement passed to configure not
+        − #202 (configure): fixed last arguement passed to configure not
           being honoured.
 
-   * Configuration File Changes
-        - Additionally to factory and vendor (/etc/bs-ng_vendor.ini)
+   • Configuration File Changes
+        − Additionally to factory and vendor (/etc/bs-ng_vendor.ini)
           configuration BashStyle-NG now also checks for user backup
           ($HOME/.bs-ng.ini.save) configuration when resetting
           configuration
 
-        - Before using user backup or vendor configuration in any way do
+        − Before using user backup or vendor configuration in any way do
           a dry-load to ensure the files are in proper shape, if they
           contain errors skip them
 
-        - When the configuration file can't be loaded due errors, let
+        − When the configuration file can’t be loaded due errors, let
           BashStyle-NG auto-reset the configuration using user backup
           (if it exists) > vendor configuration (if it exists) > factory
           configuration (in that order).  This prevents BashStyle-NG
-          from crashing if there's something wrong with the user
+          from crashing if there’s something wrong with the user
           configuration file
 
-        - Added new Category "Configuration" which allows to:
+        − Added new Category "Configuration" which allows to:
 
              + Backup
              + Restore (from user backup configuration)
@@ -1146,15 +1150,15 @@ between.  For more detailed information see the git log.
 
           also shows version of user, user backup, vendor and factory
           configuration files (None for vendor and user backup if they
-          don't exist)
+          don’t exist)
 
-        - icon name for this category in UI: bs-ng-config
+        − icon name for this category in UI: bs-ng-config
 
-        - after configuration is restored or reset the application is
+        − after configuration is restored or reset the application is
           restarted
 
-   * StartUp Mechanism Changes
-        - Before BashStyle-NG embedded into /etc/bash.bashrc or
+   • StartUp Mechanism Changes
+        − Before BashStyle-NG embedded into /etc/bash.bashrc or
           /etc/bashrc to add a startup entry to $HOME/.bashrc.  Now if
           $HOME/.bashrc does not contain a startup entry for
           BashStyle-NG the user is presented a tab page upon UI start
@@ -1163,24 +1167,24 @@ between.  For more detailed information see the git log.
           from a previous installation of BashStyle-NG that had a
           different installation prefix.
 
-   * Prompt Part Changes
+   • Prompt Part Changes
 
-        - PS2 / PS3 / PS4 changes: Before there's been an option for
+        − PS2 / PS3 / PS4 changes: Before there’s been an option for
           PS234.  Setting this to ">" resulted in
 
              + PS2=">"
              + PS3=">>"
              + PS4=">>>"
 
-          Now there's an separate option for each (including a color
+          Now there’s an separate option for each (including a color
           option each)
 
-        - additionally PS2 / PS3 / PS4 export does now honor
+        − additionally PS2 / PS3 / PS4 export does now honor
           enable_colors setting
 
-   * History Syncro Changes
+   • History Syncro Changes
 
-        - BashStyle-NG 9.1 introduced a custom history sync
+        − BashStyle-NG 9.1 introduced a custom history sync
           functionality (for syncing history over simultaneously running
           sessions), which turned out to break Bash $HISTCONTROL, as it
           modified the history from outside.  This is now worked around
@@ -1189,23 +1193,23 @@ between.  For more detailed information see the git log.
           note that this might slow down Bash a bit if you have a huge
           history.
 
-   * New Functions
+   • New Functions
 
-        - xmltagdelete: delete tags from xml files, see 'xmltagdelete
-          --help'
+        − xmltagdelete: delete tags from xml files, see ‘xmltagdelete
+          --help’
 
-        - 2048.bash: 2048 game in Bash, see '2048.bash --help'
+        − 2048.bash: 2048 game in Bash, see ‘2048.bash --help’
 
-   * New Settings
+   • New Settings
 
-        - Added option to display progressbar for 'dd', requires version
+        − Added option to display progressbar for ‘dd’, requires version
           8.24 or newer.
 
-   * Documentation
+   • Documentation
 
-        - Add texinfo documentation describing all features of
+        − Add texinfo documentation describing all features of
           BashStyle-NG (work in progress).
-        - currently documented:
+        − currently documented:
              + Introduction
              + News (ChangeLog)
              + Configuration file handling
@@ -1213,33 +1217,33 @@ between.  For more detailed information see the git log.
              + Style options (UI section)
              + Shell options (UI section)
              + UI icon names
-        - Add manpage for 'bashstyle' executable.
-        - Add 'Documentation' icon ('bs-ng-doc') icon in UI, opening the
-          documenation using 'xdg-open'.
+        − Add manpage for ‘bashstyle’ executable.
+        − Add ‘Documentation’ icon (‘bs-ng-doc’) icon in UI, opening the
+          documenation using ‘xdg-open’.
 
-   * Misc.  Changes
+   • Misc.  Changes
 
-        - undobuffer: enforce Gtk version 3 to be loaded (makes a
+        − undobuffer: enforce Gtk version 3 to be loaded (makes a
           startup warning shut up
 
-   * Configure
+   • Configure
 
-        - 4.3.7
+        − 4.3.7
              + code review
              + fixed bug #202
 
-        - 4.3.6
-             + add '--docdir' switch back
-             + add '--mandir' switch
+        − 4.3.6
+             + add ‘--docdir’ switch back
+             + add ‘--mandir’ switch
 
-        - 4.3.5
+        − 4.3.5
              + remove system bashrc detection
-             + remove -profiledir switch
-             + remove -bashrc switch
+             + remove –profiledir switch
+             + remove –bashrc switch
              + minor string changes
 
-        - 4.3.4
-             + remove -quiet switch
+        − 4.3.4
+             + remove –quiet switch
              + globally define PYMAXVER and PYMINVER (python minimum and
                maximum versions)
              + globally define PYAMXVER_P and PYMINVER_P (printable
@@ -1247,36 +1251,36 @@ between.  For more detailed information see the git log.
                messages)
              + remove unused variable
 
-   * Make
+   • Make
 
-        - 1.0.9
+        − 1.0.9
              + code review
 
-        - 1.0.8
-             + compress manpages upon './make build'
-             + install info and html documentation upon './make install'
-             + install manpages upon './make install'
+        − 1.0.8
+             + compress manpages upon ‘./make build’
+             + install info and html documentation upon ‘./make install’
+             + install manpages upon ‘./make install’
              + add a few more strings
-             + build README from doc/userdoc_introduction ('./make
-               readme')
+             + build README from doc/userdoc_introduction (‘./make
+               readme’)
 
-        - 1.0.7
-             + build NEWS from doc/news.info ('./make news')
-             + build doc/bashstyle.info from doc/userdoc.texi ('./make
-               info')
-             + build doc/html from doc/userdoc.texi ('./make html')
+        − 1.0.7
+             + build NEWS from doc/news.info (‘./make news’)
+             + build doc/bashstyle.info from doc/userdoc.texi (‘./make
+               info’)
+             + build doc/html from doc/userdoc.texi (‘./make html’)
 
-        - 1.0.6
+        − 1.0.6
              + fixed bug #191
 
-        - 1.0.5
+        − 1.0.5
              + update for no longer installed profiledir and profile
                script
              + minor string changes
 
-   * Translations
+   • Translations
 
-        - Updated german translation
+        − Updated german translation
 
      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
