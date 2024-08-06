@@ -208,16 +208,21 @@ check_apps () {
 	shift
 
 	for ARG in "${@}"; do
-		APP="${ARG/:*}"
-		DESC="${ARG/*:}"
+		APP=$(gawk -F : '{print $1}' <(echo "${ARG}"))
+		DESC=$(gawk -F : '{print $2}' <(echo "${ARG}"))
+		APP2=$(gawk -F : '{print $3}' <(echo "${ARG}"))
+		[[ ${APP2} ]] && APP2_P="(${APP2})" || APP2_P=""
+
 		DEP_RETURN=$(check "${APP}")
-		if [[ ${DEP_RETURN} == *found* ]]; then
-			ok_message "${APP}"
-		elif [[ ${DEP_RETURN} != *found* && ${OPT} == true ]]; then
-			warn_message "${APP}" "${DESC}"
+		DEP_RETURN2=$(check "${APP2}")
+
+		if [[ ${DEP_RETURN} == *found* || ${DEP_RETURN2} == *found* ]]; then
+			ok_message "${APP} ${APP2_P}"
+		elif [[ (${DEP_RETURN} != *found* && ${DEP_RETURN2} != *found*) && ${OPT} == true ]]; then
+			warn_message "${APP} ${APP2_P}" "${DESC}"
 			MISSING+=" ${APP}"
 		else
-			fail_message m "${APP}"
+			fail_message m "${APP} ${APP2_P}"
 			kill -s TERM "${TOP_PID}"
 		fi
 	done
