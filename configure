@@ -316,14 +316,18 @@ check_pymods () {
 		SMOD=$(gawk -F : '{print $2}' <(echo "${ARG}"))
 		DESC=$(gawk -F : '{print $3}' <(echo "${ARG}"))
 
-		if [[ ${SMOD} ]]; then
-			DEP="${SMOD} (${MOD})"
-			${PYTHON} -c "from ${MOD} import ${SMOD}" 2>/dev/null
-		else
-			DEP="${MOD}"
-			${PYTHON} -c "import imp
-imp.find_module('${MOD}')" 2>/dev/null
-		fi
+		case ${MOD} in
+			gi.repository.Gtk )
+				${PYTHON} -c "import gi
+gi.require_version('Gtk', '${SMOD}')
+import ${MOD}"
+			;;
+			* )
+				${PYTHON} -c "import ${MOD}" 2>/dev/null
+			;;
+		esac
+
+		[[ ${SMOD} ]] && DEP="${MOD} (${SMOD})" || DEP="${MOD}"
 
 		DEP_RETURN=$?
 		if [[ ${DEP_RETURN} == 0 ]]; then
