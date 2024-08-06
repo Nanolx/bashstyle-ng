@@ -6,8 +6,8 @@ between.  For more detailed information see the git log.
 
    Each release lists incompatible changes at its top.
 
-10.9 (in-dev) “Splatsville“
-===========================
+10.9 (in-dev) "New Eridu"
+=========================
 
    • Bug Fixes
 
@@ -22,7 +22,16 @@ between.  For more detailed information see the git log.
 
         − Add ability to choose sort order for files for ‘batchrename’.
 
-10.8 (20220812) “Aionos“
+   • Misc.  Changes
+        − ‘configure’: simplfy python module check.
+
+        − ‘configure’: check for explicit ‘gi.repository.Gtk’ version
+          ‘3.0’.
+
+        − ‘configure’: make it possible to check for alternative name of
+          an application (eg.  ‘bat’ is called ‘batcat’ on Debian).
+
+10.8 (20220812) "Aionos"
 ========================
 
    • Bug Fixes
@@ -74,7 +83,7 @@ between.  For more detailed information see the git log.
 
         − Update german translation.
 
-10.7.4 (20220505) “Stargazer“
+10.7.4 (20220505) "Stargazer"
 =============================
 
    • 15th Anniversary
@@ -113,7 +122,7 @@ between.  For more detailed information see the git log.
 
         − Let configure substitute ‘BSNG_YEAR’ envvar from ‘.settings’.
 
-10.7.3 (20210319) “New Horizons“
+10.7.3 (20210319) "New Horizons"
 ================================
 
    • Bug Fixes
@@ -127,7 +136,7 @@ between.  For more detailed information see the git log.
           ‘randomfile’ functions, so use old school ‘$'...'’ syntax as
           quick fix.
 
-10.7.2 (20200830) “Klick Klack“
+10.7.2 (20200830) "Klick Klack"
 ===============================
 
    • Bug Fixes
@@ -138,7 +147,7 @@ between.  For more detailed information see the git log.
           complete loss of history when many Bash instance are started
           at once and trying to access the history file.
 
-        − #270 ‘bashstyle_history’: custom ’history -D’ param now also
+        − #270 ‘bashstyle_history’: custom 'history -D' param now also
           deletes single commands in history (eg: ‘history -D geany’
           previously only deleted ‘geany some_file’, but not ‘geany’,
           now both will be deleted).
@@ -169,7 +178,7 @@ between.  For more detailed information see the git log.
 
         − Update german translation.
 
-10.7.1 (20191220) “Dragonyule“
+10.7.1 (20191220) "Dragonyule"
 ==============================
 
    • Bug Fixes
@@ -190,7 +199,7 @@ between.  For more detailed information see the git log.
         − Add package ‘fd-find’ to suggested packages in Debian
           GNU/Linux packaging scripts.
 
-10.7 (20190910) “Kaffee Filtrino”
+10.7 (20190910) "Kaffee Filtrino"
 =================================
 
    • Important Information
@@ -307,7 +316,7 @@ between.  For more detailed information see the git log.
 
         − Update german translation.
 
-10.6.1 “Aventine II”
+10.6.1 "Aventine II"
 ====================
 
    • Bug Fixes
@@ -319,7 +328,7 @@ between.  For more detailed information see the git log.
         − ‘check’ function: check if ‘dig’ is installed before executing
           ‘check m’.
 
-10.6 “Aventine”
+10.6 "Aventine"
 ===============
 
    • Bug Fixes
@@ -385,7 +394,7 @@ between.  For more detailed information see the git log.
              x ‘m’: check if arg is a valid mail address, example ‘check
                m "test@dom.tld"’.  ‘check’ matches against a regex and
                uses ‘dig’ to see if the domain is available, will
-               verbosely inform what’s wrong (in case).
+               verbosely inform what's wrong (in case).
 
         − New switch ‘-z’ for ‘randomfile’ append filename to command
           without separating space, for example ‘randomfile geeqie -r
@@ -416,7 +425,7 @@ between.  For more detailed information see the git log.
              x remember ssh password feature: you can now let ‘gitkit’
                start an ‘ssh-agent’ in combination with ‘ssh-add’ so
                that the afore mentioned new features (and ordinary ‘git’
-               remote commands) don’t require you to type in your
+               remote commands) don't require you to type in your
                password everytime.  You can customize whether to use
                that feature, how long ‘ssh-agent’ should remember the
                passwords and what keyfile to use (fallback
@@ -460,7 +469,7 @@ between.  For more detailed information see the git log.
 
         − several minor internal changes and improvements.
 
-10.5 “Kerala”
+10.5 "Kerala"
 =============
 
    • Bug Fixes
@@ -515,7 +524,7 @@ between.  For more detailed information see the git log.
 
         − Updated german translation.
 
-10.4 “Alrest”
+10.4 "Alrest"
 =============
 
    • Bug Fixes
@@ -534,7 +543,7 @@ between.  For more detailed information see the git log.
 
         − ‘batchrename’: proper verbose output
 
-10.3 “Odyssey”
+10.3 "Odyssey"
 ==============
 
    • Bug Fixes
@@ -551,7 +560,7 @@ between.  For more detailed information see the git log.
 
         − Update german translation.
 
-10.2 “Circus of Insanity”
+10.2 "Circus of Insanity"
 =========================
 
    • Bug Fixes
@@ -572,7 +581,7 @@ between.  For more detailed information see the git log.
         − #245 (randomfile): check whether ‘HOME/.randomhistory’ exists
           before doing anything when ‘-f’, ‘-l’, ‘-L’ or ‘-i’ are given.
 
-        − #246 (dd): fix that custom ‘dd’ options don’t work.
+        − #246 (dd): fix that custom ‘dd’ options don't work.
 
    • New Features
 
@@ -619,7 +628,7 @@ between.  For more detailed information see the git log.
         − Add ‘-v’, ‘--verbose’ switch to ‘batchrename’, to get verbose
           output, if desired.
 
-10.1 “Victory Forever”
+10.1 "Victory Forever"
 ======================
 
    • Bug Fixes
@@ -683,7 +692,7 @@ between.  For more detailed information see the git log.
 
         − Update german translation.
 
-10.0 “10th Anniversary Version”
+10.0 "10th Anniversary Version"
 ===============================
 
    • Bug Fixes
@@ -699,7 +708,7 @@ between.  For more detailed information see the git log.
           mixed up.
 
         − #230 (treecd): Check whether ‘tree’ is installed, if not,
-          override the user’s choice to use ‘treecd’ instead of ‘cd’.
+          override the user's choice to use ‘treecd’ instead of ‘cd’.
 
         − #231 (equinox): Fix missing prompt part in ‘equinox’ style
           when terminal has not enough lines of height to draw all
@@ -772,7 +781,7 @@ between.  For more detailed information see the git log.
 
         − Rename ‘bsng-help’ to ‘bashstyle-help’.
 
-        − Remove ‘check_opt’, instead do a check in each script on it’s
+        − Remove ‘check_opt’, instead do a check in each script on it's
           own.
 
         − Improve coding style for various functions, scripts and prompt
@@ -782,14 +791,14 @@ between.  For more detailed information see the git log.
 
      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-9.3 “Trick or Treat”
+9.3 "Trick or Treat"
 ====================
 
    • Notes
         − This release renamed the ‘nx-rc’ to ‘bashstyle-rc’, that
-          means, you’ll have to re-enable ‘BashStyle-NG’ in your
+          means, you'll have to re-enable ‘BashStyle-NG’ in your
           ‘$HOME/.bashrc’.  Upon first start ‘BashStyle-NG’ will offer
-          you to do so, on it’s own.
+          you to do so, on it's own.
 
           Additional notes for Git repo users:
              x This also applies to users that have used version 9.3
@@ -811,7 +820,7 @@ between.  For more detailed information see the git log.
           be ‘less’, else colorizing manpages might fail, if an other
           pager is used.
 
-        − #207 (trap): fix recording exit code of last command if it’s
+        − #207 (trap): fix recording exit code of last command if it's
           not 0.
 
         − #208 (startup): fix enabling ‘BashStyle-NG’ in ‘$HOME/.bashrc’
@@ -878,7 +887,7 @@ between.  For more detailed information see the git log.
 
         − #221 (equinox): when on linux console let display ‘+’, ‘-’ and
           ‘/’ for ‘lastcommand’ exit code visualization instead of ‘✔’,
-          ‘✘’ and ‘⊘’, as they won’t display correctly.
+          ‘✘’ and ‘⊘’, as they won't display correctly.
 
         − #222 (custom prompt builder): fixed a few bugs in the
           pre-definied prompt definitions for the custom prompt builder.
@@ -887,8 +896,8 @@ between.  For more detailed information see the git log.
           changed, even if user disabled that feature from UI.
 
         − #224 (factory ini, debian vendor ini): enable ‘extglob’ shopt
-          by default.  Some bash completion definitions don’t work
-          without (eg: vim’s).
+          by default.  Some bash completion definitions don't work
+          without (eg: vim's).
 
         − #225 (dd): fixed no longer working ‘dd’ when loading
           ‘bashstyle-rc’ more than one time during a single bash
@@ -987,9 +996,9 @@ between.  For more detailed information see the git log.
           sessions start up simultaneously (should throw a lot less to
           no more errors).
 
-        − ‘random’ function’s ‘--numericalrange’, ‘-r’ param previously
+        − ‘random’ function's ‘--numericalrange’, ‘-r’ param previously
           only allowed setting the ‘highest’ value of random range,
-          starting from zero.  Now it’s possible to set the ‘lowest’
+          starting from zero.  Now it's possible to set the ‘lowest’
           value optionally, aswell.  Both syntaxes are supported:
 
           ‘random -r 10’ will give you a random number between 0 and 10
@@ -997,17 +1006,17 @@ between.  For more detailed information see the git log.
           10
 
         − ‘colors’ added support for both ‘grey’ and ‘white’ in all
-          color settings.  Note: depending on your terminal’s color
-          settings you might not see a difference here, that’s not a
+          color settings.  Note: depending on your terminal's color
+          settings you might not see a difference here, that's not a
           bug.
 
         − ‘colorshell’ does no longer pollute ‘PS1...4’ variables.  It
           does now store ‘PS1...4’ once per session to ‘OLDPS1...4’ and
-          appends it’s randomly choosen text color to the it.
+          appends it's randomly choosen text color to the it.
 
         − ‘equinox’ prompt now shows ‘⊘’ in yellow when exiting ‘git
           log’ using ‘q’ key, instead of ‘✘’ in red.  Exiting ‘git log’
-          results in return code 141, but it’s not an actual error, thus
+          results in return code 141, but it's not an actual error, thus
           the new state was added.
 
    • UI changes
@@ -1046,7 +1055,7 @@ between.  For more detailed information see the git log.
 
         − Updated german translation.
 
-        − Don’t mark setting’s name and a few others as translatable
+        − Don't mark setting's name and a few others as translatable
           strings.
 
         − Changed string ‘GIT’ to ‘Git’ in the UI and other pacles.
@@ -1071,7 +1080,7 @@ between.  For more detailed information see the git log.
 
      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-9.2 “Galvanize”
+9.2 "Galvanize"
 ===============
 
    • Bug Fixes
@@ -1107,7 +1116,7 @@ between.  For more detailed information see the git log.
 
         − #200 (dd_opts): ensure setting DD_OPTS is properly done.
 
-        − #201 (ls_colors): setting Tar/XZ color from UI didn’t work.
+        − #201 (ls_colors): setting Tar/XZ color from UI didn't work.
 
         − #202 (configure): fixed last arguement passed to configure not
           being honoured.
@@ -1122,11 +1131,11 @@ between.  For more detailed information see the git log.
           a dry-load to ensure the files are in proper shape, if they
           contain errors skip them
 
-        − When the configuration file can’t be loaded due errors, let
+        − When the configuration file can't be loaded due errors, let
           BashStyle-NG auto-reset the configuration using user backup
           (if it exists) > vendor configuration (if it exists) > factory
           configuration (in that order).  This prevents BashStyle-NG
-          from crashing if there’s something wrong with the user
+          from crashing if there's something wrong with the user
           configuration file
 
         − Added new Category "Configuration" which allows to:
@@ -1150,7 +1159,7 @@ between.  For more detailed information see the git log.
 
           also shows version of user, user backup, vendor and factory
           configuration files (None for vendor and user backup if they
-          don’t exist)
+          don't exist)
 
         − icon name for this category in UI: bs-ng-config
 
@@ -1169,14 +1178,14 @@ between.  For more detailed information see the git log.
 
    • Prompt Part Changes
 
-        − PS2 / PS3 / PS4 changes: Before there’s been an option for
+        − PS2 / PS3 / PS4 changes: Before there's been an option for
           PS234.  Setting this to ">" resulted in
 
              + PS2=">"
              + PS3=">>"
              + PS4=">>>"
 
-          Now there’s an separate option for each (including a color
+          Now there's an separate option for each (including a color
           option each)
 
         − additionally PS2 / PS3 / PS4 export does now honor
@@ -1238,12 +1247,12 @@ between.  For more detailed information see the git log.
 
         − 4.3.5
              + remove system bashrc detection
-             + remove –profiledir switch
-             + remove –bashrc switch
+             + remove -profiledir switch
+             + remove -bashrc switch
              + minor string changes
 
         − 4.3.4
-             + remove –quiet switch
+             + remove -quiet switch
              + globally define PYMAXVER and PYMINVER (python minimum and
                maximum versions)
              + globally define PYAMXVER_P and PYMINVER_P (printable
