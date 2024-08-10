@@ -5,7 +5,7 @@
 #                                                       #
 # Licensed under GNU GENERAL PUBLIC LICENSE v3          #
 #                                                       #
-# Copyright Christopher Roy Bratušek                        #
+# Copyright Christopher Roy Bratušek                    #
 #                                                       #
 # ##################################################### #
 
@@ -29,10 +29,8 @@ except ImportError:
     FAILED.append(_("GdkPixbuf (from gi.repository)"))
 
 if FAILED:
-    print(
-        _("The following modules failed to import: %s")
-        % (" ".join(FAILED))
-    )
+    print(_("The following modules failed to import: %s")
+          % (" ".join(FAILED)))
     sys.exit(1)
 
 gtkbuilder = widgethandler.gtkbuilder
