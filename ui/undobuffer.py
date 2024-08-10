@@ -1,6 +1,7 @@
 # coding=utf-8
-# Copyright Ⓒ 2009 Florian Heinle <dev@planet-tiax.de>
-# Copyright Ⓒ 2014 Christian Fobel <christian@fobel.net>
+# Copyright Ⓒ 2009 Florian Heinle
+# Copyright Ⓒ 2011 Christopher Roy Bratušek (fork)
+# Copyright Ⓒ 2014 Christian Fobel (upstream version)
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
