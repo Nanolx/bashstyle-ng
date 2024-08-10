@@ -76,12 +76,12 @@ class KeyTree(object):
 		tree.append_column(column_binding)
 
 		render_revert_user = CellRendererClickablePixbuf()
-		render_revert_user.set_property("icon-name", "gtk-revert-to-saved")
+		render_revert_user.set_property("icon-name", "edit-undo")
 		column_revert_user = Gtk.TreeViewColumn(_("Revert"), render_revert_user, icon_name=1)
 		tree.append_column(column_revert_user)
 
 		render_revert_factory = CellRendererClickablePixbuf()
-		render_revert_factory.set_property("icon-name", "gtk-delete")
+		render_revert_factory.set_property("icon-name", "edit-delete")
 		column_revert_factory = Gtk.TreeViewColumn(_("Default"), render_revert_factory, icon_name=2)
 		tree.append_column(column_revert_factory)
 
