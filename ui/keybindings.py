@@ -208,7 +208,7 @@ class KeyTree(object):
 				alt = False
 				ctrl = False
 				nmod = False
-			store.append([label, "gtk-revert-to-saved", "gtk-delete", alt, ctrl, nmod, boundkey])
+			store.append([label, "edit-undo", "edit-delete", alt, ctrl, nmod, boundkey])
 
 	def change_setting(self, setting, alt, ctrl, nmod, key):
 		if key == "":
