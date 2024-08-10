@@ -103,7 +103,8 @@ interpreter.")
     (options, args) = parser.parse_args()
 
     if options.version:
-        print("%s (%s)" %(os.getenv('BSNG_VERSION'), os.getenv('BSNG_CODENAME')))
+        print("%s (%s)" % (os.getenv('BSNG_VERSION'),
+                           os.getenv('BSNG_CODENAME')))
         sys.exit(0)
 
     if options.prefix:
