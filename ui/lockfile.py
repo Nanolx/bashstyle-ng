@@ -5,11 +5,11 @@
 #                                                       #
 # Licensed under GNU GENERAL PUBLIC LICENSE v3          #
 #                                                       #
-# Copyright Christopher Roy Bratušek                        #
+# Copyright Christopher Roy Bratušek                    #
 #                                                       #
 # ##################################################### #
 
-MODULES = ['os', 'os.path', 'string', 'sys']
+MODULES = ['os', 'os.path', 'string', 'sys', 'subprocess']
 FAILED = []
 
 for module in MODULES:
@@ -19,19 +19,11 @@ for module in MODULES:
         FAILED.append(module)
 
 if FAILED:
-    print(
-        _("The following modules failed to import: %s")
-        % (" ".join(FAILED))
-    )
+    print(_("The following modules failed to import: %s")
+          % (" ".join(FAILED)))
     sys.exit(1)
 
 lockfile = os.path.expanduser("~/.bashstyle.lock")
-
-# Python2 Vs. Python3
-if sys.version_info[0] == 2:
-    import commands
-else:
-    import subprocess
 
 
 class LockFile(object):
@@ -48,8 +40,7 @@ class LockFile(object):
                     xpid = subprocess.getoutput("pgrep -l bashstyle")
                     gpid = xpid.split()
                 if gpid[1] == "bashstyle":
-                    print(
-                          _("Lockfile does exist and bashstyle-ng is \
+                    print(_("Lockfile does exist and bashstyle-ng is \
 already running.\
 \
 bashstyle-ng is running as process %s" % oldpid)
