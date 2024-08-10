@@ -9,8 +9,8 @@
 #                                                       #
 # #######################################################
 
-MODULES = [ 'sys', 'os', 'widgethandler', 'subprocess',
-        'config', 'lockfile', 'dicts' ]
+MODULES = ['sys', 'os', 'widgethandler', 'subprocess',
+           'config', 'lockfile', 'dicts']
 
 FAILED = []
 
@@ -38,6 +38,7 @@ gtkbuilder = widgethandler.gtkbuilder
 USER_DEFAULTS_SAVE = config.USER_DEFAULTS_SAVE
 config = config.Config()
 lock = lockfile.LockFile()
+
 
 class ConfigUI(object):
 
@@ -88,7 +89,7 @@ class ConfigUI(object):
             delete_configPossible()
 
         def openFile(data, file):
-            subprocess.Popen(["xdg-open", "%s" %file])
+            subprocess.Popen(["xdg-open", "%s" % file])
 
         WidgetHandler = widgethandler.WidgetHandler(self.config, self.userdefault, self.factorydefault)
         WidgetHandler.InitWidget("config.backup", backup_configAction, None, "button", None)
@@ -109,6 +110,7 @@ class ConfigUI(object):
         restore_configPossible()
         delete_configPossible()
 
+
 class StartupUI(object):
 
     def __init__(self, cfo, udc, fdc):
@@ -118,7 +120,7 @@ class StartupUI(object):
 
     def InitStartupUI(self):
 
-        if config.CheckBashStyle() == False:
+        if not config.CheckBashStyle():
             def setBashStyle(data, atad):
                 config.EnableBashStyle(True)
                 notebook.set_current_page(0)
