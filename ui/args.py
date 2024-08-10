@@ -5,7 +5,7 @@
 #                                                       #
 # Licensed under GNU GENERAL PUBLIC LICENSE v3          #
 #                                                       #
-# Copyright Christopher Roy Bratušek                        #
+# Copyright Christopher Roy Bratušek                    #
 #                                                       #
 # ##################################################### #
 
