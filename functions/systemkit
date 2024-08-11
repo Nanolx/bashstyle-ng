@@ -13,7 +13,7 @@
 export TEXTDOMAIN="bashstyle-rc"
 
 prettyprint () {
-	LANG=C printf "%0${2}.f\n" ${1}
+	LC_NUMERIC=C printf "%0${2}d\n" ${1}
 }
 
 case ${1} in
@@ -130,7 +130,7 @@ case ${1} in
 		TTY=$(tty)
 		echo "${TTY:5}"
 	;;
-	
+
 	uptime)
 		uptime=$(</proc/uptime)
 		timeused=${uptime%%.*}
