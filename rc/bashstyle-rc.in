@@ -20,8 +20,10 @@ export BSNG_VERSION=@VERSION@
 export BSNG_YEAR="@BSNG_YEAR@"
 export BSNG_BASHVER=${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}
 export BSNG_LOGFILE=${HOME}/.bashstyle-ng.log
-export BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
 export BASH_SESSION_PID=$$
+
+BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
+export BSNG_SESSION_TIME
 
 # load ini / loggin functions
 source ${BSNG_RCDIR}/function_ini
@@ -100,7 +102,7 @@ if bt "$(ini_get use_bashstyle)"; then
 			11 ) pstyle=ayoli ;;
 		esac
 
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" ${pstyle} "$(eval_gettext "randomly chosen")"
+		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "${pstyle}" "$(eval_gettext "randomly chosen")"
 	else
 		pstyle=$(ini_get prompt_style)
 	fi
@@ -156,7 +158,7 @@ if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
 	cat ${BSNG_RCDIR}/internal_birthday
 elif [[ -n $(ini_get welcome_message) ]]; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Welcome Message")"
-	dbg_log $(ini_get welcome_message)
+	dbg_log "$(ini_get welcome_message)"
 fi
 
 # load custom settings file
@@ -196,7 +198,7 @@ bashstyle_trap_add 'bashstyle_remember_command_error' ERR
 
 # colorshell
 
-if $(bt "$(ini_get colorshell)") && $(bt "$(ini_get enable_colors)"); then
+if bt "$(ini_get colorshell)" && bt "$(ini_get enable_colors)"; then
 	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
 	bashstyle_trap_add 'bashstyle_colorshell' DEBUG
 
@@ -230,7 +232,7 @@ fi
 #
 functions () {
 	shopt -s extdebug
-	declare -F | grep -v "declare -f _" | declare -F $(awk "{print $3}") | column -t
+	declare -F | grep -v "declare -f _" | declare -F "$(awk "{print $3}")" | column -t
 	shopt -u extdebug
 }
 
