@@ -17,7 +17,7 @@ bashstyle_history () {
 			local history_command
 
 			shift
-			history_command="${@}"
+			history_command="${*}"
 
 			if [ -n "${history_command}" ]; then
 				history_lines_matching=$(builtin history | gawk -v pattern="^ .*[0-9]  ${history_command}" '$0 ~ pattern{print $1}')

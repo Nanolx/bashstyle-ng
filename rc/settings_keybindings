@@ -33,20 +33,20 @@ keybindings_setter () {
 				dbg_msg "\\e${KEY}":self-insert
 				bind "\\e${KEY}":self-insert
 				dbg_msg \"\\e"${KEY}"\":"${ACT}"
-				echo -E \"\\e"${KEY}"\":"${ACT}" >> "${RC_FILE}"
+				printf '%s\n' "\"\\e${KEY}\":${ACT}" >> "${RC_FILE}"
 			;;
 			C)
 				dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" C-"${KEY}"
 				dbg_msg "\\C-${KEY}":self-insert
 				bind "\\C-${KEY}":self-insert
 				dbg_msg \"\\C-"${KEY}"\":"${ACT}"
-				echo -E \"\\C-"${KEY}"\":"${ACT}" >> "${RC_FILE}"
+				printf '%s\n' "\"\\C-${KEY}\":${ACT}" >> "${RC_FILE}"
 			;;
 			X)
 				dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" "${KEY}"
 				#bind "${KEY}":self-insert
 				dbg_msg "${KEY}":"${ACT}"
-				echo -E "${KEY}":"${ACT}" >> "${RC_FILE}"
+				printf '%s\n' "${KEY}:${ACT}" >> "${RC_FILE}"
 			;;
 		esac
 	fi

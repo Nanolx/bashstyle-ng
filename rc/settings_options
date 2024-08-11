@@ -106,7 +106,7 @@ fi
 # status=progress is new in dd/coreutils 8.24
 dd_version="$(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version))"
 
-if $(bt "$(ini_get dd_progress)") && [ "${dd_version}" -ge 824 ]; then
+if bt "$(ini_get dd_progress)" && [ "${dd_version}" -ge 824 ]; then
 	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "display progressbar")"
 	dbg_log export dd_opts+="status=progress "
 elif bt "$(ini_get dd_progress)"; then

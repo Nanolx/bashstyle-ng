@@ -60,7 +60,7 @@ lscolors=(exec generic logs deb rpm dirs jpeg png gif mp3 ogg flac tar targz
 tarbz2 tarxz zip rar link socket pipe blockdev chardev)
 
 for lscolor in "${lscolors[@]}"; do
-	eval "_${lscolor}"=$(ini_get "${lscolor}")
+	eval "_${lscolor}"="$(ini_get "${lscolor}")"
 done
 
 _custom="$(ini_get custom)"
