@@ -9,7 +9,7 @@
 #                                                       #
 # ##################################################### #
 
-MODULES = ['os', 'sys', 'optparse']
+MODULES = ['os', 'sys', 'optparse', 'gettext']
 FAILED = []
 
 for module in MODULES:
@@ -17,6 +17,9 @@ for module in MODULES:
         globals()[module] = __import__(module)
     except ImportError:
         FAILED.append(module)
+
+lang = gettext.translation('bashstyle', fallback=True)
+lang.install(names=['_'])
 
 if FAILED:
     print(
