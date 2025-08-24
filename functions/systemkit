@@ -13,7 +13,7 @@
 export TEXTDOMAIN="bashstyle-rc"
 
 prettyprint () {
-	LC_NUMERIC=C printf "%0${2}d\n" ${1}
+	LC_NUMERIC=C printf "%0${2}.0f\n" "${1}"
 }
 
 case ${1} in
@@ -44,7 +44,7 @@ case ${1} in
 		[[ ! "${cpu#.}x" = "${cpu}x" ]] && cpu="0${cpu}"
 		cpu=${cpu%%.*}
 
-		prettyprint ${cpu} 3
+		prettyprint "${cpu}" 3
 	;;
 
 	externalip)
@@ -56,12 +56,12 @@ case ${1} in
 		LANG=C /sbin/ifconfig "${2}" | gawk '/inet /{print $2}'
 	;;
 
-	usedram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4 "-" $6}' | bc) 5 ;;
-	freeram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $6}') 5 ;;
-	totalram) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print $4}') 5 ;;
+	usedram) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print $4 "-" $6}' | bc)" 5 ;;
+	freeram) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print $6}')" 5 ;;
+	totalram) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print $4}')" 5 ;;
 
-	usedram%) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc) 3 ;;
-	freeram%) prettyprint $(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc) 3 ;;
+	usedram%) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc)" 3 ;;
+	freeram%) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc)" 3 ;;
 
 	dirsize)
 		TotalBytes=$(du -s "${2}" | awk '{print $1}')
@@ -191,18 +191,18 @@ case ${1} in
 
 	processes)
 		procs=$(ps ax | wc -l | awk '{print $1}')
-		prettyprint ${procs} 4
+		prettyprint "${procs}" 4
 	;;
 
-	cof | countoverallfiles)	echo "$(find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l )" ;;
+	cof | countoverallfiles)	find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l ;;
 	cod | countoveralldirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
 	coi | countoverallitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 | wc -l )-1)) ;;
-	cvf | countvisiblefiles)	echo "$(find -L "${2:-$PWD}" -maxdepth 1 -type f ! -name ".*" | wc -l)" ;;
+	cvf | countvisiblefiles)	find -L "${2:-$PWD}" -maxdepth 1 -type f ! -name ".*" | wc -l ;;
 	cvd | countvisibledirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d ! -name ".*" | wc -l)-1)) ;;
 	cvi | countvisibleitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 ! -name ".*" | wc -l)-1)) ;;
-	chf | counthiddenfiles)		echo "$(find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" | wc -l)" ;;
-	chd | counthiddendirs)		echo "$(find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" | wc -l)" ;;
-	chi | counthiddenitems)		echo "$(find -L "${2:-$PWD}" -maxdepth 1 -name ".*" | wc -l)" ;;
+	chf | counthiddenfiles)		find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" | wc -l ;;
+	chd | counthiddendirs)		find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" | wc -l ;;
+	chi | counthiddenitems)		find -L "${2:-$PWD}" -maxdepth 1 -name ".*" | wc -l ;;
 
 	*)
 		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
