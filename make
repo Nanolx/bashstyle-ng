@@ -393,7 +393,7 @@ make_build () {
 
 make_install () {
 	check_built
-	check_root "install"
+	#check_root "install"
 	install_message
 	installdirs_create
 	install_bsng
@@ -402,7 +402,7 @@ make_install () {
 }
 
 make_remove () {
-	check_root "remove"
+	#check_root "remove"
 	remove_message
 	remove_bsng
 	post_remove
