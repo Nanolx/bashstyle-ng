@@ -210,6 +210,7 @@ check_built () {
 }
 
 check_root () {
+	echo ${EUID}
 	if [[ ${EUID} -ne 0 ]]; then
 		check_root_message "${1}"
 		kill -s TERM "${TOP_PID}"
