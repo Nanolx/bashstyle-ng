@@ -179,9 +179,10 @@ case ${1} in
         echo -e "$(eval_gettext "\n${ecyan}[2] push tags to upstream\n")"
         git push --tag
 
-        if [ -f "${PWD}/.git_mirror" ]; then
+        git_root=$(git rev-parse --show-toplevel)
+        if [ -f "${git_root}/.git_mirror" ]; then
             echo -e "$(eval_gettext "\n${emagenta}[3] push to mirror\n")"
-            for repo in "$(cat ${PWD}/.git_mirror)"; do
+            for repo in "$(cat ${git_root}/.git_mirror)"; do
                 echo -e "$(eval_gettext "${eyellow} * mirror: ${repo}\n")"
                 git push --mirror "${repo}"
             done
