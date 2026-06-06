@@ -30,20 +30,51 @@ gitkit_ssh_add () {
     fi
 }
 
-github_clone () {
+clone_repositories () {
     check P "wget" "'gitkit cloneorg/cloneuser'" || exit 1
     check P "xe" "'gitkit cloneorg/cloneuser'" || exit 1
 
-    wget -qO - https://api.github.com/"${1}"/"${2}"/repos?per_page=200 | \
-        awk -F\" '/ssh_url/{print $4}' | xe git clone
+    type=${1}
+    host=${2}
+    acc=${3}
+
+    echo "Do you want to clone using http or ssh [default]?"
+    read -r xfer
+
+    if [[ "${host}" == "github" ]]; then
+        if [[ "${xfer}" == "http" ]]; then
+            curl -s https://api.github.com/"${type}"/"${acc}"/repos?per_page=100 | \
+                jq -r '.[].clone_url' | xe git clone
+        else
+            curl -s https://api.github.com/"${type}"/"${acc}"/repos?per_page=100 | \
+                jq -r '.[].ssh_url' | xe git clone
+        fi
+    else
+        [[ ${type} == "orgs" ]] && type=groups
+        if [[ "${xfer}" == "http" ]]; then
+            curl -s https://gitlab.com/api/v4/"${type}"/"${acc}"/projects?per_page=100 | \
+                jq -r '.[].http_url_to_repo' | xe git clone
+        else
+            curl -s https://gitlab.com/api/v4/"${type}"/"${acc}"/projects?per_page=100 | \
+                jq -r '.[].ssh_url_to_repo' | xe git clone
+        fi
+    fi
 }
 
-github_list () {
-    # https://www.commandlinefu.com/commands/view/24836/print-all-git-repos-from-a-user-only-curl-and-grep
+list_repositories () {
     check P "curl" "'gitkit listorg/listuser'" || exit 1
+    type=${1}
+    host=${2}
+    acc=${3}
 
-    curl -s https://api.github.com/"${1}"/"${2}"/repos?per_page=1000 | \
-        grep -oP '(?<="git_url": ").*(?="\,)'
+    if [[ "${host}" == "github" ]]; then
+        curl -s https://api.github.com/"${type}"/"${acc}"/repos?per_page=100 | \
+            jq -r '.[].name'
+    else
+        [[ ${type} == "orgs" ]] && type=groups
+        curl -s https://gitlab.com/api/v4/"${type}"/"${acc}"/projects?per_page=100 | \
+            jq -r '.[].name'
+    fi
 }
 
 case ${1} in
@@ -67,7 +98,8 @@ case ${1} in
             else    ACTION="nothing"
             fi
             echo ${ACTION}
-        else    echo --
+        else
+            echo --
         fi
     ;;
 
@@ -75,49 +107,53 @@ case ${1} in
         if [[ -d .git ]]; then
             BRANCH=$(git symbolic-ref HEAD 2>/dev/null)
             echo "${BRANCH#refs/heads/}"
-        else    echo --
+        else
+            echo --
         fi
     ;;
 
     bz2)
         if [[ -d .git ]]; then
             git archive master | bzip2 -9 > "$(basename "${PWD}")".tar.bz2
-        else    echo "$(eval_gettext "current directory is not the root of a git repository")"
+        else
+            echo "$(eval_gettext "current directory is not the root of a git repository")"
         fi
     ;;
 
     xz)
         if [[ -d .git ]]; then
             git archive master | xz -9 > "$(basename "${PWD}")".tar.xz
-        else    echo "$(eval_gettext "current directory is not the root of a git repository")"
+        else
+           echo "$(eval_gettext "current directory is not the root of a git repository")"
         fi
     ;;
 
     zip)
         if [[ -d .git ]]; then
             git archive master --format=zip > "$(basename "${PWD}")".zip
-        else    echo "$(eval_gettext "current directory is not the root of a git repository")"
+        else
+           echo "$(eval_gettext "current directory is not the root of a git repository")"
         fi
     ;;
 
-    cloneuser)
-        github_clone users "${2}"
-    ;;
+    ghcu | ghcloneuser) clone_repositories users github "${2}" ;;
+    ghco | ghcloneorg)  clone_repositories orgs github "${2}" ;;
+    ghlu | ghlistuser)  list_repositories users github "${2}" ;;
+    ghlo | ghlistorg)   list_repositories orgs github "${2}" ;;
 
-    cloneorg)
-        github_clone orgs "${2}"
-    ;;
-
-    listuser)
-        github_list users "${2}"
-    ;;
-
-    listorg)
-        github_list orgs "${2}"
-    ;;
+    glcu | glcloneuser) clone_repositories users gitlab "${2}" ;;
+    glco | glcloneorg)  clone_repositories orgs gitlab "${2}" ;;
+    gllu | gllistuser)  list_repositories users gitlab "${2}" ;;
+    gllo | gllistorg)   list_repositories orgs gitlab "${2}" ;;
 
     export)
-        [[ -n "${2}" && -d .git ]] && git checkout-index --prefix="${2}"/ -a
+        [[ -z "${2}" ]] && outdir="../$(basename ${PWD})_export" || outdir="${2}"
+        if [[ -d .git ]]; then
+            echo "exporting to: ${outdir}"
+            git checkout-index --prefix="${outdir}"/ -a
+        else
+            echo "$(eval_gettext "current directory is not the root of a git repository")"
+        fi
     ;;
 
     funmsg)
@@ -133,11 +169,9 @@ case ${1} in
                     repo_url=$(echo "${repo_url}" | sed 's,:,/,;s,.*@,https://,')
                     x-www-browser "${repo_url}" &
                 ;;
-
                 http* )
                     x-www-browser "${repo_url}" &
                 ;;
-
                 * )
                     echo "$(eval_gettext "couldn't parse web location")"
                 ;;
@@ -151,22 +185,25 @@ case ${1} in
             REVISION=$(git rev-parse HEAD 2>/dev/null)
             REVISION=${REVISION/HEAD/}
             echo "${REVISION:0:6}"
-        else    echo --
+        else
+            echo --
         fi
     ;;
 
     revno)
         if [[ -d .git ]]; then
             git rev-list --reverse HEAD | \
-                awk "/$(git log -n 1 --pretty="format:%h")/ {print NR}"
-        else    echo --
+            awk "/$(git log -n 1 --pretty="format:%h")/ {print NR}"
+        else
+            echo --
         fi
     ;;
 
     undelete)
         if [ -d .git ]; then
             git checkout "$(git ls-files --deleted)"
-        else    echo "$(eval_gettext "current directory is not the root of a git repository")"
+        else
+            echo "$(eval_gettext "current directory is not the root of a git repository")"
         fi
     ;;
 
@@ -275,10 +312,14 @@ case ${1} in
             -o "$(eval_gettext "bz2:|create bz2 archive from a Git repo")"\
             -o "$(eval_gettext "xz:|create xz archive from a Git repo")"\
             -o "$(eval_gettext "zip:|create zip archive from a Git repo")"\
-            -o "$(eval_gettext "cloneuser:username|clone all repos from a GitHub user (SSH)")"\
-            -o "$(eval_gettext "cloneorg:organization|clone all repos from a GitHub organization (SSH)")"\
-            -o "$(eval_gettext "listuser:username|list all repos from a GitHub user")"\
-            -o "$(eval_gettext "listorg:organization|list all repos from a GitHub organization")"\
+            -o "$(eval_gettext "ghcloneuser:username|clone all repos from a GitHub user")"\
+            -o "$(eval_gettext "ghcloneorg:organization|clone all repos from a GitHub organization")"\
+            -o "$(eval_gettext "ghlistuser:username|list all repos from a GitHub user")"\
+            -o "$(eval_gettext "ghlistorg:organization|list all repos from a GitHub organization")"\
+            -o "$(eval_gettext "glcloneuser:username|clone all repos from a GitLab user")"\
+            -o "$(eval_gettext "glcloneorg:organization|clone all repos from a GitLab organization")"\
+            -o "$(eval_gettext "gllistuser:username|list all repos from a GitLab user")"\
+            -o "$(eval_gettext "gllistorg:organization|list all repos from a GitLab organization")"\
             -o "$(eval_gettext "export:directory|export Git repo for release tarball")"\
             -o "$(eval_gettext "funmsg:|create funny Git commit message")"\
             -o "$(eval_gettext "web:|open project page using x-www-browser")"\
