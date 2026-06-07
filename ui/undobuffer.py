@@ -18,10 +18,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA # noqa
 
 """ gtk textbuffer with undo functionality """
-import gi  # noqa
-
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk  # noqa
+try:
+    import gi
+    gi.require_version("Gtk", "4.0")
+    from gi.repository import Gtk
+except ImportError:
+    FAILED.append(_("Gtk (from gi.repository)"))
 
 
 class UndoableInsert(object):

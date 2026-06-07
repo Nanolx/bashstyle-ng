@@ -19,6 +19,8 @@ for module in MODULES:
         FAILED.append(module)
 
 try:
+    import gi
+    gi.require_version("Gtk", "4.0")
     from gi.repository import Gtk
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
@@ -32,7 +34,6 @@ blacklist = ['\'', '\"']
 gtkbuilder = Gtk.Builder()
 gtkbuilder.set_translation_domain("bashstyle")
 gtkbuilder.add_from_file(DATADIR + "/bashstyle-ng/ui/bashstyle.ui")
-
 
 class WidgetHandler(object):
     def __init__(self, cfo, udc, fdc):
@@ -105,7 +106,7 @@ class WidgetHandler(object):
                 object.connect("changed", set_option, None, type, None, group, setting)
             elif type == "int":
                 object.connect("value-changed", set_option, None, type, None, group, setting)
-                object.connect("icon-press", revert_option, type, group, setting)
+                #object.connect("icon-press", revert_option, type, group, setting)
             elif type == "bool":
                 object.connect("toggled", set_option, None, type, None, group, setting)
             elif type == "switch":
@@ -120,7 +121,7 @@ class WidgetHandler(object):
                 object.connect("changed", dict, group, setting)
 
         def revert_option(widget, pos, event, type, widget_group, widget_setting):
-            if type == "text" or type == "int":
+            if type == "text": #or type == "int":
                 if pos == Gtk.EntryIconPosition.SECONDARY:
                     opt = self.factorydefault["%s" % widget_group]["%s" % widget_setting]
                 else:
@@ -128,8 +129,8 @@ class WidgetHandler(object):
                     self.config["%s" % widget_group]["%s" % widget_setting] = opt
                     if type == "text":
                         widget.set_text("%s" % self.config["%s" % widget_group]["%s" % widget_setting])
-                    elif type == "int":
-                        widget.set_value(self.config["%s" % widget_group].as_int("%s" % widget_setting))
+                    #elif type == "int":
+                    #    widget.set_value(self.config["%s" % widget_group].as_int("%s" % widget_setting))
 
         def set_option(widget, data, type, dict, widget_group, widget_setting):
             if type == "text":

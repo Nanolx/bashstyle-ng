@@ -21,6 +21,8 @@ for module in MODULES:
         FAILED.append(module)
 
 try:
+    import gi
+    gi.require_version("Gtk", "4.0")
     from gi.repository import Gtk
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))

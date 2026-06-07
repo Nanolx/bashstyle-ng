@@ -19,7 +19,11 @@ for module in MODULES:
         FAILED.append(module)
 
 try:
+    import gi
+    gi.require_version("Gtk", "4.0")
     from gi.repository import Gtk
+    gi.require_version("Gdk", "4.0")
+    from gi.repository import Gdk
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
@@ -63,8 +67,9 @@ class IconBook(object):
         back.set_visible(0)
 
         for icon in dicts.iconview_icons:
-            pixbuf = Gtk.IconTheme.get_default().load_icon(icon, 32, 0)
-            liststore.append([pixbuf, dicts.iconview_labels[icon]])
+            #theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
+            #file = Gtk.IconTheme.lookup_icon(theme, icon, None, 32, 1, 0, 0)
+            liststore.append([None, dicts.iconview_labels[icon]])
 
         def iconview_activated(widget, item):
             model = widget.get_model()
