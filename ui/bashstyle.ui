@@ -1068,7 +1068,6 @@
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
-
             <layout>
               <property name="column">0</property>
               <property name="row">0</property>
@@ -1218,7 +1217,6 @@
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
-
             <layout>
               <property name="column">0</property>
               <property name="row">6</property>
@@ -1378,14 +1376,13 @@
           <object class="GtkBox" id="bashstyle.buttonbox">
             <property name="can-focus">False</property>
             <property name="homogeneous">True</property>
-
             <property name="spacing">6</property>
             <property name="visible">True</property>
             <child>
               <object class="GtkButton" id="back">
                 <property name="focusable">1</property>
-                <property name="receives-default">1</property>
                 <property name="has-frame">false</property>
+                <property name="receives-default">1</property>
                 <child>
                   <object class="GtkBox" id="back.box">
                     <child>
@@ -1395,23 +1392,21 @@
                     </child>
                     <child>
                       <object class="GtkLabel" id="back.label">
-                        <property name="label" translatable="1">Back</property>
+                        <property name="label" translatable="yes">Back</property>
                       </object>
                     </child>
                   </object>
                 </child>
               </object>
-
             </child>
             <child>
               <object class="GtkLabel" id="main.label">
                 <property name="ellipsize">start</property>
-                <property name="label" translatable="1">Choose a category:</property>
+                <property name="label" translatable="yes">Choose a category:</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
               </object>
-
             </child>
           </object>
         </child>
@@ -1459,8 +1454,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">0</property>
@@ -1472,8 +1465,6 @@
                               <object class="GtkCheckButton" id="colored_prompts">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Colored Prompts</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">0</property>
@@ -1486,8 +1477,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">3</property>
@@ -1499,8 +1488,6 @@
                               <object class="GtkCheckButton" id="ls_color">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Colored ls output</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">3</property>
@@ -1525,8 +1512,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">30</property>
@@ -1540,8 +1525,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">21</property>
@@ -1574,8 +1557,6 @@
                               <object class="GtkCheckButton" id="colorshell">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Randomly colored text</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">5</property>
@@ -1592,8 +1573,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">19</property>
@@ -1624,8 +1603,6 @@
                               <object class="GtkCheckButton" id="random_style">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Use random style</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">21</property>
@@ -1643,8 +1620,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">22</property>
@@ -1654,8 +1629,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.ps2">
                                 <property name="label" translatable="yes">PS2</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">23</property>
@@ -1665,8 +1638,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.ps4">
                                 <property name="label" translatable="yes">PS3</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">23</property>
@@ -1679,8 +1650,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">24</property>
@@ -1693,8 +1662,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">24</property>
@@ -1704,8 +1671,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.ps3">
                                 <property name="label" translatable="yes">PS4</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">25</property>
@@ -1715,8 +1680,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.separator">
                                 <property name="label" translatable="yes">Separator</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">25</property>
@@ -1729,8 +1692,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">26</property>
@@ -1743,8 +1704,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">26</property>
@@ -1843,8 +1802,6 @@
                               <object class="GtkCheckButton" id="show_tty">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Display number of the tty</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">31</property>
@@ -1855,8 +1812,6 @@
                               <object class="GtkCheckButton" id="show_uptime">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Display uptime</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">30</property>
@@ -1867,8 +1822,6 @@
                               <object class="GtkCheckButton" id="show_files_amount">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Display number of files</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">30</property>
@@ -1879,8 +1832,6 @@
                               <object class="GtkCheckButton" id="show_file_size">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Display size of files</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">31</property>
@@ -1928,8 +1879,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">17</property>
@@ -1955,8 +1904,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">15</property>
@@ -1982,8 +1929,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">13</property>
@@ -2009,8 +1954,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">11</property>
@@ -2036,8 +1979,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">9</property>
@@ -2063,8 +2004,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">19</property>
@@ -2090,8 +2029,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">17</property>
@@ -2117,8 +2054,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">15</property>
@@ -2144,8 +2079,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">13</property>
@@ -2171,8 +2104,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">11</property>
@@ -2198,8 +2129,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">9</property>
@@ -2219,8 +2148,6 @@
                               <object class="GtkCheckButton" id="colorshell_reset">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Normal text color for output</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">5</property>
@@ -2238,8 +2165,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">4</property>
@@ -2261,8 +2186,6 @@
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Dark Terminal Background</property>
                                 <property name="width-request">255</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">1</property>
@@ -2288,8 +2211,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">41</property>
@@ -2299,8 +2220,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.ps0">
                                 <property name="label" translatable="yes">PS0</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">40</property>
@@ -2313,8 +2232,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">41</property>
@@ -2327,8 +2244,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">40</property>
@@ -2364,8 +2279,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">36</property>
@@ -2438,8 +2351,6 @@
                       </object>
                     </property>
                     <property name="focusable">1</property>
-
-
                   </object>
                 </property>
                 <property name="position">1</property>
@@ -2547,8 +2458,6 @@
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
                         <property name="width-request">450</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">0</property>
@@ -2561,8 +2470,6 @@
                         <property name="invisible-char">●</property>
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">1</property>
@@ -2575,8 +2482,6 @@
                         <property name="invisible-char">●</property>
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">2</property>
@@ -2589,8 +2494,6 @@
                         <property name="invisible-char">●</property>
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">3</property>
@@ -2603,8 +2506,6 @@
                         <property name="invisible-char">●</property>
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">4</property>
@@ -2617,8 +2518,6 @@
                         <property name="invisible-char">●</property>
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">5</property>
@@ -2631,8 +2530,6 @@
                         <property name="invisible-char">●</property>
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">6</property>
@@ -2645,8 +2542,6 @@
                         <property name="invisible-char">●</property>
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">7</property>
@@ -2659,8 +2554,6 @@
                         <property name="invisible-char">●</property>
                         <property name="primary-icon-name">edit-undo</property>
                         <property name="secondary-icon-name">edit-delete</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">8</property>
@@ -2696,8 +2589,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">0</property>
@@ -2708,8 +2599,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.lable.history_timeformat">
                                 <property name="label" translatable="yes">History Timeformat</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">0</property>
@@ -2722,8 +2611,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">1</property>
@@ -2749,8 +2636,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">1</property>
@@ -2762,8 +2647,6 @@
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Restore directory in new shell</property>
                                 <property name="width-request">255</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">9</property>
@@ -2784,7 +2667,6 @@
                                 <property name="adjustment">advanced.adjustment.history_size</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">3</property>
@@ -2794,8 +2676,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.lable.history_blacklist">
                                 <property name="label" translatable="yes">History Blacklist</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">2</property>
@@ -2808,8 +2688,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">3</property>
@@ -2822,8 +2700,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">7</property>
@@ -2901,8 +2777,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">33</property>
@@ -2916,8 +2790,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">25</property>
@@ -2938,8 +2810,6 @@
                               <object class="GtkCheckButton" id="dd_progress">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Let 'dd' show progressbar</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">14</property>
@@ -2950,8 +2820,6 @@
                               <object class="GtkCheckButton" id="dd_noerror">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Let 'dd' continue on error</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">15</property>
@@ -3004,8 +2872,6 @@
                               <object class="GtkCheckButton" id="debug_verbose">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Verbose output on start</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">22</property>
@@ -3062,8 +2928,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">13</property>
@@ -3080,8 +2944,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">13</property>
@@ -3098,8 +2960,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">15</property>
@@ -3217,8 +3077,6 @@
                               <object class="GtkCheckButton" id="customcd_mkdir">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">lscd/treecd: create directory</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">8</property>
@@ -3239,8 +3097,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.execignore">
                                 <property name="label" translatable="yes">Exec Blacklist</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">33</property>
@@ -3295,7 +3151,6 @@
                                 <property name="climb-rate">0.01</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">28</property>
@@ -3305,8 +3160,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.timeout">
                                 <property name="label" translatable="yes">Set Timeout (in seconds)</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">27</property>
@@ -3319,8 +3172,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">26</property>
@@ -3330,8 +3181,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.cdpath">
                                 <property name="label" translatable="yes">Change CDPATH</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">25</property>
@@ -3341,8 +3190,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.globignore">
                                 <property name="label" translatable="yes">Globbing Blacklist</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">29</property>
@@ -3355,8 +3202,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">28</property>
@@ -3366,8 +3211,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.fcedit">
                                 <property name="label" translatable="yes">Change editor for fc</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">27</property>
@@ -3380,8 +3223,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">26</property>
@@ -3391,8 +3232,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.completion_blacklist">
                                 <property name="label" translatable="yes">Change Completion Blacklist</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">25</property>
@@ -3471,8 +3310,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">36</property>
@@ -3500,8 +3337,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">38</property>
@@ -3511,8 +3346,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.bat_theme">
                                 <property name="label" translatable="yes">Choose bat Theme</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">37</property>
@@ -3522,8 +3355,6 @@
                             <child>
                               <object class="GtkLabel" id="advanced.label.bat_tabwidth">
                                 <property name="label" translatable="yes">Set bat Tab Width</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">37</property>
@@ -3536,8 +3367,6 @@
                                 <property name="climb-rate">1</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">38</property>
@@ -3550,8 +3379,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">40</property>
@@ -3643,8 +3470,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">45</property>
@@ -3682,8 +3507,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">48</property>
@@ -3719,8 +3542,6 @@
                       </object>
                     </property>
                     <property name="focusable">1</property>
-
-
                   </object>
                 </property>
                 <property name="position">3</property>
@@ -3751,8 +3572,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">0</property>
@@ -3788,8 +3607,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">2</property>
@@ -3806,8 +3623,6 @@
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">2</property>
@@ -3831,8 +3646,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">4</property>
@@ -3845,8 +3658,6 @@
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Show matches if ambiguous</property>
                                 <property name="width-request">255</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">5</property>
@@ -3867,7 +3678,6 @@
                                 <property name="adjustment">readline.adjustment.query_items</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">6</property>
@@ -3879,8 +3689,6 @@
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Horizontal completion</property>
                                 <property name="width-request">255</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">4</property>
@@ -3891,8 +3699,6 @@
                               <object class="GtkCheckButton" id="match_hidden">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Match hidden files</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">7</property>
@@ -3903,8 +3709,6 @@
                               <object class="GtkCheckButton" id="ignore_case">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Ignore case</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">7</property>
@@ -3915,8 +3719,6 @@
                               <object class="GtkCheckButton" id="mark_symdirs">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Mark symbolic directories</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">8</property>
@@ -3927,8 +3729,6 @@
                               <object class="GtkCheckButton" id="mark_dirs">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Mark directories</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">8</property>
@@ -3939,8 +3739,6 @@
                               <object class="GtkCheckButton" id="vstats">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Show stats</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">9</property>
@@ -3974,8 +3772,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">11</property>
@@ -3987,8 +3783,6 @@
                               <object class="GtkCheckButton" id="scroll_hz">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Scroll horizontally</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">11</property>
@@ -4019,8 +3813,6 @@
                               <object class="GtkCheckButton" id="completion">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Enable completion</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">0</property>
@@ -4076,8 +3868,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">14</property>
@@ -4149,8 +3939,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">17</property>
@@ -4163,8 +3951,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">17</property>
@@ -4186,8 +3972,6 @@
                                 <property name="invisible-char">●</property>
                                 <property name="primary-icon-name">edit-undo</property>
                                 <property name="secondary-icon-name">edit-delete</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">19</property>
@@ -4199,8 +3983,6 @@
                       </object>
                     </property>
                     <property name="focusable">1</property>
-
-
                   </object>
                 </property>
                 <property name="position">4</property>
@@ -4331,7 +4113,6 @@
                                 <property name="adjustment">vim.adjustment.autowrap</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">7</property>
@@ -4353,7 +4134,6 @@
                                 <property name="adjustment">vim.adjustment.tabstop</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">7</property>
@@ -4445,7 +4225,6 @@
                                 <property name="adjustment">vim_foldlevelstart.adjustment</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">14</property>
@@ -4477,8 +4256,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">0</property>
@@ -4491,8 +4268,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">2</property>
@@ -4506,8 +4281,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">10</property>
@@ -4521,8 +4294,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">13</property>
@@ -4535,8 +4306,6 @@
                                 <property name="adjustment">vim_foldnestmax.adjustment</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">16</property>
@@ -4625,8 +4394,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">18</property>
@@ -4727,8 +4494,6 @@
                       </object>
                     </property>
                     <property name="focusable">1</property>
-
-
                   </object>
                 </property>
                 <property name="position">5</property>
@@ -4758,8 +4523,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">0</property>
@@ -5048,8 +4811,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">4</property>
@@ -5062,8 +4823,6 @@
                                 <property name="adjustment">nano_tabwidth.adjustment</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">8</property>
@@ -5184,8 +4943,6 @@
                                 <property name="adjustment">nano_guidestripe.adjustment</property>
                                 <property name="focusable">1</property>
                                 <property name="text" translatable="yes">0</property>
-
-
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">8</property>
@@ -5302,8 +5059,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">28</property>
@@ -5317,8 +5072,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">10</property>
@@ -5477,8 +5230,6 @@
                       </object>
                     </property>
                     <property name="focusable">1</property>
-
-
                   </object>
                 </property>
                 <property name="position">6</property>
@@ -5529,8 +5280,6 @@
                               <object class="GtkLabel" id="ls_colors.label.basic">
                                 <property name="label" translatable="yes">&lt;b&gt;Basic&lt;/b&gt;</property>
                                 <property name="use-markup">1</property>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">0</property>
@@ -5697,8 +5446,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">3</property>
@@ -5873,8 +5620,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">17</property>
@@ -6049,8 +5794,6 @@
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">12</property>
@@ -6238,8 +5981,6 @@
                     </property>
                     <property name="focusable">1</property>
                     <property name="name">ls_colors.scrolledwindow</property>
-
-
                   </object>
                 </property>
                 <property name="position">7</property>
@@ -6264,14 +6005,13 @@
                             <child>
                               <object class="GtkBox" id="cpb.buttonbox">
                                 <property name="can-focus">False</property>
-
                                 <property name="visible">True</property>
                                 <child>
                                   <object class="GtkButton" id="show_toolbox">
                                     <property name="focusable">1</property>
                                     <property name="halign">start</property>
-                                    <property name="receives-default">1</property>
                                     <property name="has-frame">false</property>
+                                    <property name="receives-default">1</property>
                                     <property name="valign">center</property>
                                     <child>
                                       <object class="GtkBox" id="box3">
@@ -6283,7 +6023,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="label28">
-                                            <property name="label" translatable="1">Toolbox</property>
+                                            <property name="label" translatable="yes">Toolbox</property>
                                           </object>
                                         </child>
                                       </object>
@@ -6293,8 +6033,8 @@
                                 <child>
                                   <object class="GtkButton" id="cpb_reset">
                                     <property name="focusable">1</property>
-                                    <property name="receives-default">1</property>
                                     <property name="has-frame">false</property>
+                                    <property name="receives-default">1</property>
                                     <child>
                                       <object class="GtkBox" id="cpb_reset.box">
                                         <property name="orientation">vertical</property>
@@ -6306,7 +6046,7 @@
                                         <child>
                                           <object class="GtkLabel" id="cpb_reset.label">
                                             <property name="justify">center</property>
-                                            <property name="label" translatable="1">User Config</property>
+                                            <property name="label" translatable="yes">User Config</property>
                                           </object>
                                         </child>
                                       </object>
@@ -6316,8 +6056,8 @@
                                 <child>
                                   <object class="GtkButton" id="cpb_factory">
                                     <property name="focusable">1</property>
-                                    <property name="receives-default">1</property>
                                     <property name="has-frame">false</property>
+                                    <property name="receives-default">1</property>
                                     <child>
                                       <object class="GtkBox" id="cpb_factory.box">
                                         <property name="orientation">vertical</property>
@@ -6329,7 +6069,7 @@
                                         <child>
                                           <object class="GtkLabel" id="cpb_factory.label">
                                             <property name="justify">center</property>
-                                            <property name="label" translatable="1">Factory Config</property>
+                                            <property name="label" translatable="yes">Factory Config</property>
                                           </object>
                                         </child>
                                       </object>
@@ -6340,16 +6080,11 @@
                                   <property name="column">0</property>
                                   <property name="row">1</property>
                                 </layout>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="row">0</property>
-                                </layout>
                               </object>
                             </child>
                             <child>
                               <object class="GtkBox" id="buttonbox1">
                                 <property name="can-focus">False</property>
-
                                 <property name="visible">True</property>
                                 <child>
                                   <object class="GtkBox" id="box2">
@@ -6358,7 +6093,7 @@
                                     <child>
                                       <object class="GtkLabel" id="label27">
                                         <property name="hexpand">1</property>
-                                        <property name="label" translatable="1">Use Custom Prompt</property>
+                                        <property name="label" translatable="yes">Use Custom Prompt</property>
                                         <property name="margin-end">5</property>
                                         <property name="margin-start">5</property>
                                       </object>
@@ -6370,40 +6105,34 @@
                                       </object>
                                     </child>
                                   </object>
-
                                 </child>
                                 <child>
                                   <object class="GtkComboBox" id="insert_prompt">
-
                                     <property name="margin-end">5</property>
                                     <property name="model">cpb.liststore.style</property>
                                     <property name="valign">start</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cpb.cellrenderer.prompt"/>
+                                      <!-- Custom child fragments -->
                                       <attributes>
                                         <attribute name="text">0</attribute>
                                       </attributes>
                                     </child>
                                   </object>
-
                                 </child>
                                 <child>
                                   <object class="GtkComboBox" id="insert_color">
-
                                     <property name="margin-end">5</property>
                                     <property name="model">cpb.liststore.symbolic_color</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cpb.cellrenderer.color"/>
+                                      <!-- Custom child fragments -->
                                       <attributes>
                                         <attribute name="text">0</attribute>
                                       </attributes>
                                     </child>
                                   </object>
                                 </child>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="row">0</property>
-                                </layout>
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">0</property>
@@ -6447,8 +6176,6 @@
                                 <property name="min-content-height">125</property>
                                 <property name="min-content-width">585</property>
                                 <property name="vexpand">1</property>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">4</property>
@@ -6493,8 +6220,6 @@
                                 <property name="margin-start">10</property>
                                 <property name="min-content-height">125</property>
                                 <property name="min-content-width">585</property>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">6</property>
@@ -6504,13 +6229,12 @@
                             <child>
                               <object class="GtkBox" id="cpb.buttonbox1">
                                 <property name="can-focus">False</property>
-
                                 <property name="visible">True</property>
                                 <child>
                                   <object class="GtkButton" id="cpb_undo">
                                     <property name="focusable">1</property>
-                                    <property name="receives-default">1</property>
                                     <property name="has-frame">false</property>
+                                    <property name="receives-default">1</property>
                                     <child>
                                       <object class="GtkBox" id="cpb_undo.box1">
                                         <property name="orientation">vertical</property>
@@ -6521,7 +6245,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="cp_undo.label1">
-                                            <property name="label" translatable="1">Undo</property>
+                                            <property name="label" translatable="yes">Undo</property>
                                           </object>
                                         </child>
                                       </object>
@@ -6531,8 +6255,8 @@
                                 <child>
                                   <object class="GtkButton" id="cpb_redo">
                                     <property name="focusable">1</property>
-                                    <property name="receives-default">1</property>
                                     <property name="has-frame">false</property>
+                                    <property name="receives-default">1</property>
                                     <child>
                                       <object class="GtkBox" id="cpb_redo.box1">
                                         <property name="orientation">vertical</property>
@@ -6543,19 +6267,18 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="cpb_redo.label1">
-                                            <property name="label" translatable="1">Redo</property>
+                                            <property name="label" translatable="yes">Redo</property>
                                           </object>
                                         </child>
                                       </object>
                                     </child>
                                   </object>
-
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="cpb_empty">
                                     <property name="focusable">1</property>
-                                    <property name="receives-default">1</property>
                                     <property name="has-frame">false</property>
+                                    <property name="receives-default">1</property>
                                     <child>
                                       <object class="GtkBox" id="cpb_empty.box1">
                                         <property name="orientation">vertical</property>
@@ -6566,21 +6289,16 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="cpb_empty.label1">
-                                            <property name="label" translatable="1">Empty</property>
+                                            <property name="label" translatable="yes">Empty</property>
                                           </object>
                                         </child>
                                       </object>
                                     </child>
                                   </object>
-
                                 </child>
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">2</property>
-                                </layout>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="row">0</property>
                                 </layout>
                               </object>
                             </child>
@@ -6589,8 +6307,6 @@
                       </object>
                     </property>
                     <property name="focusable">1</property>
-
-
                   </object>
                 </property>
                 <property name="position">8</property>
@@ -6700,8 +6416,6 @@
                         <property name="focusable">1</property>
                         <property name="label" translatable="yes">Colorize Git output</property>
                         <property name="width-request">255</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">5</property>
@@ -6713,8 +6427,6 @@
                         <property name="focusable">1</property>
                         <property name="label" translatable="yes">Git aliases</property>
                         <property name="width-request">255</property>
-
-
                         <layout>
                           <property name="column">2</property>
                           <property name="row">5</property>
@@ -6728,8 +6440,6 @@
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
-
-
                         <layout>
                           <property name="column">0</property>
                           <property name="row">0</property>
@@ -6761,8 +6471,6 @@
                       <object class="GtkCheckButton" id="git_ssh_remember">
                         <property name="focusable">1</property>
                         <property name="label" translatable="yes">Remember SSH Key</property>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">6</property>
@@ -6792,7 +6500,6 @@
                         <property name="adjustment">git.ssh_timeout</property>
                         <property name="focusable">1</property>
                         <property name="text" translatable="yes">0</property>
-
                         <layout>
                           <property name="column">2</property>
                           <property name="row">7</property>
@@ -7043,8 +6750,6 @@
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
-
-
                         <layout>
                           <property name="column">0</property>
                           <property name="row">0</property>
@@ -7058,8 +6763,6 @@
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
-
-
                         <layout>
                           <property name="column">0</property>
                           <property name="row">7</property>
@@ -7073,8 +6776,6 @@
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
-
-
                         <layout>
                           <property name="column">0</property>
                           <property name="row">10</property>
@@ -7098,8 +6799,6 @@
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
-
-
                         <layout>
                           <property name="column">0</property>
                           <property name="row">12</property>
@@ -7133,8 +6832,6 @@
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
-
-
                         <layout>
                           <property name="column">0</property>
                           <property name="row">14</property>
@@ -7204,8 +6901,6 @@
                       </object>
                     </property>
                     <property name="focusable">1</property>
-
-
                   </object>
                 </property>
                 <property name="position">11</property>
@@ -7293,11 +6988,10 @@
                       <object class="GtkLinkButton" id="about.home-link">
                         <property name="focusable">1</property>
                         <property name="halign">start</property>
+                        <property name="has-frame">false</property>
                         <property name="label" translatable="yes">Nanolx.org</property>
                         <property name="receives-default">1</property>
                         <property name="uri">http://nanolx.org/nanolx/bashstyle-ng</property>
-
-                        <property name="has-frame">false</property>
                         <layout>
                           <property name="column">1</property>
                           <property name="row">3</property>
@@ -7308,11 +7002,10 @@
                       <object class="GtkLinkButton" id="about.license-link">
                         <property name="focusable">1</property>
                         <property name="halign">start</property>
+                        <property name="has-frame">false</property>
                         <property name="label" translatable="yes">GNU GPL v3+</property>
                         <property name="receives-default">1</property>
                         <property name="uri">https://gitlab.com/Nanolx/bashstyle-ng/blob/master/COPYING</property>
-
-                        <property name="has-frame">false</property>
                         <layout>
                           <property name="column">1</property>
                           <property name="row">4</property>
@@ -7323,11 +7016,10 @@
                       <object class="GtkLinkButton" id="about.bug-link">
                         <property name="focusable">1</property>
                         <property name="halign">start</property>
+                        <property name="has-frame">false</property>
                         <property name="label" translatable="yes">GitLab Issue Tracker</property>
                         <property name="receives-default">1</property>
                         <property name="uri">https://gitlab.com/Nanolx/bashstyle-ng/issues</property>
-
-                        <property name="has-frame">false</property>
                         <layout>
                           <property name="column">1</property>
                           <property name="row">5</property>
@@ -7410,12 +7102,11 @@
                       <object class="GtkLinkButton" id="about.i18n-link">
                         <property name="focusable">1</property>
                         <property name="halign">start</property>
+                        <property name="has-frame">false</property>
                         <property name="label" translatable="yes">Transifex</property>
                         <property name="receives-default">1</property>
                         <property name="uri">https://www.transifex.com/projects/p/bs-ng/</property>
                         <property name="width-request">255</property>
-
-                        <property name="has-frame">false</property>
                         <layout>
                           <property name="column">1</property>
                           <property name="row">7</property>
@@ -7439,10 +7130,9 @@
                       <object class="GtkLinkButton" id="about.log">
                         <property name="focusable">1</property>
                         <property name="halign">start</property>
+                        <property name="has-frame">false</property>
                         <property name="label" translatable="yes">~/.bashstyle-ng.log</property>
                         <property name="receives-default">1</property>
-
-                        <property name="has-frame">false</property>
                         <layout>
                           <property name="column">1</property>
                           <property name="row">6</property>
@@ -7498,24 +7188,21 @@ assuming /usr was the chosen install prefix. </property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
                         <property name="homogeneous">True</property>
-
                         <property name="spacing">15</property>
                         <property name="visible">True</property>
                         <child>
                           <object class="GtkButton" id="startup.enable">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">Enable</property>
+                            <property name="label" translatable="yes">Enable</property>
                             <property name="receives-default">1</property>
                           </object>
-
                         </child>
                         <child>
                           <object class="GtkButton" id="startup.cancel">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">Cancel</property>
+                            <property name="label" translatable="yes">Cancel</property>
                             <property name="receives-default">1</property>
                           </object>
-
                         </child>
                       </object>
                     </child>
@@ -7553,32 +7240,26 @@ assuming /usr was the chosen install prefix. </property>
                     <child>
                       <object class="GtkBox" id="config.buttonbox">
                         <property name="can-focus">False</property>
-
                         <property name="spacing">25</property>
                         <property name="visible">True</property>
                         <child>
                           <object class="GtkButton" id="config.backup">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">Backup Configuration</property>
+                            <property name="label" translatable="yes">Backup Configuration</property>
                             <property name="receives-default">1</property>
                           </object>
-
                         </child>
                         <child>
                           <object class="GtkButton" id="config.restore">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">Restore Backup</property>
+                            <property name="label" translatable="yes">Restore Backup</property>
                             <property name="receives-default">1</property>
                           </object>
                         </child>
                         <layout>
                           <property name="column">0</property>
-                          <property name="row">1</property>
                           <property name="column-span">2</property>
-                        </layout>
-                        <layout>
-                          <property name="column">0</property>
-                          <property name="row">0</property>
+                          <property name="row">1</property>
                         </layout>
                       </object>
                     </child>
@@ -7663,32 +7344,26 @@ assuming /usr was the chosen install prefix. </property>
                     <child>
                       <object class="GtkBox" id="config.buttonbox2">
                         <property name="can-focus">False</property>
-
                         <property name="spacing">25</property>
                         <property name="visible">True</property>
                         <child>
                           <object class="GtkButton" id="config.delete">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">Delete Backup</property>
+                            <property name="label" translatable="yes">Delete Backup</property>
                             <property name="receives-default">1</property>
                           </object>
-
                         </child>
                         <child>
                           <object class="GtkButton" id="config.reset">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">Reset Configuration</property>
+                            <property name="label" translatable="yes">Reset Configuration</property>
                             <property name="receives-default">1</property>
                           </object>
                         </child>
                         <layout>
                           <property name="column">0</property>
-                          <property name="row">2</property>
                           <property name="column-span">2</property>
-                        </layout>
-                        <layout>
-                          <property name="column">0</property>
-                          <property name="row">0</property>
+                          <property name="row">2</property>
                         </layout>
                       </object>
                     </child>
@@ -7709,62 +7384,52 @@ assuming /usr was the chosen install prefix. </property>
                       <object class="GtkBox" id="config.edit_buttonbox1">
                         <property name="can-focus">False</property>
                         <property name="homogeneous">True</property>
-
                         <property name="spacing">25</property>
                         <property name="visible">True</property>
                         <child>
                           <object class="GtkButton" id="config.edit_bashrc">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">bashrc</property>
+                            <property name="label" translatable="yes">bashrc</property>
                             <property name="receives-default">1</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkButton" id="config.edit_bashstylecustom">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">bashstyle.custom</property>
+                            <property name="label" translatable="yes">bashstyle.custom</property>
                             <property name="receives-default">1</property>
                           </object>
                         </child>
                         <layout>
                           <property name="column">0</property>
-                          <property name="row">8</property>
                           <property name="column-span">2</property>
-                        </layout>
-                        <layout>
-                          <property name="column">0</property>
-                          <property name="row">0</property>
+                          <property name="row">8</property>
                         </layout>
                       </object>
                     </child>
                     <child>
                       <object class="GtkBox" id="config.edit_buttonbox2">
                         <property name="can-focus">False</property>
-
                         <property name="spacing">25</property>
                         <property name="visible">True</property>
                         <child>
                           <object class="GtkButton" id="config.edit_vimrccustom">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">vimrc.custom</property>
+                            <property name="label" translatable="yes">vimrc.custom</property>
                             <property name="receives-default">1</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkButton" id="config.edit_inputrccustom">
                             <property name="focusable">1</property>
-                            <property name="label" translatable="1">inputrc.custom</property>
+                            <property name="label" translatable="yes">inputrc.custom</property>
                             <property name="receives-default">1</property>
                           </object>
                         </child>
                         <layout>
                           <property name="column">0</property>
-                          <property name="row">9</property>
                           <property name="column-span">2</property>
-                        </layout>
-                        <layout>
-                          <property name="column">0</property>
-                          <property name="row">0</property>
+                          <property name="row">9</property>
                         </layout>
                       </object>
                     </child>
@@ -7793,8 +7458,6 @@ assuming /usr was the chosen install prefix. </property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
-
-
                         <layout>
                           <property name="column">0</property>
                           <property name="row">0</property>
@@ -7888,8 +7551,6 @@ assuming /usr was the chosen install prefix. </property>
                             <attribute name="text">0</attribute>
                           </attributes>
                         </child>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">3</property>
@@ -7906,8 +7567,6 @@ assuming /usr was the chosen install prefix. </property>
                             <attribute name="text">0</attribute>
                           </attributes>
                         </child>
-
-
                         <layout>
                           <property name="column">2</property>
                           <property name="row">3</property>
@@ -7924,8 +7583,6 @@ assuming /usr was the chosen install prefix. </property>
                             <attribute name="text">0</attribute>
                           </attributes>
                         </child>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">5</property>
@@ -7942,8 +7599,6 @@ assuming /usr was the chosen install prefix. </property>
                             <attribute name="text">0</attribute>
                           </attributes>
                         </child>
-
-
                         <layout>
                           <property name="column">2</property>
                           <property name="row">5</property>
@@ -7960,8 +7615,6 @@ assuming /usr was the chosen install prefix. </property>
                             <attribute name="text">0</attribute>
                           </attributes>
                         </child>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">7</property>
@@ -7978,8 +7631,6 @@ assuming /usr was the chosen install prefix. </property>
                             <attribute name="text">0</attribute>
                           </attributes>
                         </child>
-
-
                         <layout>
                           <property name="column">2</property>
                           <property name="row">7</property>
@@ -7996,8 +7647,6 @@ assuming /usr was the chosen install prefix. </property>
                             <attribute name="text">0</attribute>
                           </attributes>
                         </child>
-
-
                         <layout>
                           <property name="column">1</property>
                           <property name="row">9</property>
@@ -8082,8 +7731,6 @@ assuming /usr was the chosen install prefix. </property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">0</property>
@@ -8156,8 +7803,6 @@ assuming /usr was the chosen install prefix. </property>
                                     <attribute name="text">0</attribute>
                                   </attributes>
                                 </child>
-
-
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">3</property>
@@ -8363,8 +8008,6 @@ assuming /usr was the chosen install prefix. </property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
-
-
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">9</property>
@@ -8505,8 +8148,6 @@ assuming /usr was the chosen install prefix. </property>
                       </object>
                     </property>
                     <property name="focusable">1</property>
-
-
                   </object>
                 </property>
                 <property name="position">16</property>
@@ -8517,8 +8158,6 @@ assuming /usr was the chosen install prefix. </property>
                 </property>
               </object>
             </child>
-
-
           </object>
         </child>
       </object>
@@ -8529,7 +8168,5 @@ assuming /usr was the chosen install prefix. </property>
     <property name="title" translatable="yes">BashStyle-NG</property>
     <property name="visible">1</property>
     <property name="width-request">615</property>
-
-
   </object>
 </interface>
