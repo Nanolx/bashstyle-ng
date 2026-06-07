@@ -67,11 +67,16 @@ class PromptBuilder(object):
 
         self.active_buffer = "P_C"
 
-        def set_active_buffer(widget, data, buffer):
+        def set_active_buffer(widget, buffer):
             self.active_buffer = buffer
 
-        self.prompt_command.connect("focus-in-event", set_active_buffer, "P_C")
-        self.custom_prompt.connect("focus-in-event", set_active_buffer, "PS1")
+        self.eventControllerPC = Gtk.EventControllerFocus.new()
+        self.eventControllerPC.connect("enter", set_active_buffer, "P_C")
+        self.prompt_command.add_controller(self.eventControllerPC)
+
+        self.eventControllerPS1 = Gtk.EventControllerFocus.new()
+        self.eventControllerPS1.connect("enter", set_active_buffer, "PS1")
+        self.custom_prompt.add_controller(self.eventControllerPS1)
 
         # Helper Functions
 

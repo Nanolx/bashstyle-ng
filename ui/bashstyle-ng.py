@@ -336,8 +336,8 @@ class BashStyleNG(object):
         keytree.InitTree()
 
         WidgetHandler.InitWidget("use_customprompt", "Custom", "use_custom_prompt", "switch", None)
-        #pbuilder = promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
-        #pbuilder.InitPromptBuilder()
+        pbuilder = promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
+        pbuilder.InitPromptBuilder()
 
         view = iconbook.IconBook()
         view.InitIconBook()
