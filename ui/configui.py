@@ -91,6 +91,8 @@ class ConfigUI(object):
             delete_configPossible()
 
         def openFile(data, file):
+            if not os.access(file, os.F_OK):
+                with open(file, 'w') as fp: pass
             subprocess.Popen(["xdg-open", "%s" % file])
 
         WidgetHandler = widgethandler.WidgetHandler(self.config, self.userdefault, self.factorydefault)
@@ -111,7 +113,6 @@ class ConfigUI(object):
 
         restore_configPossible()
         delete_configPossible()
-
 
 class StartupUI(object):
 

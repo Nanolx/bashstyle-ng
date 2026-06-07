@@ -342,8 +342,8 @@ class BashStyleNG(object):
         view = iconbook.IconBook()
         view.InitIconBook()
 
-        #cfgui = configui.ConfigUI(config.cfo, config.udc, config.fdc)
-        #cfgui.InitConfigUI()
+        cfgui = configui.ConfigUI(config.cfo, config.udc, config.fdc)
+        cfgui.InitConfigUI()
 
         WidgetHandler.InitWidget("about.prefix", None, os.getenv('BSNG_PREFIX'), "label", None)
         WidgetHandler.InitWidget("about.version", None, "%s (%s)" % (os.getenv('BSNG_VERSION'), os.getenv('BSNG_CODENAME')), "label", None)
