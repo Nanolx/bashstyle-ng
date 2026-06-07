@@ -349,8 +349,8 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("about.version", None, "%s (%s)" % (os.getenv('BSNG_VERSION'), os.getenv('BSNG_CODENAME')), "label", None)
         WidgetHandler.InitWidget("about.log", None, "file://" + os.getenv('HOME') + "/.bashstyle-ng.log", "link", None)
 
-        #suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
-        #suui.InitStartupUI()
+        suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
+        suui.InitStartupUI()
 
         self.bashstyle = gtkbuilder.get_object("bashstyle")
         self.add_window(self.bashstyle)
