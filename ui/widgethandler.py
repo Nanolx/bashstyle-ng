@@ -120,17 +120,17 @@ class WidgetHandler(object):
             elif type == "cpb_combo":
                 object.connect("changed", dict, group, setting)
 
-        def revert_option(widget, pos, event, type, widget_group, widget_setting):
+        def revert_option(widget, pos, type, widget_group, widget_setting):
             if type == "text": #or type == "int":
                 if pos == Gtk.EntryIconPosition.SECONDARY:
                     opt = self.factorydefault["%s" % widget_group]["%s" % widget_setting]
                 else:
                     opt = self.userdefault["%s" % widget_group]["%s" % widget_setting]
-                    self.config["%s" % widget_group]["%s" % widget_setting] = opt
-                    if type == "text":
-                        widget.set_text("%s" % self.config["%s" % widget_group]["%s" % widget_setting])
-                    #elif type == "int":
-                    #    widget.set_value(self.config["%s" % widget_group].as_int("%s" % widget_setting))
+                self.config["%s" % widget_group]["%s" % widget_setting] = opt
+                if type == "text":
+                    widget.set_text("%s" % self.config["%s" % widget_group]["%s" % widget_setting])
+                #elif type == "int":
+                #    widget.set_value(self.config["%s" % widget_group].as_int("%s" % widget_setting))
 
         def set_option(widget, data, type, dict, widget_group, widget_setting):
             if type == "text":
