@@ -332,8 +332,8 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("grep_color_bn", "GREP", "grep_color_bn", "combo", dicts.grep_colors)
         WidgetHandler.InitWidget("grep_color_se", "GREP", "grep_color_se", "combo", dicts.grep_colors)
 
-        #keytree = keybindings.KeyTree(config.cfo, config.udc, config.fdc)
-        #keytree.InitTree()
+        keytree = keybindings.KeyTree(config.cfo, config.udc, config.fdc)
+        keytree.InitTree()
 
         WidgetHandler.InitWidget("use_customprompt", "Custom", "use_custom_prompt", "switch", None)
         #pbuilder = promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
