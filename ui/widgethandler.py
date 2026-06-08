@@ -153,12 +153,12 @@ class WidgetHandler(object):
     def ReplaceWidget(self, placeholder_id, new_widget):
         placeholder = gtkbuilder.get_object(placeholder_id)
         if not placeholder:
-            print(f"Fehler: Platzhalter '{placeholder_id}' wurde im Builder-XML nicht gefunden.")
+            print(_("Error: placeholder wasn't found in XML UI definition: %s") % placeholder_id)
             return False
 
         parent = placeholder.get_parent()
         if not parent:
-            print(f"Fehler: Platzhalter '{placeholder_id}' hat keinen Parent-Container.")
+            print(_("Error: placeholder has no parent container: %s") % placeholder_id)
             return False
 
         new_widget.set_hexpand(placeholder.get_hexpand())
