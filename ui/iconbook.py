@@ -23,7 +23,7 @@ try:
     gi.require_version("Gtk", "4.0")
     from gi.repository import Gtk
     gi.require_version("Gdk", "4.0")
-    from gi.repository import Gdk
+    from gi.repository import Gdk, GdkPixbuf
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
@@ -38,7 +38,6 @@ if FAILED:
     sys.exit(1)
 
 gtkbuilder = widgethandler.gtkbuilder
-
 
 class IconBook(object):
 
@@ -66,10 +65,16 @@ class IconBook(object):
         back.connect("clicked", back_clicked)
         back.set_visible(0)
 
+        display = Gdk.Display.get_default()
+        icon_theme = Gtk.IconTheme.get_for_display(display)
+
         for icon in dicts.iconview_icons:
-            #theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
-            #file = Gtk.IconTheme.lookup_icon(theme, icon, None, 32, 1, 0, 0)
-            liststore.append([None, dicts.iconview_labels[icon]])
+            icon_lookup = icon_theme.lookup_icon(icon, None, 32, 1,
+            Gtk.TextDirection.NONE, Gtk.IconLookupFlags.FORCE_SYMBOLIC)
+            icon_file = icon_lookup.get_file()
+            icon_path = icon_file.get_path()
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(icon_path)
+            liststore.append([pixbuf, dicts.iconview_labels[icon]])
 
         def iconview_activated(widget, item):
             model = widget.get_model()
