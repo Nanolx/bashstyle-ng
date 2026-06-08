@@ -21,7 +21,7 @@ for module in MODULES:
 try:
     import gi
     gi.require_version("Gtk", "4.0")
-    from gi.repository import Gtk
+    from gi.repository import Gtk, GObject, Gio, Gdk
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
@@ -41,187 +41,239 @@ if FAILED:
 
 gtkbuilder = widgethandler.gtkbuilder
 
+class KeyItem(GObject.Object):
+    label = GObject.Property(type=str)
+    alt = GObject.Property(type=bool, default=False)
+    ctrl = GObject.Property(type=bool, default=False)
+    nmod = GObject.Property(type=bool, default=False)
+    key = GObject.Property(type=str)
 
-class CellRendererClickablePixbuf(Gtk.CellRendererPixbuf):
-    __gsignals__ = {
-        'clicked': (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-                    (GObject.TYPE_STRING,))
-    }
-
-    def __init__(self):
-        Gtk.CellRendererPixbuf.__init__(self)
-        self.set_property('mode', Gtk.CellRendererMode(1))
-
-    def do_activate(self, event, widget, path, background_area, cell_area, flags):
-        if (event and cell_area.x <= event.x <= cell_area.x + cell_area.width
-           and cell_area.y <= event.y <= cell_area.y + cell_area.height):
-            self.emit('clicked', path)
-
-
-GObject.type_register(CellRendererClickablePixbuf)
-
+    def __init__(self, label, alt, ctrl, nmod, key):
+        super().__init__()
+        self.label = label
+        self.alt = alt
+        self.ctrl = ctrl
+        self.nmod = nmod
+        self.key = key
 
 class KeyTree(object):
-
     def __init__(self, cfo, udc, fdc):
         self.config = cfo
         self.userdefault = udc
         self.factorydefault = fdc
+        self.model = Gio.ListStore(item_type=KeyItem)
 
     def InitTree(self):
-        use_keys = gtkbuilder.get_object("use_keybindings")
-        store = gtkbuilder.get_object("treeviewstore")
-        tree = gtkbuilder.get_object("keybindings.treeview")
-        tree.set_grid_lines(1)
+        self.use_keys = gtkbuilder.get_object("use_keybindings")
+        self.tree = gtkbuilder.get_object("keybindings_columview")
 
-        render_binding = Gtk.CellRendererText()
-        column_binding = Gtk.TreeViewColumn(_("Binding"), render_binding, text=0)
-        tree.append_column(column_binding)
+        selection = Gtk.SingleSelection(model=self.model)
+        self.tree.set_model(selection)
+        self.tree.set_hexpand(True)
 
-        render_revert_user = CellRendererClickablePixbuf()
-        render_revert_user.set_property("icon-name", "edit-undo")
-        column_revert_user = Gtk.TreeViewColumn(_("Revert"), render_revert_user, icon_name=1)
-        tree.append_column(column_revert_user)
+        # Zebra-CSS
+        provider = Gtk.CssProvider()
+        provider.load_from_data("""
+            columnview, columnview listview {
+                background-color: transparent;
+            }
+            columnview listview row:nth-child(even) {
+                background-color: alpha(@theme_fg_color, 0.05);
+            }
+            columnview listview row:hover {
+                background-color: alpha(@theme_fg_color, 0.05);
+            }
+            columnview header button {
+                background: transparent;
+                border: none;
+            }
+            columnview listview row cell {
+                padding-left: 4px;
+                padding-right: 4px;
+            }
+            columnview row entry,
+            columnview row entry > text,
+            columnview row entry > stack > text {
+                background-color: transparent;
+                background-image: none;
+                box-shadow: none;
+                border: none;
+                color: inherit;
+            }
+        """.encode())
 
-        render_revert_factory = CellRendererClickablePixbuf()
-        render_revert_factory.set_property("icon-name", "edit-delete")
-        column_revert_factory = Gtk.TreeViewColumn(_("Default"), render_revert_factory, icon_name=2)
-        tree.append_column(column_revert_factory)
+        Gtk.StyleContext.add_provider_for_display(
+            Gdk.Display.get_default(),
+            provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
-        render_alt = Gtk.CellRendererToggle()
-        render_alt.set_property("radio", True)
-        column_alt = Gtk.TreeViewColumn(_("Alt"), render_alt, active=3)
-        tree.append_column(column_alt)
+        self.tree.add_css_class("striped")
+        self.tree.set_show_row_separators(True)
 
-        render_ctrl = Gtk.CellRendererToggle()
-        render_ctrl.set_property("radio", True)
-        column_ctrl = Gtk.TreeViewColumn(_("Ctrl"), render_ctrl, active=4)
-        tree.append_column(column_ctrl)
+        self._add_column("Binding", self._create_text_factory("label"))
+        self._add_column("Alt", self._create_radio_factory("alt"))
+        self._add_column("Ctrl", self._create_radio_factory("ctrl"))
+        self._add_column("None", self._create_radio_factory("nmod"))
+        self._add_column("Key", self._create_edit_factory())
+        self._add_column("Revert", self._create_button_factory("edit-undo", self.on_revert_user))
+        self._add_column("Default", self._create_button_factory("edit-delete", self.on_revert_factory))
 
-        render_nmod = Gtk.CellRendererToggle()
-        render_nmod.set_property("radio", True)
-        column_nmod = Gtk.TreeViewColumn(_("None"), render_nmod, active=5)
-        tree.append_column(column_nmod)
+        self.populate(dicts.keybindings)
 
-        def on_cell_toggled(widget, path, alt, ctrl, nmod):
-            store[path][3] = alt
-            store[path][4] = ctrl
-            store[path][5] = nmod
-
-        render_alt.connect("toggled", on_cell_toggled, True, False, False)
-        render_ctrl.connect("toggled", on_cell_toggled, False, True, False)
-        render_nmod.connect("toggled", on_cell_toggled, False, False, True)
-
-        render_key = Gtk.CellRendererText()
-        render_key.set_property("editable", True)
-        column_key = Gtk.TreeViewColumn(_("Key"), render_key, text=6)
-        tree.append_column(column_key)
-
-        def text_edited(widget, path, text):
-            store[path][6] = text
-            if text == "":
-                on_cell_toggled(widget, path, False, False, False)
-            else:
-                self.change_setting(store[path][0].replace("-", "_"), store[path][3],
-                                    store[path][4], store[path][5], store[path][6])
-
-        render_key.connect("edited", text_edited)
-
-        def on_changed(selection):
-            (model, iter) = selection.get_selected()
-            self.change_setting(model[iter][0].replace("-", "_"), model[iter][3],
-                                model[iter][4], model[iter][5], model[iter][6])
-
-        tree.get_selection().connect("changed", on_changed)
-
-        use_keys.set_active(self.config["Keybindings"].as_bool("use_keybindingscfg"))
-        tree.set_sensitive(use_keys.get_active())
+        self.use_keys.set_active(self.config["Keybindings"].as_bool("use_keybindingscfg"))
+        self.tree.set_sensitive(self.use_keys.get_active())
 
         def on_use_keys(widget, data):
             self.config["Keybindings"]["use_keybindingscfg"] = widget.get_active()
-            tree.set_sensitive(widget.get_active())
+            self.tree.set_sensitive(widget.get_active())
 
-        use_keys.connect("notify::active", on_use_keys)
+        self.use_keys.connect("notify::active", on_use_keys)
 
-        def on_reset(widget, path, config):
-            sel = tree.get_selection()
-            (model, iter) = sel.get_selected()
-            setting = model[iter][0].replace("-", "_")
-            if config == "user":
-                self.config["Keybindings"][setting] = self.userdefault["Keybindings"][setting]
-            else:
-                self.config["Keybindings"][setting] = self.factorydefault["Keybindings"][setting]
-            if self.config["Keybindings"][setting] == "":
-                alt = False
-                ctrl = False
-                nmod = False
-                boundkey = ""
-            else:
-                modifier = self.config["Keybindings"][setting].split(":")[0]
-                if modifier == "e":
-                    alt = True
-                    ctrl = False
-                    nmod = False
-                elif modifier == "C":
-                    alt = False
-                    ctrl = True
-                    nmod = False
-                elif modifier == "X":
-                    alt = False
-                    ctrl = False
-                    nmod = True
-                boundkey = self.config["Keybindings"][setting].split(":")[1]
-            model[iter][3] = alt
-            model[iter][4] = ctrl
-            model[iter][5] = nmod
-            model[iter][6] = boundkey
+    def _add_column(self, title, factory):
+        col = Gtk.ColumnViewColumn(title=title, factory=factory)
+        col.set_expand(True)
+        self.tree.append_column(col)
 
-        render_revert_user.connect("clicked", on_reset, "user")
-        render_revert_factory.connect("clicked", on_reset, "factory")
+    def _create_text_factory(self, attr):
+        factory = Gtk.SignalListItemFactory()
+        factory.connect("setup", lambda f, item: item.set_child(Gtk.Label(xalign=0)))
+        factory.connect("bind", lambda f, item: item.get_child().set_label(getattr(item.get_item(), attr)))
+        return factory
 
-        self.populate(dicts.keybindings, store)
+    def _create_radio_factory(self, attr):
+        factory = Gtk.SignalListItemFactory()
+
+        def on_setup(f, list_item):
+            rb = Gtk.CheckButton()
+            rb.set_halign(Gtk.Align.CENTER)
+            rb.set_valign(Gtk.Align.CENTER)
+            rb.add_css_class("selection-mode")
+            list_item.set_child(rb)
+
+        def on_bind(f, list_item):
+            row_item = list_item.get_item()
+            rb = Gtk.CheckButton()
+            list_item.set_child(rb)
+            rb.connect("toggled", self.on_radio_toggled, row_item, attr)
+            row_item.bind_property(attr, rb, "active", GObject.BindingFlags.SYNC_CREATE)
+
+        factory.connect("setup", on_setup)
+        factory.connect("bind", on_bind)
+        return factory
+
+    def on_radio_toggled(self, rb, row_item, attr):
+        if rb.get_active():
+            if getattr(row_item, attr) != True:
+                row_item.alt = (attr == "alt")
+                row_item.ctrl = (attr == "ctrl")
+                row_item.nmod = (attr == "nmod")
+                self.update_config(row_item)
+
+    def _create_button_factory(self, icon, callback):
+        factory = Gtk.SignalListItemFactory()
+
+        def on_setup(f, list_item):
+            btn = Gtk.Button(icon_name=icon)
+            btn.add_css_class("flat")
+            btn.set_valign(Gtk.Align.CENTER)
+            btn.set_halign(Gtk.Align.CENTER)
+            list_item.set_child(btn)
+
+        def on_bind(f, list_item):
+            btn = list_item.get_child()
+            row_item = list_item.get_item()
+            btn.handler_id = btn.connect("clicked", callback, row_item)
+
+        factory.connect("setup", on_setup)
+        factory.connect("bind", on_bind)
+        return factory
+
+    def _create_edit_factory(self):
+        factory = Gtk.SignalListItemFactory()
+
+        def on_setup(f, list_item):
+            entry = Gtk.Entry()
+            list_item.set_child(entry)
+
+        def on_bind(f, list_item):
+            row_item = list_item.get_item()
+            entry = list_item.get_child()
+            row_item.bind_property("key", entry, "text",
+                                 GObject.BindingFlags.SYNC_CREATE |
+                                 GObject.BindingFlags.BIDIRECTIONAL)
+
+            def on_notify(obj, pspec):
+                self.update_config(obj)
+
+            entry.handler_id = row_item.connect("notify::key", on_notify)
+
+        factory.connect("setup", on_setup)
+        factory.connect("bind", on_bind)
+        return factory
 
     def prepare(self, setting):
-        value = self.config["Keybindings"][setting]
+        value = self.config["Keybindings"].get(setting, "")
         if value == "":
             modifier = ""
             boundkey = ""
         else:
-            modifier = value.split(":")[0]
-            boundkey = value.split(":")[1]
+            parts = value.split(":")
+            modifier = parts[0]
+            boundkey = parts[1] if len(parts) > 1 else ""
         label = setting.replace("_", "-")
         return modifier, boundkey, label
 
-    def populate(self, settings, store):
+    def on_revert_user(self, btn, row_item):
+        setting = row_item.label.replace("-", "_")
+        default_val = self.userdefault["Keybindings"].get(setting, "")
+        self.apply_revert(row_item, default_val)
+
+    def on_revert_factory(self, btn, row_item):
+        setting = row_item.label.replace("-", "_")
+        default_val = self.factorydefault["Keybindings"].get(setting, "")
+        self.apply_revert(row_item, default_val)
+
+    def apply_revert(self, row_item, config_value):
+        if config_value == "":
+            row_item.alt = False
+            row_item.ctrl = False
+            row_item.nmod = False
+            row_item.key = ""
+        else:
+            parts = config_value.split(":")
+            modifier = parts[0]
+            row_item.key = parts[1] if len(parts) > 1 else ""
+            row_item.alt = (modifier == "e")
+            row_item.ctrl = (modifier == "C")
+            row_item.nmod = (modifier == "X")
+        self.update_config(row_item)
+
+    def populate(self, settings):
+        self.model.remove_all()
         for key in sorted(settings):
             modifier, boundkey, label = self.prepare(key)
-            if modifier == "e":
-                alt = True
-                ctrl = False
-                nmod = False
-            elif modifier == "C":
-                alt = False
-                ctrl = True
-                nmod = False
-            elif modifier == "X":
-                alt = False
-                ctrl = False
-                nmod = True
-            else:
-                alt = False
-                ctrl = False
-                nmod = False
-            store.append([label, "edit-undo", "edit-delete", alt, ctrl, nmod, boundkey])
+            item = KeyItem(
+                label=label,
+                alt=(modifier == "e"),
+                ctrl=(modifier == "C"),
+                nmod=(modifier == "X"),
+                key=boundkey
+            )
+            self.model.append(item)
 
-    def change_setting(self, setting, alt, ctrl, nmod, key):
-        if key == "":
-            self.config["Keybindings"][setting] = ""
+    def update_config(self, row_item):
+        setting = row_item.label.replace("-", "_")
+        if row_item.key == "":
+            new_value = ""
         else:
-            if alt:
-                self.config["Keybindings"][setting] = "e:" + key
-            elif ctrl:
-                self.config["Keybindings"][setting] = "C:" + key
-            elif nmod:
-                self.config["Keybindings"][setting] = "X:" + key
+            if row_item.alt:
+                prefix = "e:"
+            elif row_item.ctrl:
+                prefix = "C:"
+            elif row_item.nmod:
+                prefix = "X:"
             else:
-                self.config["Keybindings"][setting] = ""
+                prefix = "" # Falls Key vorhanden, aber kein Modifikator
+            new_value = f"{prefix}{row_item.key}"
+        self.config["Keybindings"][setting] = new_value
