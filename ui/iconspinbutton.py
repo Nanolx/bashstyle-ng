@@ -81,7 +81,7 @@ class CustomIconSpinButton(Gtk.Box):
             self.secondary_icon = Gtk.Image.new_from_icon_name(secondary_icon_name)
             self.secondary_icon.set_pixel_size(pixel_size)
             self.secondary_icon.set_valign(Gtk.Align.CENTER)
-            self.secondary_icon.add_css_class("inner-icon") # Für CSS-Padding rechts
+            self.secondary_icon.add_css_class("inner-icon")
 
             secondary_gesture = Gtk.GestureClick.new()
             secondary_gesture.connect("released", self._on_secondary_clicked)

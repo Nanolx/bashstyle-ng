@@ -21,7 +21,7 @@ for module in MODULES:
 try:
     import gi
     gi.require_version("Gtk", "4.0")
-    from gi.repository import Gtk
+    from gi.repository import Gtk, GObject
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
@@ -110,6 +110,9 @@ class WidgetHandler(object):
                 object.connect("toggled", set_option, None, type, None, group, setting)
             elif type == "switch":
                 object.connect("notify::active", set_option, type, None, group, setting)
+                # the GtkSwitch activates/deactivates all other widgets accordingly
+                object.connect("notify::active", disable_childs, dict)
+                disable_childs(object, None, dict)
             elif type == "combo":
                 object.connect("changed", set_option, None, type, dict, group, setting)
             elif type == "button":
@@ -143,6 +146,20 @@ class WidgetHandler(object):
         def emit_text(widget, text, *args):
             if text in blacklist:
                 widget.emit_stop_by_name('insert-text')
+
+        def disable_childs(widget, pspec, grid_widget):
+            is_active = widget.get_active()
+            grid = gtkbuilder.get_object(grid_widget)
+            grid_layout = grid.get_layout_manager()
+            current_child = grid.get_first_child()
+            parent = widget.get_parent()
+            while current_child is not None:
+                if current_child == parent or current_child == widget:
+                    current_child = current_child.get_next_sibling()
+                    continue
+                current_child.set_sensitive(is_active)
+                current_child = current_child.get_next_sibling()
+
 
         object = LoadWidget()
         LoadValue()
