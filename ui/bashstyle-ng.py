@@ -136,7 +136,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("history_size", "Advanced", "history_size", "int", None)
 
         #WidgetHandler.InitWidget("pwd_len", "Advanced", "pwdlength", "int", None)
-        WidgetHandler.InitIconSpinButton("pwdlen_label", "pwd_len", "Advanced", "pwdlength", "edit-clear", "edit-delete", 10, 100, 16)
+        WidgetHandler.InitIconSpinButton("pwdlen_label", "pwd_len", "Advanced", "pwdlength", "edit-undo", "edit-clear", 10, 100, 16)
 
         WidgetHandler.InitWidget("timeout", "Advanced", "timeout", "int", None)
         WidgetHandler.InitWidget("history_control", "Advanced", "history_control", "combo", dicts.history_types)
