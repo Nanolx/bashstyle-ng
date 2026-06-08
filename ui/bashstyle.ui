@@ -1740,18 +1740,6 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkSpinButton" id="pwd_len">
-                                <property name="adjustment">advanced.adjustment.pwd_len</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">9</property>
-                                <property name="value">9</property>
-                                <layout>
-                                  <property name="column">2</property>
-                                  <property name="row">28</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkSeparator" id="separator5">
                                 <property name="margin-bottom">3</property>
                                 <property name="margin-top">3</property>
@@ -2342,6 +2330,16 @@
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">38</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="pwdlen_label">
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">28</property>
+                                  <property name="row-span">1</property>
                                 </layout>
                               </object>
                             </child>
