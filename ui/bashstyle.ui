@@ -3,18 +3,6 @@
 <interface>
   <!-- interface-name bashstyle.ui4 -->
   <requires lib="gtk" version="4.0"/>
-  <object class="GtkAdjustment" id="advanced.adjustment.history_size">
-    <property name="step-increment">1</property>
-    <property name="upper">1000000</property>
-  </object>
-  <object class="GtkAdjustment" id="advanced.adjustment.pwd_len">
-    <property name="step-increment">1</property>
-    <property name="upper">1000</property>
-  </object>
-  <object class="GtkAdjustment" id="advanced.adjustment.timeout">
-    <property name="step-increment">1</property>
-    <property name="upper">10000</property>
-  </object>
   <object class="GtkAdjustment" id="advanced.liststore.bat_tabwidth">
     <property name="page-increment">10</property>
     <property name="step-increment">1</property>
@@ -227,11 +215,6 @@
       </row>
     </data>
   </object>
-  <object class="GtkAdjustment" id="git.ssh_timeout">
-    <property name="page-increment">10</property>
-    <property name="step-increment">1</property>
-    <property name="upper">86400</property>
-  </object>
   <object class="GtkListStore" id="iconviewstore">
     <columns>
       <column type="GdkPixbuf"/>
@@ -396,16 +379,6 @@
         <col id="0">Bright Cyan</col>
       </row>
     </data>
-  </object>
-  <object class="GtkAdjustment" id="nano_guidestripe.adjustment">
-    <property name="page-increment">10</property>
-    <property name="step-increment">1</property>
-    <property name="upper">100</property>
-  </object>
-  <object class="GtkAdjustment" id="nano_tabwidth.adjustment">
-    <property name="page-increment">10</property>
-    <property name="step-increment">1</property>
-    <property name="upper">100</property>
   </object>
   <object class="GtkAdjustment" id="readline.adjustment.query_items">
     <property name="step-increment">1</property>
@@ -1068,6 +1041,9 @@
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
+            <style>
+              <class name="rotated_label"/>
+            </style>
             <layout>
               <property name="column">0</property>
               <property name="row">0</property>
@@ -1217,6 +1193,9 @@
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
+            <style>
+              <class name="rotated_label"/>
+            </style>
             <layout>
               <property name="column">0</property>
               <property name="row">6</property>
@@ -1325,19 +1304,6 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkAdjustment" id="vim.adjustment.autowrap">
-    <property name="step-increment">1</property>
-    <property name="upper">10000</property>
-  </object>
-  <object class="GtkAdjustment" id="vim.adjustment.tabstop">
-    <property name="step-increment">1</property>
-    <property name="upper">100</property>
-  </object>
-  <object class="GtkAdjustment" id="vim_foldlevelstart.adjustment">
-    <property name="page-increment">10</property>
-    <property name="step-increment">1</property>
-    <property name="upper">99</property>
-  </object>
   <object class="GtkListStore" id="vim_foldmethod.liststore">
     <columns>
       <column type="gchararray"/>
@@ -1362,11 +1328,6 @@
         <col id="0">Diff</col>
       </row>
     </data>
-  </object>
-  <object class="GtkAdjustment" id="vim_foldnestmax.adjustment">
-    <property name="page-increment">10</property>
-    <property name="step-increment">1</property>
-    <property name="upper">99</property>
   </object>
   <object class="GtkWindow" id="bashstyle">
     <property name="child">
@@ -2681,17 +2642,6 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkSpinButton" id="history_size">
-                                <property name="adjustment">advanced.adjustment.history_size</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">2</property>
-                                  <property name="row">3</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkLabel" id="advanced.lable.history_blacklist">
                                 <property name="label" translatable="yes">History Blacklist</property>
                                 <layout>
@@ -3173,18 +3123,6 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkSpinButton" id="timeout">
-                                <property name="adjustment">advanced.adjustment.timeout</property>
-                                <property name="climb-rate">0.01</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">1</property>
-                                  <property name="row">28</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkLabel" id="advanced.label.timeout">
                                 <property name="label" translatable="yes">Set Timeout (in seconds)</property>
                                 <layout>
@@ -3392,18 +3330,6 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkSpinButton" id="bat_tabwidth">
-                                <property name="adjustment">advanced.liststore.bat_tabwidth</property>
-                                <property name="climb-rate">1</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">2</property>
-                                  <property name="row">38</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkLabel" id="advanced.label.bat1">
                                 <property name="label" translatable="yes">cURL/wget</property>
                                 <attributes>
@@ -3576,6 +3502,46 @@
                                 </layout>
                               </object>
                             </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">3</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="history_size_label">
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">5</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="timeout_label">
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">28</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="bat_tabwidth_label">
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">38</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
                           </object>
                         </property>
                       </object>
@@ -3715,17 +3681,6 @@
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">5</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkSpinButton" id="query_items">
-                                <property name="adjustment">readline.adjustment.query_items</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">2</property>
-                                  <property name="row">6</property>
                                 </layout>
                               </object>
                             </child>
@@ -4037,6 +3992,16 @@
                                 </layout>
                               </object>
                             </child>
+                            <child>
+                              <object class="GtkLabel" id="query_items_label">
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">6</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
                           </object>
                         </property>
                       </object>
@@ -4168,34 +4133,12 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkSpinButton" id="vim_autowrap">
-                                <property name="adjustment">vim.adjustment.autowrap</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">2</property>
-                                  <property name="row">7</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkLabel" id="vim.label.tabstop">
                                 <property name="justify">right</property>
                                 <property name="label" translatable="yes">tabstop length</property>
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="row">6</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkSpinButton" id="vim_tabstop">
-                                <property name="adjustment">vim.adjustment.tabstop</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">1</property>
-                                  <property name="row">7</property>
                                 </layout>
                               </object>
                             </child>
@@ -4280,17 +4223,6 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkSpinButton" id="vim_foldlevelstart">
-                                <property name="adjustment">vim_foldlevelstart.adjustment</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">2</property>
-                                  <property name="row">14</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkLabel" id="label5">
                                 <property name="label" translatable="yes">By default fold based upon</property>
                                 <layout>
@@ -4369,17 +4301,6 @@
                                   <property name="column">0</property>
                                   <property name="row">13</property>
                                   <property name="row-span">4</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkSpinButton" id="vim_foldnestmax">
-                                <property name="adjustment">vim_foldnestmax.adjustment</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">1</property>
-                                  <property name="row">16</property>
                                 </layout>
                               </object>
                             </child>
@@ -4560,6 +4481,46 @@
                                   <property name="column">1</property>
                                   <property name="column-span">2</property>
                                   <property name="row">22</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="vim_tabstop_label">
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">7</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="vim_autowrap_label">
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">7</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="vim_foldnestmax_label">
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">16</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="vim_foldlevelstart_label">
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">14</property>
+                                  <property name="row-span">1</property>
                                 </layout>
                               </object>
                             </child>
@@ -4899,17 +4860,6 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkSpinButton" id="nano_tabwidth">
-                                <property name="adjustment">nano_tabwidth.adjustment</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">1</property>
-                                  <property name="row">8</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkLabel" id="nano.tab_width.label">
                                 <property name="label" translatable="yes">Tab width</property>
                                 <layout>
@@ -5015,17 +4965,6 @@
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">7</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkSpinButton" id="nano_guide_stripe">
-                                <property name="adjustment">nano_guidestripe.adjustment</property>
-                                <property name="focusable">1</property>
-                                <property name="text" translatable="yes">0</property>
-                                <layout>
-                                  <property name="column">2</property>
-                                  <property name="row">8</property>
                                 </layout>
                               </object>
                             </child>
@@ -5308,6 +5247,26 @@
                                 <layout>
                                   <property name="column">2</property>
                                   <property name="row">26</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="nano_tabwidth_label">
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">8</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="nano_guide_stripe_label">
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">8</property>
+                                  <property name="row-span">1</property>
                                 </layout>
                               </object>
                             </child>
@@ -6599,17 +6558,6 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="git_ssh_timeout">
-                        <property name="adjustment">git.ssh_timeout</property>
-                        <property name="focusable">1</property>
-                        <property name="text" translatable="yes">0</property>
-                        <layout>
-                          <property name="column">2</property>
-                          <property name="row">7</property>
-                        </layout>
-                      </object>
-                    </child>
-                    <child>
                       <object class="GtkEntry" id="git_ssh_keyfile">
                         <property name="focusable">1</property>
                         <property name="invisible-char">●</property>
@@ -6619,6 +6567,16 @@
                           <property name="column">1</property>
                           <property name="column-span">2</property>
                           <property name="row">8</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="git_ssh_timeout_label">
+                        <layout>
+                          <property name="column">2</property>
+                          <property name="column-span">1</property>
+                          <property name="row">7</property>
+                          <property name="row-span">1</property>
                         </layout>
                       </object>
                     </child>

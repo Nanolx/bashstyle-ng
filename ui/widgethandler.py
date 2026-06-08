@@ -208,11 +208,11 @@ class WidgetHandler(object):
                 parent.append(new_widget)
         return True
 
-    def InitIconSpinButton(self, placeholder, name, group, setting, primaryicon, secondaryicon, minvalue, maxvalue, iconsize):
+    def InitIconSpinButton(self, placeholder, name, group, setting, minvalue, maxvalue):
         def LoadWidget():
-            widget = iconspinbutton.CustomIconSpinButton(primary_icon_name=primaryicon,
-                secondary_icon_name=secondaryicon, min_val=minvalue,
-                max_val=maxvalue, step=1, pixel_size=iconsize)
+            widget = iconspinbutton.CustomIconSpinButton(
+                primary_icon_name="edit-undo", secondary_icon_name="edit-clear",
+                min_val=minvalue, max_val=maxvalue, step=1, pixel_size=16)
             return widget
 
         def LoadValue():
