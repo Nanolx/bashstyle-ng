@@ -79,7 +79,7 @@ class KeyTree(object):
         tree.append_column(column_binding)
 
         render_revert_user = CellRendererClickablePixbuf()
-        render_revert_user.set_property("icon-name", "edit-clear")
+        render_revert_user.set_property("icon-name", "edit-undo")
         column_revert_user = Gtk.TreeViewColumn(_("Revert"), render_revert_user, icon_name=1)
         tree.append_column(column_revert_user)
 
@@ -211,7 +211,7 @@ class KeyTree(object):
                 alt = False
                 ctrl = False
                 nmod = False
-            store.append([label, "edit-clear", "edit-delete", alt, ctrl, nmod, boundkey])
+            store.append([label, "edit-undo", "edit-delete", alt, ctrl, nmod, boundkey])
 
     def change_setting(self, setting, alt, ctrl, nmod, key):
         if key == "":
