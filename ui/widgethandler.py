@@ -9,7 +9,7 @@
 #                                                       #
 # ##################################################### #
 
-MODULES = ['os', 'sys']
+MODULES = ['os', 'sys', 'iconspinbutton']
 FAILED = []
 
 for module in MODULES:
@@ -50,16 +50,16 @@ class WidgetHandler(object):
 
     def InitWidget(self, widget, group, setting, type, dict):
         # known widget types:
-        #    text    GtkTextEntry
-        #    int     GtkSpinButton
-        #    bool    GtkToggleButton / GtkRadioButton
-        #    switch      GtkSwitch
-        #    combo       GtkComboBox
-        #    button      GtkButton
-        #    label       GtkLabel
-        #    cpb_button  Custom Prompt Builder GtkButton
-        #    cpb_combo   Custom Prompt Builder GtkComboBox
-        #    link    GtkLinkButton
+        #   text        GtkTextEntry
+        #   int         GtkSpinButton
+        #   bool        GtkToggleButton / GtkRadioButton
+        #   switch      GtkSwitch
+        #   combo       GtkComboBox
+        #   button      GtkButton
+        #   label       GtkLabel
+        #   cpb_button  Custom Prompt Builder GtkButton
+        #   cpb_combo   Custom Prompt Builder GtkComboBox
+        #   link        GtkLinkButton
 
         # required parameters:
         #    for text, int, bool, switch:
@@ -106,7 +106,6 @@ class WidgetHandler(object):
                 object.connect("changed", set_option, None, type, None, group, setting)
             elif type == "int":
                 object.connect("value-changed", set_option, None, type, None, group, setting)
-                #object.connect("icon-press", revert_option, type, group, setting)
             elif type == "bool":
                 object.connect("toggled", set_option, None, type, None, group, setting)
             elif type == "switch":
@@ -121,16 +120,13 @@ class WidgetHandler(object):
                 object.connect("changed", dict, group, setting)
 
         def revert_option(widget, pos, type, widget_group, widget_setting):
-            if type == "text": #or type == "int":
+            if type == "text":
                 if pos == Gtk.EntryIconPosition.SECONDARY:
                     opt = self.factorydefault["%s" % widget_group]["%s" % widget_setting]
                 else:
                     opt = self.userdefault["%s" % widget_group]["%s" % widget_setting]
                 self.config["%s" % widget_group]["%s" % widget_setting] = opt
-                if type == "text":
-                    widget.set_text("%s" % self.config["%s" % widget_group]["%s" % widget_setting])
-                #elif type == "int":
-                #    widget.set_value(self.config["%s" % widget_group].as_int("%s" % widget_setting))
+                widget.set_text("%s" % self.config["%s" % widget_group]["%s" % widget_setting])
 
         def set_option(widget, data, type, dict, widget_group, widget_setting):
             if type == "text":
@@ -151,4 +147,83 @@ class WidgetHandler(object):
         object = LoadWidget()
         LoadValue()
         ConnectSignals()
+        return object
+
+    # ReplaceWidget was written by Google AI
+    def ReplaceWidget(self, placeholder_id, new_widget):
+        placeholder = gtkbuilder.get_object(placeholder_id)
+        if not placeholder:
+            print(f"Fehler: Platzhalter '{placeholder_id}' wurde im Builder-XML nicht gefunden.")
+            return False
+
+        parent = placeholder.get_parent()
+        if not parent:
+            print(f"Fehler: Platzhalter '{placeholder_id}' hat keinen Parent-Container.")
+            return False
+
+        if isinstance(parent, Gtk.Box):
+            sibling = None
+            current = parent.get_first_child()
+            while current is not None:
+                if current == placeholder:
+                    break
+                sibling = current
+                current = current.get_next_sibling()
+            parent.remove(placeholder)
+            if sibling:
+                parent.insert_child_after(new_widget, sibling)
+            else:
+                parent.prepend(new_widget)
+        elif isinstance(parent, Gtk.Grid):
+            grid_layout = parent.get_layout_manager()
+            grid_child = grid_layout.get_layout_child(placeholder)
+
+            if grid_child:
+                col = grid_child.get_column()
+                row = grid_child.get_row()
+                col_span = grid_child.get_column_span()
+                row_span = grid_child.get_row_span()
+
+                parent.remove(placeholder)
+                parent.attach(new_widget, col, row, col_span, row_span)
+            else:
+                parent.remove(placeholder)
+                parent.attach(new_widget, 0, 0, 1, 1)
+        else:
+            parent.remove(placeholder)
+            if hasattr(parent, "set_child"):
+                parent.set_child(new_widget)
+            elif hasattr(parent, "append"):
+                parent.append(new_widget)
+
+    def InitIconSpinButton(self, placeholder, name, group, setting, primaryicon, secondaryicon, minvalue, maxvalue, iconsize):
+        def LoadWidget():
+            widget = iconspinbutton.CustomIconSpinButton(primary_icon_name=primaryicon,
+                secondary_icon_name=secondaryicon, min_val=minvalue,
+                max_val=maxvalue, step=1, pixel_size=iconsize)
+            return widget
+
+        def LoadValue():
+            object.set_value(self.config["%s" % group].as_int("%s" % setting))
+
+        def ConnectSignals():
+            object.connect("value-changed", set_option, group, setting)
+            object.connect("primary-icon-clicked", revert_option, 0, group, setting)
+            object.connect("secondary-icon-clicked", revert_option, 1, group, setting)
+
+        def revert_option(widget, pos, widget_group, widget_setting):
+            if pos == 1:
+                opt = self.factorydefault["%s" % widget_group]["%s" % widget_setting]
+            else:
+                opt = self.userdefault["%s" % widget_group]["%s" % widget_setting]
+            self.config["%s" % widget_group]["%s" % widget_setting] = opt
+            widget.set_value(self.config["%s" % widget_group].as_int("%s" % widget_setting))
+
+        def set_option(widget, widget_group, widget_setting):
+            self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
+
+        object = LoadWidget()
+        LoadValue()
+        ConnectSignals()
+        self.ReplaceWidget(placeholder, object)
         return object
