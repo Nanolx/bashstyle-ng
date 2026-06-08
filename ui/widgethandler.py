@@ -161,20 +161,16 @@ class WidgetHandler(object):
             print(f"Fehler: Platzhalter '{placeholder_id}' hat keinen Parent-Container.")
             return False
 
-        if isinstance(parent, Gtk.Box):
-            sibling = None
-            current = parent.get_first_child()
-            while current is not None:
-                if current == placeholder:
-                    break
-                sibling = current
-                current = current.get_next_sibling()
-            parent.remove(placeholder)
-            if sibling:
-                parent.insert_child_after(new_widget, sibling)
-            else:
-                parent.prepend(new_widget)
-        elif isinstance(parent, Gtk.Grid):
+        new_widget.set_hexpand(placeholder.get_hexpand())
+        new_widget.set_vexpand(placeholder.get_vexpand())
+        new_widget.set_halign(placeholder.get_halign())
+        new_widget.set_valign(placeholder.get_valign())
+        new_widget.set_margin_start(placeholder.get_margin_start())
+        new_widget.set_margin_end(placeholder.get_margin_end())
+        new_widget.set_margin_top(placeholder.get_margin_top())
+        new_widget.set_margin_bottom(placeholder.get_margin_bottom())
+
+        if isinstance(parent, Gtk.Grid):
             grid_layout = parent.get_layout_manager()
             grid_child = grid_layout.get_layout_child(placeholder)
 
@@ -189,12 +185,28 @@ class WidgetHandler(object):
             else:
                 parent.remove(placeholder)
                 parent.attach(new_widget, 0, 0, 1, 1)
+
+        elif isinstance(parent, Gtk.Box):
+            sibling = None
+            current = parent.get_first_child()
+            while current is not None:
+                if current == placeholder:
+                    break
+                sibling = current
+                current = current.get_next_sibling()
+
+            parent.remove(placeholder)
+            if sibling:
+                parent.insert_child_after(new_widget, sibling)
+            else:
+                parent.prepend(new_widget)
         else:
             parent.remove(placeholder)
             if hasattr(parent, "set_child"):
                 parent.set_child(new_widget)
             elif hasattr(parent, "append"):
                 parent.append(new_widget)
+        return True
 
     def InitIconSpinButton(self, placeholder, name, group, setting, primaryicon, secondaryicon, minvalue, maxvalue, iconsize):
         def LoadWidget():
