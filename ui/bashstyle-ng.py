@@ -33,7 +33,8 @@ for module in MODULES:
 try:
     import gi
     gi.require_version("Gtk", "4.0")
-    from gi.repository import Gtk
+    gi.require_version("Gdk", "4.0")
+    from gi.repository import Gtk, Gdk
 except ImportError:
     FAILED.append("Gtk (from gi.repository)")
 
@@ -362,7 +363,25 @@ class BashStyleNG(object):
             config.WriteConfig()
             lock.Remove()
 
+        def gtk_css_rotate_labels():
+            css_provider = Gtk.CssProvider()
+            css_data = """
+            label.rotated_label {
+                transform: rotate(90deg);
+                margin: 20px;
+                font-weight: bold;
+            }
+            """
+            css_provider.load_from_data(css_data, -1)
+
+            Gtk.StyleContext.add_provider_for_display(
+                Gdk.Display.get_default(),
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            )
+
         self.bashstyle.connect("close-request", destroy, None)
+        gtk_css_rotate_labels()
         self.bashstyle.present()
 
 if __name__ == "__main__":
