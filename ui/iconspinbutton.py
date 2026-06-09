@@ -21,9 +21,8 @@ for module in MODULES:
 try:
     import gi
     gi.require_version("Gtk", "4.0")
-    from gi.repository import Gtk, GObject
     gi.require_version("Gdk", "4.0")
-    from gi.repository import Gdk
+    from gi.repository import Gtk, GObject, Gdk
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 

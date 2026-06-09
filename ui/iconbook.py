@@ -21,9 +21,9 @@ for module in MODULES:
 try:
     import gi
     gi.require_version("Gtk", "4.0")
-    from gi.repository import Gtk
     gi.require_version("Gdk", "4.0")
-    from gi.repository import Gdk, Gio, GObject
+    gi.require_version("Gio", "2.0")
+    from gi.repository import Gtk, Gdk, Gio, GObject
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
@@ -100,11 +100,10 @@ class IconBook(object):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         box.add_css_class("icon-card")
 
-        img = Gtk.Image(pixel_size=32)
-        lbl = Gtk.Label()
-
-        box.append(img)
-        box.append(lbl)
+        icon = Gtk.Image(pixel_size=32)
+        box.append(icon)
+        label = Gtk.Label()
+        box.append(label)
         list_item.set_child(box)
 
         gesture = Gtk.GestureClick()
@@ -114,13 +113,11 @@ class IconBook(object):
     def on_bind_grid_item(self, factory, list_item):
         item = list_item.get_item()
         box = list_item.get_child()
-
         if box and item:
-            img = box.get_first_child()
-            lbl = box.get_last_child()
-
-            img.set_from_icon_name(item.name)
-            lbl.set_label(item.label)
+            icon = box.get_first_child()
+            icon.set_from_icon_name(item.name)
+            label = box.get_last_child()
+            label.set_label(item.label)
 
     def on_item_clicked(self, gesture, n_press, x, y, list_item):
         item = list_item.get_item()
@@ -137,8 +134,7 @@ class IconBook(object):
             self.back.set_visible(False)
             subprocess.Popen(["x-terminal-emulator"])
         else:
-            page_num = dicts.notebook_pages.get(label, 0)
-            self.notebook.set_current_page(page_num)
+            self.notebook.set_current_page(dicts.notebook_pages.get(label, 0))
             self.back.set_visible(True)
             self.main_label.set_visible(True)
             self.main_label.set_text(_("Category: ") + _(label))
@@ -146,4 +142,5 @@ class IconBook(object):
     def back_clicked(self, btn):
         self.notebook.set_current_page(0)
         self.back.set_visible(False)
-        self.main_label.set_visible(False)
+        self.main_label.set_text(_("Choose a category:"))
+        self.main_label.set_visible(True)

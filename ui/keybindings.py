@@ -21,19 +21,12 @@ for module in MODULES:
 try:
     import gi
     gi.require_version("Gtk", "4.0")
-    from gi.repository import Gtk, GObject, Gio, Gdk
+    gi.require_version("Gdk", "4.0")
+    gi.require_version("Gio", "2.0")
+    from gi.repository import Gtk, Gdk, Gio, GObject
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
-try:
-    from gi.repository import GObject
-except ImportError:
-    FAILED.append(_("GObject (from gi.repository)"))
-
-try:
-    from gi.repository.GdkPixbuf import Pixbuf
-except ImportError:
-    FAILED.append(_("GdkPixbuf (from gi.repository)"))
 
 if FAILED:
     print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
@@ -71,14 +64,13 @@ class KeyTree(object):
         self.tree.set_model(selection)
         self.tree.set_hexpand(True)
 
-        # Zebra-CSS
         provider = Gtk.CssProvider()
         provider.load_from_data("""
             columnview, columnview listview {
                 background-color: transparent;
             }
             columnview listview row:nth-child(even) {
-                background-color: alpha(@theme_fg_color, 0.05);
+                background-color: alpha(@theme_fg_color, 0.02);
             }
             columnview listview row:hover {
                 background-color: alpha(@theme_fg_color, 0.05);
@@ -107,9 +99,6 @@ class KeyTree(object):
             provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
-
-        self.tree.add_css_class("striped")
-        self.tree.set_show_row_separators(True)
 
         self._add_column("Binding", self._create_text_factory("label"))
         self._add_column("Alt", self._create_radio_factory("alt"))
@@ -274,6 +263,6 @@ class KeyTree(object):
             elif row_item.nmod:
                 prefix = "X:"
             else:
-                prefix = "" # Falls Key vorhanden, aber kein Modifikator
+                prefix = ""
             new_value = f"{prefix}{row_item.key}"
         self.config["Keybindings"][setting] = new_value

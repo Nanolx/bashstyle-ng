@@ -190,7 +190,6 @@ class WidgetHandler(object):
         if isinstance(parent, Gtk.Grid):
             grid_layout = parent.get_layout_manager()
             grid_child = grid_layout.get_layout_child(placeholder)
-
             if grid_child:
                 col = grid_child.get_column()
                 row = grid_child.get_row()
@@ -202,7 +201,6 @@ class WidgetHandler(object):
             else:
                 parent.remove(placeholder)
                 parent.attach(new_widget, 0, 0, 1, 1)
-
         elif isinstance(parent, Gtk.Box):
             sibling = None
             current = parent.get_first_child()
