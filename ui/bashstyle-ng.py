@@ -364,7 +364,6 @@ class BashStyleNG(object):
             css_data = """
             label.rotated_label {
                 transform: rotate(90deg);
-                margin: 20px;
                 font-weight: bold;
             }
             entry,
