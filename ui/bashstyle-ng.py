@@ -359,7 +359,7 @@ class BashStyleNG(object):
             config.WriteConfig()
             lock.Remove()
 
-        def gtk_css_rotate_labels():
+        def bashstyle_gtk_css():
             css_provider = Gtk.CssProvider()
             css_data = """
             label.rotated_label {
@@ -367,8 +367,18 @@ class BashStyleNG(object):
                 margin: 20px;
                 font-weight: bold;
             }
+            entry,
+            textview {
+                transition: all 150ms ease-in-out;
+            }
+            entry:focus-within,
+            textview:focus-within {
+                outline: 2px solid @theme_selected_bg_color;
+                outline-offset: -1px;
+                border-color: transparent;
+            }
             """
-            css_provider.load_from_data(css_data, -1)
+            css_provider.load_from_string(css_data)
 
             Gtk.StyleContext.add_provider_for_display(
                 Gdk.Display.get_default(),
@@ -377,7 +387,7 @@ class BashStyleNG(object):
             )
 
         self.bashstyle.connect("close-request", destroy, None)
-        gtk_css_rotate_labels()
+        bashstyle_gtk_css()
         self.bashstyle.present()
 
 if __name__ == "__main__":
