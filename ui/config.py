@@ -211,14 +211,14 @@ class Config(object):
             backup_ini = configobj.ConfigObj(infile=USER_DEFAULTS_SAVE, default_encoding="utf8")
             return backup_ini.as_int("ini_version")
         else:
-            return "None"
+            return _("None")
 
     def VendorConfigVersion(self):
         if self.VendorConfigExists():
             vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS, default_encoding="utf8")
             return vendor_ini.as_int("ini_version")
         else:
-            return "None"
+            return _("None")
 
     def FactoryConfigVersion(self):
         return app_ini_version
