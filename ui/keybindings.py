@@ -227,8 +227,8 @@ class KeyTree(object):
             boundkey = ""
         else:
             parts = value.split(":")
-            modifier = parts
-            boundkey = parts if len(parts) > 1 else ""
+            modifier = parts[0]
+            boundkey = parts[1] if len(parts) > 1 else ""
         label = setting.replace("_", "-")
         return modifier, boundkey, label
 
@@ -283,6 +283,5 @@ class KeyTree(object):
                 prefix = "X:"
             else:
                 prefix = ""
-            # Bereits korrekt als moderner f-string implementiert
             new_value = f"{prefix}{row_item.key}"
         self.config["Keybindings"][setting] = new_value
