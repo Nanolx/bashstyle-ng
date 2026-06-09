@@ -17,7 +17,7 @@ lang = gettext.translation('bashstyle', fallback=True)
 lang.install(names=['_'])
 args.CmdArgs()
 
-print(_("\nBashStyle-NG Version %s starting" % os.getenv('BSNG_VERSION')))
+print(_(f"\nBashStyle-NG Version {os.getenv('BSNG_VERSION')} starting"))
 
 MODULES = ['os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
            'undobuffer', 'lockfile', 'config', 'widgethandler', 'configui',
@@ -31,17 +31,19 @@ for module in MODULES:
         FAILED.append(module)
 
 try:
-    from gi.repository import Gtk
+    import gi
+    gi.require_version("Gtk", "4.0")
+    gi.require_version("Gdk", "4.0")
+    from gi.repository import Gtk, Gdk
 except ImportError:
     FAILED.append("Gtk (from gi.repository)")
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 lock = lockfile.LockFile()
 config = config.Config()
-
 
 class BashStyleNG(object):
 
@@ -55,7 +57,7 @@ class BashStyleNG(object):
         gtkbuilder = widgethandler.gtkbuilder
         WidgetHandler = widgethandler.WidgetHandler(config.cfo, config.udc, config.fdc)
 
-        WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "switch", None)
+        WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "switch", "style.grid")
         WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)
         WidgetHandler.InitWidget("dark_terminal", "Style", "dark_terminal", "bool", None)
         WidgetHandler.InitWidget("ls_color", "Style", "colored_ls", "bool", None)
@@ -109,7 +111,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("alias8", "Alias", "alias_eight", "text", None)
         WidgetHandler.InitWidget("alias9", "Alias", "alias_nine", "text", None)
 
-        WidgetHandler.InitWidget("termcap_colors", "Termcap", "less_termcap_color", "switch", None)
+        WidgetHandler.InitWidget("termcap_colors", "Termcap", "less_termcap_color", "switch", "termcap.grid")
         WidgetHandler.InitWidget("termcap_mb", "Termcap", "less_blink", "combo", dicts.less_foreground_colors)
         WidgetHandler.InitWidget("termcap_md", "Termcap", "less_bold", "combo", dicts.less_foreground_colors)
         WidgetHandler.InitWidget("termcap_us", "Termcap", "less_underline", "combo", dicts.less_foreground_colors)
@@ -131,9 +133,9 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("welcome", "Advanced", "welcome_message", "text", None)
         WidgetHandler.InitWidget("path", "Advanced", "path", "text", None)
         WidgetHandler.InitWidget("path_pwd", "Advanced", "path_wd", "bool", None)
-        WidgetHandler.InitWidget("history_size", "Advanced", "history_size", "int", None)
-        WidgetHandler.InitWidget("pwd_len", "Advanced", "pwdlength", "int", None)
-        WidgetHandler.InitWidget("timeout", "Advanced", "timeout", "int", None)
+        WidgetHandler.InitIconSpinButton("history_size_label", "history_size", "Advanced", "history_size", 100, 1000000)
+        WidgetHandler.InitIconSpinButton("pwdlen_label", "pwd_len", "Advanced", "pwdlength", 10, 100)
+        WidgetHandler.InitIconSpinButton("timeout_label", "timeout", "Advanced", "timeout", 60, 10000)
         WidgetHandler.InitWidget("history_control", "Advanced", "history_control", "combo", dicts.history_types)
         WidgetHandler.InitWidget("history_timeformat", "Advanced", "history_timeformat", "text", None)
         WidgetHandler.InitWidget("dirchar", "Advanced", "directory_indicator", "text", None)
@@ -155,7 +157,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("history_sync", "Advanced", "history_sync", "bool", None)
         WidgetHandler.InitWidget("history_isolate", "Advanced", "history_isolate", "bool", None)
         WidgetHandler.InitWidget("enable_bat", "Advanced", "use_bat", "bool", None)
-        WidgetHandler.InitWidget("bat_tabwidth", "Advanced", "bat_tabwidth", "int", None)
+        WidgetHandler.InitIconSpinButton("bat_tabwidth_label", "bat_tabwidth", "Advanced", "bat_tabwidth", 2, 16)
         WidgetHandler.InitWidget("bat_theme", "Advanced", "bat_theme", "combo", dicts.bat_themes)
         WidgetHandler.InitWidget("curl_useragent", "Advanced", "curl_useragent", "bool", None)
         WidgetHandler.InitWidget("curl_useragent_string", "Advanced", "curl_useragent_string", "text", None)
@@ -166,12 +168,12 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("grep_options", "Advanced", "grep_options", "bool", None)
         WidgetHandler.InitWidget("grep_options_string", "Advanced", "grep_options_string", "text", None)
 
-        WidgetHandler.InitWidget("use_readline", "Readline", "use_readlinecfg", "switch", None)
+        WidgetHandler.InitWidget("use_readline", "Readline", "use_readlinecfg", "switch", "readline.grid")
         WidgetHandler.InitWidget("completion", "Readline", "completion", "bool", None)
         WidgetHandler.InitWidget("ambiguous", "Readline", "ambiguous_show", "bool", None)
         WidgetHandler.InitWidget("match_hidden", "Readline", "complete_hidden", "bool", None)
         WidgetHandler.InitWidget("ignore_case", "Readline", "ignore_case", "bool", None)
-        WidgetHandler.InitWidget("query_items", "Readline", "query_items", "int", None)
+        WidgetHandler.InitIconSpinButton("query_items_label", "query_items", "Readline", "query_items", 10, 10000)
         WidgetHandler.InitWidget("completion_hz", "Readline", "complete_horizontal", "bool", None)
         WidgetHandler.InitWidget("mark_dirs", "Readline", "mark_directories", "bool", None)
         WidgetHandler.InitWidget("mark_symdirs", "Readline", "mark_symbolic_directories", "bool", None)
@@ -183,7 +185,6 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("show_editmode", "Readline", "show_editmode", "bool", None)
         WidgetHandler.InitWidget("cstats", "Readline", "colored_stats", "bool", None)
         WidgetHandler.InitWidget("skipcomptext", "Readline", "skip_completed_text", "bool", None)
-        WidgetHandler.InitWidget("use_readline70", "Readline", "use_readline70", "switch", None)
         WidgetHandler.InitWidget("colored_completion_prefix", "Readline", "colored_completion_prefix", "bool", None)
         WidgetHandler.InitWidget("enable_bracketed_paste", "Readline", "enable_bracketed_paste", "bool", None)
         WidgetHandler.InitWidget("vi_cmd_string", "Readline", "vi_cmd_mode_string", "text", None)
@@ -210,7 +211,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("nocasematch", "Shopt", "nocasematch", "bool", None)
         WidgetHandler.InitWidget("localvar_inherit", "Shopt", "localvar_inherit", "bool", None)
 
-        WidgetHandler.InitWidget("use_git", "Git", "use_gitcfg", "switch", None)
+        WidgetHandler.InitWidget("use_git", "Git", "use_gitcfg", "switch", "git.grid")
         WidgetHandler.InitWidget("git_user", "Git", "git_user_name", "text", None)
         WidgetHandler.InitWidget("git_mail", "Git", "git_user_mail", "text", None)
         WidgetHandler.InitWidget("git_editor", "Git", "git_editor", "text", None)
@@ -218,16 +219,16 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("git_color", "Git", "git_color", "bool", None)
         WidgetHandler.InitWidget("git_aliases", "Git", "git_aliases", "bool", None)
         WidgetHandler.InitWidget("git_ssh_remember", "Git", "git_ssh_remember", "bool", None)
-        WidgetHandler.InitWidget("git_ssh_timeout", "Git", "git_ssh_timeout", "int", None)
+        WidgetHandler.InitIconSpinButton("git_ssh_timeout_label", "git_ssh_timeout", "Git", "git_ssh_timeout", 60, 3600)
         WidgetHandler.InitWidget("git_ssh_keyfile", "Git", "git_ssh_keyfile", "text", None)
 
-        WidgetHandler.InitWidget("use_vim", "Vim", "use_vimcfg", "switch", None)
+        WidgetHandler.InitWidget("use_vim", "Vim", "use_vimcfg", "switch", "vim.grid")
         WidgetHandler.InitWidget("vim_backup", "Vim", "vim_backup", "bool", None)
         WidgetHandler.InitWidget("vim_jump", "Vim", "jump_back", "bool", None)
         WidgetHandler.InitWidget("vim_sline", "Vim", "start_line", "bool", None)
-        WidgetHandler.InitWidget("vim_tabstop", "Vim", "tab_length", "int", None)
+        WidgetHandler.InitIconSpinButton("vim_tabstop_label", "vim_tabstop", "Vim", "tab_length", 2, 16)
         WidgetHandler.InitWidget("vim_expandtab", "Vim", "expandtab", "bool", None)
-        WidgetHandler.InitWidget("vim_autowrap", "Vim", "wrap_length", "int", None)
+        WidgetHandler.InitIconSpinButton("vim_autowrap_label", "vim_autowrap", "Vim", "wrap_length", 40, 500)
         WidgetHandler.InitWidget("vim_wrap", "Vim", "wrap_line", "bool", None)
         WidgetHandler.InitWidget("vim_cd", "Vim", "chdir", "bool", None)
         WidgetHandler.InitWidget("vim_indent", "Vim", "filetype_indent", "bool", None)
@@ -247,16 +248,16 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("vim_rulerformat", "Vim", "rulerformat", "text", None)
         WidgetHandler.InitWidget("vim_wildmenu", "Vim", "wildmenu", "bool", None)
         WidgetHandler.InitWidget("vim_foldenable", "Vim", "foldenable", "bool", None)
-        WidgetHandler.InitWidget("vim_foldlevelstart", "Vim", "foldlevelstart", "int", None)
-        WidgetHandler.InitWidget("vim_foldnestmax", "Vim", "foldnestmax", "int", None)
+        WidgetHandler.InitIconSpinButton("vim_foldlevelstart_label", "vim_foldlevelstart", "Vim", "foldlevelstart", 4, 32)
+        WidgetHandler.InitIconSpinButton("vim_foldnestmax_label", "vim_foldnestmax", "Vim", "foldnestmax", 4, 32)
         WidgetHandler.InitWidget("vim_foldmethod", "Vim", "foldmethod", "combo", dicts.vim_foldmethods)
 
-        WidgetHandler.InitWidget("use_nano", "Nano", "use_nanocfg", "switch", None)
+        WidgetHandler.InitWidget("use_nano", "Nano", "use_nanocfg", "switch", "nano.grid")
         WidgetHandler.InitWidget("nano_backup", "Nano", "nano_backup", "bool", None)
         WidgetHandler.InitWidget("nano_const", "Nano", "show_position", "bool", None)
         WidgetHandler.InitWidget("nano_line_numbers", "Nano", "line_numbers", "bool", None)
         WidgetHandler.InitWidget("nano_indent", "Nano", "auto_indent", "bool", None)
-        WidgetHandler.InitWidget("nano_guide_stripe", "Nano", "guide_stripe", "int", None)
+        WidgetHandler.InitIconSpinButton("nano_guide_stripe_label", "nano_guide_stripe", "Nano", "guide_stripe", 40, 500)
         WidgetHandler.InitWidget("nano_colors", "Nano", "syntax_highlight", "bool", None)
         WidgetHandler.InitWidget("nano_nohelp", "Nano", "hide_help", "bool", None)
         WidgetHandler.InitWidget("nano_case", "Nano", "case_sensitive", "bool", None)
@@ -268,7 +269,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("nano_logpos",  "Nano", "log_position", "bool", None)
         WidgetHandler.InitWidget("nano_nowrap", "Nano", "no_wrap", "bool", None)
         WidgetHandler.InitWidget("nano_tabspace", "Nano", "tab_to_spaces", "bool", None)
-        WidgetHandler.InitWidget("nano_tabwidth", "Nano", "tab_size", "int", None)
+        WidgetHandler.InitIconSpinButton("nano_tabwidth_label", "nano_tabwidth", "Nano", "tab_size", 4, 16)
         WidgetHandler.InitWidget("nano_colorui", "Nano", "set_uicolors", "bool", None)
         WidgetHandler.InitWidget("nano_functions_fg", "Nano", "function_color_fg", "combo", dicts.nano_fg_colors)
         WidgetHandler.InitWidget("nano_functions_bg", "Nano", "function_color_bg", "combo", dicts.nano_bg_colors)
@@ -287,7 +288,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("nano_selected_fg", "Nano", "selected_color_fg", "combo", dicts.nano_fg_colors)
         WidgetHandler.InitWidget("nano_selected_bg", "Nano", "selected_color_bg", "combo", dicts.nano_bg_colors)
 
-        WidgetHandler.InitWidget("use_lscolors", "LSColors", "use_lscolors", "switch", None)
+        WidgetHandler.InitWidget("use_lscolors", "LSColors", "use_lscolors", "switch", "ls_colors.grid")
         WidgetHandler.InitWidget("ls_custom", "LSColors", "custom", "text", None)
         WidgetHandler.InitWidget("ls_exec", "LSColors", "exec", "combo", dicts.ls_colors)
         WidgetHandler.InitWidget("ls_gen", "LSColors", "generic", "combo", dicts.ls_colors)
@@ -313,7 +314,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("ls_blockdev", "LSColors", "blockdev", "combo", dicts.ls_colors)
         WidgetHandler.InitWidget("ls_chardev", "LSColors", "chardev", "combo", dicts.ls_colors)
 
-        WidgetHandler.InitWidget("gcc_colors_enable", "GCC", "use_gcc_colors", "switch", None)
+        WidgetHandler.InitWidget("gcc_colors_enable", "GCC", "use_gcc_colors", "switch", "gcc.grid")
         WidgetHandler.InitWidget("gcc_color_error", "GCC", "gcc_color_error", "combo", dicts.gcc_colors)
         WidgetHandler.InitWidget("gcc_color_warn", "GCC", "gcc_color_warn", "combo", dicts.gcc_colors)
         WidgetHandler.InitWidget("gcc_color_notes", "GCC", "gcc_color_notes", "combo", dicts.gcc_colors)
@@ -321,7 +322,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("gcc_color_locus", "GCC", "gcc_color_locus", "combo", dicts.gcc_colors)
         WidgetHandler.InitWidget("gcc_color_quote", "GCC", "gcc_color_quote", "combo", dicts.gcc_colors)
 
-        WidgetHandler.InitWidget("grep_colors_enable", "GREP", "use_grep_colors", "switch", None)
+        WidgetHandler.InitWidget("grep_colors_enable", "GREP", "use_grep_colors", "switch", "grep.grid")
         WidgetHandler.InitWidget("grep_color_ms", "GREP", "grep_color_ms", "combo", dicts.grep_colors)
         WidgetHandler.InitWidget("grep_color_mc", "GREP", "grep_color_mc", "combo", dicts.grep_colors)
         WidgetHandler.InitWidget("grep_color_sl", "GREP", "grep_color_sl", "combo", dicts.grep_colors)
@@ -334,7 +335,7 @@ class BashStyleNG(object):
         keytree = keybindings.KeyTree(config.cfo, config.udc, config.fdc)
         keytree.InitTree()
 
-        WidgetHandler.InitWidget("use_customprompt", "Custom", "use_custom_prompt", "switch", None)
+        WidgetHandler.InitWidget("use_customprompt", "Custom", "use_custom_prompt", "switch", "cpb.grid")
         pbuilder = promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
         pbuilder.InitPromptBuilder()
 
@@ -345,25 +346,53 @@ class BashStyleNG(object):
         cfgui.InitConfigUI()
 
         WidgetHandler.InitWidget("about.prefix", None, os.getenv('BSNG_PREFIX'), "label", None)
-        WidgetHandler.InitWidget("about.version", None, "%s (%s)" % (os.getenv('BSNG_VERSION'), os.getenv('BSNG_CODENAME')), "label", None)
-        WidgetHandler.InitWidget("about.log", None, "file://" + os.getenv('HOME') + "/.bashstyle-ng.log", "link", None)
+        WidgetHandler.InitWidget("about.version", None, f"{os.getenv('BSNG_VERSION')} ({os.getenv('BSNG_CODENAME')})", "label", None)
+        WidgetHandler.InitWidget("about.log", None, f"file://{os.getenv('HOME')}/.bashstyle-ng.log", "link", None)
 
         suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
         suui.InitStartupUI()
 
         self.bashstyle = gtkbuilder.get_object("bashstyle")
+        self.add_window(self.bashstyle)
 
         def destroy(self, widget):
             config.WriteConfig()
             lock.Remove()
-            Gtk.main_quit()
 
-        self.bashstyle.connect("destroy", destroy, None)
+        def bashstyle_gtk_css():
+            css_provider = Gtk.CssProvider()
+            css_data = """
+            label.rotated_label {
+                transform: rotate(90deg);
+                font-weight: bold;
+            }
+            entry,
+            textview {
+                transition: all 150ms ease-in-out;
+            }
+            entry:focus-within,
+            entry:hover,
+            textview:focus-within,
+            textview:hover {
+                outline: 2px solid @theme_selected_bg_color;
+                outline-offset: -1px;
+                border-color: transparent;
+            }
+            """
+            css_provider.load_from_string(css_data)
 
-        self.bashstyle.show
+            Gtk.StyleContext.add_provider_for_display(
+                Gdk.Display.get_default(),
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            )
 
+        self.bashstyle.connect("close-request", destroy, None)
+        bashstyle_gtk_css()
+        self.bashstyle.present()
 
 if __name__ == "__main__":
     lock.Check()
-    hwg = BashStyleNG()
-    Gtk.main()
+    app = Gtk.Application(application_id='org.nanolx.bashstyle-ng')
+    app.connect('activate', BashStyleNG.__init__)
+    app.run()

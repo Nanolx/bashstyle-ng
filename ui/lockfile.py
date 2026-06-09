@@ -9,7 +9,7 @@
 #                                                       #
 # ##################################################### #
 
-MODULES = ['os', 'os.path', 'string', 'sys', 'subprocess']
+MODULES = ['os', 'os.path', 'sys', 'subprocess']
 FAILED = []
 
 for module in MODULES:
@@ -19,58 +19,45 @@ for module in MODULES:
         FAILED.append(module)
 
 if FAILED:
-    print(_("The following modules failed to import: %s")
-          % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 lockfile = os.path.expanduser("~/.bashstyle.lock")
 
-
 class LockFile(object):
     def Check(self):
         if os.access(lockfile, os.F_OK):
-            rlockfile = open(lockfile, "r")
-            rlockfile.seek(0)
-            oldpid = rlockfile.readline()
-            if os.path.exists("/proc/%s" % oldpid):
-                if sys.version_info[0] == 2:
-                    xpid = commands.getoutput("pgrep -l bashstyle")
-                    gpid = string.split(xpid)
-                else:
-                    xpid = subprocess.getoutput("pgrep -l bashstyle")
-                    gpid = xpid.split()
-                if gpid[1] == "bashstyle":
+            with open(lockfile, "r") as rlockfile:
+                rlockfile.seek(0)
+                oldpid = rlockfile.readline().strip()
+
+            if os.path.exists(f"/proc/{oldpid}"):
+                xpid = subprocess.getoutput("pgrep -l bashstyle")
+                gpid = xpid.split()
+
+                if len(gpid) > 1 and gpid[1] == "bashstyle":
                     print(
-                          _("Lockfile does exist and bashstyle-ng is \
-already running.\
-\
-bashstyle-ng is running as process %s" % oldpid)
+                        _(f"Lockfile does exist and bashstyle-ng is already running.\n\nbashstyle-ng is running as process {oldpid}")
                     )
                     sys.exit(1)
                 else:
                     print(
-                          _("Lockfile does exist but the process with \
-that pid is not\
-\
-bashstyle, removing lockfile of old process: %s" % oldpid)
+                        _(f"Lockfile does exist but the process with that pid is not\n\nbashstyle, removing lockfile of old process: {oldpid}")
                     )
                     os.remove(lockfile)
             else:
                 print(
-                      _("Lockfile does exist but the process with that \
-pid is no\
-\
-longer running, removing lockfile of old process: %s" % oldpid)
-                    )
+                    _(f"Lockfile does exist but the process with that pid is no\n\nlonger running, removing lockfile of old process: {oldpid}")
+                )
                 os.remove(lockfile)
         else:
             print(_("Lockfile does not exist"))
 
     def Write(self):
         if not os.access(lockfile, os.F_OK):
-            wlockfile = open(lockfile, "w")
-            wlockfile.write("%s" % os.getpid())
-            wlockfile.close
+            # Nutzt 'with', damit die Datei auch bei Fehlern sicher geschlossen wird
+            with open(lockfile, "w") as wlockfile:
+                wlockfile.write(f"{os.getpid()}")
 
     def Remove(self):
         if os.access(lockfile, os.F_OK):

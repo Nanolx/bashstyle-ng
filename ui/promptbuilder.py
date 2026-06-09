@@ -9,7 +9,7 @@
 #                                                       #
 # #######################################################
 
-MODULES = ['sys', 'undobuffer', 'widgethandler', 'dicts', 'prompts']
+MODULES = ['sys', 'widgethandler', 'dicts', 'prompts']
 FAILED = []
 
 for module in MODULES:
@@ -19,12 +19,14 @@ for module in MODULES:
         FAILED.append(module)
 
 try:
+    import gi
+    gi.require_version("Gtk", "4.0")
     from gi.repository import Gtk
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 gtkbuilder = widgethandler.gtkbuilder
@@ -42,34 +44,38 @@ class PromptBuilder(object):
         WidgetHandler = widgethandler.WidgetHandler(self.config, self.userdefault, self.factorydefault)
 
         # GtkTextView
-
         self.prompt_command = gtkbuilder.get_object("prompt_command")
-
-        self.prompt_command_buffer = undobuffer.UndoableBuffer()
+        self.prompt_command_buffer = Gtk.TextBuffer()
+        self.prompt_command_buffer.set_enable_undo(True)
         self.prompt_command.set_buffer(self.prompt_command_buffer)
-        self.prompt_command_buffer.set_text("%s" % self.config["Custom"]["command"])
+        self.prompt_command_buffer.set_text(f"{self.config['Custom']['command']}")
 
         self.custom_prompt = gtkbuilder.get_object("custom_prompt")
-
-        self.custom_prompt_buffer = undobuffer.UndoableBuffer()
+        self.custom_prompt_buffer = Gtk.TextBuffer()
+        self.custom_prompt_buffer.set_enable_undo(True)
         self.custom_prompt.set_buffer(self.custom_prompt_buffer)
-        self.custom_prompt_buffer.set_text("%s" % self.config["Custom"]["prompt"])
+        self.custom_prompt_buffer.set_text(f"{self.config['Custom']['prompt']}")
 
         def set_custom_prompt(widget, setting):
             start = widget.get_start_iter()
             end = widget.get_end_iter()
-            self.config["Custom"]["{}".format(setting)] = widget.get_text(start, end, False)
+            self.config["Custom"][f"{setting}"] = widget.get_text(start, end, False)
 
         self.prompt_command_buffer.connect("changed", set_custom_prompt, "command")
         self.custom_prompt_buffer.connect("changed", set_custom_prompt, "prompt")
 
         self.active_buffer = "P_C"
 
-        def set_active_buffer(widget, data, buffer):
+        def set_active_buffer(widget, buffer):
             self.active_buffer = buffer
 
-        self.prompt_command.connect("focus-in-event", set_active_buffer, "P_C")
-        self.custom_prompt.connect("focus-in-event", set_active_buffer, "PS1")
+        self.eventControllerPC = Gtk.EventControllerFocus.new()
+        self.eventControllerPC.connect("enter", set_active_buffer, "P_C")
+        self.prompt_command.add_controller(self.eventControllerPC)
+
+        self.eventControllerPS1 = Gtk.EventControllerFocus.new()
+        self.eventControllerPS1.connect("enter", set_active_buffer, "PS1")
+        self.custom_prompt.add_controller(self.eventControllerPS1)
 
         # Helper Functions
 
@@ -93,15 +99,15 @@ class PromptBuilder(object):
                 self.custom_prompt_buffer.set_text("")
 
         def do_undo(widget, data):
-            if self.active_buffer == "P_C":
+            if self.active_buffer == "P_C" and self.prompt_command_buffer.get_can_undo():
                 self.prompt_command_buffer.undo()
-            elif self.active_buffer == "PS1":
+            elif self.active_buffer == "PS1" and self.custom_prompt_buffer.get_can_undo():
                 self.custom_prompt_buffer.undo()
 
         def do_redo(widget, data):
-            if self.active_buffer == "P_C":
+            if self.active_buffer == "P_C" and self.prompt_command_buffer.get_can_redo():
                 self.prompt_command_buffer.redo()
-            elif self.active_buffer == "PS1":
+            elif self.active_buffer == "PS1" and self.custom_prompt_buffer.get_can_redo():
                 self.custom_prompt_buffer.redo()
 
         def do_reset(widget, data):
@@ -123,9 +129,15 @@ class PromptBuilder(object):
         def do_show_toolbox(widget, data):
             toolbox = gtkbuilder.get_object("Toolbox")
             toolbox_close = gtkbuilder.get_object("toolbox.close")
-            toolbox.show_all()
-            toolbox_close.connect("clicked", lambda w: toolbox.hide() or True)
-            toolbox.connect("delete-event", lambda w, e: w.hide() or True)
+            if not hasattr(toolbox, "_signals_connected"):
+                toolbox.connect("close-request", on_toolbox_close_request)
+                toolbox_close.connect("clicked", lambda w: toolbox.hide())
+                toolbox._signals_connected = True
+            toolbox.present()
+
+        def on_toolbox_close_request(window):
+            window.hide()
+            return True
 
         WidgetHandler.InitWidget("show_toolbox", do_show_toolbox, None, "button", None)
 

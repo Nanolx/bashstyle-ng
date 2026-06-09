@@ -20,43 +20,26 @@ for module in MODULES:
         FAILED.append(module)
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 DATADIR = os.getenv('BSNG_DATADIR')
 
-USER_DEFAULTS_TMP = (os.getenv('HOME') + '/.bashstyle-ng.ini.new')
-FACTORY_DEFAULTS = (DATADIR + '/bashstyle-ng/bashstyle-ng.ini')
-VENDOR_DEFAULTS = ('/etc/bashstyle-ng_vendor.ini')
+USER_DEFAULTS_TMP = f"{os.getenv('HOME')}/.bashstyle-ng.ini.new"
+FACTORY_DEFAULTS = f"{DATADIR}/bashstyle-ng/bashstyle-ng.ini"
+VENDOR_DEFAULTS = "/etc/bashstyle-ng_vendor.ini"
 
-BASHSTYLERC = (DATADIR + "/bashstyle-ng/rc/bashstyle-rc")
+BASHSTYLERC = f"{DATADIR}/bashstyle-ng/rc/bashstyle-rc"
 
-# old user configuration file names (for migration)
+USER_DEFAULTS = f"{os.getenv('HOME')}/.bashstyle-ng.ini"
+USER_DEFAULTS_SAVE = f"{os.getenv('HOME')}/.bashstyle-ng.ini.save"
 
-OLD_USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
-OLD_USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
-
-# new configuration file names
-
-USER_DEFAULTS = (os.getenv('HOME') + '/.bashstyle-ng.ini')
-USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bashstyle-ng.ini.save')
-
-app_ini_version = 43
-
+app_ini_version = 44
 
 class Config(object):
     def InitConfig(self):
-        self.MigrateConfig()
         if not os.access(USER_DEFAULTS, os.F_OK):
             self.ResetConfig(True)
-
-    def MigrateConfig(self):
-        if os.access(OLD_USER_DEFAULTS, os.F_OK):
-            print(_("MigrateConfig: renaming user's bs-ng.ini to bashstyle-ng.ini"))
-            shutil.move(OLD_USER_DEFAULTS, USER_DEFAULTS)
-        if os.access(OLD_USER_DEFAULTS_SAVE, os.F_OK):
-            print(_("MigrateConfig: renaming user's bs-ng.ini.save to bashstyle-ng.ini.save"))
-            shutil.move(OLD_USER_DEFAULTS_SAVE, USER_DEFAULTS_SAVE)
 
     def LoadConfig(self):
         try:
@@ -118,14 +101,14 @@ class Config(object):
         shutil.copy(restore_from, USER_DEFAULTS)
 
     def BackupConfig(self):
-        print(_("BackupConfig: backing up configuration to %s." % USER_DEFAULTS_SAVE))
+        print(_(f"BackupConfig: backing up configuration to {USER_DEFAULTS_SAVE}."))
         shutil.copy(USER_DEFAULTS, USER_DEFAULTS_SAVE)
 
     def RestoreConfig(self):
         if self.UserSaveConfigExists():
             backup_ini = configobj.ConfigObj(infile=USER_DEFAULTS_SAVE, default_encoding="utf8")
             if backup_ini.as_int("ini_version") == app_ini_version:
-                print(_("RestoreConfig: restoring configuration from %s." % USER_DEFAULTS_SAVE))
+                print(_(f"RestoreConfig: restoring configuration from {USER_DEFAULTS_SAVE}."))
                 shutil.copy(USER_DEFAULTS_SAVE, USER_DEFAULTS)
             else:
                 print(_("RestoreConfig: not restoring configuration as it's outdated."))
@@ -163,22 +146,22 @@ class Config(object):
             self.SetUserConfig("Style", "prompt_style", "equinox")
 
     def GetUserConfig(self, group, setting):
-        print(self.cfo["%s" % group]["%s" % setting])
+        print(self.cfo[group][setting])
 
     def SetUserConfig(self, group, setting, value):
-        self.cfo["%s" % group]["%s" % setting] = value
+        self.cfo[group][setting] = value
 
     def SetUserConfigFromOld(self, group, setting):
-        self.cfo["%s" % group]["%s" % setting] = self.udc["%s" % group]["%s" % setting]
+        self.cfo[group][setting] = self.udc[group][setting]
 
     def SetUserConfigFromFactory(self, group, setting):
-        self.cfo["%s" % group]["%s" % setting] = self.fdc["%s" % group]["%s" % setting]
+        self.cfo[group][setting] = self.fdc[group][setting]
 
     def GetUserOldConfig(self, group, setting):
-        print(self.udc["%s" % group]["%s" % setting])
+        print(self.udc[group][setting])
 
     def GetFactoryConfig(self, group, setting):
-        print(self.fdc["%s" % group]["%s" % setting])
+        print(self.fdc[group][setting])
 
     def UserSaveConfigExists(self):
         if os.access(USER_DEFAULTS_SAVE, os.F_OK):
@@ -211,37 +194,41 @@ class Config(object):
             backup_ini = configobj.ConfigObj(infile=USER_DEFAULTS_SAVE, default_encoding="utf8")
             return backup_ini.as_int("ini_version")
         else:
-            return "None"
+            return _("None")
 
     def VendorConfigVersion(self):
         if self.VendorConfigExists():
             vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS, default_encoding="utf8")
             return vendor_ini.as_int("ini_version")
         else:
-            return "None"
+            return _("None")
 
     def FactoryConfigVersion(self):
         return app_ini_version
 
     def CheckBashStyle(self):
-        rc = open(os.path.expanduser("~/.bashrc"), "r")
-        content = rc.readlines()
         found = False
-        for line in content:
-            if line.startswith("[[ -f " + BASHSTYLERC + " ]]", 0):
-                found = True
-        rc.close
+        bashrc_path = os.path.expanduser("~/.bashrc")
+
+        with open(bashrc_path, "r") as rc:
+            content = rc.readlines()
+            for line in content:
+                if line.startswith(f"[[ -f {BASHSTYLERC} ]]", 0):
+                    found = True
+                    break
         return found
 
     def EnableBashStyle(self, OnOff):
-        rc = open(os.path.expanduser("~/.bashrc"), "r")
-        rc_new = open(os.path.expanduser("~/.bashrc.new"), "w")
-        content = rc.readlines()
-        for line in content:
-            if line.find("bashstyle-ng/rc/") == -1:
-                rc_new.write(line)
-        rc.close
-        if OnOff:
-            rc_new.write("\n[[ -f " + BASHSTYLERC + " ]] && source " + BASHSTYLERC)
-        rc_new.close
-        shutil.move(os.path.expanduser("~/.bashrc.new"), os.path.expanduser("~/.bashrc"))
+        bashrc_path = os.path.expanduser("~/.bashrc")
+        bashrc_new_path = os.path.expanduser("~/.bashrc.new")
+
+        with open(bashrc_path, "r") as rc, open(bashrc_new_path, "w") as rc_new:
+            content = rc.readlines()
+            for line in content:
+                if line.find("bashstyle-ng/rc/") == -1:
+                    rc_new.write(line)
+
+            if OnOff:
+                rc_new.write(f"\n[[ -f {BASHSTYLERC} ]] && source {BASHSTYLERC}\n")
+
+        shutil.move(bashrc_new_path, bashrc_path)
