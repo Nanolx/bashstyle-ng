@@ -31,32 +31,15 @@ VENDOR_DEFAULTS = ('/etc/bashstyle-ng_vendor.ini')
 
 BASHSTYLERC = (DATADIR + "/bashstyle-ng/rc/bashstyle-rc")
 
-# old user configuration file names (for migration)
-
-OLD_USER_DEFAULTS = (os.getenv('HOME') + '/.bs-ng.ini')
-OLD_USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bs-ng.ini.save')
-
-# new configuration file names
-
 USER_DEFAULTS = (os.getenv('HOME') + '/.bashstyle-ng.ini')
 USER_DEFAULTS_SAVE = (os.getenv('HOME') + '/.bashstyle-ng.ini.save')
 
-app_ini_version = 43
-
+app_ini_version = 44
 
 class Config(object):
     def InitConfig(self):
-        self.MigrateConfig()
         if not os.access(USER_DEFAULTS, os.F_OK):
             self.ResetConfig(True)
-
-    def MigrateConfig(self):
-        if os.access(OLD_USER_DEFAULTS, os.F_OK):
-            print(_("MigrateConfig: renaming user's bs-ng.ini to bashstyle-ng.ini"))
-            shutil.move(OLD_USER_DEFAULTS, USER_DEFAULTS)
-        if os.access(OLD_USER_DEFAULTS_SAVE, os.F_OK):
-            print(_("MigrateConfig: renaming user's bs-ng.ini.save to bashstyle-ng.ini.save"))
-            shutil.move(OLD_USER_DEFAULTS_SAVE, USER_DEFAULTS_SAVE)
 
     def LoadConfig(self):
         try:
