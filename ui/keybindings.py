@@ -154,6 +154,15 @@ class KeyTree(object):
         def on_bind(f, list_item):
             row_item = list_item.get_item()
             rb = list_item.get_child()
+
+            if not hasattr(row_item, "_radio_group"):
+                row_item._radio_group = {}
+
+            row_item._radio_group[attr] = rb
+            if "alt" in row_item._radio_group and "ctrl" in row_item._radio_group and "nmod" in row_item._radio_group:
+                row_item._radio_group["ctrl"].set_group(row_item._radio_group["alt"])
+                row_item._radio_group["nmod"].set_group(row_item._radio_group["alt"])
+
             rb.connect("toggled", self.on_radio_toggled, row_item, attr)
             row_item.bind_property(attr, rb, "active", GObject.BindingFlags.SYNC_CREATE)
 
