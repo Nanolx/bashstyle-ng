@@ -19,8 +19,7 @@ for module in MODULES:
         FAILED.append(module)
 
 if FAILED:
-    print(_("The following modules failed to import: %s")
-          % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 lang = gettext.translation('bashstyle', fallback=True)
@@ -101,11 +100,11 @@ class ConfigUpdateHelper(object):
         (options, args) = parser.parse_args()
 
         if options.version:
-            print("%s" % os.getenv('BSNG_VERSION'))
+            print(f"{os.getenv('BSNG_VERSION')}")
             sys.exit(0)
 
         if options.prefix:
-            print("%s" % os.getenv('BSNG_PREFIX'))
+            print(f"{os.getenv('BSNG_PREFIX')}")
             sys.exit(0)
 
         if options.update:

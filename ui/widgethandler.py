@@ -26,7 +26,7 @@ except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 DATADIR = os.getenv('BSNG_DATADIR')
@@ -78,24 +78,24 @@ class WidgetHandler(object):
         #    widget, None, link, type, None
 
         def LoadWidget():
-            object = gtkbuilder.get_object("%s" % widget)
+            object = gtkbuilder.get_object(f"{widget}")
             return object
 
         def LoadValue():
             if type == "text":
-                object.set_text("%s" % self.config["%s" % group]["%s" % setting])
+                object.set_text(f"{self.config[group][setting]}")
             elif type == "int":
-                object.set_value(self.config["%s" % group].as_int("%s" % setting))
+                object.set_value(self.config[group].as_int(setting))
             elif type == "bool":
-                object.set_active(self.config["%s" % group].as_bool("%s" % setting))
+                object.set_active(self.config[group].as_bool(setting))
             elif type == "switch":
-                object.set_active(self.config["%s" % group].as_bool("%s" % setting))
+                object.set_active(self.config[group].as_bool(setting))
             elif type == "combo":
-                object.set_active(self.SwapDictionary(dict)[self.config["%s" % group]["%s" % setting]])
+                object.set_active(self.SwapDictionary(dict)[self.config[group][setting]])
             elif type == "label":
-                object.set_label("%s" % setting)
+                object.set_label(f"{setting}")
             elif type == "link":
-                object.set_uri("%s" % setting)
+                object.set_uri(f"{setting}")
             elif type == "cpb_combo":
                 object.set_active(0)
 
@@ -125,23 +125,23 @@ class WidgetHandler(object):
         def revert_option(widget, pos, type, widget_group, widget_setting):
             if type == "text":
                 if pos == Gtk.EntryIconPosition.SECONDARY:
-                    opt = self.factorydefault["%s" % widget_group]["%s" % widget_setting]
+                    opt = self.factorydefault[widget_group][widget_setting]
                 else:
-                    opt = self.userdefault["%s" % widget_group]["%s" % widget_setting]
-                self.config["%s" % widget_group]["%s" % widget_setting] = opt
-                widget.set_text("%s" % self.config["%s" % widget_group]["%s" % widget_setting])
+                    opt = self.userdefault[widget_group][widget_setting]
+                self.config[widget_group][widget_setting] = opt
+                widget.set_text(f"{self.config[widget_group][widget_setting]}")
 
         def set_option(widget, data, type, dict, widget_group, widget_setting):
             if type == "text":
-                self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_text()
+                self.config[widget_group][widget_setting] = widget.get_text()
             elif type == "int":
-                self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
+                self.config[widget_group][widget_setting] = widget.get_value_as_int()
             elif type == "bool":
-                self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_active()
+                self.config[widget_group][widget_setting] = widget.get_active()
             elif type == "switch":
-                self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_active()
+                self.config[widget_group][widget_setting] = widget.get_active()
             elif type == "combo":
-                self.config["%s" % widget_group]["%s" % widget_setting] = dict[widget.get_active()]
+                self.config[widget_group][widget_setting] = dict[widget.get_active()]
 
         def emit_text(widget, text, *args):
             if text in blacklist:
@@ -166,16 +166,15 @@ class WidgetHandler(object):
         ConnectSignals()
         return object
 
-    # ReplaceWidget was written by Google AI
     def ReplaceWidget(self, placeholder_id, new_widget):
         placeholder = gtkbuilder.get_object(placeholder_id)
         if not placeholder:
-            print(_("Error: placeholder wasn't found in XML UI definition: %s") % placeholder_id)
+            print(_(f"Error: placeholder wasn't found in XML UI definition: {placeholder_id}"))
             return False
 
         parent = placeholder.get_parent()
         if not parent:
-            print(_("Error: placeholder has no parent container: %s") % placeholder_id)
+            print(_(f"Error: placeholder has no parent container: {placeholder_id}"))
             return False
 
         new_widget.set_hexpand(placeholder.get_hexpand())
@@ -225,13 +224,14 @@ class WidgetHandler(object):
 
     def InitIconSpinButton(self, placeholder, name, group, setting, minvalue, maxvalue):
         def LoadWidget():
+            # Erzeugt das von uns vorhin optimierte CustomIconSpinButton-Widget
             widget = iconspinbutton.CustomIconSpinButton(
                 primary_icon_name="edit-undo", secondary_icon_name="edit-clear",
                 min_val=minvalue, max_val=maxvalue, step=1, pixel_size=16)
             return widget
 
         def LoadValue():
-            object.set_value(self.config["%s" % group].as_int("%s" % setting))
+            object.set_value(self.config[group].as_int(setting))
 
         def ConnectSignals():
             object.connect("value-changed", set_option, group, setting)
@@ -240,14 +240,14 @@ class WidgetHandler(object):
 
         def revert_option(widget, pos, widget_group, widget_setting):
             if pos == 1:
-                opt = self.factorydefault["%s" % widget_group]["%s" % widget_setting]
+                opt = self.factorydefault[widget_group][widget_setting]
             else:
-                opt = self.userdefault["%s" % widget_group]["%s" % widget_setting]
-            self.config["%s" % widget_group]["%s" % widget_setting] = opt
-            widget.set_value(self.config["%s" % widget_group].as_int("%s" % widget_setting))
+                opt = self.userdefault[widget_group][widget_setting]
+            self.config[widget_group][widget_setting] = opt
+            widget.set_value(self.config[widget_group].as_int(widget_setting))
 
         def set_option(widget, widget_group, widget_setting):
-            self.config["%s" % widget_group]["%s" % widget_setting] = widget.get_value_as_int()
+            self.config[widget_group][widget_setting] = widget.get_value_as_int()
 
         object = LoadWidget()
         LoadValue()

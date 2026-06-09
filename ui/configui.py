@@ -28,7 +28,7 @@ except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 gtkbuilder = widgethandler.gtkbuilder
@@ -59,7 +59,7 @@ class ConfigUI(object):
                     restore_config.set_sensitive(False)
             else:
                 restore_config.set_sensitive(False)
-            versionlabel_userbackup.set_text("%s" % config.UserSaveConfigVersion())
+            versionlabel_userbackup.set_text(f"{config.UserSaveConfigVersion()}")
 
         def restore_configAction(data, atad):
             config.RestoreConfig()
@@ -80,7 +80,7 @@ class ConfigUI(object):
 
         def delete_configAction(data, atad):
             if os.access(USER_DEFAULTS_SAVE, os.F_OK):
-                print(_("BackupConfig: deleting user backup %s" % USER_DEFAULTS_SAVE))
+                print(_(f"BackupConfig: deleting user backup {USER_DEFAULTS_SAVE}"))
                 os.remove(USER_DEFAULTS_SAVE)
             restore_configPossible()
             delete_configPossible()
@@ -88,15 +88,15 @@ class ConfigUI(object):
         def openFile(data, file):
             if not os.access(file, os.F_OK):
                 with open(file, 'w') as fp: pass
-            subprocess.Popen(["xdg-open", "%s" % file])
+            subprocess.Popen(["xdg-open", f"{file}"])
 
         WidgetHandler = widgethandler.WidgetHandler(self.config, self.userdefault, self.factorydefault)
         WidgetHandler.InitWidget("config.backup", backup_configAction, None, "button", None)
         WidgetHandler.InitWidget("config.reset", reset_configAction, None, "button", None)
-        WidgetHandler.InitWidget("config.edit_bashrc", openFile, os.getenv('HOME') + "/.bashrc", "button", None)
-        WidgetHandler.InitWidget("config.edit_bashstylecustom", openFile, os.getenv('HOME') + "/.bashstyle.custom", "button", None)
-        WidgetHandler.InitWidget("config.edit_vimrccustom", openFile, os.getenv('HOME') + "/.vimrc.custom", "button", None)
-        WidgetHandler.InitWidget("config.edit_inputrccustom", openFile, os.getenv('HOME') + "/.inputrc.custom", "button", None)
+        WidgetHandler.InitWidget("config.edit_bashrc", openFile, f"{os.getenv('HOME')}/.bashrc", "button", None)
+        WidgetHandler.InitWidget("config.edit_bashstylecustom", openFile, f"{os.getenv('HOME')}/.bashstyle.custom", "button", None)
+        WidgetHandler.InitWidget("config.edit_vimrccustom", openFile, f"{os.getenv('HOME')}/.vimrc.custom", "button", None)
+        WidgetHandler.InitWidget("config.edit_inputrccustom", openFile, f"{os.getenv('HOME')}/.inputrc.custom", "button", None)
         WidgetHandler.InitWidget("config.label_user.desc", None, config.UserConfigVersion(), "label", None)
         WidgetHandler.InitWidget("config.label_vendor.desc", None, config.VendorConfigVersion(), "label", None)
         WidgetHandler.InitWidget("config.label_factory.desc", None, config.FactoryConfigVersion(), "label", None)

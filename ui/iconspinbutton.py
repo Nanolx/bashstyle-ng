@@ -27,7 +27,7 @@ except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 # CustomIconSpinButton was written by Google AI

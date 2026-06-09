@@ -17,7 +17,7 @@ lang = gettext.translation('bashstyle', fallback=True)
 lang.install(names=['_'])
 args.CmdArgs()
 
-print(_("\nBashStyle-NG Version %s starting" % os.getenv('BSNG_VERSION')))
+print(_(f"\nBashStyle-NG Version {os.getenv('BSNG_VERSION')} starting"))
 
 MODULES = ['os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
            'undobuffer', 'lockfile', 'config', 'widgethandler', 'configui',
@@ -39,7 +39,7 @@ except ImportError:
     FAILED.append("Gtk (from gi.repository)")
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 lock = lockfile.LockFile()
@@ -346,8 +346,8 @@ class BashStyleNG(object):
         cfgui.InitConfigUI()
 
         WidgetHandler.InitWidget("about.prefix", None, os.getenv('BSNG_PREFIX'), "label", None)
-        WidgetHandler.InitWidget("about.version", None, "%s (%s)" % (os.getenv('BSNG_VERSION'), os.getenv('BSNG_CODENAME')), "label", None)
-        WidgetHandler.InitWidget("about.log", None, "file://" + os.getenv('HOME') + "/.bashstyle-ng.log", "link", None)
+        WidgetHandler.InitWidget("about.version", None, f"{os.getenv('BSNG_VERSION')} ({os.getenv('BSNG_CODENAME')})", "label", None)
+        WidgetHandler.InitWidget("about.log", None, f"file://{os.getenv('HOME')}/.bashstyle-ng.log", "link", None)
 
         suui = configui.StartupUI(config.cfo, config.udc, config.fdc)
         suui.InitStartupUI()

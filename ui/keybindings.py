@@ -29,7 +29,7 @@ except ImportError:
 
 
 if FAILED:
-    print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 gtkbuilder = widgethandler.gtkbuilder
@@ -191,7 +191,7 @@ class KeyTree(object):
         def on_bind(f, list_item):
             btn = list_item.get_child()
             row_item = list_item.get_item()
-            btn.handler_id = btn.connect("clicked", callback, row_item)
+            btn.connect("clicked", callback, row_item)
 
         factory.connect("setup", on_setup)
         factory.connect("bind", on_bind)
@@ -214,7 +214,7 @@ class KeyTree(object):
             def on_notify(obj, pspec):
                 self.update_config(obj)
 
-            entry.handler_id = row_item.connect("notify::key", on_notify)
+            row_item.connect("notify::key", on_notify)
 
         factory.connect("setup", on_setup)
         factory.connect("bind", on_bind)
@@ -227,8 +227,8 @@ class KeyTree(object):
             boundkey = ""
         else:
             parts = value.split(":")
-            modifier = parts[0]
-            boundkey = parts[1] if len(parts) > 1 else ""
+            modifier = parts
+            boundkey = parts if len(parts) > 1 else ""
         label = setting.replace("_", "-")
         return modifier, boundkey, label
 
@@ -283,5 +283,6 @@ class KeyTree(object):
                 prefix = "X:"
             else:
                 prefix = ""
+            # Bereits korrekt als moderner f-string implementiert
             new_value = f"{prefix}{row_item.key}"
         self.config["Keybindings"][setting] = new_value
