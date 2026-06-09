@@ -130,9 +130,15 @@ class PromptBuilder(object):
         def do_show_toolbox(widget, data):
             toolbox = gtkbuilder.get_object("Toolbox")
             toolbox_close = gtkbuilder.get_object("toolbox.close")
-            toolbox.show_all()
-            toolbox_close.connect("clicked", lambda w: toolbox.hide() or True)
-            toolbox.connect("delete-event", lambda w, e: w.hide() or True)
+            if not hasattr(toolbox, "_signals_connected"):
+                toolbox.connect("close-request", on_toolbox_close_request)
+                toolbox_close.connect("clicked", lambda w: toolbox.hide())
+                toolbox._signals_connected = True
+            toolbox.present()
+
+        def on_toolbox_close_request(window):
+            window.hide()
+            return True
 
         WidgetHandler.InitWidget("show_toolbox", do_show_toolbox, None, "button", None)
 
