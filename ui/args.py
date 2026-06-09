@@ -22,10 +22,7 @@ lang = gettext.translation('bashstyle', fallback=True)
 lang.install(names=['_'])
 
 if FAILED:
-    print(
-        _("The following modules failed to import: %s")
-        % (" ".join(FAILED))
-    )
+    print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
 
@@ -106,10 +103,10 @@ interpreter.")
     (options, args) = parser.parse_args()
 
     if options.version:
-        print("%s (%s)" % (os.getenv('BSNG_VERSION'),
-                           os.getenv('BSNG_CODENAME')))
+        print(f"{os.getenv('BSNG_VERSION')} ({os.getenv('BSNG_CODENAME')})")
         sys.exit(0)
 
     if options.prefix:
-        print("%s" % os.getenv('BSNG_PREFIX'))
+        print(f"{os.getenv('BSNG_PREFIX')}")
         sys.exit(0)
+
