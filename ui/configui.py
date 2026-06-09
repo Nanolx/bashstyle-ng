@@ -27,11 +27,6 @@ try:
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
-try:
-    from gi.repository.GdkPixbuf import Pixbuf
-except ImportError:
-    FAILED.append(_("GdkPixbuf (from gi.repository)"))
-
 if FAILED:
     print(_("The following modules failed to import: %s") % (" ".join(FAILED)))
     sys.exit(1)
