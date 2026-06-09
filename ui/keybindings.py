@@ -107,7 +107,7 @@ class KeyTree(object):
         self._add_column("None", self._create_radio_factory("nmod"))
         self._add_column("Key", self._create_edit_factory())
         self._add_column("Revert", self._create_button_factory("edit-undo", self.on_revert_user))
-        self._add_column("Default", self._create_button_factory("edit-delete", self.on_revert_factory))
+        self._add_column("Default", self._create_button_factory("edit-clear", self.on_revert_factory))
 
         self.populate(dicts.keybindings)
 
