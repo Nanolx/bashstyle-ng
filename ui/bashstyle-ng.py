@@ -371,7 +371,9 @@ class BashStyleNG(object):
                 transition: all 150ms ease-in-out;
             }
             entry:focus-within,
-            textview:focus-within {
+            entry:hover,
+            textview:focus-within,
+            textview:hover {
                 outline: 2px solid @theme_selected_bg_color;
                 outline-offset: -1px;
                 border-color: transparent;

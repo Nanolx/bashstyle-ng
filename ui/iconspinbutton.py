@@ -100,7 +100,8 @@ class CustomIconSpinButton(Gtk.Box):
             padding: 2px 6px;
             box-shadow: inset 0 0 0 1px alpha(currentColor, 0.15);
         }
-        .custom-spin-container:focus-within {
+        .custom-spin-container:focus-within,
+        .custom-spin-container:hover {
             outline: 2px solid @theme_selected_bg_color;
             outline-offset: -1px;
             border-color: transparent;
