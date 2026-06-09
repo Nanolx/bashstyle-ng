@@ -69,9 +69,9 @@ class CustomIconSpinButton(Gtk.Box):
         self.spin_button.set_max_width_chars(-1)
 
         if primary_icon_name:
-            self.spin_button.set_margin_start(6)
+            self.spin_button.set_margin_start(4)
         if secondary_icon_name:
-            self.spin_button.set_margin_end(6)
+            self.spin_button.set_margin_end(4)
 
         self.spin_button.connect("changed", self._on_spin_value_changed)
         self.append(self.spin_button)
@@ -94,15 +94,16 @@ class CustomIconSpinButton(Gtk.Box):
         css_provider = Gtk.CssProvider()
         css_data = """
         .custom-spin-container {
-            background-color: @theme_bg_color;
-            border: 1px solid @text_view_bg; /* Standard-Rahmenfarbe */
+            background-color: @view_bg_color;
+            border: 1px solid transparent;
             border-radius: 6px;
             padding: 2px 6px;
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+            box-shadow: inset 0 0 0 1px alpha(currentColor, 0.15);
         }
         .custom-spin-container:focus-within {
-            border-color: @theme_selected_bg_color;
-            outline: 2px solid rgba(53, 132, 228, 0.5); /* Adwaita Fokus-Blau */
+            outline: 2px solid @theme_selected_bg_color;
+            outline-offset: -1px;
+            border-color: transparent;
         }
         .custom-spin-container spinbutton {
             background: none;
@@ -112,15 +113,16 @@ class CustomIconSpinButton(Gtk.Box):
         .custom-spin-container spinbutton text {
             background: none;
             box-shadow: none;
+            transition: all 150ms ease-in-out;
         }
         .inner-icon {
             opacity: 0.7;
         }
         .inner-icon:hover {
-            opacity: 1.0; /* Hover-Effekt für Interaktivität */
+            opacity: 1.0;
         }
         """
-        css_provider.load_from_data(css_data, -1)
+        css_provider.load_from_string(css_data)
 
         Gtk.StyleContext.add_provider_for_display(
             Gdk.Display.get_default(),
