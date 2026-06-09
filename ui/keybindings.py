@@ -111,6 +111,16 @@ class KeyTree(object):
 
         self.populate(dicts.keybindings)
 
+        header_row = self.tree.get_first_child()
+        if header_row:
+            header_cell = header_row.get_first_child()
+            current_index = 0
+            while header_cell:
+                if current_index != 0 and current_index != 4:
+                    header_cell.set_halign(Gtk.Align.CENTER)
+                header_cell = header_cell.get_next_sibling()
+                current_index += 1
+
         self.use_keys.set_active(self.config["Keybindings"].as_bool("use_keybindingscfg"))
         self.tree.set_sensitive(self.use_keys.get_active())
 
@@ -143,8 +153,7 @@ class KeyTree(object):
 
         def on_bind(f, list_item):
             row_item = list_item.get_item()
-            rb = Gtk.CheckButton()
-            list_item.set_child(rb)
+            rb = list_item.get_child()
             rb.connect("toggled", self.on_radio_toggled, row_item, attr)
             row_item.bind_property(attr, rb, "active", GObject.BindingFlags.SYNC_CREATE)
 
