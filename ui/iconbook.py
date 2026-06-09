@@ -65,8 +65,8 @@ class IconBook(object):
         self.setup_css()
 
     def setup_css(self):
-        provider = Gtk.CssProvider()
-        provider.load_from_data("""
+        css_provider = Gtk.CssProvider()
+        css_data = """
             gridview child {
                 padding: 0;
                 background: transparent;
@@ -88,11 +88,12 @@ class IconBook(object):
                 font-weight: bold;
                 color: @theme_selected_bg_color;
             }
-        """.encode())
+        """
+        css_provider.load_from_string(css_data)
 
         Gtk.StyleContext.add_provider_for_display(
             Gdk.Display.get_default(),
-            provider,
+            css_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
 

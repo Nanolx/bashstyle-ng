@@ -64,8 +64,8 @@ class KeyTree(object):
         self.tree.set_model(selection)
         self.tree.set_hexpand(True)
 
-        provider = Gtk.CssProvider()
-        provider.load_from_data("""
+        css_provider = Gtk.CssProvider()
+        css_data = """
             columnview, columnview listview {
                 background-color: transparent;
             }
@@ -92,11 +92,12 @@ class KeyTree(object):
                 border: none;
                 color: inherit;
             }
-        """.encode())
+        """
+        css_provider.load_from_string(css_data)
 
         Gtk.StyleContext.add_provider_for_display(
             Gdk.Display.get_default(),
-            provider,
+            css_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
 
