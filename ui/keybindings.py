@@ -23,7 +23,7 @@ try:
     gi.require_version("Gtk", "4.0")
     gi.require_version("Gdk", "4.0")
     gi.require_version("Gio", "2.0")
-    from gi.repository import Gtk, Gdk, Gio, GObject
+    from gi.repository import Gtk, Gdk, Gio, GObject, GLib
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
@@ -55,6 +55,27 @@ class KeyTree(object):
         self.userdefault = udc
         self.factorydefault = fdc
         self.model = Gio.ListStore(item_type=KeyItem)
+
+    def is_shortcut_set(self, current_item, target_alt, target_ctrl, target_nmod, target_key):
+        if not target_key or target_key.strip() == "":
+            return False
+        for item in self.model:
+            if item == current_item:
+                continue
+            if (item.alt == target_alt and
+                item.ctrl == target_ctrl and
+                item.nmod == target_nmod and
+                item.key.lower().strip() == target_key.lower().strip()):
+                other_entry = getattr(item, "_entry_widget", None)
+                if other_entry and not other_entry.has_css_class("error"):
+                    other_entry.add_css_class("error")
+                    def remove_other_error():
+                        if other_entry:
+                            other_entry.remove_css_class("error")
+                        return False
+                    GLib.timeout_add(2000, remove_other_error)
+                return True
+        return False
 
     def InitTree(self):
         self.use_keys = gtkbuilder.get_object("use_keybindings")
@@ -91,6 +112,12 @@ class KeyTree(object):
                 box-shadow: none;
                 border: none;
                 color: inherit;
+            }
+            columnview row entry.error {
+                background-color: alpha(@error_color, 0.15);
+                border: 1px solid @error_color;
+                border-radius: 4px;
+                color: @error_color;
             }
         """
         css_provider.load_from_string(css_data)
@@ -171,11 +198,41 @@ class KeyTree(object):
         return factory
 
     def on_radio_toggled(self, rb, row_item, attr):
+        if getattr(self, "_is_reverting", False):
+            return
+
         if rb.get_active():
             if getattr(row_item, attr) != True:
-                row_item.alt = (attr == "alt")
-                row_item.ctrl = (attr == "ctrl")
-                row_item.nmod = (attr == "nmod")
+                new_alt = (attr == "alt")
+                new_ctrl = (attr == "ctrl")
+                new_nmod = (attr == "nmod")
+
+                if self.is_shortcut_set(row_item, new_alt, new_ctrl, new_nmod, row_item.key):
+                    entry = getattr(row_item, "_entry_widget", None)
+                    if entry and not entry.has_css_class("error"):
+                        entry.add_css_class("error")
+
+                    def auto_revert_radios():
+                        if getattr(self, "_is_reverting", False):
+                            return False
+                        self._is_reverting = True
+                        if entry and entry.has_css_class("error"):
+                            entry.remove_css_class("error")
+                        if hasattr(row_item, "_radio_group"):
+                            for mode in ["alt", "ctrl", "nmod"]:
+                                if getattr(row_item, mode):
+                                    row_item._radio_group[mode].set_active(True)
+                        self._is_reverting = False
+                        return False
+                    GLib.timeout_add(2000, auto_revert_radios)
+                    return
+
+                entry = getattr(row_item, "_entry_widget", None)
+                if entry and entry.has_css_class("error"):
+                    entry.remove_css_class("error")
+                row_item.alt = new_alt
+                row_item.ctrl = new_ctrl
+                row_item.nmod = new_nmod
                 self.update_config(row_item)
 
     def _create_button_factory(self, icon, callback):
@@ -207,11 +264,44 @@ class KeyTree(object):
         def on_bind(f, list_item):
             row_item = list_item.get_item()
             entry = list_item.get_child()
+            row_item._entry_widget = entry
+            entry._last_valid_key = row_item.key
+            entry._timeout_id = 0
             row_item.bind_property("key", entry, "text",
                                  GObject.BindingFlags.SYNC_CREATE |
                                  GObject.BindingFlags.BIDIRECTIONAL)
 
+            def auto_revert_entry():
+                entry._timeout_id = 0
+                if getattr(self, "_is_reverting", False):
+                    return False
+                self._is_reverting = True
+                row_item.key = entry._last_valid_key
+                entry.set_text(entry._last_valid_key)
+                if entry.has_css_class("error"):
+                    entry.remove_css_class("error")
+                if hasattr(row_item, "_radio_group"):
+                    for mode in ["alt", "ctrl", "nmod"]:
+                        if getattr(row_item, mode):
+                            row_item._radio_group[mode].set_active(True)
+                self._is_reverting = False
+                return False
+
             def on_notify(obj, pspec):
+                if getattr(self, "_is_reverting", False):
+                    return
+                if entry._timeout_id > 0:
+                    GLib.source_remove(entry._timeout_id)
+                    entry._timeout_id = 0
+                if self.is_shortcut_set(obj, obj.alt, obj.ctrl, obj.nmod, obj.key):
+                    if not entry.has_css_class("error"):
+                        entry.add_css_class("error")
+                    entry._timeout_id = GLib.timeout_add(2000, auto_revert_entry)
+                    return
+                if entry.has_css_class("error"):
+                    entry.remove_css_class("error")
+                entry._last_valid_key = obj.key
+                revert_entry_to_valid()
                 self.update_config(obj)
 
             row_item.connect("notify::key", on_notify)
