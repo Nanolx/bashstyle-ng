@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 dbg_log export HISTTIMEFORMAT="$(ini_get history_timeformat)"
@@ -25,8 +25,8 @@ dbg_log export GLOBIGNORE="$(ini_get globignore)"
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" GLOBIGNORE "${GLOBIGNORE}"
 
 if [[ ${BSNG_BASHVER} -ge 44 ]]; then
-	dbg_log export EXECIGNORE="$(ini_get exec_ignore)"
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" EXECIGNORE "${EXECIGNORE}"
+    dbg_log export EXECIGNORE="$(ini_get exec_ignore)"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" EXECIGNORE "${EXECIGNORE}"
 fi
 
 dbg_log export CDPATH="$(ini_get cdpath)"
@@ -36,10 +36,10 @@ dbg_log export FCEDIT="$(ini_get fcedit)"
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" FCEDIT "${FCEDIT}"
 
 if grep -q TMOUT /etc/profile.d/*msec.sh 2>/dev/null; then
-	echo -e "$(eval_gettext "\n * /etc/profile.d/msec.sh prevents setting TMOUT!")"
+    echo -e "$(eval_gettext "\n * /etc/profile.d/msec.sh prevents setting TMOUT!")"
 else
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" TMOUT "${TMOUT}"
-	dbg_log export TMOUT="$(ini_get timeout)"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" TMOUT "${TMOUT}"
+    dbg_log export TMOUT="$(ini_get timeout)"
 fi
 
 dbg_log export HISTSIZE="$(ini_get history_size)"
@@ -49,48 +49,48 @@ dbg_log export HISTFILESIZE="$(ini_get history_size)"
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" HISTFILESIZE "${HISTFILESIZE}"
 
 if bt "$(ini_get restore_directory)"; then
-	if [ -f "${HOME}/.lastpwd" ]; then
-		lastpwd=$(cat "${HOME}/.lastpwd")
-		[ -d "${lastpwd}" ] && dbg_log cd "${lastpwd}"
-	fi
+    if [ -f "${HOME}/.lastpwd" ]; then
+        lastpwd=$(cat "${HOME}/.lastpwd")
+        [ -d "${lastpwd}" ] && dbg_log cd "${lastpwd}"
+    fi
 fi
 
 if bt "$(ini_get grep_options)"; then
-	if [ -n "$(ini_get grep_options_string)" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" grep "$(eval_gettext "Grep options")" "$(ini_get grep_options_string)"
-		grep_opts="$(ini_get grep_options_string)"
-	fi
+    if [ -n "$(ini_get grep_options_string)" ]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" grep "$(eval_gettext "Grep options")" "$(ini_get grep_options_string)"
+        grep_opts="$(ini_get grep_options_string)"
+    fi
 fi
 
 if bt "$(ini_get use_grep_colors)" && bt "$(ini_get enable_colors)"; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "On")"
-	grep_opts_color="--color=auto"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "On")"
+    grep_opts_color="--color=auto"
 
-	case $(ini_get color_style) in
-		bright ) style="01" ;;
-		normal ) style="0" ;;
-		inverted ) style="7" ;;
-		dimmed ) style="02" ;;
-		underlined ) style="04" ;;
-	esac
+    case $(ini_get color_style) in
+        bright ) style="01" ;;
+        normal ) style="0" ;;
+        inverted ) style="7" ;;
+        dimmed ) style="02" ;;
+        underlined ) style="04" ;;
+    esac
 
-	grep_ms=$(ini_get grep_color_ms)
-	grep_mc=$(ini_get grep_color_mc)
-	grep_sl=$(ini_get grep_color_sl)
-	grep_cx=$(ini_get grep_color_cx)
-	grep_fn=$(ini_get grep_color_fn)
-	grep_ln=$(ini_get grep_color_ln)
-	grep_bn=$(ini_get grep_color_bn)
-	grep_se=$(ini_get grep_color_se)
+    grep_ms=$(ini_get grep_color_ms)
+    grep_mc=$(ini_get grep_color_mc)
+    grep_sl=$(ini_get grep_color_sl)
+    grep_cx=$(ini_get grep_color_cx)
+    grep_fn=$(ini_get grep_color_fn)
+    grep_ln=$(ini_get grep_color_ln)
+    grep_bn=$(ini_get grep_color_bn)
+    grep_se=$(ini_get grep_color_se)
 
-	export GREP_COLORS="ms=${style};${grep_ms}:mc=${style};${grep_mc}:\
+    export GREP_COLORS="ms=${style};${grep_ms}:mc=${style};${grep_mc}:\
 sl=${style};${grep_sl}:cx=${style};${grep_cx}:fn=${style};${grep_fn}:\
 ln=${style};${grep_ln}:bn=${style};${grep_bn}:se=${style};${grep_se}"
 
-	unset style grep_ms grep_mc grep_sl grep_cx grep_fn grep_ln grep_bn grep_se
+    unset style grep_ms grep_mc grep_sl grep_cx grep_fn grep_ln grep_bn grep_se
 
-else	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "Off")"
-	alias grep="grep --color=no"
+else    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored grep "$(eval_gettext "Off")"
+    alias grep="grep --color=no"
 fi
 
 alias grep="grep ${grep_opts} ${grep_opts_color}"
@@ -99,73 +99,77 @@ dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "Options")"
 dd_opts=""
 
 if bt "$(ini_get dd_noerror)"; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "don't abort at errors")"
-	dbg_log export dd_opts+="conv=noerror "
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "don't abort at errors")"
+    dbg_log export dd_opts+="conv=noerror "
 fi
 
-# status=progress is new in dd/coreutils 8.24
 dd_version="$(gawk '/^dd/{gsub("\\.","") ; print $3}'  <(dd --version))"
 
 if bt "$(ini_get dd_progress)" && [ "${dd_version}" -ge 824 ]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "display progressbar")"
-	dbg_log export dd_opts+="status=progress "
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "display progressbar")"
+    dbg_log export dd_opts+="status=progress "
 elif bt "$(ini_get dd_progress)"; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "display progressbar")" \
-		"$(eval_gettext "was requested by user, but coreutils is not 8.24 or newer")"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" dd "$(eval_gettext "display progressbar")" \
+        "$(eval_gettext "was requested by user, but coreutils is not 8.24 or newer")"
 fi
 
 dbg_log alias dd="dd ${dd_opts}"
 
 if bt "$(ini_get use_bat)"; then
-	if command -v batcat >/dev/null; then
-		batcmd=batcat
-	elif command -v bat >/dev/null; then
-		batcmd=bat
-	else	batcmd=""
-	fi
+    if command -v batcat >/dev/null; then
+        batcmd=batcat
+    elif command -v bat >/dev/null; then
+        batcmd=bat
+    else    batcmd=""
+    fi
 
-	if [ -n "${batcmd}" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "as replacement for")" cat
+    if [ -n "${batcmd}" ]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "as replacement for")" cat
 
-		if [ -n "$(ini_get bat_theme)" ]; then
-			dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "Theme")" "$(ini_get bat_theme)"
-			dbg_log export BAT_THEME="$(ini_get bat_theme)"
-		fi
+        if [ -n "$(ini_get bat_theme)" ]; then
+            dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "Theme")" "$(ini_get bat_theme)"
+            dbg_log export BAT_THEME="$(ini_get bat_theme)"
+        fi
 
-		if [ "$(ini_get bat_tabwidth)" -gt 0 ]; then
-			dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "Tab Width")" "$(ini_get bat_tabwidth)"
-			dbg_log alias cat="${batcmd} --tabs $(ini_get bat_tabwidth)"
-		else
-			dbg_log alias cat="${batcmd}"
-		fi
-	fi
+        if [ "$(ini_get bat_tabwidth)" -gt 0 ]; then
+            dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" bat "$(eval_gettext "Tab Width")" "$(ini_get bat_tabwidth)"
+            dbg_log alias cat="${batcmd} --tabs $(ini_get bat_tabwidth)"
+        else
+            dbg_log alias cat="${batcmd}"
+        fi
+    fi
 fi
 
 if bt "$(ini_get curl_useragent)"; then
-	if [ -n "$(ini_get curl_useragent_string)" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "cURL UserAgent")" "$(ini_get curl_useragent_string)"
-		grep -q user-agent "${HOME}/.curlrc" 2>/dev/null && \
-			sed -e '/user-agent/d' -i "${HOME}/.curlrc"
+    if [ -n "$(ini_get curl_useragent_string)" ]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "cURL UserAgent")" "$(ini_get curl_useragent_string)"
+        grep -q user-agent "${HOME}/.curlrc" 2>/dev/null && \
+            sed -e '/user-agent/d' -i "${HOME}/.curlrc"
 
-		dbg_log echo "user-agent = \"$(ini_get curl_useragent_string)\"" >> "${HOME}/.curlrc"
-	fi
+        dbg_log echo "user-agent = \"$(ini_get curl_useragent_string)\"" >> "${HOME}/.curlrc"
+    fi
 fi
 
 if bt "$(ini_get wget_useragent)"; then
-	if [ -n "$(ini_get wget_useragent_string)" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "wget UserAgent")" "$(ini_get wget_useragent_string)"
-		grep -q user_agent "${HOME}/.wgetrc" 2>/dev/null && \
-			sed -e '/user_agent/d' -i "${HOME}/.wgetrc"
+    if [ -n "$(ini_get wget_useragent_string)" ]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "wget UserAgent")" "$(ini_get wget_useragent_string)"
+        grep -q user_agent "${HOME}/.wgetrc" 2>/dev/null && \
+            sed -e '/user_agent/d' -i "${HOME}/.wgetrc"
 
-		dbg_log echo "user_agent = \"$(ini_get wget_useragent_string)\"" >> "${HOME}/.wgetrc"
-	fi
+        dbg_log echo "user_agent = \"$(ini_get wget_useragent_string)\"" >> "${HOME}/.wgetrc"
+    fi
 fi
 
 if bt "$(ini_get less_options)"; then
-	if [ -n "$(ini_get less_options_string)" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "less pager options")" "$(ini_get less_options_string)"
-		dbg_log export LESS="$(ini_get less_options_string)"
-	fi
+    if [ -n "$(ini_get less_options_string)" ]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "less pager options")" "$(ini_get less_options_string)"
+        dbg_log export LESS="$(ini_get less_options_string)"
+    fi
+fi
+
+if [ -n "$(ini_get glob_sort)" ]; then
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "globsort")" "$(ini_get glob_sort)"
+    dbg_log export GLOBSORT="$(ini_get glob_sort)"
 fi
 
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Various Options")"

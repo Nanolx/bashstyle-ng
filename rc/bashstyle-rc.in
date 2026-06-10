@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                           #
+# This is BashStyle-NG                  #
+#                           #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3      #
+#                           #
+# Copyright Christopher Roy Bratušek            #
+#                           #
 #########################################################
 
 . gettext.sh
@@ -36,7 +36,12 @@ alias bf="check bf"
 dbg_log shopt -s checkwinsize
 
 # start logging
-dbg_msg "$(eval_gettext "BashStyle-NG Starting")"
+verbose=$(ini_get debug_verbose)
+if [[ ${verbose} == True ]]; then
+    dbg_log "$(eval_gettext "BashStyle-NG Starting")"
+else
+    echo "$(eval_gettext "BashStyle-NG Starting")"
+fi
 dbg_msg "$(eval_gettext "BashStyle-NG Bash Major Version:")" "${BASH_VERSINFO[0]}"
 dbg_msg "$(eval_gettext "BashStyle-NG Bash Minor Version:")" "${BASH_VERSINFO[1]}"
 dbg_msg "$(eval_gettext "BashStyle-NG Bash Patch Level:")" "${BASH_VERSINFO[2]}"
@@ -49,8 +54,8 @@ bashstyle-config-helper --update >/dev/null
 
 # setup PATH
 if [ -n "$(ini_get path)" ]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PATH "${PATH}"
-	PATH="$(ini_get path)"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PATH "${PATH}"
+    PATH="$(ini_get path)"
 fi
 
 bt "$(ini_get path_wd)" && export PATH="${PATH}:."
@@ -59,64 +64,64 @@ bt "$(ini_get path_wd)" && export PATH="${PATH}:."
 
 # color settings: general, ls and manpages
 if bt "$(ini_get enable_colors)"; then
-	dbg_log source ${BSNG_RCDIR}/settings_color
-	bt "$(ini_get use_lscolors)" && dbg_log source ${BSNG_RCDIR}/settings_ls
-	bt "$(ini_get less_termcap_color)" && dbg_log source ${BSNG_RCDIR}/settings_man
+    dbg_log source ${BSNG_RCDIR}/settings_color
+    bt "$(ini_get use_lscolors)" && dbg_log source ${BSNG_RCDIR}/settings_ls
+    bt "$(ini_get less_termcap_color)" && dbg_log source ${BSNG_RCDIR}/settings_man
 fi
 
 # Bash prompt theming
 if bt "$(ini_get use_bashstyle)"; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" BashStyle-NG
-	dbg_log source ${BSNG_RCDIR}/styles_hook
+    dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" BashStyle-NG
+    dbg_log source ${BSNG_RCDIR}/styles_hook
 
-	if [[ ${BSNG_BASHVER} -ge 44 && -n $(ini_get ps0) ]]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS0 "$(ini_get ps0)"
-		PS0="${color_ps0} $(ini_get ps0)${color_font} "
-	fi
+    if [[ ${BSNG_BASHVER} -ge 44 && -n $(ini_get ps0) ]]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS0 "$(ini_get ps0)"
+        PS0="${color_ps0} $(ini_get ps0)${color_font} "
+    fi
 
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS2 "$(ini_get ps2)"
-	PS2="${color_ps2} $(ini_get ps2)${color_font} "
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS2 "$(ini_get ps2)"
+    PS2="${color_ps2} $(ini_get ps2)${color_font} "
 
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS3 "$(ini_get ps3)"
-	PS3="${color_ps3} $(ini_get ps3)${color_font} "
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS3 "$(ini_get ps3)"
+    PS3="${color_ps3} $(ini_get ps3)${color_font} "
 
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS4 "$(ini_get ps4)"
-	PS4="${color_ps4} $(ini_get ps4)${color_font} "
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS4 "$(ini_get ps4)"
+    PS4="${color_ps4} $(ini_get ps4)${color_font} "
 
-	if bt "$(ini_get random_style)"; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Random Prompt")"
+    if bt "$(ini_get random_style)"; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Random Prompt")"
 
-		number=$(random -r 11)
-		case ${number} in
-			0 ) pstyle=separator ;;
-			1 ) pstyle=vector ;;
-			2 ) pstyle=clock ;;
-			3 ) pstyle=equinox ;;
-			4 ) pstyle=elite ;;
-			5 ) pstyle=poweruser ;;
-			6 ) pstyle=dirks ;;
-			7 ) pstyle=dot_prompt ;;
-			8 ) pstyle=sepa_ng ;;
-			9 ) pstyle=quirk ;;
-			10 ) pstyle=sputnik ;;
-			11 ) pstyle=ayoli ;;
-		esac
+        number=$(random -r 11)
+        case ${number} in
+            0 ) pstyle=separator ;;
+            1 ) pstyle=vector ;;
+            2 ) pstyle=clock ;;
+            3 ) pstyle=equinox ;;
+            4 ) pstyle=elite ;;
+            5 ) pstyle=poweruser ;;
+            6 ) pstyle=dirks ;;
+            7 ) pstyle=dot_prompt ;;
+            8 ) pstyle=sepa_ng ;;
+            9 ) pstyle=quirk ;;
+            10 ) pstyle=sputnik ;;
+            11 ) pstyle=ayoli ;;
+        esac
 
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "${pstyle}" "$(eval_gettext "randomly chosen")"
-	else
-		pstyle=$(ini_get prompt_style)
-	fi
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "${pstyle}" "$(eval_gettext "randomly chosen")"
+    else
+        pstyle=$(ini_get prompt_style)
+    fi
 
-	if bt "$(ini_get use_custom_prompt)"; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Custom")" Prompt
-		dbg_log source ${BSNG_RCDIR}/styles_custom
-	elif [[ -e ${BSNG_RCDIR}/styles_${pstyle} ]]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "${pstyle}" Prompt
-		dbg_log source "${BSNG_RCDIR}/styles_${pstyle}"
-	else
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Fallback")" Prompt
-		dbg_log export PS1="\u@\h\w: "
-	fi
+    if bt "$(ini_get use_custom_prompt)"; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Custom")" Prompt
+        dbg_log source ${BSNG_RCDIR}/styles_custom
+    elif [[ -e ${BSNG_RCDIR}/styles_${pstyle} ]]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "${pstyle}" Prompt
+        dbg_log source "${BSNG_RCDIR}/styles_${pstyle}"
+    else
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Fallback")" Prompt
+        dbg_log export PS1="\u@\h\w: "
+    fi
 fi
 
 # readline settings
@@ -137,34 +142,34 @@ bt "$(ini_get use_gitcfg)" && dbg_log source ${BSNG_RCDIR}/settings_git
 
 # extra BashStyle functions
 for module in cd remember_command colorshell history; do
-	source ${BSNG_RCDIR}/function_${module}
+    source ${BSNG_RCDIR}/function_${module}
 done
 
 # function to properly reload Bash
 #xk2c from commandlinefu.com
 
 reload_bash () {
-	builtin unalias -a
-	builtin unset -f "$(builtin compgen -A function)"
-	for trap in EXIT DEBUG ERR; do
-		trap '' "${trap}"
-	done
-	[ -f /etc/bash_completion ] && source /etc/bash_completion
-	source "${HOME}"/.bashrc
+    builtin unalias -a
+    builtin unset -f "$(builtin compgen -A function)"
+    for trap in EXIT DEBUG ERR; do
+        trap '' "${trap}"
+    done
+    [ -f /etc/bash_completion ] && source /etc/bash_completion
+    source "${HOME}"/.bashrc
 }
 
 # birthday greeting / welcome message
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
-	cat ${BSNG_RCDIR}/internal_birthday
+    cat ${BSNG_RCDIR}/internal_birthday
 elif [[ -n $(ini_get welcome_message) ]]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Welcome Message")"
-	dbg_log "$(ini_get welcome_message)"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Welcome Message")"
+    dbg_log "$(ini_get welcome_message)"
 fi
 
 # load custom settings file
 if [[ -f ${HOME}/.bashstyle.custom ]]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" "$(eval_gettext "Custom Settings")"
-	dbg_log source "${HOME}/.bashstyle.custom"
+    dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" "$(eval_gettext "Custom Settings")"
+    dbg_log source "${HOME}/.bashstyle.custom"
 fi
 
 # do trapping stuff
@@ -199,41 +204,41 @@ bashstyle_trap_add 'bashstyle_remember_command_error' ERR
 # colorshell
 
 if bt "$(ini_get colorshell)" && bt "$(ini_get enable_colors)"; then
-	dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
-	bashstyle_trap_add 'bashstyle_colorshell' DEBUG
+    dbg_msg "$(eval_gettext "Add colorshell to DEBUG trap")"
+    bashstyle_trap_add 'bashstyle_colorshell' DEBUG
 
-	if bt "$(ini_get colorshell_reset)"; then
-		dbg_msg "$(eval_gettext "Add colorshell-reset to DEBUG trap")"
-		bashstyle_trap_add 'bashstyle_colorshell_reset' DEBUG
-	fi
+    if bt "$(ini_get colorshell_reset)"; then
+        dbg_msg "$(eval_gettext "Add colorshell-reset to DEBUG trap")"
+        bashstyle_trap_add 'bashstyle_colorshell_reset' DEBUG
+    fi
 fi
 
 # history syncronization
 
 if bf "$(ini_get history_isolate)"; then
-	alias history=bashstyle_history
-	if bt "$(ini_get history_sync)"; then
-		dbg_msg "$(eval_gettext "Add history syncronization to DEBUG trap")"
-		bashstyle_trap_add 'bashstyle_history_sync' DEBUG
-	fi
+    alias history=bashstyle_history
+    if bt "$(ini_get history_sync)"; then
+        dbg_msg "$(eval_gettext "Add history syncronization to DEBUG trap")"
+        bashstyle_trap_add 'bashstyle_history_sync' DEBUG
+    fi
 fi
 
 # remember directory
 if bt "$(ini_get restore_directory)"; then
 bashstyle_remember_directory () {
-	printf %s "${PWD}" > "${HOME}/.lastpwd"
+    printf %s "${PWD}" > "${HOME}/.lastpwd"
 }
 
-	bashstyle_trap_add 'bashstyle_remember_directory' EXIT
+    bashstyle_trap_add 'bashstyle_remember_directory' EXIT
 fi
 
 # by goelztec
 # from: https://www.commandlinefu.com/commands/view/25663/
 #
 functions () {
-	shopt -s extdebug
-	declare -F | grep -v "declare -f _" | declare -F "$(awk "{print $3}")" | column -t
-	shopt -u extdebug
+    shopt -s extdebug
+    declare -F | grep -v "declare -f _" | declare -F "$(awk "{print $3}")" | column -t
+    shopt -u extdebug
 }
 
 # clean-up

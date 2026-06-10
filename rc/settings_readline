@@ -166,6 +166,14 @@ if (( "${#bsng_inputrc[@]}" == 0 )); then
         fi
     fi
 
+    if bt "$(ini_get search_ignore_case)"; then
+        dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Search-Ignore-Case "$(eval_gettext "On")"
+        rc_add "set search-ignore-case on"
+    else
+        dbg_msg "$(eval_gettext "ReadlineCFG Setting:")" Search-Ignore-Case "$(eval_gettext "Off")"
+        rc_add "set search-ignore-case off"
+    fi
+
     rc_add "\$include ${HOME}/.inputrc.custom"
 
     mv "${RC_FILE}" "${HOME}"/.inputrc

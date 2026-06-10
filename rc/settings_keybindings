@@ -1,55 +1,55 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                           #
+# This is BashStyle-NG                  #
+#                           #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3      #
+#                           #
+# Copyright Christopher Roy Bratušek            #
+#                           #
 #########################################################
 
 dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" KeybindingsCFG
 
 function list_keybindings () {
-	bind -P | sed -e '/is not/d;s/can be found on/:/' | column -s : -t
+    bind -P | sed -e '/is not/d;s/can be found on/:/' | column -s : -t
 }
 
 keybindings_setter () {
-	if [[ -n "${1}" ]]; then
-		MOD=${1/:*}
-		KEY=${1/*:}
+    if [[ -n "${1}" ]]; then
+        MOD=${1/:*}
+        KEY=${1/*:}
 
-		case ${2} in
-			complete-path)	ACT='"\eb`which \ef` \e\C-e"' ;;
-			rerun-root)	ACT='"\ebsudo !!\e\C-e\C-j"' ;;
-			list-keys)	ACT='"\eblist_keybindings\e\C-e\C-j"' ;;
-			*)		ACT="${2}" ;;
-		esac
+        case ${2} in
+            complete-path)  ACT='"\eb`which \ef` \e\C-e"' ;;
+            rerun-root) ACT='"\ebsudo !!\e\C-e\C-j"' ;;
+            list-keys)  ACT='"\eblist_keybindings\e\C-e\C-j"' ;;
+            *)      ACT="${2}" ;;
+        esac
 
-		case ${MOD} in
-			e)
-				dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" e-"${KEY}"
-				dbg_msg "\\e${KEY}":self-insert
-				bind "\\e${KEY}":self-insert
-				dbg_msg \"\\e"${KEY}"\":"${ACT}"
-				printf '%s\n' "\"\\e${KEY}\":${ACT}" >> "${RC_FILE}"
-			;;
-			C)
-				dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" C-"${KEY}"
-				dbg_msg "\\C-${KEY}":self-insert
-				bind "\\C-${KEY}":self-insert
-				dbg_msg \"\\C-"${KEY}"\":"${ACT}"
-				printf '%s\n' "\"\\C-${KEY}\":${ACT}" >> "${RC_FILE}"
-			;;
-			X)
-				dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" "${KEY}"
-				#bind "${KEY}":self-insert
-				dbg_msg "${KEY}":"${ACT}"
-				printf '%s\n' "${KEY}:${ACT}" >> "${RC_FILE}"
-			;;
-		esac
-	fi
+        case ${MOD} in
+            e)
+                dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" e-"${KEY}"
+                dbg_msg "\\e${KEY}":self-insert
+                bind "\\e${KEY}":self-insert
+                dbg_msg \"\\e"${KEY}"\":"${ACT}"
+                printf '%s\n' "\"\\e${KEY}\":${ACT}" >> "${RC_FILE}"
+            ;;
+            C)
+                dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" C-"${KEY}"
+                dbg_msg "\\C-${KEY}":self-insert
+                bind "\\C-${KEY}":self-insert
+                dbg_msg \"\\C-"${KEY}"\":"${ACT}"
+                printf '%s\n' "\"\\C-${KEY}\":${ACT}" >> "${RC_FILE}"
+            ;;
+            X)
+                dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" "${ACT}" "${KEY}"
+                #bind "${KEY}":self-insert
+                dbg_msg "${KEY}":"${ACT}"
+                printf '%s\n' "${KEY}:${ACT}" >> "${RC_FILE}"
+            ;;
+        esac
+    fi
 }
 
 shopt -s nullglob
@@ -58,35 +58,35 @@ shopt -u nullglob
 
 if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
 
-	export RC_FILE
-	RC_FILE="${HOME}/.keybindings.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
-	dbg_msg "$(eval_gettext "KeybindingsCFG Loading:")" "$(eval_gettext "Keybindings")"
+    export RC_FILE
+    RC_FILE="${HOME}/.keybindings.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
+    dbg_msg "$(eval_gettext "KeybindingsCFG Loading:")" "$(eval_gettext "Keybindings")"
 
-	for key in undo upcase_word capitalize_word downcase_word transpose_words \
-		transpose_chars unix_word_rubout kill_word possible_filename_completions \
-		possible_hostname_completions possible_username_completions \
-		possible_variable_completions kill_line unix_line_discard \
-		beginning_of_line end_of_line clear_screen history_search_forward \
-		history_search_backward complete_path menu_complete alias_expand_line \
-		backward_char backward_word backward_delete_char delete_char \
-		copy_backward_word copy_forward_word forward_char forward_word \
-		overwrite_mode menu_complete_backward rerun_root backward_kill_line \
-		list_keys next_screen_line previous_screen_line spell_correct_word \
-		fetch_history; do
+    for key in undo upcase_word capitalize_word downcase_word transpose_words \
+        transpose_chars unix_word_rubout kill_word possible_filename_completions \
+        possible_hostname_completions possible_username_completions \
+        possible_variable_completions kill_line unix_line_discard \
+        beginning_of_line end_of_line clear_screen history_search_forward \
+        history_search_backward complete_path menu_complete alias_expand_line \
+        backward_char backward_word backward_delete_char delete_char \
+        copy_backward_word copy_forward_word forward_char forward_word \
+        overwrite_mode menu_complete_backward rerun_root backward_kill_line \
+        list_keys next_screen_line previous_screen_line spell_correct_word \
+        fetch_history rl_clear_display; do
 
-			keybindings_setter "$(ini_get $key)" "${key//_/-}"
+            keybindings_setter "$(ini_get $key)" "${key//_/-}"
 
-	done
+    done
 
-	if [[ $(ini_get prompt_style) == equinox ]]; then
-		# make the prompt properly re-draw when pressing [Return]
-		dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" Equinox "$(eval_gettext "Return-Key compat")"
-		dbg_msg 'RETURN: "\C-l\C-j"'
-		echo -E 'RETURN: "\C-l\C-j"' >> "${RC_FILE}"
-	fi
+    if [[ $(ini_get prompt_style) == equinox ]]; then
+        # make the prompt properly re-draw when pressing [Return]
+        dbg_msg "$(eval_gettext "KeybindingsCFG Setting:")" Equinox "$(eval_gettext "Return-Key compat")"
+        dbg_msg 'RETURN: "\C-l\C-j"'
+        echo -E 'RETURN: "\C-l\C-j"' >> "${RC_FILE}"
+    fi
 
-	mv "${RC_FILE}" "${HOME}"/.keybindings
-	unset RC_FILE
+    mv "${RC_FILE}" "${HOME}"/.keybindings
+    unset RC_FILE
 fi
 
 bind -f "${HOME}"/.keybindings

@@ -211,6 +211,25 @@ grep_colors = {
     8: "",
 }
 
+# globsort
+
+globsort_modes = {
+    0: "name",
+    1: "-name",
+    2: "numeric",
+    3: "-numeric",
+    4: "size",
+    5: "-size",
+    6: "mtime",
+    7: "-mtime",
+    8: "ctime",
+    9: "-ctime",
+    10: "atime",
+    11: "-atime",
+    12: "blocks",
+    13: "-blocks",
+}
+
 # Keybindings
 
 keybindings = {
@@ -250,7 +269,8 @@ keybindings = {
     "next_screen_line",
     "previous_screen_line",
     "spell_correct_word",
-    "fetch_history"
+    "fetch_history",
+    "rl_clear_screen"
 }
 
 # IconView Stuff
