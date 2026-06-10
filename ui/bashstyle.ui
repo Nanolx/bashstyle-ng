@@ -6196,7 +6196,7 @@
                                 </attributes>
                                 <layout>
                                   <property name="column">0</property>
-                                  <property name="row">2</property>
+                                  <property name="row">3</property>
                                 </layout>
                               </object>
                             </child>
@@ -6225,7 +6225,7 @@
                                 <property name="vexpand">1</property>
                                 <layout>
                                   <property name="column">0</property>
-                                  <property name="row">3</property>
+                                  <property name="row">4</property>
                                 </layout>
                               </object>
                             </child>
@@ -6239,7 +6239,7 @@
                                 </attributes>
                                 <layout>
                                   <property name="column">0</property>
-                                  <property name="row">4</property>
+                                  <property name="row">5</property>
                                 </layout>
                               </object>
                             </child>
@@ -6269,7 +6269,7 @@
                                 <property name="min-content-width">585</property>
                                 <layout>
                                   <property name="column">0</property>
-                                  <property name="row">5</property>
+                                  <property name="row">6</property>
                                 </layout>
                               </object>
                             </child>
@@ -6298,28 +6298,22 @@
                                     </layout>
                                   </object>
                                 </child>
-                                <child>
-                                  <object class="GtkComboBox" id="insert_prompt">
-                                    <property name="margin-end">5</property>
-                                    <property name="model">cpb.liststore.style</property>
-                                    <property name="valign">start</property>
-                                    <child>
-                                      <object class="GtkCellRendererText" id="cpb.cellrenderer.prompt"/>
-                                      <!-- Custom child fragments -->
-                                      <attributes>
-                                        <attribute name="text">0</attribute>
-                                      </attributes>
-                                    </child>
-                                    <layout>
-                                      <property name="column">1</property>
-                                      <property name="row">1</property>
-                                    </layout>
-                                  </object>
-                                </child>
+                                <layout>
+                                  <property name="column">0</property>
+                                  <property name="row">0</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="halign">center</property>
                                 <child>
                                   <object class="GtkComboBox" id="insert_color">
                                     <property name="margin-end">5</property>
                                     <property name="model">cpb.liststore.symbolic_color</property>
+                                    <property name="valign">start</property>
+                                    <property name="width-request">250</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cpb.cellrenderer.color"/>
                                       <!-- Custom child fragments -->
@@ -6327,15 +6321,27 @@
                                         <attribute name="text">0</attribute>
                                       </attributes>
                                     </child>
-                                    <layout>
-                                      <property name="column">0</property>
-                                      <property name="row">1</property>
-                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkComboBox" id="insert_prompt">
+                                    <property name="margin-end">5</property>
+                                    <property name="model">cpb.liststore.style</property>
+                                    <property name="valign">start</property>
+                                    <property name="width-request">250</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cpb.cellrenderer.prompt"/>
+                                      <!-- Custom child fragments -->
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
                                   </object>
                                 </child>
                                 <layout>
                                   <property name="column">0</property>
-                                  <property name="row">0</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">2</property>
                                   <property name="row-span">1</property>
                                 </layout>
                               </object>
