@@ -96,6 +96,10 @@ class KeyTree(object):
             columnview listview row:hover {
                 background-color: alpha(@theme_fg_color, 0.05);
             }
+            columnview listview row:selected {
+            background-color: @theme_selected_bg_color;
+            color: @theme_selected_fg_color;
+            }
             columnview header button {
                 background: transparent;
                 border: none;
