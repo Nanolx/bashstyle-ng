@@ -1,54 +1,50 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                           #
+# This is BashStyle-NG                  #
+#                           #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3      #
+#                           #
+# Copyright Christopher Roy Bratušek            #
+#                           #
 #########################################################
 
 if [[ ${TERM} != *xterm* ]]; then
-	return_good="+"
-	return_bad="-"
-	return_other="/"
+    return_good="+"
+    return_bad="-"
+    return_other="/"
 else
-	[[ -n $(ini_get return_good) ]] && return_good="$(ini_get return_good)" || return_good="✔"
-	[[ -n $(ini_get return_bad) ]] && return_bad="$(ini_get return_bad)" || return_bad="✘"
-	[[ -n $(ini_get return_other) ]] && return_other="$(ini_get return_other)" || return_other="⊘"
+    [[ -n $(ini_get return_good) ]] && return_good="$(ini_get return_good)" || return_good="✔"
+    [[ -n $(ini_get return_bad) ]] && return_bad="$(ini_get return_bad)" || return_bad="✘"
+    [[ -n $(ini_get return_other) ]] && return_other="$(ini_get return_other)" || return_other="⊘"
 fi
 
 lastcommand=""
 lastcommandprintable="                     "
 lastexit=0
 
-bashstyle_remember_command_debug () {
-	local _lastexit=$?
-	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
-	[ -n "$COMP_LINE" ] && return
-	[ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
-	[[ "$BASH_COMMAND" == trap\ * ]] && return
-	[[ "$BASH_COMMAND" == *lastcommand* ]] && return
-	[[ "$BASH_COMMAND" == *lastexit* ]] && return
+bashstyle_remember_command () {
+    local _lastexit=$?
+    lastexit=${_lastexit}
 
-	local X_COMMAND=${BASH_COMMAND//$'\n'/ }
-	X_COMMAND=${X_COMMAND//\\n/ }
+    [[ "${BSNG_TRAP_RECORD}" != True ]] && return $_lastexit
+    [ -n "$COMP_LINE" ] && return $_lastexit
+    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return $_lastexit
+    [[ "$BASH_COMMAND" == trap\ * ]] && return $_lastexit
+    [[ "$BASH_COMMAND" == *lastcommand* ]] && return $_lastexit
+    [[ "$BASH_COMMAND" == *lastexit* ]] && return $_lastexit
 
-	lastcommand=${BASH_COMMAND}
-	lastcommandprintable=${X_COMMAND:0:21}
+    local X_COMMAND=${BASH_COMMAND//$'\n'/ }
+    X_COMMAND=${X_COMMAND//\\n/ }
 
-	if [ ${#lastcommandprintable} -gt 21 ]; then
-		lastcommandprintable=${lastcommandprintable:0:20}'>'
-	else
-		lastcommandprintable="$(printf '%-21s' "$lastcommandprintable")"
-	fi
+    lastcommand=${BASH_COMMAND}
+    lastcommandprintable=${X_COMMAND:0:21}
 
-	lastexit=${_lastexit}
-}
+    if [ ${#lastcommandprintable} -gt 21 ]; then
+        lastcommandprintable=${lastcommandprintable:0:20}'>'
+    else
+        lastcommandprintable="$(printf '%-21s' "$lastcommandprintable")"
+    fi
 
-bashstyle_remember_command_error () {
-	local _lastexit=$?
-	[[ "${BSNG_TRAP_RECORD}" != True ]] && return
-	lastexit=${_lastexit}
+    return $_lastexit
 }

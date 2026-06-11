@@ -204,8 +204,8 @@ fi
 # remember command / last exit status
 
 dbg_msg "$(eval_gettext "Add remember command to DEBUG and ERR trap")"
-bashstyle_trap_add 'bashstyle_remember_command_debug' DEBUG
-bashstyle_trap_add 'bashstyle_remember_command_error' ERR
+bashstyle_trap_add 'bashstyle_remember_command' DEBUG
+bashstyle_trap_add 'bashstyle_remember_command' ERR
 
 # colorshell
 
