@@ -37,6 +37,17 @@ created (BashStyle-NG checks on startup whether such file exists and skips
 creating a new configuration file for vim, nano or readline, as it assumes an
 other BashStyle-NG instanace is doing so) Now BashStyle-NG hooks into the EXIT
 trap of Bash and attempts to remove those temporary files
+
+@item #284: @code{lscd} and @code{treecd} would not return an error code, when
+the directory cd'ed into doesn't exist (if creating directory is disabled), or
+if directory cd'ed into couldn't be created (if creating directory is enabled),
+in both cases they now return 1
+
+@item #285: @code{remember_command} the function that would record the previous
+command and it's return status in the @code{DEBUG} and @code{ERR} traps wasn't
+properly working, as soon as a command failed the following was shown as failed
+aswell, caused by an early abort in the function, this has been fixed - as of now
+this is by default only used in the @code{Equinox} prompt style
 @end itemize
 
 @item New Features

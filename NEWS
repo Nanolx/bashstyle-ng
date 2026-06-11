@@ -28,6 +28,29 @@ between.  For more detailed information see the git log.
         − #282: remove root check from ‘make’, as it broke creating a
           Debian package
 
+        − #283: when several bash sessions would be created
+          simultaneously and closed before BashStyle-NG hasn't completed
+          setup, it may have happend that incomplete temporary
+          configuration files were left, which would prevent new files
+          from being created (BashStyle-NG checks on startup whether
+          such file exists and skips creating a new configuration file
+          for vim, nano or readline, as it assumes an other BashStyle-NG
+          instanace is doing so) Now BashStyle-NG hooks into the EXIT
+          trap of Bash and attempts to remove those temporary files
+
+        − #284: ‘lscd’ and ‘treecd’ would not return an error code, when
+          the directory cd'ed into doesn't exist (if creating directory
+          is disabled), or if directory cd'ed into couldn't be created
+          (if creating directory is enabled), in both cases they now
+          return 1
+
+        − #285: ‘remember_command’ the function that would record the
+          previous command and it's return status in the ‘DEBUG’ and
+          ‘ERR’ traps wasn't properly working, as soon as a command
+          failed the following was shown as failed aswell, caused by an
+          early abort in the function, this has been fixed - as of now
+          this is by default only used in the ‘Equinox’ prompt style
+
    • New Features
 
         − Add support for ‘GLOBSORT’ added in Bash version 5.3
@@ -37,10 +60,10 @@ between.  For more detailed information see the git log.
         − Add support for ‘rl-clear-display’ added in Readline 8.3
 
         − When the ‘git’ signing key is set to ‘yubikey’, then ‘gitkit
-          push’ will not automatically ‘ssh-add’ any, instead it will
-          try the push and if a Yubikey is plugged in, you can enter
-          it's PIN, if no yubikey is plugged in, you'll be asked for
-          password
+          push’ will not automatically ‘ssh-add’ any key, instead it
+          will try the push and if a Yubikey is plugged in, you can
+          enter it's PIN, if no yubikey is plugged in, you'll be asked
+          for password
 
         − The ‘gitkit’ functions ‘listuser’, ‘listorg’, ‘cloneuser’,
           ‘cloneorg’ now support both Github and Gitlab, and are now
@@ -53,7 +76,7 @@ between.  For more detailed information see the git log.
           ‘../<dirname>_export’ by default, if no export path was
           provided
 
-        − The ‘gitkit’ function ‘push’ function now also recognizes a
+        − The ‘gitkit’ function ‘push’ now also recognizes a
           ‘.gitkit_mirror’ file, when not in the root of the git
           repository
 
@@ -87,7 +110,7 @@ between.  For more detailed information see the git log.
           primary-icon and secondary-icon like GtkEntry.  This release
           ships a CustomIconSpinButton which is a composite widget,
           basically a GtkBox with two GtkImages and a GtkSpinButton,
-          creating the desired result, fully function Note:
+          creating the desired result, fully functional Note:
           CustomIconSpinButton() was created AI assisted
 
         − The WidgetHandler now has a function to replace widgets from
