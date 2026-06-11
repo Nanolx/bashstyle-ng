@@ -29,6 +29,14 @@ instance will return to it's previous, non-duplicate value after two seconds
 @item #281: colored help messages created by @code{bashstyle-help} work again
 
 @item #282: remove root check from @code{make}, as it broke creating a Debian package
+
+@item #283: when several bash sessions would be created simultaneously and closed
+before BashStyle-NG hasn't completed setup, it may have happend that incomplete
+temporary configuration files were left, which would prevent new files from being
+created (BashStyle-NG checks on startup whether such file exists and skips
+creating a new configuration file for vim, nano or readline, as it assumes an
+other BashStyle-NG instanace is doing so) Now BashStyle-NG hooks into the EXIT
+trap of Bash and attempts to remove those temporary files
 @end itemize
 
 @item New Features
@@ -41,8 +49,8 @@ instance will return to it's previous, non-duplicate value after two seconds
 @item Add support for @code{rl-clear-display} added in Readline 8.3
 
 @item When the @code{git} signing key is set to @code{yubikey}, then @code{gitkit push}
-will not automatically @code{ssh-add} any, instead it will try the push and if
-a Yubikey is plugged in, you can enter it's PIN, if no yubikey is plugged in,
+will not automatically @code{ssh-add} any key, instead it will try the push and
+if a Yubikey is plugged in, you can enter it's PIN, if no yubikey is plugged in,
 you'll be asked for password
 
 @item The @code{gitkit} functions @code{listuser}, @code{listorg}, @code{cloneuser},
@@ -54,8 +62,8 @@ at last the clone commands will ask you whether to user https or ssh (default)
 @item The @code{gitkit} function @code{export} will export to @code{../<dirname>_export}
 by default, if no export path was provided
 
-@item The @code{gitkit} function @code{push} function now also recognizes a
-@code{.gitkit_mirror} file, when not in the root of the git repository
+@item The @code{gitkit} function @code{push} now also recognizes a @code{.gitkit_mirror}
+file, when not in the root of the git repository
 @end itemize
 
 @item Misc. Changes
@@ -89,7 +97,7 @@ Gtk Widgets have
 @item GTK+4 does no longer support a GtkSpinButton to have a primary-icon and
 secondary-icon like GtkEntry. This release ships a CustomIconSpinButton which
 is a composite widget, basically a GtkBox with two GtkImages and a GtkSpinButton,
-creating the desired result, fully function
+creating the desired result, fully functional
 Note: CustomIconSpinButton() was created AI assisted
 
 @item The WidgetHandler now has a function to replace widgets from the UI XML

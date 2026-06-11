@@ -52,6 +52,35 @@ dbg_msg "$(eval_gettext "BashStyle-NG Logfile:")" "${BSNG_LOGFILE}"
 # check whether ini is up-to-date
 bashstyle-config-helper --update >/dev/null
 
+# do trapping stuff
+# by Richard Hansen https://stackoverflow.com/a/7287873
+
+trap_log () { printf '%s\n' "$*"; }
+trap_error () { trap_log "$(eval_gettext "ERROR:")" "$*" >&2; }
+trap_fatal () { trap_error "$@"; exit 1; }
+
+bashstyle_trap_add () {
+    trap_add_cmd=$1; shift || trap_fatal "${FUNCNAME[0]}" "$(eval_gettext "invalid syntax")"
+    for trap_add_name in "$@"; do
+    trap -- "$(
+        extract_trap_cmd() { printf '%s\n' "$3"; }
+        eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
+        printf '%s\n' "${trap_add_cmd}"
+    )" "${trap_add_name}" \
+        || trap_fatal "$(eval_gettext "unable to add ${trap_add_cmd} to trap ${trap_add_name}")"
+
+    unset trap_add_cmd trap_add_name
+    done
+}
+
+declare -f -t bashstyle_trap_add
+
+bashstyle_cleanup () {
+    rm -f "${HOME}/.*.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
+}
+
+bashstyle_trap_add 'bashstyle_cleanup' EXIT
+
 # setup PATH
 if [ -n "$(ini_get path)" ]; then
     dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PATH "${PATH}"
@@ -171,29 +200,6 @@ if [[ -f ${HOME}/.bashstyle.custom ]]; then
     dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" "$(eval_gettext "Custom Settings")"
     dbg_log source "${HOME}/.bashstyle.custom"
 fi
-
-# do trapping stuff
-# by Richard Hansen https://stackoverflow.com/a/7287873
-
-trap_log () { printf '%s\n' "$*"; }
-trap_error () { trap_log "$(eval_gettext "ERROR:")" "$*" >&2; }
-trap_fatal () { trap_error "$@"; exit 1; }
-
-bashstyle_trap_add () {
-    trap_add_cmd=$1; shift || trap_fatal "${FUNCNAME[0]}" "$(eval_gettext "invalid syntax")"
-    for trap_add_name in "$@"; do
-    trap -- "$(
-        extract_trap_cmd() { printf '%s\n' "$3"; }
-        eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
-        printf '%s\n' "${trap_add_cmd}"
-    )" "${trap_add_name}" \
-        || trap_fatal "$(eval_gettext "unable to add ${trap_add_cmd} to trap ${trap_add_name}")"
-
-    unset trap_add_cmd trap_add_name
-    done
-}
-
-declare -f -t bashstyle_trap_add
 
 # remember command / last exit status
 
