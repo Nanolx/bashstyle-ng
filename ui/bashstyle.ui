@@ -7266,6 +7266,7 @@ assuming /usr was the chosen install prefix. </property>
                     <child>
                       <object class="GtkBox" id="config.buttonbox">
                         <property name="can-focus">False</property>
+                        <property name="halign">center</property>
                         <property name="homogeneous">True</property>
                         <property name="spacing">25</property>
                         <property name="visible">True</property>
@@ -7274,6 +7275,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">Backup Configuration</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <child>
@@ -7281,6 +7283,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">Restore Backup</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <layout>
@@ -7361,6 +7364,7 @@ assuming /usr was the chosen install prefix. </property>
                       <object class="GtkLabel" id="config.label_user">
                         <property name="halign">end</property>
                         <property name="label" translatable="yes">User Configuration Version</property>
+                        <property name="margin-top">12</property>
                         <layout>
                           <property name="column">0</property>
                           <property name="row">3</property>
@@ -7370,6 +7374,7 @@ assuming /usr was the chosen install prefix. </property>
                     <child>
                       <object class="GtkBox" id="config.buttonbox2">
                         <property name="can-focus">False</property>
+                        <property name="halign">center</property>
                         <property name="homogeneous">True</property>
                         <property name="spacing">25</property>
                         <property name="visible">True</property>
@@ -7378,6 +7383,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">Delete Backup</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <child>
@@ -7385,6 +7391,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">Reset Configuration</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <layout>
@@ -7397,6 +7404,7 @@ assuming /usr was the chosen install prefix. </property>
                     <child>
                       <object class="GtkLabel" id="config.header2">
                         <property name="label" translatable="yes">Edit Configuration Files</property>
+                        <property name="margin-top">12</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
                         </attributes>
@@ -7410,6 +7418,7 @@ assuming /usr was the chosen install prefix. </property>
                     <child>
                       <object class="GtkBox" id="config.edit_buttonbox1">
                         <property name="can-focus">False</property>
+                        <property name="halign">center</property>
                         <property name="homogeneous">True</property>
                         <property name="spacing">25</property>
                         <property name="visible">True</property>
@@ -7418,6 +7427,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">bashrc</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <child>
@@ -7425,6 +7435,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">bashstyle.custom</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <layout>
@@ -7437,6 +7448,7 @@ assuming /usr was the chosen install prefix. </property>
                     <child>
                       <object class="GtkBox" id="config.edit_buttonbox2">
                         <property name="can-focus">False</property>
+                        <property name="halign">center</property>
                         <property name="homogeneous">True</property>
                         <property name="spacing">25</property>
                         <property name="visible">True</property>
@@ -7445,6 +7457,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">vimrc.custom</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <child>
@@ -7452,6 +7465,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">inputrc.custom</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <layout>
