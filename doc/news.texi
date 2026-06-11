@@ -9,6 +9,95 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 11.0 (2026----) ``Welkin Moon``
+@itemize @bullet
+@item General Changes
+@itemize @minus
+
+@item Migrate UI from GTK+3 to GTK+4
+
+@item Toggling any master switch will enable or disable all widgets controlled
+by that specific master setting
+
+@item When a duplicate keybinding is set, both are marked red and the second
+instance will return to it's previous, non-duplicate value after two seconds
+@end itemize
+
+@item Fixes
+@itemize @minus
+
+@item #281: colored help messages created by @code{bashstyle-help} work again
+
+@item #282: remove root check from @code{make}, as it broke creating a Debian package
+@end itemize
+
+@item New Features
+@itemize @minus
+
+@item Add support for @code{GLOBSORT} added in Bash version 5.3
+
+@item Add support for @code{search-ignore-case} added in Readline 8.2
+
+@item Add support for @code{rl-clear-display} added in Readline 8.3
+
+@item When the @code{git} signing key is set to @code{yubikey}, then @code{gitkit push}
+will not automatically @code{ssh-add} any, instead it will try the push and if
+a Yubikey is plugged in, you can enter it's PIN, if no yubikey is plugged in,
+you'll be asked for password
+
+@item The @code{gitkit} functions @code{listuser}, @code{listorg}, @code{cloneuser},
+@code{cloneorg} now support both Github and Gitlab, and are now prefixed by gh
+or gl, eg.: @code{ghlistuser} or @code{gllistuser}. Also short commands have been
+added, eg.: @code{ghlu} for @code{ghlistuser} or @code{gllu} for @code{gllistuser},
+at last the clone commands will ask you whether to user https or ssh (default)
+
+@item The @code{gitkit} function @code{export} will export to @code{../<dirname>_export}
+by default, if no export path was provided
+
+@item The @code{gitkit} function @code{push} function now also recognizes a
+@code{.gitkit_mirror} file, when not in the root of the git repository
+@end itemize
+
+@item Misc. Changes
+@itemize @minus
+
+@item Always print a small startup message
+
+@item Use modern @code{f-strings} instead of @code{%s} in python Code
+
+@item In Configuration UI create custom vimrc or inputrc if it doesn't exist,
+instead of throwing an error
+
+@item Several UI tweaks, also remove separated subgroups for several settings,
+like Readline 7.x is anything but recent anymore.
+
+@item The custom undobuffer module is no longer required, thus removed
+
+@item The UI uses some CSS to achieve the following:
+@itemize +
+
+@item Hover-effects for the icons in the main menu
+
+@item A striped look for GtkGridView (keybindings settings)
+
+@item Make all GtkEntry and GtkTextView have the some hover effect as most other
+Gtk Widgets have
+
+@item 90 degrees rotated labels for subgroup names
+@end itemize
+
+@item GTK+4 does no longer support a GtkSpinButton to have a primary-icon and
+secondary-icon like GtkEntry. This release ships a CustomIconSpinButton which
+is a composite widget, basically a GtkBox with two GtkImages and a GtkSpinButton,
+creating the desired result, fully function
+Note: CustomIconSpinButton() was created AI assisted
+
+@item The WidgetHandler now has a function to replace widgets from the UI XML
+by widgets created from code (in order to retain layout without having to bother)
+Note: ReplaceWidget() was created AI assisted
+@end itemize
+@end itemize
+
 @heading 10.9 (20240811) ``New Eridu``
 @itemize @bullet
 @item New Features
@@ -922,13 +1011,13 @@ something else than @code{$} for ordinary users.
 @item @code{EXECIGNORE} a colon-separated list of commands to ignore from completion.
 Only matched if the *complete* filename matches. For example if you want to exclude
 
-	@code{/usr/bin/autoreconf}
+    @code{/usr/bin/autoreconf}
 
 from command completion, you need to add something like
 
-	@code{/usr/bin/autreconf}
+    @code{/usr/bin/autreconf}
 or
-	@code{*/autoreconf}
+    @code{*/autoreconf}
 
 to @code{EXECIGNORE}.
 
