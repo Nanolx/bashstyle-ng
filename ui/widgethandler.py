@@ -91,13 +91,13 @@ class WidgetHandler(object):
             elif type == "switch":
                 object.set_active(self.config[group].as_bool(setting))
             elif type == "combo":
-                object.set_active(self.SwapDictionary(dict)[self.config[group][setting]])
+                object.set_selected(self.SwapDictionary(dict)[self.config[group][setting]])
             elif type == "label":
                 object.set_label(f"{setting}")
             elif type == "link":
                 object.set_uri(f"{setting}")
             elif type == "cpb_combo":
-                object.set_active(0)
+                object.set_selected(0)
 
         def ConnectSignals():
             if type == "text":
@@ -114,13 +114,13 @@ class WidgetHandler(object):
                 object.connect("notify::active", disable_childs, dict)
                 disable_childs(object, None, dict)
             elif type == "combo":
-                object.connect("changed", set_option, None, type, dict, group, setting)
+                object.connect("notify::selected", set_option, type, dict, group, setting)
             elif type == "button":
                 object.connect("clicked", group, setting)
             elif type == "cpb_button":
                 object.connect("clicked", dict, group, setting)
             elif type == "cpb_combo":
-                object.connect("changed", dict, group, setting)
+                object.connect("notify::selected", dict, group, setting)
 
         def revert_option(widget, pos, type, widget_group, widget_setting):
             if type == "text":
@@ -141,7 +141,7 @@ class WidgetHandler(object):
             elif type == "switch":
                 self.config[widget_group][widget_setting] = widget.get_active()
             elif type == "combo":
-                self.config[widget_group][widget_setting] = dict[widget.get_active()]
+                self.config[widget_group][widget_setting] = dict[widget.get_selected()]
 
         def emit_text(widget, text, *args):
             if text in blacklist:
@@ -159,7 +159,6 @@ class WidgetHandler(object):
                     continue
                 current_child.set_sensitive(is_active)
                 current_child = current_child.get_next_sibling()
-
 
         object = LoadWidget()
         LoadValue()

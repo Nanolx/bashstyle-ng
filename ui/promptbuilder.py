@@ -85,10 +85,10 @@ class PromptBuilder(object):
             elif self.active_buffer == "PS1":
                 self.custom_prompt_buffer.insert_at_cursor(text_ps1)
 
-        def prompt_add_combo(widget, dict_p_c, dict_ps1):
-            if widget.get_active() != 0:
-                prompt_add(widget, dict_p_c[widget.get_active()], dict_ps1[widget.get_active()])
-                widget.set_active(0)
+        def prompt_add_combo(widget, data, dict_p_c, dict_ps1):
+            if widget.get_selected() != 0:
+                prompt_add(widget, dict_p_c[widget.get_selected()], dict_ps1[widget.get_selected()])
+                widget.set_selected(0)
 
         # GtkButtons
 
@@ -181,12 +181,12 @@ class PromptBuilder(object):
         # Default Styles
 
         self.insert_prompt = gtkbuilder.get_object("insert_prompt")
-        self.insert_prompt.set_active(0)
+        self.insert_prompt.set_selected(0)
 
         def do_insert_prompt(widget, data=None):
-            selection = widget.get_active()
+            selection = widget.get_selected()
             if selection != 0:
                 self.prompt_command_buffer.set_text(prompts.styles_pc[selection])
                 self.custom_prompt_buffer.set_text(prompts.styles_ps1[selection])
 
-        self.insert_prompt.connect("changed", do_insert_prompt)
+        self.insert_prompt.connect("notify::selected", do_insert_prompt)
