@@ -9,6 +9,30 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 11.1 (2026----) ``Elysium``
+@itemize @bullet
+@item Fixes
+@itemize @minus
+
+@item #288: Setting @code{foldmethod} for vim was broken
+@end itemize
+
+@item Misc. Changes
+@itemize @minus
+
+@item Migrate all GtkComboBox to GtkDropDown
+
+@item Make all GtkDropDown values translatable
+
+@item Remove the checkmark for selected item in GtkDropDown, I get why it's on
+the right by default, as it beeing left, looks weird, when scrolling the list,
+still that's counter intuitive, on every other widget it's on the left, so simply
+remove the checkmark, which is in line with combo boxes in other UI toolkits
+
+@item Update german translation
+@end itemize
+@end itemize
+
 @heading 11.0.1 (20260613) ``Welkin Moon``
 @itemize @bullet
 @item Fixes

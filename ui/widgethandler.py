@@ -73,28 +73,12 @@ class WidgetHandler(object):
         #   int         GtkSpinButton
         #   bool        GtkToggleButton / GtkRadioButton
         #   switch      GtkSwitch
-        #   combo       GtkComboBox
+        #   combo       GtkDropDown
         #   button      GtkButton
         #   label       GtkLabel
         #   cpb_button  Custom Prompt Builder GtkButton
-        #   cpb_combo   Custom Prompt Builder GtkComboBox
+        #   cpb_combo   Custom Prompt Builder GtkDropDown
         #   link        GtkLinkButton
-
-        # required parameters:
-        #    for text, int, bool, switch:
-        #    widget, group, setting, type, None
-        #    for combo:
-        #    widget, group, setting, type, dict
-        #    for button:
-        #    widget, action, actionarg, type, None
-        #    for labels:
-        #    widget, None, label, type, None
-        #    for cpb_button:
-        #    widget, pc_text, ps1_text, type, action
-        #    for cpb_combo:
-        #    widget, pc_dict, ps1_dict, type action
-        #    for link:
-        #    widget, None, link, type, None
 
         def LoadWidget():
             object = gtkbuilder.get_object(f"{widget}")
