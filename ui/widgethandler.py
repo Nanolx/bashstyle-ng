@@ -21,7 +21,7 @@ for module in MODULES:
 try:
     import gi
     gi.require_version("Gtk", "4.0")
-    from gi.repository import Gtk, GObject
+    from gi.repository import Gtk, GObject, GLib
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
@@ -34,6 +34,25 @@ blacklist = ['\'', '\"']
 gtkbuilder = Gtk.Builder()
 gtkbuilder.set_translation_domain("bashstyle")
 gtkbuilder.add_from_file(DATADIR + "/bashstyle-ng/ui/bashstyle.ui")
+
+factory_xml = """
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkLabel">
+        <property name="halign">start</property>
+        <property name="xalign">0.0</property>
+        <binding name="label">
+          <lookup name="string" type="GtkStringObject">
+            <lookup name="item">GtkListItem</lookup>
+          </lookup>
+        </binding>
+      </object>
+    </property>
+  </template>
+</interface>
+"""
 
 class WidgetHandler(object):
     def __init__(self, cfo, udc, fdc):
@@ -92,6 +111,7 @@ class WidgetHandler(object):
                 object.set_active(self.config[group].as_bool(setting))
             elif type == "combo":
                 object.set_selected(self.SwapDictionary(dict)[self.config[group][setting]])
+                self.set_dropdown_factory(object)
             elif type == "label":
                 object.set_label(f"{setting}")
             elif type == "link":
@@ -220,6 +240,13 @@ class WidgetHandler(object):
             elif hasattr(parent, "append"):
                 parent.append(new_widget)
         return True
+
+    def set_dropdown_factory(self, dropdown):
+        if not isinstance(dropdown, Gtk.DropDown):
+            return
+        xml_data = GLib.Bytes.new(factory_xml.encode('utf-8'))
+        factory = Gtk.BuilderListItemFactory.new_from_bytes(None, xml_data)
+        dropdown.set_list_factory(factory)
 
     def InitIconSpinButton(self, placeholder, name, group, setting, minvalue, maxvalue):
         def LoadWidget():
