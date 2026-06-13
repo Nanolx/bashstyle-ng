@@ -36,7 +36,7 @@ class ConfigUpdateHelper(object):
         parser = optparse.OptionParser(
             _("\n  bashstyle-config-helper <option>\
             \n\n\
-        BashStyle-NG © 2007 - 2024 Christopher Roy Bratušek\n\
+        BashStyle-NG © 2007 - 2026 Christopher Roy Bratušek\n\
         Licensed under the GNU GENERAL PUBLIC LICENSE v3")
         )
 
