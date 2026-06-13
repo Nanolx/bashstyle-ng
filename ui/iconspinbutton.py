@@ -73,7 +73,7 @@ class CustomIconSpinButton(Gtk.Box):
         if secondary_icon_name:
             self.spin_button.set_margin_end(4)
 
-        self.spin_button.connect("changed", self._on_spin_value_changed)
+        self.spin_button.connect("value-changed", self._on_spin_value_changed)
         self.append(self.spin_button)
 
         if secondary_icon_name:
