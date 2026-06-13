@@ -9,6 +9,19 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 11.0.1 (20260613) ``Welkin Moon``
+@itemize @bullet
+@item Fixes
+@itemize @minus
+
+@item #286: Remove no longer required loading of @code{undobuffer} python module,
+as it is no longer shipped with BashStyle-NG
+
+@item #287: Fix the wrong signal being connected to CustomIconSpinbutton, causing
+a changed value not to be written to configuration
+
+@end itemize
+@end itemize
 @heading 11.0 (20260611) ``Welkin Moon``
 @itemize @bullet
 @item General Changes
