@@ -135,7 +135,7 @@ class BashStyleNG(object):
         WidgetHandler.InitWidget("path_pwd", "Advanced", "path_wd", "bool", None)
         WidgetHandler.InitIconSpinButton("history_size_label", "history_size", "Advanced", "history_size", 100, 1000000)
         WidgetHandler.InitIconSpinButton("pwdlen_label", "pwd_len", "Advanced", "pwdlength", 10, 100)
-        WidgetHandler.InitIconSpinButton("timeout_label", "timeout", "Advanced", "timeout", 60, 10000)
+        WidgetHandler.InitIconSpinButton("timeout_label", "timeout", "Advanced", "timeout", 0, 10000)
         WidgetHandler.InitWidget("history_control", "Advanced", "history_control", "combo", dicts.history_types)
         WidgetHandler.InitWidget("history_timeformat", "Advanced", "history_timeformat", "text", None)
         WidgetHandler.InitWidget("dirchar", "Advanced", "directory_indicator", "text", None)
