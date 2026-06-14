@@ -7385,6 +7385,7 @@ assuming /usr was the chosen install prefix. </property>
                     <property name="column-homogeneous">1</property>
                     <property name="column-spacing">15</property>
                     <property name="row-spacing">3</property>
+                    <property name="width-request">255</property>
                     <child>
                       <object class="GtkLabel" id="config.header">
                         <property name="label" translatable="yes">Manage your BashStyle-NG Configuration.</property>
@@ -7468,7 +7469,6 @@ assuming /usr was the chosen install prefix. </property>
                       <object class="GtkLabel" id="config.label_factory">
                         <property name="halign">end</property>
                         <property name="label" translatable="yes">Factory Configuration Version</property>
-                        <property name="width-request">255</property>
                         <layout>
                           <property name="column">0</property>
                           <property name="row">6</property>
@@ -7607,6 +7607,29 @@ assuming /usr was the chosen install prefix. </property>
                           <property name="column">0</property>
                           <property name="column-span">2</property>
                           <property name="row">9</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="config.restart_box">
+                        <property name="halign">center</property>
+                        <property name="homogeneous">True</property>
+                        <property name="margin-top">25</property>
+                        <property name="spacing">25</property>
+                        <property name="width-request">250</property>
+                        <child>
+                          <object class="GtkButton" id="restart">
+                            <property name="label">Restart BashStyle-NG</property>
+                            <property name="width-request">250</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel"/>
+                        </child>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="column-span">2</property>
+                          <property name="row">10</property>
                         </layout>
                       </object>
                     </child>

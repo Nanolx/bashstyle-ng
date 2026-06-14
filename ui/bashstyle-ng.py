@@ -52,6 +52,7 @@ class BashStyleNG(Gtk.Application):
             application_id="org.nanolx.bashstyle-ng",
             flags=Gio.ApplicationFlags.FLAGS_NONE
         )
+        self.is_restarting = False
 
     def do_activate(self):
         lock.Write()
@@ -366,6 +367,9 @@ class BashStyleNG(Gtk.Application):
         self.revert_user = gtkbuilder.get_object("revert_user")
         self.revert_user.connect("clicked", self.restart, False)
 
+        self.restart_btn = gtkbuilder.get_object("restart")
+        self.restart_btn.connect("clicked", self.restart, False)
+
         self.revert_factory = gtkbuilder.get_object("revert_factory")
         self.revert_factory.connect("clicked", self.restart, True)
 
@@ -374,10 +378,13 @@ class BashStyleNG(Gtk.Application):
         self.bashstyle.present()
 
     def destroy(self, widget, data):
+        if self.is_restarting:
+            return False
         config.WriteConfig()
         lock.Remove()
 
     def restart(self, widget, reset):
+        self.is_restarting = True
         executable = sys.executable
         args = sys.argv
         if reset:
