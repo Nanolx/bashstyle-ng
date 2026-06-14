@@ -456,6 +456,10 @@
           <object class="GtkBox" id="bashstyle.buttonbox">
             <property name="can-focus">False</property>
             <property name="homogeneous">True</property>
+            <property name="margin-bottom">2</property>
+            <property name="margin-end">4</property>
+            <property name="margin-start">4</property>
+            <property name="margin-top">4</property>
             <property name="spacing">6</property>
             <property name="visible">True</property>
             <child>
@@ -504,6 +508,7 @@
         </child>
         <child>
           <object class="GtkNotebook" id="notebook">
+            <property name="margin-top">4</property>
             <property name="scrollable">1</property>
             <property name="show-border">0</property>
             <property name="show-tabs">0</property>
@@ -541,6 +546,7 @@
                           <object class="GtkGrid" id="style.grid">
                             <property name="column-spacing">15</property>
                             <property name="halign">center</property>
+                            <property name="margin-top">1</property>
                             <property name="row-spacing">3</property>
                             <property name="valign">center</property>
                             <child>
@@ -3028,6 +3034,7 @@
                           <object class="GtkGrid" id="readline.grid">
                             <property name="column-spacing">15</property>
                             <property name="halign">center</property>
+                            <property name="margin-top">1</property>
                             <property name="row-spacing">3</property>
                             <property name="valign">center</property>
                             <child>
@@ -3479,6 +3486,7 @@
                           <object class="GtkGrid" id="vim.grid">
                             <property name="column-spacing">15</property>
                             <property name="halign">center</property>
+                            <property name="margin-top">1</property>
                             <property name="row-spacing">3</property>
                             <property name="valign">center</property>
                             <child>
@@ -4005,6 +4013,7 @@
                           <object class="GtkGrid" id="nano.grid">
                             <property name="column-spacing">15</property>
                             <property name="halign">center</property>
+                            <property name="margin-top">1</property>
                             <property name="row-spacing">3</property>
                             <property name="valign">center</property>
                             <child>
@@ -6134,6 +6143,7 @@
                           <object class="GtkGrid" id="cpb.grid">
                             <property name="column-homogeneous">True</property>
                             <property name="hexpand">1</property>
+                            <property name="margin-top">1</property>
                             <property name="row-spacing">3</property>
                             <child>
                               <object class="GtkBox" id="cpb.buttonbox">
@@ -7041,10 +7051,12 @@
                   <object class="GtkScrolledWindow" id="keybindings.scrolledwindow">
                     <property name="child">
                       <object class="GtkBox" id="keybindings.box">
+                        <property name="margin-top">1</property>
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkBox" id="use_keybindings_box">
                             <property name="homogeneous">1</property>
+                            <property name="margin-bottom">1</property>
                             <child>
                               <object class="GtkLabel" id="use_keybindings_label">
                                 <property name="label" translatable="yes">Customize Keybindings</property>
@@ -8035,6 +8047,7 @@ assuming /usr was the chosen install prefix. </property>
                       <object class="GtkViewport" id="gcc_grep_viewport">
                         <property name="child">
                           <object class="GtkBox" id="gcc_grep.box">
+                            <property name="margin-top">1</property>
                             <property name="orientation">vertical</property>
                             <child>
                               <object class="GtkGrid" id="gcc.grid">
