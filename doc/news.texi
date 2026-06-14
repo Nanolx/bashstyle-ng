@@ -20,6 +20,10 @@ Each release lists incompatible changes at its top.
 @item Misc. Changes
 @itemize @minus
 
+@item Add global button to revert to (saved state) user configuration, aswell as
+a button that reverts to factory (or vendor) configuration, then BashStyle-NG is
+restarted, in the configUI a restart button is available now, aswell
+
 @item Allow setting Bash @code{TMOUT} to 0 instead of 60 as minimum, 0 equals to
 disabled
 
@@ -31,6 +35,9 @@ disabled
 the right by default, as it beeing left, looks weird, when scrolling the list,
 still that's counter intuitive, on every other widget it's on the left, so simply
 remove the checkmark, which is in line with combo boxes in other UI toolkits
+
+@item Remove vendor configuration from Debian package, just use BashStyle-NG's
+factory config
 
 @item Update german translation
 @end itemize
