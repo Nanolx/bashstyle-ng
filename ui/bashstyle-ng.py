@@ -34,7 +34,7 @@ try:
     import gi
     gi.require_version("Gtk", "4.0")
     gi.require_version("Gdk", "4.0")
-    from gi.repository import Gtk, Gdk
+    from gi.repository import Gtk, Gdk, Gio
 except ImportError:
     FAILED.append("Gtk (from gi.repository)")
 
@@ -45,9 +45,15 @@ if FAILED:
 lock = lockfile.LockFile()
 config = config.Config()
 
-class BashStyleNG(object):
+class BashStyleNG(Gtk.Application):
 
     def __init__(self):
+        super().__init__(
+            application_id="org.nanolx.bashstyle-ng",
+            flags=Gio.ApplicationFlags.FLAGS_NONE
+        )
+
+    def do_activate(self):
         lock.Write()
 
         config.InitConfig()
@@ -357,44 +363,57 @@ class BashStyleNG(object):
         self.bashstyle = gtkbuilder.get_object("bashstyle")
         self.add_window(self.bashstyle)
 
-        def destroy(self, widget):
-            config.WriteConfig()
-            lock.Remove()
+        self.revert_user = gtkbuilder.get_object("revert_user")
+        self.revert_user.connect("clicked", self.restart, False)
 
-        def bashstyle_gtk_css():
-            css_provider = Gtk.CssProvider()
-            css_data = """
-            label.rotated_label {
-                transform: rotate(90deg);
-                font-weight: bold;
-            }
-            entry,
-            textview {
-                transition: all 150ms ease-in-out;
-            }
-            entry:focus-within,
-            entry:hover,
-            textview:focus-within,
-            textview:hover {
-                outline: 2px solid @theme_selected_bg_color;
-                outline-offset: -1px;
-                border-color: transparent;
-            }
-            """
-            css_provider.load_from_string(css_data)
+        self.revert_factory = gtkbuilder.get_object("revert_factory")
+        self.revert_factory.connect("clicked", self.restart, True)
 
-            Gtk.StyleContext.add_provider_for_display(
-                Gdk.Display.get_default(),
-                css_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            )
-
-        self.bashstyle.connect("close-request", destroy, None)
-        bashstyle_gtk_css()
+        self.bashstyle.connect("close-request", self.destroy, None)
+        self.bashstyle_gtk_css()
         self.bashstyle.present()
+
+    def destroy(self, widget, data):
+        config.WriteConfig()
+        lock.Remove()
+
+    def restart(self, widget, reset):
+        executable = sys.executable
+        args = sys.argv
+        if reset:
+            config.ResetConfig(False)
+        subprocess.Popen([executable] + args, close_fds=True)
+        self.quit()
+
+    def bashstyle_gtk_css(self):
+        css_provider = Gtk.CssProvider()
+        css_data = """
+        label.rotated_label {
+            transform: rotate(90deg);
+            font-weight: bold;
+        }
+        entry,
+        textview {
+            transition: all 150ms ease-in-out;
+        }
+        entry:focus-within,
+        entry:hover,
+        textview:focus-within,
+        textview:hover {
+            outline: 2px solid @theme_selected_bg_color;
+            outline-offset: -1px;
+            border-color: transparent;
+        }
+        """
+        css_provider.load_from_string(css_data)
+
+        Gtk.StyleContext.add_provider_for_display(
+            Gdk.Display.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
 if __name__ == "__main__":
     lock.Check()
-    app = Gtk.Application(application_id='org.nanolx.bashstyle-ng')
-    app.connect('activate', BashStyleNG.__init__)
+    app = BashStyleNG()
     app.run()
