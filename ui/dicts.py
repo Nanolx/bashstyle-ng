@@ -284,7 +284,7 @@ iconview_icons = ["bashstyle-ng-style", "bashstyle-ng-alias",
                   "bashstyle-ng-gcc", "bashstyle-ng-keys",
                   "bashstyle-ng-custom", "bashstyle-ng-config",
                   "bashstyle-ng-doc", "bashstyle-ng-info",
-                  "bashstyle-ng-shell"]
+                  "bashstyle-ng-shell", "bashstyle-ng-hook"]
 
 iconview_labels = {
     "bashstyle-ng-style": _("General Style"),
@@ -304,6 +304,7 @@ iconview_labels = {
     "bashstyle-ng-man": _("Manpage Colors"),
     "bashstyle-ng-gcc": _("GCC & Grep Colors"),
     "bashstyle-ng-shell": _("Start Terminal"),
+    "bashstyle-ng-hook": _("Prompt Hooks"),
 }
 
 notebook_pages = {
@@ -323,6 +324,7 @@ notebook_pages = {
     _("BashStyle-NG StartUp"): 13,
     _("Configuration"): 14,
     _("GCC & Grep Colors"): 16,
+    _("Prompt Hooks"): 17,
     _("Documentation"): 0,
     _("Start Terminal"): 0,
 }

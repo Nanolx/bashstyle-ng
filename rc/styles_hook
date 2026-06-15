@@ -1,16 +1,16 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 [[ ! $(declare -f SEPA_1) ]] && SEPA_1 () { return 0; }
-[[ ! $(declare -f SEPA_2) ]] &&SEPA_2 () { return 0; }
+[[ ! $(declare -f SEPA_2) ]] && SEPA_2 () { return 0; }
 
 [[ ! $(declare -f VECTOR_1) ]] && VECTOR_1 () { return 0; }
 [[ ! $(declare -f VECTOR_2) ]] && VECTOR_2 () { return 0; }

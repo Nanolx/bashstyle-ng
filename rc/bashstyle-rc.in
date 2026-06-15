@@ -103,6 +103,12 @@ if bt "$(ini_get use_bashstyle)"; then
     dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" BashStyle-NG
     dbg_log source ${BSNG_RCDIR}/styles_hook
 
+    # load custom settings file
+    if [[ -f ${HOME}/.bashstyle.custom ]]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" "$(eval_gettext "Custom Settings")"
+        dbg_log source "${HOME}/.bashstyle.custom"
+    fi
+
     if [[ ${BSNG_BASHVER} -ge 44 && -n $(ini_get ps0) ]]; then
         dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PS0 "$(ini_get ps0)"
         PS0="${color_ps0} $(ini_get ps0)${color_font} "
@@ -200,12 +206,6 @@ elif [[ -n $(ini_get welcome_message) ]]; then
     else
         dbg_log echo "${welcome}"
     fi
-fi
-
-# load custom settings file
-if [[ -f ${HOME}/.bashstyle.custom ]]; then
-    dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" "$(eval_gettext "Custom Settings")"
-    dbg_log source "${HOME}/.bashstyle.custom"
 fi
 
 # remember command / last exit status
