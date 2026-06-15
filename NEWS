@@ -36,6 +36,13 @@ between.  For more detailed information see the git log.
           something different than ‘#’ for root, this is done through
           ‘showuser’ function
 
+        − ‘Equinox’ prompt style now allows to show information of a git
+          repo if the user is inside it's root directory, using ‘gitkit’
+          - the prompt then shows another "arm" which displays current
+          branch, current revision and current action, if there's not
+          enough width, the branch will be cut to retain proper prompt
+          layout
+
    • Misc.  Changes
 
         − Add global button to revert to (saved state) user
@@ -48,6 +55,10 @@ between.  For more detailed information see the git log.
           into them, but this feature was never propagated (...), now
           BashStyle-NG shows a new ‘Prompt Hooks’ icon, featuring a full
           description of what styles support hooks and how to use them
+
+        − ‘systemkit’ now uses ‘awk’ and ‘/proc/meminfo’ to calcuate
+          used, free and available RAM or respective percentages, as
+          it's much faster than parsing the output from ‘top’
 
         − Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in
           BashStyle-NG do not show a checkmark, so they look more like a

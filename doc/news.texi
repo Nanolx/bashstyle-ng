@@ -37,6 +37,11 @@ use it in conjunction with another tool, like @code{Liquid Prompt} or whatever
 @item Allow setting a root character for prompt, this allows to show something
 different than @code{#} for root, this is done through @code{showuser} function
 
+@item @code{Equinox} prompt style now allows to show information of a git repo if
+the user is inside it's root directory, using @code{gitkit} - the prompt then shows
+another "arm" which displays current branch, current revision and current action,
+if there's not enough width, the branch will be cut to retain proper prompt layout
+
 @end itemize
 @item Misc. Changes
 @itemize @minus
@@ -50,6 +55,10 @@ aswell
 this feature was never propagated (...), now BashStyle-NG shows a new
 @code{Prompt Hooks} icon, featuring a full description of what styles support
 hooks and how to use them
+
+@item @code{systemkit} now uses @code{awk} and @code{/proc/meminfo} to calcuate
+used, free and available RAM or respective percentages, as it's much faster than
+parsing the output from @code{top}
 
 @item Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in BashStyle-NG
 do not show a checkmark, so they look more like a GtkComboBox, also make all
