@@ -8676,7 +8676,7 @@ assuming /usr was the chosen install prefix.</property>
                       <object class="GtkViewport" id="hook.viewport">
                         <child>
                           <object class="GtkLabel" id="hook.info">
-                            <property name="label">Some of the supplied prompt styles of BashStyle-NG allow hooking into them, meaning you can define a function that will be automatically called from the prompt. This allows you to add  custom content to existing themes, without having to use the custom prompt builder and start from scratch. You need to place the desired hook in the file:
+                            <property name="label">Some of the supplied prompt styles of BashStyle-NG allow hooking into them, meaning you can define a function that will be automatically called from the prompt. This allows you to add  custom content to existing styles, without having to use the custom prompt builder or start from scratch. You need to place the desired hook in the file:
 
 	${HOME}/.bashstyle.custom
 
@@ -8725,13 +8725,13 @@ If you want to use theese predefinied colors not in the variable, but in the fun
 	black -&gt; eblack
 	white -&gt; ewhite
 
-Note: if the terminal is set to dark, when black becomes white, else white becomes black, that's not a bug, but a feature.
+Note: if the terminal is set to dark (in the Style settings), when black becomes white, else white becomes black, that's not a bug, but a feature.
 
-Here's an example that hooks into the seap-ng prompt, we use 'gitkit' to show branch, revision (like svn revision) and current action in repository in yellow, at last we append a white : to have another separator for a more consistent look beetween uptime and user symbol:
+Here's an example that hooks into the seap-ng prompt, we use 'gitkit' to show branch, revision (like svn revision) and current action in repository in yellow:
 
 	SEPA_NG_1_COLOR=${yellow}
 	SEPA_NG_1 () {
-	    echo -e " $(gitkit branch):$(gitkit revno):$(gitkit action) ${ewhite}:"
+	    echo -e " $(gitkit branch):$(gitkit revno):$(gitkit action) "
 	}
 
 Feel free to give it a try. </property>
