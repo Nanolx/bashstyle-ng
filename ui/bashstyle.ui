@@ -2221,17 +2221,6 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkCheckButton" id="debug_verbose">
-                                <property name="focusable">1</property>
-                                <property name="label" translatable="yes">Verbose output on start</property>
-                                <layout>
-                                  <property name="column">2</property>
-                                  <property name="row">22</property>
-                                  <property name="row-span">2</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkEntry" id="birthday">
                                 <property name="focusable">1</property>
                                 <property name="invisible-char">●</property>
@@ -7639,7 +7628,10 @@ assuming /usr was the chosen install prefix. </property>
                           </object>
                         </child>
                         <child>
-                          <object class="GtkLabel"/>
+                          <object class="GtkCheckButton" id="debug_verbose">
+                            <property name="focusable">1</property>
+                            <property name="label" translatable="yes">Verbose output on start</property>
+                          </object>
                         </child>
                         <layout>
                           <property name="column">0</property>
