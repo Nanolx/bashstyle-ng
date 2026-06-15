@@ -28,23 +28,24 @@ between.  For more detailed information see the git log.
           useful if you want to use it in conjunction with another tool,
           like ‘Liquid Prompt’ or whatever
 
+        − Allow setting a root character for prompt, this allows to show
+          something different than ‘#’ for root, this is done through
+          ‘showuser’ function
+
    • Misc.  Changes
 
         − Add global button to revert to (saved state) user
           configuration, aswell as a button that reverts to factory (or
-          vendor) configuration, then BashStyle-NG is restarted, in the
-          configUI a restart button is available now, aswell
+          vendor) configuration, then BashStyle-NG is restarted; in the
+          ‘Configuration’ group a restart button is available now,
+          aswell
 
-        − Migrate all GtkComboBox to GtkDropDown
+        − Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in
+          BashStyle-NG do not show a checkmark, so they look more like a
+          GtkComboBox, also make all GtkDropDown values translatable
 
-        − Make all GtkDropDown values translatable
-
-        − Remove the checkmark for selected item in GtkDropDown, I get
-          why it's on the right by default, as it beeing left, looks
-          weird, when scrolling the list, still that's counter
-          intuitive, on every other widget it's on the left, so simply
-          remove the checkmark, which is in line with combo boxes in
-          other UI toolkits
+        − The button for enabling verbose BashStyle-NG startup was moved
+          from ‘Advanced’ group to ‘Configuration’ group
 
         − Remove vendor configuration from Debian package, just use
           BashStyle-NG's factory config
@@ -86,7 +87,7 @@ between.  For more detailed information see the git log.
           Debian package
 
         − #283: when several bash sessions would be created
-          simultaneously and closed before BashStyle-NG hasn't completed
+          simultaneously and closed before BashStyle-NG has completed
           setup, it may have happend that incomplete temporary
           configuration files were left, which would prevent new files
           from being created (BashStyle-NG checks on startup whether

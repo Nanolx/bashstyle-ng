@@ -31,22 +31,24 @@ and acts accordingly, so either way is working
 from setting @code{PROMPT_COMMAND} or @code{PS1} entirely, useful if you want to
 use it in conjunction with another tool, like @code{Liquid Prompt} or whatever
 
+@item Allow setting a root character for prompt, this allows to show something
+different than @code{#} for root, this is done through @code{showuser} function
+
 @end itemize
 @item Misc. Changes
 @itemize @minus
 
 @item Add global button to revert to (saved state) user configuration, aswell as
 a button that reverts to factory (or vendor) configuration, then BashStyle-NG is
-restarted, in the configUI a restart button is available now, aswell
+restarted; in the @code{Configuration} group a restart button is available now,
+aswell
 
-@item Migrate all GtkComboBox to GtkDropDown
+@item Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in BashStyle-NG
+do not show a checkmark, so they look more like a GtkComboBox, also make all
+GtkDropDown values translatable
 
-@item Make all GtkDropDown values translatable
-
-@item Remove the checkmark for selected item in GtkDropDown, I get why it's on
-the right by default, as it beeing left, looks weird, when scrolling the list,
-still that's counter intuitive, on every other widget it's on the left, so simply
-remove the checkmark, which is in line with combo boxes in other UI toolkits
+@item The button for enabling verbose BashStyle-NG startup was moved from
+@code{Advanced} group to @code{Configuration} group
 
 @item Remove vendor configuration from Debian package, just use BashStyle-NG's
 factory config
@@ -90,7 +92,7 @@ instance will return to it's previous, non-duplicate value after two seconds
 @item #282: remove root check from @code{make}, as it broke creating a Debian package
 
 @item #283: when several bash sessions would be created simultaneously and closed
-before BashStyle-NG hasn't completed setup, it may have happend that incomplete
+before BashStyle-NG has completed setup, it may have happend that incomplete
 temporary configuration files were left, which would prevent new files from being
 created (BashStyle-NG checks on startup whether such file exists and skips
 creating a new configuration file for vim, nano or readline, as it assumes an
