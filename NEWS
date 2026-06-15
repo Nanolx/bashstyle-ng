@@ -21,6 +21,10 @@ between.  For more detailed information see the git log.
           it's set to a command or message and acts accordingly, so
           either way is working
 
+        − #291: Load ‘~/.bashstyle.custom’ earlier, so that when hooking
+          into prompts and a color was set via the hook-variable it's
+          acutally used.
+
    • New Features
 
         − Allow setting prompt style to ‘None’, which will prevent
@@ -39,6 +43,11 @@ between.  For more detailed information see the git log.
           vendor) configuration, then BashStyle-NG is restarted; in the
           ‘Configuration’ group a restart button is available now,
           aswell
+
+        − Since ages some of the prompt styles allow the user to hook
+          into them, but this feature was never propagated (...), now
+          BashStyle-NG shows a new ‘Prompt Hooks’ icon, featuring a full
+          description of what styles support hooks and how to use them
 
         − Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in
           BashStyle-NG do not show a checkmark, so they look more like a

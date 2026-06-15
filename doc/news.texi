@@ -23,6 +23,9 @@ disabled (regression from 11.0)
 set to a command, BashStyle-NG now checks whether it's set to a command or message
 and acts accordingly, so either way is working
 
+@item #291: Load @code{~/.bashstyle.custom} earlier, so that when hooking into
+prompts and a color was set via the hook-variable it's acutally used.
+
 @end itemize
 @item New Features
 @itemize @minus
