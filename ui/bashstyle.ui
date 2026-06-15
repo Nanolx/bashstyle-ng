@@ -8664,9 +8664,7 @@ assuming /usr was the chosen install prefix.</property>
                       <object class="GtkViewport" id="hook.viewport">
                         <child>
                           <object class="GtkLabel" id="hook.info">
-                            <property name="label">Some of the supplied prompt style of BashStyle-NG allow hooking into them, that means you can define a function, that will be automatically called from the prompt, allowing you to add your own custom content, to existing themes, without having to use the custom prompt builder.
-
-You need to place the desired hook in the file:
+                            <property name="label">Some of the supplied prompt styles of BashStyle-NG allow hooking into them, meaning you can define a function that will be automatically called from the prompt. This allows you to add  custom content to existing themes, without having to use the custom prompt builder and start from scratch. Also it's portable, as you can simply copy your configuration file to another user or machine. You need to place the desired hook in the file:
 
 	${HOME}/.bashstyle.custom
 
