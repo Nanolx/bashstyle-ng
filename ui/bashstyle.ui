@@ -7361,15 +7361,22 @@
                     <child>
                       <object class="GtkLabel" id="popup.label">
                         <property name="label" translatable="yes">BashStyle-NG is not loaded upon Shell start.
+
 Click [Enable] to let the application add a startup
 entry for itself into your ${HOME}/.bashrc
+
 If you click [Cancel] changes done here won't take
 effect. This popup will re-appear every time you
 start the application and when there's no entry in
-your ${HOME}/.bashrc
-You can add the entry manually like:
+your
+
+	${HOME}/.bashrc
+
+you can add the entry manually like:
+
         source /usr/share/bashstyle-ng/rc/bashstyle-rc
-assuming /usr was the chosen install prefix. </property>
+
+assuming /usr was the chosen install prefix.</property>
                       </object>
                     </child>
                     <child>
@@ -7392,6 +7399,7 @@ assuming /usr was the chosen install prefix. </property>
                             <property name="focusable">1</property>
                             <property name="label" translatable="yes">Enable</property>
                             <property name="receives-default">1</property>
+                            <property name="width-request">250</property>
                           </object>
                         </child>
                         <child>
