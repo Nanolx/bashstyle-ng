@@ -102,6 +102,7 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitWidget("equinox_proc", "Style", "equinox_proc", "bool", None)
         WidgetHandler.InitWidget("equinox_lastcmd", "Style", "equinox_lastcmd", "bool", None)
         WidgetHandler.InitWidget("equinox_uptime", "Style", "equinox_uptime", "bool", None)
+        WidgetHandler.InitWidget("equinox_git", "Style", "equinox_git", "bool", None)
 
         WidgetHandler.InitWidget("user_char", "Style", "user_char", "text", None)
         WidgetHandler.InitWidget("root_char", "Style", "root_char", "text", None)

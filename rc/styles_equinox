@@ -1,23 +1,25 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                           #
+# This is BashStyle-NG                  #
+#                           #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3      #
+#                           #
+# Copyright Christopher Roy Bratušek            #
+#                           #
 #########################################################
 
 host=${HOSTNAME/.*}
 
 counter=0
 
+_equinox_git_base_len=8
+
 _equinox_counter () {
-	if [[ ${counter} -eq 0 ]]; then
-		counter=4
-	else	counter=$((counter+2))
-	fi
+    if [[ ${counter} -eq 0 ]]; then
+        counter=4
+    else    counter=$((counter+2))
+    fi
 }
 
 if [[ $(ini_get equinox_systemload) == True ]]; then
@@ -26,8 +28,8 @@ _equinox_counter
 _equinox_sysload_pos=${counter}
 
 _equinox_systemload () {
-	echo -en "\033[${_equinox_sysload_pos};$((COLUMNS-29))H"
-	echo -en "${ecolor_separator}(${ecolor_font} system-load: $(systemkit load1)${ecolor_separator} )────────┤"
+    echo -en "\033[${_equinox_sysload_pos};$((COLUMNS-29))H"
+    echo -en "${ecolor_separator}(${ecolor_font} system-load: $(systemkit load1)${ecolor_separator} )────────┤"
 }
 
 fi
@@ -38,8 +40,8 @@ _equinox_counter
 _equinox_cpuload_pos=${counter}
 
 _equinox_cpuload () {
-	echo -en "\033[${_equinox_cpuload_pos};$((COLUMNS-29))H"
-	echo -en "${ecolor_separator}(${ecolor_font} cpu-load: $(systemkit cpuload)${ecolor_separator} )────────────┤"
+    echo -en "\033[${_equinox_cpuload_pos};$((COLUMNS-29))H"
+    echo -en "${ecolor_separator}(${ecolor_font} cpu-load: $(systemkit cpuload)${ecolor_separator} )────────────┤"
 }
 
 fi
@@ -50,8 +52,8 @@ _equinox_counter
 _equinox_ram_pos=${counter}
 
 _equinox_ram () {
-	echo -en "\033[${_equinox_ram_pos};$((COLUMNS-29))H"
-	echo -en "${ecolor_separator}(${ecolor_font} ram: ${ecolor_separator}$(systemkit usedram)m${ecolor_font} / ${ecolor_separator}$(systemkit freeram)m )─────┤"
+    echo -en "\033[${_equinox_ram_pos};$((COLUMNS-29))H"
+    echo -en "${ecolor_separator}(${ecolor_font} ram: ${ecolor_separator}$(systemkit usedram)m${ecolor_font} / ${ecolor_separator}$(systemkit freeram)m )─────┤"
 }
 
 fi
@@ -62,8 +64,8 @@ _equinox_counter
 _equinox_proc_pos=${counter}
 
 _equinox_proc () {
-	echo -en "\033[${_equinox_proc_pos};$((COLUMNS-29))H"
-	echo -en "${ecolor_separator}(${ecolor_font} processes:${ecolor_ps} $(systemkit processes) ${ecolor_separator})──────────┤"
+    echo -en "\033[${_equinox_proc_pos};$((COLUMNS-29))H"
+    echo -en "${ecolor_separator}(${ecolor_font} processes:${ecolor_ps} $(systemkit processes) ${ecolor_separator})──────────┤"
 }
 
 fi
@@ -74,19 +76,45 @@ _equinox_counter
 _equinox_lastcmd_pos=${counter}
 
 _equinox_lastcmd () {
-	echo -en "\033[${_equinox_lastcmd_pos};$((COLUMNS-29))H"
-	case ${lastexit} in
-		0)
-			echo -en "${ecolor_separator}( ${egreen}${return_good}: ${lastcommandprintable} ${ecolor_separator})─┤"
-		;;
-		141)
-			# pressing 'q' in 'git log' results in ${lastexit} -eq 141, but it's not actually a failure (...)
-			echo -en "${ecolor_separator}( ${eyellow}${return_other}: ${lastcommandprintable} ${ecolor_separator})─┤"
-		;;
-		*)
-			echo -en "${ecolor_separator}( ${ered}${return_bad}: ${lastcommandprintable} ${ecolor_separator})─┤"
-		;;
-	esac
+    echo -en "\033[${_equinox_lastcmd_pos};$((COLUMNS-29))H"
+    case ${lastexit} in
+        0)
+            echo -en "${ecolor_separator}( ${egreen}${return_good}: ${lastcommandprintable} ${ecolor_separator})─┤"
+        ;;
+        141)
+            # pressing 'q' in 'git log' results in ${lastexit} -eq 141, but it's not actually a failure (...)
+            echo -en "${ecolor_separator}( ${eyellow}${return_other}: ${lastcommandprintable} ${ecolor_separator})─┤"
+        ;;
+        *)
+            echo -en "${ecolor_separator}( ${ered}${return_bad}: ${lastcommandprintable} ${ecolor_separator})─┤"
+        ;;
+    esac
+}
+
+fi
+
+if [[ $(ini_get equinox_git) == True ]]; then
+
+_equinox_counter
+_equinox_git_pos=${counter}
+
+_equinox_git () {
+    echo -en "\033[${_equinox_git_pos};$((COLUMNS-29))H"
+    _branch=$(gitkit branch)
+    _revision=$(gitkit revision)
+    _action=$(gitkit action)
+    let _fill=$((29 - ${_equinox_git_base_len} - ${#_branch} - ${#_revision} - ${#_action}))
+    if [ "${_fill}" -lt 0 ]; then
+        _branch=${branch:0:_fill}
+    else
+        git_fill=" "
+        while [ "${_fill}" -gt "0" ]
+        do
+            git_fill="${git_fill} "
+            let _fill=${_fill}-1
+        done
+    fi
+    echo -en "${ecolor_separator}( ${egreen}${_branch}${ecolor_font}:${eyellow}${_revision}${ecolor_font}:${ered}${_action}${git_fill} ${ecolor_separator})─┤"
 }
 
 fi
@@ -110,7 +138,7 @@ fill=""
 while [ "${fillsize}" -gt "0" ]
 do
     fill="${fill}─"
-	let fillsize=${fillsize}-1
+    let fillsize=${fillsize}-1
 done
 
 if [ "${fillsize}" -lt "0" ]
@@ -123,7 +151,7 @@ else
 fi
 
 _newPWD () {
-	echo -e "${newPWD}"
+    echo -e "${newPWD}"
 }
 
 echo -en "\033[2;$((COLUMNS-29))H"
@@ -133,26 +161,27 @@ echo -en "\033[3;${COLUMNS}H${ecolor_separator}│"
 local i=${LINES}
 
 if [[ ${i} -ge ${counter} ]]; then
-	while [ ${i} -ge 4 ]
-	do
-		case ${i} in
-			${_equinox_sysload_pos} )	_equinox_systemload	;;
-			${_equinox_cpuload_pos} )	_equinox_cpuload	;;
-			${_equinox_ram_pos} )		_equinox_ram		;;
-			${_equinox_proc_pos} )		_equinox_proc		;;
-			${_equinox_lastcmd_pos} )	_equinox_lastcmd	;;
-			* )
-				echo -en "\033[$((i));${COLUMNS}H${ecolor_separator}│"
-			;;
-		esac
-		let i=${i}-1
-	done
+    while [ ${i} -ge 4 ]
+    do
+        case ${i} in
+            ${_equinox_sysload_pos} )   _equinox_systemload ;;
+            ${_equinox_cpuload_pos} )   _equinox_cpuload    ;;
+            ${_equinox_ram_pos} )       _equinox_ram        ;;
+            ${_equinox_proc_pos} )      _equinox_proc       ;;
+            ${_equinox_lastcmd_pos} )   _equinox_lastcmd    ;;
+            ${_equinox_git_pos} )       _equinox_git        ;;
+            * )
+                echo -en "\033[$((i));${COLUMNS}H${ecolor_separator}│"
+            ;;
+        esac
+        let i=${i}-1
+    done
 else
-	while [ ${i} -ge 4 ]
-	do
-		echo -en "\033[$((i));${COLUMNS}H${ecolor_separator}│"
-		let i=${i}-1
-	done
+    while [ ${i} -ge 4 ]
+    do
+        echo -en "\033[$((i));${COLUMNS}H${ecolor_separator}│"
+        let i=${i}-1
+    done
 fi
 
 let prompt_line=${LINES}-1
