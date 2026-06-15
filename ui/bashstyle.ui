@@ -8676,7 +8676,7 @@ assuming /usr was the chosen install prefix.</property>
                       <object class="GtkViewport" id="hook.viewport">
                         <child>
                           <object class="GtkLabel" id="hook.info">
-                            <property name="label">Some of the supplied prompt styles of BashStyle-NG allow hooking into them, meaning you can define a function that will be automatically called from the prompt. This allows you to add  custom content to existing themes, without having to use the custom prompt builder and start from scratch. Also it's portable, as you can simply copy your configuration file to another user or machine. You need to place the desired hook in the file:
+                            <property name="label">Some of the supplied prompt styles of BashStyle-NG allow hooking into them, meaning you can define a function that will be automatically called from the prompt. This allows you to add  custom content to existing themes, without having to use the custom prompt builder and start from scratch. You need to place the desired hook in the file:
 
 	${HOME}/.bashstyle.custom
 
@@ -8694,7 +8694,7 @@ clock style
 	CLOCK() | at the end of the prompt
 
 equinox style
-	EQUINOX_1() | between uptime and user symbol
+	EQUINOX_1() | before the user symbol
 
 elite style
 	ELITE_1() | at the end of the prompt
@@ -8722,15 +8722,15 @@ You can use one of the following predefined color names:
 	turqoise smoothgreen winered brown silver ocher orange purple pink cream
 
 If you want to use theese predefinied colors not in the variable, but in the function, you can access printable versions by prepending 'e' to the color name, eg.:
-	black =&gt; eblack
+	black -&gt; eblack
 	white -&gt; ewhite
 
-Note: white and black switch if the Terminal was declared dark in the Style settings, that's not a a bug, but a feature.
+Note: if the terminal is set to dark, when black becomes white, else white becomes black, that's not a bug, but a feature.
 
-Here's an example that hooks into the equinox prompt, we use 'gitkit' to show branch, revision (like svn revision) and current action in repository in yellow, at last we append a white : to have another separator for a more consistent look beetween uptime and user symbol:
+Here's an example that hooks into the seap-ng prompt, we use 'gitkit' to show branch, revision (like svn revision) and current action in repository in yellow, at last we append a white : to have another separator for a more consistent look beetween uptime and user symbol:
 
-	EQUINOX_1_COLOR=${yellow}
-	EQUINOX_1 () {
+	SEPA_NG_1_COLOR=${yellow}
+	SEPA_NG_1 () {
 	    echo -e " $(gitkit branch):$(gitkit revno):$(gitkit action) ${ewhite}:"
 	}
 
