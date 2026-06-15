@@ -13,7 +13,10 @@ between.  For more detailed information see the git log.
 
         − #288: Setting ‘foldmethod’ for vim was broken
 
-        − #289: Setting welcome message wasn't working if the welcome
+        − #289: Allow setting Bash ‘TMOUT’ to 0 instead of 60 as
+          minimum, 0 equals to disabled (regression from 11.0)
+
+        − #290: Setting welcome message wasn't working if the welcome
           message was set to a command, BashStyle-NG now checks whether
           it's set to a command or message and acts accordingly, so
           either way is working
@@ -31,9 +34,6 @@ between.  For more detailed information see the git log.
           configuration, aswell as a button that reverts to factory (or
           vendor) configuration, then BashStyle-NG is restarted, in the
           configUI a restart button is available now, aswell
-
-        − Allow setting Bash ‘TMOUT’ to 0 instead of 60 as minimum, 0
-          equals to disabled
 
         − Migrate all GtkComboBox to GtkDropDown
 

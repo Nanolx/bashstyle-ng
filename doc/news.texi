@@ -16,7 +16,10 @@ Each release lists incompatible changes at its top.
 
 @item #288: Setting @code{foldmethod} for vim was broken
 
-@item #289: Setting welcome message wasn't working if the welcome message was
+@item #289: Allow setting Bash @code{TMOUT} to 0 instead of 60 as minimum, 0 equals to
+disabled (regression from 11.0)
+
+@item #290: Setting welcome message wasn't working if the welcome message was
 set to a command, BashStyle-NG now checks whether it's set to a command or message
 and acts accordingly, so either way is working
 
@@ -35,9 +38,6 @@ use it in conjunction with another tool, like @code{Liquid Prompt} or whatever
 @item Add global button to revert to (saved state) user configuration, aswell as
 a button that reverts to factory (or vendor) configuration, then BashStyle-NG is
 restarted, in the configUI a restart button is available now, aswell
-
-@item Allow setting Bash @code{TMOUT} to 0 instead of 60 as minimum, 0 equals to
-disabled
 
 @item Migrate all GtkComboBox to GtkDropDown
 
