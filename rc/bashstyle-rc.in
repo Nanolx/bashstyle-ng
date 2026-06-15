@@ -147,6 +147,8 @@ if bt "$(ini_get use_bashstyle)"; then
     elif [[ -e ${BSNG_RCDIR}/styles_${pstyle} ]]; then
         dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "${pstyle}" Prompt
         dbg_log source "${BSNG_RCDIR}/styles_${pstyle}"
+    elif [[ "${pstyle}" == "None" ]]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "No")" Prompt "$(eval_gettext "[to keep System default or use another tool for setting Prompt]")"
     else
         dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Fallback")" Prompt
         dbg_log export PS1="\u@\h\w: "

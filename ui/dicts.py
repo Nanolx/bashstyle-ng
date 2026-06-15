@@ -92,6 +92,7 @@ prompt_styles = {
     9: "quirk",
     10: "sputnik",
     11: "ayoli",
+    12: "None",
 }
 
 history_types = {
