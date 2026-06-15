@@ -191,8 +191,13 @@ reload_bash () {
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
     cat ${BSNG_RCDIR}/internal_birthday
 elif [[ -n $(ini_get welcome_message) ]]; then
+    welcome="$(ini_get welcome_message)"
     dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "Welcome Message")"
-    dbg_log "$(ini_get welcome_message)"
+    if check P "${welcome%\ *}"; then
+        dbg_log eval "${welcome}"
+    else
+        dbg_log echo "${welcome}"
+    fi
 fi
 
 # load custom settings file
@@ -251,7 +256,7 @@ functions () {
 
 dbg_finalize
 
-unset pstyle TEXTDOMAIN verbose colors style
+unset pstyle TEXTDOMAIN verbose colors style welcome
 unset USER_DEFAULTS FACTORY_DEFAULTS VENDOR_DEFAULTS
 
 unset -f bashstyle_trap_add

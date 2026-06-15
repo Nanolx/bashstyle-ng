@@ -15,6 +15,11 @@ Each release lists incompatible changes at its top.
 @itemize @minus
 
 @item #288: Setting @code{foldmethod} for vim was broken
+
+@item #289: Setting welcome message wasn't working if the welcome message was
+set to a command, BashStyle-NG now checks whether it's set to a command or message
+and acts accordingly, so either way is working
+
 @end itemize
 
 @item Misc. Changes
