@@ -412,6 +412,9 @@ class BashStyleNG(Gtk.Application):
             outline-offset: -1px;
             border-color: transparent;
         }
+        .monospace-label {
+            font-family: monospace;
+        }
         """
         css_provider.load_from_string(css_data)
 

@@ -8715,14 +8715,14 @@ If you want to use theese predefinied colors not in the variable, but in the fun
 	black =&gt; eblack
 	white -&gt; ewhite
 
-Note white and black switch if the Terminal was declared dark in the Style settings, that's not a a bug, but a feature.
+Note: white and black switch if the Terminal was declared dark in the Style settings, that's not a a bug, but a feature.
 
-Here's an example that hooks into the equinox prompt, we use 'gitkit' to show branch, revision (like svn revision) and current action in repository in yellow, at last we  append a white : to have another separator for a more consistent look beetween uptime and user symbol:
+Here's an example that hooks into the equinox prompt, we use 'gitkit' to show branch, revision (like svn revision) and current action in repository in yellow, at last we append a white : to have another separator for a more consistent look beetween uptime and user symbol:
 
-EQUINOX_1_COLOR=${yellow}
-EQUINOX_1 () {
-    echo -e " $(gitkit branch):$(gitkit revno):$(gitkit action) ${ewhite}:"
-}
+	EQUINOX_1_COLOR=${yellow}
+	EQUINOX_1 () {
+	    echo -e " $(gitkit branch):$(gitkit revno):$(gitkit action) ${ewhite}:"
+	}
 
 Feel free to give it a try. </property>
                             <property name="margin-bottom">15</property>
@@ -8732,6 +8732,9 @@ Feel free to give it a try. </property>
                             <property name="wrap">True</property>
                             <property name="xalign">0.0</property>
                             <property name="yalign">0.0</property>
+                            <style>
+                              <class name="monospace-label"/>
+                            </style>
                           </object>
                         </child>
                       </object>
