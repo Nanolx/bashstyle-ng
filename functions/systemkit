@@ -1,247 +1,247 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                           #
+# This is BashStyle-NG                  #
+#                           #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3      #
+#                           #
+# Copyright Christopher Roy Bratušek            #
+#                           #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 prettyprint () {
-	LC_NUMERIC=C printf "%0${2}.0f\n" "${1}"
+    LC_NUMERIC=C printf "%0${2}.0f\n" "${1}"
 }
 
 case ${1} in
-	battery)
-		check P "acpi" "'systemkit battery'" || exit 1
+    battery)
+        check P "acpi" "'systemkit battery'" || exit 1
 
-		load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
-		out="$(acpi -b)"
-		state="$(echo "${out}" | awk '{print $3}')"
-		case ${state} in
-			Charging,)	statesign="^" ;;
-			Discharging,)	statesign="v" ;;
-			Full,)		statesign="°" ;;
-		esac
-		echo "${statesign}${load}"
-	;;
+        load=$(acpi -b | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
+        out="$(acpi -b)"
+        state="$(echo "${out}" | awk '{print $3}')"
+        case ${state} in
+            Charging,)  statesign="^" ;;
+            Discharging,)   statesign="v" ;;
+            Full,)      statesign="°" ;;
+        esac
+        echo "${statesign}${load}"
+    ;;
 
-	cpuload)
-		NICE_IGNORE=20
-		t="0"
+    cpuload)
+        NICE_IGNORE=20
+        t="0"
 
-		while read -r cpu ni; do
-			[[ $ni == *-* || $ni -le ${NICE_IGNORE} ]] && t="$t + ${cpu}"
-			[[ ${cpu%%.*} -eq 0 ]] && break
-		done < <(ps -Ao "%cpu= ni="| sort -r)
+        while read -r cpu ni; do
+            [[ $ni == *-* || $ni -le ${NICE_IGNORE} ]] && t="$t + ${cpu}"
+            [[ ${cpu%%.*} -eq 0 ]] && break
+        done < <(ps -Ao "%cpu= ni="| sort -r)
 
-		cpu=$(echo "$t" | bc)
-		[[ ! "${cpu#.}x" = "${cpu}x" ]] && cpu="0${cpu}"
-		cpu=${cpu%%.*}
+        cpu=$(echo "$t" | bc)
+        [[ ! "${cpu#.}x" = "${cpu}x" ]] && cpu="0${cpu}"
+        cpu=${cpu%%.*}
 
-		prettyprint "${cpu}" 3
-	;;
+        prettyprint "${cpu}" 3
+    ;;
 
-	externalip)
-		check P "wget" "'systemkit externalip'" || exit 1
-		wget -q -O - http://showip.spamt.net/
-	;;
+    externalip)
+        check P "wget" "'systemkit externalip'" || exit 1
+        wget -q -O - http://showip.spamt.net/
+    ;;
 
-	internalip)
-		LANG=C /sbin/ifconfig "${2}" | gawk '/inet /{print $2}'
-	;;
+    internalip)
+        LANG=C /sbin/ifconfig "${2}" | gawk '/inet /{print $2}'
+    ;;
 
-	usedram) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print $4 "-" $6}' | bc)" 5 ;;
-	freeram) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print $6}')" 5 ;;
-	totalram) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print $4}')" 5 ;;
+    usedram) prettyprint "$(awk '/MemAvailable/ {avail=$2} END {print int(avail/1024)}' /proc/meminfo)" 5 ;;
+    freeram) prettyprint "$(awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print int((total-avail)/1024)}' /proc/meminfo)" 5 ;;
+    totalram) prettyprint "$(awk '/MemTotal/ {total=$2} END {print int(total/1024)}' /proc/meminfo)" 5 ;;
 
-	usedram%) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print "100*(" $4 "-" $6 ")/" $4}' | bc)" 3 ;;
-	freeram%) prettyprint "$(LANG=C top -bn1 | gawk '/MiB Mem/{print "100 *" $6 "/" $4}' | bc)" 3 ;;
+    usedram%) prettyprint "$(awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print int(((total-avail)/total)*100)}' /proc/meminfo)" 3 ;;
+    freeram%) prettyprint "$(awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print int((avail/total)*100)}' /proc/meminfo)" 3 ;;
 
-	dirsize)
-		TotalBytes=$(du -s "${2}" | awk '{print $1}')
+    dirsize)
+        TotalBytes=$(du -s "${2}" | awk '{print $1}')
 
-		if [[ ${TotalBytes} -lt 1024 ]]; then
-				echo "${TotalBytes} KB"
-		elif [[ ${TotalBytes} -lt 1048576 ]]; then
-				echo "$((TotalBytes/1024)) MB"
-		elif [[ ${TotalBytes} -lt 1073741824 ]]; then
-				echo "$((TotalBytes/1048576)) GB"
-		else	echo "$((TotalBytes/1073741824)) TB"
-		fi
-	;;
+        if [[ ${TotalBytes} -lt 1024 ]]; then
+                echo "${TotalBytes} KB"
+        elif [[ ${TotalBytes} -lt 1048576 ]]; then
+                echo "$((TotalBytes/1024)) MB"
+        elif [[ ${TotalBytes} -lt 1073741824 ]]; then
+                echo "$((TotalBytes/1048576)) GB"
+        else    echo "$((TotalBytes/1073741824)) TB"
+        fi
+    ;;
 
-	usedspace)	echo "$(df -h | grep -w "${2}" | gawk '{print $3}')B" ;;
-	freespace)	echo "$(df -h | grep -w "${2}" | gawk '{print $4}')B" ;;
-	totalspace)	echo "$(df -h | grep -w "${2}" | gawk '{print $2}')B" ;;
-	usedspace%)	df | grep -w "${2}" | gawk '{print $5}' ;;
-	freespace%)	temp=$(df | grep -w "${2}" | gawk '{print $5}')
-			echo "$((100-${temp//%/}))%" ;;
+    usedspace)  echo "$(df -h | grep -w "${2}" | gawk '{print $3}')B" ;;
+    freespace)  echo "$(df -h | grep -w "${2}" | gawk '{print $4}')B" ;;
+    totalspace) echo "$(df -h | grep -w "${2}" | gawk '{print $2}')B" ;;
+    usedspace%) df | grep -w "${2}" | gawk '{print $5}' ;;
+    freespace%) temp=$(df | grep -w "${2}" | gawk '{print $5}')
+            echo "$((100-${temp//%/}))%" ;;
 
-	cpu)
-		echo -e "CPU:
-	Model:$(gawk -F : '/model name/{print $2;exit;}' /proc/cpuinfo)
-	MHz  :$(gawk -F : '/cpu MHz/{print $2;exit;}' /proc/cpuinfo)\n"
-	;;
+    cpu)
+        echo -e "CPU:
+    Model:$(gawk -F : '/model name/{print $2;exit;}' /proc/cpuinfo)
+    MHz  :$(gawk -F : '/cpu MHz/{print $2;exit;}' /proc/cpuinfo)\n"
+    ;;
 
-	kernel)
-		echo -e "Kernel:
-	Release: $(uname -r)
-	Version: $(uname -v)
-	Machine: $(uname -m)\n"
-	;;
+    kernel)
+        echo -e "Kernel:
+    Release: $(uname -r)
+    Version: $(uname -v)
+    Machine: $(uname -m)\n"
+    ;;
 
-	partitions)
-		echo -e "$(eval_gettext "Partitions:\n")"\
-	"$(eval_gettext "device-node type mount used free total\n")"\
-	"$(df -h --output=source,fstype,target,used,avail,size | grep "^/dev")\n" | column -t
-	;;
+    partitions)
+        echo -e "$(eval_gettext "Partitions:\n")"\
+    "$(eval_gettext "device-node type mount used free total\n")"\
+    "$(df -h --output=source,fstype,target,used,avail,size | grep "^/dev")\n" | column -t
+    ;;
 
-	pci)
-		check P "lspci" "'systemkit pci'" || exit 1
-		echo -e "$(eval_gettext "PCI Devices:\n\n")" "$(lspci -vkmm)\n"
-	;;
+    pci)
+        check P "lspci" "'systemkit pci'" || exit 1
+        echo -e "$(eval_gettext "PCI Devices:\n\n")" "$(lspci -vkmm)\n"
+    ;;
 
-	usb)
-		check P "lsusb" "'systemkit usb'" || exit 1
-		echo -e "$(eval_gettext "USB Devices:\n\n")" "$(lsusb -v)\n"
-	;;
+    usb)
+        check P "lsusb" "'systemkit usb'" || exit 1
+        echo -e "$(eval_gettext "USB Devices:\n\n")" "$(lsusb -v)\n"
+    ;;
 
-	bios)
-		if [[ ${EUID} == 0 ]]; then
-			check P "dmidecode" "'systemkit bios'" || exit 1
-			echo -e "$(eval_gettext "SMBIOS/DMI Info:\n\n")" "$(dmidecode -q)\n"
-		else
-			echo -e "$(eval_gettext "You're not root")"
-			exit 1
-		fi
-	;;
+    bios)
+        if [[ ${EUID} == 0 ]]; then
+            check P "dmidecode" "'systemkit bios'" || exit 1
+            echo -e "$(eval_gettext "SMBIOS/DMI Info:\n\n")" "$(dmidecode -q)\n"
+        else
+            echo -e "$(eval_gettext "You're not root")"
+            exit 1
+        fi
+    ;;
 
-	load1)	LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $1}' ;;
-	load5)	LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $2}' ;;
-	load15)	LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $3}' ;;
+    load1)  LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $1}' ;;
+    load5)  LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $2}' ;;
+    load15) LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $3}' ;;
 
-	tty)
-		TTY=$(tty)
-		echo "${TTY:5}"
-	;;
+    tty)
+        TTY=$(tty)
+        echo "${TTY:5}"
+    ;;
 
-	uptime)
-		uptime=$(</proc/uptime)
-		timeused=${uptime%%.*}
+    uptime)
+        uptime=$(</proc/uptime)
+        timeused=${uptime%%.*}
 
-		if (( timeused > 86400 )); then
-		((
-			daysused=timeused/86400,
-			hoursused=timeused/3600-daysused*24,
-			minutesused=timeused/60-hoursused*60-daysused*60*24,
-			secondsused=timeused-minutesused*60-hoursused*3600-daysused*3600*24
-		))
-			if (( hoursused < 10 )); then
-				hoursused=0${hoursused}
-			fi
-			if (( minutesused < 10 )); then
-				minutesused=0${minutesused}
-			fi
-			if (( secondsused < 10 )); then
-				secondsused=0${secondsused}
-			fi
-			output="${daysused}d ${hoursused}h:${minutesused}m:${secondsused}s"
-		elif (( timeused < 10 )); then
-			output="0d 00h:00m:0$(timeused)s"
-		elif (( timeused < 60 )); then
-			output="0d 00h:00m:${timeused}s"
-		elif (( timeused < 3600 )); then
-		((
-			minutesused=timeused/60,
-			secondsused=timeused-minutesused*60
-		))
-			if (( minutesused < 10 )); then
-				minutesused=0${minutesused}
-			fi
-			if (( secondsused < 10 )); then
-				secondsused=0${secondsused}
-			fi
-			output="0d 00h:${minutesused}m:${secondsused}s"
-		elif (( timeused < 86400 )); then
-		((
-			hoursused=timeused/3600,
-			minutesused=timeused/60-hoursused*60,
-			secondsused=timeused-minutesused*60-hoursused*3600
-		))
-			if (( hoursused < 10 )); then
-				hoursused=0${hoursused}
-			fi
-			if (( minutesused < 10 )); then
-				minutesused=0${minutesused}
-			fi
-			if (( secondsused < 10 )); then
-				secondsused=0${secondsused}
-			fi
-			output="0d ${hoursused}h:${minutesused}m:${secondsused}s"
-		fi
+        if (( timeused > 86400 )); then
+        ((
+            daysused=timeused/86400,
+            hoursused=timeused/3600-daysused*24,
+            minutesused=timeused/60-hoursused*60-daysused*60*24,
+            secondsused=timeused-minutesused*60-hoursused*3600-daysused*3600*24
+        ))
+            if (( hoursused < 10 )); then
+                hoursused=0${hoursused}
+            fi
+            if (( minutesused < 10 )); then
+                minutesused=0${minutesused}
+            fi
+            if (( secondsused < 10 )); then
+                secondsused=0${secondsused}
+            fi
+            output="${daysused}d ${hoursused}h:${minutesused}m:${secondsused}s"
+        elif (( timeused < 10 )); then
+            output="0d 00h:00m:0$(timeused)s"
+        elif (( timeused < 60 )); then
+            output="0d 00h:00m:${timeused}s"
+        elif (( timeused < 3600 )); then
+        ((
+            minutesused=timeused/60,
+            secondsused=timeused-minutesused*60
+        ))
+            if (( minutesused < 10 )); then
+                minutesused=0${minutesused}
+            fi
+            if (( secondsused < 10 )); then
+                secondsused=0${secondsused}
+            fi
+            output="0d 00h:${minutesused}m:${secondsused}s"
+        elif (( timeused < 86400 )); then
+        ((
+            hoursused=timeused/3600,
+            minutesused=timeused/60-hoursused*60,
+            secondsused=timeused-minutesused*60-hoursused*3600
+        ))
+            if (( hoursused < 10 )); then
+                hoursused=0${hoursused}
+            fi
+            if (( minutesused < 10 )); then
+                minutesused=0${minutesused}
+            fi
+            if (( secondsused < 10 )); then
+                secondsused=0${secondsused}
+            fi
+            output="0d ${hoursused}h:${minutesused}m:${secondsused}s"
+        fi
 
-		echo "$output"
-	;;
+        echo "$output"
+    ;;
 
-	processes)
-		procs=$(ps ax | wc -l | awk '{print $1}')
-		prettyprint "${procs}" 4
-	;;
+    processes)
+        procs=$(ps ax | wc -l | awk '{print $1}')
+        prettyprint "${procs}" 4
+    ;;
 
-	cof | countoverallfiles)	find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l ;;
-	cod | countoveralldirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
-	coi | countoverallitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 | wc -l )-1)) ;;
-	cvf | countvisiblefiles)	find -L "${2:-$PWD}" -maxdepth 1 -type f ! -name ".*" | wc -l ;;
-	cvd | countvisibledirs)		echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d ! -name ".*" | wc -l)-1)) ;;
-	cvi | countvisibleitems)	echo $(($(find -L "${2:-$PWD}" -maxdepth 1 ! -name ".*" | wc -l)-1)) ;;
-	chf | counthiddenfiles)		find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" | wc -l ;;
-	chd | counthiddendirs)		find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" | wc -l ;;
-	chi | counthiddenitems)		find -L "${2:-$PWD}" -maxdepth 1 -name ".*" | wc -l ;;
+    cof | countoverallfiles)    find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l ;;
+    cod | countoveralldirs)     echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
+    coi | countoverallitems)    echo $(($(find -L "${2:-$PWD}" -maxdepth 1 | wc -l )-1)) ;;
+    cvf | countvisiblefiles)    find -L "${2:-$PWD}" -maxdepth 1 -type f ! -name ".*" | wc -l ;;
+    cvd | countvisibledirs)     echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d ! -name ".*" | wc -l)-1)) ;;
+    cvi | countvisibleitems)    echo $(($(find -L "${2:-$PWD}" -maxdepth 1 ! -name ".*" | wc -l)-1)) ;;
+    chf | counthiddenfiles)     find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" | wc -l ;;
+    chd | counthiddendirs)      find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" | wc -l ;;
+    chi | counthiddenitems)     find -L "${2:-$PWD}" -maxdepth 1 -name ".*" | wc -l ;;
 
-	*)
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "systemkit" -s "$(eval_gettext "show various system information")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "battery:|show battery load state using acpi")"\
-			-o "$(eval_gettext "cpuload:|show cpu load")"\
-			-o "$(eval_gettext "externalip:|show your PCs external ip")"\
-			-o "$(eval_gettext "internalip:interface|show interface's internal ip")"\
-			-o "$(eval_gettext "usedram:|used RAM")"\
-			-o "$(eval_gettext "usedram%:|used RAM in %")"\
-			-o "$(eval_gettext "freeram:|free RAM")"\
-			-o "$(eval_gettext "freeram%:|free RAM in %")"\
-			-o "$(eval_gettext "totalram:|total RAM")"\
-			-o "$(eval_gettext "dirsize:|size of all items in current dir")"\
-			-o "$(eval_gettext "usedspace:mount|used space on mountpoint")"\
-			-o "$(eval_gettext "freespace:mount|free space on mountpoint")"\
-			-o "$(eval_gettext "totalspace:mount|total space on mountpoint")"\
-			-o "$(eval_gettext "usedspace%:mount|used space on mountpoint in %")"\
-			-o "$(eval_gettext "freespace%:mount|free space on mountpoint in %")"\
-			-o "$(eval_gettext "cpu:|show cpu information")"\
-			-o "$(eval_gettext "kernel:|show kernel information")"\
-			-o "$(eval_gettext "partitons:|show mounted partitions information")"\
-			-o "$(eval_gettext "pci:|show pci device information")"\
-			-o "$(eval_gettext "usb:|show usb device information")"\
-			-o "$(eval_gettext "bios:|show bios information [only root]")"\
-			-o "$(eval_gettext "load1:|show load average for 1 minute")"\
-			-o "$(eval_gettext "load5:|show load average for 5 minutes")"\
-			-o "$(eval_gettext "load15:|show load average for 15 minutes")"\
-			-o "$(eval_gettext "tty:|show current TTY device node")"\
-			-o "$(eval_gettext "uptime:|show uptime in pretty printed format")"\
-			-o "$(eval_gettext "cof:directory|count all files in directory (or pwd)")"\
-			-o "$(eval_gettext "cod:directory|count all directories in directory (or pwd)")"\
-			-o "$(eval_gettext "coi:directory|count all items in directory (or pwd)")"\
-			-o "$(eval_gettext "cvf:directory|count visible files in directory (or pwd)")"\
-			-o "$(eval_gettext "cvd:directory|count visible directories in directory (or pwd)")"\
-			-o "$(eval_gettext "cvi:directory|count visible items in directory (or pwd)")"\
-			-o "$(eval_gettext "chf:directory|count hidden files in directory (or pwd)")"\
-			-o "$(eval_gettext "chd:directory|count hidden directories in directory (or pwd)")"\
-			-o "$(eval_gettext "chi:directory|count hidden items in directory (or pwd)")"
-	;;
+    *)
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "systemkit" -s "$(eval_gettext "show various system information")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "battery:|show battery load state using acpi")"\
+            -o "$(eval_gettext "cpuload:|show cpu load")"\
+            -o "$(eval_gettext "externalip:|show your PCs external ip")"\
+            -o "$(eval_gettext "internalip:interface|show interface's internal ip")"\
+            -o "$(eval_gettext "usedram:|used RAM")"\
+            -o "$(eval_gettext "usedram%:|used RAM in %")"\
+            -o "$(eval_gettext "freeram:|free RAM")"\
+            -o "$(eval_gettext "freeram%:|free RAM in %")"\
+            -o "$(eval_gettext "totalram:|total RAM")"\
+            -o "$(eval_gettext "dirsize:|size of all items in current dir")"\
+            -o "$(eval_gettext "usedspace:mount|used space on mountpoint")"\
+            -o "$(eval_gettext "freespace:mount|free space on mountpoint")"\
+            -o "$(eval_gettext "totalspace:mount|total space on mountpoint")"\
+            -o "$(eval_gettext "usedspace%:mount|used space on mountpoint in %")"\
+            -o "$(eval_gettext "freespace%:mount|free space on mountpoint in %")"\
+            -o "$(eval_gettext "cpu:|show cpu information")"\
+            -o "$(eval_gettext "kernel:|show kernel information")"\
+            -o "$(eval_gettext "partitons:|show mounted partitions information")"\
+            -o "$(eval_gettext "pci:|show pci device information")"\
+            -o "$(eval_gettext "usb:|show usb device information")"\
+            -o "$(eval_gettext "bios:|show bios information [only root]")"\
+            -o "$(eval_gettext "load1:|show load average for 1 minute")"\
+            -o "$(eval_gettext "load5:|show load average for 5 minutes")"\
+            -o "$(eval_gettext "load15:|show load average for 15 minutes")"\
+            -o "$(eval_gettext "tty:|show current TTY device node")"\
+            -o "$(eval_gettext "uptime:|show uptime in pretty printed format")"\
+            -o "$(eval_gettext "cof:directory|count all files in directory (or pwd)")"\
+            -o "$(eval_gettext "cod:directory|count all directories in directory (or pwd)")"\
+            -o "$(eval_gettext "coi:directory|count all items in directory (or pwd)")"\
+            -o "$(eval_gettext "cvf:directory|count visible files in directory (or pwd)")"\
+            -o "$(eval_gettext "cvd:directory|count visible directories in directory (or pwd)")"\
+            -o "$(eval_gettext "cvi:directory|count visible items in directory (or pwd)")"\
+            -o "$(eval_gettext "chf:directory|count hidden files in directory (or pwd)")"\
+            -o "$(eval_gettext "chd:directory|count hidden directories in directory (or pwd)")"\
+            -o "$(eval_gettext "chi:directory|count hidden items in directory (or pwd)")"
+    ;;
 esac
