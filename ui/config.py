@@ -34,7 +34,7 @@ BASHSTYLERC = f"{DATADIR}/bashstyle-ng/rc/bashstyle-rc"
 USER_DEFAULTS = f"{os.getenv('HOME')}/.bashstyle-ng.ini"
 USER_DEFAULTS_SAVE = f"{os.getenv('HOME')}/.bashstyle-ng.ini.save"
 
-app_ini_version = 45
+app_ini_version = 46
 
 class Config(object):
     def InitConfig(self):

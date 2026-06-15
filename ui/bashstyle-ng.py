@@ -104,6 +104,7 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitWidget("equinox_uptime", "Style", "equinox_uptime", "bool", None)
 
         WidgetHandler.InitWidget("user_char", "Style", "user_char", "text", None)
+        WidgetHandler.InitWidget("root_char", "Style", "root_char", "text", None)
         WidgetHandler.InitWidget("return_good", "Style", "return_good", "text", None)
         WidgetHandler.InitWidget("return_bad", "Style", "return_bad", "text", None)
         WidgetHandler.InitWidget("return_other", "Style", "return_other", "text", None)

@@ -178,5 +178,6 @@ dbg_log export trunc_symbol="$(ini_get pwdcut)"
 dbg_log export trunc_length="$((${#trunc_symbol}-1))"
 dbg_log export dirchar="$(ini_get directory_indicator)"
 dbg_log export user_char="$(ini_get user_char)"
+dbg_log export root_char="$(ini_get root_char)"
 
 unset lastpwd dd_opts dd_version batcmd
