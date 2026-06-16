@@ -44,7 +44,7 @@ case ${1} in
                     }
                     while (match($0, /="[^"]*"/)) {
                         wert = substr($0, RSTART + 2, RLENGTH - 3)
-                        $0 = substr($0, 1, RSTART) green "\" green" wert "\"" reset substr($0, RSTART + RLENGTH)
+                        $0 = substr($0, 1, RSTART) green "\"" wert "\"" reset substr($0, RSTART + RLENGTH)
                     }
                     gsub(">", ">" red)
                     gsub("<", reset "<")
