@@ -218,7 +218,8 @@ class WidgetHandler(object):
             else:
                 parent.prepend(new_widget)
         else:
-            parent.remove(placeholder)
+            if hasattr(parent, "remove"):
+                parent.remove(placeholder)
             if hasattr(parent, "set_child"):
                 parent.set_child(new_widget)
             elif hasattr(parent, "append"):
