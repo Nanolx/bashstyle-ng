@@ -91,9 +91,9 @@ class BashStyleNG(AppClass):
         else:
             self.gtk_settings = Gtk.Settings.get_default()
             if adwaita.USE_KDE and adwaita.KDE_DARK:
-                settings.set_property("gtk-application-prefer-dark-theme", True)
+                self.gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
             elif adwaita.USE_KDE:
-                settings.set_property("gtk-application-prefer-dark-theme", False)
+                self.gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
 
         WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "switch", "style.grid")
         WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)
