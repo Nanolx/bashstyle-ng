@@ -506,6 +506,14 @@ class BashStyleNG(Gtk.Application):
             border-radius: 4px;
             color: @error_color;
         }
+        columnview listview row:selected radio {
+            color: @theme_selected_fg_color;
+            border-color: alpha(@theme_selected_fg_color, 0.6);
+        }
+        columnview listview row:selected radio:checked {
+            background-color: @theme_selected_fg_color;
+            color: @theme_selected_bg_color;
+        }
         gridview child {
             padding: 0;
             background: transparent;
