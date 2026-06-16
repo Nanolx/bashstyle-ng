@@ -23,7 +23,9 @@ between.  For more detailed information see the git log.
 
         − #291: Load ‘~/.bashstyle.custom’ earlier, so that when hooking
           into prompts and a color was set via the hook-variable it's
-          acutally used.
+          acutally used
+
+        − #292: The ‘deadlink’ utility wasn't working anymore, fixed
 
    • New Features
 
@@ -43,6 +45,10 @@ between.  For more detailed information see the git log.
           enough width, the branch will be cut to retain proper prompt
           layout
 
+        − The ‘xmlpager’ utility now prints the xml header blue,
+          comments yellow and attribute values green, tag values still
+          red, the rest of the xml remains white
+
    • Misc.  Changes
 
         − Add global button to revert to (saved state) user
@@ -55,6 +61,9 @@ between.  For more detailed information see the git log.
           into them, but this feature was never propagated (...), now
           BashStyle-NG shows a new ‘Prompt Hooks’ icon, featuring a full
           description of what styles support hooks and how to use them
+
+        − BashStyle-NG features a set of utilities, the UI now has an
+          info page to advertise those
 
         − ‘systemkit’ now uses ‘awk’ and ‘/proc/meminfo’ to calcuate
           used, free and available RAM or respective percentages, as
