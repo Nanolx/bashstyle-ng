@@ -25,23 +25,6 @@ try:
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
-if adwaita.USE_ADWAITA:
-    os.environ["ADW_DISABLE_PORTAL"] = "1"
-    try:
-        gi.require_version('Adw', '1')
-        from gi.repository import Adw
-        Adw.init()
-    except (ValueError, ImportError):
-        Adw = None
-        adwaita.USE_ADWAITA = False
-else:
-    Adw = None
-
-try:
-    import xml.etree.ElementTree as ET
-except ImportError:
-    FAILED.append(_("ElementTree (from xml.etree)"))
-
 if FAILED:
     print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
@@ -52,6 +35,11 @@ gtkbuilder = Gtk.Builder()
 gtkbuilder.set_translation_domain("bashstyle")
 
 if adwaita.USE_ADWAITA:
+    try:
+        import xml.etree.ElementTree as ET
+    except ImportError:
+        FAILED.append(_("ElementTree (from xml.etree)"))
+
     tree = ET.parse(DATADIR + "/bashstyle-ng/ui/bashstyle.ui")
     root = tree.getroot()
     for win_id in dicts.xml_ids:
