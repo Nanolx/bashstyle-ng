@@ -65,7 +65,7 @@ class KeyTree(object):
             if (item.alt == target_alt and
                 item.ctrl == target_ctrl and
                 item.nmod == target_nmod and
-                item.key.lower().strip() == target_key.lower().strip()):
+                item.key.strip() == target_key.strip()):
                 other_entry = getattr(item, "_entry_widget", None)
                 if other_entry and not other_entry.has_css_class("error"):
                     other_entry.add_css_class("error")
@@ -305,7 +305,7 @@ class KeyTree(object):
                 if entry.has_css_class("error"):
                     entry.remove_css_class("error")
                 entry._last_valid_key = obj.key
-                revert_entry_to_valid()
+                auto_revert_entry()
                 self.update_config(obj)
 
             row_item.connect("notify::key", on_notify)
