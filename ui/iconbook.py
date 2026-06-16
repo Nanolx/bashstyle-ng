@@ -52,6 +52,7 @@ class IconBook(object):
         self.gridview.set_factory(factory)
 
         self.notebook = gtkbuilder.get_object("notebook")
+        self.notebook.set_show_tabs(False)
         self.back = gtkbuilder.get_object("back")
         self.back.set_visible(False)
         self.back.connect("clicked", self.back_clicked)
