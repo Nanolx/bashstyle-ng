@@ -32,7 +32,6 @@ if FAILED:
 
 gtkbuilder = widgethandler.gtkbuilder
 
-
 class PromptBuilder(object):
 
     def __init__(self, cfo, udc, fdc):
@@ -46,20 +45,7 @@ class PromptBuilder(object):
 
         lang_manager = GtkSource.LanguageManager.get_default()
         bash_lang = lang_manager.get_language("sh")
-        scheme_manager = GtkSource.StyleSchemeManager.get_default()
-
-        def on_theme_changed(self, manager, pspec):
-            self.update_source_scheme()
-
-        def update_source_scheme(self):
-            scheme_manager = GtkSource.StyleSchemeManager.get_default()
-            if self.gtk_settings.get_property("gtk-application-prefer-dark-theme"):
-                scheme = scheme_manager.get_scheme("oblivion")
-            else:
-                scheme = scheme_manager.get_scheme("tango")
-            if scheme:
-                self.prompt_command_buffer.set_style_scheme(scheme)
-                self.custom_prompt_buffer.set_style_scheme(scheme)
+        self.scheme_manager = GtkSource.StyleSchemeManager.get_default()
 
         # GtkTextView
         self.prompt_command_buffer = GtkSource.Buffer()
@@ -87,10 +73,6 @@ class PromptBuilder(object):
         self.custom_prompt.set_highlight_current_line(True)
         self.custom_prompt.set_auto_indent(True)
         WidgetHandler.ReplaceWidget("custom_prompt", self.custom_prompt)
-
-        self.gtk_settings = Gtk.Settings.get_default()
-        self.gtk_settings.connect("notify::gtk-application-prefer-dark-theme", on_theme_changed)
-        update_source_scheme(self)
 
         def set_custom_prompt(widget, setting):
             start = widget.get_start_iter()

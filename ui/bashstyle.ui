@@ -3,7 +3,7 @@
 <interface>
   <!-- interface-name bashstyle.ui4 -->
   <requires lib="gtk" version="4.0"/>
-  <object class="GtkWindow" id="Toolbox">
+  <object class="GtkApplicationWindow" id="Toolbox">
     <property name="child">
       <object class="GtkGrid" id="toolbox.grid">
         <property name="row-spacing">3</property>
@@ -439,7 +439,7 @@
     <property name="icon-name">bashstyle-ng-toolbox</property>
     <property name="title" translatable="yes">BashStyle-NG Toolbox</property>
   </object>
-  <object class="GtkWindow" id="bashstyle">
+  <object class="GtkApplicationWindow" id="bashstyle">
     <property name="child">
       <object class="GtkBox" id="bashstyle.box">
         <property name="orientation">vertical</property>
@@ -1704,7 +1704,7 @@
                             </child>
                             <child>
                               <object class="GtkCheckButton" id="equinox_git">
-                                <property name="label">Display git repo information	</property>
+                                <property name="label">Display git repo information </property>
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="column-span">1</property>
@@ -2996,15 +2996,6 @@
                                   <property name="column-span">1</property>
                                   <property name="row">32</property>
                                   <property name="row-span">1</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="label29_2">
-                                <property name="label" translatable="yes">User Char (Prompt)</property>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="row">0</property>
                                 </layout>
                               </object>
                             </child>
@@ -8683,61 +8674,61 @@ assuming /usr was the chosen install prefix.</property>
                           <object class="GtkLabel" id="hook.info">
                             <property name="label">Some of the supplied prompt styles of BashStyle-NG allow hooking into them, meaning you can define a function that will be automatically called from the prompt. This allows you to add  custom content to existing styles, without having to use the custom prompt builder or start from scratch. You need to place the desired hook in the file:
 
-	${HOME}/.bashstyle.custom
+    ${HOME}/.bashstyle.custom
 
 The following lists the prompt style, name of the hook and where it takes effect:
 
 separator style
-	a) SEPA_1() | at the start of the prompt
-	b) SEPA_2() | at the end of the prompt
+    a) SEPA_1() | at the start of the prompt
+    b) SEPA_2() | at the end of the prompt
 
 vector style
-	a) VECTOR_1() | after time/date entry
-	b) VECTOR_2() | at the end of the prompt
+    a) VECTOR_1() | after time/date entry
+    b) VECTOR_2() | at the end of the prompt
 
 clock style
-	CLOCK() | at the end of the prompt
+    CLOCK() | at the end of the prompt
 
 equinox style
-	EQUINOX_1() | before the user symbol
+    EQUINOX_1() | before the user symbol
 
 elite style
-	ELITE_1() | at the end of the prompt
+    ELITE_1() | at the end of the prompt
 
 poweruser style
-	POWER_1() | before the user symbol
+    POWER_1() | before the user symbol
 
 dirks style
-	a) DIRKS_1() | at the end of the first line
-	b) DIRKS_2() | at the end of the prompt
+    a) DIRKS_1() | at the end of the first line
+    b) DIRKS_2() | at the end of the prompt
 
 sepa-ng style
-	SEPA_NG_1() | at the end of the prompt
+    SEPA_NG_1() | at the end of the prompt
 
 quirk style
-	QUIRK_1() | at the end of the prompt
+    QUIRK_1() | at the end of the prompt
 
 Additonally each hook-part features a color variable with the same naming scheme, eg.:
 
-	SEPA_1() is colored by ${SEPA_1_COLOR}
-	VECTOR_2() is colored by ${VECTOR_2_COLOR}
+    SEPA_1() is colored by ${SEPA_1_COLOR}
+    VECTOR_2() is colored by ${VECTOR_2_COLOR}
 
 You can use one of the following predefined color names:
-	black red green yellow blue magenta cyan grey white coldblue smoothblue iceblue
-	turqoise smoothgreen winered brown silver ocher orange purple pink cream
+    black red green yellow blue magenta cyan grey white coldblue smoothblue iceblue
+    turqoise smoothgreen winered brown silver ocher orange purple pink cream
 
 If you want to use theese predefinied colors not in the variable, but in the function, you can access printable versions by prepending 'e' to the color name, eg.:
-	black -&gt; eblack
-	white -&gt; ewhite
+    black -&gt; eblack
+    white -&gt; ewhite
 
 Note: if the terminal is set to dark (in the Style settings), then black becomes white, else white becomes black, that's not a bug, but a feature.
 
 Here's an example that hooks into the sepa-ng prompt, we use 'gitkit' to show branch, revision (like svn revision) and current action in repository in yellow:
 
-	SEPA_NG_1_COLOR=${yellow}
-	SEPA_NG_1 () {
-	    echo -e " $(gitkit branch):$(gitkit revno):$(gitkit action) "
-	}
+    SEPA_NG_1_COLOR=${yellow}
+    SEPA_NG_1 () {
+        echo -e " $(gitkit branch):$(gitkit revno):$(gitkit action) "
+    }
 
 Feel free to give it a try. </property>
                             <property name="margin-bottom">15</property>

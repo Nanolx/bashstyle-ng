@@ -11,6 +11,21 @@ Each release lists incompatible changes at its top.
 
 @heading 11.1 (2026----) ``Elysium``
 @itemize @bullet
+@item General Changes
+@itemize @minus
+
+@item This release of BashStyle-NG turns the UI into a hybrid-Adwaita application.
+
+On Startup BashStyle-NG now checks whether the user uses a Gtk theme containing
+@code{adwaita} in it's name or @code{default}, if so the python code switches some
+things from pure Gtk to Adwaita, this includes the UI XML, which is modified on
+the fly. It may be that this is not 100 percent correct, but the desired result,
+to let the user decide whether to use Adwaita or not is achieved.
+
+The Adwaita gi is thus only checked for as optional by @code{configure}, because
+it's up to the user whether BashStyle-NG loads Adwaita or not.
+@end itemize
+
 @item Fixes
 @itemize @minus
 

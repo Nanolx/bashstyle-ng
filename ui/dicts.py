@@ -425,3 +425,8 @@ bat_themes = {
     13: "base16",
     14: "zenburn",
 }
+
+xml_ids = {
+    0: "bashstyle",
+    1: "Toolbox",
+}

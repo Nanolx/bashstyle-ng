@@ -9,6 +9,23 @@ between.  For more detailed information see the git log.
 11.1 (2026---) "Elysium"
 ========================
 
+   • General Changes
+
+        − This release of BashStyle-NG turns the UI into a
+          hybrid-Adwaita application.
+
+          On Startup BashStyle-NG now checks whether the user uses a Gtk
+          theme containing ‘adwaita’ in it's name or ‘default’, if so
+          the python code switches some things from pure Gtk to Adwaita,
+          this includes the UI XML, which is modified on the fly.  It
+          may be that this is not 100 percent correct, but the desired
+          result, to let the user decide whether to use Adwaita or not
+          is achieved.
+
+          The Adwaita gi is thus only checked for as optional by
+          ‘configure’, because it's up to the user whether BashStyle-NG
+          loads Adwaita or not.
+
    • Fixes
 
         − #288: Setting ‘foldmethod’ for vim was broken

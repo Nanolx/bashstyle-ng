@@ -20,7 +20,7 @@ args.CmdArgs()
 print(_(f"\nBashStyle-NG Version {os.getenv('BSNG_VERSION')} starting"))
 
 MODULES = ['os.path', 'sys', 'string', 'shutil', 'optparse', 'subprocess',
-           'lockfile', 'config', 'widgethandler', 'configui',
+           'lockfile', 'config', 'widgethandler', 'configui', 'adwaita',
            'dicts', 'prompts', 'promptbuilder', 'iconbook', 'keybindings']
 FAILED = []
 
@@ -42,10 +42,26 @@ if FAILED:
     print(_(f"The following modules failed to import: {' '.join(FAILED)}"))
     sys.exit(1)
 
+if adwaita.USE_ADWAITA:
+    try:
+        gi.require_version('Adw', '1')
+        from gi.repository import Adw
+        Adw.init()
+    except (ValueError, ImportError):
+        Adw = None
+        adwaita.USE_ADWAITA = False
+else:
+    Adw = None
+
 lock = lockfile.LockFile()
 config = config.Config()
 
-class BashStyleNG(Gtk.Application):
+if adwaita.USE_ADWAITA:
+    AppClass = Adw.Application
+else:
+    AppClass = Gtk.Application
+
+class BashStyleNG(AppClass):
 
     def __init__(self):
         super().__init__(
@@ -63,6 +79,12 @@ class BashStyleNG(Gtk.Application):
 
         gtkbuilder = widgethandler.gtkbuilder
         WidgetHandler = widgethandler.WidgetHandler(config.cfo, config.udc, config.fdc)
+
+        if adwaita.USE_ADWAITA:
+            self.style_manager = Adw.StyleManager.get_default()
+            self.style_manager.set_color_scheme(Adw.ColorScheme.DEFAULT)
+        else:
+            self.gtk_settings = Gtk.Settings.get_default()
 
         WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "switch", "style.grid")
         WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)
@@ -350,6 +372,29 @@ class BashStyleNG(Gtk.Application):
         pbuilder = promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
         pbuilder.InitPromptBuilder()
 
+        def on_theme_changed(self, manager, pspec):
+            update_source_scheme(self)
+
+        def update_source_scheme(self):
+            if adwaita.USE_ADWAITA:
+                is_dark = self.style_manager.get_dark()
+            else:
+                is_dark = self.gtk_settings.get_property("gtk-application-prefer-dark-theme")
+            if is_dark:
+                scheme = pbuilder.scheme_manager.get_scheme("oblivion")
+            else:
+                scheme = pbuilder.scheme_manager.get_scheme("tango")
+            if scheme:
+                pbuilder.prompt_command_buffer.set_style_scheme(scheme)
+                pbuilder.custom_prompt_buffer.set_style_scheme(scheme)
+
+        if adwaita.USE_ADWAITA:
+            self.style_manager.connect("notify::dark", on_theme_changed)
+        else:
+            self.gtk_settings.connect("notify::gtk-application-prefer-dark-theme", on_theme_changed)
+
+        update_source_scheme(self)
+
         view = iconbook.IconBook()
         view.InitIconBook()
 
@@ -364,7 +409,7 @@ class BashStyleNG(Gtk.Application):
         suui.InitStartupUI()
 
         self.bashstyle = gtkbuilder.get_object("bashstyle")
-        self.add_window(self.bashstyle)
+        self.bashstyle.set_application(self)
 
         self.revert_user = gtkbuilder.get_object("revert_user")
         self.revert_user.connect("clicked", self.restart, False)
