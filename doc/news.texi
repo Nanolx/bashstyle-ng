@@ -18,10 +18,11 @@ Each release lists incompatible changes at its top.
 
 On Startup BashStyle-NG now checks whether the user uses a Gtk theme containing
 @code{adwaita} in it's name, if so the python code switches some things from pure
-Gtk to Adwaita, this includes the UI XML, which is modified on the fly. It may be
-that this is not 100 percent complete, but the desired result, as it's main target
-is the theme to be dynamically set, not every widget to bechanged, based on the
-users's preferences
+Gtk to Adwaita. This does only dynamically apply Adwaita over the fallback Gtk4
+theme, this does not change any UI elements to Adwaita widgets.
+
+The purpose is to let the user decide whether to use Adwaita theme, default Gtk4
+theme or any other Gtk4 theme (like Breeze).
 
 The Adwaita gi is thus only checked for as optional by @code{configure}, because
 it's up to the user whether BashStyle-NG loads Adwaita or not.
