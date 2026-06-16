@@ -21,7 +21,8 @@ for module in MODULES:
 try:
     import gi
     gi.require_version("Gtk", "4.0")
-    from gi.repository import Gtk
+    gi.require_version('GtkSource', '5')
+    from gi.repository import Gtk, GtkSource
 except ImportError:
     FAILED.append(_("Gtk (from gi.repository)"))
 
@@ -43,18 +44,53 @@ class PromptBuilder(object):
 
         WidgetHandler = widgethandler.WidgetHandler(self.config, self.userdefault, self.factorydefault)
 
+        lang_manager = GtkSource.LanguageManager.get_default()
+        bash_lang = lang_manager.get_language("sh")
+        scheme_manager = GtkSource.StyleSchemeManager.get_default()
+
+        def on_theme_changed(self, manager, pspec):
+            self.update_source_scheme()
+
+        def update_source_scheme(self):
+            scheme_manager = GtkSource.StyleSchemeManager.get_default()
+            if self.gtk_settings.get_property("gtk-application-prefer-dark-theme"):
+                scheme = scheme_manager.get_scheme("oblivion")
+            else:
+                scheme = scheme_manager.get_scheme("tango")
+            if scheme:
+                self.prompt_command_buffer.set_style_scheme(scheme)
+                self.custom_prompt_buffer.set_style_scheme(scheme)
+
         # GtkTextView
-        self.prompt_command = gtkbuilder.get_object("prompt_command")
-        self.prompt_command_buffer = Gtk.TextBuffer()
+        self.prompt_command_buffer = GtkSource.Buffer()
         self.prompt_command_buffer.set_enable_undo(True)
-        self.prompt_command.set_buffer(self.prompt_command_buffer)
+        self.prompt_command_buffer.set_language(bash_lang)
+        self.prompt_command_buffer.set_highlight_syntax(True)
         self.prompt_command_buffer.set_text(f"{self.config['Custom']['command']}")
 
-        self.custom_prompt = gtkbuilder.get_object("custom_prompt")
-        self.custom_prompt_buffer = Gtk.TextBuffer()
+        self.prompt_command = GtkSource.View.new_with_buffer(self.prompt_command_buffer)
+        self.prompt_command.set_wrap_mode(Gtk.WrapMode.NONE)
+        self.prompt_command.set_show_line_numbers(True)
+        self.prompt_command.set_highlight_current_line(True)
+        self.prompt_command.set_auto_indent(True)
+        WidgetHandler.ReplaceWidget("prompt_command", self.prompt_command)
+
+        self.custom_prompt_buffer = GtkSource.Buffer()
         self.custom_prompt_buffer.set_enable_undo(True)
-        self.custom_prompt.set_buffer(self.custom_prompt_buffer)
+        self.custom_prompt_buffer.set_language(bash_lang)
+        self.custom_prompt_buffer.set_highlight_syntax(True)
         self.custom_prompt_buffer.set_text(f"{self.config['Custom']['prompt']}")
+
+        self.custom_prompt = GtkSource.View.new_with_buffer(self.custom_prompt_buffer)
+        self.custom_prompt.set_wrap_mode(Gtk.WrapMode.NONE)
+        self.custom_prompt.set_show_line_numbers(True)
+        self.custom_prompt.set_highlight_current_line(True)
+        self.custom_prompt.set_auto_indent(True)
+        WidgetHandler.ReplaceWidget("custom_prompt", self.custom_prompt)
+
+        self.gtk_settings = Gtk.Settings.get_default()
+        self.gtk_settings.connect("notify::gtk-application-prefer-dark-theme", on_theme_changed)
+        update_source_scheme(self)
 
         def set_custom_prompt(widget, setting):
             start = widget.get_start_iter()

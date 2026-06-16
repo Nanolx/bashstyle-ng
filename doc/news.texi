@@ -67,6 +67,10 @@ hooks and how to use them
 @item BashStyle-NG features a set of utilities, the UI now has an info page to
 advertise those
 
+@item The Custom Prompt Builder now uses GtkSourceView instead of GtkTextView,
+when the Gtk theme is dark @code{oblivion} color scheme is used, else @code{tango},
+this uses pure Gtk, no Adwaita
+
 @item @code{systemkit} now uses @code{awk} and @code{/proc/meminfo} to calcuate
 used, free and available RAM or respective percentages, as it's much faster than
 parsing the output from @code{top}
