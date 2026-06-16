@@ -91,16 +91,14 @@ hooks and how to use them
 advertise those
 
 @item The Custom Prompt Builder now uses GtkSourceView instead of GtkTextView,
-when the Gtk theme is dark @code{oblivion} color scheme is used, else @code{tango},
-this uses pure Gtk, no Adwaita
+when the Gtk theme is dark @code{oblivion} color scheme is used, else @code{tango}
 
 @item @code{systemkit} now uses @code{awk} and @code{/proc/meminfo} to calcuate
 used, free and available RAM or respective percentages, as it's much faster than
 parsing the output from @code{top}
 
-@item Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in BashStyle-NG
-do not show a checkmark, so they look more like a GtkComboBox, also make all
-GtkDropDown values translatable
+@item Migrate all GtkComboBox to GtkDropDown, make all GtkDropDown values
+translatable
 
 @item New CSS for both pure Gtk4 and Adwaita inverts the GtkCheckButtons color
 in the keybindings ColumnView, when the line is highlighted, to prevent them

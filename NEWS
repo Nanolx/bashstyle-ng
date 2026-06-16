@@ -95,15 +95,14 @@ between.  For more detailed information see the git log.
 
         − The Custom Prompt Builder now uses GtkSourceView instead of
           GtkTextView, when the Gtk theme is dark ‘oblivion’ color
-          scheme is used, else ‘tango’, this uses pure Gtk, no Adwaita
+          scheme is used, else ‘tango’
 
         − ‘systemkit’ now uses ‘awk’ and ‘/proc/meminfo’ to calcuate
           used, free and available RAM or respective percentages, as
           it's much faster than parsing the output from ‘top’
 
-        − Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in
-          BashStyle-NG do not show a checkmark, so they look more like a
-          GtkComboBox, also make all GtkDropDown values translatable
+        − Migrate all GtkComboBox to GtkDropDown, make all GtkDropDown
+          values translatable
 
         − New CSS for both pure Gtk4 and Adwaita inverts the
           GtkCheckButtons color in the keybindings ColumnView, when the
