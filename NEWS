@@ -69,6 +69,10 @@ between.  For more detailed information see the git log.
         − BashStyle-NG features a set of utilities, the UI now has an
           info page to advertise those
 
+        − The Custom Prompt Builder now uses GtkSourceView instead of
+          GtkTextView, when the Gtk theme is dark ‘oblivion’ color
+          scheme is used, else ‘tango’, this uses pure Gtk, no Adwaita
+
         − ‘systemkit’ now uses ‘awk’ and ‘/proc/meminfo’ to calcuate
           used, free and available RAM or respective percentages, as
           it's much faster than parsing the output from ‘top’
