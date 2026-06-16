@@ -26,6 +26,14 @@ between.  For more detailed information see the git log.
           ‘configure’, because it's up to the user whether BashStyle-NG
           loads Adwaita or not.
 
+          Irregardless BashStyle-NG checks whether we are running from
+          KDE, if so:
+
+             + Force use KDE color scheme, instead of Adwaita color
+               scheme
+
+             + Force dark or light mode, following KDE
+
    • Fixes
 
         − #288: Setting ‘foldmethod’ for vim was broken

@@ -24,6 +24,14 @@ to let the user decide whether to use Adwaita or not is achieved.
 
 The Adwaita gi is thus only checked for as optional by @code{configure}, because
 it's up to the user whether BashStyle-NG loads Adwaita or not.
+
+Irregardless BashStyle-NG checks whether we are running from KDE, if so:
+@itemize +
+
+@item Force use KDE color scheme, instead of Adwaita color scheme
+
+@item Force dark or light mode, following KDE
+@end itemize
 @end itemize
 
 @item Fixes

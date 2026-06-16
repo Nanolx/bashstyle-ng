@@ -44,6 +44,8 @@ if FAILED:
 
 if adwaita.USE_ADWAITA:
     try:
+        if adwaita.USE_KDE:
+            os.environ["ADW_DISABLE_PORTAL"] = "1"
         gi.require_version('Adw', '1')
         from gi.repository import Adw
         Adw.init()
@@ -82,9 +84,16 @@ class BashStyleNG(AppClass):
 
         if adwaita.USE_ADWAITA:
             self.style_manager = Adw.StyleManager.get_default()
-            self.style_manager.set_color_scheme(Adw.ColorScheme.DEFAULT)
+            if adwaita.USE_KDE and adwaita.KDE_DARK:
+                self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+            elif adwaita.USE_KDE:
+                self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
         else:
             self.gtk_settings = Gtk.Settings.get_default()
+            if adwaita.USE_KDE and adwaita.KDE_DARK:
+                settings.set_property("gtk-application-prefer-dark-theme", True)
+            elif adwaita.USE_KDE:
+                settings.set_property("gtk-application-prefer-dark-theme", False)
 
         WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "switch", "style.grid")
         WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)
