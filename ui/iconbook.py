@@ -62,41 +62,6 @@ class IconBook(object):
             label_text = dicts.iconview_labels.get(icon_name, icon_name)
             self.model.append(IconItem(icon_name, label_text))
 
-        self.setup_css()
-
-    def setup_css(self):
-        css_provider = Gtk.CssProvider()
-        css_data = """
-            gridview child {
-                padding: 0;
-                background: transparent;
-            }
-            .icon-card {
-                padding: 15px;
-                border-radius: 12px;
-                transition: all 200ms ease-out;
-            }
-            gridview child:hover .icon-card {
-                background-color: alpha(@theme_fg_color, 0.1);
-                transform: translateY(-2px);
-            }
-            gridview child:hover .icon-card image {
-                transform: scale(1.15);
-                transition: transform 200ms ease-out;
-            }
-            gridview child:hover .icon-card label {
-                font-weight: bold;
-                color: @theme_selected_bg_color;
-            }
-        """
-        css_provider.load_from_string(css_data)
-
-        Gtk.StyleContext.add_provider_for_display(
-            Gdk.Display.get_default(),
-            css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
-
     def on_setup_grid_item(self, factory, list_item):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         box.add_css_class("icon-card")

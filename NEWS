@@ -103,10 +103,18 @@ between.  For more detailed information see the git log.
 
         − Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in
           BashStyle-NG do not show a checkmark, so they look more like a
-          GtkComboBox, also make all GtkDropDown values translatable -
-          if Adwaita is in use we theme the active entry in the
-          GtkDropDown additionally, so it's visible, which is the active
-          value
+          GtkComboBox, also make all GtkDropDown values translatable
+
+        − Extra custom CSS only active if Adwaita is in use
+
+             + Make the selected entry in a GtkDropDown clearly visible
+               when opening the list, for some reason Adwaita does apply
+               no highlight to the active entry
+
+             + Prevent Adwaita from making the GtkCheckButtons in the
+               keybindings ColumnView comically huge
+
+             + Fancy hover effects for most Adwaita widgets
 
         − The button for enabling verbose BashStyle-NG startup was moved
           from ‘Advanced’ group to ‘Configuration’ group

@@ -85,53 +85,6 @@ class KeyTree(object):
         self.tree.set_model(selection)
         self.tree.set_hexpand(True)
 
-        css_provider = Gtk.CssProvider()
-        css_data = """
-            columnview, columnview listview {
-                background-color: transparent;
-            }
-            columnview listview row:nth-child(even) {
-                background-color: alpha(@theme_fg_color, 0.02);
-            }
-            columnview listview row:hover {
-                background-color: alpha(@theme_fg_color, 0.05);
-            }
-            columnview listview row:selected {
-            background-color: @theme_selected_bg_color;
-            color: @theme_selected_fg_color;
-            }
-            columnview header button {
-                background: transparent;
-                border: none;
-            }
-            columnview listview row cell {
-                padding-left: 4px;
-                padding-right: 4px;
-            }
-            columnview row entry,
-            columnview row entry > text,
-            columnview row entry > stack > text {
-                background-color: transparent;
-                background-image: none;
-                box-shadow: none;
-                border: none;
-                color: inherit;
-            }
-            columnview row entry.error {
-                background-color: alpha(@error_color, 0.15);
-                border: 1px solid @error_color;
-                border-radius: 4px;
-                color: @error_color;
-            }
-        """
-        css_provider.load_from_string(css_data)
-
-        Gtk.StyleContext.add_provider_for_display(
-            Gdk.Display.get_default(),
-            css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
-
         self._add_column("Binding", self._create_text_factory("label"))
         self._add_column("Alt", self._create_radio_factory("alt"))
         self._add_column("Ctrl", self._create_radio_factory("ctrl"))

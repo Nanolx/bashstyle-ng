@@ -88,49 +88,6 @@ class CustomIconSpinButton(Gtk.Box):
 
             self.append(self.secondary_icon)
 
-        self._setup_css()
-
-    def _setup_css(self):
-        css_provider = Gtk.CssProvider()
-        css_data = """
-        .custom-spin-container {
-            background-color: @view_bg_color;
-            border: 1px solid transparent;
-            border-radius: 6px;
-            padding: 2px 6px;
-            box-shadow: inset 0 0 0 1px alpha(currentColor, 0.15);
-        }
-        .custom-spin-container:focus-within,
-        .custom-spin-container:hover {
-            outline: 2px solid @theme_selected_bg_color;
-            outline-offset: -1px;
-            border-color: transparent;
-        }
-        .custom-spin-container spinbutton {
-            background: none;
-            border: none;
-            box-shadow: none;
-        }
-        .custom-spin-container spinbutton text {
-            background: none;
-            box-shadow: none;
-            transition: all 150ms ease-in-out;
-        }
-        .inner-icon {
-            opacity: 0.7;
-        }
-        .inner-icon:hover {
-            opacity: 1.0;
-        }
-        """
-        css_provider.load_from_string(css_data)
-
-        Gtk.StyleContext.add_provider_for_display(
-            Gdk.Display.get_default(),
-            css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
-
     def _on_primary_clicked(self, gesture, n_press, x, y):
         self.emit("primary-icon-clicked")
 

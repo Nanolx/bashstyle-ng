@@ -470,6 +470,92 @@ class BashStyleNG(Gtk.Application):
         .monospace-label {
             font-family: monospace;
         }
+        columnview, columnview listview {
+            background-color: transparent;
+        }
+        columnview listview row:nth-child(even) {
+            background-color: alpha(@theme_fg_color, 0.02);
+        }
+        columnview listview row:hover {
+            background-color: alpha(@theme_fg_color, 0.05);
+        }
+        columnview listview row:selected {
+        background-color: @theme_selected_bg_color;
+        color: @theme_selected_fg_color;
+        }
+        columnview header button {
+            background: transparent;
+            border: none;
+        }
+        columnview listview row cell {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+        columnview row entry,
+        columnview row entry > text,
+        columnview row entry > stack > text {
+            background-color: transparent;
+            background-image: none;
+            box-shadow: none;
+            border: none;
+            color: inherit;
+        }
+        columnview row entry.error {
+            background-color: alpha(@error_color, 0.15);
+            border: 1px solid @error_color;
+            border-radius: 4px;
+            color: @error_color;
+        }
+        gridview child {
+            padding: 0;
+            background: transparent;
+        }
+        .icon-card {
+            padding: 15px;
+            border-radius: 12px;
+            transition: all 200ms ease-out;
+        }
+        gridview child:hover .icon-card {
+            background-color: alpha(@theme_fg_color, 0.1);
+            transform: translateY(-2px);
+        }
+        gridview child:hover .icon-card image {
+            transform: scale(1.15);
+            transition: transform 200ms ease-out;
+        }
+        gridview child:hover .icon-card label {
+            font-weight: bold;
+            color: @theme_selected_bg_color;
+        }
+        .custom-spin-container {
+            background-color: @view_bg_color;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 2px 6px;
+            box-shadow: inset 0 0 0 1px alpha(currentColor, 0.15);
+        }
+        .custom-spin-container:focus-within,
+        .custom-spin-container:hover {
+            outline: 2px solid @theme_selected_bg_color;
+            outline-offset: -1px;
+            border-color: transparent;
+        }
+        .custom-spin-container spinbutton {
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
+        .custom-spin-container spinbutton text {
+            background: none;
+            box-shadow: none;
+            transition: all 150ms ease-in-out;
+        }
+        .inner-icon {
+            opacity: 0.7;
+        }
+        .inner-icon:hover {
+            opacity: 1.0;
+        }
         """
 
         if adwaita.USE_ADWAITA:
@@ -480,6 +566,45 @@ class BashStyleNG(Gtk.Application):
             }
             dropdown popover listview row:selected label {
                 color: @accent_fg_color;
+            }
+            columnview row cell {
+                min-height: 0px;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                padding-left: 2px;
+                padding-right: 2px;
+            }
+            columnview row cell checkbutton {
+                min-width: 0px;
+                min-height: 0px;
+                padding: 0px;
+                margin: 0px;
+            }
+            columnview row cell checkbutton check,
+            columnview row cell checkbutton radio {
+                min-width: 6px;
+                min-height: 6px;
+                padding: 0px;
+                margin: 0px;
+            }
+            dropdown:hover button.toggle {
+                border-color: @accent_bg_color;
+                box-shadow: inset 0 0 0 1px @accent_bg_color;
+                background-color: rgba(53, 132, 228, 0.1);
+            }
+            dropdown:hover button.toggle label,
+            dropdown:hover button.toggle image {
+                color: @accent_bg_color;
+            }
+            checkbutton:hover check,
+            checkbutton:hover radio,
+            button:hover {
+                border-color: @accent_bg_color;
+                box-shadow: 0 0 4px 2px rgba(53, 132, 228, 0.4);
+                background-color: rgba(53, 132, 228, 0.1);
+            }
+            button, dropdown, check, radio {
+                transition: all 150ms ease-in-out;
             }
             """
 
