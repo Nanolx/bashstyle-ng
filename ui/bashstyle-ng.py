@@ -471,6 +471,18 @@ class BashStyleNG(Gtk.Application):
             font-family: monospace;
         }
         """
+
+        if adwaita.USE_ADWAITA:
+            css_data += """
+            dropdown popover listview row:selected {
+                background-color: @accent_bg_color;
+                color: @accent_fg_color;
+            }
+            dropdown popover listview row:selected label {
+                color: @accent_fg_color;
+            }
+            """
+
         css_provider.load_from_string(css_data)
 
         Gtk.StyleContext.add_provider_for_display(

@@ -14,9 +14,7 @@ Each release lists incompatible changes at its top.
 @item General Changes
 @itemize @minus
 
-@item This release of BashStyle-NG turns the UI into a hybrid-Adwaita application.
-
-On Startup BashStyle-NG now checks whether the user uses a Gtk theme containing
+@item On Startup BashStyle-NG now checks whether the user uses a Gtk theme containing
 @code{adwaita} in it's name, if so the python code switches some things from pure
 Gtk to Adwaita. This does only dynamically apply Adwaita over the fallback Gtk4
 theme, this does not change any UI elements to Adwaita widgets.
@@ -102,7 +100,8 @@ parsing the output from @code{top}
 
 @item Migrate all GtkComboBox to GtkDropDown, the GtkDropDowns in BashStyle-NG
 do not show a checkmark, so they look more like a GtkComboBox, also make all
-GtkDropDown values translatable
+GtkDropDown values translatable - if Adwaita is in use we theme the active entry
+in the GtkDropDown additionally, so it's visible, which is the active value
 
 @item The button for enabling verbose BashStyle-NG startup was moved from
 @code{Advanced} group to @code{Configuration} group
