@@ -25,12 +25,19 @@ theme or any other Gtk4 theme (like Breeze).
 The Adwaita gi is thus only checked for as optional by @code{configure}, because
 it's up to the user whether BashStyle-NG loads Adwaita or not.
 
-Irregardless BashStyle-NG checks whether we are running from KDE, if so:
+Regardless BashStyle-NG checks whether we are running from KDE, if so:
 @itemize +
 
 @item Force use KDE color scheme, instead of Adwaita color scheme
 
 @item Force dark or light mode, following KDE
+
+
+@item Some features or settings in the UI might be difficult to understand,
+because they are either very specific or unique to BashStyle-NG, starting with
+this release those settings have a visible background gradient, indicating they
+got a tooltip you can consult for additional information, this applies regardless
+wether Adwaita or pure Gtk4 theme is in use [work in progress]
 @end itemize
 @end itemize
 

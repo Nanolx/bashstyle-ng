@@ -563,6 +563,14 @@ class BashStyleNG(Gtk.Application):
             outline-offset: -1px;
             border-color: transparent;
         }
+        .has-tooltip {
+            background-image: linear-gradient(
+                alpha(@theme_selected_fg_color, 0.05),
+                alpha(@theme_selected_bg_color, 0.10)
+            );
+            background-blend-mode: overlay;
+            border-radius: 6px;
+        }
         """
 
         if adwaita.USE_ADWAITA:
@@ -641,6 +649,14 @@ class BashStyleNG(Gtk.Application):
                 margin-right: 6px;
                 margin-left: 6px;
                 padding: 2px;
+            }
+            .has-tooltip {
+                background-image: linear-gradient(
+                    alpha(@accent_fg_color, 0.05),
+                    alpha(@accent_bg_color, 0.10)
+                );
+                background-blend-mode: overlay;
+                border-radius: 9px;
             }
             """
 

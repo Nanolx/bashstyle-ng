@@ -25,13 +25,21 @@ between.  For more detailed information see the git log.
           ‘configure’, because it's up to the user whether BashStyle-NG
           loads Adwaita or not.
 
-          Irregardless BashStyle-NG checks whether we are running from
+          Regardless BashStyle-NG checks whether we are running from
           KDE, if so:
 
              + Force use KDE color scheme, instead of Adwaita color
                scheme
 
              + Force dark or light mode, following KDE
+
+             + Some features or settings in the UI might be difficult to
+               understand, because they are either very specific or
+               unique to BashStyle-NG, starting with this release those
+               settings have a visible background gradient, indicating
+               they got a tooltip you can consult for additional
+               information, this applies regardless wether Adwaita or
+               pure Gtk4 theme is in use [work in progress]
 
    • Fixes
 
