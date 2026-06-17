@@ -9,7 +9,7 @@
 @ifinfo
 @dircategory Miscellaneous
 @direntry
-* bashstyle: (bashstyle).		BashStyle-NG user documentation
+* bashstyle: (bashstyle).       BashStyle-NG user documentation
 @end direntry
 
 This is @cite{The user documentation}, for BashStyle-NG.
@@ -52,7 +52,8 @@ resulting derived work is distributed under the terms of a permission
 notice identical to this one.
 @end titlepage
 
-@node Top,Copying,,
+@node Top, Copying
+@top Top
 
 @menu
 * Copying::                     Distribution conditions
@@ -86,16 +87,16 @@ notice identical to this one.
 @cindex Copying
 
 @node Introduction, Changelog, Copying, Top
-@include userdoc_introduction.texi
 @cindex Introduction
+@include userdoc_introduction.texi
 
 @node Changelog, Installation, Introduction, Top
+@cindex Changelog
 @include news.texi
-@cindex Installation
 
 @node Installation, First Start, Changelog, Top
 @chapter Installation
-@cindex Changelog
+@cindex Installation
 
 @node First Start, Style Options, Installation, Top
 @chapter First Start
@@ -112,8 +113,8 @@ exception the startup entry was removed or commented out).
 @cindex First Start
 
 @node Style Options, Aliases, First Start, Top
-@include userdoc_style.texi
 @cindex Style Options
+@include userdoc_style.texi
 
 @node Aliases, Advanced Options, Style Options, Top
 @chapter Aliases
@@ -131,12 +132,12 @@ In ~/.bashrc or ~/.bashstyle.custom you can define as many as desired in
 @cindex Aliases
 
 @node Advanced Options, Shell Options, Aliases, Top
-@include userdoc_advanced.texi
 @cindex Advanced Options
+@include userdoc_advanced.texi
 
 @node Shell Options, Git Options, Advanced Options, Top
-@include userdoc_shopts.texi
 @cindex Shell Options
+@include userdoc_shopts.texi
 
 @node Git Options, Readline Options, Shell Options, Top
 @chapter Git Options
@@ -171,13 +172,13 @@ In ~/.bashrc or ~/.bashstyle.custom you can define as many as desired in
 @cindex Custom Prompt Builder
 
 @node Configuration Files, Shell Functions, Custom Prompt Builder, Top
-@include userdoc_configurationfiles.texi
 @cindex Configuration Files
+@include userdoc_configurationfiles.texi
 
 @node Shell Functions, User Interface Icons, Configuration Files, Top
 @chapter Shell Functions
 @cindex Shell Functions
 
-@node User Interface Icons, Top, Shell Functions, Top
-@include userdoc_iconnames.texi
+@node User Interface Icons, , Shell Functions, Top
 @cindex User Interface Icons
+@include userdoc_iconnames.texi
