@@ -524,6 +524,13 @@ class BashStyleNG(Gtk.Application):
             font-weight: bold;
             color: @theme_selected_bg_color;
         }
+        checkbutton:hover check,
+        checkbutton:hover radio,
+        button:hover {
+            border-color: @theme_selected_bg_color;
+            box-shadow: 0 0 4px 2px rgba(53, 132, 228, 0.4);
+            background-color: rgba(53, 132, 228, 0.1);
+        }
         .custom-spin-container {
             background-color: @view_bg_color;
             border: 1px solid transparent;
@@ -554,9 +561,6 @@ class BashStyleNG(Gtk.Application):
         .inner-icon:hover {
             opacity: 1.0;
         }
-        entry, columnview, gridview {
-            transition: all 150ms ease-in-out;
-        }
         entry:focus-within,
         entry:hover {
             outline: 2px solid @theme_selected_bg_color;
@@ -570,6 +574,9 @@ class BashStyleNG(Gtk.Application):
             );
             background-blend-mode: overlay;
             border-radius: 6px;
+        }
+         entry, columnview, gridview, check, radio, button, dropdown, {
+            transition: all 150ms ease-in-out;
         }
         """
 
@@ -610,16 +617,6 @@ class BashStyleNG(Gtk.Application):
                 min-height: 6px;
                 padding: 0px;
                 margin: 0px;
-            }
-            checkbutton:hover check,
-            checkbutton:hover radio,
-            button:hover {
-                border-color: @accent_bg_color;
-                box-shadow: 0 0 4px 2px rgba(53, 132, 228, 0.4);
-                background-color: rgba(53, 132, 228, 0.1);
-            }
-            button, dropdown, check, radio, entry, columnview {
-                transition: all 150ms ease-in-out;
             }
             entry.custom-hover:hover,
             entry.custom-hover:focus-within {
