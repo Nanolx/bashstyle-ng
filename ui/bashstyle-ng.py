@@ -418,7 +418,6 @@ class BashStyleNG(Gtk.Application):
         suui.InitStartupUI()
 
         self.bashstyle = gtkbuilder.get_object("bashstyle")
-        self.bashstyle.set_application(self)
 
         self.revert_user = gtkbuilder.get_object("revert_user")
         self.revert_user.connect("clicked", self.restart, False)
@@ -431,6 +430,7 @@ class BashStyleNG(Gtk.Application):
 
         self.bashstyle.connect("close-request", self.destroy, None)
         self.bashstyle_gtk_css()
+        self.bashstyle.set_application(self)
         self.bashstyle.present()
 
     def destroy(self, widget, data):
@@ -455,22 +455,11 @@ class BashStyleNG(Gtk.Application):
             transform: rotate(90deg);
             font-weight: bold;
         }
-        entry,
-        textview {
-            transition: all 150ms ease-in-out;
-        }
-        entry:focus-within,
-        entry:hover,
-        textview:focus-within,
-        textview:hover {
-            outline: 2px solid @theme_selected_bg_color;
-            outline-offset: -1px;
-            border-color: transparent;
-        }
         .monospace-label {
             font-family: monospace;
         }
-        columnview, columnview listview {
+        columnview,
+        columnview listview {
             background-color: transparent;
         }
         columnview listview row:nth-child(even) {
@@ -480,8 +469,8 @@ class BashStyleNG(Gtk.Application):
             background-color: alpha(@theme_fg_color, 0.05);
         }
         columnview listview row:selected {
-        background-color: @theme_selected_bg_color;
-        color: @theme_selected_fg_color;
+            background-color: @theme_selected_bg_color;
+            color: @theme_selected_fg_color;
         }
         columnview header button {
             background: transparent;
@@ -541,6 +530,7 @@ class BashStyleNG(Gtk.Application):
             border-radius: 6px;
             padding: 2px 6px;
             box-shadow: inset 0 0 0 1px alpha(currentColor, 0.15);
+            transition: all 150ms ease-in-out;
         }
         .custom-spin-container:focus-within,
         .custom-spin-container:hover {
@@ -564,6 +554,15 @@ class BashStyleNG(Gtk.Application):
         .inner-icon:hover {
             opacity: 1.0;
         }
+        entry, columnview, gridview {
+            transition: all 150ms ease-in-out;
+        }
+        entry:focus-within,
+        entry:hover {
+            outline: 2px solid @theme_selected_bg_color;
+            outline-offset: -1px;
+            border-color: transparent;
+        }
         """
 
         if adwaita.USE_ADWAITA:
@@ -574,6 +573,15 @@ class BashStyleNG(Gtk.Application):
             }
             dropdown popover listview row:selected label {
                 color: @accent_fg_color;
+            }
+            dropdown:hover button.toggle {
+                border-color: @accent_bg_color;
+                box-shadow: inset 0 0 0 1px @accent_bg_color;
+                background-color: rgba(53, 132, 228, 0.1);
+            }
+            dropdown:hover button.toggle label,
+            dropdown:hover button.toggle image {
+                color: @accent_bg_color;
             }
             columnview row cell {
                 min-height: 0px;
@@ -595,15 +603,6 @@ class BashStyleNG(Gtk.Application):
                 padding: 0px;
                 margin: 0px;
             }
-            dropdown:hover button.toggle {
-                border-color: @accent_bg_color;
-                box-shadow: inset 0 0 0 1px @accent_bg_color;
-                background-color: rgba(53, 132, 228, 0.1);
-            }
-            dropdown:hover button.toggle label,
-            dropdown:hover button.toggle image {
-                color: @accent_bg_color;
-            }
             checkbutton:hover check,
             checkbutton:hover radio,
             button:hover {
@@ -611,8 +610,37 @@ class BashStyleNG(Gtk.Application):
                 box-shadow: 0 0 4px 2px rgba(53, 132, 228, 0.4);
                 background-color: rgba(53, 132, 228, 0.1);
             }
-            button, dropdown, check, radio {
+            button, dropdown, check, radio, entry, columnview {
                 transition: all 150ms ease-in-out;
+            }
+            entry.custom-hover:hover,
+            entry.custom-hover:focus-within {
+                outline: 2px solid @theme_selected_bg_color;
+                outline-offset: -1px;
+                border-color: transparent;
+            }
+            .custom-spin-container {
+                padding: 0px;
+                margin: 0px;
+            }
+            .custom-spin-container spinbutton {
+                min-height: 20px;
+                padding-top: 1px;
+                padding-bottom: 1px;
+            }
+            .custom-spin-container spinbutton text {
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+            .custom-spin-container spinbutton button {
+                padding: 2px 2px;
+            }
+            .custom-spin-container .inner-icon {
+                margin-top: 1px;
+                margin-bottom: 1px;
+                margin-right: 6px;
+                margin-left: 6px;
+                padding: 2px;
             }
             """
 
