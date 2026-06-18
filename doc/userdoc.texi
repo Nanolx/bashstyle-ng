@@ -12,13 +12,13 @@
 * bashstyle: (bashstyle).       BashStyle-NG user documentation
 @end direntry
 
-This is the @cite{user documentation} for BashStyle-NG.
+This is the @cite{user documentation} for @b{BashStyle-NG}.
 
 Copyright @copyright{} 2007 - 2026 Christopher Roy Bratušek.
 
-BashStyle-NG is a graphical user interface for managing Bash and co. BashStyle-NG
-runs on bash startup if enabled to manage all desired settings, aswell as
-creating configuration files and providing additionial utilities.
+@b{BashStyle-NG}is a graphical user interface for managing Bash and co.
+@b{BashStyle-NG} runs on bash startup, if enabled, to manage all desired settings,
+aswell as creating configuration files and providing additionial utilities.
 
 @cartouche Notice
 @strong{This documentation is a work in progress and is incomplete.}
@@ -140,6 +140,57 @@ License version 3 can be found in /usr/share/common-licenses/LGPL-3
 @node Installation, First Start, Changelog, Top
 @chapter Installation
 @cindex Installation
+
+@heading Step-by-Step Installation
+
+Follow these steps to install @b{BashStyle-NG} on your system:
+
+@enumerate
+@item
+@b{Clone the Repository}@*
+First, clone the latest source code from the official repository using Git:
+@example
+git clone https://gitlab.com/Nanolx/bashstyle-ng.git
+cd bashstyle-ng
+@end example
+
+@item
+@b{Configure the Build}@*
+Run the configuration script to check for dependencies and prepare the installation
+paths. No extra tools are needed as @b{BashStyle-NG}'s @code{configure} and
+@code{make} are written in Bash:
+@example
+./configure --prefix=/usr/local
+@end example
+
+@item
+@b{Build translations, documentation and manpages}@*
+Use @code{make} to build installable translations, documentation and manpages
+@example
+./make build
+@end example
+
+@item
+@b{Install the Application}@*
+Use @code{make} with root privileges to install
+@example
+sudo ./make install
+@end example
+
+@item
+@b{Launch the Tool}@*
+Once installed, you can start the graphical user interface by running:
+@example
+bashstyle
+@end example
+@end enumerate
+
+@heading Uninstallation
+If you ever want to remove @b{BashStyle-NG} from your system, navigate back to
+the source directory and run:
+@example
+sudo ./make uninstall
+@end example
 
 @node First Start, Style Options, Installation, Top
 @chapter First Start
