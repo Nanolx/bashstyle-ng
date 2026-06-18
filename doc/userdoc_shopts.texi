@@ -3,7 +3,9 @@
 @chapter Shell Options
 
 In this category you'll find various Bash builtin options (shopts) that alter
-how Bash behaves in different cases.
+how Bash behaves in different cases. @b{BashStyle-NG} always checks the Bash
+version in use, so enabling a shopt here, does no harm if the minimun version
+requirement is not met.
 
 @float Figure,fig:screenshot_shopts
 @center @image{screenshots/bashstyle-ng_shopts,,, BashStyle-NG Shopts Settings, png}
@@ -23,7 +25,7 @@ This corrects minor errors in the spelling of a directory component in a
 character, and one character  too  many.
 @end defvr
 
-@defvr {Setting} cdable vars
+@defvr {Setting} cdablevars
 An argument to the cd builtin command that is not a directory is assumed to be
 the name of a variable whose value is the directory to change to.
 @end defvr
@@ -38,7 +40,7 @@ performed.
 When saving History entries try to store multi-line commands in one line.
 @end defvr
 
-@defvr {Setting} force fignore
+@defvr {Setting} forcefignore
 Ignore all files from completion whichs suffixes are defined in $FIGNORE
 environment variable. This is enabled by default.
 @end defvr
@@ -47,7 +49,7 @@ environment variable. This is enabled by default.
 The user is given the opportunity to re-edit a failed history substitution.
 @end defvr
 
-@defvr {Setting} no empty cmd completion
+@defvr {Setting} noemptycmdcompletion
 When attempting completion on and empty command line, no completion based on the
 $PATH variable is done.
 @end defvr
@@ -99,7 +101,21 @@ running jobs.
 When set bash tries to expand pathnames from variables upon [TAB].
 @end defvr
 
-@defvr {Setting} glob ascii ranges
+@defvr {Setting} globasciiranges
 When set range expressions for patterng matching behave like in the @code{C}
 locale.
+@end defvr
+
+@heading Bash 5.0
+
+@defvr {Setting} localvar_inherit
+Wehn set local variables inherit the value and attributes of a variable of the
+same name that exists at a previous scope before any new value is assigned
+@end defvr
+
+@heading Bash 5.2
+
+@defvr {Setting} globskipdots
+When set, pathname expansion will never match the filenames . and .., even if
+the pattern begins with a @code{.}.
 @end defvr
