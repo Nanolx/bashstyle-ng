@@ -154,6 +154,10 @@ for html in "${CWD}/doc/html"/*.html; do
     DOC_FILES+=("${html}:${DOCDIR}")
 done
 
+for screenshot in "${CWD}/doc/screenshots"/*.png; do
+    DOC_FILES+=("${screenshot}:${SCREENSHOTDIR}")
+done
+
 MAN_FILES=("${CWD}/doc/bashstyle.1:${MANDIR}")
 
 for lang in ${APP_LANGUAGES}; do
@@ -229,8 +233,11 @@ build_news () {
 build_readme () {
     echo -e "\t${WHITE}+${CYAN} README file"
     makeinfo --no-validate  --no-headers \
-        "${CWD}/doc/userdoc_introduction.texi" > README \
+        "${CWD}/doc/userdoc_introduction.texi" > README.tmp \
         || kill -s TERM "${TOP_PID}"
+    pandoc -f html -t gfm README.tmp -o README.md \
+        || kill -s TERM "${TOP_PID}"
+    rm -f README.tmp
 }
 
 build_doc_info () {
@@ -335,7 +342,8 @@ installdirs_create ()
 
     mkdir -p "${DESTDIR}/${BINDIR}" "${DESTDIR}/${ICONDIR}" \
         "${DESTDIR}/${PCDIR}" "${DESTDIR}/${DOCDIR}" \
-        "${DESTDIR}/${DESKTOPDIR}" "${DESTDIR}/${MANDIR}"
+        "${DESTDIR}/${DESKTOPDIR}" "${DESTDIR}/${MANDIR}" \
+        "${DESTDIR}/${DOCDIR}/screenshots"
 }
 
 inst ()
