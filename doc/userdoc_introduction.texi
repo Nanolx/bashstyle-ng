@@ -2,97 +2,45 @@
 
 @chapter Introduction
 
-BashStyle-NG is a graphical tool and script collection for changing
-the behaviour and look'n'feel of Bash, Readline, Vim, Nano and Git.
+@b{BashStyle-NG} is a graphical utility and toolchain for changing the
+look, feel, and behavior of @code{Bash}, @code{Readline}, @code{Vim},
+@code{Nano}, and @code{Git}. It acts as a central hub to inject advanced
+features and visual enhancements into standard command-line tools, making
+the terminal environment more user-friendly and powerful.
 
-@heading What can BashStyle-NG do for you?
+The following is summary of possibilities, see the documentation for more.
+
+@heading Visual Prompt Customization
 @itemize @bullet
-
-@item Bash Settings
-@itemize +
-
-@item 12 fancy pre-defined prompt styles
-@item colors are customizable
-@item random text color possible
-@item random prompt style for each session possible
-@item create your own prompt using UI
-@item customizing pre-defined ones possible
-@item alternatively monochrome prompts instead of colored
-@item colored manpages (without using most)
-@item colored output from ls and grep (matches)
-@item colors are customizable
-@item rembering last visited directory (and restore upon new session)
-@item customize bash history settings
-@item lscd: customized variant of cd, showing content of directory after cd,
-can create directories that don't exist, passing of customized ls parameters
-possible
-@item un/setting shopts (shell options) for Bash 4.3 / 4.0-4.2 / 3.2+
-@item customizable completion blacklist, timeout, welcome message and more
-@item sync history over simultaneously running sessions
+@item
+@b{Prompt Styles:} Includes 12 pre-defined prompt designs which can
+be randomized per session or customized.
+@item
+@b{Custom Prompt Builder:} A modular builder inside the GUI allows users
+to create their own custom prompt layouts, or modify the predefined styles.
+@item
+@b{Color Schemes:} Full control over text and prompt colors, with optional
+monochrome modes.
 @end itemize
 
-@item Git Options
-@itemize +
-
-@item set Git user name
-@item set Git mail address
-@item set Git editor for commit messages
-@item set Git colored output
-@end itemize
-
-@item Readline Options
-@itemize +
-
-@item un/set completion
-@item un/set case sensitivity
-@item un/set horizontal completion
-@item un/set mark filetypes and folders
-@item un/set include hidden files incompletion
-@item customize almost 30 keybindings
-@end itemize
-
-@item Vi Improved Settings
-@itemize +
-
-@item un/set remember last position
-@item un/set syntax highlighting
-@item un/set auto indention
-@item un/set case sensitive search
-@item un/set incremental search
-@item un/set display line numbers
-@item un/set highlight current line/column
-@item set dark or bright background
-@item set line-wrap and tab-length
-@item enable ruler/set ruler format
-@end itemize
-
-@item GNU Nano Settings
-@itemize +
-
-@item un/set search history
-@item un/set syntax highlighting
-@item un/set auto indention
-@item un/set case sensitive search
-@item fix backspace and numblock assignment
-@end itemize
-
-@item Extra Features and Functions
-@itemize +
-
-@item systemkit: show various system information, including cpu, system load,
-used/free/total ram and more
-@item gitkit: various companion functions for Git, like exporting the repo (like
-'svn export'), creating tar.gz/tar.bz2/tar.xz/.zip archives from repo, getting
-active branch/action/revision/revno from repo (for PS1)
-@item math conversion functions: convasc, convbin, convdec, convhex, convoct,
-convtemp. Convert between ascii, binary, decimal, hexadecimal, octal or
-temperature units
-@item random: create random strings (for example passwords) of various types
-@item scripts for working with files: map (run a command on given files, for
-non-batch commands), basefile (extract extension, filename with/without extension
-or filepath from full filename, similar to basename), randomfile (perform
-action on a random file, also has history, multiple executions support and more)
-@end itemize
+@heading Utility Enhancements
+@itemize @bullet
+@item
+@b{Colored Output:} Forces colored rendering for traditional manpages,
+@code{ls}, @code{gcc} error messages and @code{grep} matches.
+@item
+@b{Directory Tracking:} Features a custom @code{lscd} command that remembers
+the last visited directories, auto-restores sessions, and prints directory
+contents immediately after navigating.
+@item
+@b{Git Status Integration:} dynamically displays the current Git branch, revision,
+action, and more straight in the prompt.
+@item
+@b{History:} customize how many commands the shell remembers, ignores duplicate
+entries, and controls how history is written to disk. This includes the options for
+@code{history isolation} - meaning that terminal sessions have no outside visible
+history. Or the opposite @code{history sync}, when active, reloading the prompt
+(pressing enter), will load any new history created from other sessions.
 @end itemize
 
 @heading Git repository access
@@ -107,7 +55,7 @@ You can get the latest in-development version by running
 @itemize @bullet
 
 @item Existing Translations [Translator]
-@itemize +
+@itemize @minus
 
 @item de (German) [Christopher Roy Bratusek]
 @end itemize
@@ -118,9 +66,8 @@ or request the creation of a new one.
 
 @heading Submit Bugs for Feature Requests
 
-Visit https://gitlab.com/Nanolx/bashstyle-ng/issues
+Visit https://gitlab.com/Nanolx/bashstyle-ng/issues for reporting bugs.
 
-before reporting bugs please make sure that you got the latest stable
-version of BashStyle-NG. If you got an Feature Request or a new Idea for
-BashStyle-NG, then don't hesitate to post it! If you can provide patches, then
-that's even better.
+Please make sure that you got the latest stable version of BashStyle-NG. If you
+got an Feature Request or a new Idea for BashStyle-NG,  don't hesitate to post
+it! If you can provide patches, then that's even better.

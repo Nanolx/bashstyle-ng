@@ -1,92 +1,41 @@
 1 Introduction
 **************
 
-BashStyle-NG is a graphical tool and script collection for changing the
-behaviour and look'n'feel of Bash, Readline, Vim, Nano and Git.
+BashStyle-NG is a graphical utility and toolchain for changing the look,
+feel, and behavior of ‘Bash’, ‘Readline’, ‘Vim’, ‘Nano’, and ‘Git’.  It
+acts as a central hub to inject advanced features and visual
+enhancements into standard command-line tools, making the terminal
+environment more user-friendly and powerful.
 
-What can BashStyle-NG do for you?
-=================================
+The following is summary of possibilities, see the documentation for more.
 
-   • Bash Settings
+Visual Prompt Customization
+===========================
 
-        + 12 fancy pre-defined prompt styles
-        + colors are customizable
-        + random text color possible
-        + random prompt style for each session possible
-        + create your own prompt using UI
-        + customizing pre-defined ones possible
-        + alternatively monochrome prompts instead of colored
-        + colored manpages (without using most)
-        + colored output from ls and grep (matches)
-        + colors are customizable
-        + rembering last visited directory (and restore upon new
-          session)
-        + customize bash history settings
-        + lscd: customized variant of cd, showing content of directory
-          after cd, can create directories that don't exist, passing of
-          customized ls parameters possible
-        + un/setting shopts (shell options) for Bash 4.3 / 4.0-4.2 /
-          3.2+
-        + customizable completion blacklist, timeout, welcome message
-          and more
-        + sync history over simultaneously running sessions
+   • Prompt Styles: Includes 12 pre-defined prompt designs which can be
+     randomized per session or customized.
+   • Custom Prompt Builder: A modular builder inside the GUI allows
+     users to create their own custom prompt layouts, or modify the
+     predefined styles.
+   • Color Schemes: Full control over text and prompt colors, with
+     optional monochrome modes.
 
-   • Git Options
+Utility Enhancements
+====================
 
-        + set Git user name
-        + set Git mail address
-        + set Git editor for commit messages
-        + set Git colored output
-
-   • Readline Options
-
-        + un/set completion
-        + un/set case sensitivity
-        + un/set horizontal completion
-        + un/set mark filetypes and folders
-        + un/set include hidden files incompletion
-        + customize almost 30 keybindings
-
-   • Vi Improved Settings
-
-        + un/set remember last position
-        + un/set syntax highlighting
-        + un/set auto indention
-        + un/set case sensitive search
-        + un/set incremental search
-        + un/set display line numbers
-        + un/set highlight current line/column
-        + set dark or bright background
-        + set line-wrap and tab-length
-        + enable ruler/set ruler format
-
-   • GNU Nano Settings
-
-        + un/set search history
-        + un/set syntax highlighting
-        + un/set auto indention
-        + un/set case sensitive search
-        + fix backspace and numblock assignment
-
-   • Extra Features and Functions
-
-        + systemkit: show various system information, including cpu,
-          system load, used/free/total ram and more
-        + gitkit: various companion functions for Git, like exporting
-          the repo (like 'svn export'), creating
-          tar.gz/tar.bz2/tar.xz/.zip archives from repo, getting active
-          branch/action/revision/revno from repo (for PS1)
-        + math conversion functions: convasc, convbin, convdec, convhex,
-          convoct, convtemp.  Convert between ascii, binary, decimal,
-          hexadecimal, octal or temperature units
-        + random: create random strings (for example passwords) of
-          various types
-        + scripts for working with files: map (run a command on given
-          files, for non-batch commands), basefile (extract extension,
-          filename with/without extension or filepath from full
-          filename, similar to basename), randomfile (perform action on
-          a random file, also has history, multiple executions support
-          and more)
+   • Colored Output: Forces colored rendering for traditional manpages,
+     ‘ls’, ‘gcc’ error messages and ‘grep’ matches.
+   • Directory Tracking: Features a custom ‘lscd’ command that remembers
+     the last visited directories, auto-restores sessions, and prints
+     directory contents immediately after navigating.
+   • Git Status Integration: dynamically displays the current Git
+     branch, revision, action, and more straight in the prompt.
+   • History: customize how many commands the shell remembers, ignores
+     duplicate entries, and controls how history is written to disk.
+     This includes the options for ‘history isolation’ - meaning that
+     terminal sessions have no outside visible history.  Or the opposite
+     ‘history sync’, when active, reloading the prompt (pressing enter),
+     will load any new history created from other sessions.
 
 Git repository access
 =====================
@@ -100,7 +49,7 @@ Translations
 
    • Existing Translations [Translator]
 
-        + de (German) [Christopher Roy Bratusek]
+        − de (German) [Christopher Roy Bratusek]
 
    • Visit https://www.transifex.com/projects/p/bs-ng/ and apply for a
      team or request the creation of a new one.
@@ -108,9 +57,8 @@ Translations
 Submit Bugs for Feature Requests
 ================================
 
-Visit https://gitlab.com/Nanolx/bashstyle-ng/issues
+Visit https://gitlab.com/Nanolx/bashstyle-ng/issues for reporting bugs.
 
-   before reporting bugs please make sure that you got the latest stable
-version of BashStyle-NG. If you got an Feature Request or a new Idea for
-BashStyle-NG, then don't hesitate to post it!  If you can provide
-patches, then that's even better.
+Please make sure that you got the latest stable version of BashStyle-NG.
+If you got an Feature Request or a new Idea for BashStyle-NG, don't hesitate
+to post it!  If you can provide patches, then that's even better.
