@@ -238,6 +238,7 @@ build_readme () {
         - -o README.tmp || kill -s TERM "${TOP_PID}"
     pandoc -f html -t gfm README.tmp -o README.md \
         || kill -s TERM "${TOP_PID}"
+    sed -e "s,src=\"screenshots,src=\"doc/screenshots,g" -i README.md
     rm -f README.tmp
 }
 

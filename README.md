@@ -12,7 +12,7 @@ terminal environment more user-friendly and powerful.
 
 <div class="center">
 
-<img src="screenshots/bashstyle-ng_menu.png" class="image"
+<img src="doc/screenshots/bashstyle-ng_menu.png" class="image"
 alt="BashStyle-NG UI" />
 
 </div>
@@ -72,7 +72,7 @@ more.
 
 <div class="center">
 
-<img src="screenshots/bashstyle-ng_equinox.png" class="image"
+<img src="doc/screenshots/bashstyle-ng_equinox.png" class="image"
 alt="Equinox Prompt in Konsole" />
 
 </div>
