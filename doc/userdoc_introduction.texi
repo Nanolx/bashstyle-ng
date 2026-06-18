@@ -8,6 +8,11 @@ look, feel, and behavior of @code{Bash}, @code{Readline}, @code{Vim},
 features, configuration and visual enhancements into standard command-line
 tools, making the terminal environment more user-friendly and powerful.
 
+@float Figure,fig:screenshot_menu
+@center @image{screenshots/bashstyle-ng_menu,,, BashStyle-NG UI, png}
+@caption{BashStyle-NG main menu}
+@end float
+
 The following is summary of possibilities, see the documentation for more.
 
 @heading Visual Prompt Customization
@@ -42,6 +47,26 @@ entries, and controls how history is written to disk. This includes the options 
 history. Or the opposite @code{history sync}, when active, reloading the prompt
 (pressing enter), will load any new history created from other sessions.
 @end itemize
+
+@heading Configuration Management
+@itemize @bullet
+@item @b{BashStyle-NG} handles it's own configuration through @b{ConfigObj}, all
+Text and Number settings have two icons. The left icon (back arrow) reverts to
+previously saved user configuration if a setting was changed in the running
+@b{BashStyle-NG} instance. The right icon (broom/trash) reverts to the factory
+default setting, which is either @b{BashStyle-NG} default setting or a custom
+vendor configuration, which can be provided by package maintainers.
+
+@item @b{BashStyle-NG} additionally has global revert buttons at the top, which
+act the same way, but for all settings at once, to keep the UI in sync it is
+restarted after the configuration was reverted to previous saved user state or
+factory default settings.
+@end itemize
+
+@float Figure,fig:screenshot_equinox
+@center @image{screenshots/bashstyle-ng_equinox,,, Equinox Prompt in Konsole, png}
+@caption{Equinox prompt style in Konsole}
+@end float
 
 @heading Git repository access
 

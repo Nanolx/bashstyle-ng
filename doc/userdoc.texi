@@ -16,7 +16,7 @@ This is the @cite{user documentation} for @b{BashStyle-NG}.
 
 Copyright @copyright{} 2007 - 2026 Christopher Roy Bratušek.
 
-@b{BashStyle-NG}is a graphical user interface for managing Bash and co.
+@b{BashStyle-NG} is a graphical user interface for managing Bash and co.
 @b{BashStyle-NG} runs on bash startup, if enabled, to manage all desired settings,
 aswell as creating configuration files and providing additionial utilities.
 
@@ -195,9 +195,9 @@ sudo ./make uninstall
 @node First Start, Style Options, Installation, Top
 @chapter First Start
 
-Upon first start of the UI (@code{bashstyle} executable) the user will be presented
-with a notice that a startup entry for BashStyle-NG has to be added to ~/.bashrc
-in order for BashStyle-NG to actually work.
+Upon first start of the UI (@code{bashstyle} executable) the user will be
+presented with a notice that a startup entry for @b{BashStyle-NG} has to be
+added to ~/.bashrc in order for @b{BashStyle-NG} to actually work.
 
 The user can either let the application add the entry on it's own or follow the
 instruction to do it manually. To manually enable @b{BashStyle-NG}, add
@@ -205,6 +205,11 @@ instruction to do it manually. To manually enable @b{BashStyle-NG}, add
 @code{[[ -f /usr/share/bashstyle-ng/rc/bashstyle-rc ]] && source /usr/share/bashstyle-ng/rc/bashstyle-rc}
 
 to your @code{~/.bashrc}.
+
+@float Figure,fig:screenshot_firststart
+@center @image{screenshots/bashstyle-ng_firststart,,, BashStyle-NG First Start UI, png}
+@caption{First Start UI}
+@end float
 @cindex First Start
 
 @node Style Options, Aliases, First Start, Top
@@ -220,10 +225,16 @@ word of a simple command.
 For example an alias of @code{myls=ls --colors=auto --directories-first}
 will issue @code{ls --colors=auto --directories-first} every time you issue @code{myls}.
 
-In the BashStyle-NG UI you can define up to nine aliases in @code{name=prog} form.
+In the @b{BashStyle-NG} UI you can define up to nine aliases in @code{name=prog} form.
 
-In ~/.bashrc or ~/.bashstyle.custom you can define as many as desired in
+In @file{~/.bashrc} or @file{~/.bashstyle.custom} you can define as many as desired in
 @code{alias name=prog} form.
+
+@float Figure,fig:screenshot_aliases
+@center @image{screenshots/bashstyle-ng_aliases,,, BashStyle-NG Aliases Settings, png}
+@caption{Aliases Settings}
+@end float
+
 @cindex Aliases
 
 @node Advanced Options, Shell Options, Aliases, Top

@@ -3,17 +3,32 @@
 @chapter Advanced Options
 
 In this category you'll find various advanced options regarding history, Bash
-builtin features and BashStyle-NG specific additions.
+builtin features and @b{BashStyle-NG} specific additions.
+
+@float Figure,fig:screenshot_advanced_1
+@center @image{screenshots/bashstyle-ng_advanced_1,,, BashStyle-NG Advanced Settings part 1, png}
+@caption{Advanced Settings}
+@end float
+
+@float Figure,fig:screenshot_advanced_2
+@center @image{screenshots/bashstyle-ng_advanced_2,,, BashStyle-NG Advanced Settings part 2, png}
+@caption{Advanced Settings (continuation)}
+@end float
+
+@float Figure,fig:screenshot_advanced_3
+@center @image{screenshots/bashstyle-ng_advanced_3,,, BashStyle-NG Advanced Settings part 3, png}
+@caption{Advanced Settings (final)}
+@end float
 
 @heading History
 
-@defvr {Setting} History Timeformat
+@defvr {Setting} history_timeformat History Timeformat
 If this is set it's value will be used as a timestamp that will be prepend to
 the output of the @code{history} builtin. For a detailed list of possible values
 refer to @code{man strftime}.
 @end defvr
 
-@defvr {Setting} Historycontrol Type
+@defvr {Setting} history_control Historycontrol Type
 There are different ways of history controlling in Bash. This option lets you
 choose which one to use.
 
@@ -25,47 +40,63 @@ choose which one to use.
 @end itemize
 @end defvr
 
-@defvr {Setting} History Blacklist
+@defvr {Setting} history_blacklist History Blacklist
 A colon separated list of commands to not log in the history. A good choice is
 to add @code{cd} and @code{ls} to this list, to prevent excessive history
-spamming.
+spamming. You can also use @code{??} to blacklist all two characters long commands.
 @end defvr
 
-@defvr {Setting} History Size
+@defvr {Setting} history_size History Size
 This controls how many history entries are saved. 0 for infinite.
 @end defvr
 
-@defvr {Setting} Sync History (Multisession)
-This is a BashStyle-NG extension which allows syncronized history over multiple,
+@defvr {Setting} dummy Use standard History
+This is a dummy radio button, which does nothing, besides disabling the following
+two settings.
+@end defvr
+
+@defvr {Setting} history_sync Sync History (Multisession)
+This is a @b{BashStyle-NG} extension which allows syncronized history over multiple,
 simultaneously running Bash sessions. It provides custom functions for history
 controlling as well, so history blacklisting is honoured.
 @end defvr
 
-@heading BashStyle-NG
+@defvr {Setting} history_isolate Isolate History per Session
+This is a @b{BashStyle-NG} extension which allows to isolate the history per
+session. Inside each session the history works as desired, but is never written
+to disk.
+@end defvr
 
-This Section contains settings for BashStyle-NG specific functions and features.
+@heading @b{BashStyle-NG}
 
-@defvr {Setting} Use lscd in favour of cd
-@code{lscd} is a BashStyle-NG builtin function which can be used in favour of the
+This Section contains settings for @b{BashStyle-NG} specific functions and features.
+
+@defvr {Setting} dummy Use standard cd
+This is a dummy radio button, which does nothing, besides disabling the following
+two settings.
+@end defvr
+
+@defvr {Setting} use_lscd Use lscd in favour of cd
+@code{lscd} is a @b{BashStyle-NG} builtin function which can be used in favour of the
 @code{cd} Bash builtin. @code{lscd} displays the directory content every time you
 change the directory, while it allows for custom @code{ls} options to be used.
 
 Furthermore it features additional options for creating a directory if it does
 not exist yet, or for logging the directory currently in after each directory
-change, together with BashStyle-NG's option to restore the directory in a new
+change, together with @b{BashStyle-NG}'s option to restore the directory in a new
 shell you'll then start in the same directory in a newly started session as the
 one you're in the current session.
 
 Those additional options are described next.
 @end defvr
 
-@defvr {Setting} Use treecd in favour of cd
-@code{treecd} is a BashStyle-NG builtin function similar to @code{lscd}, but
+@defvr {Setting} use_treecd Use treecd in favour of cd
+@code{treecd} is a @b{BashStyle-NG} builtin function similar to @code{lscd}, but
 using @code{tree} instead of @code{ls} to display the directory content on each
 directory change.
 @end defvr
 
-@defvr {Setting} lscd/treecd: create directory
+@defvr {Setting} customcd_mkdir lscd/treecd: create directory
 When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
 controls whether a directory that does currently not exist is created and then
 changed into.
@@ -79,22 +110,7 @@ while @code{cd /home/test/newdir/newsubdir} will fail, as @code{/home/test/newdi
 does not exist.
 @end defvr
 
-@defvr {Setting} lscd/treecd: banner color
-When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
-controls what color is used for the banner.
-@end defvr
-
-@defvr {Setting} lscd/treecd: empty color
-When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
-controls what color is used to indicate a directory is empty.
-@end defvr
-
-@defvr {Setting} lscd/treecd: mkdir color
-When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
-controls what color is used to indicate the directory was newly created.
-@end defvr
-
-@defvr {Setting} Restore directory in new shell
+@defvr {Setting} restore_directory Restore directory in new shell
 This option saves the last directory upon session exit. When a new session is
 started, Bash will automatically change into it.
 
@@ -103,55 +119,83 @@ be additionally saved every time you change the directory, allowing you to start
 a new shell in your current directory immediately.
 @end defvr
 
-@defvr {Setting} lscd options
+@defvr {Setting} lscd_opts lscd options
 Additional options to pass to @code{lscd} for displaying the directory content.
 All @code{ls} options are supported, see @code{ls --help} for all possibilites.
 @end defvr
 
-@defvr {Setting} treecd options
+@defvr {Setting} treecd_opts treecd options
 Additional options to pass to @code{treecd} for displaying the directory content.
 All @code{tree} options are supported, see @code{tree --help} for all possibilites.
 @end defvr
 
-@defvr {Setting} Let @code{dd} show progressbar
+@defvr {Setting} color_cd_banner lscd/treecd: banner color
+When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
+controls what color is used for the banner.
+@end defvr
+
+@defvr {Setting} color_cd_empty lscd/treecd: empty color
+When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
+controls what color is used to indicate a directory is empty.
+@end defvr
+
+@defvr {Setting} color_cd_mkdir lscd/treecd: mkdir color
+When using @code{lscd} or @code{treecd} in favour of @code{cd}, this option
+controls what color is used to indicate the directory was newly created.
+@end defvr
+
+@defvr {Setting} dd_progress Let @code{dd} show progressbar
 Let the @code{dd} utility show a progressbar. This requires @code{coreutils} version
 8.24 or newer.
 @end defvr
 
-@defvr {Setting} Let @code{dd} continue on error
+@defvr {Setting} dd_noerror Let @code{dd} continue on error
 Normally the @code{dd} utility will abort on the first occurring error. Enabling
 this will make @code{dd} displaying a warning and continuing it's work instead.
 
 This is mostly useful when dealing with damaged CDs or thelike.
 @end defvr
 
-@defvr {Setting} User Char
-Character to display in prompt for normal users, for root, it's always @code{#}.
+@defvr {Setting} user_char User Char
+Character to display in prompt for normal users, if unset the default @code{$}
+is used, this utilizes the @code{showuser} utility. You can set it to an emoji,
+if you use a modern terminal/font.
 @end defvr
 
-@defvr {Setting} Return Code: OK
+@defvr {Setting} root_char Root Char
+Character to display in prompt for the root user, if unset the default @code{#}
+is used, this utilizes the @code{showuser} utility. You can set it to an emoji,
+if you use a modern terminal/font.
+@end defvr
+
+@defvr {Setting} welcome_message Welcome Message
+A command to execute upon each new Bash session, or a message to print. This can
+be any command in \$PATH. Usually this is something like @code{fortune}, if the
+value is not a command, @b{BashStyle-NG} assumes it's a string and prints it.
+@end defvr
+
+@defvr {Setting} user_birthday User Birthday
+User's birthday in MM-DD format. What's gonna happen that day, I wonder?
+@end defvr
+
+@defvr {Setting} return_good Return Code: OK
 Character to display in prompts that support return code displaying when a command
 has succesfully finished, default @code{✔}. On the linux console always @code{+}.
 @end defvr
 
-@defvr {Setting} Return Code: Error
+@defvr {Setting} return_bad Return Code: Error
 Character to display in prompts that support return code displaying when a command
 has failed to finish successfully, default @code{✘}. On the linux console always
 @code{-}.
 @end defvr
 
-@defvr {Setting} Return Code: Other
+@defvr {Setting} return_bad Return Code: Other
 Character to display in prompts that support return code displaying when a command
 has neither return code @code{0} (success) or @code{1} (error), default @code{⊘}.
 On the linux console always @code{/}.
 @end defvr
 
-@defvr {Setting} Welcome Message
-A command to execute upon each new Bash session. This can be any command in
-\$PATH. Usually this is something like @code{fortune}.
-@end defvr
-
-@defvr {Setting} Directory indicator
+@defvr {Setting} directory_indicator Directory indicator
 Normally directories are indicated by @code{/}, this allows prompts to use a
 different character as directory indicator.
 
@@ -159,63 +203,103 @@ Note: this is only a cosmetic change to prompts, where @code{/} is replaced by
 your choice made here, this has no technical impact on how your OS works.
 @end defvr
 
-@defvr {Setting} User Birthday
-User's birthday in MM-DD format. What's gonna happen that day, I wonder?
-@end defvr
-
-@defvr {Setting} Verbose output on start
-BashStyle-NG does several logging upon Bash session start. If you want visible
-logging enable this option. Usually you don't need this and thus it's disabled
-by default.
-@end defvr
-
 @heading Bash Builtin
 
 Various options for Bash builtin functions and features.
 
-@defvr {Setting} CDPATH
+@defvr {Setting} cdpath CDPATH
 A colon separted list of directories to which's subdirectories @code{cd} can
 directly change into. For example if @code{~/Desktop/myfancydir} exists and
-@code{~/Desktop} is in @code{CDPATH}, you can enter this directory from anywhere
+@code{~/Desktop} is in \$CDPATH, you can enter this directory from anywhere
 by issuing @code{cd myfancydir}.
 @end defvr
 
-@defvr {Setting} Completion Blacklist
+@defvr {Setting} completion_ignore Completion Blacklist
 A colon separated list of matches to ignore from completion. For example if
 @code{~} is in this list, all backup files like @code{myfile~} will not be shown
 upon filename completion.
 @end defvr
 
-@defvr {Setting} Set Timeout
+@defvr {Setting} timeout Set Timeout
 Bash can automatically log you out after a given time of inactivity (in secons).
 0 to disable (default).
 @end defvr
 
-@defvr {Setting} Editor for fc
+@defvr {Setting} fcedit Editor for fc
 Choose the editor for the @code{fc} Bash builtin.
 @end defvr
 
-@defvr {Setting} Globbing Blacklist
+@defvr {Setting} path Path
+A colon separated list of directories containing your systems executable files.
+If empty the system-wide @code{PATH} variable will be used.
+@end defvr
+
+@defvr {Setting} path_wd Include PWD in Path
+Wether the current directory (@code{.}) is appended to the @code{PATH} variable.
+@end defvr
+
+@defvr {Setting} glob_ignore Globbing Blacklist
 A colon separated list of matches to ignore from globbing results. For example
 @code{ls -A} includes @code{.} and @code{..}, but if you add both to this
 blacklist, @code{ls -A} will no longer include them. Use with caution.
 @end defvr
 
-@defvr {Setting} Path
-A colon separated list of directories containing your systems executable files.
-If empty the system-wide @code{PATH} variable will be used.
+@defvr {Setting} glob_sort Change glob sort
+The value of this variable specifies the sort criteria and sort order for the
+results of pathname expansion. New in Bash 5.3.
 @end defvr
 
-@defvr {Setting} Include PWD in Path
-Wether the current directory (@code{.}) is appended to the @code{PATH} variable.
-@end defvr
-
-@heading Bash 4.4+
-
-Options introduced with Bash version 4.4.
-
-@defvr {Setting} Exec Blacklist
+@defvr {Setting} exec_ignore Exec Blacklist
 Blacklist of binaries not to be executed. For example if @code{*conf} is part of
 Exec Blacklist, executing @code{autoconf} or any other matching binary will be
 prevented.
+@end defvr
+
+@heading Misc. Utilities
+
+@code{bat} is a drop in replacement for @code{cat}, see @url{https://github.com/sharkdp/bat}
+
+@defvr {Setting} use_bat Use bat instead of cat
+This will replace @code{cat} with @code{bat}, or @code{batcat} on Debian.
+@end defvr
+
+@defvr {Setting} bat_theme Choose bat Theme
+Set the theme to use for @code{bat}, see @code{bat --list-themes} for a full list
+and live preview.
+@end defvr
+
+@defvr {Setting} bat_tabwidth Set bat Tab Width
+Set the tab width to use for @code{bat}.
+@end defvr
+
+@defvr {Setting} curl_useragent Set UserAgent for cURL
+Set the UserAgent used by @code{curl}.
+@end defvr
+
+@defvr {Setting} curl_useragent_string
+The actual value for setting the @code{curl} UserAgent.
+@end defvr
+
+@defvr {Setting} wget_useragent Set UserAgent for wget
+Set the UserAgent used by @code{wget}.
+@end defvr
+
+@defvr {Setting} wget_useragent_string
+The actual value for setting the @code{wget} UserAgent.
+@end defvr
+
+@defvr {Setting} less_options Set UserAgent for wget
+Set default options used by @code{less}.
+@end defvr
+
+@defvr {Setting} less_options_string
+The actual value for setting the @code{less} options.
+@end defvr
+
+@defvr {Setting} grep_options Set Options for grep
+Set default options used by @code{grep}.
+@end defvr
+
+@defvr {Setting} grep_options_string
+The actual value for setting the @code{grep} options.
 @end defvr
