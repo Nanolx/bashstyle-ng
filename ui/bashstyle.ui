@@ -2197,7 +2197,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="advanced.label.misc">
+                              <object class="GtkLabel" id="advanced.label.bash">
                                 <property name="label" translatable="yes">Bash Builtin</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
@@ -2794,8 +2794,8 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="advanced.label.bat">
-                                <property name="label" translatable="yes">bat</property>
+                              <object class="GtkLabel" id="advanced.label.misc">
+                                <property name="label" translatable="yes">Misc. Utilities</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -2805,7 +2805,7 @@
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">35</property>
-                                  <property name="row-span">3</property>
+                                  <property name="row-span">11</property>
                                 </layout>
                               </object>
                             </child>
@@ -2824,34 +2824,34 @@
                                 <property name="model">
                                   <object class="GtkStringList" id="bat_theme.strings">
                                     <items>
-                                        <item translatable="yes">1337</item>
-                                        <item translatable="yes">Catppuccin Frappe</item>
-                                        <item translatable="yes">Catppuccin Latte</item>
-                                        <item translatable="yes">Catppuccin Macchiato</item>
-                                        <item translatable="yes">Catppuccin Mocha</item>
-                                        <item translatable="yes">Coldark-Cold</item>
-                                        <item translatable="yes">Coldark-Dark</item>
-                                        <item translatable="yes">DarkNeon</item>
-                                        <item translatable="yes">Dracula</item>
-                                        <item translatable="yes">GitHub</item>
-                                        <item translatable="yes">Monokai Extended</item>
-                                        <item translatable="yes">Monokai Extended Bright</item>
-                                        <item translatable="yes">Monokai Extended Light</item>
-                                        <item translatable="yes">Monokai Extended Origin</item>
-                                        <item translatable="yes">Nord</item>
-                                        <item translatable="yes">OneHalfDark</item>
-                                        <item translatable="yes">OneHalfLight</item>
-                                        <item translatable="yes">Solarized (dark)</item>
-                                        <item translatable="yes">Solarized (light)</item>
-                                        <item translatable="yes">Sublime Snazzy</item>
-                                        <item translatable="yes">TwoDark</item>
-                                        <item translatable="yes">Visual Studio Dark+</item>
-                                        <item translatable="yes">ansi</item>
-                                        <item translatable="yes">base16</item>
-                                        <item translatable="yes">base16-256</item>
-                                        <item translatable="yes">gruvbox-dark</item>
-                                        <item translatable="yes">gruvbox-light</item>
-                                        <item translatable="yes">zenburn</item>
+                                      <item translatable="yes">1337</item>
+                                      <item translatable="yes">Catppuccin Frappe</item>
+                                      <item translatable="yes">Catppuccin Latte</item>
+                                      <item translatable="yes">Catppuccin Macchiato</item>
+                                      <item translatable="yes">Catppuccin Mocha</item>
+                                      <item translatable="yes">Coldark-Cold</item>
+                                      <item translatable="yes">Coldark-Dark</item>
+                                      <item translatable="yes">DarkNeon</item>
+                                      <item translatable="yes">Dracula</item>
+                                      <item translatable="yes">GitHub</item>
+                                      <item translatable="yes">Monokai Extended</item>
+                                      <item translatable="yes">Monokai Extended Bright</item>
+                                      <item translatable="yes">Monokai Extended Light</item>
+                                      <item translatable="yes">Monokai Extended Origin</item>
+                                      <item translatable="yes">Nord</item>
+                                      <item translatable="yes">OneHalfDark</item>
+                                      <item translatable="yes">OneHalfLight</item>
+                                      <item translatable="yes">Solarized (dark)</item>
+                                      <item translatable="yes">Solarized (light)</item>
+                                      <item translatable="yes">Sublime Snazzy</item>
+                                      <item translatable="yes">TwoDark</item>
+                                      <item translatable="yes">Visual Studio Dark+</item>
+                                      <item translatable="yes">ansi</item>
+                                      <item translatable="yes">base16</item>
+                                      <item translatable="yes">base16-256</item>
+                                      <item translatable="yes">gruvbox-dark</item>
+                                      <item translatable="yes">gruvbox-light</item>
+                                      <item translatable="yes">zenburn</item>
                                     </items>
                                   </object>
                                 </property>
@@ -2880,38 +2880,11 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="advanced.label.bat1">
-                                <property name="label" translatable="yes">cURL/wget</property>
-                                <attributes>
-                                  <attribute name="weight" value="bold"/>
-                                </attributes>
-                                <style>
-                                  <class name="rotated_label"/>
-                                </style>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="row">39</property>
-                                  <property name="row-span">4</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
                               <object class="GtkCheckButton" id="curl_useragent">
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Set UserAgent for cURL</property>
                                 <layout>
                                   <property name="column">1</property>
-                                  <property name="row">39</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkSeparator" id="separator21">
-                                <property name="margin-bottom">4</property>
-                                <property name="margin-top">4</property>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="column-span">3</property>
                                   <property name="row">38</property>
                                 </layout>
                               </object>
@@ -2928,7 +2901,7 @@
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="column-span">2</property>
-                                  <property name="row">40</property>
+                                  <property name="row">39</property>
                                 </layout>
                               </object>
                             </child>
@@ -2938,7 +2911,7 @@
                                 <property name="label" translatable="yes">Set UserAgent for wget</property>
                                 <layout>
                                   <property name="column">1</property>
-                                  <property name="row">41</property>
+                                  <property name="row">40</property>
                                 </layout>
                               </object>
                             </child>
@@ -2954,7 +2927,7 @@
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="column-span">2</property>
-                                  <property name="row">45</property>
+                                  <property name="row">43</property>
                                 </layout>
                               </object>
                             </child>
@@ -2964,34 +2937,7 @@
                                 <property name="label" translatable="yes">Set options for less pager</property>
                                 <layout>
                                   <property name="column">1</property>
-                                  <property name="row">44</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkSeparator" id="separator30">
-                                <property name="margin-bottom">4</property>
-                                <property name="margin-top">4</property>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="column-span">3</property>
-                                  <property name="row">43</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="advanced.label.bat2">
-                                <property name="label" translatable="yes">less</property>
-                                <attributes>
-                                  <attribute name="weight" value="bold"/>
-                                </attributes>
-                                <style>
-                                  <class name="rotated_label"/>
-                                </style>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="row">44</property>
-                                  <property name="row-span">2</property>
+                                  <property name="row">42</property>
                                 </layout>
                               </object>
                             </child>
@@ -3007,34 +2953,7 @@
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="column-span">2</property>
-                                  <property name="row">42</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkSeparator" id="separator31">
-                                <property name="margin-bottom">4</property>
-                                <property name="margin-top">4</property>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="column-span">3</property>
-                                  <property name="row">46</property>
-                                </layout>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="advanced.label.bat3">
-                                <property name="label" translatable="yes">Grep</property>
-                                <attributes>
-                                  <attribute name="weight" value="bold"/>
-                                </attributes>
-                                <style>
-                                  <class name="rotated_label"/>
-                                </style>
-                                <layout>
-                                  <property name="column">0</property>
-                                  <property name="row">47</property>
-                                  <property name="row-span">2</property>
+                                  <property name="row">41</property>
                                 </layout>
                               </object>
                             </child>
@@ -3044,7 +2963,7 @@
                                 <property name="label" translatable="yes">Set options for Grep pager</property>
                                 <layout>
                                   <property name="column">1</property>
-                                  <property name="row">47</property>
+                                  <property name="row">44</property>
                                 </layout>
                               </object>
                             </child>
@@ -3060,7 +2979,7 @@
                                 <layout>
                                   <property name="column">1</property>
                                   <property name="column-span">2</property>
-                                  <property name="row">48</property>
+                                  <property name="row">45</property>
                                 </layout>
                               </object>
                             </child>
