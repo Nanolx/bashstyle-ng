@@ -33,13 +33,23 @@ between.  For more detailed information see the git log.
 
              + Force dark or light mode, following KDE
 
-             + Some features or settings in the UI might be difficult to
-               understand, because they are either very specific or
-               unique to BashStyle-NG, starting with this release those
-               settings have a visible background gradient, indicating
-               they got a tooltip you can consult for additional
-               information, this applies regardless wether Adwaita or
-               pure Gtk4 theme is in use [work in progress]
+        − The Documentation was greatly improved, the name for the
+          settings were add, addtionally to their visible name in the UI
+          and description.  Additionally screenshots were added.  For
+          the following chapters the documentation is completed:
+             − Index
+             − Copying
+             − Introduction (gets exported to README.md for GitLab)
+             − News (exported to NEWS for GitLab)
+             − Installation
+             − First Start
+             − Style Options
+             − Aliases
+             − Advanced Options
+             − Shell Options
+             − user Interface Icons
+          For the remaining Chapters the documentation will be completed
+          before the release of version 11.1.
 
    • Fixes
 
@@ -84,6 +94,9 @@ between.  For more detailed information see the git log.
         − The ‘xmlpager’ utility now prints the xml header blue,
           comments yellow and attribute values green, tag values still
           red, the rest of the xml remains white
+
+        − The ‘bat’ drop-in replacement for ‘cat’ now has much more
+          themes, all of which are now chooseable from BashStyle-NG
 
    • Misc.  Changes
 
@@ -133,6 +146,9 @@ between.  For more detailed information see the git log.
 
         − The button for enabling verbose BashStyle-NG startup was moved
           from ‘Advanced’ group to ‘Configuration’ group
+
+        − The default setting for ‘globskipdots’ now follows Bash
+          default (enabled)
 
         − Remove vendor configuration from Debian package, just use
           BashStyle-NG's factory config

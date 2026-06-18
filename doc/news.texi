@@ -31,14 +31,26 @@ Regardless BashStyle-NG checks whether we are running from KDE, if so:
 @item Force use KDE color scheme, instead of Adwaita color scheme
 
 @item Force dark or light mode, following KDE
-
-
-@item Some features or settings in the UI might be difficult to understand,
-because they are either very specific or unique to BashStyle-NG, starting with
-this release those settings have a visible background gradient, indicating they
-got a tooltip you can consult for additional information, this applies regardless
-wether Adwaita or pure Gtk4 theme is in use [work in progress]
 @end itemize
+
+@item The Documentation was greatly improved, the name for the settings were
+add, addtionally to their visible name in the UI and description. Additionally
+screenshots were added. For the following chapters the documentation is completed:
+@itemize @minus
+@item Index
+@item Copying
+@item Introduction (gets exported to README.md for GitLab)
+@item News (exported to NEWS for GitLab)
+@item Installation
+@item First Start
+@item Style Options
+@item Aliases
+@item Advanced Options
+@item Shell Options
+@item user Interface Icons
+@end itemize
+For the remaining Chapters the documentation will be completed before the release
+of version 11.1.
 @end itemize
 
 @item Fixes
@@ -79,6 +91,9 @@ if there's not enough width, the branch will be cut to retain proper prompt layo
 
 @item The @code{xmlpager} utility now prints the xml header blue, comments yellow
 and attribute values green, tag values still red, the rest of the xml remains white
+
+@item The @code{bat} drop-in replacement for @code{cat} now has much more themes,
+all of which are now chooseable from BashStyle-NG
 
 @end itemize
 @item Misc. Changes
@@ -128,6 +143,8 @@ no visible hover effect
 
 @item The button for enabling verbose BashStyle-NG startup was moved from
 @code{Advanced} group to @code{Configuration} group
+
+@item The default setting for @code{globskipdots} now follows Bash default (enabled)
 
 @item Remove vendor configuration from Debian package, just use BashStyle-NG's
 factory config
