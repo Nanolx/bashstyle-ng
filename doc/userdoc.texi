@@ -65,12 +65,14 @@ notice identical to this one.
 * Nano Options::                Options for the GNU Nano editor
 * LS Colors::                   Options for colorizing ls
 * Manpage Colors::              Options for colorizing manpages
+* GCC & Grep Colors::           Options for colorizing gcc and grep
 * Key Bindings::                Key bindings setter for Bash/Readline
 * Custom Prompt Builder::       UI for fully customized prompt experience
 
 * Configuration Files::         Notes on various configuration files used
 
-* Shell Functions::             Extra shell functions provided by BashStyle-NG
+* Prompt Hooks::                Hooks for customizing predefinied prompt styles
+* Utilities::                   Extra shell utilities provided by BashStyle-NG
 
 * User Interface Icons::        Icon names for UI
 @end menu
@@ -147,10 +149,11 @@ with a notice that a startup entry for BashStyle-NG has to be added to ~/.bashrc
 in order for BashStyle-NG to actually work.
 
 The user can either let the application add the entry on it's own or follow the
-instruction to do it manually.
+instruction to do it manually. To manually enable @b{BashStyle-NG}, add
 
-Afterwards or in future invokations of the UI this message is not shown (with the
-exception the startup entry was removed or commented out).
+@code{[[ -f /usr/share/bashstyle-ng/rc/bashstyle-rc ]] && source /usr/share/bashstyle-ng/rc/bashstyle-rc}
+
+to your @code{~/.bashrc}.
 @cindex First Start
 
 @node Style Options, Aliases, First Start, Top
@@ -200,9 +203,13 @@ In ~/.bashrc or ~/.bashstyle.custom you can define as many as desired in
 @chapter LS Colors
 @cindex LS Colors
 
-@node Manpage Colors, Key Bindings, LS Colors, Top
+@node Manpage Colors, GCC & Grep Colors, LS Colors, Top
 @chapter Manpage Colors
 @cindex Manpage Colors
+
+@node GCC & Grep Colors, Key Bindings, Manpage Colors, Top
+@chapter GCC & Grep Colors
+@cindex GCC & Grep Colors
 
 @node Key Bindings, Custom Prompt Builder, Manpage Colors, Top
 @chapter Key Bindings
@@ -212,14 +219,18 @@ In ~/.bashrc or ~/.bashstyle.custom you can define as many as desired in
 @chapter Custom Prompt Builder
 @cindex Custom Prompt Builder
 
-@node Configuration Files, Shell Functions, Custom Prompt Builder, Top
+@node Configuration Files, Prompt Hooks, Custom Prompt Builder, Top
 @cindex Configuration Files
 @include userdoc_configurationfiles.texi
 
-@node Shell Functions, User Interface Icons, Configuration Files, Top
-@chapter Shell Functions
-@cindex Shell Functions
+@node Prompt Hooks, User Interface Icons, Utilities, Top
+@chapter Prompt Hooks
+@cindex Prompt Hooks
 
-@node User Interface Icons, , Shell Functions, Top
+@node Utilities, Prompt Hooks, Configuration Files, Top
+@chapter Utilities
+@cindex Utilities
+
+@node User Interface Icons, , Utilities, Top
 @cindex User Interface Icons
 @include userdoc_iconnames.texi
