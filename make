@@ -232,9 +232,10 @@ build_news () {
 
 build_readme () {
     echo -e "\t${WHITE}+${CYAN} README file"
-    makeinfo --no-validate  --no-headers \
-        "${CWD}/doc/userdoc_introduction.texi" > README.tmp \
-        || kill -s TERM "${TOP_PID}"
+    cat <(echo "@settitle BashStyle-NG") \
+        "${CWD}/doc/userdoc_introduction.texi" | \
+        makeinfo -I "${CWD}/doc" --html --no-split --no-headers \
+        - -o README.tmp || kill -s TERM "${TOP_PID}"
     pandoc -f html -t gfm README.tmp -o README.md \
         || kill -s TERM "${TOP_PID}"
     rm -f README.tmp
