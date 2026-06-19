@@ -1,17 +1,22 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
-PS1="\n${color_ps}♦${color_separator}♦(${color_user} \u${color_font} @${color_host} \h ${color_font}: \
+_show_editmode=$(ini_get show_editmode)
+check bt ${_show_editmode} && _prompt_prefix=' '
+
+PS1="\n${_prompt_prefix}${color_ps}♦${color_separator}♦(${color_user} \u${color_font} @${color_host} \h ${color_font}: \
 Space on /: ${color_ps}\$(systemkit usedspace /)${color_font} used of${color_ps} \
 \$(systemkit totalspace /)${color_separator} )♦♦($color_wdir \$(truncpwd)${color_separator} )♦${color_ps}♦\n\
 ${color_ps}♦${color_separator}♦(${color_time} \$(date +%H:%M)${color_separator} →${color_date} \
 \$(date \"+%a, %d %b %y\")${color_separator} : uptime :${color_uptime} \$(systemkit uptime)${color_separator} \
 :${color_user} \$(showuser)${color_separator} )♦${color_ps}♦${color_font} "
+
+unset _show_editmode

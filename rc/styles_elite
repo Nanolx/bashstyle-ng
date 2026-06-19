@@ -1,16 +1,19 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                           #
+# This is BashStyle-NG                  #
+#                           #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3      #
+#                           #
+# Copyright Christopher Roy Bratušek            #
+#                           #
 #########################################################
 
+_show_editmode=$(ini_get show_editmode)
+check bt ${_show_editmode} && _prompt_prefix=' '
+
 PS1="\n\
-${color_ps}┌─${color_separator}[ ${color_user}\u ${color_font}@ ${color_host}\h${color_separator} ]${color_ps}─\
+${color_ps}${_prompt_prefix}┌─${color_separator}[ ${color_user}\u ${color_font}@ ${color_host}\h${color_separator} ]${color_ps}─\
 ${color_separator}[${color_ps} job #\# ${color_separator}]${color_ps}─${color_separator}[${color_font} \$(systemkit tty)${color_separator} ]\
 ${color_ps}─${color_separator}[ ${color_time}\$(date +%H:%M:%S)\
 ${color_font} : ${color_date}\$(date +%m/%d/%y)${color_font} :${color_uptime} \$(systemkit uptime)${color_separator} ]\n\

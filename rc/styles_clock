@@ -1,21 +1,27 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
+_show_editmode=$(ini_get show_editmode)
+
 function pre_prompt {
-	let prompt_x=$(tput cols)-29
-	tput sc
-	tput cup 0 ${prompt_x}
-	echo -en "${ecolor_separator} [${ecolor_date} $(date '+%a, %d %b %y')\
-	${ecolor_separator} ::${ecolor_time} $(date +%T)${ecolor_separator} ]"
-	tput rc
+    if check bt ${_show_editmode}; then
+        let prompt_x=$(tput cols)-30
+    else
+        let prompt_x=$(tput cols)-29
+    fi
+    tput sc
+    tput cup 0 ${prompt_x}
+    echo -en "${ecolor_separator} [${ecolor_date} $(date '+%a, %d %b %y')\
+${ecolor_separator} ::${ecolor_time} $(date +%T)${ecolor_separator} ]"
+    tput rc
 }
 
 PROMPT_COMMAND=pre_prompt

@@ -1,15 +1,20 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
-PS1="\n${color_ps}┌${color_separator}(${color_user} \u${color_separator} @ ${color_host}\h \
+_show_editmode=$(ini_get show_editmode)
+check bt ${_show_editmode} && _prompt_prefix=' '
+
+PS1="\n${color_ps}${_prompt_prefix}┌${color_separator}(${color_user} \u${color_separator} @ ${color_host}\h \
 ${color_separator})${color_ps}─${color_separator}( ${color_time}\$(date +%I:%M%P)${VECTOR_1_COLOR}\$(VECTOR_1)\
 ${color_font} -:- ${color_date}\$(date +%m)/\$(date +%d)${color_separator} )\n\
 ${color_ps}└${color_separator}( $color_wdir\$(truncpwd) ${VECTOR_2_COLOR}\$(VECTOR_2)${color_separator})${color_ps}·>${color_font} "
+
+unset _show_editmode

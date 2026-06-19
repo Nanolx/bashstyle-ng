@@ -1,14 +1,19 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
+_show_editmode=$(ini_get show_editmode)
+check bt ${_show_editmode} && _prompt_prefix=' '
+
 PS1="\n\
-${color_ps}┌─${color_separator}[ ${color_wdir}\$(truncpwd)${DIRKS_1_COLOR} \$(DIRKS_1) ${color_separator}]\n\
+${color_ps}${_prompt_prefix}┌─${color_separator}[ ${color_wdir}\$(truncpwd)${DIRKS_1_COLOR} \$(DIRKS_1) ${color_separator}]\n\
 ${color_ps}└─${color_separator}[ ${color_user}\u ${color_font}@ ${color_host}\H ${color_font}/ ${color_ps}\$(systemkit tty) ${color_separator}( ${color_time}\t ${color_separator}) ${color_ps}${SHLVL}${DIRKS_2_COLOR} \$(DIRKS_2) ${color_separator}]${color_ps}·>${color_font} "
+
+unset _show_editmode

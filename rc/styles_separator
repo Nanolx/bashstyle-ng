@@ -1,17 +1,19 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 sepa=$(ini_get separator)
+_show_editmode=$(ini_get show_editmode)
+check bt ${_show_editmode} && _prompt_prefix=' '
 
-PS1="\n${color_user}\u${color_font} @${color_host} \h${color_separator} ${sepa} ${color_date}\d${color_separator} ${sepa} ${color_time}\t${color_separator} ${sepa} ${color_wdir}\$(truncpwd)"
+PS1="\n\${_prompt_prefix}${color_user}\u${color_font} @${color_host} \h${color_separator} ${sepa} ${color_date}\d${color_separator} ${sepa} ${color_time}\t${color_separator} ${sepa} ${color_wdir}\$(truncpwd)"
 [[ $(ini_get files_amount) == True ]] && PS1="${PS1} files: \$(systemkit countvisiblefiles)"
 [[ $(ini_get files_amount) == True && $(ini_get file_size) == True ]] && PS1="${PS1}${color_separator} /"
 [[ $(ini_get file_size) == True ]] && PS1="${PS1}${color_wdir} size: \$(systemkit dirsize)"
@@ -23,6 +25,6 @@ PS1="\n${color_user}\u${color_font} @${color_host} \h${color_separator} ${sepa} 
 [[ $(ini_get mem) == free ]] && PS1="${PS1} ${color_separator}${sepa}${color_user} free mem: ${color_ps}\$(systemkit freeram)${color_user} mb"
 [[ $(ini_get mem) == used ]] && PS1="${PS1} ${color_separator}${sepa}${color_user} used mem: ${color_ps}\$(systemkit usedram)${color_user} mb"
 [[ $(ini_get mem) == both ]] && PS1="${PS1} ${color_separator}${sepa}${color_user} free${color_separator}/${color_user}used mem: ${color_ps}\$(systemkit freeram)${color_separator}/${color_ps}\$(systemkit usedram)${color_user} mb"
-PS1="${PS1}${color_separator} ${sepa}\n${SEPA_1_COLOR}\$(SEPA_1)${color_user}\$(showuser) $SEPA_2_COLOR\$(SEPA_2)${color_font}-> "
+PS1="${PS1}${color_separator} ${sepa}\n${SEPA_1_COLOR}\$(SEPA_1)${color_user}\$(showuser)$SEPA_2_COLOR\$(SEPA_2)${color_font}-> "
 
-unset sepa
+unset sepa _show_editmode

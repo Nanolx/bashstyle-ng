@@ -1,12 +1,17 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
-PS1="\n${color_separator} -${color_ps}( ${color_user}\u${color_separator} /${color_host} \h${color_ps} )${color_separator}-${color_ps}( \$(systemkit tty) )${color_separator}-${color_ps}(${color_uptime} uptime: \$(systemkit uptime)${color_ps} )${color_separator}-${color_ps}(${color_time} \$(date +%H:%M)${color_date} \$(date +%d-%b-%y)${color_ps} )${color_separator}-${color_ps}(${color_wdir} files: \$(systemkit countvisiblefiles)${color_separator} /${color_wdir} folders: \$(systemkit countvisibledirs)${color_ps} )${color_separator}-\n -${color_ps}<${color_wdir} \$(truncpwd)${QUIRK_1_COLOR}\$(QUIRK_1) ${color_ps}>${color_separator}-${color_font} "
+_show_editmode=$(ini_get show_editmode)
+check bt ${_show_editmode} && _prompt_prefix=' '
+
+PS1="\n${color_separator}${_prompt_prefix} -${color_ps}( ${color_user}\u${color_separator} /${color_host} \h${color_ps} )${color_separator}-${color_ps}( \$(systemkit tty) )${color_separator}-${color_ps}(${color_uptime} uptime: \$(systemkit uptime)${color_ps} )${color_separator}-${color_ps}(${color_time} \$(date +%H:%M)${color_date} \$(date +%d-%b-%y)${color_ps} )${color_separator}-${color_ps}(${color_wdir} files: \$(systemkit countvisiblefiles)${color_separator} /${color_wdir} folders: \$(systemkit countvisibledirs)${color_ps} )${color_separator}-\n -${color_ps}<${color_wdir} \$(truncpwd)${QUIRK_1_COLOR}\$(QUIRK_1) ${color_ps}>${color_separator}-${color_font} "
+
+unset _show_editmode
