@@ -214,10 +214,13 @@ check_built () {
 }
 
 check_root () {
-    echo ${EUID}
-    if [[ ${EUID} -ne 0 ]]; then
-        check_root_message "${1}"
-        kill -s TERM "${TOP_PID}"
+    if [ "$(id -u)" -ne 0 ]; then
+        if [ -n "${DPKG_MAINTSCRIPT_PACKAGE}" ] || [ -n "${DEB_BUILD_ARCH}" ]; then
+            return 0
+        else
+            check_root_message "${1}"
+            kill -s TERM "${TOP_PID}"
+        fi
     fi
 }
 
@@ -403,7 +406,7 @@ make_build () {
 
 make_install () {
     check_built
-    #check_root "install"
+    check_root "install"
     install_message
     installdirs_create
     install_bsng
@@ -412,7 +415,7 @@ make_install () {
 }
 
 make_remove () {
-    #check_root "remove"
+    check_root "remove"
     remove_message
     remove_bsng
     post_remove
