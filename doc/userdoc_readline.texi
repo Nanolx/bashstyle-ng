@@ -1,0 +1,149 @@
+@c -*- texinfo -*-
+
+@chapter Readline Options
+
+@float Figure,fig:screenshot_readline
+@center @image{screenshots/bashstyle-ng_readline,,, BashStyle-NG Readline Settings, png}
+@caption{Readline Settings}
+@end float
+
+@heading Basic
+
+@defvr {Setting} use_readlinecfg Configure Readline
+This master switch will make @b{BashStyle-NG} adjust the Settings for @code{Readline}
+@end defvr
+
+@defvr {Setting} completion Enable completion
+Enable @code{Readline} (@code{Tab}) completion.
+@end defvr
+
+@defvr {Setting} bellstyle Choose bellstyle
+Set the style of "bell" @code{Readline} uses to inform the user when an error
+occurs or upon other events:
+@itemize @bullet
+@item @code{audible} = *beep*
+@item @code{visible} = screen flashes
+@item @code{nothing}
+@end itemize
+@end defvr
+
+@defvr {Setting} editing_mode Choose editing mode
+Controls whether @code{Readline} uses a set of key bindings similar to
+@code{emacs} or @code{vi}
+@end defvr
+
+@heading Completion
+
+@defvr {Setting} skip_completed_text Skip completed text
+When completion is triggered in the middle of a string, bash will never duplicate
+the trailing substring upon completion. Example
+@example
+ls
+teststring testsubstring
+cp testsuring
+@end example
+where @code{|} represents the cursor position while pressing @code{TAB}, the
+following result will be generated with this setting enabled:
+@code{cp testsubstring}
+with this setting disabled:
+@code{cp testsubstringring}
+Notice how the trailing @code{ring} that was there before completion remains.
+@end defvr
+
+@defvr {Setting} complete_horizontal Horizontal complmetion
+If enabled, @code{Readline} displays completions with matches sorted horizontally
+in alphabetical order, rather than down the screen.
+@end defvr
+
+@defvr {Setting} ambiguous_show Show matches if ambiguous
+If enabled, words which have more than one possible completion cause the matches
+to be listed immediately instead of ringing the bell.
+@end defvr
+
+@defvr {Setting} colored_completion_prefix Colored Completion Prefix
+Color the completion prefix, uses the @code{$LS_COLORS} value @code{}
+
+Example when pressing @code{TAB} to complete all files starting with @code{userdoc},
+@code{ambiguous_show} is enabled (in this case the prefix is yellow):
+
+@float Figure,fig:screenshot_readline-colored-completion-prefix
+@image{screenshots/bashstyle-ng_readline-colored-ompletion-prefix,,, Readline colored completion prefix, png}
+@caption{Readline Settings}
+@end float
+@end defvr
+
+@defvr {Setting} query_items Completion Query Items
+When the number of possible completions is greater than or equal to the value of
+this Setting, @code{Readline} asks whether or not the user wishes to view them.
+@end defvr
+
+@defvr {Setting} complete_hidden Match hidden files
+Whether to include hidden files in file name completion or not.
+@end defvr
+
+@defvr {Setting} ignore_case Ignore case
+Whether completion is case sensitive or not.
+@end defvr
+
+@defvr {Setting} mark_directories Mark directories
+If enabled, completed directory names have a slash appended.
+@end defvr
+
+@defvr {Setting} mark_symbolic_directories Mark symbolic directories
+If enabled, completed names which are symbolic links to directories have a slash
+appended, subject to the value of @code{mark_directories}
+@end defvr
+
+@defvr {Setting} visible_stats Show stats
+If enabled, a character denoting a file's type as reported by stat is appended
+to the filename when listing possible completions
+@end defvr
+
+@defvr {Setting} colored_stats Colored stats
+If enabled, following @code{visible_stats} the completet filenames are colored
+according to @code{$LS_COLORS}.
+@end defvr
+
+@heading Misc.
+
+@defvr {Setting} scroll_horizontal Scroll horizontally
+Makes the shell scroll horizontal, rather when wrapping to a new line, if the
+input exceeds the screen width.
+@end defvr
+
+@defvr {Setting} mark_modified Mark modified history lines
+When pressing @code{Arrow Up} or otherwise reusing a command from the history
+and modifying that command the prompt is preceeded by @code{*} to mark the
+history item as modified.
+@end defvr
+
+@defvr {Setting} search_ignore_case
+Whether @code{Readline} performs history list searches case sensitive or not.
+@end defvr
+
+@defvr {Setting} enable_bracketed_paste Enable Bracketed Paste
+When set to On, readline configures the terminal to insert each paste into the
+editing buffer as a single string of characters, instead of treating each character
+as if it had been read from the keyboard
+@end defvr
+
+@heading Edit Modes
+
+@defvr {Setting} show_editmode Show Edit Mode in Prompt
+If enabled the shell shows the current active edit mode in the prompt.
+@end defvr
+
+@defvr {Setting} emacs_mode_string Emacs Mode String
+If @code{show_editmode} is enabled, this string is used for indicating
+@code{emacs} edit mode.
+@end defvr
+
+@defvr {Setting} vi_cmd_mode_string Vi Command Mode String
+If @code{show_editmode} is enabled, this string is used for indicating
+@code{vi} command mode.
+@end defvr
+
+@defvr {Setting} vi_ins_mode_string Vi Insert Mode String
+If @code{show_editmode} is enabled, this string is used for indicating
+@code{vi} insert mode.
+@end defvr
