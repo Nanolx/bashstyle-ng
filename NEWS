@@ -44,6 +44,7 @@ between.  For more detailed information see the git log.
              − Installation
              − First Start
              − Style Options
+             − Prompt Styles
              − Aliases
              − Advanced Options
              − Shell Options
@@ -77,6 +78,37 @@ between.  For more detailed information see the git log.
         − #293: Keybindings GridView no longer compares lower case
           values, it now compares as-is, allowing C-t aswell als C-T as
           keybinding
+
+        − #294: When Readline shows the edit mode in the prompt,
+          multiline prompts would look "broken" as the first line starts
+          directly from the left, while the second line start one
+          character off as readline prints the edit mode character, this
+          applies to almost all prompt styles
+
+        − #295: Numerous fixes for the Power User prompt style, it has
+          been heavily outdated, but properly works again
+
+        − #296: Power User prompt directly uses ‘grep’, but if the user
+          has set grep options like ‘-H’ parsing the output was broken,
+          this is fixed by calling ‘grep’ directly, regardless of extra
+          options or aliases
+
+        − #297: In the Ayoli prompt style the calculation of the
+          fillsize was off by two, thus the last two characters of the
+          first prompt line were wrapped to the second line, leading the
+          second prompt line ending up in the third line, the fillsize
+          is now properly calculated
+
+        − #298: The prompt hook ‘DIRKS_2()’ for the Dirks prompt style
+          was not properly declared, when the user hasn't set the hook
+          themselves, leading to an error message everytime ‘PS1’ was
+          called, this is fixed now
+
+        − #299: ‘systemkit dirsize’ would fail if no directory was
+          provided, fall back to the current directory
+
+        − #300: Add back root check for ‘make’, this time without
+          breaking building Debian packages
 
    • New Features
 
