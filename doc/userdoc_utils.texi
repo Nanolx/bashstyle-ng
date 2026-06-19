@@ -1,0 +1,167 @@
+@c -*- texinfo -*-
+
+@chapter Utilities
+
+@b{BashStyle-NG} features a set of utils you can use in your prompt and/or
+everyday use. Every util has a @code{--help} message, for further information.
+
+@ifhtml
+@html
+<style>
+  table.multitable {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px 0;
+  }
+  table.multitable th, table.multitable td {
+    border: 1px solid #999999;
+    padding: 8px;
+    text-align: left; /* Garantiert Linksbündigkeit */
+  }
+  table.multitable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+</style>
+@end html
+@end ifhtml
+
+@multitable @columnfractions .20 .80
+@headitem Utility @tab Description
+
+@item @samp{apkdump}
+@tab grab apk infos using aapt
+
+@item @samp{arabic2roman}
+@tab convert arabic number to roman
+
+@item @samp{basefile}
+@tab variant of basename for files
+
+@item @samp{bashstyle-help}
+@tab util to display fancy, colorful help messages
+
+@item @samp{batchrename}
+@tab batch rename files in NAME-NNN.SUFFIX scheme, with additonal options
+
+@item @samp{binary-clock}
+@tab binary clock for bash
+
+@item @samp{box}
+@tab create a boxes around text
+
+@item @samp{camelcase}
+@tab camelcase transform string
+
+@item @samp{check}
+@tab additional test functions
+
+@item @samp{clock}
+@tab regular clock for bash
+
+@item @samp{convasc}
+@tab convert ascii char to numerical equivalents
+
+@item @samp{convbin}
+@tab convert binaries to other numerical equivalents
+
+@item @samp{convdec}
+@tab convert decimals to other numerical equivalents
+
+@item @samp{convhex}
+@tab convert hexadecimals to other numerical equivalents
+
+@item @samp{convoct}
+@tab convert octals to other numerical equivalents
+
+@item @samp{convtemp}
+@tab convert between @@C, @@F and @@K
+
+@item @samp{crypt}
+@tab crypt input string by shift 13 (also known as ceasars code)
+
+@item @samp{deadlink}
+@tab find dead links
+
+@item @samp{empty}
+@tab find empty files
+
+@item @samp{gitkit}
+@tab various companion functions for Git@*eg.: used in the Equinox prompt to display Git repository information
+
+@item @samp{list}
+@tab various ls variants
+
+@item @samp{loop}
+@tab search for file inside colon-separated list of directories
+
+@item @samp{man2pdf}
+@tab create PDF from a manpage
+
+@item @samp{map}
+@tab run a command on given files or directories
+
+@item @samp{morse2text}
+@tab convert morse code to plain text
+
+@item @samp{movie2gif}
+@tab create GIF from Movie
+
+@item @samp{ngroups}
+@tab show groups current or given user is not part of
+
+@item @samp{nseq}
+@tab print a sequence of numbers from X to Y of same width
+
+@item @samp{power}
+@tab calculate powers of numbers
+
+@item @samp{progressbar}
+@tab display a progressbar while given PID is running
+
+@item @samp{psgrep}
+@tab find process by name
+
+@item @samp{radical}
+@tab calculate square root of a number
+
+@item @samp{random}
+@tab print random numbers or strings
+
+@item @samp{randomfile}
+@tab run a command on a random file
+
+@item @samp{round}
+@tab round number
+
+@item @samp{ruler}
+@tab print a numbered ruler on the terminal
+
+@item @samp{showuser}
+@tab prompt function to display $ or user-set char and # or user-set char for root@*eg.: used in all prompts to display the user set symbol for user/root
+
+@item @samp{stopwatch}
+@tab stopwatch for bash
+
+@item @samp{sufffix}
+@tab fix suffix for files
+
+@item @samp{systemkit}
+@tab show various system information@*eg.: used in prompts to show cpu load, battery, used/free RAM
+
+@item @samp{text2morse}
+@tab convert plain text to morse code
+
+@item @samp{treefind}
+@tab tree-ified variant of find
+
+@item @samp{treeps}
+@tab tree-ified variant of ps
+
+@item @samp{truncpwd}
+@tab pretty print current directory@*eg.: used in most prompts to display the current directory at fixed length,@*used the symbol settings cut char and directory indicator to decorate output
+
+@item @samp{xmlpager}
+@tab pager for xml files with highlighted text
+
+@end multitable
