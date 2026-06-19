@@ -28,7 +28,7 @@ equinox_pc = r"""host=${HOSTNAME/.*}
 [[ ! ${trunc_symbol} ]] && trunc_symbol="«"
 [[ ! ${trunc_length} ]] && trunc_length=1
 
-j=4 k=6 l=8 m=10 n=12 newPWD=\"${PWD}\" fill=\"\"
+j=4 k=6 l=8 m=10 n=12 o=14 newPWD=\"${PWD}\" fill=\"\"
 
 let promptsize=$(echo -n \"--( $(whoami) @ $host )---(${PWD})-----\" | wc -c | tr -d \" \")
 let fillsize=${COLUMNS}-${promptsize}
@@ -53,7 +53,7 @@ echo -en \"( $(date +%H:%M): $(date '+%a, %d %b %y') )────┐\"
 echo -en \"\\033[3;${COLUMNS}H│\"
 i=${LINES}
 
-[[ ${i} -ge 16 ]] && while [ ${i} -ge 4 ]
+[[ ${i} -ge 18 ]] && while [ ${i} -ge 4 ]
 do
     case ${i} in
         ${j} )
@@ -82,6 +82,23 @@ do
                 echo -en \"( ✘: ${lastcommandprintable} )─┤\"
             fi
         ;;
+        ${o} )
+            echo -en \"\\033[${n};$((${COLUMNS}-29))H\"
+            _branch=$(gitkit branch)
+            _revision=$(gitkit revision)
+            _action=$(gitkit action)
+            let _fill=$((29 - ${_equinox_git_base_len} - ${#_branch} - ${#_revision} - ${#_action}))
+            if [ "${_fill}" -lt 0 ]; then
+                _branch=${branch:0:_fill}
+            else
+                git_fill=" "
+                while [ ${_fill}\" -gt "0" ]
+                do
+                    git_fill=${git_fill} "
+                    let _fill=${_fill}-1
+                done
+            fi
+            echo -en \"( ${_branch}:${_revision}:${_action}${git_fill} )─┤\"
         * )
             echo -en \"\\033[$((${i}));${COLUMNS}H│\"
         ;;
