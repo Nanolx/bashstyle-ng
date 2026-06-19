@@ -44,6 +44,7 @@ screenshots were added. For the following chapters the documentation is complete
 @item Installation
 @item First Start
 @item Style Options
+@item Prompt Styles
 @item Aliases
 @item Advanced Options
 @item Shell Options
@@ -77,6 +78,33 @@ prompts and a color was set via the hook-variable it's acutally used
 
 @item #293: Keybindings GridView no longer compares lower case values, it now
 compares as-is, allowing C-t aswell als C-T as keybinding
+
+@item #294: When Readline shows the edit mode in the prompt, multiline prompts
+would look "broken" as the first line starts directly from the left, while the
+second line start one character off as readline prints the edit mode character,
+this applies to almost all prompt styles
+
+@item #295: Numerous fixes for the Power User prompt style, it has been heavily
+outdated, but properly works again
+
+@item #296: Power User prompt directly uses @code{grep}, but if the user has set
+grep options like @code{-H} parsing the output was broken, this is fixed by calling
+@code{grep} directly, regardless of extra options or aliases
+
+@item #297: In the Ayoli prompt style the calculation of the fillsize was off by
+two, thus the last two characters of the first prompt line were wrapped to the
+second line, leading the second prompt line ending up in the third line, the
+fillsize is now properly calculated
+
+@item #298: The prompt hook @code{DIRKS_2()} for the Dirks prompt style was not
+properly declared, when the user hasn't set the hook themselves, leading to an
+error message everytime @code{PS1} was called, this is fixed now
+
+@item #299: @code{systemkit dirsize} would fail if no directory was provided,
+fall back to the current directory
+
+@item #300: Add back root check for @code{make}, this time without breaking
+building Debian packages
 
 @end itemize
 @item New Features
