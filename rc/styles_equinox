@@ -14,6 +14,7 @@ host=${HOSTNAME/.*}
 counter=0
 
 _equinox_git_base_len=8
+_show_editmode=$(ini_get show_editmode)
 
 _equinox_counter () {
     if [[ ${counter} -eq 0 ]]; then
@@ -133,7 +134,13 @@ newPWD="${PWD}"
 
 let promptsize=$(echo -n "--( $(whoami) @ ${host} )--( ${PWD} )-----" | wc -c | tr -d " ")
 
-let fillsize=COLUMNS-${promptsize}
+if check bt ${_show_editmode}; then
+    _prompt_prefix=' '
+    let fillsize=COLUMNS-${promptsize}-1
+else
+    _prompt_prefix=''
+    let fillsize=COLUMNS-${promptsize}
+fi
 fill=""
 while [ "${fillsize}" -gt "0" ]
 do
@@ -192,7 +199,7 @@ PROMPT_COMMAND=pre_prompt
 if [[ $(ini_get equinox_uptime) == True ]]; then
 
 PS1="\[\033[\${prompt_line};0H\]\n\
-${color_separator}┌─( ${color_user}\u ${color_font}@ ${color_host}\h \
+${color_separator}\${_prompt_prefix}┌─( ${color_user}\u ${color_font}@ ${color_host}\h \
 ${color_separator})─\${fill}─( ${color_wdir}\$(_newPWD)\
 ${color_separator} )────┘\n\
 ${color_separator}└─(${color_uptime} uptime: \$(systemkit uptime)\
@@ -202,7 +209,7 @@ ${color_font} :${EQUINOX_1_COLOR}\$(EQUINOX_1)${color_font} \
 else
 
 PS1="\[\033[\${prompt_line};0H\]\n\
-${color_separator}┌─( ${color_user}\u ${color_font}@ ${color_host}\h \
+${color_separator}\${_prompt_prefix}┌─( ${color_user}\u ${color_font}@ ${color_host}\h \
 ${color_separator})─\${fill}─( ${color_wdir}\$(_newPWD)\
 ${color_separator} )────┘\n\
 ${color_separator}└─(${EQUINOX_1_COLOR}\$(EQUINOX_1)${color_font} \
