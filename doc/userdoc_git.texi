@@ -1,0 +1,74 @@
+@c -*- texinfo -*-
+
+@chapter Git Options
+
+@float Figure,fig:screenshot_git
+@center @image{screenshots/bashstyle-ng_git,,, BashStyle-NG Git Settings, png}
+@caption{Git Settings}
+@end float
+
+@defvr {Setting} use_gitcfg Configurate Git
+This master switch will make @b{BashStyle-NG} adjust the Settings for @code{Git}
+@end defvr
+
+@defvr {Setting} git_user_name Git user name
+Sets the user's name via @code{git config --global user.name}
+@end defvr
+
+@defvr {Setting} git_user_mail Git mail adress
+Sets the user's mail adress via @code{git config --global user.email}
+@end defvr
+
+@defvr {Setting} git_editor Editor for Git
+Sets the editor for @code{Git} commands (like @code{git commit -m}) via
+@code{git config --global core.editor}
+@end defvr
+
+@defvr {Setting} git_signkey Default Git signing key
+Sets the default signingkey via @code{git config --global user.signingkey}
+@end defvr
+
+@defvr {Setting} git_color Colorize Git output
+Colorize the output of @code{Git}, via @code{git config --global color.\$opt},
+where opt is set for each:
+@itemize @bullet
+@item branch
+@item diff
+@item interactive
+@item pager
+@item status
+@end itemize
+@end defvr
+
+@defvr {Setting} git_aliases Git aliases
+This sets a few aliases for @code{Git} commands, some from the early times of
+@code{Git} to ease transistion from @code{Subversion}, some more complex:
+@itemize @bullet
+@item @code{co} = @code{checkout}
+@item @code{up} = @code{pull}
+@item @code{re} = @code{reset --hard HEAD}
+@item @code{ma} = @code{checkout master}
+@item @code{who} = @code{shortlog -s --}
+@item @code{ci} = @code{commit}
+@item @code{ls} = @code{log --format='%Cgreen%H %Cred%ai %Creset- %s'}
+@item @code{lsb} = @code{for-each-ref --sort=-committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative)  %1B[0;m%(refname:short)' refs/remotes refs/heads}
+@item @code{stage} = @code{add -u}
+@end itemize
+@end defvr
+
+@defvr {Setting} git_ssh_remember Remember SSH key
+Make @code{Git} remember the @code{SSH} key for actions like @code{pull},
+@code{push}. @b{Note:} This is only used/active. when using @code{gitkit}.
+@end defvr
+
+@defvr {Setting} git_ssh_timeout Time to remember
+How long to rember the @code{SSH} key, in seconds. @b{Note:} This is only
+used/active. when using @code{gitkit}.
+@end defvr
+
+@defvr {Setting} git_ssh_keyfile SSH RSA Keyfile
+What key to use for signing, empty for default. if you use a @code{Yubikey},
+you can leave empty or explicitely set to @code{yubikey} in order to prevent
+@code{gitkit} @code{ssh-add} the signing key, when @code{Git} would access the
+@code{Yubikey}. @b{Note:} This is only used/active. when using @code{gitkit}.
+@end defvr

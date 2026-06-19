@@ -1,0 +1,52 @@
+@c -*- texinfo -*-
+
+@chapter Installation
+
+Follow these steps to install @b{BashStyle-NG} on your system:
+
+@enumerate
+@item
+@b{Clone the Repository}@*
+First, clone the latest source code from the official repository using Git:
+@example
+git clone https://gitlab.com/Nanolx/bashstyle-ng.git
+cd bashstyle-ng
+@end example
+
+@item
+@b{Configure the Build}@*
+Run the configuration script to check for dependencies and prepare the installation
+paths. No extra tools are needed as @b{BashStyle-NG}'s @code{configure} and
+@code{make} are written in Bash:
+@example
+./configure --prefix=/usr/local
+@end example
+
+@item
+@b{Build translations, documentation and manpages}@*
+Use @code{make} to build installable translations, documentation and manpages
+@example
+./make build
+@end example
+
+@item
+@b{Install the Application}@*
+Use @code{make} with root privileges to install
+@example
+sudo ./make install
+@end example
+
+@item
+@b{Launch the Tool}@*
+Once installed, you can start the graphical user interface by running:
+@example
+bashstyle
+@end example
+@end enumerate
+
+@heading Uninstallation
+If you ever want to remove @b{BashStyle-NG} from your system, navigate back to
+the source directory and run:
+@example
+sudo ./make uninstall
+@end example
