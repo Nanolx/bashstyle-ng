@@ -108,6 +108,8 @@ class WidgetHandler(object):
         def LoadValue():
             if type == "text":
                 object.set_text(f"{self.config[group][setting]}")
+                if dict and dict > 0:
+                    object.set_max_length(dict)
             elif type == "int":
                 object.set_value(self.config[group].as_int(setting))
             elif type == "bool":
