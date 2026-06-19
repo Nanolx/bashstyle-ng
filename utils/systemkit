@@ -64,7 +64,7 @@ case ${1} in
     freeram%) prettyprint "$(awk '/MemTotal/ {total=$2} /MemAvailable/ {avail=$2} END {print int((avail/total)*100)}' /proc/meminfo)" 3 ;;
 
     dirsize)
-        TotalBytes=$(du -s "${2}" | awk '{print $1}')
+        TotalBytes=$(du -s "${2:-.}" | awk '{print $1}')
 
         if [[ ${TotalBytes} -lt 1024 ]]; then
                 echo "${TotalBytes} KB"
