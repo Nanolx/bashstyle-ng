@@ -25,8 +25,8 @@ alt="BashStyle-NG UI" />
 
 </div>
 
-The following is summary of possibilities, see the documentation for
-more.
+The following is a shortened summary of possibilities, see the
+documentation for more.
 
 ### Prompt Customization <a href="#Prompt-Customization" class="copiable-link">¶</a>
 
