@@ -28,7 +28,7 @@ alt="BashStyle-NG UI" />
 The following is summary of possibilities, see the documentation for
 more.
 
-### Visual Prompt Customization <a href="#Visual-Prompt-Customization" class="copiable-link">¶</a>
+### Prompt Customization <a href="#Prompt-Customization" class="copiable-link">¶</a>
 
 - **Prompt Styles:** Includes 12 pre-defined prompt designs which can be
   randomized per session or customized.

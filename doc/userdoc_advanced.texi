@@ -170,7 +170,7 @@ if you use a modern terminal/font.
 
 @defvr {Setting} welcome_message Welcome Message
 A command to execute upon each new Bash session, or a message to print. This can
-be any command in \$PATH. Usually this is something like @code{fortune}, if the
+be any command in $PATH. Usually this is something like @code{fortune}, if the
 value is not a command, @b{BashStyle-NG} assumes it's a string and prints it.
 @end defvr
 
@@ -210,7 +210,7 @@ Various options for Bash builtin functions and features.
 @defvr {Setting} cdpath CDPATH
 A colon separted list of directories to which's subdirectories @code{cd} can
 directly change into. For example if @code{~/Desktop/myfancydir} exists and
-@code{~/Desktop} is in \$CDPATH, you can enter this directory from anywhere
+@code{~/Desktop} is in $CDPATH, you can enter this directory from anywhere
 by issuing @code{cd myfancydir}.
 @end defvr
 
