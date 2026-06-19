@@ -1,53 +1,61 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
-function prompt_command
-{
+_show_editmode=$(ini_get show_editmode)
+check bt ${_show_editmode} && _prompt_prefix=' '
 
-	local one=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\)/\1/" -e "s/ //g")
-	local five=$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\).*/\2/" -e "s/ //g")
-	local diff1_5=$(echo -e "scale = scale ($one) \nx=$one - $five\n if (x>0) {print \"up\"} else {print \"down\"}\n print x \nquit \n" | bc)
-	loaddiff="$(echo -n "${one}${diff1_5}" | sed -e 's/down\-/down/g')"
+prompt_command() {
+    local one=$(uptime | awk -F'load average:' '{print $2}' | cut -d, -f1 | tr -d ' ')
+    local five=$(uptime | awk -F'load average:' '{print $2}' | cut -d, -f2 | tr -d ' ')
 
-	let files=$(ls -l | grep -c "^-" | tr -d " ")
-	let hiddenfiles=$(ls -l -d .* | grep -c "^-" | tr -d " ")
-	let executables=$(ls -l | grep -c ^-..x | tr -d " ")
-	let directories=$(ls -l | grep -c "^d" | tr -d " ")
-	let hiddendirectories=$(ls -l -d .* | grep -c "^d" | tr -d " ")-2
-	let linktemp=$(ls -l | grep -c "^l" | tr -d " ")
-	if [ "$linktemp" -eq "0" ]
-	then
-	    links=""
-	else
-	    links=" ${linktemp}l"
-	fi
-	unset linktemp
-	let devicetemp=$(ls -l | grep -c "^[bc]" | tr -d " ")
-	if [ "$devicetemp" -eq "0" ]
-	then
-	    devices=""
-	else
-	    devices=" ${devicetemp}bc"
-	fi
-	unset devicetemp
+    [[ -z "$one" ]] && one=0.00
+    [[ -z "$five" ]] && five=0.00
 
+    local diff1_5
+    diff1_5=$(echo "scale=2; x=$one - $five; if (x>0) print \"up\" else print \"down\"; print x" | bc 2>/dev/null)
+    diff1_5=$(echo "$diff1_5" | tr -d '\n')
+    loaddiff="$(echo -n "${one}${diff1_5}" | sed -e 's/down\-/down/g')"
+
+    files=$(LANG=C ls -l | \grep -v "^total" | \grep -c "^-")
+    hiddenfiles=$(LANG=C ls -a -l | \grep -v "^total" | \grep " \..*" | \grep -c "^-")
+    executables=$(LANG=C ls -l | \grep -v "^total" | \grep -c "^-..x")
+    directories=$(LANG=C ls -l | \grep -v "^total" | \grep -c "^d")
+
+    local raw_hiddendirs=$(LANG=C ls -a -l | \grep -v "^total" | \grep " \..*" | \grep -c "^d")
+    hiddendirectories=$(( raw_hiddendirs >= 2 ? raw_hiddendirs - 2 : 0 ))
+
+    linktemp=$(LANG=C ls -l | \grep -v "^total" | \grep -c "^l")
+    if [ "$linktemp" -eq 0 ]; then
+        links=""
+    else
+        links=" ${linktemp}l"
+    fi
+
+    local devicetemp=$(LANG=C ls -l | \grep -v "^total" | \grep -c "^[bc]")
+    if [ "$devicetemp" -eq 0 ]; then
+        devices=""
+    else
+        devices=" ${devicetemp}bc"
+    fi
 }
 
 PROMPT_COMMAND=prompt_command
 
 PS1="\n\
-${color_separator}[ ${color_time}\$(date +%T) ${color_font}-${color_date} \$(date +%D) ${color_separator}]\
+${color_separator}${_prompt_prefix}[ ${color_time}\$(date +%T) ${color_font}-${color_date} \$(date +%D) ${color_separator}]\
 ${color_separator}[ ${color_user}\u ${color_font}@ ${color_host}\h ${color_separator}]\
-${color_separator}[ ${color_wdir}\${files}.\${hiddenfiles}-\${executables}x \$(systemkit dirsize) \
+${color_separator}[ ${color_wdir}\${files}.\${hiddenfiles}f-\${executables}x \$(systemkit dirsize) \
 \${directories}.\${hiddendirectories}d\${links}\${devices}\
 ${color_separator} ][ ${color_uptime}\${loaddiff}${color_separator} ][ \
 ${color_ps}\$(ps ax | wc -l | sed -e \"s: ::g\")proc ${color_separator}]\
 \n${color_separator}[ ${color_wdir}\$(truncpwd)${POW_1_COLOR}\$(POW_1) ${color_separator}]${color_font} \$(showuser) "
+
+unset _show_editmode
