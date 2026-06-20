@@ -135,7 +135,7 @@ class Config(object):
         new.write()
         shutil.move(USER_DEFAULTS_TMP, USER_DEFAULTS)
 
-    def WriteConfig(self, data=None):
+    def WriteConfig(self, data=None, xdata=None):
         print(_("WriteConfig: saving configuration."))
         self.cfo.write()
 

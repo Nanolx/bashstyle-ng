@@ -428,6 +428,9 @@ class BashStyleNG(Gtk.Application):
         self.revert_factory = gtkbuilder.get_object("revert_factory")
         self.revert_factory.connect("clicked", self.restart, True)
 
+        self.save_config = gtkbuilder.get_object("save_config")
+        self.save_config.connect("clicked", config.WriteConfig, True)
+
         self.bashstyle.connect("close-request", self.destroy, None)
         self.bashstyle_gtk_css()
         self.bashstyle.set_application(self)
