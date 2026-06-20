@@ -567,7 +567,7 @@ class BashStyleNG(Gtk.Application):
             outline-offset: -1px;
             border-color: transparent;
         }
-         entry, columnview, gridview, check, radio, button, dropdown, {
+         entry, columnview, gridview, check, radio, button, dropdown {
             transition: all 150ms ease-in-out;
         }
         """
@@ -638,14 +638,6 @@ class BashStyleNG(Gtk.Application):
                 margin-right: 6px;
                 margin-left: 6px;
                 padding: 2px;
-            }
-            .has-tooltip {
-                background-image: linear-gradient(
-                    alpha(@accent_fg_color, 0.05),
-                    alpha(@accent_bg_color, 0.10)
-                );
-                background-blend-mode: overlay;
-                border-radius: 9px;
             }
             """
 
