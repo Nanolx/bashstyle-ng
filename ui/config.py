@@ -115,6 +115,14 @@ class Config(object):
         else:
             print(_("RestoreConfig: no backup configuration exists."))
 
+    def CleanObsoleteKeys(self, old_config, new_config):
+        for key in list(old_config.keys()):
+            if isinstance(old_config[key], dict) and key in new_config and isinstance(new_config[key], dict):
+                self.CleanObsoleteKeys(old_config[key], new_config[key])
+            elif not isinstance(old_config[key], dict) and key not in new_config:
+                print(_(f"UpdateConfig: removing obsolete key: {key}."))
+                del old_config[key]
+
     def UpdateConfig(self):
         if os.access(VENDOR_DEFAULTS, os.F_OK):
             vendor_ini = configobj.ConfigObj(infile=VENDOR_DEFAULTS, default_encoding="utf8")
@@ -129,6 +137,8 @@ class Config(object):
             shutil.copy(FACTORY_DEFAULTS, USER_DEFAULTS_TMP)
         new = configobj.ConfigObj(infile=USER_DEFAULTS_TMP, default_encoding="utf8")
         old = configobj.ConfigObj(infile=USER_DEFAULTS, default_encoding="utf8")
+        print(_("UpdateConfig: checking for obsolete keys."))
+        self.CleanObsoleteKeys(old, new)
         print(_("UpdateConfig: merging values."))
         new.merge(old)
         new["ini_version"] = app_ini_version
