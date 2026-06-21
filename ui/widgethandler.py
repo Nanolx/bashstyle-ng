@@ -234,27 +234,12 @@ class WidgetHandler(object):
                 parent.append(new_widget)
         return True
 
-    #def set_dropdown_factory(self, dropdown):
-    #    if not isinstance(dropdown, Gtk.DropDown):
-    #        return
-    #    xml_data = GLib.Bytes.new(factory_xml.encode('utf-8'))
-    #    factory = Gtk.BuilderListItemFactory.new_from_bytes(None, xml_data)
-    #    dropdown.set_list_factory(factory)
-
     def InitIconSpinButton(self, placeholder, name, group, setting, minvalue, maxvalue):
-        def LoadWidget():
-            widget = iconspinbutton.CustomIconSpinButton(
-                primary_icon_name="edit-undo", secondary_icon_name="edit-clear",
-                min_val=minvalue, max_val=maxvalue, step=1, pixel_size=16)
-            return widget
+        object = iconspinbutton.CustomIconSpinButton(
+            primary_icon_name="edit-undo", secondary_icon_name="edit-clear",
+            min_val=minvalue, max_val=maxvalue, step=1, pixel_size=16)
 
-        def LoadValue():
-            object.set_value(self.config[group].as_int(setting))
-
-        def ConnectSignals():
-            object.connect("value-changed", set_option, group, setting)
-            object.connect("primary-icon-clicked", revert_option, 0, group, setting)
-            object.connect("secondary-icon-clicked", revert_option, 1, group, setting)
+        object.set_value(self.config[group].as_int(setting))
 
         def revert_option(widget, pos, widget_group, widget_setting):
             if pos == 1:
@@ -269,8 +254,9 @@ class WidgetHandler(object):
             self.config[widget_group][widget_setting] = widget.get_value_as_int()
             self.config.write()
 
-        object = LoadWidget()
-        LoadValue()
-        ConnectSignals()
+        object.connect("value-changed", set_option, group, setting)
+        object.connect("primary-icon-clicked", revert_option, 0, group, setting)
+        object.connect("secondary-icon-clicked", revert_option, 1, group, setting)
+
         self.ReplaceWidget(placeholder, object)
         return object
