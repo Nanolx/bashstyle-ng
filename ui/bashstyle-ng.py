@@ -361,8 +361,8 @@ class BashStyleNG(Gtk.Application):
         # This could be fixed by custom DisableChilds for both, but is difficult to implement in a generic funtion
         # So for now we live with that rare corner case, also it's only for sensitivity of widgets, there's no
         # downside for the user interaction for issue with the configuration
-        self.use_vivid.connect("toggled", WidgetHandler.DisableChilds, None, "ls_colors.grid", ("use_lscolors", "use_vivid", "vivid_"), True)
-        WidgetHandler.DisableChilds(self.use_vivid, None, "ls_colors.grid", ("use_lscolors", "use_vivid", "vivid_"), True)
+        self.use_vivid.connect("toggled", WidgetHandler.DisableChilds, None, "ls_colors.grid", ("use_lscolors", "ls_custom", "use_vivid", "vivid_", ), True)
+        WidgetHandler.DisableChilds(self.use_vivid, None, "ls_colors.grid", ("use_lscolors", "ls_custom", "use_vivid", "vivid_"), True)
         WidgetHandler.InitWidget("vivid_colorscheme", "LSColors", "vivid_colorscheme", "combo", dicts.vivid_colorschemes)
 
         WidgetHandler.InitWidget("gcc_colors_enable", "GCC", "use_gcc_colors", "switch", "gcc.grid")
