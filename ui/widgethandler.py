@@ -105,6 +105,19 @@ class WidgetHandler(object):
 
         return object
 
+    def InitDropDown(self, widget, group, setting, dict):
+        object = gtkbuilder.get_object(f"{widget}")
+
+        object.set_selected(self.SwapDictionary(dict)[self.config[group][setting]])
+
+        def set_option(widget, widget_group, widget_setting, dict):
+            self.config[widget_group][widget_setting] = dict[widget.get_selected()]
+            self.config.write()
+
+        object.connect("notify::selected", set_option, type, dict, group, setting)
+
+        return object
+
     def InitWidget(self, widget, group, setting, type, dict):
         # known widget types:
         #   text        GtkTextEntry
@@ -125,9 +138,6 @@ class WidgetHandler(object):
         def LoadValue():
             if type == "int":
                 object.set_value(self.config[group].as_int(setting))
-            elif type == "combo":
-                object.set_selected(self.SwapDictionary(dict)[self.config[group][setting]])
-                #self.set_dropdown_factory(object)
             elif type == "label":
                 object.set_label(f"{setting}")
             elif type == "link":
@@ -138,8 +148,6 @@ class WidgetHandler(object):
         def ConnectSignals():
             if type == "int":
                 object.connect("value-changed", set_option, None, type, None, group, setting)
-            elif type == "combo":
-                object.connect("notify::selected", set_option, type, dict, group, setting)
             elif type == "button":
                 object.connect("clicked", group, setting)
             elif type == "cpb_button":
@@ -150,8 +158,6 @@ class WidgetHandler(object):
         def set_option(widget, data, type, dict, widget_group, widget_setting):
             if type == "int":
                 self.config[widget_group][widget_setting] = widget.get_value_as_int()
-            elif type == "combo":
-                self.config[widget_group][widget_setting] = dict[widget.get_selected()]
             self.config.write()
 
         object = LoadWidget()
