@@ -58,11 +58,6 @@ else:
 lock = lockfile.LockFile()
 config = config.Config()
 
-#if adwaita.USE_ADWAITA:
-#    AppClass = Adw.Application
-#else:
-#    AppClass = Gtk.Application
-
 class BashStyleNG(Gtk.Application):
 
     def __init__(self):

@@ -35,46 +35,6 @@ gtkbuilder = Gtk.Builder()
 gtkbuilder.set_translation_domain("bashstyle")
 gtkbuilder.add_from_file(DATADIR + "/bashstyle-ng/ui/bashstyle.ui")
 
-#if adwaita.USE_ADWAITA:
-#    try:
-#        import xml.etree.ElementTree as ET
-#    except ImportError:
-#        FAILED.append(_("ElementTree (from xml.etree)"))
-#
-#    tree = ET.parse(DATADIR + "/bashstyle-ng/ui/bashstyle.ui")
-#    root = tree.getroot()
-#    for win_id in dicts.xml_ids:
-#        main_win_element = root.find(f".//object[@id='{win_id}']")
-#        if main_win_element is not None:
-#            main_win_element.set("class", "AdwApplicationWindow")
-#            for child in list(main_win_element):
-#                if child.tag.endswith('property') and child.get('name') == 'child':
-#                    child.set('name', 'content')
-#                    break
-#    modified_xml_string = ET.tostring(root, encoding="utf-8").decode("utf-8")
-#    gtkbuilder.add_from_string(modified_xml_string)
-#else:
-#    gtkbuilder.add_from_file(DATADIR + "/bashstyle-ng/ui/bashstyle.ui")
-
-#factory_xml = """
-#<?xml version="1.0" encoding="UTF-8"?>
-#<interface>
-#  <template class="GtkListItem">
-#    <property name="child">
-#      <object class="GtkLabel">
-#        <property name="halign">start</property>
-#        <property name="xalign">0.0</property>
-#        <binding name="label">
-#          <lookup name="string" type="GtkStringObject">
-#            <lookup name="item">GtkListItem</lookup>
-#          </lookup>
-#        </binding>
-#      </object>
-#    </property>
-#  </template>
-#</interface>
-#"""
-
 class WidgetHandler(object):
     def __init__(self, cfo, udc, fdc):
         self.config = cfo
