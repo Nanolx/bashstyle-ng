@@ -106,6 +106,11 @@ fall back to the current directory
 @item #300: Add back root check for @code{make}, this time without breaking
 building Debian packages
 
+@item #301: When the current device is not a laptop or has no support for reading
+battery values from @code{acpi}, then @code{systemkit battery} will now properly
+output the string @code{|000} rather than throwing errors, to prevent prompts from
+being malformed
+
 @end itemize
 @item New Features
 @itemize @minus

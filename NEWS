@@ -110,6 +110,12 @@ between.  For more detailed information see the git log.
         − #300: Add back root check for ‘make’, this time without
           breaking building Debian packages
 
+        − #301: When the current device is not a laptop or has no
+          support for reading battery values from ‘acpi’, then
+          ‘systemkit battery’ will now properly output the string ‘|000’
+          rather than throwing errors, to prevent prompts from being
+          malformed
+
    • New Features
 
         − Allow setting prompt style to ‘None’, which will prevent
