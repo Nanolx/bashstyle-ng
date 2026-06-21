@@ -46,7 +46,7 @@ class ConfigUI(object):
 
     def InitConfigUI(self):
 
-        def backup_configAction(data, atad):
+        def backup_configAction(data):
             config.BackupConfig()
             restore_configPossible()
             delete_configPossible()
@@ -61,14 +61,14 @@ class ConfigUI(object):
                 restore_config.set_sensitive(False)
             versionlabel_userbackup.set_text(f"{config.UserSaveConfigVersion()}")
 
-        def restore_configAction(data, atad):
+        def restore_configAction(data):
             config.RestoreConfig()
             lock.Remove()
             print(_("RestoreConfig: relaunching BashStyle-NG"))
             python = sys.executable
             os.execl(python, python, * sys.argv)
 
-        def reset_configAction(data, atad):
+        def reset_configAction(data):
             config.ResetConfig(False)
             lock.Remove()
             print(_("ResetConfig: relaunching BashStyle-NG"))
@@ -78,7 +78,7 @@ class ConfigUI(object):
         def delete_configPossible():
             delete_config.set_sensitive(config.UserSaveConfigExists())
 
-        def delete_configAction(data, atad):
+        def delete_configAction(data):
             if os.access(USER_DEFAULTS_SAVE, os.F_OK):
                 print(_(f"BackupConfig: deleting user backup {USER_DEFAULTS_SAVE}"))
                 os.remove(USER_DEFAULTS_SAVE)
@@ -91,20 +91,20 @@ class ConfigUI(object):
             subprocess.Popen(["xdg-open", f"{file}"])
 
         WidgetHandler = widgethandler.WidgetHandler(self.config, self.userdefault, self.factorydefault)
-        WidgetHandler.InitWidget("config.backup", backup_configAction, None, "button", None)
-        WidgetHandler.InitWidget("config.reset", reset_configAction, None, "button", None)
-        WidgetHandler.InitWidget("config.edit_bashrc", openFile, f"{os.getenv('HOME')}/.bashrc", "button", None)
-        WidgetHandler.InitWidget("config.edit_bashstylecustom", openFile, f"{os.getenv('HOME')}/.bashstyle.custom", "button", None)
-        WidgetHandler.InitWidget("config.edit_vimrccustom", openFile, f"{os.getenv('HOME')}/.vimrc.custom", "button", None)
-        WidgetHandler.InitWidget("config.edit_inputrccustom", openFile, f"{os.getenv('HOME')}/.inputrc.custom", "button", None)
-        WidgetHandler.InitWidget("config.label_user.desc", None, config.UserConfigVersion(), "label", None)
-        WidgetHandler.InitWidget("config.label_vendor.desc", None, config.VendorConfigVersion(), "label", None)
-        WidgetHandler.InitWidget("config.label_factory.desc", None, config.FactoryConfigVersion(), "label", None)
 
-        # widgets stored for later re-usage
-        restore_config = WidgetHandler.InitWidget("config.restore", restore_configAction, None, "button", None)
-        delete_config = WidgetHandler.InitWidget("config.delete", delete_configAction, None, "button", None)
-        versionlabel_userbackup = WidgetHandler.InitWidget("config.label_userbackup.desc", None, config.UserSaveConfigVersion(), "label", None)
+        WidgetHandler.InitButton("config.backup", backup_configAction)
+        WidgetHandler.InitButton("config.reset", reset_configAction)
+        WidgetHandler.InitButton("config.edit_bashrc", openFile, f"{os.getenv('HOME')}/.bashrc")
+        WidgetHandler.InitButton("config.edit_bashstylecustom", openFile, f"{os.getenv('HOME')}/.bashstyle.custom")
+        WidgetHandler.InitButton("config.edit_vimrccustom", openFile, f"{os.getenv('HOME')}/.vimrc.custom")
+        WidgetHandler.InitButton("config.edit_inputrccustom", openFile, f"{os.getenv('HOME')}/.inputrc.custom")
+        restore_config = WidgetHandler.InitButton("config.restore", restore_configAction)
+        delete_config = WidgetHandler.InitButton("config.delete", delete_configAction)
+
+        WidgetHandler.InitLabel("config.label_user.desc", config.UserConfigVersion())
+        WidgetHandler.InitLabel("config.label_vendor.desc", config.VendorConfigVersion())
+        WidgetHandler.InitLabel("config.label_factory.desc", config.FactoryConfigVersion())
+        versionlabel_userbackup = WidgetHandler.InitLabel("config.label_userbackup.desc", config.UserSaveConfigVersion())
 
         restore_configPossible()
         delete_configPossible()
