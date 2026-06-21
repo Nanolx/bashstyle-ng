@@ -133,32 +133,42 @@ class WidgetHandler(object):
         object.set_uri(f"{link}")
         return object
 
-    def InitWidget(self, widget, group, setting, type, dict):
+    def InitIconSpinButton(self, placeholder, name, group, setting, minvalue, maxvalue):
+        object = iconspinbutton.CustomIconSpinButton(
+            primary_icon_name="edit-undo", secondary_icon_name="edit-clear",
+            min_val=minvalue, max_val=maxvalue, step=1, pixel_size=16)
 
-        def LoadWidget():
-            object = gtkbuilder.get_object(f"{widget}")
-            return object
+        object.set_value(self.config[group].as_int(setting))
 
-        def LoadValue():
-            if type == "int":
-                object.set_value(self.config[group].as_int(setting))
-            elif type == "cpb_combo":
-                object.set_selected(0)
-
-        def ConnectSignals():
-            if type == "int":
-                object.connect("value-changed", set_option, None, type, None, group, setting)
-            elif type == "cpb_combo":
-                object.connect("notify::selected", dict, group, setting)
-
-        def set_option(widget, data, type, dict, widget_group, widget_setting):
-            if type == "int":
-                self.config[widget_group][widget_setting] = widget.get_value_as_int()
+        def revert_option(widget, pos, widget_group, widget_setting):
+            if pos == 1:
+                opt = self.factorydefault[widget_group][widget_setting]
+            else:
+                opt = self.userdefault[widget_group][widget_setting]
+            self.config[widget_group][widget_setting] = opt
+            widget.set_value(self.config[widget_group].as_int(widget_setting))
             self.config.write()
 
-        object = LoadWidget()
-        LoadValue()
-        ConnectSignals()
+        def set_option(widget, widget_group, widget_setting):
+            self.config[widget_group][widget_setting] = widget.get_value_as_int()
+            self.config.write()
+
+        object.connect("value-changed", set_option, group, setting)
+        object.connect("primary-icon-clicked", revert_option, 0, group, setting)
+        object.connect("secondary-icon-clicked", revert_option, 1, group, setting)
+
+        self.ReplaceWidget(placeholder, object)
+        return object
+
+    def InitSpinButton(self, widget, group, setting):
+        object = gtkbuilder.get_object(f"{widget}")
+        object.set_value(self.config[group].as_int(setting))
+
+        def set_option(widget, data, widget_group, widget_setting):
+            self.config[widget_group][widget_setting] = widget.get_value_as_int()
+            self.config.write()
+
+        object.connect("value-changed", set_option, None, type, None, group, setting)
         return object
 
     def DisableChilds(self, widget, pspec, grid_widget, filter=None, inverted=False):
@@ -242,30 +252,3 @@ class WidgetHandler(object):
             elif hasattr(parent, "append"):
                 parent.append(new_widget)
         return True
-
-    def InitIconSpinButton(self, placeholder, name, group, setting, minvalue, maxvalue):
-        object = iconspinbutton.CustomIconSpinButton(
-            primary_icon_name="edit-undo", secondary_icon_name="edit-clear",
-            min_val=minvalue, max_val=maxvalue, step=1, pixel_size=16)
-
-        object.set_value(self.config[group].as_int(setting))
-
-        def revert_option(widget, pos, widget_group, widget_setting):
-            if pos == 1:
-                opt = self.factorydefault[widget_group][widget_setting]
-            else:
-                opt = self.userdefault[widget_group][widget_setting]
-            self.config[widget_group][widget_setting] = opt
-            widget.set_value(self.config[widget_group].as_int(widget_setting))
-            self.config.write()
-
-        def set_option(widget, widget_group, widget_setting):
-            self.config[widget_group][widget_setting] = widget.get_value_as_int()
-            self.config.write()
-
-        object.connect("value-changed", set_option, group, setting)
-        object.connect("primary-icon-clicked", revert_option, 0, group, setting)
-        object.connect("secondary-icon-clicked", revert_option, 1, group, setting)
-
-        self.ReplaceWidget(placeholder, object)
-        return object
