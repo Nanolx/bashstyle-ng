@@ -48,6 +48,35 @@ class WidgetHandler(object):
             iteritems = original_dict.items
         return dict([(v, k) for (k, v) in iteritems()])
 
+    def InitEntry(self, widget, group, setting, max_len=-1):
+        object = gtkbuilder.get_object(f"{widget}")
+
+        object.set_text(f"{self.config[group][setting]}")
+        if max_len > 0: object.set_max_length(max_len)
+
+        def revert_option(widget, pos, widget_group, widget_setting):
+            if pos == Gtk.EntryIconPosition.SECONDARY:
+                opt = self.factorydefault[widget_group][widget_setting]
+            else:
+                opt = self.userdefault[widget_group][widget_setting]
+            self.config[widget_group][widget_setting] = opt
+            widget.set_text(f"{opt}")
+            self.config.write()
+
+        def set_option(widget, widget_group, widget_setting):
+            self.config[widget_group][widget_setting] = widget.get_text()
+            self.config.write()
+
+        def emit_text(widget, text, *args):
+            if text in blacklist:
+                widget.emit_stop_by_name('insert-text')
+
+        object.connect("insert-text", emit_text)
+        object.connect("icon-press", revert_option, group, setting)
+        object.connect("changed", set_option, group, setting)
+
+        return object
+
     def InitWidget(self, widget, group, setting, type, dict):
         # known widget types:
         #   text        GtkTextEntry
@@ -66,11 +95,7 @@ class WidgetHandler(object):
             return object
 
         def LoadValue():
-            if type == "text":
-                object.set_text(f"{self.config[group][setting]}")
-                if dict and dict > 0:
-                    object.set_max_length(dict)
-            elif type == "int":
+            if type == "int":
                 object.set_value(self.config[group].as_int(setting))
             elif type == "bool":
                 object.set_active(self.config[group].as_bool(setting))
@@ -87,11 +112,7 @@ class WidgetHandler(object):
                 object.set_selected(0)
 
         def ConnectSignals():
-            if type == "text":
-                object.connect("insert-text", emit_text)
-                object.connect("icon-press", revert_option, type, group, setting)
-                object.connect("changed", set_option, None, type, None, group, setting)
-            elif type == "int":
+            if type == "int":
                 object.connect("value-changed", set_option, None, type, None, group, setting)
             elif type == "bool":
                 object.connect("toggled", set_option, None, type, None, group, setting)
@@ -109,20 +130,9 @@ class WidgetHandler(object):
             elif type == "cpb_combo":
                 object.connect("notify::selected", dict, group, setting)
 
-        def revert_option(widget, pos, type, widget_group, widget_setting):
-            if type == "text":
-                if pos == Gtk.EntryIconPosition.SECONDARY:
-                    opt = self.factorydefault[widget_group][widget_setting]
-                else:
-                    opt = self.userdefault[widget_group][widget_setting]
-                self.config[widget_group][widget_setting] = opt
-                widget.set_text(f"{opt}")
-                self.config.write()
 
         def set_option(widget, data, type, dict, widget_group, widget_setting):
-            if type == "text":
-                self.config[widget_group][widget_setting] = widget.get_text()
-            elif type == "int":
+            if type == "int":
                 self.config[widget_group][widget_setting] = widget.get_value_as_int()
             elif type == "bool":
                 self.config[widget_group][widget_setting] = widget.get_active()
@@ -131,10 +141,6 @@ class WidgetHandler(object):
             elif type == "combo":
                 self.config[widget_group][widget_setting] = dict[widget.get_selected()]
             self.config.write()
-
-        def emit_text(widget, text, *args):
-            if text in blacklist:
-                widget.emit_stop_by_name('insert-text')
 
         object = LoadWidget()
         LoadValue()
