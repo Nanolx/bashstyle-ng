@@ -1,11 +1,11 @@
 #!/bin/bash
 #########################################################
 #                                                       #
-# This is BashStyle-NG                                	#
+# This is BashStyle-NG                                  #
 #                                                       #
 # Licensed under GNU GENERAL PUBLIC LICENSE v3          #
 #                                                       #
-# Copyright Christopher Roy Bratušek                        #
+# Copyright Christopher Roy Bratušek                    #
 #                                                       #
 #########################################################
 
@@ -22,60 +22,64 @@ lgrey="${style};37"
 lwhite="${style};97"
 
 if [[ ${TERM} != *xterm*color* ]]; then
-	lcoldblue=${lblue}
-	lsmoothblue=${lblue}
-	liceblue=${lblue}
-	lturqoise=${lcyan}
-	lsmoothgreen=${lgreen}
-	lwinered=${lred}
-	lbrown=${lyellow}
-	lsilver=${lwhite}
-	locher=${lyellow}
-	lorange=${lyellow}
-	lpurple=${lmagenta}
-	lpink=${lmagenta}
-	lcream=${lmagenta}
+    lcoldblue=${lblue}
+    lsmoothblue=${lblue}
+    liceblue=${lblue}
+    lturqoise=${lcyan}
+    lsmoothgreen=${lgreen}
+    lwinered=${lred}
+    lbrown=${lyellow}
+    lsilver=${lwhite}
+    locher=${lyellow}
+    lorange=${lyellow}
+    lpurple=${lmagenta}
+    lpink=${lmagenta}
+    lcream=${lmagenta}
 else
-	lcoldblue="${style};38;5;33"
-	lsoothgreen="${style};38;5;42"
-	liceblue="${style};38;5;45"
-	lturqoise="${style};38;5;50"
-	lpurple="${style};38;5;92"
-	lsoothblue="${style};38;5;111"
-	lwinered="${style};38;5;125"
-	lbrown="${style};38;5;130"
-	locher="${style};38;5;136"
-	lpink="${style};38;5;200"
-	lcrea="${style};38;5;218"
-	lorange="${style};38;5;202"
-	lsilver="${style};38;5;245"
+    lcoldblue="${style};38;5;33"
+    lsoothgreen="${style};38;5;42"
+    liceblue="${style};38;5;45"
+    lturqoise="${style};38;5;50"
+    lpurple="${style};38;5;92"
+    lsoothblue="${style};38;5;111"
+    lwinered="${style};38;5;125"
+    lbrown="${style};38;5;130"
+    locher="${style};38;5;136"
+    lpink="${style};38;5;200"
+    lcrea="${style};38;5;218"
+    lorange="${style};38;5;202"
+    lsilver="${style};38;5;245"
 fi
 
 if bt "$(ini_get dark_terminal)"; then
-	lblack=${lwhite}
-else	lwhite=${lblack}
+        lblack=${lwhite}
+else    lwhite=${lblack}
 fi
 
 lscolors=(exec generic logs deb rpm dirs jpeg png gif mp3 ogg flac tar targz
 tarbz2 tarxz zip rar link socket pipe blockdev chardev)
 
 for lscolor in "${lscolors[@]}"; do
-	eval "_${lscolor}"="$(ini_get "${lscolor}")"
+    eval "_${lscolor}"="$(ini_get "${lscolor}")"
 done
 
 _custom="$(ini_get custom)"
 
-dbg_log export LS_COLORS="*=${_generic}:ex=${_exec}:*.log=${_logs}:*.deb=${_deb}:\
+if bt "$(ini_get use_vivid)" && check P "vivid" "lscolors" &>/dev/null; then
+    dbg_log export LS_COLORS="$(vivid generate $(ini_get vivid_colorscheme)):${_custom}"
+else
+    dbg_log export LS_COLORS="*=${_generic}:ex=${_exec}:*.log=${_logs}:*.deb=${_deb}:\
 *.rpm=${_rpm}:di=${_dirs}:*.jpg=${_jpeg}:*.jpeg=${_jpeg}:*.png=${_png}:*.gif=${_gif}:\
 *.mp3=${_mp3}:*.ogg=${_ogg}:*.flac=${_flac}:*.tar=${_tar}:*.tar.gz=${_targz}:\
 *.tgz=${_targz}:*.tar.bz2=${_tarbz2}:*.tbz=${_tarbz2}:*.tar.xz=${_tarxz}:\
 *.zip=${_zip}:*.rar=${_rar}:ln=${_link}:so=${_socket}:pi=${_pipe}:bd=${_blockdev}:\
 cd=${_chardev}:${_custom}"
+fi
 
 dbg_msg "$(eval_gettext "LS_COLORS Setting:")" LS_COLORS "${LS_COLORS}"
 
 for lscolor in "${lscolors[@]}"; do
-	eval unset "_${lscolor}"
+    eval unset "_${lscolor}"
 done
 
 unset _custom color_style style lscolor lscolors

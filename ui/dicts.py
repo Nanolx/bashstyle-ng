@@ -439,6 +439,33 @@ bat_themes = {
     27: "zenburn",
 }
 
+vivid_colorschemes = {
+    1: "alabaster_dark",
+    2: "ayu",
+    3: "catppuccin-frappe",
+    4: "catppuccin-latte",
+    5: "catppuccin-macchiato",
+    6: "catppuccin-mocha",
+    7: "dracula",
+    8: "gruvbox-dark",
+    9: "gruvbox-dark-hard",
+    10: "gruvbox-dark-soft",
+    11: "gruvbox-light",
+    12: "gruvbox-light-hard",
+    13: "gruvbox-light-soft",
+    14: "iceberg-dark",
+    15: "jellybeans",
+    16: "lava",
+    17: "modus-operandi",
+    18: "molokai",
+    19: "nord",
+    20: "one-dark",
+    21: "one-light",
+    22: "snazzy",
+    23: "solarized-dark",
+    24: "solarized-light",
+}
+
 xml_ids = {
     0: "bashstyle",
     1: "Toolbox",

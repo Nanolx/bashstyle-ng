@@ -356,6 +356,15 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitWidget("ls_blockdev", "LSColors", "blockdev", "combo", dicts.ls_colors)
         WidgetHandler.InitWidget("ls_chardev", "LSColors", "chardev", "combo", dicts.ls_colors)
 
+        self.use_vivid = WidgetHandler.InitWidget("use_vivid", "LSColors", "use_vivid", "bool", None)
+        # This gets out of sync when use_vivid is toggled, but then use_lscolors gets toggled aswell
+        # This could be fixed by custom DisableChilds for both, but is difficult to implement in a generic funtion
+        # So for now we live with that rare corner case, also it's only for sensitivity of widgets, there's no
+        # downside for the user interaction for issue with the configuration
+        self.use_vivid.connect("toggled", WidgetHandler.DisableChilds, None, "ls_colors.grid", ("use_lscolors", "use_vivid", "vivid_"), True)
+        WidgetHandler.DisableChilds(self.use_vivid, None, "ls_colors.grid", ("use_lscolors", "use_vivid", "vivid_"), True)
+        WidgetHandler.InitWidget("vivid_colorscheme", "LSColors", "vivid_colorscheme", "combo", dicts.vivid_colorschemes)
+
         WidgetHandler.InitWidget("gcc_colors_enable", "GCC", "use_gcc_colors", "switch", "gcc.grid")
         WidgetHandler.InitWidget("gcc_color_error", "GCC", "gcc_color_error", "combo", dicts.gcc_colors)
         WidgetHandler.InitWidget("gcc_color_warn", "GCC", "gcc_color_warn", "combo", dicts.gcc_colors)
