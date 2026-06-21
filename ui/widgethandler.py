@@ -156,7 +156,8 @@ class WidgetHandler(object):
                 else:
                     opt = self.userdefault[widget_group][widget_setting]
                 self.config[widget_group][widget_setting] = opt
-                widget.set_text(f"{self.config[widget_group][widget_setting]}")
+                widget.set_text(f"{opt}")
+                self.config.write()
 
         def set_option(widget, data, type, dict, widget_group, widget_setting):
             if type == "text":
@@ -169,6 +170,7 @@ class WidgetHandler(object):
                 self.config[widget_group][widget_setting] = widget.get_active()
             elif type == "combo":
                 self.config[widget_group][widget_setting] = dict[widget.get_selected()]
+            self.config.write()
 
         def emit_text(widget, text, *args):
             if text in blacklist:
@@ -290,9 +292,11 @@ class WidgetHandler(object):
                 opt = self.userdefault[widget_group][widget_setting]
             self.config[widget_group][widget_setting] = opt
             widget.set_value(self.config[widget_group].as_int(widget_setting))
+            self.config.write()
 
         def set_option(widget, widget_group, widget_setting):
             self.config[widget_group][widget_setting] = widget.get_value_as_int()
+            self.config.write()
 
         object = LoadWidget()
         LoadValue()

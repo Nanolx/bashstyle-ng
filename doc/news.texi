@@ -117,6 +117,10 @@ being malformed
 @item New Features
 @itemize @minus
 
+@item Until version 11.0 BashStyle-NG saved the configuration when closing the
+the application, now every widgets triggers a write, when changing or reverting
+a setting immediately - though save on close is still performed
+
 @item Allow setting prompt style to @code{None}, which will prevent BashStyle-NG
 from setting @code{PROMPT_COMMAND} or @code{PS1} entirely, useful if you want to
 use it in conjunction with another tool, like @code{Liquid Prompt} or whatever
