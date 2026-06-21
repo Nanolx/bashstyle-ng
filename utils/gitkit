@@ -31,7 +31,7 @@ gitkit_ssh_add () {
 }
 
 clone_repositories () {
-    check P "wget" "'gitkit cloneorg/cloneuser'" || exit 1
+    check P "curl" "'gitkit cloneorg/cloneuser'" || exit 1
     check P "xe" "'gitkit cloneorg/cloneuser'" || exit 1
 
     type=${1}
@@ -157,8 +157,8 @@ case ${1} in
     ;;
 
     funmsg)
-        check P "wget" "'gitkit funmsg'" || exit 1
-        wget -qO - http://whatthecommit.com/index.txt
+        check P "curl" "'gitkit funmsg'" || exit 1
+        curl -w '\n' -L https://whatthecommit.com/index.txt
     ;;
 
     openweb | web)
