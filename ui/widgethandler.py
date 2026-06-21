@@ -92,6 +92,19 @@ class WidgetHandler(object):
 
         return object
 
+    def InitCheckButton(self, widget, group, setting):
+        object = gtkbuilder.get_object(f"{widget}")
+
+        object.set_active(self.config[group].as_bool(setting))
+
+        def set_option(widget, widget_group, widget_setting):
+            self.config[widget_group][widget_setting] = widget.get_active()
+            self.config.write()
+
+        object.connect("toggled", set_option, group, setting)
+
+        return object
+
     def InitWidget(self, widget, group, setting, type, dict):
         # known widget types:
         #   text        GtkTextEntry
@@ -112,8 +125,6 @@ class WidgetHandler(object):
         def LoadValue():
             if type == "int":
                 object.set_value(self.config[group].as_int(setting))
-            elif type == "bool":
-                object.set_active(self.config[group].as_bool(setting))
             elif type == "combo":
                 object.set_selected(self.SwapDictionary(dict)[self.config[group][setting]])
                 #self.set_dropdown_factory(object)
@@ -127,8 +138,6 @@ class WidgetHandler(object):
         def ConnectSignals():
             if type == "int":
                 object.connect("value-changed", set_option, None, type, None, group, setting)
-            elif type == "bool":
-                object.connect("toggled", set_option, None, type, None, group, setting)
             elif type == "combo":
                 object.connect("notify::selected", set_option, type, dict, group, setting)
             elif type == "button":
@@ -141,8 +150,6 @@ class WidgetHandler(object):
         def set_option(widget, data, type, dict, widget_group, widget_setting):
             if type == "int":
                 self.config[widget_group][widget_setting] = widget.get_value_as_int()
-            elif type == "bool":
-                self.config[widget_group][widget_setting] = widget.get_active()
             elif type == "combo":
                 self.config[widget_group][widget_setting] = dict[widget.get_selected()]
             self.config.write()
