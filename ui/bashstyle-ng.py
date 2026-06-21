@@ -138,7 +138,17 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitEntry("vim_rulerformat", "Vim", "rulerformat")
         WidgetHandler.InitEntry("ls_custom", "LSColors", "custom")
 
-        WidgetHandler.InitWidget("use_bashstyle", "Style", "use_bashstyle", "switch", "style.grid")
+        WidgetHandler.InitSwitch("use_bashstyle", "Style", "use_bashstyle", "style.grid")
+        WidgetHandler.InitSwitch("termcap_colors", "Termcap", "less_termcap_color", "termcap.grid")
+        WidgetHandler.InitSwitch("use_readline", "Readline", "use_readlinecfg", "readline.grid")
+        WidgetHandler.InitSwitch("use_git", "Git", "use_gitcfg", "git.grid")
+        WidgetHandler.InitSwitch("use_vim", "Vim", "use_vimcfg", "vim.grid")
+        WidgetHandler.InitSwitch("use_nano", "Nano", "use_nanocfg", "nano.grid")
+        WidgetHandler.InitSwitch("use_lscolors", "LSColors", "use_lscolors", "ls_colors.grid")
+        WidgetHandler.InitSwitch("gcc_colors_enable", "GCC", "use_gcc_colors", "gcc.grid")
+        WidgetHandler.InitSwitch("grep_colors_enable", "GREP", "use_grep_colors", "grep.grid")
+        WidgetHandler.InitSwitch("use_customprompt", "Custom", "use_custom_prompt", "cpb.grid")
+
         WidgetHandler.InitWidget("colored_prompts", "Style", "enable_colors", "bool", None)
         WidgetHandler.InitWidget("dark_terminal", "Style", "dark_terminal", "bool", None)
         WidgetHandler.InitWidget("ls_color", "Style", "colored_ls", "bool", None)
@@ -178,7 +188,6 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitWidget("equinox_uptime", "Style", "equinox_uptime", "bool", None)
         WidgetHandler.InitWidget("equinox_git", "Style", "equinox_git", "bool", None)
 
-        WidgetHandler.InitWidget("termcap_colors", "Termcap", "less_termcap_color", "switch", "termcap.grid")
         WidgetHandler.InitWidget("termcap_mb", "Termcap", "less_blink", "combo", dicts.less_foreground_colors)
         WidgetHandler.InitWidget("termcap_md", "Termcap", "less_bold", "combo", dicts.less_foreground_colors)
         WidgetHandler.InitWidget("termcap_us", "Termcap", "less_underline", "combo", dicts.less_foreground_colors)
@@ -216,7 +225,6 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitWidget("less_options", "Advanced", "less_options", "bool", None)
         WidgetHandler.InitWidget("grep_options", "Advanced", "grep_options", "bool", None)
 
-        WidgetHandler.InitWidget("use_readline", "Readline", "use_readlinecfg", "switch", "readline.grid")
         WidgetHandler.InitWidget("completion", "Readline", "completion", "bool", None)
         WidgetHandler.InitWidget("ambiguous", "Readline", "ambiguous_show", "bool", None)
         WidgetHandler.InitWidget("match_hidden", "Readline", "complete_hidden", "bool", None)
@@ -257,13 +265,11 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitWidget("nocasematch", "Shopt", "nocasematch", "bool", None)
         WidgetHandler.InitWidget("localvar_inherit", "Shopt", "localvar_inherit", "bool", None)
 
-        WidgetHandler.InitWidget("use_git", "Git", "use_gitcfg", "switch", "git.grid")
         WidgetHandler.InitWidget("git_color", "Git", "git_color", "bool", None)
         WidgetHandler.InitWidget("git_aliases", "Git", "git_aliases", "bool", None)
         WidgetHandler.InitWidget("git_ssh_remember", "Git", "git_ssh_remember", "bool", None)
         WidgetHandler.InitIconSpinButton("git_ssh_timeout_label", "git_ssh_timeout", "Git", "git_ssh_timeout", 60, 3600)
 
-        WidgetHandler.InitWidget("use_vim", "Vim", "use_vimcfg", "switch", "vim.grid")
         WidgetHandler.InitWidget("vim_backup", "Vim", "vim_backup", "bool", None)
         WidgetHandler.InitWidget("vim_jump", "Vim", "jump_back", "bool", None)
         WidgetHandler.InitWidget("vim_sline", "Vim", "start_line", "bool", None)
@@ -292,7 +298,6 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitIconSpinButton("vim_foldnestmax_label", "vim_foldnestmax", "Vim", "foldnestmax", 4, 32)
         WidgetHandler.InitWidget("vim_foldmethod", "Vim", "foldmethod", "combo", dicts.vim_foldmethods)
 
-        WidgetHandler.InitWidget("use_nano", "Nano", "use_nanocfg", "switch", "nano.grid")
         WidgetHandler.InitWidget("nano_backup", "Nano", "nano_backup", "bool", None)
         WidgetHandler.InitWidget("nano_const", "Nano", "show_position", "bool", None)
         WidgetHandler.InitWidget("nano_line_numbers", "Nano", "line_numbers", "bool", None)
@@ -328,7 +333,6 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitWidget("nano_selected_fg", "Nano", "selected_color_fg", "combo", dicts.nano_fg_colors)
         WidgetHandler.InitWidget("nano_selected_bg", "Nano", "selected_color_bg", "combo", dicts.nano_bg_colors)
 
-        WidgetHandler.InitWidget("use_lscolors", "LSColors", "use_lscolors", "switch", "ls_colors.grid")
         WidgetHandler.InitWidget("ls_exec", "LSColors", "exec", "combo", dicts.ls_colors)
         WidgetHandler.InitWidget("ls_gen", "LSColors", "generic", "combo", dicts.ls_colors)
         WidgetHandler.InitWidget("ls_log", "LSColors", "logs", "combo", dicts.ls_colors)
@@ -362,7 +366,6 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.DisableChilds(self.use_vivid, None, "ls_colors.grid", ("use_lscolors", "ls_custom", "use_vivid", "vivid_"), True)
         WidgetHandler.InitWidget("vivid_colorscheme", "LSColors", "vivid_colorscheme", "combo", dicts.vivid_colorschemes)
 
-        WidgetHandler.InitWidget("gcc_colors_enable", "GCC", "use_gcc_colors", "switch", "gcc.grid")
         WidgetHandler.InitWidget("gcc_color_error", "GCC", "gcc_color_error", "combo", dicts.gcc_colors)
         WidgetHandler.InitWidget("gcc_color_warn", "GCC", "gcc_color_warn", "combo", dicts.gcc_colors)
         WidgetHandler.InitWidget("gcc_color_notes", "GCC", "gcc_color_notes", "combo", dicts.gcc_colors)
@@ -370,7 +373,6 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitWidget("gcc_color_locus", "GCC", "gcc_color_locus", "combo", dicts.gcc_colors)
         WidgetHandler.InitWidget("gcc_color_quote", "GCC", "gcc_color_quote", "combo", dicts.gcc_colors)
 
-        WidgetHandler.InitWidget("grep_colors_enable", "GREP", "use_grep_colors", "switch", "grep.grid")
         WidgetHandler.InitWidget("grep_color_ms", "GREP", "grep_color_ms", "combo", dicts.grep_colors)
         WidgetHandler.InitWidget("grep_color_mc", "GREP", "grep_color_mc", "combo", dicts.grep_colors)
         WidgetHandler.InitWidget("grep_color_sl", "GREP", "grep_color_sl", "combo", dicts.grep_colors)
@@ -383,7 +385,6 @@ class BashStyleNG(Gtk.Application):
         keytree = keybindings.KeyTree(config.cfo, config.udc, config.fdc)
         keytree.InitTree()
 
-        WidgetHandler.InitWidget("use_customprompt", "Custom", "use_custom_prompt", "switch", "cpb.grid")
         pbuilder = promptbuilder.PromptBuilder(config.cfo, config.udc, config.fdc)
         pbuilder.InitPromptBuilder()
 
