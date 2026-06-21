@@ -110,6 +110,14 @@ class WidgetHandler(object):
         object.connect("notify::selected", set_option, type, dict, group, setting)
         return object
 
+    # Custom Prompt Builder: it's a GtkDropDown, but does not change a setting,
+    # but it inserts the selected entry to PROMPT_COMMAND / PS1, like a Button
+    def InitDropDownButton(self, widget, action, dict1, dict2):
+        object = gtkbuilder.get_object(f"{widget}")
+        object.set_selected(0)
+        object.connect("notify::selected", action, dict1, dict2)
+        return object
+
     def InitButton(self, widget, action, *arg):
         object = gtkbuilder.get_object(f"{widget}")
         object.connect("clicked", action, *arg)
@@ -140,8 +148,6 @@ class WidgetHandler(object):
         def ConnectSignals():
             if type == "int":
                 object.connect("value-changed", set_option, None, type, None, group, setting)
-            elif type == "cpb_button":
-                object.connect("clicked", dict, group, setting)
             elif type == "cpb_combo":
                 object.connect("notify::selected", dict, group, setting)
 
