@@ -138,8 +138,8 @@ class WidgetHandler(object):
             elif type == "switch":
                 object.connect("notify::active", set_option, type, None, group, setting)
                 # the GtkSwitch activates/deactivates all other widgets accordingly
-                object.connect("notify::active", disable_childs, dict)
-                disable_childs(object, None, dict)
+                object.connect("notify::active", self.DisableChilds, dict)
+                self.DisableChilds(object, None, dict)
             elif type == "combo":
                 object.connect("notify::selected", set_option, type, dict, group, setting)
             elif type == "button":
@@ -174,23 +174,35 @@ class WidgetHandler(object):
             if text in blacklist:
                 widget.emit_stop_by_name('insert-text')
 
-        def disable_childs(widget, pspec, grid_widget):
-            is_active = widget.get_active()
-            grid = gtkbuilder.get_object(grid_widget)
-            grid_layout = grid.get_layout_manager()
-            current_child = grid.get_first_child()
-            parent = widget.get_parent()
-            while current_child is not None:
-                if current_child == parent or current_child == widget:
-                    current_child = current_child.get_next_sibling()
-                    continue
-                current_child.set_sensitive(is_active)
-                current_child = current_child.get_next_sibling()
-
         object = LoadWidget()
         LoadValue()
         ConnectSignals()
         return object
+
+    def DisableChilds(self, widget, pspec, grid_widget, filter=None, inverted=False):
+        is_active = widget.get_active()
+        target_sensitive_state = not is_active if inverted else is_active
+        grid = gtkbuilder.get_object(grid_widget)
+        grid_layout = grid.get_layout_manager()
+        current_child = grid.get_first_child()
+        parent = widget.get_parent()
+
+        if filter:
+            filter_tuple = (filter,) if isinstance(filter, str) else tuple(filter)
+        else:
+            filter_tuple = ()
+
+        while current_child is not None:
+            if current_child == parent or current_child == widget:
+                current_child = current_child.get_next_sibling()
+                continue
+            if filter_tuple:
+                child_name = current_child.get_buildable_id()
+                if child_name and child_name.startswith(filter_tuple):
+                    current_child = current_child.get_next_sibling()
+                    continue
+            current_child.set_sensitive(target_sensitive_state)
+            current_child = current_child.get_next_sibling()
 
     def ReplaceWidget(self, placeholder_id, new_widget):
         placeholder = gtkbuilder.get_object(placeholder_id)
