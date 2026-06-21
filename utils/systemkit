@@ -49,8 +49,11 @@ case ${1} in
     ;;
 
     externalip)
-        check P "wget" "'systemkit externalip'" || exit 1
-        wget -q -O - http://showip.spamt.net/
+        check P "curl" "'systemkit externalip'" || exit 1
+        case "${2}" in
+            6 | ipv6 )      curl icanhazip.com ;;
+            4 | ipv4 | * )  curl ipv4.icanhazip.com ;;
+        esac
     ;;
 
     internalip)
@@ -215,7 +218,7 @@ case ${1} in
             -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
             -o "$(eval_gettext "battery:|show battery load state using acpi")"\
             -o "$(eval_gettext "cpuload:|show cpu load")"\
-            -o "$(eval_gettext "externalip:|show your PCs external ip")"\
+            -o "$(eval_gettext "externalip:ipv4/ipv6|show your PCs external ip (default is ipv4)")"\
             -o "$(eval_gettext "internalip:interface|show interface's internal ip")"\
             -o "$(eval_gettext "usedram:|used RAM")"\
             -o "$(eval_gettext "usedram%:|used RAM in %")"\

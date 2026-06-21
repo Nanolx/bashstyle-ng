@@ -111,6 +111,8 @@ battery values from @code{acpi}, then @code{systemkit battery} will now properly
 output the string @code{|000} rather than throwing errors, to prevent prompts from
 being malformed
 
+@item #302: Updated @code{systemkit externalip} to work again
+
 @end itemize
 @item New Features
 @itemize @minus
@@ -137,6 +139,9 @@ all of which are now chooseable from BashStyle-NG
 for @code{LS_COLORS}, this will ignore the manual setting from BashStyle-NG, except
 the custom string, this string will be appended to @code{vivid} generated
 @code{LS_COLORS}, so it will be honoured regardless of @code{vivid} settings
+
+@item @code{systemkit externalip} defaults to @code{ipv4}, it is now possible to
+pass @code{ipv6} flag instead, like @code{systemkit externalip ipv6}
 
 @end itemize
 @item Misc. Changes
