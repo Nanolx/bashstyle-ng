@@ -90,6 +90,7 @@ class BashStyleNG(Gtk.Application):
             elif adwaita.USE_KDE:
                 self.gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
 
+        # GtkEntry
         WidgetHandler.InitEntry("user_char", "Style", "user_char", 1)
         WidgetHandler.InitEntry("root_char", "Style", "root_char", 1)
         WidgetHandler.InitEntry("return_good", "Style", "return_good", 1)
@@ -138,6 +139,7 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitEntry("vim_rulerformat", "Vim", "rulerformat")
         WidgetHandler.InitEntry("ls_custom", "LSColors", "custom")
 
+        # GtkSwitch
         WidgetHandler.InitSwitch("use_bashstyle", "Style", "use_bashstyle", "style.grid")
         WidgetHandler.InitSwitch("termcap_colors", "Termcap", "less_termcap_color", "termcap.grid")
         WidgetHandler.InitSwitch("use_readline", "Readline", "use_readlinecfg", "readline.grid")
@@ -149,6 +151,7 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitSwitch("grep_colors_enable", "GREP", "use_grep_colors", "grep.grid")
         WidgetHandler.InitSwitch("use_customprompt", "Custom", "use_custom_prompt", "cpb.grid")
 
+        # CustomIconSpinButton
         WidgetHandler.InitIconSpinButton("history_size_label", "history_size", "Advanced", "history_size", 100, 1000000)
         WidgetHandler.InitIconSpinButton("pwdlen_label", "pwd_len", "Advanced", "pwdlength", 10, 100)
         WidgetHandler.InitIconSpinButton("timeout_label", "timeout", "Advanced", "timeout", 0, 10000)
@@ -162,6 +165,7 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitIconSpinButton("nano_guide_stripe_label", "nano_guide_stripe", "Nano", "guide_stripe", 40, 500)
         WidgetHandler.InitIconSpinButton("nano_tabwidth_label", "nano_tabwidth", "Nano", "tab_size", 4, 16)
 
+        # GtkCheckButton
         WidgetHandler.InitCheckButton("colored_prompts", "Style", "enable_colors")
         WidgetHandler.InitCheckButton("dark_terminal", "Style", "dark_terminal")
         WidgetHandler.InitCheckButton("ls_color", "Style", "colored_ls")
@@ -268,16 +272,20 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitCheckButton("nano_emptyspace", "Nano", "empty_space")
         WidgetHandler.InitCheckButton("nano_history", "Nano", "history")
         WidgetHandler.InitCheckButton("nano_rbdel", "Nano", "rebind_delete")
-        WidgetHandler.InitCheckButton("nano_mouse", "Nano", "enable_mouse", )
+        WidgetHandler.InitCheckButton("nano_mouse", "Nano", "enable_mouse")
         WidgetHandler.InitCheckButton("nano_logpos",  "Nano", "log_position")
         WidgetHandler.InitCheckButton("nano_nowrap", "Nano", "no_wrap")
         WidgetHandler.InitCheckButton("nano_tabspace", "Nano", "tab_to_spaces")
         WidgetHandler.InitCheckButton("nano_colorui", "Nano", "set_uicolors")
 
+        # Extra steps, does not (yet?) catch the case when 'use_vivid' is enabled,
+        # and 'use_lscolors' is toggled afterwards, the other dropdowns sensitivity
+        # gets of sync, this does have impact beyond the incorrect state
         self.use_vivid = WidgetHandler.InitCheckButton("use_vivid", "LSColors", "use_vivid")
         self.use_vivid.connect("toggled", WidgetHandler.DisableChilds, None, "ls_colors.grid", ("use_lscolors", "ls_custom", "use_vivid", "vivid_", ), True)
         WidgetHandler.DisableChilds(self.use_vivid, None, "ls_colors.grid", ("use_lscolors", "ls_custom", "use_vivid", "vivid_"), True)
 
+        # GtkDropDown
         WidgetHandler.InitDropDown("prompt_style", "Style", "prompt_style", dicts.prompt_styles)
         WidgetHandler.InitDropDown("color_style", "Style", "color_style", dicts.color_styles)
         WidgetHandler.InitDropDown("color_date", "Style", "color_date", dicts.colors)
@@ -365,9 +373,12 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitDropDown("grep_color_se", "GREP", "grep_color_se", dicts.grep_colors)
         WidgetHandler.InitDropDown("vivid_colorscheme", "LSColors", "vivid_colorscheme", dicts.vivid_colorschemes)
 
-        WidgetHandler.InitWidget("about.prefix", None, os.getenv('BSNG_PREFIX'), "label", None)
-        WidgetHandler.InitWidget("about.version", None, f"{os.getenv('BSNG_VERSION')} ({os.getenv('BSNG_CODENAME')})", "label", None)
-        WidgetHandler.InitWidget("about.log", None, f"file://{os.getenv('HOME')}/.bashstyle-ng.log", "link", None)
+        # GtkLabel
+        WidgetHandler.InitLabel("about.prefix", os.getenv('BSNG_PREFIX'))
+        WidgetHandler.InitLabel("about.version", f"{os.getenv('BSNG_VERSION')} ({os.getenv('BSNG_CODENAME')})")
+
+        # GtkLinkButton
+        WidgetHandler.InitLink("about.log", f"file://{os.getenv('HOME')}/.bashstyle-ng.log")
 
         view = iconbook.IconBook()
         view.InitIconBook()

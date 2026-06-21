@@ -118,6 +118,16 @@ class WidgetHandler(object):
 
         return object
 
+    def InitLabel(self, widget, label):
+        object = gtkbuilder.get_object(f"{widget}")
+        object.set_label(f"{label}")
+        return object
+
+    def InitLink(self, widget, link):
+        object = gtkbuilder.get_object(f"{widget}")
+        object.set_uri(f"{link}")
+        return object
+
     def InitWidget(self, widget, group, setting, type, dict):
         # known widget types:
         #   text        GtkTextEntry
@@ -138,10 +148,6 @@ class WidgetHandler(object):
         def LoadValue():
             if type == "int":
                 object.set_value(self.config[group].as_int(setting))
-            elif type == "label":
-                object.set_label(f"{setting}")
-            elif type == "link":
-                object.set_uri(f"{setting}")
             elif type == "cpb_combo":
                 object.set_selected(0)
 
