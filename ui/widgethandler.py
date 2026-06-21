@@ -50,7 +50,6 @@ class WidgetHandler(object):
 
     def InitEntry(self, widget, group, setting, max_len=-1):
         object = gtkbuilder.get_object(f"{widget}")
-
         object.set_text(f"{self.config[group][setting]}")
         if max_len > 0: object.set_max_length(max_len)
 
@@ -74,12 +73,10 @@ class WidgetHandler(object):
         object.connect("insert-text", emit_text)
         object.connect("icon-press", revert_option, group, setting)
         object.connect("changed", set_option, group, setting)
-
         return object
 
     def InitSwitch(self, widget, group, setting, grid):
         object = gtkbuilder.get_object(f"{widget}")
-
         object.set_active(self.config[group].as_bool(setting))
 
         def set_option(widget, data, widget_group, widget_setting):
@@ -89,12 +86,10 @@ class WidgetHandler(object):
         object.connect("notify::active", set_option, group, setting)
         object.connect("notify::active", self.DisableChilds, grid)
         self.DisableChilds(object, None, grid)
-
         return object
 
     def InitCheckButton(self, widget, group, setting):
         object = gtkbuilder.get_object(f"{widget}")
-
         object.set_active(self.config[group].as_bool(setting))
 
         def set_option(widget, widget_group, widget_setting):
@@ -102,12 +97,10 @@ class WidgetHandler(object):
             self.config.write()
 
         object.connect("toggled", set_option, group, setting)
-
         return object
 
     def InitDropDown(self, widget, group, setting, dict):
         object = gtkbuilder.get_object(f"{widget}")
-
         object.set_selected(self.SwapDictionary(dict)[self.config[group][setting]])
 
         def set_option(widget, widget_group, widget_setting, dict):
@@ -115,7 +108,11 @@ class WidgetHandler(object):
             self.config.write()
 
         object.connect("notify::selected", set_option, type, dict, group, setting)
+        return object
 
+    def InitButton(self, widget, action, *arg):
+        object = gtkbuilder.get_object(f"{widget}")
+        object.connect("clicked", action, *arg)
         return object
 
     def InitLabel(self, widget, label):
@@ -129,17 +126,6 @@ class WidgetHandler(object):
         return object
 
     def InitWidget(self, widget, group, setting, type, dict):
-        # known widget types:
-        #   text        GtkTextEntry
-        #   int         GtkSpinButton
-        #   bool        GtkToggleButton / GtkRadioButton
-        #   switch      GtkSwitch
-        #   combo       GtkDropDown
-        #   button      GtkButton
-        #   label       GtkLabel
-        #   cpb_button  Custom Prompt Builder GtkButton
-        #   cpb_combo   Custom Prompt Builder GtkDropDown
-        #   link        GtkLinkButton
 
         def LoadWidget():
             object = gtkbuilder.get_object(f"{widget}")
@@ -154,8 +140,6 @@ class WidgetHandler(object):
         def ConnectSignals():
             if type == "int":
                 object.connect("value-changed", set_option, None, type, None, group, setting)
-            elif type == "button":
-                object.connect("clicked", group, setting)
             elif type == "cpb_button":
                 object.connect("clicked", dict, group, setting)
             elif type == "cpb_combo":
