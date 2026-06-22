@@ -321,10 +321,26 @@ notebook_pages = {
     _("BashStyle-NG StartUp"): 13,
     _("Configuration"): 14,
     _("GCC & Grep Colors"): 16,
-    _("Prompt Hooks"): 17,
-    _("Utilities"): 18,
     _("Documentation"): 0,
-    _("Start Terminal"): 0,
+}
+
+notebook_pages_doc = {
+    1: "Style-Options.html",
+    2: "Aliases.html",
+    3: "Aliases.html",
+    4: "Readline-Options.html",
+    5: "Vim-Options.html",
+    6: "Nano-Options.html",
+    7: "LS-Colors.html",
+    15: "Manpage-Colors.html",
+    8: "Custom-Prompt-Builder.html",
+    10: "Shell-Options.html",
+    9: "Git-Options.html",
+    12: "Introduction.html",
+    11: "Key-Bindings.html",
+    13: "First-Start.html",
+    14: "Configuration-Files.html",
+    16: "GCC-_0026-Grep-Colors.html",
 }
 
 # Custom Prompt Builder

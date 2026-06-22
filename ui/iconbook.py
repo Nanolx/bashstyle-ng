@@ -57,6 +57,9 @@ class IconBook(object):
         self.back.set_visible(False)
         self.back.connect("clicked", self.back_clicked)
         self.main_label = gtkbuilder.get_object("main.label")
+        self.open_doc = gtkbuilder.get_object("open_doc")
+        self.open_doc.set_visible(False)
+        self.open_doc.connect("clicked", self.open_doc_clicked)
 
         for icon_name in dicts.iconview_icons:
             label_text = dicts.iconview_labels.get(icon_name, icon_name)
@@ -93,17 +96,22 @@ class IconBook(object):
         label = item.label
 
         if label == _("Documentation"):
-            self.back.set_visible(False)
             path = os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html"
             subprocess.Popen(["xdg-open", path])
         else:
             self.notebook.set_current_page(dicts.notebook_pages.get(label, 0))
             self.back.set_visible(True)
+            self.open_doc.set_visible(True)
             self.main_label.set_visible(True)
             self.main_label.set_text(_("Category: ") + _(label))
 
     def back_clicked(self, btn):
         self.notebook.set_current_page(0)
         self.back.set_visible(False)
+        self.open_doc.set_visible(False)
         self.main_label.set_text(_("Choose a category:"))
         self.main_label.set_visible(True)
+
+    def open_doc_clicked(self, btn):
+        path = os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/" + dicts.notebook_pages_doc.get(self.notebook.get_current_page(), 0)
+        subprocess.Popen(["xdg-open", path])
