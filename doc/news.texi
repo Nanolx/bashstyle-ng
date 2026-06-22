@@ -147,6 +147,9 @@ the custom string, this string will be appended to @code{vivid} generated
 @item @code{systemkit externalip} defaults to @code{ipv4}, it is now possible to
 pass @code{ipv6} flag instead, like @code{systemkit externalip ipv6}
 
+@item The Custom Prompt Builder now allows to insert @code{Git} repo information
+to the prompt by using @code{gitkit}
+
 @end itemize
 @item Misc. Changes
 @itemize @minus
@@ -163,13 +166,7 @@ restart the UI everytime
 @item UpdateConfig now checks for obsolete keys in the user configuration, and
 removes them
 
-@item Since ages some of the prompt styles allow the user to hook into them, but
-this feature was never propagated (...), now BashStyle-NG shows a new
-@code{Prompt Hooks} icon, featuring a full description of what styles support
-hooks and how to use them
-
-@item BashStyle-NG features a set of utilities, the UI now has an info page to
-advertise those
+dvertise those
 
 @item The WidgetHandler now allows GtkEntrys to have a maximum number of characters
 the user can input.
