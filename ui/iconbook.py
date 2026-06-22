@@ -96,9 +96,6 @@ class IconBook(object):
             self.back.set_visible(False)
             path = os.getenv('BSNG_DATADIR') + "/doc/bashstyle-ng/index.html"
             subprocess.Popen(["xdg-open", path])
-        elif label == _("Start Terminal"):
-            self.back.set_visible(False)
-            subprocess.Popen(["x-terminal-emulator"])
         else:
             self.notebook.set_current_page(dicts.notebook_pages.get(label, 0))
             self.back.set_visible(True)
