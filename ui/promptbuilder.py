@@ -106,7 +106,10 @@ class PromptBuilder(object):
 
         def prompt_add_combo(widget, data, dict_p_c, dict_ps1):
             if widget.get_selected() != 0:
-                prompt_add(widget, dict_p_c[widget.get_selected()], dict_ps1[widget.get_selected()])
+                if self.active_buffer == "P_C":
+                    self.prompt_command_buffer.insert_at_cursor(dict_p_c[widget.get_selected()])
+                elif self.active_buffer == "PS1":
+                    self.custom_prompt_buffer.insert_at_cursor(dict_ps1[widget.get_selected()])
                 widget.set_selected(0)
 
         def do_insert_prompt(widget, data, dict1, dict2):
@@ -198,6 +201,7 @@ class PromptBuilder(object):
         WidgetHandler.InitDropDownButton("countfiles", prompt_add_combo, dicts.counters_p_c, dicts.counters_ps1)
         WidgetHandler.InitDropDownButton("showload", prompt_add_combo, dicts.load_getters_p_c, dicts.load_getters_ps1)
         WidgetHandler.InitDropDownButton("insert_color", prompt_add_combo, dicts.symbolic_colors_p_c, dicts.symbolic_colors_ps1)
+        WidgetHandler.InitDropDownButton("gitkit", prompt_add_combo, dicts.gitkit_getters_p_c, dicts.gitkit_getters_ps1)
 
         # Default Styles
         WidgetHandler.InitDropDownButton("insert_prompt", do_insert_prompt, prompts.styles_pc, prompts.styles_ps1)

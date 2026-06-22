@@ -395,6 +395,20 @@ space_getters_ps1 = {
     4: "\\$(systemkit freespace% <device>)",
 }
 
+gitkit_getters_p_c = {
+    1: "\\$(gitkit branch)",
+    2: "\\$(gitkit revision)",
+    3: "\\$(gitkit action)",
+    4: "\\$(gitkit branch):\\$(gitkit revision):\\$(gitkit action)",
+}
+
+gitkit_getters_ps1 = {
+    1: "$(gitkit branch)",
+    2: "$(gitkit revision)",
+    3: "$(gitkit action)",
+    4: "$(gitkit branch):$(gitkit revision):$(gitkit action)",
+}
+
 symbolic_colors_p_c = {
     1: "${ecolor_user}",
     2: "${ecolor_host}",
@@ -475,9 +489,4 @@ vivid_colorschemes = {
     21: "snazzy",
     22: "solarized-dark",
     23: "solarized-light",
-}
-
-xml_ids = {
-    0: "bashstyle",
-    1: "Toolbox",
 }
