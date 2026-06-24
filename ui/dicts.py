@@ -271,7 +271,9 @@ keybindings = {
     "previous_screen_line",
     "spell_correct_word",
     "fetch_history",
-    "rl_clear_display"
+    "rl_clear_display",
+    "plocate",
+    "plocate_file",
 }
 
 # IconView Stuff

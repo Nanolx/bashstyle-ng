@@ -24,6 +24,8 @@ keybindings_setter () {
             complete-path)  ACT='"\eb`which \ef` \e\C-e"' ;;
             rerun-root) ACT='"\ebsudo !!\e\C-e\C-j"' ;;
             list-keys)  ACT='"\eblist_keybindings\e\C-e\C-j"' ;;
+            plocate-file) ACT='"\eb`plocate -b \ef` \e\C-e"' ;;
+            plocate) ACT='"\eb`plocate \ef` \e\C-e"' ;;
             *)      ACT="${2}" ;;
         esac
 
@@ -77,6 +79,12 @@ if (( "${#bsng_keybindingsrc[@]}" == 0 )); then
             keybindings_setter "$(ini_get $key)" "${key//_/-}"
 
     done
+
+    if check P "plocate" "key bindings" &>/dev/null; then
+        for key in plocate plocate_file; do
+            keybindings_setter "$(ini_get $key)" "${key//_/-}"
+        done
+    fi
 
     if [[ $(ini_get prompt_style) == equinox ]]; then
         # make the prompt properly re-draw when pressing [Return]
