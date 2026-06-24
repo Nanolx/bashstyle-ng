@@ -9,89 +9,36 @@
 
 @heading Basic
 
-@defvr {Setting} use_lscolors
+@defvr {Setting} use_lscolors Customize LS Colors
+This master switch will make @b{BashStyle-NG} adjust the @code{LS_COLORS}
+environment variable to make @code{ls}, and other commands utilizing it, use your
+color settings.
 @end defvr
 
-@defvr {Setting} custom
+@defvr {Setting} custom Custom
+Define additional settings for @code{LS_COLORS}, if @code{use_vivid} is enabled,
+this will still work, as your custom settings are the last to be enabled.
+
+The syntax is @code{*filetype=colordefinition}, for example
+@code{*README.md=0;38;2;239;241;245;48;2;223}, sets an orange background and
+white text for @code{README.md} files, of course more simple color definitions
+like @code{*.png=01;35} which will make @code{.png} files appear magneta, work
+as well.
 @end defvr
 
-@defvr {Setting} use_vivid
+@defvr {Setting} use_vivid Use vivid
+@code{vivid} (@url{https://github.com/sharkdp/vivid}) is a generator for
+@code{LS_COLORS}, whichs uses YAML configuration. If @code{vivid} is installed,
+you can use it instead of manual configuration from @b{BashStyle-NG}.
 @end defvr
 
-@defvr {Setting} vivid_cholorscheme
+@defvr {Setting} vivid_cholorscheme Choose vivid color scheme
+Choose which predefinied colorscheme to use for @code{vivid}, use
+@code{vivid preview $theme} for a preview in your terminal.
 @end defvr
 
-@heading Common
+If you don't want to use @code{vivid} the following settings allow to customize
+the most commong file types manually, using @b{Bashstyle-NG}'s predefined colors,
+note: the color style from the Style Settings apply here aswell.
 
-@defvr {Setting} exec
-@end defvr
-
-@defvr {Setting} generic
-@end defvr
-
-@defvr {Setting} logs
-@end defvr
-
-@defvr {Setting} deb
-@end defvr
-
-@defvr {Setting} rpm
-@end defvr
-
-@defvr {Setting} dirs
-@end defvr
-
-@defvr {Setting} link
-@end defvr
-
-@defvr {Setting} pipe
-@end defvr
-
-@defvr {Setting} socket
-@end defvr
-
-@defvr {Setting} blockdev
-@end defvr
-
-@defvr {Setting} chardev
-@end defvr
-
-@heading Media
-
-@defvr {Setting} jpeg
-@end defvr
-
-@defvr {Setting} png
-@end defvr
-
-@defvr {Setting} gif
-@end defvr
-
-@defvr {Setting} mp3
-@end defvr
-
-@defvr {Setting} ogg
-@end defvr
-
-@defvr {Setting} flac
-@end defvr
-
-@heading Archives
-
-@defvr {Setting} tar
-@end defvr
-
-@defvr {Setting} targz
-@end defvr
-
-@defvr {Setting} tarbz2
-@end defvr
-
-@defvr {Setting} tarxz
-@end defvr
-
-@defvr {Setting} zip
-@end defvr
-
-@defvr {Setting} rar
-@end defvr
+Theese are disabled, when @code{vivid} is in use.
