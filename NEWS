@@ -12,9 +12,8 @@ between.  For more detailed information see the git log.
    • General Changes
 
         − On Startup BashStyle-NG now checks whether the user uses a Gtk
-          theme containing ‘adwaita’ in it's name, if so the python code
-          switches some things from pure Gtk to Adwaita.  This does only
-          dynamically apply Adwaita over the fallback Gtk4 theme, this
+          theme containing ‘adwaita’ in it's name, if so the UI does
+          dynamically apply Adwaita over the fallback Gtk4 theme.  This
           does not change any UI elements to Adwaita widgets.
 
           The purpose is to let the user decide whether to use Adwaita
@@ -52,7 +51,7 @@ between.  For more detailed information see the git log.
 
         − #291: Load ‘~/.bashstyle.custom’ earlier, so that when hooking
           into prompts and a color was set via the hook-variable it's
-          acutally used
+          actually used
 
         − #292: The ‘deadlink’ utility wasn't working anymore, fixed
 
@@ -69,10 +68,10 @@ between.  For more detailed information see the git log.
         − #295: Numerous fixes for the Power User prompt style, it has
           been heavily outdated, but properly works again
 
-        − #296: Power User prompt directly uses ‘grep’, but if the user
-          has set grep options like ‘-H’ parsing the output was broken,
-          this is fixed by calling ‘grep’ directly, regardless of extra
-          options or aliases
+        − #296: Power User prompt uses ‘grep’, but if the user has set
+          grep options like ‘-H’ parsing the output was broken, this is
+          fixed by calling ‘grep’ directly, discarding any extra options
+          or aliases
 
         − #297: In the Ayoli prompt style the calculation of the
           fillsize was off by two, thus the last two characters of the
@@ -99,24 +98,25 @@ between.  For more detailed information see the git log.
 
         − #302: Updated ‘systemkit externalip’ to work again
 
-        − #303: Fix a silly typo prevented BashStyle-NG from showing the
-          current position in GNU Nano, if it was enabled by the user
+        − #303: Fix a silly typo preventing BashStyle-NG from showing
+          the current position in GNU Nano, if it was enabled by the
+          user
 
    • New Features
 
         − Until version 11.0 BashStyle-NG saved the configuration when
-          closing the the application, now every widgets triggers a
-          write, when changing or reverting a setting immediately -
-          though save on close is still performed
+          closing the application, now every widgets triggers a write,
+          when changing or reverting a setting immediately - though the
+          configuration is still saved on close
 
         − Allow setting prompt style to ‘None’, which will prevent
           BashStyle-NG from setting ‘PROMPT_COMMAND’ or ‘PS1’ entirely,
           useful if you want to use it in conjunction with another tool,
           like ‘Liquid Prompt’ or whatever
 
-        − Allow setting a root character for prompt, this allows to show
-          something different than ‘#’ for root, this is done through
-          ‘showuser’ function
+        − Allow setting a custom character for root user in the prompt,
+          this allows to show something different than ‘#’ for root,
+          this is done through ‘showuser’
 
         − ‘Equinox’ prompt style now allows to show information of a git
           repo if the user is inside it's root directory, using ‘gitkit’
@@ -145,7 +145,7 @@ between.  For more detailed information see the git log.
           information to the prompt by using ‘gitkit’
 
         − BashStyle-NG now offers two more custom Key Bindings for
-          readline, which utilize ‘plocate’: ‘plocate’ for the string
+          readline, which utilize ‘plocate’, ‘plocate’: for the string
           the cursor currently is at, use ‘plocate’ to search for it and
           ‘plocate-file’, likewise, but explicitely only searches for
           the basename (filename, no directory name)
@@ -160,11 +160,6 @@ between.  For more detailed information see the git log.
           vendor) configuration, then BashStyle-NG is restarted; in the
           ‘Configuration’ group a restart button is available now,
           aswell
-
-        − Add global save button, actually BashStyle-NG saves
-          automatically on exit, but this may be used if you want to
-          test a setting, without having to close and restart the UI
-          everytime
 
         − UpdateConfig now checks for obsolete keys in the user
           configuration, and removes them
@@ -197,7 +192,7 @@ between.  For more detailed information see the git log.
              + Prevent Adwaita from making the GtkCheckButtons in the
                keybindings ColumnView comically huge
 
-             + Prevent Adwaita from enlarding CustomIconSpinButton
+             + Prevent Adwaita from enlarging CustomIconSpinButton
 
              + Fancy hover effects for most widgets, which would
                otherwise have almost no visible hover effect

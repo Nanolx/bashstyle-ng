@@ -15,9 +15,8 @@ Each release lists incompatible changes at its top.
 @itemize @minus
 
 @item On Startup BashStyle-NG now checks whether the user uses a Gtk theme containing
-@code{adwaita} in it's name, if so the python code switches some things from pure
-Gtk to Adwaita. This does only dynamically apply Adwaita over the fallback Gtk4
-theme, this does not change any UI elements to Adwaita widgets.
+@code{adwaita} in it's name, if so the UI does dynamically apply Adwaita over the
+fallback Gtk4 theme. This does not change any UI elements to Adwaita widgets.
 
 The purpose is to let the user decide whether to use Adwaita theme, default Gtk4
 theme or any other Gtk4 theme (like Breeze).
@@ -51,7 +50,7 @@ set to a command, BashStyle-NG now checks whether it's set to a command or messa
 and acts accordingly, so either way is working
 
 @item #291: Load @code{~/.bashstyle.custom} earlier, so that when hooking into
-prompts and a color was set via the hook-variable it's acutally used
+prompts and a color was set via the hook-variable it's actually used
 
 @item #292: The @code{deadlink} utility wasn't working anymore, fixed
 
@@ -66,9 +65,9 @@ this applies to almost all prompt styles
 @item #295: Numerous fixes for the Power User prompt style, it has been heavily
 outdated, but properly works again
 
-@item #296: Power User prompt directly uses @code{grep}, but if the user has set
-grep options like @code{-H} parsing the output was broken, this is fixed by calling
-@code{grep} directly, regardless of extra options or aliases
+@item #296: Power User prompt uses @code{grep}, but if the user has set grep
+options like @code{-H} parsing the output was broken, this is fixed by calling
+@code{grep} directly, discarding any extra options or aliases
 
 @item #297: In the Ayoli prompt style the calculation of the fillsize was off by
 two, thus the last two characters of the first prompt line were wrapped to the
@@ -92,7 +91,7 @@ being malformed
 
 @item #302: Updated @code{systemkit externalip} to work again
 
-@item #303: Fix a silly typo prevented BashStyle-NG from showing the current
+@item #303: Fix a silly typo preventing BashStyle-NG from showing the current
 position in GNU Nano, if it was enabled by the user
 
 @end itemize
@@ -100,15 +99,15 @@ position in GNU Nano, if it was enabled by the user
 @itemize @minus
 
 @item Until version 11.0 BashStyle-NG saved the configuration when closing the
-the application, now every widgets triggers a write, when changing or reverting
-a setting immediately - though save on close is still performed
+application, now every widgets triggers a write, when changing or reverting a
+setting immediately - though the configuration is still saved on close
 
 @item Allow setting prompt style to @code{None}, which will prevent BashStyle-NG
 from setting @code{PROMPT_COMMAND} or @code{PS1} entirely, useful if you want to
 use it in conjunction with another tool, like @code{Liquid Prompt} or whatever
 
-@item Allow setting a root character for prompt, this allows to show something
-different than @code{#} for root, this is done through @code{showuser} function
+@item Allow setting a custom character for root user in the prompt, this allows to
+show something different than @code{#} for root, this is done through @code{showuser}
 
 @item @code{Equinox} prompt style now allows to show information of a git repo if
 the user is inside it's root directory, using @code{gitkit} - the prompt then shows
@@ -133,8 +132,8 @@ pass @code{ipv6} flag instead, like @code{systemkit externalip ipv6}
 to the prompt by using @code{gitkit}
 
 @item BashStyle-NG now offers two more custom Key Bindings for readline, which
-utilize @code{plocate}: @code{plocate} for the string the cursor currently is at,
-use @code{plocate} to search for it and @code{plocate-file}, likewise, but
+utilize @code{plocate}, @code{plocate}: for the string the cursor currently is
+at, use @code{plocate} to search for it and @code{plocate-file}, likewise, but
 explicitely only searches for the basename (filename, no directory name)
 
 @item In the Settings for GNU Nano you can enable or disable the @code{minibar},
@@ -148,10 +147,6 @@ aswell as setting it's colors.
 a button that reverts to factory (or vendor) configuration, then BashStyle-NG is
 restarted; in the @code{Configuration} group a restart button is available now,
 aswell
-
-@item Add global save button, actually BashStyle-NG saves automatically on exit,
-but this may be used if you want to test a setting, without having to close and
-restart the UI everytime
 
 @item UpdateConfig now checks for obsolete keys in the user configuration, and
 removes them
@@ -182,7 +177,7 @@ list, for some reason Adwaita does apply no highlight to the active entry
 @item Prevent Adwaita from making the GtkCheckButtons in the keybindings
 ColumnView comically huge
 
-@item Prevent Adwaita from enlarding CustomIconSpinButton
+@item Prevent Adwaita from enlarging CustomIconSpinButton
 
 @item Fancy hover effects for most widgets, which would otherwise have almost
 no visible hover effect
