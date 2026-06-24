@@ -9,52 +9,25 @@
 
 @heading GCC Colors
 
-@defvr {Settings} use_gcc_colors
+@defvr {Settings} use_gcc_colors Enable GCC Colors
+This master switch will make @b{BashStyle-NG} adjust the colors for @code{gcc}.
 @end defvr
 
-@defvr {Settings} gcc_color_error
-@end defvr
+The following settings allow you to adjust the specific types of text messages
+to be colored by @b{BashStyle-NG}'s predefinied colors.
 
-@defvr {Settings} gcc_color_warn
-@end defvr
-
-@defvr {Settings} gcc_color_notes
-@end defvr
-
-@defvr {Settings} gcc_color_caret
-@end defvr
-
-@defvr {Settings} gcc_color_locus
-@end defvr
-
-@defvr {Settings} gcc_color_quote
-@end defvr
+Caret = the @code{^} shown to point to a specific part of the code
+Locus = location information (line, column, etc.)
 
 @heading Grep Colors
 
 @defvr {Settings} use_grep_colors
+This master switch will make @b{BashStyle-NG} adjust the colors for @code{grep}.
 @end defvr
 
-@defvr {Settings} grep_color_ms
-@end defvr
+The following settings allow you to adjust the specific types of text messages
+to be colored by @b{BashStyle-NG}'s predefinied colors.
 
-@defvr {Settings} grep_color_mc
-@end defvr
-
-@defvr {Settings} grep_color_sl
-@end defvr
-
-@defvr {Settings} grep_color_cx
-@end defvr
-
-@defvr {Settings} grep_color_fn
-@end defvr
-
-@defvr {Settings} grep_color_ln
-@end defvr
-
-@defvr {Settings} grep_color_bn
-@end defvr
-
-@defvr {Settings} grep_color_se
-@end defvr
+selected match = the actual match
+context match = lines before or after the selected match displayed to give context
+information, enabled via @code{-A}, @code{-B} or @code{-C} flags.
