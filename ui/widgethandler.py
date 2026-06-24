@@ -103,11 +103,11 @@ class WidgetHandler(object):
         object = gtkbuilder.get_object(f"{widget}")
         object.set_selected(self.SwapDictionary(dict)[self.config[group][setting]])
 
-        def set_option(widget, widget_group, widget_setting, dict):
+        def set_option(widget, data, widget_group, widget_setting, dict):
             self.config[widget_group][widget_setting] = dict[widget.get_selected()]
             self.config.write()
 
-        object.connect("notify::selected", set_option, type, dict, group, setting)
+        object.connect("notify::selected", set_option, group, setting, dict)
         return object
 
     # Custom Prompt Builder: it's a GtkDropDown, but does not change a setting,
