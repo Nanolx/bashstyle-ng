@@ -35,28 +35,7 @@ Regardless BashStyle-NG checks whether we are running from KDE, if so:
 
 @item The Documentation was greatly improved, the name for the settings were
 add, addtionally to their visible name in the UI and description. Additionally
-screenshots were added. For the following chapters the documentation is completed:
-@itemize @minus
-@item Index
-@item Copying
-@item Introduction (gets exported to README.md for GitLab)
-@item News (exported to NEWS for GitLab)
-@item Installation
-@item First Start
-@item Style Options
-@item Prompt Styles
-@item Aliases
-@item Advanced Options
-@item Shell Options
-@item Git Options
-@item Readline Options
-@item Configuration Files
-@item Prompt Hooks
-@item Utilities
-@item user Interface Icons
-@end itemize
-For the remaining Chapters the documentation will be completed before the release
-of version 11.1.
+screenshots were added.
 @end itemize
 
 @item Fixes
@@ -149,6 +128,11 @@ pass @code{ipv6} flag instead, like @code{systemkit externalip ipv6}
 
 @item The Custom Prompt Builder now allows to insert @code{Git} repo information
 to the prompt by using @code{gitkit}
+
+@item BashStyle-NG now offers two more custom Key Bindings for readline, which
+utilize @code{plocate}: @code{plocate} for the string the cursor currently is at,
+use @code{plocate} to search for it and @code{plocate-file}, likewise, but
+explicitely only searches for the basename (filename, no directory name)
 
 @end itemize
 @item Misc. Changes

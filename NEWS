@@ -35,27 +35,7 @@ between.  For more detailed information see the git log.
 
         − The Documentation was greatly improved, the name for the
           settings were add, addtionally to their visible name in the UI
-          and description.  Additionally screenshots were added.  For
-          the following chapters the documentation is completed:
-             − Index
-             − Copying
-             − Introduction (gets exported to README.md for GitLab)
-             − News (exported to NEWS for GitLab)
-             − Installation
-             − First Start
-             − Style Options
-             − Prompt Styles
-             − Aliases
-             − Advanced Options
-             − Shell Options
-             − Git Options
-             − Readline Options
-             − Configuration Files
-             − Prompt Hooks
-             − Utilities
-             − user Interface Icons
-          For the remaining Chapters the documentation will be completed
-          before the release of version 11.1.
+          and description.  Additionally screenshots were added.
 
    • Fixes
 
@@ -159,6 +139,12 @@ between.  For more detailed information see the git log.
 
         − The Custom Prompt Builder now allows to insert ‘Git’ repo
           information to the prompt by using ‘gitkit’
+
+        − BashStyle-NG now offers two more custom Key Bindings for
+          readline, which utilize ‘plocate’: ‘plocate’ for the string
+          the cursor currently is at, use ‘plocate’ to search for it and
+          ‘plocate-file’, likewise, but explicitely only searches for
+          the basename (filename, no directory name)
 
    • Misc.  Changes
 
