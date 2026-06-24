@@ -10,72 +10,130 @@
 @heading Basic
 
 @defvr {Setting} use_vimcfg
+This master switch will make @b{BashStyle-NG} adjust the Settings for @code{Vim}.
 @end defvr
+
 @defvr {Setting} vim_backup
+If enabled @code{vim} will backup files to @code{filename~} upon @code{write}.
 @end defvr
 
 @heading Editing
 
-@defvr {Setting} jump_back
+@defvr {Setting} jump_back Jump back to last position
+When opening a file again, @code{vim} will jump back to the previous position.
 @end defvr
-@defvr {Setting} filetype_indent
+
+@defvr {Setting} filetype_indent Enable filetype indention
+If enabled @code{vim} will use indention based on determined file type.
 @end defvr
-@defvr {Setting} show_command
+
+@defvr {Setting} show_command Display (partial) command
+If enabled @code{vim} will display (partially) typed in commands in the ruler.
 @end defvr
-@defvr {Setting} highlight_brackets
+
+@defvr {Setting} highlight_brackets Highlight matching brackets
+If enabled @code{vim} will highlight matching brackets, when the cursor is
+positioned at either of them.
 @end defvr
-@defvr {Setting} syntax_hilight
+
+@defvr {Setting} syntax_hilight Enable syntax highlighting
+Enable @code{vim} syntax highlighting.
 @end defvr
-@defvr {Setting} dark_background
+
+@defvr {Setting} dark_background Bash has dark background
+Determines whether the shell has dark background or not
 @end defvr
-@defvr {Setting} start_line
+
+@defvr {Setting} start_line Jump to start of line
+If enabled many jump commands move the cursor to the first non-blank character
+of a line.
 @end defvr
-@defvr {Setting} wrap_line
+
+@defvr {Setting} wrap_line Wrap long lines
+Wrap long lines exceeding @code{wrap_length}.
 @end defvr
-@defvr {Setting} tab_length
+
+@defvr {Setting} wrap_length Autowrap position
+At what length long lines should be wraped
 @end defvr
-@defvr {Setting} wrap_length
+
+@defvr {Setting} tab_length tabstop length
+Length of a tabulator in spaces.
 @end defvr
-@defvr {Setting} expandtab
+
+@defvr {Setting} expandtab Expand tab to spaces
+If enabled, tabulators will be expanded to spaces.
 @end defvr
+
 @defvr {Setting} autosave
+If enabled, files will be automatically written when leaving a modified buffer.
 @end defvr
 
 @heading Search
 
-@defvr {Setting} ignore_case
+@defvr {Setting} ignore_case Match case-insensitively
+If enabled, searches will be perfmored case-insensitively.
 @end defvr
+
 @defvr {Setting} smart_case
+If enabled, it will override @code{ignore_case} when a pattern has upper case
+characters.
 @end defvr
-@defvr {Setting} incremental_search
+
+@defvr {Setting} incremental_search Enable incremental search
+If enabled @code{vim} will perform incremental searches, rather than waiting
+for the user to finish typing an accepting the search string.
 @end defvr
+
 @defvr {Setting} highlight_matches
+If enabled @code{vim} will highlight all matches in the current file.
 @end defvr
 
 @heading Folding
 
-@defvr {Setting} foldenable
+@defvr {Setting} foldenable Enable folding large code
+If enabled @code{vim} will allow to temporarily collapse or expand blocks of
+code.
 @end defvr
-@defvr {Setting} foldlevelstart
+
+@defvr {Setting} foldlevelstart Code level to start folding at
+folds with a level higher than this number will be closed.
 @end defvr
-@defvr {Setting} foldnestmax
+
+@defvr {Setting} foldnestmax Maximum nested foldings
+Maximum fold depth for when @code{foldmethod} is @code{indent} or @code{syntax}.
 @end defvr
-@defvr {Setting} foldmethod
+
+@defvr {Setting} foldmethod By default fold based upon
+The method used to determine whether to fold large code blocks.
 @end defvr
 
 @heading Misc.
 
-@defvr {Setting} show_lineno
+@defvr {Setting} show_lineno Display line numbers
+Display line numbers.
 @end defvr
-@defvr {Setting} chdir
+
+@defvr {Setting} chdir Go into file's directory
+Go into file's directory.
 @end defvr
-@defvr {Setting} highlight_line
+
+@defvr {Setting} highlight_line Highlight current line
+Highlight current line.
 @end defvr
-@defvr {Setting} wildmenu
+
+@defvr {Setting} wildmenu Display possible completions
+Display possible completion.
 @end defvr
-@defvr {Setting} highlight_column
+
+@defvr {Setting} highlight_column Highlight current column
+Highlight current column.
 @end defvr
-@defvr {Setting} ruler
+
+@defvr {Setting} ruler Display the ruler
+Display a customizeable ruler at the bottom.
 @end defvr
-@defvr {Setting} rulerformat
+
+@defvr {Setting} rulerformat rulerformat
+Customize @code{vim}'s ruler.
 @end defvr
