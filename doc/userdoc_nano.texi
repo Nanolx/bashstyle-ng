@@ -14,113 +14,98 @@
 
 @heading Basic
 
-@defvr {Setting} use_nanocfg
+@defvr {Setting} use_nanocfg Enable Nano Config
+This master switch will make @b{BashStyle-NG} adjust the settings of @code{nano}.
 @end defvr
 
-@defvr {Setting} show_position
+@defvr {Setting} nano_backup Backup files
+If enabled backup files to @code{filename~} upon save.
 @end defvr
 
-@defvr {Setting} history
+@defvr {Setting} show_position Display position of cursor
+If enabled show the current position (line, column) in the minibar (or if
+disabled, the traditional status bar)
 @end defvr
 
-@defvr {Setting} nano_backup
+@defvr {Setting} history Use search-string history
+If enabled save searches for future reuse in a history.
 @end defvr
 
-@defvr {Setting} line_numbers
+@defvr {Setting} minibar Enable Minibar
+Enable the minibar introduced in GNU Nano 5.0, instead of the traditional
+status bar.
+@end defvr
+
+@defvr {Setting} line_numbers Show line numbers
+If enabled the line numbers are displayed.
 @end defvr
 
 @heading Editing
 
-@defvr {Setting} auto_indent
+@defvr {Setting} auto_indent Enable auto-indention
+If enabled the file is auto indented, based on the determined filetype.
 @end defvr
 
-@defvr {Setting} syntax_highlight
+@defvr {Setting} syntax_highlight Enable syntax highlighting
+If enabled syntax highlighting, based on the determined filetype, will be done.
 @end defvr
 
-@defvr {Setting} hide_help
+@defvr {Setting} hide_help Hide shortcuts
+If enabled the keyboard shortcuts/help at the bottom will be hidden.
 @end defvr
 
-@defvr {Setting} case_sensitive
+@defvr {Setting} case_sensitive Search case-sensitively
+If enabled, searches are performed case-sensitive.
 @end defvr
 
-@defvr {Setting} no_wrap
+@defvr {Setting} no_wrap No line wrapping
+If enabled, long lines will be scrolled horizontally, instead of being wrapped.
 @end defvr
 
-@defvr {Setting} tab_to_spaces
+@defvr {Setting} tab_to_spaces Convert tab to spaces
+If enabled, tabs wille be converted to spaces.
 @end defvr
 
-@defvr {Setting} tab_size
+@defvr {Setting} tab_size Tab width
+Set the width of a tab in spaces
 @end defvr
 
-@defvr {Setting} guide_stripe
+@defvr {Setting} guide_stripe Guide Stripe Position
+The position (in characters) the stripe is displayed, indicating overlong lines.
 @end defvr
 
 @heading UI Colors
 
 @defvr {Setting} set_uicolors
+Enable custom user interface coloring, if disabled the following settings wille
+be ignored.
 @end defvr
 
-@defvr {Setting} function_color_fg
+@defvr {Setting} bold_text Use bold text
+Will make text of some UI elements forcibly bold, even if non-bold colors are
+selected by the user.
 @end defvr
 
-@defvr {Setting} function_color_bg
-@end defvr
-
-@defvr {Setting} key_color_fg
-@end defvr
-
-@defvr {Setting} key_color_bg
-@end defvr
-
-@defvr {Setting} status_color_fg
-@end defvr
-
-@defvr {Setting} status_color_bg
-@end defvr
-
-@defvr {Setting} title_color_fg
-@end defvr
-
-@defvr {Setting} title_color_bg
-@end defvr
-
-@defvr {Setting} error_color_fg
-@end defvr
-
-@defvr {Setting} error_color_bg
-@end defvr
-
-@defvr {Setting} selected_color_fg
-@end defvr
-
-@defvr {Setting} selected_color_bg
-@end defvr
-
-@defvr {Setting} stripe_color_fg
-@end defvr
-
-@defvr {Setting} stripe_color_bg
-@end defvr
-
-@defvr {Setting} number_color_fg
-@end defvr
-
-@defvr {Setting} number_color_bg
-@end defvr
+The following settings allow to color all UI elements of GNU Nano, separately
+for text color and background color.
 
 @heading Misc.
 
-@defvr {Setting} bold_text
+@defvr {Setting} enable_mouse Enable Mouse Support
+Enable mouse support in GNU Nano, allowing to use the mouse to perform actions
+like select, copy or paste on the text.
 @end defvr
 
-@defvr {Setting} empty_space
+@defvr {Setting} empty_space Have more space for editing
+If enabled the whole available space will be availble for editing, no empty
+lines beetwenn the text and minibar/status or help/shortcuts.
 @end defvr
 
-@defvr {Setting} enable_mouse
+@defvr {Setting} rebind_delete Rebind delete keys
+On some terminals it may be the delete keys don't properly work, in that case
+let GNU Nano rebind them, to make them work.
 @end defvr
 
-@defvr {Setting} log_position
-@end defvr
-
-@defvr {Setting} rebind_delete
+@defvr {Setting} log_position Remember last position
+When opening a file again, jump to the previous position.
 @end defvr
