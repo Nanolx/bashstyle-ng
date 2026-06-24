@@ -4179,7 +4179,7 @@
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="column-span">3</property>
-                                  <property name="row">27</property>
+                                  <property name="row">29</property>
                                 </layout>
                               </object>
                             </child>
@@ -4585,8 +4585,8 @@
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Backup files</property>
                                 <layout>
-                                  <property name="column">1</property>
-                                  <property name="row">2</property>
+                                  <property name="column">2</property>
+                                  <property name="row">0</property>
                                 </layout>
                               </object>
                             </child>
@@ -4669,7 +4669,7 @@
                                 <property name="label" translatable="yes">Rebind delete keys</property>
                                 <layout>
                                   <property name="column">1</property>
-                                  <property name="row">30</property>
+                                  <property name="row">31</property>
                                 </layout>
                               </object>
                             </child>
@@ -4679,7 +4679,7 @@
                                 <property name="label" translatable="yes">Enable Mouse Support</property>
                                 <layout>
                                   <property name="column">1</property>
-                                  <property name="row">29</property>
+                                  <property name="row">30</property>
                                 </layout>
                               </object>
                             </child>
@@ -4688,8 +4688,8 @@
                                 <property name="focusable">1</property>
                                 <property name="label" translatable="yes">Use bold text</property>
                                 <layout>
-                                  <property name="column">1</property>
-                                  <property name="row">28</property>
+                                  <property name="column">2</property>
+                                  <property name="row">10</property>
                                 </layout>
                               </object>
                             </child>
@@ -4699,7 +4699,7 @@
                                 <property name="label" translatable="yes">Remember last position</property>
                                 <layout>
                                   <property name="column">2</property>
-                                  <property name="row">29</property>
+                                  <property name="row">31</property>
                                 </layout>
                               </object>
                             </child>
@@ -4709,7 +4709,7 @@
                                 <property name="label" translatable="yes">Have more space for editing</property>
                                 <layout>
                                   <property name="column">2</property>
-                                  <property name="row">28</property>
+                                  <property name="row">30</property>
                                 </layout>
                               </object>
                             </child>
@@ -4724,8 +4724,8 @@
                                 </style>
                                 <layout>
                                   <property name="column">0</property>
-                                  <property name="row">28</property>
-                                  <property name="row-span">3</property>
+                                  <property name="row">30</property>
+                                  <property name="row-span">2</property>
                                 </layout>
                               </object>
                             </child>
@@ -4741,7 +4741,7 @@
                                 <layout>
                                   <property name="column">0</property>
                                   <property name="row">10</property>
-                                  <property name="row-span">17</property>
+                                  <property name="row-span">19</property>
                                 </layout>
                               </object>
                             </child>
@@ -4987,6 +4987,95 @@
                                   <property name="column">2</property>
                                   <property name="column-span">1</property>
                                   <property name="row">8</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckButton" id="nano_minibar">
+                                <property name="label">Enable Minibar</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">2</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="nano.minibar_fg_label">
+                                <property name="label">Minibar text color</property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">27</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="nano.minibar_bg_color">
+                                <property name="label">Minibar background color</property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">27</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkDropDown" id="nano_minibar_fg">
+                                <property name="model">
+                                  <object class="GtkStringList" id="nano_minibar_fg.strings">
+                                    <items>
+                                      <item translatable="yes">White</item>
+                                      <item translatable="yes">Bright White</item>
+                                      <item translatable="yes">Black</item>
+                                      <item translatable="yes">Bright Black</item>
+                                      <item translatable="yes">Red</item>
+                                      <item translatable="yes">Bright Red</item>
+                                      <item translatable="yes">Blue</item>
+                                      <item translatable="yes">Bright Blue</item>
+                                      <item translatable="yes">Green</item>
+                                      <item translatable="yes">Bright Green</item>
+                                      <item translatable="yes">Yellow</item>
+                                      <item translatable="yes">Bright Yellow</item>
+                                      <item translatable="yes">Magenta</item>
+                                      <item translatable="yes">Bright Magenta</item>
+                                      <item translatable="yes">Cyan</item>
+                                      <item translatable="yes">Bright Cyan</item>
+                                    </items>
+                                  </object>
+                                </property>
+                                <layout>
+                                  <property name="column">1</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">28</property>
+                                  <property name="row-span">1</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkDropDown" id="nano_minibar_bg">
+                                <property name="model">
+                                  <object class="GtkStringList" id="nano_minibar_bg.strings">
+                                    <items>
+                                      <item translatable="yes">White</item>
+                                      <item translatable="yes">Black</item>
+                                      <item translatable="yes">Red</item>
+                                      <item translatable="yes">Blue</item>
+                                      <item translatable="yes">Green</item>
+                                      <item translatable="yes">Yellow</item>
+                                      <item translatable="yes">Magenta</item>
+                                      <item translatable="yes">Cyan</item>
+                                    </items>
+                                  </object>
+                                </property>
+                                <layout>
+                                  <property name="column">2</property>
+                                  <property name="column-span">1</property>
+                                  <property name="row">28</property>
                                   <property name="row-span">1</property>
                                 </layout>
                               </object>

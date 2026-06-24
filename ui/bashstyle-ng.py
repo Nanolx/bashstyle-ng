@@ -277,6 +277,7 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitCheckButton("nano_nowrap", "Nano", "no_wrap")
         WidgetHandler.InitCheckButton("nano_tabspace", "Nano", "tab_to_spaces")
         WidgetHandler.InitCheckButton("nano_colorui", "Nano", "set_uicolors")
+        WidgetHandler.InitCheckButton("nano_minibar", "Nano", "use_minibar")
 
         # Extra steps, does not (yet?) catch the case when 'use_vivid' is enabled,
         # and 'use_lscolors' is toggled afterwards, the other dropdowns sensitivity
@@ -334,6 +335,8 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitDropDown("nano_stripe_bg", "Nano", "stripe_color_bg", dicts.nano_bg_colors)
         WidgetHandler.InitDropDown("nano_selected_fg", "Nano", "selected_color_fg", dicts.nano_fg_colors)
         WidgetHandler.InitDropDown("nano_selected_bg", "Nano", "selected_color_bg", dicts.nano_bg_colors)
+        WidgetHandler.InitDropDown("nano_minibar_fg", "Nano", "mini_color_fg", dicts.nano_fg_colors)
+        WidgetHandler.InitDropDown("nano_minibar_bg", "Nano", "mini_color_bg", dicts.nano_bg_colors)
         WidgetHandler.InitDropDown("ls_exec", "LSColors", "exec", dicts.ls_colors)
         WidgetHandler.InitDropDown("ls_gen", "LSColors", "generic", dicts.ls_colors)
         WidgetHandler.InitDropDown("ls_log", "LSColors", "logs", dicts.ls_colors)
