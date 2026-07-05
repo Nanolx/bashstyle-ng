@@ -1,41 +1,41 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 bashstyle_colorshell () {
-	if [[ -z ${OLD_PS1} ]]; then
-		[[ ${BSNG_BASHVER} -ge 44 ]] && OLD_PS0="${PS0}"
-		OLD_PS1="${PS1}"
-		OLD_PS2="${PS2}"
-		OLD_PS3="${PS3}"
-		OLD_PS4="${PS4}"
-	fi
+    if [[ -z ${OLD_PS1} ]]; then
+        [[ ${BSNG_BASHVER} -ge 44 ]] && OLD_PS0="${PS0}"
+        OLD_PS1="${PS1}"
+        OLD_PS2="${PS2}"
+        OLD_PS3="${PS3}"
+        OLD_PS4="${PS4}"
+    fi
 
-	# exclude black (0) on dark terminal
-	# exclude white (7) on bright terminal
-	if check bt "$(bashstyle --ini-get dark_terminal)"; then
-		randomcolor=$(random -r 1 7)
-	else	randomcolor=$(random -r 0 6)
-	fi
+    # exclude black (0) on dark terminal
+    # exclude white (7) on bright terminal
+    if check bt "$(bashstyle --ini-get dark_terminal)"; then
+            randomcolor=$(random -r 1 7)
+    else    randomcolor=$(random -r 0 6)
+    fi
 
-	cmd_text_colour='\[`tput setaf ${randomcolor}`\]'
+    cmd_text_colour='\[`tput setaf ${randomcolor}`\]'
 
-	shopt -s promptvars
+    shopt -s promptvars
 
-	[[ ${BSNG_BASHVER} -ge 44 ]] && PS0="${OLD_PS0}${cmd_text_colour}"
-	PS1="${OLD_PS1}${cmd_text_colour}"
-	PS2="${OLD_PS2}${cmd_text_colour}"
-	PS3="${OLD_PS3}${cmd_text_colour}"
-	PS4="${OLD_PS4}${cmd_text_colour}"
+    [[ ${BSNG_BASHVER} -ge 44 ]] && PS0="${OLD_PS0}${cmd_text_colour}"
+    PS1="${OLD_PS1}${cmd_text_colour}"
+    PS2="${OLD_PS2}${cmd_text_colour}"
+    PS3="${OLD_PS3}${cmd_text_colour}"
+    PS4="${OLD_PS4}${cmd_text_colour}"
 }
 
 bashstyle_colorshell_reset () {
-	echo -ne "\e[0m"
+    echo -ne "\e[0m"
 }

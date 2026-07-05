@@ -197,6 +197,7 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitCheckButton("history_sync", "Advanced", "history_sync")
         WidgetHandler.InitCheckButton("history_isolate", "Advanced", "history_isolate")
         WidgetHandler.InitCheckButton("enable_bat", "Advanced", "use_bat")
+        WidgetHandler.InitCheckButton("enable_lsd", "Advanced", "use_lsd")
         WidgetHandler.InitCheckButton("curl_useragent", "Advanced", "curl_useragent")
         WidgetHandler.InitCheckButton("wget_useragent", "Advanced", "wget_useragent")
         WidgetHandler.InitCheckButton("less_options", "Advanced", "less_options")
