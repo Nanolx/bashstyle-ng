@@ -109,3 +109,22 @@ let GNU Nano rebind them, to make them work.
 @defvr {Setting} log_position Remember last position
 When opening a file again, jump to the previous position.
 @end defvr
+
+@defvr {Setting} smart_home Enable smart home key
+When Home is pressed anywhere but at the very beginning
+of non-whitespace characters on a line, the cursor jumps to that beginning (either
+forwards or backwards).  If the cursor  is  already at that position, it jumps
+to the true beginning of the line.
+@end defvr
+
+@defvr {Setting} indicator Show scrollbar
+Show scrollbar on the right side.
+@end defvr
+
+@defvr {Setting} save_onexit Auto save file on exit
+Auto save file upon exit, without asking (disabled by default).
+@end defvr
+
+@defvr {Setting} trim_blanks Trim whitespace upon save
+Trim whitespace upon save (disabled by default)
+@end defvr
