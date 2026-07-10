@@ -103,7 +103,6 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
         rc_add "set nowrap"
     else
         dbg_msg "$(eval_gettext "NanoCFG Setting:")" No Wrap "$(eval_gettext "Off")"
-        rc_add "unset nowrap"
     fi
 
     if bt "$(ini_get log_position)"; then
