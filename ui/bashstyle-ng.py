@@ -279,6 +279,10 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitCheckButton("nano_tabspace", "Nano", "tab_to_spaces")
         WidgetHandler.InitCheckButton("nano_colorui", "Nano", "set_uicolors")
         WidgetHandler.InitCheckButton("nano_minibar", "Nano", "use_minibar")
+        WidgetHandler.InitCheckButton("nano_smarthome", "Nano", "smart_home")
+        WidgetHandler.InitCheckButton("nano_indicator", "Nano", "indicator")
+        WidgetHandler.InitCheckButton("nano_saveonexit", "Nano", "save_onexit")
+        WidgetHandler.InitCheckButton("nano_trimblanks", "Nano", "trim_blanks")
 
         # Extra steps, does not (yet?) catch the case when 'use_vivid' is enabled,
         # and 'use_lscolors' is toggled afterwards, the other dropdowns sensitivity

@@ -147,6 +147,38 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
         rc_add "unset minibar"
     fi
 
+    if bt "$(ini_get smart_home)"; then
+        dbg_msg "$(eval_gettext "NanoCFG Setting:")" Smart Home Key "$(eval_gettext "On")"
+        rc_add "set smarthome"
+    else
+        dbg_msg "$(eval_gettext "NanoCFG Setting:")" Smart Home Key "$(eval_gettext "Off")"
+        rc_add "unset smarthome"
+    fi
+
+    if bt "$(ini_get indicator)"; then
+        dbg_msg "$(eval_gettext "NanoCFG Setting:")" Indicator "$(eval_gettext "On")"
+        rc_add "set indicator"
+    else
+        dbg_msg "$(eval_gettext "NanoCFG Setting:")" Indicator "$(eval_gettext "Off")"
+        rc_add "unset indicator"
+    fi
+
+    if bt "$(ini_get save_onexit)"; then
+        dbg_msg "$(eval_gettext "NanoCFG Setting:")" auto save on exit "$(eval_gettext "On")"
+        rc_add "set saveonexit"
+    else
+        dbg_msg "$(eval_gettext "NanoCFG Setting:")" auto save on exit "$(eval_gettext "Off")"
+        rc_add "unset saveonexit"
+    fi
+
+    if bt "$(ini_get trim_blanks)"; then
+        dbg_msg "$(eval_gettext "NanoCFG Setting:")" trim blanks "$(eval_gettext "On")"
+        rc_add "set trimblanks"
+    else
+        dbg_msg "$(eval_gettext "NanoCFG Setting:")" trim blanks "$(eval_gettext "Off")"
+        rc_add "unset trimblanks"
+    fi
+
     if bt "$(ini_get set_uicolors)"; then
         for uipart in function key status title number error selected stripe number mini; do
             uipart_color="$(ini_get ${uipart}_color_fg),$(ini_get ${uipart}_color_bg)"
