@@ -135,7 +135,7 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
 
     if [ "$(ini_get guide_stripe)" -gt 0 ]; then
         dbg_msg "$(eval_gettext "NanoCFG Setting:")" Guide Stripe "$(ini_get guide_stripe)"
-        rc_add "set tabsize $(ini_get tab_size)"
+        rc_add "set guidestripe $(ini_get guide_stripe)"
     else
         dbg_msg "$(eval_gettext "NanoCFG Setting:")" Guide Stripe "$(eval_gettext "Off")"
     fi
