@@ -1,84 +1,94 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "Options")"
 
 if [ -n "$(ini_get git_user_name)" ]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "user name")"
-	dbg_log git config --global user.name "$(ini_get git_user_name)"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "user name")"
+    dbg_log git config --global user.name "$(ini_get git_user_name)"
 fi
 
 if [ -n "$(ini_get git_user_mail)" ]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "user mail address")"
-	dbg_log git config --global user.email "$(ini_get git_user_mail)"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "user mail address")"
+    dbg_log git config --global user.email "$(ini_get git_user_mail)"
 fi
 
 if [ -n "$(ini_get git_signkey)" ]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "default singing key")"
-	dbg_log git config --global user.signingkey "$(ini_get git_signkey)"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "default singing key")"
+    dbg_log git config --global user.signingkey "$(ini_get git_signkey)"
 fi
 
 color_opts=(branch diff interactive pager status)
 
 if bt "$(ini_get git_color)"; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git colors "$(eval_gettext "On")"
-	for opt in "${color_opts[@]}"; do
-		dbg_log git config --global color."${opt}" true
-	done
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git colors "$(eval_gettext "On")"
+    for opt in "${color_opts[@]}"; do
+        dbg_log git config --global color."${opt}" true
+    done
 else
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git colors "$(eval_gettext "Off")"
-	for opt in "${color_opts[@]}"; do
-		dbg_log git config --global color."${opt}" false
-	done
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git colors "$(eval_gettext "Off")"
+    for opt in "${color_opts[@]}"; do
+        dbg_log git config --global color."${opt}" false
+    done
 fi
 
 if bt "$(ini_get git_ssh_remember)"; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Remember")" "$(eval_gettext "On")"
-	dbg_msg "$(eval_gettext "Bashstyle-NG Setting:")" Git "$(eval_gettext "SSH Timeout")" "$(ini_get git_ssh_timeout)"
-	dbg_log eval "$(ssh-agent -s -t "$(ini_get git_ssh_timeout)")" >/dev/null
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Remember")" "$(eval_gettext "On")"
+    dbg_msg "$(eval_gettext "Bashstyle-NG Setting:")" Git "$(eval_gettext "SSH Timeout")" "$(ini_get git_ssh_timeout)"
+    dbg_log eval "$(ssh-agent -s -t "$(ini_get git_ssh_timeout)")" >/dev/null
 
-	if [ -n "${git_ssh_keyfile}" ]; then
-		dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Keyfile")" "$(ini_get git_ssh_keyfile)"
-	fi
+    if [ -n "${git_ssh_keyfile}" ]; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Keyfile")" "$(ini_get git_ssh_keyfile)"
+    fi
 else
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Remember")" "$(eval_gettext "Off")"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "SSH Remember")" "$(eval_gettext "Off")"
 fi
 
 if [ -n "$(ini_get git_editor)" ]; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "editor")"
-	dbg_log git config --global core.editor "$(ini_get git_editor)"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git "$(eval_gettext "editor")"
+    dbg_log git config --global core.editor "$(ini_get git_editor)"
 fi
 
 if bt "$(ini_get git_aliases)"; then
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git aliases "$(eval_gettext "On")"
-	dbg_log git config --global alias.co checkout
-	dbg_log git config --global alias.up pull
-	dbg_log git config --global alias.re "reset --hard HEAD"
-	dbg_log git config --global alias.ma "checkout master"
-	dbg_log git config --global alias.who "shortlog -s --"
-	dbg_log git config --global alias.ci commit
-	dbg_log git config --global alias.ls "log --format='%Cgreen%H %Cred%ai %Creset- %s'"
-	dbg_log git config --global alias.lsb "for-each-ref --sort=-committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative)  %1B[0;m%(refname:short)' refs/remotes refs/heads"
-	dbg_log git config --global alias.stage "add -u"
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git aliases "$(eval_gettext "On")"
+    dbg_log git config --global alias.co checkout
+    dbg_log git config --global alias.up pull
+    dbg_log git config --global alias.re "reset --hard HEAD"
+    dbg_log git config --global alias.ma "checkout master"
+    dbg_log git config --global alias.who "shortlog -s --"
+    dbg_log git config --global alias.ci commit
+    dbg_log git config --global alias.ls "log --format='%Cgreen%H %Cred%ai %Creset- %s'"
+    dbg_log git config --global alias.lsb "for-each-ref --sort=-committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative)  %1B[0;m%(refname:short)' refs/remotes refs/heads"
+    dbg_log git config --global alias.stage "add -u"
 else
-	dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git aliases "$(eval_gettext "Off")"
-	dbg_log git config --global --unset alias.co
-	dbg_log git config --global --unset alias.up
-	dbg_log git config --global --unset alias.re
-	dbg_log git config --global --unset alias.ma
-	dbg_log git config --global --unset alias.who
-	dbg_log git config --global --unset alias.ci
-	dbg_log git config --global --unset alias.ls
-	dbg_log git config --global --unset alias.stage
-	dbg_log git config --global --unset alias.lsb
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Git aliases "$(eval_gettext "Off")"
+    dbg_log git config --global --unset alias.co
+    dbg_log git config --global --unset alias.up
+    dbg_log git config --global --unset alias.re
+    dbg_log git config --global --unset alias.ma
+    dbg_log git config --global --unset alias.who
+    dbg_log git config --global --unset alias.ci
+    dbg_log git config --global --unset alias.ls
+    dbg_log git config --global --unset alias.stage
+    dbg_log git config --global --unset alias.lsb
+fi
+
+if bt "$(ini_get git_delta)"; then
+    if check P "delta" "git delta" &>/dev/null; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" delta as Git pager
+        git config --global core.pager delta
+    fi
+else
+    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" less as Git pager
+    git config --global core.pager less
 fi
 
 unset color_opts opt

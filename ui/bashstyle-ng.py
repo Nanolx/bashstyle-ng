@@ -239,6 +239,7 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitCheckButton("show_editmode", "Readline", "show_editmode")
         WidgetHandler.InitCheckButton("git_color", "Git", "git_color")
         WidgetHandler.InitCheckButton("git_aliases", "Git", "git_aliases")
+        WidgetHandler.InitCheckButton("git_delta", "Git", "git_delta")
         WidgetHandler.InitCheckButton("git_ssh_remember", "Git", "git_ssh_remember")
         WidgetHandler.InitCheckButton("vim_backup", "Vim", "vim_backup")
         WidgetHandler.InitCheckButton("vim_jump", "Vim", "jump_back")
