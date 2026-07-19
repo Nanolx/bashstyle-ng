@@ -30,6 +30,16 @@ gitkit_ssh_add () {
     fi
 }
 
+is_gitrepo () {
+    git rev-parse 2>/dev/null \
+        && return 0 \
+        || return 1
+}
+
+get_root () {
+    is_gitrepo && git rev-parse --show-toplevel
+}
+
 clone_repositories () {
     check P "curl" "'gitkit cloneorg/cloneuser'" || exit 1
     check P "xe" "'gitkit cloneorg/cloneuser'" || exit 1
@@ -80,7 +90,7 @@ list_repositories () {
 case ${1} in
 
     action)
-        if [[ -d .git ]]; then
+        if [[ -d "$(get_root)" ]]; then
             if [[ -f .git/dotest/rebasing ]]; then
                 ACTION="rebase"
             elif [[ -f .git/dotest/applying ]]; then
@@ -104,7 +114,7 @@ case ${1} in
     ;;
 
     branch)
-        if [[ -d .git ]]; then
+        if [[ -d "$(get_root)" ]]; then
             BRANCH=$(git symbolic-ref HEAD 2>/dev/null)
             echo "${BRANCH#refs/heads/}"
         else
@@ -113,7 +123,7 @@ case ${1} in
     ;;
 
     bz2)
-        if [[ -d .git ]]; then
+        if [[ -d "$(get_root)" ]]; then
             git archive master | bzip2 -9 > "$(basename "${PWD}")".tar.bz2
         else
             echo "$(eval_gettext "current directory is not the root of a git repository")"
@@ -121,7 +131,7 @@ case ${1} in
     ;;
 
     xz)
-        if [[ -d .git ]]; then
+        if [[ -d "$(get_root)" ]]; then
             git archive master | xz -9 > "$(basename "${PWD}")".tar.xz
         else
            echo "$(eval_gettext "current directory is not the root of a git repository")"
@@ -129,7 +139,7 @@ case ${1} in
     ;;
 
     zip)
-        if [[ -d .git ]]; then
+        if [[ -d "$(get_root)" ]]; then
             git archive master --format=zip > "$(basename "${PWD}")".zip
         else
            echo "$(eval_gettext "current directory is not the root of a git repository")"
@@ -148,7 +158,7 @@ case ${1} in
 
     export)
         [[ -z "${2}" ]] && outdir="../$(basename ${PWD})_export" || outdir="${2}"
-        if [[ -d .git ]]; then
+        if [[ -d "$(get_root)" ]]; then
             echo "exporting to: ${outdir}"
             git checkout-index --prefix="${outdir}"/ -a
         else
@@ -162,7 +172,7 @@ case ${1} in
     ;;
 
     openweb | web)
-        if [ -d .git ]; then
+        if [[ -d "$(get_root)" ]]; then
             repo_url=$(git remote -v | gawk '/origin.*fetch/{print $2}')
             case "${repo_url}" in
                 git@* )
@@ -181,7 +191,7 @@ case ${1} in
     ;;
 
     revision)
-        if [ -d .git ]; then
+        if [[ -d "$(get_root)" ]]; then
             REVISION=$(git rev-parse HEAD 2>/dev/null)
             REVISION=${REVISION/HEAD/}
             echo "${REVISION:0:6}"
@@ -191,7 +201,7 @@ case ${1} in
     ;;
 
     revno)
-        if [[ -d .git ]]; then
+        if [[ -d "$(get_root)" ]]; then
             git rev-list --reverse HEAD | \
             awk "/$(git log -n 1 --pretty="format:%h")/ {print NR}"
         else
@@ -200,7 +210,7 @@ case ${1} in
     ;;
 
     undelete)
-        if [ -d .git ]; then
+        if [[ -d "$(get_root)" ]]; then
             git checkout "$(git ls-files --deleted)"
         else
             echo "$(eval_gettext "current directory is not the root of a git repository")"
@@ -216,7 +226,7 @@ case ${1} in
         echo -e "$(eval_gettext "\n${ecyan}[2] push tags to upstream\n")"
         git push --tag
 
-        git_root=$(git rev-parse --show-toplevel)
+        git_root="$(get_root)"
         if [ -f "${git_root}/.git_mirror" ]; then
             echo -e "$(eval_gettext "\n${emagenta}[3] push to mirror\n")"
             for repo in "$(cat ${git_root}/.git_mirror)"; do
