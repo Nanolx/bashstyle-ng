@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 # by downdiagonal
@@ -15,27 +15,30 @@
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h | "")
-		bashstyle-help -a "downdiagonal" -e "" -h "http://www.commandlinefu.com/"\
-			-l "Public Domain" -n "map" -s "$(eval_gettext "run a command on given files or directories")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "command:|command to map")"\
-			-o "$(eval_gettext " -- :|end of command")"\
-			-o "$(eval_gettext "files:|list of files or directories")"
-	;;
+    --help | -h | "")
+        bashstyle-help -a "downdiagonal" -e "" -h "http://www.commandlinefu.com/"\
+            -l "Public Domain" -n "map" -s "$(eval_gettext "run a command on given files or directories")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "command:|command to map")"\
+            -o "$(eval_gettext " -- :|end of command")"\
+            -o "$(eval_gettext "files:|list of files or directories")"
+    ;;
 
-	* )
-		if [ $# -lt 2 ] || [[ ! "$*" =~ [[:space:]]--[[:space:]] ]];then
-			echo "$(eval_gettext "invalid syntax")" >&2; exit 1
-		fi
+    * )
+        if (( $# < 2 )) || [[ ! "$*" =~ [[:space:]]--[[:space:]] ]]; then
+            echo "$(eval_gettext "invalid syntax")" >&2
+            exit 1
+        fi
 
-		until [[ $1 =~ -- ]]; do
-			command="$command ${1}"; shift
-		done
+        cmd_array=()
+        while (( $# > 0 )) && [[ "$1" != "--" ]]; do
+            cmd_array+=("$1")
+            shift
+        done
+        shift
 
-		command="$command ${1%:}"; shift
-		for i in "${@}"; do
-			eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
-		done
-	;;
+        for item in "$@"; do
+            "${cmd_array[@]}" "$item"
+        done
+    ;;
 esac
