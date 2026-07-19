@@ -60,16 +60,21 @@ trap_error () { trap_log "$(eval_gettext "ERROR:")" "$*" >&2; }
 trap_fatal () { trap_error "$@"; exit 1; }
 
 bashstyle_trap_add () {
-    trap_add_cmd=$1; shift || trap_fatal "${FUNCNAME[0]}" "$(eval_gettext "invalid syntax")"
+    local trap_add_cmd trap_add_name existing_trap
+    trap_add_cmd=$1
+    shift || trap_fatal "${FUNCNAME[0]}" "$(eval_gettext "invalid syntax")"
     for trap_add_name in "$@"; do
-    trap -- "$(
-        extract_trap_cmd() { printf '%s\n' "$3"; }
-        eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
-        printf '%s\n' "${trap_add_cmd}"
-    )" "${trap_add_name}" \
-        || trap_fatal "$(eval_gettext "unable to add ${trap_add_cmd} to trap ${trap_add_name}")"
+        existing_trap=$(trap -p "${trap_add_name}" | sed "s/^trap -- '\(.*\)' ${trap_add_name}$/\1/")
 
-    unset trap_add_cmd trap_add_name
+        if [ -n "${existing_trap}" ]; then
+            new_trap_cmd="${existing_trap}
+${trap_add_cmd}"
+        else
+            new_trap_cmd="${trap_add_cmd}"
+        fi
+
+        trap "${new_trap_cmd}" "${trap_add_name}" \
+            || trap_fatal "$(eval_gettext "unable to add ${trap_add_cmd} to trap ${trap_add_name}")"
     done
 }
 
@@ -94,7 +99,9 @@ export PATH
 
 # color settings: general, ls and manpages
 if bt "$(ini_get enable_colors)"; then
+    set -a
     dbg_log source ${BSNG_RCDIR}/settings_color
+    set +a
     bt "$(ini_get use_lscolors)" && dbg_log source ${BSNG_RCDIR}/settings_ls
     bt "$(ini_get less_termcap_color)" && dbg_log source ${BSNG_RCDIR}/settings_man
 fi
@@ -182,19 +189,6 @@ bt "$(ini_get use_gitcfg)" && dbg_log source ${BSNG_RCDIR}/settings_git
 for module in cd remember_command colorshell history; do
     source ${BSNG_RCDIR}/function_${module}
 done
-
-# function to properly reload Bash
-#xk2c from commandlinefu.com
-
-reload_bash () {
-    builtin unalias -a
-    builtin unset -f "$(builtin compgen -A function)"
-    for trap in EXIT DEBUG ERR; do
-        trap '' "${trap}"
-    done
-    [ -f /etc/bash_completion ] && source /etc/bash_completion
-    source "${HOME}"/.bashrc
-}
 
 # birthday greeting / welcome message
 if [[ $(ini_get user_birthday) == $(date +%m-%d) ]]; then
