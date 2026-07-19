@@ -12,6 +12,24 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
+targets=("${@:2}")
+if (( ${#targets[@]} == 0 )); then
+    targets=("$PWD")
+fi
+
+gen_stat_targets () {
+    stat_targets=()
+    for t in "${targets[@]}"; do
+        if [[ -d "$t" ]]; then
+            shopt -s nullglob
+            stat_targets+=("$t"/*)
+            shopt -u nullglob
+        else
+            stat_targets+=("$t")
+        fi
+    done
+}
+
 case ${1} in
     --help | -h | "")
         bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
@@ -28,27 +46,30 @@ case ${1} in
     ;;
 
     -s | single)
-        ls -1 --group-directories-first "${@:2}"
+        ls -1 --group-directories-first "${targets[@]}"
     ;;
     -g | group )
-        stat -c "%n in Group -> %G" "${@:2}" 2>/dev/null | column -t
+        gen_stat_targets
+        stat -c "%n in Group -> %G" "${stat_targets[@]}" 2>/dev/null | column -t
     ;;
     -v | verbose)
-        ls -l --group-directories-first "${@:2}"
+        ls -l --group-directories-first "${targets[@]}"
     ;;
     -d | detailed)
-        ls -Al --group-directories-first "${@:2}"
+        ls -Al --group-directories-first "${targets[@]}"
     ;;
     -p | perm)
-        find "${@:2}" -maxdepth 1 -printf "Permissions of %f -> %M (%m)\n" 2>/dev/null | column -t
+        find "${targets[@]}" -maxdepth 1 -printf "Permissions of %f -> %M (%m)\n" 2>/dev/null | column -t
     ;;
     -o | owner)
-        stat -c "%n by User -> %U" "${@:2}" 2>/dev/null | column -t
+        gen_stat_targets
+        stat -c "%n by User -> %U" "${stat_targets[@]}" 2>/dev/null | column -t
     ;;
     -V | voctal)
-        stat -c "%a %A %F %U %G %s %y %n" "${@:2}" 2>/dev/null
+        gen_stat_targets
+        stat -c "%a %A %F %U %G %s %y %n" "${stat_targets[@]}" 2>/dev/null
     ;;
     -D | doctal)
-        find "${@:2}" -maxdepth 1 -mindepth 1 -exec stat -c "%a %A %F %U %G %s %y %n" {} + 2>/dev/null
+        find "${targets[@]}" -maxdepth 1 -mindepth 1 -exec stat -c "%a %A %F %U %G %s %y %n" {} + 2>/dev/null
     ;;
 esac
