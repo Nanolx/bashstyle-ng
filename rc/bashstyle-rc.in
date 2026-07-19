@@ -85,12 +85,12 @@ bashstyle_trap_add 'bashstyle_cleanup' EXIT
 if [ -n "$(ini_get path)" ]; then
     dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" PATH "${PATH}"
     PATH="$(ini_get path)"
-
-    bt "$(ini_get path_wd)" && PATH="${PATH}:."
-    [[ ${PATH} != *games* && -d /usr/games/ ]] && PATH="${PATH}:/usr/games:/usr/local/games"
-    [[ ${PATH} != *${HOME}/bin* && -d ${HOME}/bin ]] && PATH="${PATH}:${HOME}/bin"
-    export PATH
 fi
+
+bt "$(ini_get path_wd)" && PATH="${PATH}:."
+[[ ${PATH} != *games* && -d /usr/games/ ]] && PATH="${PATH}:/usr/games:/usr/local/games"
+[[ ${PATH} != *${HOME}/bin* && -d ${HOME}/bin ]] && PATH="${PATH}:${HOME}/bin"
+export PATH
 
 # color settings: general, ls and manpages
 if bt "$(ini_get enable_colors)"; then
