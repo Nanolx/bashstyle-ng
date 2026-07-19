@@ -60,21 +60,18 @@ trap_error () { trap_log "$(eval_gettext "ERROR:")" "$*" >&2; }
 trap_fatal () { trap_error "$@"; exit 1; }
 
 bashstyle_trap_add () {
-    local trap_add_cmd trap_add_name existing_trap
+    local trap_add_cmd trap_add_name existing_trap new_trap_cmd
     trap_add_cmd=$1
+
     shift || trap_fatal "${FUNCNAME[0]}" "$(eval_gettext "invalid syntax")"
+
     for trap_add_name in "$@"; do
-        existing_trap=$(trap -p "${trap_add_name}" | sed "s/^trap -- '\(.*\)' ${trap_add_name}$/\1/")
-
-        if [ -n "${existing_trap}" ]; then
-            new_trap_cmd="${existing_trap}
-${trap_add_cmd}"
-        else
-            new_trap_cmd="${trap_add_cmd}"
-        fi
-
-        trap "${new_trap_cmd}" "${trap_add_name}" \
-            || trap_fatal "$(eval_gettext "unable to add ${trap_add_cmd} to trap ${trap_add_name}")"
+        trap -- "$(
+            extract_trap_cmd() { printf '%s\n' "$3"; }
+            eval "extract_trap_cmd $(trap -p "${trap_add_name}")"
+            printf '%s\n' "${trap_add_cmd}"
+        )" "${trap_add_name}" || \
+            trap_fatal "${FUNCNAME}" "$(eval_gettext "unable to add trap command")"
     done
 }
 
