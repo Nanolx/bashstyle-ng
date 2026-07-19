@@ -1,46 +1,45 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	v | verbose )
-		MV_OPT="-v"
-		shift
-	;;
+    v | verbose )
+        MV_OPT="-v"
+        shift
+    ;;
 esac
 
 case ${@} in
-	"" | -h | --help )
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "sufffix" -s "$(eval_gettext "fix suffix for files")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "v:|verbose output")"\
-			-o "$(eval_gettext "files:myfile.txt|file(s) to fix the suffix")"
-	;;
+    "" | -h | --help )
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "sufffix" -s "$(eval_gettext "fix suffix for files")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "v:|verbose output")"\
+            -o "$(eval_gettext "files:myfile.txt|file(s) to fix the suffix")"
+    ;;
 
-	* )
-		for image in "${@}"; do
-			if [[ -f "${image}" ]]; then
-				baseimg=${image%.*}
+    * )
+        for image in "${@}"; do
+            if [[ -f "${image}" ]]; then
+                baseimg=${image%.*}
 
-				suffix="$(grep "^$(file --mime-type "${image}" | \
-					awk '{print $2}')[[:space:]]" /etc/mime.types | \
-					awk '{print $2}')"
+                mime_type=$(file --brief --mime-type "$image")
+                suffix=$(awk -v mime="$mime_type" '$1 == mime {print $2; exit}' /etc/mime.types)
 
-				if [[ "${image}" != "${baseimg}.${suffix}" && -n "${suffix}" ]]; then
-					mv "${MV_OPT}" "${image}" "${baseimg}.${suffix}"
-				fi
-			fi
-		done
-	;;
+                if [[ "${image}" != "${baseimg}.${suffix}" && -n "${suffix}" ]]; then
+                    mv "${MV_OPT}" "${image}" "${baseimg}.${suffix}"
+                fi
+            fi
+        done
+    ;;
 esac
