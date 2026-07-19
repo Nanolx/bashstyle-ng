@@ -15,8 +15,11 @@ shopt -u nullglob
 
 if (( "${#bsng_nanorc[@]}" == 0 )); then
     dbg_msg "$(eval_gettext "BashStyle-NG Loading:")" NanoCFG
-    export RC_FILE
-    RC_FILE="${HOME}/.nanorc.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
+    export RC_FILE="${HOME}/.nanorc.bs-ng.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
+    export LK_FILE="/run/user/${UID}/bashstyle-nanorc.lock"
+
+    exec 9>>"${LK_FILE}"
+    flock -x 9 || return 1
 
     if bt "$(ini_get auto_indent)"; then
         dbg_msg "$(eval_gettext "NanoCFG Setting:")" Auto-Indention "$(eval_gettext "On")"
@@ -197,12 +200,14 @@ if (( "${#bsng_nanorc[@]}" == 0 )); then
     else    dbg_msg "$(eval_gettext "NanoCFG Setting:")" Colors "$(eval_gettext "Off")"
     fi
 
-    if [ -f "${HOME}/.nanorc.custom" ]; then
-        rc_add "include ${HOME}/.nanorc.custom"
+    if [ -s "${RC_FILE}" ]; then
+        mv "${RC_FILE}" "${HOME}"/.nanorc
     fi
 
-    mv "${RC_FILE}" "${HOME}"/.nanorc
     unset RC_FILE
+
+    flock -u 9
+    exec 9>&-
 fi
 
 unset bsng_nanorc
