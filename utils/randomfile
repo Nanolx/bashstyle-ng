@@ -1,141 +1,163 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
+TMPFILE="/run/user/${UID}/randomfile"
+
 _randomfunc() {
-	command=""
+    local command=()
+    local zero_delimiter=false
 
-	if [ $# -lt 2 ] || [[ ! "$*" =~ [[:space:]]--[[:space:]] ]];then
-			echo $"invalid syntax" >&2; exit 1
-	fi
+    if (( $# < 2 )) || [[ ! "$*" =~ [[:space:]]--[[:space:]] ]]; then
+        echo "invalid syntax" >&2
+        exit 1
+    fi
 
-	if [[ "${1}" == "_zero_" ]]; then
-		ZERO_DELIMITER=true
-		shift
-	else	ZERO_DELIMITER=false
-	fi
+    if [[ "$1" == "_zero_" ]]; then
+        zero_delimiter=true
+        shift
+    fi
 
-	until [[ ${1} =~ -- ]]; do
-		command="$command $1"; shift
-	done
-	shift
-	shift
+    while (( $# > 0 )) && [[ "$1" != "--" ]]; do
+        command+=("$1")
+        shift
+    done
+    shift
 
-	if [[ ! "${*}" ]]; then
-		files=(*)
-	else	files=("${@}")
-	fi
+    local files=()
+    if (( $# == 0 )); then
+        files=(*)
+    else
+        files=("$@")
+    fi
 
-	n=${#files[@]}
-	RANDOMFILE="${files[RANDOM % n]}"
+    local n=${#files[@]}
+    (( n == 0 )) && return 1
+    local randomfile="${files[RANDOM % n]}"
 
-	case "${command}" in
-		*_repeat_*)	echo "${RANDOMFILE}" >> /tmp/randomtmp ;;
-		*_print_*)	echo "${RANDOMFILE}" | tee -a "${HOME}/.randomhistory";;
-		*)		echo "${RANDOMFILE}" >> "${HOME}/.randomhistory"
-				if [[ "${ZERO_DELIMITER}" == "true" ]]; then
-					${command}"${RANDOMFILE}"
-				else	${command} "${RANDOMFILE}"
-				fi
-		;;
-	esac
+    case "${command[0]}" in
+        _repeat_)
+            echo "${randomfile}" >> /tmp/"${TMPFILE}"
+            ;;
+        _print_)
+            echo "${randomfile}" | tee -a "${HOME}/.randomhistory"
+            ;;
+        *)
+            echo "${randomfile}" >> "${HOME}/.randomhistory"
+            if [ "$zero_delimiter" = true ]; then
+                "${command[@]}" "${randomfile}"
+            else
+                "${command[@]}" "${randomfile}"
+            fi
+            ;;
+    esac
 }
 
 _randomfile_help () {
-	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-		-l "GNU GPL v3" -n "randomfile" -s $"run a command on a random file"\
-		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-		-o $"command:|command to run for file"\
-		-o $"--:|end of command"\
-		-o $"files:|list of possible files"\
-		-o $"\tor:|--"\
-		-o $"-z:command|command to run for file, append result without space"\
-		-o $"--:|end of command"\
-		-o $"files:|list of possible files"\
-		-o $"\tor:|--"\
-		-o $"-f:|print first entry of random history"\
-		-o $"-L:|print last entry of random history"\
-		-o $"-i:decimal|print nth entry of random history"\
-		-o $"-l:|print number of entries in random history"\
-		-o $"-c:|clear random history"\
-		-o $"\tor:|--"\
-		-o $"-n:decimal|repeat process n times"\
-		-o $"--:|delimiter"\
-		-o $"files:|for given files and print result"\
-		-o $"\tor:|--"\
-		-o $"-p:|only print result"\
-		-o $"--:|delimiter"\
-		-o $"files:|for given files and print result"
+    bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+        -l "GNU GPL v3" -n "randomfile" -s $"run a command on a random file"\
+        -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+        -o $"command:|command to run for file"\
+        -o $"--:|end of command"\
+        -o $"files:|list of possible files"\
+        -o $"\tor:|--"\
+        -o $"-z:command|command to run for file, append result without space"\
+        -o $"--:|end of command"\
+        -o $"files:|list of possible files"\
+        -o $"\tor:|--"\
+        -o $"-f:|print first entry of random history"\
+        -o $"-L:|print last entry of random history"\
+        -o $"-i:decimal|print nth entry of random history"\
+        -o $"-l:|print number of entries in random history"\
+        -o $"-c:|clear random history"\
+        -o $"\tor:|--"\
+        -o $"-n:decimal|repeat process n times"\
+        -o $"--:|delimiter"\
+        -o $"files:|for given files and print result"\
+        -o $"\tor:|--"\
+        -o $"-p:|only print result"\
+        -o $"--:|delimiter"\
+        -o $"files:|for given files and print result"
 }
 
-case ${1} in
-	--help | -h | "")
-		_randomfile_help
-	;;
+case "$1" in
+    --help | -h | "")
+        _randomfile_help
+        ;;
 
-	-f | --first)
-		[[ -f ${HOME}/.randomhistory ]] && \
-			sed -n '1p' "${HOME}"/.randomhistory || \
-			echo $"no 'randomfile' history available"
-	;;
+    -f | --first)
+        if [[ -f "${HOME}/.randomhistory" ]]; then
+            sed -n '1p' "${HOME}/.randomhistory"
+        else
+            echo $"no 'randomfile' history available" >&2
+        fi
+        ;;
 
-	-L | --last)
-		[[ -f ${HOME}/.randomhistory ]] && \
-			sed -n '$p' "${HOME}"/.randomhistory || \
-			echo $"no 'randomfile' history available"
-	;;
+    -L | --last)
+        if [[ -f "${HOME}/.randomhistory" ]]; then
+            sed -n '$p' "${HOME}/.randomhistory"
+        } else
+            echo 4"no 'randomfile' history available" >&2
+        fi
+        ;;
 
-	-i | --item)
-		[[ -f ${HOME}/.randomhistory ]] && \
-			sed -n "${2}p" "${HOME}"/.randomhistory || \
-			echo $"no 'randomfile' history available"
-	;;
+    -i | --item)
+        if [[ -f "${HOME}/.randomhistory" ]]; then
+            sed -n "${2}p" "${HOME}/.randomhistory"
+        else
+            echo $"no 'randomfile' history available" >&2
+        fi
+        ;;
 
-	-l | --length)
-		[[ -f ${HOME}/.randomhistory ]] && \
-			wc -l "${HOME}"/.randomhistory | gawk '{print $1}' || \
-			echo $"no 'randomfile' history available"
-	;;
+    -l | --length)
+        if [[ -f "${HOME}/.randomhistory" ]]; then
+            wc -l < "${HOME}/.randomhistory"
+        else
+            echo $"no 'randomfile' history available" >&2
+        fi
+        ;;
 
-	-c | --clear)
-		rm -f "${HOME}"/.randomhistory
-	;;
+    -c | --clear)
+        rm -f "${HOME}/.randomhistory"
+        ;;
 
-	-n | --count)
-		shift
-		count=$1
-		shift
+    -n | --count)
+        shift
+        local count=$1
+        shift
 
-		while test "${count}" -gt 0; do
-			_randomfunc _repeat_ -- "${@}"
-			count=$((count-1))
-		done
+        rm /tmp/randomtmp
 
-		sort /tmp/randomtmp | uniq -c | sort -n | tail | sort -nr
-		rm /tmp/randomtmp
-	;;
+        while (( count > 0 )); do
+            _randomfunc _repeat_ -- "$@"
+            (( count-- ))
+        done
 
-	-p | --print)
-		shift
-		_randomfunc _print_ -- "${@}"
-	;;
+        sort /tmp/randomtmp | uniq -c | sort -rn | head -n 10
+        rm -f /tmp/randomtmp
+        ;;
 
-	-z | --zero)
-		shift
-		_randomfunc _zero_ "${@}"
-	;;
+    -p | --print)
+        shift
+        _randomfunc _print_ -- "$@"
+        ;;
 
-	*)
-		_randomfunc "${@}"
-	;;
+    -z | --zero)
+        shift
+        _randomfunc _zero_ "$@"
+        ;;
+
+    *)
+        _randomfunc "$@"
+        ;;
 esac
