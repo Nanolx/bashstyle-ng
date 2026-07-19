@@ -1,33 +1,40 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
-case ${1} in
-	--help | -h | "")
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "loop" -s "$(eval_gettext "search for file inside colon-separated list of directories")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "directory-list:|list of directories (colon-separeated)")"\
-			-o "$(eval_gettext "file:|file to look for")"
-	;;
+case "${1}" in
+    --help | -h | "")
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/" \
+            -l "GNU GPL v3" -n "loop" -s "$(eval_gettext "search for file inside colon-separated list of directories")" \
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}" \
+            -o "$(eval_gettext "directory-list:|list of directories (colon-separeated)")" \
+            -o "$(eval_gettext "file:|file to look for")"
+        ;;
 
-	* )
-		if [ -n "${2}" ]; then
-			for dir in ${1//:/ }; do
-				if [ -e "${dir}/${2}" ]; then
-					echo "${dir}/${2}" && continue 2
-				fi
-			done
-		fi
-	;;
+    *)
+        if [[ -n "${2}" ]]; then
+            old_ifs="$IFS"
+            IFS=":"
+
+            for dir in ${1}; do
+                IFS="${old_ifs}"
+
+                if [[ -e "${dir}/${2}" ]]; then
+                    echo "${dir}/${2}"
+                    exit 0
+                fi
+            done
+            IFS="${old_ifs}"
+        fi
+    ;;
 esac
