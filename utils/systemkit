@@ -20,16 +20,21 @@ case ${1} in
     battery)
         check P "acpi" "'systemkit battery'" || exit 1
 
-        load=$(acpi -b &>/dev/null | sed -e "s/.* \([1-9][0-9]*\)%.*/\1/")
-        out="$(acpi -b &>/dev/null | awk '{print $3}')"
-        case ${state} in
-            Charging,)      statesign="^" ;;
-            Discharging,)   statesign="v" ;;
-            Full,)          statesign="°" ;;
+        state=$(echo "${acpi_output}" | awk '{print $3}')
+        load=$(echo "${acpi_output}" | sed -E 's/.*, ([0-9]+)%,.*/\1/')
+
+        case ${state%,} in
+            Charging)      statesign="^" ;;
+            Discharging)   statesign="v" ;;
+            Full)          statesign="°" ;;
             * )             statesign="|"
-                            load="000" ;;
+                            load="0" ;;
         esac
-        echo "${statesign}${load}"
+
+        [[ ! "$load" =~ ^[0-9]+$ ]] && load=0
+
+        formatted_load=$(prettyprint "${load}" 3)
+        echo "${statesign}${formatted_load}"
     ;;
 
     cpuload)
@@ -50,14 +55,30 @@ case ${1} in
 
     externalip)
         check P "curl" "'systemkit externalip'" || exit 1
+        curl_opts="-s -m 5"
+
         case "${2}" in
-            6 | ipv6 )      curl icanhazip.com ;;
-            4 | ipv4 | * )  curl ipv4.icanhazip.com ;;
+            6 | ipv6 )      curl ${curl_opts} icanhazip.com ;;
+            4 | ipv4 | * )  curl ${curl_opts} ipv4.icanhazip.com ;;
         esac
     ;;
 
     internalip)
-        LANG=C /sbin/ifconfig "${2}" | gawk '/inet /{print $2}'
+        interface="${3}"
+        if [[ -z "${3}" ]]; then
+            interface=$(ip route | awk '/default/ {print $5; exit}')
+        fi
+
+        case "${2}" in
+            6 | ipv6 )
+                ip -6 addr show dev "${interface}" scope link | \
+                    awk '/inet6 / {print $2}' | cut -d/ -f1 | head -n 1
+            ;;
+            4 | ipv4 | * )
+                ip -4 addr show dev "${interface}" scope global | \
+                    awk '/inet / {print $2}' | cut -d/ -f1 | head -n 1
+            ;;
+        esac
     ;;
 
     usedram) prettyprint "$(awk '/MemAvailable/ {avail=$2} END {print int(avail/1024)}' /proc/meminfo)" 5 ;;
@@ -84,12 +105,20 @@ case ${1} in
         fi
     ;;
 
-    usedspace)  echo "$(df -h | grep -w "${2}" | gawk '{print $3}')B" ;;
-    freespace)  echo "$(df -h | grep -w "${2}" | gawk '{print $4}')B" ;;
-    totalspace) echo "$(df -h | grep -w "${2}" | gawk '{print $2}')B" ;;
-    usedspace%) df | grep -w "${2}" | gawk '{print $5}' ;;
-    freespace%) temp=$(df | grep -w "${2}" | gawk '{print $5}')
-            echo "$((100-${temp//%/}))%" ;;
+    usedspace)  df -h --output=used "${2}" | tail -n 1 | tr -d ' ' ;;
+    freespace)  df -h --output=avail "${2}" | tail -n 1 | tr -d ' ' ;;
+    totalspace) df -h --output=size "${2}" | tail -n 1 | tr -d ' ' ;;
+    usedspace%) df --output=pcent "${2}" | tail -n 1 | tr -d ' ' ;;
+    freespace%)
+        used_pcent
+        used_pcent=$(df --output=pcent "${2}" | tail -n 1 | tr -d ' %')
+
+        if [[ "$used_pcent" =~ ^[0-9]+$ ]]; then
+            echo "$((100 - used_pcent))%"
+        else
+            echo "0%"
+        fi
+    ;;
 
     cpu)
         echo -e "CPU:
@@ -105,9 +134,20 @@ case ${1} in
     ;;
 
     partitions)
-        echo -e "$(eval_gettext "Partitions:\n")"\
-    "$(eval_gettext "device-node type mount used free total\n")"\
-    "$(df -h --output=source,fstype,target,used,avail,size | grep "^/dev")\n" | column -t
+        label_device_node=$(eval_gettext "device-node")
+        label_type=$(eval_gettext "type")
+        label_mount=$(eval_gettext "mount")
+        label_used=$(eval_gettext "used")
+        label_free=$(eval_gettext "free")
+        label_total=$(eval_gettext "total")
+
+        eval_gettext "Partitions:"
+        echo -e "\n"
+
+        {
+            echo "${label_device_node} ${label_type} ${label_mount} ${label_used} ${label_free} ${label_total}"
+            df -h --output=source,fstype,target,used,avail,size -x loop -x tmpfs -x devtmpfs -x squashfs -x efivarfs | tail -n +2 | sort -k3,3
+        } | column -t
     ;;
 
     pci)
@@ -121,18 +161,29 @@ case ${1} in
     ;;
 
     bios)
-        if [[ ${EUID} == 0 ]]; then
+        bios_not_root=$(eval_gettext "You're not root.")
+        bios_ask_sudo=$(eval_gettext "Do you want to use sudo? [j/N]: ")
+        bios_title=$(eval_gettext "SMBIOS/DMI Info:\n\n")
+
+        if (( EUID == 0 )); then
             check P "dmidecode" "'systemkit bios'" || exit 1
-            echo -e "$(eval_gettext "SMBIOS/DMI Info:\n\n")" "$(dmidecode -q)\n"
+            echo -e "${bios_title}$(dmidecode -q)\n"
         else
-            echo -e "$(eval_gettext "You're not root")"
-            exit 1
+            echo "${bios_not_root}" >&2
+            read -r -p "${bios_ask_sudo}" answer
+
+            if [[ "${answer}" =~ ^[JjYy]([Aa][Ee][Ss])?$ ]]; then
+                check P "sudo" "'systemkit bios'" || exit 1
+                echo -e "${bios_title}$(sudo dmidecode -q)\n"
+            else
+                exit 1
+            fi
         fi
     ;;
 
-    load1)  LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $1}' ;;
-    load5)  LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $2}' ;;
-    load15) LANG=C uptime | sed -e 's/.*average://;s/[[:space:]]//g' | gawk -F , '{print $3}' ;;
+    load1)  awk '{print $1}' /proc/loadavg ;;
+    load5)  awk '{print $2}' /proc/loadavg ;;
+    load15) awk '{print $3}' /proc/loadavg ;;
 
     tty)
         TTY=$(tty)
@@ -140,77 +191,53 @@ case ${1} in
     ;;
 
     uptime)
-        uptime=$(</proc/uptime)
-        timeused=${uptime%%.*}
+        uptime_raw=$(</proc/uptime)
+        timeused=${uptime_raw%%.*}
 
-        if (( timeused > 86400 )); then
-        ((
-            daysused=timeused/86400,
-            hoursused=timeused/3600-daysused*24,
-            minutesused=timeused/60-hoursused*60-daysused*60*24,
-            secondsused=timeused-minutesused*60-hoursused*3600-daysused*3600*24
-        ))
-            if (( hoursused < 10 )); then
-                hoursused=0${hoursused}
-            fi
-            if (( minutesused < 10 )); then
-                minutesused=0${minutesused}
-            fi
-            if (( secondsused < 10 )); then
-                secondsused=0${secondsused}
-            fi
-            output="${daysused}d ${hoursused}h:${minutesused}m:${secondsused}s"
-        elif (( timeused < 10 )); then
-            output="0d 00h:00m:0$(timeused)s"
-        elif (( timeused < 60 )); then
-            output="0d 00h:00m:${timeused}s"
-        elif (( timeused < 3600 )); then
-        ((
-            minutesused=timeused/60,
-            secondsused=timeused-minutesused*60
-        ))
-            if (( minutesused < 10 )); then
-                minutesused=0${minutesused}
-            fi
-            if (( secondsused < 10 )); then
-                secondsused=0${secondsused}
-            fi
-            output="0d 00h:${minutesused}m:${secondsused}s"
-        elif (( timeused < 86400 )); then
-        ((
-            hoursused=timeused/3600,
-            minutesused=timeused/60-hoursused*60,
-            secondsused=timeused-minutesused*60-hoursused*3600
-        ))
-            if (( hoursused < 10 )); then
-                hoursused=0${hoursused}
-            fi
-            if (( minutesused < 10 )); then
-                minutesused=0${minutesused}
-            fi
-            if (( secondsused < 10 )); then
-                secondsused=0${secondsused}
-            fi
-            output="0d ${hoursused}h:${minutesused}m:${secondsused}s"
-        fi
+        daysused=$(( timeused / 86400 ))
+        hoursused=$(( (timeused % 86400) / 3600 ))
+        minutesused=$(( (timeused % 3600) / 60 ))
+        secondsused=$(( timeused % 60 ))
 
-        echo "$output"
+        h_fmt=$(prettyprint "${hoursused}" 2)
+        m_fmt=$(prettyprint "${minutesused}" 2)
+        s_fmt=$(prettyprint "${secondsused}" 2)
+
+        echo "${daysused}d ${h_fmt}h:${m_fmt}m:${s_fmt}s"
     ;;
 
     processes)
-        procs=$(ps ax | wc -l | awk '{print $1}')
+        procs=$(ps ax | tail -n +2 | wc -l | tr -d ' ')
         prettyprint "${procs}" 4
     ;;
 
-    cof | countoverallfiles)    find -L "${2:-$PWD}" -maxdepth 1 -type f | wc -l ;;
-    cod | countoveralldirs)     echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d | wc -l )-1)) ;;
-    coi | countoverallitems)    echo $(($(find -L "${2:-$PWD}" -maxdepth 1 | wc -l )-1)) ;;
-    cvf | countvisiblefiles)    find -L "${2:-$PWD}" -maxdepth 1 -type f ! -name ".*" | wc -l ;;
-    cvd | countvisibledirs)     echo $(($(find -L "${2:-$PWD}" -maxdepth 1 -type d ! -name ".*" | wc -l)-1)) ;;
-    cvi | countvisibleitems)    echo $(($(find -L "${2:-$PWD}" -maxdepth 1 ! -name ".*" | wc -l)-1)) ;;
-    chf | counthiddenfiles)     find -L "${2:-$PWD}" -maxdepth 1 -type f -name ".*" | wc -l ;;
-    chd | counthiddendirs)      find -L "${2:-$PWD}" -maxdepth 1 -type d -name ".*" | wc -l ;;
-    chi | counthiddenitems)     find -L "${2:-$PWD}" -maxdepth 1 -name ".*" | wc -l ;;
+    cof | countoverallfiles)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 -type f -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
+    cod | countoveralldirs)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 -type d -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
+    coi | countoverallitems)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
+    cvf | countvisiblefiles)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 -type f ! -name ".*" -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
+    cvd | countvisibledirs)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 -type d ! -name ".*" -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
+    cvi | countvisibleitems)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 ! -name ".*" -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
+    chf | counthiddenfiles)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 -type f -name ".*" -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
+    chd | counthiddendirs)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 -type d -name ".*" -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
+    chi | counthiddenitems)
+        find -L "${2:-$PWD}" -maxdepth 1 -mindepth 1 -name ".*" -print0 | tr -cd '\0' | wc -c | tr -d ' '
+        ;;
 
     *)
         bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
@@ -219,7 +246,7 @@ case ${1} in
             -o "$(eval_gettext "battery:|show battery load state using acpi")"\
             -o "$(eval_gettext "cpuload:|show cpu load")"\
             -o "$(eval_gettext "externalip:ipv4/ipv6|show your PCs external ip (default is ipv4)")"\
-            -o "$(eval_gettext "internalip:interface|show interface's internal ip")"\
+            -o "$(eval_gettext "internalip:ipv4/ipv6:interface|show interface's internal ip (auto-determined if none given)")"\
             -o "$(eval_gettext "usedram:|used RAM")"\
             -o "$(eval_gettext "usedram%:|used RAM in %")"\
             -o "$(eval_gettext "freeram:|free RAM")"\
