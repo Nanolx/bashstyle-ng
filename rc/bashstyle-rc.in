@@ -22,7 +22,7 @@ export BSNG_BASHVER=${BASH_VERSINFO[0]}${BASH_VERSINFO[1]}
 export BSNG_LOGFILE=${HOME}/.bashstyle-ng.log
 export BASH_SESSION_PID=$$
 
-BSNG_SESSION_TIME=$(date +%I-%M-%S-%N)
+BSNG_SESSION_TIME=$(date +%Y%m%d_%H%M%S_%N)
 export BSNG_SESSION_TIME
 
 # load ini / loggin functions
