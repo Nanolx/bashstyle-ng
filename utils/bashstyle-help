@@ -12,15 +12,25 @@
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
-. "$(bashstyle --prefix)/share/bashstyle-ng/rc/function_ini"
-. "$(bashstyle --prefix)/share/bashstyle-ng/rc/function_log"
-. "$(bashstyle --prefix)/share/bashstyle-ng/rc/settings_color"
+declare -a OPTIONS=()
 
 assign() {
+    local opt var_name default_val
     for opt in "${@}"; do
-        var="X=\$${opt/:*}"
-        eval "${var}"
-        [ -z "${X}" ] && read -r "${opt/:*}" <<< "${opt/*:}"
+        var_name="${opt%%:*}"
+        default_val="${opt#*:}"
+
+        local -n current_var="$var_name"
+
+        if declare -p "$var_name" 2>/dev/null | grep -q '^declare -a'; then
+            if [ ${#current_var[@]} -eq 0 ]; then
+                current_var+=("$default_val")
+            fi
+        else
+            if [ -z "${current_var}" ]; then
+                current_var="$default_val"
+            fi
+        fi
     done
 }
 
@@ -40,26 +50,44 @@ do
     esac
 done
 
-assign NAME:not_given SHORT_DESC:not_given OPTIONS:not_given VERSION:not_given AUTHOR:not_given\
+assign NAME:not_given SHORT_DESC:not_given OPTIONS:not_given VERSION:not_given AUTHOR:not_given \
     EMAIL:not_given HOMEPAGE:not_given LICENSE:not_given YEAR:not_given
 
-echo -e "\n${egreen}${NAME} ${eyellow}(${VERSION}) ${ecyan}help
-\n\033[8G${ewhite}-- ${emagenta}${SHORT_DESC} ${ewhite}--
-\n\033[8G${ewhite}(c) ${YEAR}: ${eblue}${AUTHOR} ${ewhite}<${ered}${EMAIL}${ewhite}>
-\033[8G${ecyan}License: ${ered}${LICENSE}${ewhite} // ${ecyan}Homepage: ${emagenta}${HOMEPAGE}\n"
+echo -e "\n${egreen}${NAME} ${eyellow}(${VERSION}) ${ecyan}help"
+echo -e "\n\033[8G${ewhite}-- ${emagenta}${SHORT_DESC} ${ewhite}--"
+echo -e "\n\033[8G${ewhite}(c) ${YEAR}: ${eblue}${AUTHOR} ${ewhite}<${ered}${EMAIL}${ewhite}>"
+echo -e "\033[8G${ecyan}License: ${ered}${LICENSE}${ewhite} // ${ecyan}Homepage: ${emagenta}${HOMEPAGE}\n"
 
 EX="${eorange}Options \033[25G${ewhite}(${eblue}Values${ewhite})\033[65G ${egreen}Description\n"
 EX+="${eorange}======= \033[25G${ewhite}=${eblue}======${ewhite}=\033[65G ${egreen}===========\n"
 
 for opt in "${OPTIONS[@]}"; do
-    OPT=${opt/:*}
-    VAL=${opt/|*}
-    VAL=${VAL/*:}
-    [[ -z ${VAL} ]] && VAL="---"
-    DESC=${opt/*|}
+    if [[ "${opt}" == "not_given" ]]; then
+        EX+="${eorange}keine \033[25G${ewhite}[${eblue}---${ewhite}]\033[65G ${egreen}Keine Optionen definiert.\n"
+        continue
+    fi
+
+    OPT="${opt%%[:|]*}"
+
+    if [[ "$opt" == *":"* ]]; then
+        VAL="${opt#*:}"
+        VAL="${VAL%%|*}"
+    else
+        VAL=""
+    fi
+
+    [[ -z "${VAL}" ]] && VAL="---"
+
+    if [[ "$opt" == *"|"* ]]; then
+        DESC="${opt#*|}"
+    else
+        DESC="not_given"
+    fi
+
     EX+="${eorange}${OPT} \033[25G${ewhite}[${eblue}${VAL}${ewhite}]\033[65G ${egreen}${DESC}\n"
 done
+
 echo -e "${EX}"
 tput sgr0
 
-unset NAME SHORT_DESC OPTIONS VERSION AUTHOR EMAIL HOMEPAGE LICENSE YEAR
+unset NAME SHORT_DESC OPTIONS VERSION AUTHOR EMAIL HOMEPAGE LICENSE YEAR OPT VAL DESC EX
