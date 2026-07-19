@@ -29,21 +29,34 @@ bashstyle_remember_command () {
 
     [[ "${BSNG_TRAP_RECORD}" != True ]] && return $_lastexit
     [ -n "$COMP_LINE" ] && return $_lastexit
-    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return $_lastexit
     [[ "$BASH_COMMAND" == trap\ * ]] && return $_lastexit
     [[ "$BASH_COMMAND" == *lastcommand* ]] && return $_lastexit
     [[ "$BASH_COMMAND" == *lastexit* ]] && return $_lastexit
+    [[ "$BASH_COMMAND" == *return* ]] && return $_lastexit
+
+    # we may have more than one command in PROMPT_COMMAND!
+    local pc_list="${PROMPT_COMMAND}"
+    pc_list="${pc_list//&&/;}"
+    pc_list="${pc_list//||/;}"
+
+    local pc_item=""
+    local old_ifs="${IFS}"
+    IFS=";"
+    for pc_item in ${pc_list}; do
+        IFS="${old_ifs}"
+        if [[ "$BASH_COMMAND" == "$pc_item"* ]]; then
+            return $_lastexit
+        fi
+    done
+    IFS="${old_ifs}"
 
     local X_COMMAND=${BASH_COMMAND//$'\n'/ }
     X_COMMAND=${X_COMMAND//\\n/ }
 
-    lastcommand=${BASH_COMMAND}
-    lastcommandprintable=${X_COMMAND:0:21}
-
-    if [ ${#lastcommandprintable} -gt 21 ]; then
-        lastcommandprintable=${lastcommandprintable:0:20}'>'
+    if [ ${#X_COMMAND} -gt 21 ]; then
+        lastcommandprintable=${X_COMMAND:0:20}'>'
     else
-        lastcommandprintable="$(printf '%-21s' "$lastcommandprintable")"
+        lastcommandprintable="$(printf '%-21s' "$X_COMMAND")"
     fi
 
     return $_lastexit
