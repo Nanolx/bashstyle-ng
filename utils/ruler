@@ -1,51 +1,35 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
-
-# by xenospeek
-# modified version by me
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h)
-		bashstyle-help -a "xenospeek" -e "" -h "http://forums.linuxmint.com/viewtopic.php?f=42&t=91908&start=0#p527794"\
-			-l "GNU GPL v3" -n "ruler" -s "$(eval_gettext "print a numbered ruler on the terminal")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "none:|--")"
-	;;
+    --help | -h)
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org"\
+            -l "GNU GPL v3" -n "ruler" -s "$(eval_gettext "print a numbered ruler on the terminal")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "none:|--")"
+    ;;
 
-	* )
-		cols=$(tput cols)
-		j=1
-		k=1
+    * )
+        cols=$(tput cols)
 
-		for (( i=1 ; i <= cols ; i++ )); do
-			case $j in
-				5)	printf "^" ;;
-				10)	printf "°" && j=0;;
-				*)	printf "." ;;
-			esac
-			j=$((j+1))
-		done
-		printf "\n"
+        while [ ${#line1} -lt "$cols" ]; do
+            line1+="....^....|"
+            line2+="123456789|"
+        done
 
-		for (( i=1 ; i <= cols ; i++ )); do
-			case $k in
-				10)	printf "|" && k=0;;
-				*)	printf "%d" $k ;;
-			esac
-			k=$((k+1))
-		done
-		printf "\n"
-	;;
+        printf "%.${cols}s\n" "$line1"
+        printf "%.${cols}s\n" "$line2"
+    ;;
 esac
 
