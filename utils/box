@@ -1,29 +1,33 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h | "")
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "box" -s "$(eval_gettext "create a boxes around text")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "text:|text to place inside the box")"
-	;;
+    --help | -h | "")
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "box" -s "$(eval_gettext "create a boxes around text")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "text:|quoted text to place inside the box")"
+            -o "$(eval_gettext "char:|character used for border, default: #")"
+    ;;
 
-	* )	t="$1xxxx";c=${2:-#};
-		echo "${t//?/$c}
-$c $1 $c
-${t//?/$c}"
-	;;
+    * )
+        c="${2:-#}"
+        c="${c:0:1}"
+        width=$((${#1} + 4))
+        line=$(printf "%*s" "$width" "")
+        line="${line// /$c}"
+        printf "%s\n%s %s %s\n%s\n" "$line" "$c" "$1" "$c" "$line"
+    ;;
 esac
 
