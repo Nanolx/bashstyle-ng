@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
@@ -14,127 +14,111 @@ export TEXTDOMAIN="bashstyle-rc"
 REVERSE_NAME=0
 SORT_MODE=DEFAULT
 
-fill_zeros () {
-	current_len=${#1}
-	diff_string=""
-
-	if [[ ${current_len} -ne ${count_len} ]]; then
-		diff_len=$((count_len-current_len))
-		while test ${diff_len} -ne 0; do
-			diff_string="${diff_string}0"
-			diff_len=$((diff_len-1))
-		done
-		echo ${diff_string}
-	fi
-}
-
 rename_files () {
-	mkdir "${directory}/tmp"
-	reverse=${1}
+    local reverse="$1"
+    local count_now=1
+    local files=()
 
-	count_max=$(($(find "${directory}" -maxdepth 1 -type f | wc -l)))
-	count_len=${#count_max}
-	count_now=1
+    mkdir -p "${directory}/tmp"
 
-	[[ "${MV_OPT}" == "-v" ]] && \
-		echo -e "$(eval_gettext "\n\n >> renaming files using temporary directory \"${directory}/tmp\" \n\n")"
+    [[ "$MV_OPT" == "-v" ]] && \
+        echo -e "$(eval_gettext "\n\n >> renaming files using temporary directory \"${directory}/tmp\" \n\n")"
 
-	OLD_IFS="${IFS}"
-	export IFS=$'\n'
+    while IFS= read -r -d '' file; do
+        files+=("$file")
+    done < <(
+        case ${SORT_MODE} in
+            DEFAULT)         find "${directory}" -maxdepth 1 -type f -print0 ;;
+            DATE_ASCENDING)  find "${directory}" -maxdepth 1 -type f -printf '%T@ %p\0' | sort -z -k1 -n | cut -z -d ' ' -f 2- ;;
+            DATE_DESCENDING) find "${directory}" -maxdepth 1 -type f -printf '%T@ %p\0' | sort -z -k1 -r -n | cut -z -d ' ' -f 2- ;;
+            NAME_ASCENDING)  find "${directory}" -maxdepth 1 -type f -print0 | sort -z -d ;;
+            NAME_DESCENDING) find "${directory}" -maxdepth 1 -type f -print0 | sort -z -r -d ;;
+        esac
+    )
 
-	case ${SORT_MODE} in
-		DEFAULT )
-			files=($(find "${directory}" -maxdepth 1 -type f))
-		;;
-		DATE_ASCENDING )
-			files=($(find "${directory}" -maxdepth 1 -type f -printf '%T@ %p\n' | sort -k1 -n | cut -d ' ' -f 2-))
-		;;
-		DATE_DESCENDING )
-			files=($(find "${directory}" -maxdepth 1 -type f -printf '%T@ %p\n' | sort -k1 -r -n | cut -d ' ' -f 2-))
-		;;
-		NAME_ASCENDING )
-			files=($(find "${directory}" -maxdepth 1 -type f | sort -k1 -d))
-		;;
-		NAME_DESCENDING )
-			files=($(find "${directory}" -maxdepth 1 -type f | sort -k1 -r -d))
-		;;
-	esac
+    local count_max=${#files[@]}
+    local count_len=${#count_max}
 
-	case ${reverse} in
-		1 )
-			for image in "${files[@]}"; do
-				num=$(fill_zeros ${count_now})${count_now}
-				mv ${MV_OPT} "${image}" "${directory}/tmp/${num}-${prefix}.${image##*.}"
-				count_now=$((count_now+1))
-			done
-		;;
+    for image in "${files[@]}"; do
+        local num
+        num=$(printf "%0${count_len}d" "$count_now")
 
-		0 )
-			for image in "${files[@]}"; do
-				num=$(fill_zeros ${count_now})${count_now}
-				mv ${MV_OPT} "${image}" "${directory}/tmp/${prefix}-${num}.${image##*.}"
-				count_now=$((count_now+1))
-			done
-		;;
-	esac
+        local new_name
+        if [[ "$reverse" -eq 1 ]]; then
+            new_name="${num}-${prefix}.${image##*.}"
+        else
+            new_name="${prefix}-${num}.${image##*.}"
+        fi
 
-	[[ "${MV_OPT}" == "-v" ]] && \
-		echo -e "$(eval_gettext "\n\n >> moving files into destination directory \"${directory}\" \n\n")"
+        mv $MV_OPT "$image" "${directory}/tmp/${new_name}"
+        count_now=$((count_now + 1))
+    done
 
-	mv ${MV_OPT} "${directory}/tmp/"* "${directory}/"
-	rmdir "${directory}/tmp"
+    [[ "$MV_OPT" == "-v" ]] && \
+        echo -e "$(eval_gettext "\n\n >> moving files into destination directory \"${directory}\" \n\n")"
 
-	export IFS="${OLD_IFS}"
+    find "${directory}/tmp" -maxdepth 1 -type f -exec mv $MV_OPT {} "${directory}/" \;
+    rmdir "${directory}/tmp"
 }
 
 _help () {
-	bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
-		-h "https://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
-		-s "$(eval_gettext "batch rename files in NAME-NNN.SUFFIX scheme")"\
-		-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-		-o "$(eval_gettext "v:|verbose output")"\
-		-o "$(eval_gettext "r:|reverse filename to NNN-NAME.SUFFIX scheme")"\
-		-o "$(eval_gettext "sort:MODE|sort files by MODE, which is one of")"\
-		-o "$(eval_gettext "	d+:|sort files oldest to newest")"\
-		-o "$(eval_gettext "	d-:|sort files newest to oldest")"\
-		-o "$(eval_gettext "	n+:|sort files A to Z")"\
-		-o "$(eval_gettext "	n-:|sort files Z to A")"\
-		-o "$(eval_gettext "directory:/home/test/mypictures|directory containing files")"\
-		-o "$(eval_gettext "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme")"
+    bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" \
+        -h "https://www.nanolx.org/" -l "GNU GPL v3" -n "batchrename" \
+        -s "$(eval_gettext "batch rename files in NAME-NNN.SUFFIX scheme")"\
+        -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+        -o "$(eval_gettext "v:|verbose output")"\
+        -o "$(eval_gettext "r:|reverse filename to NNN-NAME.SUFFIX scheme")"\
+        -o "$(eval_gettext "sort:MODE|sort files by MODE, which is one of")"\
+        -o "$(eval_gettext "    d+:|sort files oldest to newest")"\
+        -o "$(eval_gettext "    d-:|sort files newest to oldest")"\
+        -o "$(eval_gettext "    n+:|sort files A to Z")"\
+        -o "$(eval_gettext "    n-:|sort files Z to A")"\
+        -o "$(eval_gettext "directory:/home/test/mypictures|directory containing files")"\
+        -o "$(eval_gettext "prefix:MyPictures2016|NAME part of the NNN-NAME.SUFFIX scheme")"
 }
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        v | verbose | -v | --verbose)
+            MV_OPT="-v"
+            shift
+            ;;
+        r | reverse | -r | --reverse)
+            REVERSE_NAME=1
+            shift
+            ;;
+        sort | -s | --sort)
+            case "${2}" in
+                d+ ) SORT_MODE=DATE_ASCENDING ;;
+                d- ) SORT_MODE=DATE_DESCENDING ;;
+                n+ ) SORT_MODE=NAME_ASCENDING ;;
+                n- ) SORT_MODE=NAME_DESCENDING ;;
+                *  ) echo "$(eval_gettext unknown sort mode:)" ${2}
+                    _help
+                    exit 1
+                ;;
+            esac
+            shift 2
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
 
-if [[ $# -gt 2 ]]; then
-	while [[ $# -gt 2 ]]; do
-		case ${1} in
-			v | verbose )	MV_OPT="-v" ;;
-			r | reverse )	REVERSE_NAME=1 ;;
-			sort )
-				case ${2} in
-					d+ ) SORT_MODE=DATE_ASCENDING ;;
-					d- ) SORT_MODE=DATE_DESCENDING ;;
-					n+ ) SORT_MODE=NAME_ASCENDING ;;
-					n- ) SORT_MODE=NAME_DESCENDING ;;
-				esac
-				shift
-			;;
-		esac
-		shift
-	done
+if [[ $# -ne 2 ]]; then
+    _help
+    exit 1
 fi
 
-if [[ $# -eq 2 ]]; then
-	directory="${1}"
+directory="${1}"
+prefix="${2}"
 
-	if [[ ! -d "${directory}" ]]; then
-		echo "$(eval_gettext "directory \"${directory}\" does not exist!")"
-		exit 1
-	elif [[ ! -w "${directory}" ]]; then
-		echo "$(eval_gettext "directory \"${directory}\" is not writeable!")"
-		exit 1
-	fi
-
-	prefix="${2}"
-	rename_files ${REVERSE_NAME}
-else
-	_help
+if [[ ! -d "${directory}" ]]; then
+    echo "$(eval_gettext "directory \"\${directory}\" does not exist!")"
+    exit 1
+elif [[ ! -w "${directory}" ]]; then
+    echo "$(eval_gettext "directory \"\${directory}\" is not writeable!")"
+    exit 1
 fi
+
+rename_files "${REVERSE_NAME}"
