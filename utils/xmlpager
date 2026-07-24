@@ -15,7 +15,7 @@ export TEXTDOMAIN="bashstyle-rc"
 check P xmlindent xmlpager || exit 1
 
 case ${1} in
-    -h | --help )
+    -h | --help | "" )
         bashstyle-help -a "hackerb9" -e "" -h "http://www.commandlinefu.com/"\
             -l "GNU GPL v3" -n "xmlpager" -s "$(eval_gettext "pager for xml files with highlighted text")"\
             -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
@@ -23,35 +23,41 @@ case ${1} in
     ;;
 
     *)
-        xmlindent "${@}" | \
-            awk -v red="$(tput bold; tput setaf 1)" \
-                -v green="$(tput bold; tput setaf 2)" \
-                -v yellow="$(tput bold; tput setaf 3)" \
-                -v blue="$(tput bold; tput setaf 4)" \
-                -v reset="$(tput sgr0)" '
-                {
-                    if ($0 ~ /<!--.*-->/) {
-                        gsub(/<!--/, yellow "<!--")
-                        gsub(/-->/, "-->" reset)
-                        print
-                        next
-                    }
-                    if ($0 ~ /<?xml.*?>/) {
-                        gsub(/<?xml/, blue "<?xml")
-                        gsub(/?>/, "?>" reset)
-                        print
-                        next
-                    }
-                    while (match($0, /="[^"]*"/)) {
-                        wert = substr($0, RSTART + 2, RLENGTH - 3)
-                        $0 = substr($0, 1, RSTART) green "\"" wert "\"" reset substr($0, RSTART + RLENGTH)
-                    }
-                    gsub(">", ">" red)
-                    gsub("<", reset "<")
-                    print
-                }
-                END {
-                    print reset
-                }' | less -r
+        for file in "${@}"; do
+            if [ -f "${file}" ]; then
+                xmlindent "${file}" | \
+                    awk -v red="$(tput bold; tput setaf 1)" \
+                        -v green="$(tput bold; tput setaf 2)" \
+                        -v yellow="$(tput bold; tput setaf 3)" \
+                        -v blue="$(tput bold; tput setaf 4)" \
+                        -v reset="$(tput sgr0)" '
+                        {
+                            if ($0 ~ /<!--.*-->/) {
+                                gsub(/<!--/, yellow "<!--")
+                                gsub(/-->/, "-->" reset)
+                                print
+                                next
+                            }
+                            if ($0 ~ /<?xml.*?>/) {
+                                gsub(/<?xml/, blue "<?xml")
+                                gsub(/?>/, "?>" reset)
+                                print
+                                next
+                            }
+                            while (match($0, /="[^"]*"/)) {
+                                wert = substr($0, RSTART + 2, RLENGTH - 3)
+                                $0 = substr($0, 1, RSTART) green "\"" wert "\"" reset substr($0, RSTART + RLENGTH)
+                            }
+                            gsub(">", ">" red)
+                            gsub("<", reset "<")
+                            print
+                        }
+                        END {
+                            print reset
+                        }' | less -r
+            else
+                echo "file: ${file} does not exist"
+            fi
+        done
     ;;
 esac
