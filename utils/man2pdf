@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
@@ -15,18 +15,18 @@ export TEXTDOMAIN="bashstyle-rc"
 check P "ps2pdf" "man2pdf" || exit 1
 
 case ${1} in
-	--help | -h | "")
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "man2pdf" -s "$(eval_gettext "create PDF from a manpage")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "manpage:bash|manpage to create a PDF from")"
-	;;
+    --help | -h | "")
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "man2pdf" -s "$(eval_gettext "create PDF from a manpage")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "manpage:bash|manpage to create a PDF from")"
+    ;;
 
-	* )
-		manpage="${1}"
+    * )
+        manpage="${1}"
 
-		man -t "${manpage}" &>/dev/null && man -t "${manpage}" | ps2pdf - > "${manpage}.pdf" \
-			|| echo "$(eval_gettext "manpage ${manpage} does not exist")"
-	;;
+        man -t "${manpage}" &>/dev/null && man -t "${manpage}" | ps2pdf - > "${manpage}.pdf" \
+            || echo "$(eval_gettext "manpage ${manpage} does not exist")"
+    ;;
 esac
 

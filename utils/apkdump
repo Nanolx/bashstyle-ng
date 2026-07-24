@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
@@ -18,30 +18,30 @@ opt=${1}
 shift
 
 case ${opt} in
-	name | n)
-		aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $2}'
-	;;
+    name | n)
+        aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $2}'
+    ;;
 
-	version | v)
-		aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $6}'
-	;;
+    version | v)
+        aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $6}'
+    ;;
 
-	versioncode | c)
-		aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $4}'
-	;;
+    versioncode | c)
+        aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^package: name/{print $4}'
+    ;;
 
-	perms | p)
-		aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^uses-permission:/{print $2}'
-	;;
+    perms | p)
+        aapt dump badging "${1}" 2>/dev/null | gawk -F \' '/^uses-permission:/{print $2}'
+    ;;
 
-	*)
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "apkdump" -s "$(eval_gettext "grab apk infos using aapt")" \
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "name:apk|get package name of apk")"\
-			-o "$(eval_gettext "version:apk|get human-readable version of apk")"\
-			-o "$(eval_gettext "versioncode:apk|get version code of apk")"\
-			-o "$(eval_gettext "perms:apk|get list of requested permissions")"
-	;;
+    *)
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "apkdump" -s "$(eval_gettext "grab apk infos using aapt")" \
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "name:apk|get package name of apk")"\
+            -o "$(eval_gettext "version:apk|get human-readable version of apk")"\
+            -o "$(eval_gettext "versioncode:apk|get version code of apk")"\
+            -o "$(eval_gettext "perms:apk|get list of requested permissions")"
+    ;;
 esac
 

@@ -1,26 +1,26 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h | "")
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-				-l "GNU GPL v3" -n "radical" -s "$(eval_gettext "calculate square root of a number")"\
-				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "$(eval_gettext "number:|number to calculate square root of")"
-	;;
+    --help | -h | "")
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+                -l "GNU GPL v3" -n "radical" -s "$(eval_gettext "calculate square root of a number")"\
+                -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+                -o "$(eval_gettext "number:|number to calculate square root of")"
+    ;;
 
-	* )
-		echo "sqrt($1)" | bc -l
-	;;
+    * )
+        echo "sqrt($1)" | bc -l
+    ;;
 esac

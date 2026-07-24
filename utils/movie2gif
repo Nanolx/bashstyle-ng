@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
@@ -17,19 +17,19 @@ check P "ffmpeg" "movie2gif" || exit 1
 # by maxwux
 
 case ${1} in
-	--help | -h | "")
-		bashstyle-help -a "maxwux" -e "" -h "http://www.commandlinefu.com/"\
-				-l "Public Domain" -n "movie2gif"\
-				-s "$(eval_gettext "create GIF from Movie")"\
-				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "$(eval_gettext "input file:coolfilm.avi|movie file to generate GIF from")"\
-				-o "$(eval_gettext "start time:00:00:00.000|start time")"\
-				-o "$(eval_gettext "duration:10|scene duration")"\
-				-o "$(eval_gettext "scale:320:-1|GIF scale")"\
-				-o "$(eval_gettext "output file:coolgif.gif|output file name")"
-	;;
+    --help | -h | "")
+        bashstyle-help -a "maxwux" -e "" -h "http://www.commandlinefu.com/"\
+                -l "Public Domain" -n "movie2gif"\
+                -s "$(eval_gettext "create GIF from Movie")"\
+                -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+                -o "$(eval_gettext "input file:coolfilm.avi|movie file to generate GIF from")"\
+                -o "$(eval_gettext "start time:00:00:00.000|start time")"\
+                -o "$(eval_gettext "duration:10|scene duration")"\
+                -o "$(eval_gettext "scale:320:-1|GIF scale")"\
+                -o "$(eval_gettext "output file:coolgif.gif|output file name")"
+    ;;
 
-	* )
-		ffmpeg -ss "${2}" -t "${3}" -i "${1}" -vf scale="${4}" "${5}"
-	;;
+    * )
+        ffmpeg -ss "${2}" -t "${3}" -i "${1}" -vf scale="${4}" "${5}"
+    ;;
 esac

@@ -1,31 +1,31 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h | "")
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-				-l "GNU GPL v3" -n "nseq" \
-				-s "$(eval_gettext "print a sequence of numbers from X to Y of same width")"\
-				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "$(eval_gettext "lowest:|lowest number of sequence")"\
-				-o "$(eval_gettext "highest:|highest number of sequence")"\
-				-o "$(eval_gettext "separator:|(optional) field seprator, default '\\\n'")"
-	;;
+    --help | -h | "")
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+                -l "GNU GPL v3" -n "nseq" \
+                -s "$(eval_gettext "print a sequence of numbers from X to Y of same width")"\
+                -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+                -o "$(eval_gettext "lowest:|lowest number of sequence")"\
+                -o "$(eval_gettext "highest:|highest number of sequence")"\
+                -o "$(eval_gettext "separator:|(optional) field seprator, default '\\\n'")"
+    ;;
 
-	* )
-		[ -z "${1}" ] && exit 1
-		[ -z "${2}" ] && exit 1
-		[ -n "${3}" ] && seq -s"${3}" -w "${1}" "${2}" || seq -w "${1}" "${2}"
-	;;
+    * )
+        [ -z "${1}" ] && exit 1
+        [ -z "${2}" ] && exit 1
+        [ -n "${3}" ] && seq -s"${3}" -w "${1}" "${2}" || seq -w "${1}" "${2}"
+    ;;
 esac

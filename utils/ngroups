@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 # by gniourf_gniourf
@@ -15,17 +15,17 @@
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h)
-		bashstyle-help -a "gniourf_gniourf" -e "" -h "http://www.commandlinefu.com/"\
-				-l "Public Domain" -n "ngroups" -s "$(eval_gettext "Show groups current or given user is not part of")"\
-				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o "$(eval_gettext "user:|(optional) user to check (only if root)")"
-	;;
+    --help | -h)
+        bashstyle-help -a "gniourf_gniourf" -e "" -h "http://www.commandlinefu.com/"\
+                -l "Public Domain" -n "ngroups" -s "$(eval_gettext "Show groups current or given user is not part of")"\
+                -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+                -o "$(eval_gettext "user:|(optional) user to check (only if root)")"
+    ;;
 
-	* )
-		[[ "${EUID}" -eq 0 && -n "${2}" ]] && user="${2}" || user="${USER}"
-		echo -e "$(eval_gettext "user ${user} is not part of the following groups:\n")" \
-			"$(sed -e "/${user}/d;s/:.*//g" /etc/group | sed -e :a -e '/$/N;s/\n/ /;ta')"
-	;;
+    * )
+        [[ "${EUID}" -eq 0 && -n "${2}" ]] && user="${2}" || user="${USER}"
+        echo -e "$(eval_gettext "user ${user} is not part of the following groups:\n")" \
+            "$(sed -e "/${user}/d;s/:.*//g" /etc/group | sed -e :a -e '/$/N;s/\n/ /;ta')"
+    ;;
 esac
 

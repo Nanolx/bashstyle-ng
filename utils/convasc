@@ -1,43 +1,43 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	b32 | base32)	echo "obase=32 ; $(convasc dec "${2}")" | bc ;;
-	b64 | base64)	echo "obase=64 ; $(convasc dec "${2}")" | bc ;;
-	bin | binary)	echo "obase=2 ; $(convasc dec "${2}")" | bc ;;
-	dec | decimal)	printf '%d\n' "'$2'" ;;
-	hex | hexadecimal)	echo "obase=16 ; $(convasc dec "${2}")" | bc ;;
-	oct | octal)	echo "obase=8 ; $(convasc dec "${2}")" | bc ;;
-	all )
-		echo "ascii $2 = binary	$(convasc bin "${2}")
-ascii $2 = octal		$(convasc oct "${2}")
-ascii $2 = decimal	$(convasc dec "${2}")
-ascii $2 = hexadecimal	$(convasc hex "${2}")
-ascii $2 = base32	$(convasc b32 "${2}")
-ascii $2 = base64	$(convasc b64 "${2}")"
-	;;
+    b32 | base32)   echo "obase=32 ; $(convasc dec "${2}")" | bc ;;
+    b64 | base64)   echo "obase=64 ; $(convasc dec "${2}")" | bc ;;
+    bin | binary)   echo "obase=2 ; $(convasc dec "${2}")" | bc ;;
+    dec | decimal)  printf '%d\n' "'$2'" ;;
+    hex | hexadecimal)  echo "obase=16 ; $(convasc dec "${2}")" | bc ;;
+    oct | octal)    echo "obase=8 ; $(convasc dec "${2}")" | bc ;;
+    all )
+        echo "ascii $2 = binary $(convasc bin "${2}")
+ascii $2 = octal        $(convasc oct "${2}")
+ascii $2 = decimal  $(convasc dec "${2}")
+ascii $2 = hexadecimal  $(convasc hex "${2}")
+ascii $2 = base32   $(convasc b32 "${2}")
+ascii $2 = base64   $(convasc b64 "${2}")"
+    ;;
 
-	*)
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "convasc" -s "$(eval_gettext "convert ascii char to numerical equivalents")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "bin:|convert ascii to binary equivalent")"\
-			-o "$(eval_gettext "b32:|convert ascii to base32 equivalent")"\
-			-o "$(eval_gettext "b64:|convert ascii to base64 equivalent")"\
-			-o "$(eval_gettext "dec:|convert ascii to decimal equivalent")"\
-			-o "$(eval_gettext "hex:|convert ascii to hexadecimal equivalent")"\
-			-o "$(eval_gettext "oct:|convert ascii to octal equivalent")"\
-			-o "$(eval_gettext "all:|convert ascii to other numerical equivalents")"
-	;;
+    *)
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "convasc" -s "$(eval_gettext "convert ascii char to numerical equivalents")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "bin:|convert ascii to binary equivalent")"\
+            -o "$(eval_gettext "b32:|convert ascii to base32 equivalent")"\
+            -o "$(eval_gettext "b64:|convert ascii to base64 equivalent")"\
+            -o "$(eval_gettext "dec:|convert ascii to decimal equivalent")"\
+            -o "$(eval_gettext "hex:|convert ascii to hexadecimal equivalent")"\
+            -o "$(eval_gettext "oct:|convert ascii to octal equivalent")"\
+            -o "$(eval_gettext "all:|convert ascii to other numerical equivalents")"
+    ;;
 esac

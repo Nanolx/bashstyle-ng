@@ -1,64 +1,64 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h | "")
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-				-l "GNU GPL v3" -n "random" -s $"print random numbers or strings"\
-				-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-				-o $"-s:length|print string containing all printable chars except space"\
-				-o $"-0:length|print random number of given length"\
-				-o $"-r:(lowest) highest|print random number in range lowest (or 0) and highest"\
-				-o $"-a:length|print string containing only mixed-case letters"\
-				-o $"-l:length|print string containing only lower-case letters"\
-				-o $"-u:length|print string containing only upper-case letters"\
-				-o $"-x:length|print string of hexadecimal numbers"\
-				-o $"-a0:length|print alpha-numeric string (mixed-case)"
-	;;
+    --help | -h | "")
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+                -l "GNU GPL v3" -n "random" -s $"print random numbers or strings"\
+                -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+                -o $"-s:length|print string containing all printable chars except space"\
+                -o $"-0:length|print random number of given length"\
+                -o $"-r:(lowest) highest|print random number in range lowest (or 0) and highest"\
+                -o $"-a:length|print string containing only mixed-case letters"\
+                -o $"-l:length|print string containing only lower-case letters"\
+                -o $"-u:length|print string containing only upper-case letters"\
+                -o $"-x:length|print string of hexadecimal numbers"\
+                -o $"-a0:length|print alpha-numeric string (mixed-case)"
+    ;;
 
-	--special | -s )
-		echo -e "$(tr -cd '[:graph:]' < /dev/urandom | head -c "${2:-16}")\n"
-	;;
+    --special | -s )
+        echo -e "$(tr -cd '[:graph:]' < /dev/urandom | head -c "${2:-16}")\n"
+    ;;
 
-	--numerical | -0 )
-		echo -e "$(tr -cd '[:digit:]' < /dev/urandom | head -c "${2:-16}")\n"
-	;;
+    --numerical | -0 )
+        echo -e "$(tr -cd '[:digit:]' < /dev/urandom | head -c "${2:-16}")\n"
+    ;;
 
-	--numericalrange | -r )
-		if [[ ${3} ]]; then
-			shuf -i "${2}-${3}" -n 1
-		else	shuf -i "0-${2}" -n 1
-		fi
-	;;
+    --numericalrange | -r )
+        if [[ ${3} ]]; then
+                shuf -i "${2}-${3}" -n 1
+        else    shuf -i "0-${2}" -n 1
+        fi
+    ;;
 
-	--alpha | -a )
-		echo -e "$(tr -cd '[:alpha:]' < /dev/urandom | head -c "${2:-16}")\n"
-	;;
+    --alpha | -a )
+        echo -e "$(tr -cd '[:alpha:]' < /dev/urandom | head -c "${2:-16}")\n"
+    ;;
 
-	--alphalow | -l )
-		echo -e "$(tr -cd '[:lower:]' < /dev/urandom | head -c "${2:-16}")\n"
-	;;
+    --alphalow | -l )
+        echo -e "$(tr -cd '[:lower:]' < /dev/urandom | head -c "${2:-16}")\n"
+    ;;
 
-	--alphaup | -u )
-		echo -e "$(tr -cd '[:upper:]' < /dev/urandom | head -c "${2:-16}")\n"
-	;;
+    --alphaup | -u )
+        echo -e "$(tr -cd '[:upper:]' < /dev/urandom | head -c "${2:-16}")\n"
+    ;;
 
-	--hexadecimal | -x )
-		echo -e "$(tr -cd '[:xdigit:]' < /dev/urandom | head -c "${2:-16}")\n"
-	;;
+    --hexadecimal | -x )
+        echo -e "$(tr -cd '[:xdigit:]' < /dev/urandom | head -c "${2:-16}")\n"
+    ;;
 
-	--alphanumerical | -a0 )
-		echo -e "$(tr -cd '[:alnum:]' < /dev/urandom | head -c "${2:-16}")\n"
-	;;
+    --alphanumerical | -a0 )
+        echo -e "$(tr -cd '[:alnum:]' < /dev/urandom | head -c "${2:-16}")\n"
+    ;;
 esac

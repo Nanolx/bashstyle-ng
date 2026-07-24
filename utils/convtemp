@@ -1,52 +1,52 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	cf | cel-fah)
-		echo "scale=2; $1 * 1.8  + 32" | bc
-	;;
+    cf | cel-fah)
+        echo "scale=2; $1 * 1.8  + 32" | bc
+    ;;
 
-	ck | cel-kel)
-		echo "scale=2; $1 + 237.15" | bc
-	;;
+    ck | cel-kel)
+        echo "scale=2; $1 + 237.15" | bc
+    ;;
 
-	fc | fah-cel)
-		echo "scale=2 ; ( $1 - 32  ) / 1.8" | bc
-	;;
+    fc | fah-cel)
+        echo "scale=2 ; ( $1 - 32  ) / 1.8" | bc
+    ;;
 
-	fk | fah-kel)
-		echo "scale=2; ( $1 + 459.67 ) / 1.8 " | bc
-	;;
+    fk | fah-kel)
+        echo "scale=2; ( $1 + 459.67 ) / 1.8 " | bc
+    ;;
 
-	kc | kel-cel)
-		echo "scale=2; $1 - 273.15" | bc
-	;;
+    kc | kel-cel)
+        echo "scale=2; $1 - 273.15" | bc
+    ;;
 
-	kf | kel-fah)
-		echo "scale=2; $1 * 1.8 - 459,67" | bc
-	;;
+    kf | kel-fah)
+        echo "scale=2; $1 * 1.8 - 459,67" | bc
+    ;;
 
-	*)
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "convtemp" -s "$(eval_gettext "convert between °C, °F and °K")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "cf:number|convert °C to °F")"\
-			-o "$(eval_gettext "ck:number|convert °C to °K")"\
-			-o "$(eval_gettext "fc:number|convert °F to °C")"\
-			-o "$(eval_gettext "fk:number|convert °F to °K")"\
-			-o "$(eval_gettext "kc:number|convert °K to °C")"\
-			-o "$(eval_gettext "kf:number|convert °K to °F")"
-	;;
+    *)
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "convtemp" -s "$(eval_gettext "convert between °C, °F and °K")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "cf:number|convert °C to °F")"\
+            -o "$(eval_gettext "ck:number|convert °C to °K")"\
+            -o "$(eval_gettext "fc:number|convert °F to °C")"\
+            -o "$(eval_gettext "fk:number|convert °F to °K")"\
+            -o "$(eval_gettext "kc:number|convert °K to °C")"\
+            -o "$(eval_gettext "kf:number|convert °K to °F")"
+    ;;
 esac
 
