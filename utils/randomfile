@@ -59,7 +59,7 @@ _randomfunc() {
             else
                 "${command[@]}" "${randomfile}"
             fi
-            ;;
+        ;;
     esac
 }
 
@@ -93,7 +93,7 @@ _randomfile_help () {
 case "$1" in
     --help | -h | "")
         _randomfile_help
-        ;;
+    ;;
 
     -f | --first)
         if [[ -f "${HOME}/.randomhistory" ]]; then
@@ -101,15 +101,15 @@ case "$1" in
         else
             echo $"no 'randomfile' history available" >&2
         fi
-        ;;
+    ;;
 
     -L | --last)
         if [[ -f "${HOME}/.randomhistory" ]]; then
             sed -n '$p' "${HOME}/.randomhistory"
-        } else
+        else
             echo 4"no 'randomfile' history available" >&2
         fi
-        ;;
+    ;;
 
     -i | --item)
         if [[ -f "${HOME}/.randomhistory" ]]; then
@@ -117,7 +117,7 @@ case "$1" in
         else
             echo $"no 'randomfile' history available" >&2
         fi
-        ;;
+    ;;
 
     -l | --length)
         if [[ -f "${HOME}/.randomhistory" ]]; then
@@ -125,11 +125,11 @@ case "$1" in
         else
             echo $"no 'randomfile' history available" >&2
         fi
-        ;;
+    ;;
 
     -c | --clear)
         rm -f "${HOME}/.randomhistory"
-        ;;
+    ;;
 
     -n | --count)
         shift
@@ -145,19 +145,19 @@ case "$1" in
 
         sort /tmp/randomtmp | uniq -c | sort -rn | head -n 10
         rm -f /tmp/randomtmp
-        ;;
+    ;;
 
     -p | --print)
         shift
         _randomfunc _print_ -- "$@"
-        ;;
+    ;;
 
     -z | --zero)
         shift
         _randomfunc _zero_ "$@"
-        ;;
+    ;;
 
     *)
         _randomfunc "$@"
-        ;;
+    ;;
 esac
