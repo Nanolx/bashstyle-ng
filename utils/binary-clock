@@ -1,25 +1,42 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h)
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "binary-clock" -s "$(eval_gettext "binary clock for bash")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "none:|--")"
-	;;
+    --help | -h)
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "binary-clock" -s "$(eval_gettext "binary clock for bash")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "none:|--")"
+    ;;
 
-	*)	clear ; perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}' ;;
+    *)
+        clear
+        while true; do
+            tput cup 0 0
+            time_str=$(printf '%(%H%M%S)T' -1)
+            d=( $(echo "$time_str" | sed 's/./& /g') )
+
+            for val in "${d[@]}"; do
+                binary=""
+                for ((i=3; i>=0; i--)); do
+                    binary+=$(( (val >> i) & 1 ))
+                done
+                printf "%s " "$binary"
+            done
+
+            sleep 1
+        done
+    ;;
 esac
 
