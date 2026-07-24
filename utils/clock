@@ -1,33 +1,34 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 . gettext.sh
 export TEXTDOMAIN="bashstyle-rc"
 
 case ${1} in
-	--help | -h)
-		bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
-			-l "GNU GPL v3" -n "clock" -s "$(eval_gettext "simple clock for bash")"\
-			-v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
-			-o "$(eval_gettext "none:|--")"
-	;;
+    --help | -h)
+        bashstyle-help -a "Christopher Roy Bratusek" -e "nano@jpberlin.de" -h "https://www.nanolx.org/"\
+            -l "GNU GPL v3" -n "clock" -s "$(eval_gettext "simple clock for bash")"\
+            -v "${BSNG_VERSION}" -y "${BSNG_YEAR}"\
+            -o "$(eval_gettext "none:|--")"
+    ;;
 
-	*)
-		while true; do
-			clear;
-			echo "===========";
-			date +"%r";
-			echo "===========";
-			sleep 1;
-		done
-	;;
+    *)
+        clear
+        while true; do
+            tput cup 0 0
+            echo "===========";
+            date +"%r";
+            echo "===========";
+            sleep 1;
+        done
+    ;;
 esac
 
