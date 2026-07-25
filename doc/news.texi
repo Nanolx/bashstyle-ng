@@ -9,6 +9,49 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 11.3 (2026XXXX) ``Surimi Syndicate``
+@itemize @bullet
+@item Fixes
+@itemize @minus
+
+@item #310: @code{randomfile}: fix syntax error preventing script exectuion
+
+@end itemize
+@item New Features
+@itemize @minus
+
+@item @code{xmlpager} now allows passing multiple files (will be shown successively),
+checks whether supplied files are accessible and shows the help message, if no
+file was passed.
+
+@end itemize
+@item Misc. Changes
+@itemize @minus
+
+@item the @code{binary-clock} util is now written in pure bash, rather than perl
+
+@item The following utils have been revised/modernized
+@itemize @minus
+
+@item @code{batchrename}
+
+@item @code{box}
+
+@item @code{camelcase}
+
+@item @code{check}
+
+@item @code{clock}
+
+@item @code{ruler}
+
+@item @code{stopwatch}
+@end itemize
+
+@item additonally all utils received whitespace fixes
+@end itemize
+@end itemize
+
 @heading 11.2 (20260723) ``Corneria``
 @itemize @bullet
 @item Fixes
