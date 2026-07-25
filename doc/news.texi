@@ -28,6 +28,13 @@ file was passed.
 @item Misc. Changes
 @itemize @minus
 
+@item @code{Configure} version 5.0.0, revised code. Checking version of python-gi
+modules now works for all, not just @code{Gtk}, remove unused pkg-config file for
+BashStyle-NG. Path for gi-typelibs is now properly auto-detected.
+
+@item @code{Make} version 3.0.0, revised code, use gtk4-update-icon-cache is
+postinstall task, rather than Gtk+3 binary, now in postremove task aswell.
+
 @item the @code{binary-clock} util is now written in pure bash, rather than perl
 
 @item The following utils have been revised/modernized
