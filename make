@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-#                           #
-# This is BashStyle-NG                  #
-#                           #
-# Licensed under GNU GENERAL PUBLIC LICENSE v3      #
-#                           #
-# Copyright Christopher Roy Bratušek            #
-#                           #
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 ##############################
@@ -128,10 +128,10 @@ esac
 ##############################
 # Filelist: clean
 ##############################
-CLEAN_FILES=(data/bashstyle data/bashstyle-config-helper data/bashstyle-ng.pc
-         ui/bashstyle.ui.h rc/bashstyle-rc i18n/??/*.mo i18n/*.pot
-         .configure_results .make/build_done ui/#bashstyle.ui#
-         ui/bashstyle.ui~ doc/bashstyle.info doc/*.gz .build_done)
+CLEAN_FILES=(data/bashstyle data/bashstyle-config-helper
+     ui/bashstyle.ui.h rc/bashstyle-rc i18n/??/*.mo i18n/*.pot
+     .configure_results .make/build_done ui/#bashstyle.ui#
+     ui/bashstyle.ui~ doc/bashstyle.info doc/*.gz .build_done)
 
 CLEAN_DIRS=(doc/html)
 
@@ -175,7 +175,7 @@ for icon in "${CWD}/data/icons"/*.png; do
     ICON_FILES+=("${icon}:${ICONDIR}")
 done
 
-PC_FILES=("${CWD}/data/bashstyle-ng.pc:${PCDIR}")
+PC_FILES=()
 
 ##############################
 # Filelist: remove
@@ -197,7 +197,6 @@ REMOVE_FILES=("${LOCALE_REMOVE[@]}"
           "${BINDIR}"/bashstyle-config-helper
           "${BIN_REMOVE[@]}"
           "${ICON_REMOVE[@]}"
-          "${PCDIR}"/bashstyle-ng.pc
           "${MANDIR}"/bashstyle.1
           "${DATADIR}"
           "${DESKTOPDIR}"/bashstyle-ng.desktop
