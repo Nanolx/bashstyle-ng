@@ -15,7 +15,7 @@ APP_CODENAME="Surimi Syndicate"
 APP_LANGUAGES="de"
 APP_YEAR="2007 - 2026"
 
-IN_FILES=(rc/bashstyle-rc data/bashstyle data/bashstyle-config-helper data/bashstyle-ng.pc)
+IN_FILES=(rc/bashstyle-rc data/bashstyle data/bashstyle-config-helper)
 
 ##############################
 # Dependencies
@@ -56,5 +56,5 @@ OPT_LIBS=( )
 GIR=( )
 OPT_GIR=( )
 
-PYMODS=(configobj gettext gi.repository.Gtk:4.0 gi.repository.GtkSource:5.0 shutil)
-OPT_PYMODS=(gi.repository.Adw:1.0)
+PYMODS=(configobj gettext gi.repository.Gtk:4.0 gi.repository.GtkSource:5 shutil)
+OPT_PYMODS=("gi.repository.Adw:1:applying Adwaita theme won't work")

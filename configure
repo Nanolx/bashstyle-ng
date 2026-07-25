@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-#                           #
-# This is BashStyle-NG                  #
-#                           #
-# Licensed under GNU GENERAL PUBLIC LICENSE v3      #
-#                           #
-# Copyright Christopher Roy Bratušek            #
-#                           #
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 ##############################
@@ -18,18 +18,8 @@ TOP_PID=$$
 CWD=$(dirname "$(readlink -m "${BASH_SOURCE[0]}")")
 
 source "${CWD}/.settings"
-CFG_VERSION="4.5.1"
+CFG_VERSION="5.0.0"
 CFG_RESULTS="${CWD}/.configure_results"
-
-if [[ -d "/usr/lib/girepository-1.0/" ]]; then
-    GIRPATH="/usr/lib/girepository-1.0"
-elif [[ -d "/usr/lib64/girepository-1.0/" ]]; then
-    GIRPATH="/usr/lib64/girepository-1.0"F
-elif [[ -d "/usr/share/gir-1.0/" ]]; then
-    GIRPATH="/usr/share/gir-1.0"
-else
-    missing_girpath_message
-fi
 
 PREFIX="/usr"
 BINDIR="${PREFIX}/bin"
@@ -37,6 +27,7 @@ PCDIR="${PREFIX}/share/pkgconfig"
 DATADIR="${PREFIX}/share"
 DOCDIR="${DATADIR}/doc"
 MANDIR="${DATADIR}/man"
+GIRPATH="$(pkg-config --variable=typelibdir gobject-introspection-1.0)"
 
 PYTHON=$(command -v python3 || command -v python)
 
@@ -85,19 +76,19 @@ set_colors () {
 ##############################
 section_message () {
     case ${1} in
-        APP )       echo -e "\n${RED}< Required ${WHITE}Applications" ;;
-        OPT_APP )   echo -e "\n${MAGENTA}< Optional ${WHITE}Applications" ;;
-        SBINAPP )   echo -e "\n${RED}< Required ${WHITE}SuperUser Applications" ;;
+        APP )           echo -e "\n${RED}< Required ${WHITE}Applications" ;;
+        OPT_APP )       echo -e "\n${MAGENTA}< Optional ${WHITE}Applications" ;;
+        SBINAPP )       echo -e "\n${RED}< Required ${WHITE}SuperUser Applications" ;;
         OPT_SBINAPP )   echo -e "\n${MAGENTA}< Optional ${WHITE}SuperUser Applications" ;;
-        BUILD )     echo -e "\n${RED}< Required ${WHITE}Build Tools" ;;
-        OPT_BUILD ) echo -e "\n${MAGENTA}< Optional ${WHITE}Build Tools" ;;
-        PY )        echo -e "\n${RED}< Python Interpreter${WHITE} ${PYMINVER_P} && ${PYMAXVER_P}" ;;
-        PYMOD )     echo -e "\n${RED}< Required ${WHITE}Python Modules" ;;
-        OPT_PYMOD ) echo -e "\n${MAGENTA}< Optional ${WHITE}Python Modules" ;;
-        LIB )       echo -e "\n${RED}< Required ${WHITE}Libraries" ;;
-        OPT_LIB )   echo -e "\n${MAGENTA}< Optional ${WHITE}Libraries" ;;
-        GIR )       echo -e "\n${RED}< Required ${WHITE}GIR Repositories" ;;
-        OPT_GIR )   echo -e "\n${MAGENTA}< Optional ${WHITE}GIR Repositories" ;;
+        BUILD )         echo -e "\n${RED}< Required ${WHITE}Build Tools" ;;
+        OPT_BUILD )     echo -e "\n${MAGENTA}< Optional ${WHITE}Build Tools" ;;
+        PY )            echo -e "\n${RED}< Python Interpreter${WHITE} ${PYMINVER_P} && ${PYMAXVER_P}" ;;
+        PYMOD )         echo -e "\n${RED}< Required ${WHITE}Python Modules" ;;
+        OPT_PYMOD )     echo -e "\n${MAGENTA}< Optional ${WHITE}Python Modules" ;;
+        LIB )           echo -e "\n${RED}< Required ${WHITE}Libraries" ;;
+        OPT_LIB )       echo -e "\n${MAGENTA}< Optional ${WHITE}Libraries" ;;
+        GIR )           echo -e "\n${RED}< Required ${WHITE}GIR Repositories" ;;
+        OPT_GIR )       echo -e "\n${MAGENTA}< Optional ${WHITE}GIR Repositories" ;;
     esac
     tput sgr0
 }
@@ -109,7 +100,7 @@ start_message () {
 
 ok_message () {
     if [[ -n ${2} ]]; then
-        echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK${SILVER} ( ${2} )"
+            echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK${SILVER} ( ${2} )"
     else    echo -e "${WHITE}\t+ ${CYAN}${1}${MAGENTA} >${GREEN} OK"
     fi
     tput sgr0
@@ -117,9 +108,9 @@ ok_message () {
 
 fail_message () {
     case ${1} in
-        m ) echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !MISSING!" ;;
-        o ) echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !OLDER THAN ${3}!" ;;
-        p ) echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !MISSING!" ;;
+        m )     echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !MISSING!" ;;
+        o )     echo -e "${WHITE}\t+ ${CYAN}${2}${MAGENTA} >${RED} !OLDER THAN ${3}!" ;;
+        p )     echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !MISSING!" ;;
         p- )    echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !OLDER THAN ${PYMINVER_P}!" ;;
         p+ )    echo -e "${WHITE}\t+ ${CYAN}Python ($PYTHON)${MAGENTA} >${RED} !IS ${PYMAXVER_P} OR ABOVE!" ;;
     esac
@@ -138,7 +129,7 @@ end_message () {
          \n${YELLOW}Python\t\t\t${WHITE}>${MAGENTA} ${PYTHON}"
 
     if [ "${DISABLE_POSTINSTALL}" -eq 1 ]; then
-        echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
+            echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${RED} Disabled"
     else    echo -e "${YELLOW}Post-Install Tasks\t${WHITE}>${GREEN} Enabled"
     fi
 
@@ -167,126 +158,198 @@ help_message () {
     exit 0
 }
 
-missing_girpath_message () {
-    echo -e "${RED}*** GIRPATH not detected ***${WHITE}
-    configure --girpath=<girpath> to specify where to look for gobject-introspection files\n"
-    tput sgr0
-
-    exit 1
-}
-
 ##############################
 # Dependency checks
 ##############################
 check () {
-    for dir in ${PATH//:/ }; do
-        if [ -x "${dir}/${1}" ]; then
-            echo found
-            continue 2
-        fi
-    done
+    [[ -x "/usr/bin/${1}" || -x "/bin/${1}" ]] && return 0
+
+    local dir
+    while IFS= read -r -d : dir || [[ -n "${dir}" ]]; do
+        [[ -x "${dir}/${1}" ]] && return 0
+    done <<< "$PATH:"
+
+    return 1
 }
 
 check_helper () {
-    [[ "${BUILD[*]}" ]] && (section_message BUILD && check_apps "false" "${BUILD[@]}")
-    [[ "${OPT_BUILD[*]}" ]] && (section_message OPT_BUILD && check_apps "true" "${OPT_BUILD[@]}")
-    [[ "${APPS[*]}" ]] && (section_message APP && check_apps "false" "${APPS[@]}")
-    [[ "${OPT_APPS[*]}" ]] && (section_message OPT_APP && check_apps "true" "${OPT_APPS[@]}")
-    [[ "${SAPPS[*]}" ]] && (section_message SBINAPP && check_apps "false" "${SAPPS[@]}")
-    [[ "${OPT_SAPPS[*]}" ]] && (section_message OPT_SBINAPP && check_apps "true" "${OPT_SAPPS[@]}")
-    [[ "${PYMODS[*]}" ]] && check_python
-    [[ "${PYMODS[*]}" ]] && (section_message PYMOD && check_pymods "false" "${PYMODS[@]}")
-    [[ "${OPT_PYMODS[*]}" ]] && (section_message OPT_PYMOD && check_pymods "true" "${OPT_PYMODS[@]}")
-    [[ "${LIBS[*]}" ]] && (section_message LIB && check_libs "false" "${LIBS[@]}")
-    [[ "${OPT_LIBS[*]}" ]] && (section_message OPT_LIB && check_libs "false" "${OPT_LIBS[@]}")
-    [[ "${GIR[*]}" ]] && (section_message GIR && check_gir "false" "${GIR[@]}")
-    [[ "${OPT_GIR[*]}" ]] && (section_message OPT_GIR && check_gir "false" "${OPT_GIR[@]}")
+    if (( ${#BUILD[@]} > 0 )); then
+        section_message BUILD
+        check_apps "false" "${BUILD[@]}"
+    fi
+
+    if (( ${#OPT_BUILD[@]} > 0 )); then
+        section_message OPT_BUILD
+        check_apps "true" "${OPT_BUILD[@]}"
+    fi
+
+    if (( ${#APPS[@]} > 0 )); then
+        section_message APP
+        check_apps "false" "${APPS[@]}"
+    fi
+
+    if (( ${#OPT_APPS[@]} > 0 )); then
+        section_message OPT_APP
+        check_apps "true" "${OPT_APPS[@]}"
+    fi
+
+    if (( ${#SAPPS[@]} > 0 )); then
+        section_message SBINAPP
+        check_apps "false" "${SAPPS[@]}"
+    fi
+
+    if (( ${#OPT_SAPPS[@]} > 0 )); then
+        section_message OPT_SBINAPP
+        check_apps "true" "${OPT_SAPPS[@]}"
+    fi
+
+    if (( ${#PYMODS[@]} > 0 )); then
+        check_python
+        section_message PYMOD
+        check_pymods "false" "${PYMODS[@]}"
+    fi
+
+    if (( ${#OPT_PYMODS[@]} > 0 )); then
+        (( ${#PYMODS[@]} == 0 )) && check_python
+
+        section_message OPT_PYMOD
+        check_pymods "true" "${OPT_PYMODS[@]}"
+    fi
+
+    if (( ${#LIBS[@]} > 0 )); then
+        section_message LIB
+        check_libs "false" "${LIBS[@]}"
+    fi
+
+    if (( ${#OPT_LIBS[@]} > 0 )); then
+        section_message OPT_LIB
+        check_libs "true" "${OPT_LIBS[@]}"
+    fi
+
+    if (( ${#GIR[@]} > 0 )); then
+        section_message GIR
+        check_gir "false" "${GIR[@]}"
+    fi
+
+    if (( ${#OPT_GIR[@]} > 0 )); then
+        section_message OPT_GIR
+        check_gir "true" "${OPT_GIR[@]}"
+    fi
 }
 
 check_apps () {
-    OPT=${1}
+    local opt="${1}"
     shift
 
-    for ARG in "${@}"; do
-        APP=$(gawk -F : '{print $1}' <(echo "${ARG}"))
-        DESC=$(gawk -F : '{print $2}' <(echo "${ARG}"))
-        APP2=$(gawk -F : '{print $3}' <(echo "${ARG}"))
-        [[ ${APP2} ]] && APP2_P="(${APP2})" || APP2_P=""
+    local arg app desc app2 app2_p dep_found1 dep_found2
 
-        DEP_RETURN=$(check "${APP}")
-        DEP_RETURN2=$(check "${APP2}")
+    for arg in "${@}"; do
+        IFS=: read -r app desc app2 <<< "$arg"
 
-        if [[ ${DEP_RETURN} == *found* || ${DEP_RETURN2} == *found* ]]; then
-            ok_message "${APP} ${APP2_P}"
-        elif [[ (${DEP_RETURN} != *found* && ${DEP_RETURN2} != *found*) && ${OPT} == true ]]; then
-            warn_message "${APP} ${APP2_P}" "${DESC}"
-            MISSING+=" ${APP}"
+        [[ -n ${app2} ]] && app2_p="(${app2})" || app2_p=""
+
+        check "${app}" && dep_found1=true || dep_found1=false
+
+        if [[ -n $app2 ]]; then
+            check "${app2}" && dep_found2=true || dep_found2=false
         else
-            fail_message m "${APP} ${APP2_P}"
+            dep_found2=false
+        fi
+
+        if [[ ${dep_found1} == true || ${dep_found2} == true ]]; then
+            ok_message "${app} ${app2_p}"
+        elif [[ ${opt} == "true" ]]; then
+            warn_message "${app} ${app2_p}" "${desc}"
+            MISSING+=" ${app}"
+        else
+            fail_message m "${app} ${app2_p}"
             kill -s TERM "${TOP_PID}"
         fi
     done
 }
 
 check_libs () {
-    OPT=${1}
+    local opt="${1}"
     shift
 
-    for ARG in "${@}"; do
-        LIB=$(gawk -F : '{print $1}' <(echo "${ARG}"))
-        VERSION=$(gawk -F : '{print $2}' <(echo "${ARG}"))
-        PC_FILE=$(gawk -F : '{print $3}' <(echo "${ARG}"))
-        DESC=$(gawk -F : '{print $4}' <(echo "${ARG}"))
+    local arg lib version pc_file desc exist_return dep_return
 
-        pkg-config --exists "${PC_FILE}"
-        EXIST_RETURN=$?
+    for arg in "${@}"; do
+        IFS=: read -r lib version pc_file desc <<< "$arg"
 
-        pkg-config --atleast-version="${VERSION}" "${PC_FILE}"
-        DEP_RETURN=$?
+        pkg-config --exists "${pc_file}" 2>/dev/null
+        exist_return=$?
 
-        if [[ ${EXIST_RETURN} != 0 && ! ${OPT} == true ]]; then
-            fail_message m "${LIB}"
-            kill -s TERM "${TOP_PID}"
-        elif [[ ${DEP_RETURN} == 0 ]]; then
-            ok_message "${LIB}" "${VERSION}"+
-        elif [[ ${EXIST_RETURN} != 0 && ${OPT} == true ]]; then
-            warn_message "${LIB}" "${DESC}"
-            MISSING+=" ${LIB}"
+        if [[ ${exist_return} -ne 0 ]]; then
+            if [[ ${opt} == "true" ]]; then
+                warn_message "${lib}" "${desc}"
+                MISSING+=" ${lib}"
+            else
+                fail_message m "${lib}"
+                kill -s TERM "${TOP_PID}"
+            fi
         else
-            fail_message o "${LIB}" "${VERSION}"
-            kill -s TERM "${TOP_PID}"
+            pkg-config --atleast-version="${version}" "${pc_file}" 2>/dev/null
+            dep_return=$?
+
+            if [[ ${dep_return} -eq 0 ]]; then
+                ok_message "${lib}" "${version}+"
+            else
+                fail_message o "${lib}" "${version}"
+                kill -s TERM "${TOP_PID}"
+            fi
         fi
     done
 }
 
 check_gir () {
-    OPT=${1}
+    local opt="${1}"
     shift
 
-    for ARG in "${@}"; do
-        GIR_NAME=$(gawk -F : '{print $1}' <(echo "${ARG}"))
-        VERSION=$(gawk -F : '{print $2}' <(echo "${ARG}"))
-        TYPE_LIB=$(gawk -F : '{print $3}' <(echo "${ARG}"))
-        DESC=$(gawk -F : '{print $4}' <(echo "${ARG}"))
-        FILE=$(basename "${GIRPATH}"/"${TYPE_LIB}"* .typelib 2>/dev/null)
+    local arg gir_name version type_lib desc
+    local gir_file file_path xver exist_return dep_return
 
-        if [[ ${FILE} != ".typelib" ]]; then
-            EXIST_RETURN=0
-            XVER=$(gawk -F - '{print $2}' <(echo "${FILE}"))
-            DEP_RETURN=$(echo "$XVER >= ${VERSION}" | bc)
+    for arg in "${@}"; do
+        IFS=: read -r gir_name version type_lib desc <<< "$arg"
+
+        exist_return=1
+        dep_return=0
+
+        file_path=""
+        for gir_file in "${GIRPATH}/${type_lib}"*.typelib; do
+            if [[ -f "${gir_file}" ]]; then
+                file_path="${gir_file}"
+                break
+            fi
+        done
+
+        if [[ -n "$file_path" ]]; then
+            exist_return=0
+
+            xver="${file_path##*/}"
+            xver="${xver#*-}"
+            xver="${xver%.typelib}"
+
+            if awk -v v1="$xver" -v v2="${version}" 'BEGIN {exit !(v1 >= v2)}'; then
+                dep_return=1
+            fi
         fi
 
-        if [[ ${EXIST_RETURN} != 0 && ! ${OPT} == true ]]; then
-            fail_message m "${GIR_NAME}"
-            kill -s TERM "${TOP_PID}"
-        elif [[ ${DEP_RETURN} == 1 ]]; then
-            ok_message "${GIR_NAME}" "${VERSION}"+
-        elif [[ ${EXIST_RETURN} != 0 && ${OPT} == true ]]; then
-            warn_message "${GIR_NAME}" "${DESC}"
-            MISSING+=" ${GIR_NAME}"
+        if [[ ${exit_return} -ne 0 ]]; then
+            if [[ ${opt} == "true" ]]; then
+                warn_message "${gir_name}" "${desc}"
+                MISSING+=" ${gir_name}"
+            else
+                fail_message m "${gir_name}"
+                kill -s TERM "${TOP_PID}"
+            fi
         else
-            fail_message o "${GIR_NAME}" "${VERSION}"
-            kill -s TERM "${TOP_PID}"
+            if [[ ${dep_return} -eq 1 ]]; then
+                ok_message "${gir_name}" "${version}+"
+            else
+                fail_message o "${gir_name}" "${version}"
+                kill -s TERM "${TOP_PID}"
+            fi
         fi
     done
 }
@@ -294,53 +357,58 @@ check_gir () {
 check_python () {
     section_message PY
 
-    if [[ ! -x ${PYTHON} ]]; then
+    if [[ -z ${PYTHON} || ! -x ${PYTHON} ]]; then
         fail_message p
         kill -s TERM "${TOP_PID}"
+    fi
+
+    local py_major
+    py_major=$(${PYTHON} -c 'import sys; print(sys.version_info[0])' 2>/dev/null)
+
+    local py_ver_str
+    py_ver_str=$(${PYTHON} -c 'import platform; print(platform.python_version())' 2>/dev/null)
+
+    if (( py_major < PYMINVER )); then
+        fail_message p-
+        kill -s TERM "${TOP_PID}"
+    elif (( py_major >= PYMAXVER )); then
+        fail_message p+
+        kill -s TERM "${TOP_PID}"
     else
-        PYVER=$(${PYTHON} --version 2>&1)
-        PYVER_C="${PYVER//@(*\ |\.|\+)}"
-        if [[ ${PYVER_C:0:1} -lt ${PYMINVER} ]]; then
-            fail_message p-
-            kill -s TERM "${TOP_PID}"
-        elif [[ ${PYVER_C:0:1} -ge ${PYMAXVER} ]]; then
-            fail_message p+
-            kill -s TERM "${TOP_PID}"
-        else
-            ok_message Python "${PYVER}"
-        fi
+        ok_message Python "${py_ver_str}"
     fi
 }
 
 check_pymods () {
-    OPT=${1}
+    local opt="${1}"
     shift
 
-    for ARG in "${@}"; do
-        MOD=$(gawk -F : '{print $1}' <(echo "${ARG}"))
-        SMOD=$(gawk -F : '{print $2}' <(echo "${ARG}"))
-        DESC=$(gawk -F : '{print $3}' <(echo "${ARG}"))
+    local arg mod smod desc dep dep_return
 
-        case ${MOD} in
-            gi.repository.Gtk )
-                ${PYTHON} -c "import gi
-gi.require_version('Gtk', '${SMOD}')
-import ${MOD}"
+    for arg in "${@}"; do
+        IFS=: read -r mod smod desc <<< "$arg"
+
+        [[ -n ${smod} ]] && dep="${mod} (${smod})" || dep="${mod}"
+
+        case ${mod} in
+            gi.repository.* )
+                gi_submod="${mod##*.}"
+                ${PYTHON} -c "import gi; gi.require_version('${gi_submod}', '${smod}'); import ${mod}" 2>/dev/null
+                dep_return=$?
             ;;
             * )
-                ${PYTHON} -c "import ${MOD}" 2>/dev/null
+                ${PYTHON} -c "import ${mod}" 2>/dev/null
+                dep_return=$?
             ;;
         esac
 
-        [[ ${SMOD} ]] && DEP="${MOD} (${SMOD})" || DEP="${MOD}"
-
-        DEP_RETURN=$?
-        if [[ ${DEP_RETURN} == 0 ]]; then
-            ok_message "${DEP}"
-        elif [[ ${DEP_RETURN} != 0 && ${OPT} == true ]]; then
-            warn_message "${DEP}" "${DESC}"
-            MISSING+=" ${DEP}"
-        else    fail_message m "${DEP}"
+        if [[ ${dep_return} -eq 0 ]]; then
+            ok_message "${dep}"
+        elif [[ ${opt} == "true" ]]; then
+            warn_message "${dep}" "${desc}"
+            MISSING+=" ${dep}"
+        else
+            fail_message m "${dep}"
             kill -s TERM "${TOP_PID}"
         fi
     done
@@ -395,7 +463,7 @@ DISABLE_POSTINSTALL=${DISABLE_POSTINSTALL}" \
 for opt in "${@}"; do
     case ${opt} in
         --prefix=* )        PREFIX="${opt/*=}" ;;
-        --pcdir=* )     PCDIR="${opt/*=}" ;;
+        --pcdir=* )         PCDIR="${opt/*=}" ;;
         --bindir=* )        BINDIR="${opt/*=}" ;;
         --docdir=* )        DOCDIR="${opt/*=}" ;;
         --mandir=* )        MANDIR="${opt/*=}" ;;
@@ -404,7 +472,7 @@ for opt in "${@}"; do
         --python=* )        PYTHON="${opt/*=}" ;;
         --help | -h )       help_message ;;
         --no-postinstall )  DISABLE_POSTINSTALL=1 ;;
-        * )         echo "unknown option: ${opt}" ;;
+        * )                 echo "unknown option: ${opt}" ;;
     esac
     shift
 done
