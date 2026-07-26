@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG					#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 USER_DEFAULTS="${HOME}/.bashstyle-ng.ini"
@@ -15,41 +15,41 @@ VENDOR_DEFAULTS="/etc/bashstyle-ng_vendor.ini"
 
 ini_get ()
 {
-	sed -n "s/^${1} = \(.*$\)/\1/p" "${USER_DEFAULTS}" | sed -e 's/\"//g'
+    sed -n "s/^${1} = \(.*$\)/\1/p" "${USER_DEFAULTS}" | sed -e 's/\"//g'
 }
 
 def_get ()
 {
-	sed -n "s/^${1} = \(.*$\)/\1/p" "${FACTORY_DEFAULTS}" | \
-		sed -e 's/\"//g'
+    sed -n "s/^${1} = \(.*$\)/\1/p" "${FACTORY_DEFAULTS}" | \
+        sed -e 's/\"//g'
 }
 
 ven_get ()
 {
-	[[ -f "${VENDOR_DEFAULTS}" ]] && sed -n "s/^${1} = \(.*$\)/\1/p" \
-		"${VENDOR_DEFAULTS}" | sed -e 's/\"//g'
+    [[ -f "${VENDOR_DEFAULTS}" ]] && sed -n "s/^${1} = \(.*$\)/\1/p" \
+        "${VENDOR_DEFAULTS}" | sed -e 's/\"//g'
 }
 
 ini_set ()
 {
-	SETTING=${1}
-	shift
-	VALUE="${*}"
+    SETTING=${1}
+    shift
+    VALUE="${*}"
 
-	sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i "{USER_DEFAULTS}"
+    sed -e "s/^${SETTING} = .*$/${SETTING} = ${VALUE}/" -i "{USER_DEFAULTS}"
 }
 
 ini_add ()
 {
-	SECTION=${1}
-	shift
-	VALUE="${*}"
+    SECTION=${1}
+    shift
+    VALUE="${*}"
 
-	sed -e "/\[${SECTION}\]/ a ${VALUE}" -i "${USER_DEFAULTS}"
+    sed -e "/\[${SECTION}\]/ a ${VALUE}" -i "${USER_DEFAULTS}"
 }
 
 rc_add ()
 {
-	dbg_msg "$@"
-	echo "${@}" >> "${RC_FILE}"
+    dbg_msg "$@"
+    echo "${@}" >> "${RC_FILE}"
 }
