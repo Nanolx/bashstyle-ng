@@ -1,33 +1,33 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colors "$(eval_gettext "On")"
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Color-Style "$(ini_get color_style)"
 
 colors=(black red green yellow blue magenta cyan grey white coldblue
-	smoothblue iceblue turqoise smoothgreen winered brown silver ocher
-	orange purple pink cream)
+    smoothblue iceblue turqoise smoothgreen winered brown silver ocher
+    orange purple pink cream)
 
 ecolors=(eblack ered egreen eyellow eblue emagenta ecyan egrey ewhite ecoldblue
-	esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher
-	eorange epurple epink ecream)
+    esmoothblue eiceblue eturqoise esmoothgreen ewinered ebrown esilver eocher
+    eorange epurple epink ecream)
 
 color_style=$(ini_get color_style)
 
 case ${color_style} in
-	bright ) style="01" ;;
-	normal ) style="0" ;;
-	inverted ) style="7" ;;
-	dimmed ) style="02" ;;
-	underlined ) style="04" ;;
+    bright ) style="01" ;;
+    normal ) style="0" ;;
+    inverted ) style="7" ;;
+    dimmed ) style="02" ;;
+    underlined ) style="04" ;;
 esac
 
 black="\[\033[${style};30m\]"
@@ -51,91 +51,91 @@ egrey="\033[${style};37m"
 ewhite="\033[${style};97m"
 
 if [[ ${TERM} != *xterm*color* ]]; then
-	coldblue=${blue}
-	smoothblue=${blue}
-	iceblue=${blue}
-	turqoise=${cyan}
-	smoothgreen=${green}
-	winered=${red}
-	brown=${yellow}
-	silver=${white}
-	ocher=${yellow}
-	orange=${yellow}
-	purple=${magenta}
-	pink=${magenta}
-	cream=${magenta}
+    coldblue=${blue}
+    smoothblue=${blue}
+    iceblue=${blue}
+    turqoise=${cyan}
+    smoothgreen=${green}
+    winered=${red}
+    brown=${yellow}
+    silver=${white}
+    ocher=${yellow}
+    orange=${yellow}
+    purple=${magenta}
+    pink=${magenta}
+    cream=${magenta}
 
-	ecoldblue=${eblue}
-	esmoothblue=${eblue}
-	eiceblue=${eblue}
-	eturqoise=${ecyan}
-	esmoothgreen=${egreen}
-	ewinered=${ered}
-	ebrown=${eyellow}
-	esilver=${ewhite}
-	eocher=${eyellow}
-	eorange=${eyellow}
-	epurple=${emagenta}
-	epink=${emagenta}
-	ecream=${emagenta}
+    ecoldblue=${eblue}
+    esmoothblue=${eblue}
+    eiceblue=${eblue}
+    eturqoise=${ecyan}
+    esmoothgreen=${egreen}
+    ewinered=${ered}
+    ebrown=${eyellow}
+    esilver=${ewhite}
+    eocher=${eyellow}
+    eorange=${eyellow}
+    epurple=${emagenta}
+    epink=${emagenta}
+    ecream=${emagenta}
 else
-	coldblue="\[\033[${style};38;5;33m\]"
-	smoothgreen="\[\033[${style};38;5;42m\]"
-	iceblue="\[\033[${style};38;5;45m\]"
-	turqoise="\[\033[${style};38;5;50m\]"
-	purple="\[\033[${style};38;5;92m\]"
-	smoothblue="\[\033[${style};38;5;111m\]"
-	winered="\[\033[${style};38;5;125m\]"
-	brown="\[\033[${style};38;5;130m\]"
-	ocher="\[\033[${style};38;5;136m\]"
-	pink="\[\033[${style};38;5;200m\]"
-	cream="\[\033[${style};38;5;218m\]"
-	orange="\[\033[${style};38;5;202m\]"
-	silver="\[\033[${style};38;5;245m\]"
+    coldblue="\[\033[${style};38;5;33m\]"
+    smoothgreen="\[\033[${style};38;5;42m\]"
+    iceblue="\[\033[${style};38;5;45m\]"
+    turqoise="\[\033[${style};38;5;50m\]"
+    purple="\[\033[${style};38;5;92m\]"
+    smoothblue="\[\033[${style};38;5;111m\]"
+    winered="\[\033[${style};38;5;125m\]"
+    brown="\[\033[${style};38;5;130m\]"
+    ocher="\[\033[${style};38;5;136m\]"
+    pink="\[\033[${style};38;5;200m\]"
+    cream="\[\033[${style};38;5;218m\]"
+    orange="\[\033[${style};38;5;202m\]"
+    silver="\[\033[${style};38;5;245m\]"
 
-	ecoldblue="\033[${style};38;5;33m"
-	esmoothgreen="\033[${style};38;5;42m"
-	eiceblue="\033[${style};38;5;45m"
-	eturqoise="\033[${style};38;5;50m"
-	epurple="\033[${style};38;5;92m"
-	esmoothblue="\033[${style};38;5;111m"
-	ewinered="\033[${style};38;5;125m"
-	ebrown="\033[${style};38;5;130m"
-	eocher="\033[${style};38;5;136m"
-	epink="\033[${style};38;5;200m"
-	ecream="\033[${style};38;5;218m"
-	eorange="\033[${style};38;5;202m"
-	esilver="\033[${style};38;5;245m"
+    ecoldblue="\033[${style};38;5;33m"
+    esmoothgreen="\033[${style};38;5;42m"
+    eiceblue="\033[${style};38;5;45m"
+    eturqoise="\033[${style};38;5;50m"
+    epurple="\033[${style};38;5;92m"
+    esmoothblue="\033[${style};38;5;111m"
+    ewinered="\033[${style};38;5;125m"
+    ebrown="\033[${style};38;5;130m"
+    eocher="\033[${style};38;5;136m"
+    epink="\033[${style};38;5;200m"
+    ecream="\033[${style};38;5;218m"
+    eorange="\033[${style};38;5;202m"
+    esilver="\033[${style};38;5;245m"
 fi
 
 if [[ $(ini_get dark_terminal) == True ]]; then
-	black=${white}
-	eblack=${ewhite}
-else	white=${black}
-	ewhite=${eblack}
+    black=${white}
+    eblack=${ewhite}
+else    white=${black}
+    ewhite=${eblack}
 fi
 
 pcolors=(user host date time wdir font separator uptime ps ps0 ps2 ps3 ps4)
 
 for color in "${pcolors[@]}"; do
-	eval color_"${color}"="$(ini_get color_"${color}")"
-	temp=$(ini_get color_"${color}")
-	eval ecolor_"${color}"="${temp/\$/\$e}"
+    eval color_"${color}"="$(ini_get color_"${color}")"
+    temp=$(ini_get color_"${color}")
+    eval ecolor_"${color}"="${temp/\$/\$e}"
 done
 
 for color in banner mkdir empty; do
-	temp=$(ini_get color_cd_"${color}")
-	eval ccolor_"${color}"="${temp/\$/\$e}"
+    temp=$(ini_get color_cd_"${color}")
+    eval ccolor_"${color}"="${temp/\$/\$e}"
 done
 
 for color in "${ecolors[@]}"; do
-	export color
+    export color
 done
 
 unset temp ecolors pcolors color_style
 
 if [[ $(ini_get use_gcc_colors) == True ]]; then
-	GCC_COLORS="error=$(ini_get gcc_color_error):warning=$(ini_get gcc_color_warn):note=$(ini_get gcc_color_notes):caret=$(ini_get gcc_color_caret):locus=$(ini_get gcc_color_locus):quote=$(ini_get gcc_color_quote)"
-	export GCC_COLORS
-else	unset GCC_COLORS
+    GCC_COLORS="error=$(ini_get gcc_color_error):warning=$(ini_get gcc_color_warn):note=$(ini_get gcc_color_notes):caret=$(ini_get gcc_color_caret):locus=$(ini_get gcc_color_locus):quote=$(ini_get gcc_color_quote)"
+    export GCC_COLORS
+else    unset GCC_COLORS
 fi

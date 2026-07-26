@@ -1,12 +1,12 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" "$(eval_gettext "colored manpages")" "$(eval_gettext "On")"
@@ -39,40 +39,40 @@ lfgrey="37m"
 lfwhite="97m"
 
 if bt "$(ini_get dark_terminal)"; then
-	lfblack=${lfwhite}
-	lbblack=${lbwhite}
-else	lfwhite=${lfblack}
-	lbwhite=${lbblack}
+    lfblack=${lfwhite}
+    lbblack=${lbwhite}
+else    lfwhite=${lfblack}
+    lbwhite=${lbblack}
 fi
 
 if [[ ${TERM} != *xterm*color* ]]; then
-	lfcoldblue=${lfblue}
-	lfsmoothblue=${lfblue}
-	lficeblue=${lfblue}
-	lfturqoise=${lfcyan}
-	lfsmoothgreen=${lfgreen}
-	lfwinered=${lfred}
-	lfbrown=${lfyellow}
-	lfsilver=${lfwhite}
-	lfocher=${lfyellow}
-	lforange=${lfyellow}
-	lfpurple=${lfmagenta}
-	lfpink=${lfmagenta}
-	lfcream=${lfmagenta}
+    lfcoldblue=${lfblue}
+    lfsmoothblue=${lfblue}
+    lficeblue=${lfblue}
+    lfturqoise=${lfcyan}
+    lfsmoothgreen=${lfgreen}
+    lfwinered=${lfred}
+    lfbrown=${lfyellow}
+    lfsilver=${lfwhite}
+    lfocher=${lfyellow}
+    lforange=${lfyellow}
+    lfpurple=${lfmagenta}
+    lfpink=${lfmagenta}
+    lfcream=${lfmagenta}
 else
-	lfcoldblue="38;5;33m"
-	lfsmoothgreen="38;5;42m"
-	lficeblue="38;5;45m"
-	lfturqoise="38;5;50m"
-	lfpurple="38;5;92m"
-	lfsmoothblue="38;5;111m"
-	lfwinered="38;5;125m"
-	lfbrown="38;5;130m"
-	lfocher="38;5;136m"
-	lfpink="38;5;200m"
-	lfcream="38;5;218m"
-	lforange="38;5;202m"
-	lfsilver="38;5;245m"
+    lfcoldblue="38;5;33m"
+    lfsmoothgreen="38;5;42m"
+    lficeblue="38;5;45m"
+    lfturqoise="38;5;50m"
+    lfpurple="38;5;92m"
+    lfsmoothblue="38;5;111m"
+    lfwinered="38;5;125m"
+    lfbrown="38;5;130m"
+    lfocher="38;5;136m"
+    lfpink="38;5;200m"
+    lfcream="38;5;218m"
+    lforange="38;5;202m"
+    lfsilver="38;5;245m"
 fi
 
 # standout-mode
@@ -106,10 +106,10 @@ export LESS_TERMCAP_se=$'\033[0m'
 export LESS_TERMCAP_ue=$'\033[0m'
 
 unset termcap_mb termcap_md termcap_md termcap_mr \
-	termcap_mh termcap_us termcap_sof termcap_sob \
-	termcap_rs
+    termcap_mh termcap_us termcap_sof termcap_sob \
+    termcap_rs
 
 for lfcolor in "${colors[@]}"; do
-	eval unset "lf${lfcolor}"
-	eval unset "lb${lfcolor}"
+    eval unset "lf${lfcolor}"
+    eval unset "lb${lfcolor}"
 done
