@@ -1,28 +1,28 @@
 #!/bin/bash
 #########################################################
-# 							#
-# This is BashStyle-NG  				#
-#							#
-# Licensed under GNU GENERAL PUBLIC LICENSE v3    	#
-#							#
-# Copyright Christopher Roy Bratušek			#
-#							#
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
 #########################################################
 
 custom_prompt=$(ini_get prompt)
 custom_command=$(ini_get command)
 
 if [[ $(check bt $(ini_get use_custom_prompt)) && ! -z ${custom_prompt} ]]; then
-	if [[ ! -z ${custom_command} ]]; then
-		echo -E "function pre_prompt { " > "${HOME}"/.custom_prompt
-		echo -E "${custom_command}" >> "${HOME}"/.custom_prompt
-		echo -E "}" >> "${HOME}"/.custom_prompt
-		echo -e "PROMPT_COMMAND=pre_prompt \n" >> "${HOME}"/.custom_prompt
-		echo -E PS1=\"${custom_prompt}\" >> "${HOME}"/.custom_prompt
-	else
-		echo -E PS1=\"${custom_prompt}\" > "${HOME}"/.custom_prompt
-	fi
-	source "${HOME}"/.custom_prompt
+    if [[ ! -z ${custom_command} ]]; then
+        echo -E "function pre_prompt { " > "${HOME}"/.custom_prompt
+        echo -E "${custom_command}" >> "${HOME}"/.custom_prompt
+        echo -E "}" >> "${HOME}"/.custom_prompt
+        echo -e "PROMPT_COMMAND=pre_prompt \n" >> "${HOME}"/.custom_prompt
+        echo -E PS1=\"${custom_prompt}\" >> "${HOME}"/.custom_prompt
+    else
+        echo -E PS1=\"${custom_prompt}\" > "${HOME}"/.custom_prompt
+    fi
+    source "${HOME}"/.custom_prompt
 fi
 
 unset custom_prompt custom_command
