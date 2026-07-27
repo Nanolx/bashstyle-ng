@@ -53,12 +53,10 @@ if bt "$(ini_get history_isolate)"; then
     dbg_log set +o history
     dbg_log enable -n history
 else
-    if [ -z "${BSNG_TMP_HISTFILE+x}" ]; then
-        readonly BSNG_TMP_HISTFILE="${HISTFILE}.tmp.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
-        export BSNG_TMP_HISTFILE
-        readonly BSNG_LOCKFILE="/run/user/${UID}/bashstyle-history-sync.lock"
-        export BSNG_LOCKFILE
-    fi
+    readonly BSNG_TMP_HISTFILE="/run/user/${UID}/history.tmp.${BSNG_SESSION_TIME}_${BASH_SESSION_PID}"
+    export BSNG_TMP_HISTFILE
+    readonly BSNG_TMP_HISTLOCK="/run/user/${UID}/bashstyle-history-sync.lock"
+    export BSNG_TMP_HISTLOCK
 
     erasehistorydups () {
         gawk '/^#/{if (x)print x;x="";}{x=(!x)?$0:x"HISTDILIMITER"$0;}END{print x;}' "${HISTFILE}" | \
@@ -89,7 +87,7 @@ else
 
     bashstyle_history_sync () {
         if [[ ! ${lastcommand} == history* ]]; then
-            exec 9>>"${BSNG_LOCKFILE}"
+            exec 9>>"${BSNG_TMP_HISTLOCK}"
             flock -x 9 || return 1
 
             builtin history -a
