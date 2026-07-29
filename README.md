@@ -68,6 +68,28 @@ documentation for more.
   in sync it is restarted after the configuration was reverted to
   previous saved user state or factory default settings.
 
+### Utilities <a href="#Utilities" class="copiable-link">¶</a>
+
+- **BashStyle-NG** features a set of own utilities, for example:
+- `gitkit` which features various companion functions for ‘git‘
+- `systemkit` grab system information, in most cases formatted so that
+  you can use it directly in your prompt (which several prompts and the
+  prompt builder do)
+- `sufffix` a script that fixes file suffixes according to their mime
+  type
+- `random` create random strings of various types (for example for
+  passwords)
+- `randomfile` select a random file from a list of files and optionally
+  perform an action on it (like opening a random image or playing a
+  random mp3)
+
+### Documentation <a href="#Documentation" class="copiable-link">¶</a>
+
+You can read the full **BashStyle-NG** documentation online at:
+
+<a href="https://nanolx.org/doc_bashstyle-ng/" class="url">BashStyle-NG
+documentation</a>
+
 <div id="fig_003ascreenshot_005fequinox" class="float">
 
 <div class="center">

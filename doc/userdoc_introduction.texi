@@ -63,6 +63,29 @@ restarted after the configuration was reverted to previous saved user state or
 factory default settings.
 @end itemize
 
+@heading Utilities
+@itemize @bullet
+
+@b{BashStyle-NG} features a set of own utilities, for example:
+
+@item @code{gitkit} which features various companion functions for `git`
+
+@item @code{systemkit} grab system information, in most cases formatted so that you can
+use it directly in your prompt (which several prompts and the prompt builder do)
+
+@item @code{sufffix} a script that fixes file suffixes according to their mime type
+
+@item @code{random} create random strings of various types (for example for passwords)
+
+@item @code{randomfile} select a random file from a list of files and optionally perform
+an action on it (like opening a random image or playing a random mp3)
+@end itemize
+
+@heading Documentation
+You can read the full @b{BashStyle-NG} documentation online at:
+
+@url{https://nanolx.org/doc_bashstyle-ng/, BashStyle-NG documentation}
+
 @float Figure,fig:screenshot_equinox
 @center @image{screenshots/bashstyle-ng_equinox,,, Equinox Prompt in Konsole, png}
 @caption{Equinox prompt style in Konsole}
