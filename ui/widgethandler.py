@@ -135,7 +135,7 @@ class WidgetHandler(object):
 
     def InitIconSpinButton(self, placeholder, name, group, setting, minvalue, maxvalue):
         object = iconspinbutton.CustomIconSpinButton(
-            primary_icon_name="edit-undo", secondary_icon_name="edit-clear",
+            primary_icon_name="edit-clear", secondary_icon_name="edit-delete",
             min_val=minvalue, max_val=maxvalue, step=1, pixel_size=16)
 
         object.set_value(self.config[group].as_int(setting))
