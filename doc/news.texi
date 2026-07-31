@@ -9,6 +9,19 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 11.4 (2026xxxx) ``Torna``
+@itemize @bullet
+@item Fixes
+@itemize @minus
+
+@item #312: when no @code{GNOME} or Gtk icon theme is installed, the icons for
+documentation in the header, aswell as the primpary icons for GtkEntry and
+CustomIconSpinButton couldn't be loaded, as they weren't part of the fallback
+icons, now @b{BashStyle-NG} uses icons, that are always available.
+
+@end itemize
+@end itemize
+
 @heading 11.3 (20260727) ``Surimi Syndicate``
 @itemize @bullet
 @item Fixes

@@ -6,6 +6,17 @@ between.  For more detailed information see the git log.
 
    Each release lists incompatible changes at its top.
 
+11.4 (2026xxxx) "Torna"
+=======================
+
+   • Fixes
+
+        − #312: when no ‘GNOME’ or Gtk icon theme is installed, the
+          icons for documentation in the header, aswell as the primpary
+          icons for GtkEntry and CustomIconSpinButton couldn't be
+          loaded, as they weren't part of the fallback icons, now
+          BashStyle-NG uses icons, that are always available.
+
 11.3 (20260727) "Surimi Syndicate"
 ==================================
 
