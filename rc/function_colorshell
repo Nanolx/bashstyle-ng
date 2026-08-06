@@ -10,17 +10,15 @@
 #########################################################
 
 bashstyle_colorshell () {
-    if [[ -z ${OLD_PS1} ]]; then
-        [[ ${BSNG_BASHVER} -ge 44 ]] && OLD_PS0="${PS0}"
-        OLD_PS1="${PS1}"
-        OLD_PS2="${PS2}"
-        OLD_PS3="${PS3}"
-        OLD_PS4="${PS4}"
-    fi
+    [[ ${BSNG_BASHVER} -ge 44 ]] && local OLD_PS0="${PS0}"
+    local OLD_PS1="${PS1}"
+    local OLD_PS2="${PS2}"
+    local OLD_PS3="${PS3}"
+    local OLD_PS4="${PS4}"
 
     # exclude black (0) on dark terminal
     # exclude white (7) on bright terminal
-    if check bt "$(bashstyle --ini-get dark_terminal)"; then
+    if [[ "${BSNG_TERMINAL_DARK}" == True ]]; then
             randomcolor=$(random -r 1 7)
     else    randomcolor=$(random -r 0 6)
     fi

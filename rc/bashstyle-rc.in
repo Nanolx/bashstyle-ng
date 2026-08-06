@@ -28,6 +28,13 @@ export BSNG_SESSION_TIME
 # load ini / loggin functions
 source ${BSNG_RCDIR}/function_ini
 source ${BSNG_RCDIR}/function_log
+source ${BSNG_RCDIR}/function_terminal_bg
+
+if is_terminal_bg_dark; then
+    export BSNG_TERMINAL_DARK=True
+else
+    export BSNG_TERMINAL_DARK=False
+fi
 
 # global aliases / settings
 alias bt="check bt"

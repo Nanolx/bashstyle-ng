@@ -108,10 +108,11 @@ else
     esilver="\033[${style};38;5;245m"
 fi
 
-if [[ $(ini_get dark_terminal) == True ]]; then
+if bt ${BSNG_TERMINAL_DARK}; then
     black=${white}
     eblack=${ewhite}
-else    white=${black}
+else
+    white=${black}
     ewhite=${eblack}
 fi
 

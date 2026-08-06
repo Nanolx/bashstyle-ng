@@ -29,7 +29,7 @@ if (( "${#bsng_vimrc[@]}" == 0 )); then
         rc_add "syntax off"
     fi
 
-    if bt "$(ini_get dark_background)"; then
+    if bt ${BSNG_TERMINAL_DARK}; then
         dbg_msg "$(eval_gettext "VimCFG Setting:")" Background dark
         rc_add "set background=dark"
     else

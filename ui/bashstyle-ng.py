@@ -167,7 +167,6 @@ class BashStyleNG(Gtk.Application):
 
         # GtkCheckButton
         WidgetHandler.InitCheckButton("colored_prompts", "Style", "enable_colors")
-        WidgetHandler.InitCheckButton("dark_terminal", "Style", "dark_terminal")
         WidgetHandler.InitCheckButton("ls_color", "Style", "colored_ls")
         WidgetHandler.InitCheckButton("random_style", "Style", "random_style")
         WidgetHandler.InitCheckButton("colorshell", "Style", "colorshell")
@@ -251,7 +250,6 @@ class BashStyleNG(Gtk.Application):
         WidgetHandler.InitCheckButton("vim_cmd", "Vim", "show_command")
         WidgetHandler.InitCheckButton("vim_match", "Vim", "highlight_matches")
         WidgetHandler.InitCheckButton("vim_syntax", "Vim", "syntax_hilight")
-        WidgetHandler.InitCheckButton("vim_bg", "Vim", "dark_background")
         WidgetHandler.InitCheckButton("vim_icase", "Vim", "ignore_case")
         WidgetHandler.InitCheckButton("vim_scase", "Vim", "smart_case")
         WidgetHandler.InitCheckButton("vim_isearch", "Vim", "incremental_search")

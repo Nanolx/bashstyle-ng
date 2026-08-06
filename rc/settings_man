@@ -38,10 +38,11 @@ lfcyan="36m"
 lfgrey="37m"
 lfwhite="97m"
 
-if bt "$(ini_get dark_terminal)"; then
+if bt ${BSNG_TERMINAL_DARK}; then
     lfblack=${lfwhite}
     lbblack=${lbwhite}
-else    lfwhite=${lfblack}
+else
+    lfwhite=${lfblack}
     lbwhite=${lbblack}
 fi
 
