@@ -1,0 +1,47 @@
+#!/bin/bash
+#########################################################
+#                                                       #
+# This is BashStyle-NG                                  #
+#                                                       #
+# Licensed under GNU GENERAL PUBLIC LICENSE v3          #
+#                                                       #
+# Copyright Christopher Roy Bratušek                    #
+#                                                       #
+#########################################################
+
+is_terminal_bg_dark () {
+    # yes setterm could set it to white, but in 99 % cases the vt is dark
+    if [ "${TERM}" = "linux" ]; then
+        return 0
+    fi
+
+    if [ -t 0 ] && [ -t 1 ]; then
+        echo -ne "\e]11;?\a"
+        read -rs -d $'\a' -t 0.1 response
+
+        if [[ "$response" =~ rgb:([0-9a-fA-F]+)/([0-9a-fA-F]+)/([0-9a-fA-F]+) ]]; then
+            R=$((16#${BASH_REMATCH[1]:0:2}))
+            G=$((16#${BASH_REMATCH[2]:0:2}))
+            B=$((16#${BASH_REMATCH[3]:0:2}))
+            brightness=$(( (R * 299 + G * 587 + B * 114) / 1000 ))
+
+            if [ "${brightness}" -gt 127 ]; then
+                return 1
+            else
+                return 0
+            fi
+        fi
+    fi
+
+    if [ -n "${COLORFGBG}" ]; then
+        bg_color="${COLORFGBG##*;}"
+
+        if [[ "${bg_color}" =~ ^([0-6]|8)$ ]]; then
+            return 0
+        else
+            return 1
+        fi
+    fi
+
+    return 1
+}
