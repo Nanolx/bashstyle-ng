@@ -160,7 +160,19 @@ case ${1} in
         [[ -z "${2}" ]] && outdir="../$(basename ${PWD})_export" || outdir="${2}"
         if [[ -d "$(get_root)" ]]; then
             echo "exporting to: ${outdir}"
-            git checkout-index --prefix="${outdir}"/ -a
+
+            mkdir -p "${outdir}"
+            abs_outdir=$(cd "${outdir}" && pwd)
+
+            git archive HEAD | tar -x -C "${abs_outdir}"
+
+            git submodule foreach --recursive '
+                submodule_target="'"${abs_outdir}"'/${sm_path}"
+                mkdir -p "${submodule_target}"
+
+                git archive HEAD | tar -x -C "${submodule_target}"
+                echo "Exported submodule: ${sm_path}"
+            '
         else
             echo "$(eval_gettext "current directory is not the root of a git repository")"
         fi
