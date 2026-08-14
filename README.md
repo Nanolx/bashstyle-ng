@@ -8,6 +8,10 @@ look, feel, and behavior of `Bash`, `Readline`, `Vim`, `Nano`, and
 and visual enhancements into standard command-line tools, making the
 terminal environment more user-friendly and powerful.
 
+While I'm not actively asking for donations, a tip is always welcome.
+
+[![Liberapay](https://img.shields.io/badge/Liberapay-F6C915?logo=liberapay&color=a80030)](https://liberapay.com/nanolx)
+
 <div id="fig_003ascreenshot_005fmenu" class="float">
 
 <div class="center">
