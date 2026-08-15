@@ -37,7 +37,7 @@ case ${@} in
                 suffix=$(awk -v mime="$mime_type" '$1 == mime {print $2; exit}' /etc/mime.types)
 
                 if [[ "${image}" != "${baseimg}.${suffix}" && -n "${suffix}" ]]; then
-                    mv "${MV_OPT}" "${image}" "${baseimg}.${suffix}"
+                    mv ${MV_OPT} "${image}" "${baseimg}.${suffix}"
                 fi
             fi
         done
