@@ -9,6 +9,31 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 11.5 (20260925) ``Dagda``
+@itemize @bullet
+@item Fixes
+@itemize @minus
+
+@item #314: @code{colorshell} ensures OLD_PS[N] is only set once instead of making
+PS[N] longer and longer with each call to @code{colorshell}.
+
+@item #315: @code{showuser} function doesn't print colors in PS1, fixing prompt
+drawing issues if @code{showuser} is used in the last prompt line.
+
+@item #316: @code{truncpwd} function doesn't print colors in PS1, fixing prompt
+drawing issues if @code{truncpwd} is used in the last prompt line. This does not
+effect the prompt styles dirks, equinox, quirk, poweruser and sputnik as they print
+the working directory in an other prompt line than the last one.
+
+@end itemize
+@item Misc. Changes
+@itemize @minus
+
+@item Fix the link to the homepage post in the about section in the UI.
+
+@end itemize
+@end itemize
+
 @heading 11.4 (20260822) ``Torna``
 @itemize @bullet
 @item Fixes

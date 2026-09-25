@@ -6,6 +6,30 @@ between.  For more detailed information see the git log.
 
    Each release lists incompatible changes at its top.
 
+11.5 (20260925) "Dagda"
+=======================
+
+   • Fixes
+
+        − #314: ‘colorshell’ ensures OLD_PS[N] is only set once instead
+          of making PS[N] longer and longer with each call to
+          ‘colorshell’.
+
+        − #315: ‘showuser’ function doesn't print colors in PS1, fixing
+          prompt drawing issues if ‘showuser’ is used in the last prompt
+          line.
+
+        − #316: ‘truncpwd’ function doesn't print colors in PS1, fixing
+          prompt drawing issues if ‘truncpwd’ is used in the last prompt
+          line.  This does not effect the prompt styles dirks, equinox,
+          quirk, poweruser and sputnik as they print the working
+          directory in an other prompt line than the last one.
+
+   • Misc.  Changes
+
+        − Fix the link to the homepage post in the about section in the
+          UI.
+
 11.4 (20260822) "Torna"
 =======================
 
