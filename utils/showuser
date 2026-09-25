@@ -21,9 +21,20 @@ case ${1} in
     ;;
 
     *)
+        if [ -t 1 ]; then
+            COLOR_ROOT="${ered}"
+            COLOR_USER="${ecolor_user}"
+            COLOR_RESET="\033[0m"
+        else
+            COLOR_ROOT=""
+            COLOR_USER=""
+            COLOR_RESET=""
+        fi
+
         if [[ ${EUID} -eq 0 ]]; then
-                echo -e "${ered}${root_char:-#}"
-        else    echo -e "${ecolor_user}${user_char:-$}"
+            echo -e "${COLOR_ROOT}${root_char:-#}${COLOR_RESET}"
+        else
+            echo -e "${COLOR_USER}${user_char:-$}${COLOR_RESET}"
         fi
     ;;
 esac
