@@ -10,11 +10,11 @@
 #########################################################
 
 bashstyle_colorshell () {
-    [[ ${BSNG_BASHVER} -ge 44 ]] && local OLD_PS0="${PS0}"
-    local OLD_PS1="${PS1}"
-    local OLD_PS2="${PS2}"
-    local OLD_PS3="${PS3}"
-    local OLD_PS4="${PS4}"
+    [[ ${BSNG_BASHVER} -ge 44  && -z "${OLD_PS0}" ]] && OLD_PS0="${PS0}"
+    [[ -z "${OLD_PS1}" ]] && OLD_PS1="${PS1}"
+    [[ -z "${OLD_PS2}" ]] && OLD_PS2="${PS2}"
+    [[ -z "${OLD_PS3}" ]] && OLD_PS3="${PS3}"
+    [[ -z "${OLD_PS4}" ]] && OLD_PS4="${PS4}"
 
     # exclude black (0) on dark terminal
     # exclude white (7) on bright terminal
@@ -24,8 +24,6 @@ bashstyle_colorshell () {
     fi
 
     cmd_text_colour='\[`tput setaf ${randomcolor}`\]'
-
-    shopt -s promptvars
 
     [[ ${BSNG_BASHVER} -ge 44 ]] && PS0="${OLD_PS0}${cmd_text_colour}"
     PS1="${OLD_PS1}${cmd_text_colour}"
