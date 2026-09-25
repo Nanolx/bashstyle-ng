@@ -25,12 +25,27 @@ case ${1} in
         [[ ! ${trunc_symbol} ]] && trunc_symbol="«"
         [[ ! ${trunc_length} ]] && trunc_length=1
 
+        color_ps="${ecolor_ps}"
+        color_sep="${ecolor_separator}"
+        color_wdir="${ecolor_wdir}"
+
+        if [ ! -t 1 ]; then
+            case $(bashstyle --ini-get prompt_style) in
+                dirks | poweruser | quirk | sputnik | equinox ) return 0 ;;
+                * )
+                    color_ps=""
+                    color_sep=""
+                    color_wdir=""
+                ;;
+            esac
+        fi
+
         if [[ ${pwdmaxlen} != 0 && ${#PWD} -gt ${pwdmaxlen} ]]; then
             pwdoffset=$((${#PWD}-pwdmaxlen))
-            xPWD="${ecolor_ps}${trunc_symbol}${PWD:${pwdoffset}:${pwdmaxlen}}"
-            newPWD="${xPWD//\//${ecolor_separator}${dirchar}${ecolor_wdir}}"
+            xPWD="${color_ps}${trunc_symbol}${PWD:${pwdoffset}:${pwdmaxlen}}"
+            newPWD="${xPWD//\//${color_sep}${dirchar}${color_wdir}}"
         else
-            newPWD="${PWD//\//${ecolor_separator}${dirchar}${ecolor_wdir}}"
+            newPWD="${xPWD//\//${color_sep}${dirchar}${color_wdir}}"
         fi
 
         echo -e "${newPWD}"
