@@ -9,17 +9,21 @@
 #                                                       #
 #########################################################
 
-if bt "$(ini_get colored_ls)" && bt "$(ini_get enable_colors)"; then
-    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored ls "$(eval_gettext "On")"
-    dbg_log alias ls="ls -CF --color=auto --group-directories-first"
-else
-    dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored ls "$(eval_gettext "Off")"
-    dbg_log alias ls="ls -CF --color=no --group-directories-first"
-fi
-
 if bt "$(ini_get use_lsd)" && check P lsd lsd &>/dev/null; then
     dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Using lsd instead of ls "$(eval_gettext "On")"
-    dbg_log alias ls="lsd"
+    if bt "$(ini_get colored_ls)" && bt "$(ini_get enable_colors)"; then
+        dbg_log alias ls="lsd -F --color never --group-directories-first"
+    else
+        dbg_log alias ls="lsd -F --color auto --group-directories-first"
+    fi
+else
+    if bt "$(ini_get colored_ls)" && bt "$(ini_get enable_colors)"; then
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored ls "$(eval_gettext "On")"
+        dbg_log alias ls="ls -CF --color=auto --group-directories-first"
+    else
+        dbg_msg "$(eval_gettext "BashStyle-NG Setting:")" Colored ls "$(eval_gettext "Off")"
+        dbg_log alias ls="ls -CF --color=no --group-directories-first"
+    fi
 fi
 
 if [ -n "$(ini_get alias_one)" ]; then
