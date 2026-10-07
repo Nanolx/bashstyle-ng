@@ -9,6 +9,23 @@ between. For more detailed information see the git log.
 
 Each release lists incompatible changes at its top.
 
+@heading 11.6 (2026ddmm) ``Wuhu Island``
+@itemize @bullet
+@item Misc. Changes
+@itemize @minus
+
+@item when using @code{lsd} instead of @code{ls} apply same default flags
+programmatically (@code{-F --group-directories-first --color [auto|never]}).
+
+@item fallback value for @code{lscd_opts} dropped @code{-C} for @code{lsd}
+compat.
+
+@item @code{lscd} no longer enforces running default @code{ls}, used @code{lsd},
+if user preferes that.
+
+@end itemize
+@end itemize
+
 @heading 11.5 (20260925) ``Dagda``
 @itemize @bullet
 @item Fixes

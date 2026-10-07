@@ -6,6 +6,20 @@ between.  For more detailed information see the git log.
 
    Each release lists incompatible changes at its top.
 
+11.6 (2026ddmm) "Wuhu Island"
+=============================
+
+   • Misc.  Changes
+
+        − when using ‘lsd’ instead of ‘ls’ apply same default flags
+          programmatically (‘-F --group-directories-first --color
+          [auto|never]’).
+
+        − fallback value for ‘lscd_opts’ dropped ‘-C’ for ‘lsd’ compat.
+
+        − ‘lscd’ no longer enforces running default ‘ls’, used ‘lsd’, if
+          user preferes that.
+
 11.5 (20260925) "Dagda"
 =======================
 
